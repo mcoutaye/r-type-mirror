@@ -1,0 +1,55 @@
+name: Build R-Type (Linux & Windows)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      # --- Récupération du code ---
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --- Installation des dépendances Linux ---
+      - name: Install dependencies (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            libx11-dev libxrandr-dev libxi-dev libudev-dev libfreetype6-dev \
+            libgl1-mesa-dev libxext-dev libopenal-dev libflac-dev libvorbis-dev \
+            g++ cmake make
+
+      # --- Installation des dépendances Windows ---
+      - name: Install dependencies (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install cmake --installargs '"ADD_CMAKE_TO_PATH=System"' -y
+          choco install mingw -y
+        shell: powershell
+
+      # --- Configuration CMake ---
+      - name: Configure CMake
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+        shell: bash
+
+      # --- Build ---
+      - name: Build project
+        run: |
+          cmake --build build --config Release
+        shell: bash
+
+      # --- (Optionnel) Tests unitaires ---
+      # Active ceci si tu ajoutes des tests plus tard
+      # - name: Run tests
+      #   run: |
+      #     ctest --test-dir build --output-on-failure

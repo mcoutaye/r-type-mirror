@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/rtype_test.dir/link.d CMakeFiles/rtype_test.dir/main.cpp.o -o rtype_test

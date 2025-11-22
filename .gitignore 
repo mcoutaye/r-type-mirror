@@ -1,0 +1,42 @@
+# Build directories (common)
+build/
+build-*/
+
+# C/C++ object files and binaries
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.out
+RTypeTest
+R-Type
+r-type
+r-type_server
+r-type_client
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+compile_commands.json
+
+# Makefile generated artifacts (inside build folders)
+**/Makefile
+**/cmake_install.cmake
+
+# Debug / profiling / coverage
+*.gcno
+*.gcov
+*.log
+
+# IDEs and editors
+.vscode/
+
+# Editor swap/backup files
+*~
+*.swp
+*.swo
+*.tmp

@@ -2,7 +2,6 @@ name: Build & Mirror to Private Repo (SSH)
 
 on:
   push:
-    branches: [ "main" ]
 
 jobs:
   build:

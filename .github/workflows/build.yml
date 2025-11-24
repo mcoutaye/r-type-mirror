@@ -72,4 +72,6 @@ jobs:
 
       - name: Push to private repo
         run: |
-          git push epitech cicd
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          echo "Pushing branch: $BRANCH"
+          git push epitech $BRANCH

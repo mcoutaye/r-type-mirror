@@ -1,4 +1,4 @@
-name: Build & Mirror to Private Repo
+name: Build & Mirror to Private Repo (SSH)
 
 on:
   push:
@@ -35,41 +35,42 @@ jobs:
           choco install cmake --installargs '"ADD_CMAKE_TO_PATH=System"' -y
           choco install mingw -y
 
+      # ---------- Configure ----------
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 
+      # ---------- Build ----------
       - name: Build project
         run: cmake --build build --config Release
 
   mirror:
-    name: Mirror back to private repo
+    name: Mirror to Private Epitech Repo
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout current mirror repo
+      - name: Checkout current repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # on récupère tout l'historique
+          fetch-depth: 0
+
+      # ---- SSH Setup ----
+      - name: Install SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MIRROR_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
 
       - name: Configure Git identity
         run: |
-          git config user.name "GitHub Action"
+          git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-      - name: Add private repo as remote
+      - name: Add private Epitech repo as remote
         run: |
           git remote add epitech git@github.com:EpitechPGE3-2025/G-CPP-500-RUN-5-2-rtype-3.git
 
       - name: Push to private repo
-        env:
-          GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
-          GITHUB_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.MIRROR_TOKEN }}" > ~/.ssh/github_token
-          chmod 600 ~/.ssh/github_token
-
-          git remote set-url epitech https://${{ secrets.MIRROR_TOKEN }}@github.com/EpitechPGE3-2025/G-CPP-500-RUN-5-2-rtype-3.git
           git push epitech main
-          rm -f ~/.ssh/github_token

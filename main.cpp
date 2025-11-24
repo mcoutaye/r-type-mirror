@@ -1,6 +1,6 @@
 #include <iostream>
 
 int main() {
-    std::cout << "CMake test OK !" << std::endl;
+    std::cout << "Test." << std::endl;
     return 0;
 }

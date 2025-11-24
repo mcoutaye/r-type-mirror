@@ -23,10 +23,6 @@ CTestTestfile.cmake
 Testing/
 compile_commands.json
 
-# Makefile generated artifacts (inside build folders)
-**/Makefile
-**/cmake_install.cmake
-
 # Debug / profiling / coverage
 *.gcno
 *.gcov

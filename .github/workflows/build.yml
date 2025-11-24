@@ -1,8 +1,8 @@
-name: Build R-Type (Linux & Windows)
+name: Build & Mirror to Private Repo
 
 on:
   push:
-  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -14,11 +14,10 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      # --- Récupération du code ---
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # --- Installation des dépendances Linux ---
+      # ---------- Linux ----------
       - name: Install dependencies (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
@@ -28,28 +27,49 @@ jobs:
             libgl1-mesa-dev libxext-dev libopenal-dev libflac-dev libvorbis-dev \
             g++ cmake make
 
-      # --- Installation des dépendances Windows ---
+      # ---------- Windows ----------
       - name: Install dependencies (Windows)
         if: matrix.os == 'windows-latest'
+        shell: powershell
         run: |
           choco install cmake --installargs '"ADD_CMAKE_TO_PATH=System"' -y
           choco install mingw -y
-        shell: powershell
 
-      # --- Configuration CMake ---
       - name: Configure CMake
-        run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-        shell: bash
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 
-      # --- Build ---
       - name: Build project
-        run: |
-          cmake --build build --config Release
-        shell: bash
+        run: cmake --build build --config Release
 
-      # --- (Optionnel) Tests unitaires ---
-      # Active ceci si tu ajoutes des tests plus tard
-      # - name: Run tests
-      #   run: |
-      #     ctest --test-dir build --output-on-failure
+  mirror:
+    name: Mirror back to private repo
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current mirror repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # on récupère tout l'historique
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "actions@github.com"
+
+      - name: Add private repo as remote
+        run: |
+          git remote add epitech git@github.com:EpitechPGE3-2025/G-CPP-500-RUN-5-2-rtype-3.git
+
+      - name: Push to private repo
+        env:
+          GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+          GITHUB_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MIRROR_TOKEN }}" > ~/.ssh/github_token
+          chmod 600 ~/.ssh/github_token
+
+          git remote set-url epitech https://${{ secrets.MIRROR_TOKEN }}@github.com/EpitechPGE3-2025/G-CPP-500-RUN-5-2-rtype-3.git
+          git push epitech main
+          rm -f ~/.ssh/github_token

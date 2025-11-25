@@ -1,6 +1,7 @@
 # Build directories (common)
 build/
 build-*/
+client_test
 
 # C/C++ object files and binaries
 *.o

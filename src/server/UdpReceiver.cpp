@@ -7,6 +7,7 @@
 
 #include "UdpReceiver.hpp"
 #include <iostream>
+#include <iomanip>
 
 Ntw::ReceivedPacket::ReceivedPacket(sf::IpAddress sender, unsigned short port, std::vector<char> data)
 : _sender(sender), _port(port), _data(data)
@@ -52,6 +53,31 @@ void Ntw::UdpReceiver::join()
         _thread.join();
 }
 
+void Ntw::UdpReceiver::printPacketDebug(const sf::IpAddress& sender, unsigned short port,
+                                   const std::vector<char>& data) const
+{
+    if (!_debug)
+        return;
+    std::ostringstream oss;
+    oss << "[UDP RECV] ← " << sender << ":" << port
+        << " | Taille: " << std::setw(3) << data.size() << " octets";
+    if (!data.empty()) {
+        oss << " | Type: 0x" << std::hex << std::uppercase
+            << std::setw(2) << std::setfill('0') << (static_cast<int>(data[0]) & 0xFF);
+        if (data.size() > 1) {
+            oss << " | Data: ";
+            for (size_t i = 0; i < std::min(data.size(), size_t(16)); ++i) {
+                oss << std::hex << std::setw(2) << std::setfill('0')
+                    << (static_cast<int>(data[i]) & 0xFF) << " ";
+            }
+            if (data.size() > 16)
+                oss << "...";
+        }
+    }
+    oss << std::dec << std::setfill(' ');
+    std::cout << oss.str() << std::endl;
+}
+
 void Ntw::UdpReceiver::receiveLoop()
 {
     char buffer[2048];
@@ -61,6 +87,8 @@ void Ntw::UdpReceiver::receiveLoop()
     while (_running) {
         sf::Socket::Status status = _socket.receive(buffer, sizeof(buffer), received, sender, senderPort);
         if (status == sf::Socket::Done && received > 0) {
+            std::vector<char> data(buffer, buffer + received);
+            printPacketDebug(sender, senderPort, data);
             auto packet = std::make_unique<ReceivedPacket>(
                 sender,
                 senderPort,
@@ -91,4 +119,9 @@ bool Ntw::UdpReceiver::getPacket(ReceivedPacket& packet)
 unsigned short Ntw::UdpReceiver::getPort() const
 {
     return _port;
+}
+
+void Ntw::UdpReceiver::setDebug(bool enabled)
+{
+    _debug = enabled;
 }

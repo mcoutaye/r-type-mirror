@@ -31,13 +31,17 @@ namespace Ntw {
             void join();
             bool getPacket(ReceivedPacket& packet);
             unsigned short getPort() const;
+            void setDebug(bool enabled);
         private:
             void receiveLoop();
+            void printPacketDebug(const sf::IpAddress& sender, unsigned short port,
+                          const std::vector<char>& data) const;
             sf::UdpSocket _socket;
             unsigned short _port;
             std::queue<std::unique_ptr<ReceivedPacket>> _packetQueue;
             std::mutex _mutex;
             std::thread _thread;
-            bool _running = true;
+            std::atomic<bool> _running{false};
+            bool _debug = true;
     };
 };

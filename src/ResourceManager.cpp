@@ -1,6 +1,7 @@
 // ResourceManager.cpp
 #include "ResourceManager.hpp"
 #include <iostream>
+#include "Components.hpp"
 
 ResourceManager& ResourceManager::getInstance() {
     static ResourceManager instance;

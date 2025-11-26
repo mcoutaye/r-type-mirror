@@ -1,3 +1,16 @@
+// src/main.cpp
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+// Tes includes locaux (chemin relatif depuis src/)
+#include "ResourceManager.hpp"
+#include "RenderSystem.hpp"
+#include "InputSystem.hpp"
+#include "CollisionSystem.hpp"
+#include "WaveSystem.hpp"
+#include "Components.hpp"   // tous tes structs (Position, Drawable, etc.)
+#include "ecs.hpp"
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "R-Type Engine");
     ECS ecs;

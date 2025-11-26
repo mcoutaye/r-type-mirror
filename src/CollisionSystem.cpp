@@ -1,6 +1,6 @@
 // CollisionSystem.cpp
 #include "CollisionSystem.hpp"
-#include "Health.hpp"  // assume Health existe
+#include "Components.hpp"
 
 CollisionSystem::CollisionSystem(ECS& ecs) : ISystem(ecs) {}
 

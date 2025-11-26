@@ -53,3 +53,10 @@ struct WaveSpawner {
     float nextSpawnTime = 2.f;  // temps avant prochain spawn
     int currentWave = 0;
 };
+
+struct WaveData {
+    float time;
+    std::string enemyType;
+    int count;
+    float x, y;
+};

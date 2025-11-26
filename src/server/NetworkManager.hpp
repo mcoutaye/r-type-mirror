@@ -6,9 +6,9 @@
 */
 
 #pragma once
-#include "UdpReceiver.hpp"
-#include "UdpSender.hpp"
-#include "PacketInterpreter.hpp"
+#include "../../include/network/UdpReceiver.hpp"
+#include "../../include/network/UdpSender.hpp"
+#include "../../include/packet/ServerPacketInterpreter.hpp"
 #include "GameLoop.hpp"
 
 namespace Ntw {
@@ -25,7 +25,7 @@ namespace Ntw {
         private:
             UdpReceiver       _receiver;
             UdpSender         _sender;
-            PacketInterpreter _interpreter;
+            ServerPacketInterpreter _interpreter;
             GameLoop          _gameLoop;
     };
 };

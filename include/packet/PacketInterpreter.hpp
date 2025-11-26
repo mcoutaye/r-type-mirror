@@ -1,25 +1,30 @@
 /*
 ** EPITECH PROJECT, 2025
-** Teck3
+** r-type-mirror
 ** File description:
 ** PacketInterpreter
 */
 
 #pragma once
-#include "UdpReceiver.hpp"
+#include "../network/UdpReceiver.hpp"
+#include "../protocol/Protocol.hpp"
 #include <thread>
 #include <atomic>
 #include <queue>
 #include <mutex>
+#include <atomic>
 
 namespace Ntw {
     class PacketInterpreter {
         public:
-            explicit PacketInterpreter(UdpReceiver& receiver);
-            ~PacketInterpreter();
+            PacketInterpreter(UdpReceiver& receiver);
+            virtual ~PacketInterpreter();
             void start();
             void stop();
             void join();
+        protected:
+            virtual void onInputPacket(const Protocol::InputPacket& input) = 0;
+            virtual void onPositionPacket(const Protocol::PositionPacket& pos) = 0;
         private:
             void interpreterLoop();
             UdpReceiver& _receiver;
@@ -28,4 +33,4 @@ namespace Ntw {
             std::thread _thread;
             std::atomic<bool> _running{false};
     };
-};
+}

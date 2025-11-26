@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** r-type-mirror
+** Teck3
 ** File description:
 ** UdpReceiver
 */
 
-#include "UdpReceiver.hpp"
+#include "../../include/network/UdpReceiver.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -19,8 +19,12 @@ Ntw::ReceivedPacket::ReceivedPacket()
 {
 }
 
-Ntw::UdpReceiver::UdpReceiver()
+Ntw::UdpReceiver::UdpReceiver(unsigned short port)
+    : _port(port)
 {
+    if (_port != 0 && _socket.bind(_port) != sf::Socket::Done) {
+        std::cerr << "Erreur bind port " << _port << std::endl;
+    }
     _socket.setBlocking(false);
 }
 
@@ -107,10 +111,15 @@ bool Ntw::UdpReceiver::getPacket(ReceivedPacket& packet)
     if (_packetQueue.empty())
         return false;
     packet._sender = _packetQueue.front()->_sender;
-    packet._port   = _packetQueue.front()->_port;
-    packet._data   = std::move(_packetQueue.front()->_data);
+    packet._port = _packetQueue.front()->_port;
+    packet._data = std::move(_packetQueue.front()->_data);
     _packetQueue.pop();
     return true;
+}
+
+unsigned short Ntw::UdpReceiver::getPort() const
+{
+    return _port;
 }
 
 void Ntw::UdpReceiver::setDebug(bool enabled)

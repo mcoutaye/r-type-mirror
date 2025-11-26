@@ -5,7 +5,7 @@
 ** PacketInterpreter
 */
 
-#include "PacketInterpreter.hpp"
+#include "../../include/packet/PacketInterpreter.hpp"
 #include <iostream>
 
 Ntw::PacketInterpreter::PacketInterpreter(UdpReceiver& receiver)
@@ -51,10 +51,28 @@ void Ntw::PacketInterpreter::interpreterLoop()
             std::lock_guard<std::mutex> lock(_mutex);
             packet = std::move(_packetBuffer.front());
             _packetBuffer.pop();
-            if (packet._data.empty()) continue;
-            uint8_t msgType = static_cast<uint8_t>(packet._data[0]);
-            std::cout << "[Interpreter] Message type " << +msgType
-                      << " from " << packet._sender << ":" << packet._port << std::endl;
+            if (packet._data.empty())
+                continue;
+            if (!Protocol::Protocol::isValidPacket(packet._data)) {
+                std::cerr << "[PacketInterpreter] Invalid packet (no magic)\n";
+                continue;
+            }
+            auto msgType = Protocol::Protocol::getMessageType(packet._data);
+            auto data = Protocol::Protocol::getPacketData(packet._data);
+            switch (msgType) {
+                case Protocol::MessageType::INPUT: {
+                    auto input = Protocol::InputPacket::deserialize(data);
+                    onInputPacket(input);
+                    break;
+                }
+                case Protocol::MessageType::POSITION: {
+                    auto pos = Protocol::PositionPacket::deserialize(data);
+                    onPositionPacket(pos);
+                    break;
+                }
+                default:
+                    std::cerr << "[PacketInterpreter] Unknown message type: " << +static_cast<uint8_t>(msgType) << "\n";
+            }
         }
         std::this_thread::sleep_for(std::chrono::microseconds(100));
     }

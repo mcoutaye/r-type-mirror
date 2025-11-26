@@ -9,7 +9,7 @@
 #include <iostream>
 
 Ntw::ClientManager::ClientManager(const std::string& serverIp, unsigned short serverPort)
-    : _serverIp(serverIp), _serverPort(serverPort), _interpreter(_receiver)
+    : _serverIp(serverIp), _serverPort(serverPort), _receiver(_serverPort), _interpreter(_receiver)
 {
     std::cout << "[ClientManager] Client initialized, connecting to "
               << _serverIp << ":" << _serverPort << std::endl;

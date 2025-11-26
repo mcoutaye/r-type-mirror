@@ -10,6 +10,7 @@
 #include <queue>
 #include <thread>
 #include <mutex>
+#include <atomic>
 
 namespace Ntw {
     class ReceivedPacket {

@@ -6,9 +6,9 @@
 */
 
 #pragma once
-#include "UdpReceiver.hpp"
-#include "UdpSender.hpp"
-#include "PacketInterpreter.hpp"
+#include "../../include/network/UdpReceiver.hpp"
+#include "../../include/network/UdpSender.hpp"
+#include "../../include/packet/ClientPacketInterpreter.hpp"
 #include "DisplayLoop.hpp"
 #include <string>
 
@@ -27,7 +27,7 @@ namespace Ntw {
         unsigned short _serverPort;
         UdpReceiver _receiver;
         UdpSender _sender;
-        PacketInterpreter _interpreter;
+        ClientPacketInterpreter _interpreter;
         DisplayLoop _displayLoop;
     };
 };

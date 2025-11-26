@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** Teck3
+** r-type-mirror
 ** File description:
 ** Args
 */
@@ -14,8 +14,8 @@ class Args {
             public:
                 Config() = default;
                 ~Config() = default;
-                int port = 55002;
                 std::string machine = "127.0.0.1";
+                int port = 55002;
                 void reset();
         };
         explicit Args(int argc, char *argv[]);

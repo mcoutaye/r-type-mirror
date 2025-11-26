@@ -9,7 +9,6 @@
 #include "../../include/network/UdpReceiver.hpp"
 #include "../../include/network/UdpSender.hpp"
 #include "../../include/packet/ClientPacketInterpreter.hpp"
-#include "DisplayLoop.hpp"
 #include <string>
 
 namespace Ntw {
@@ -28,6 +27,5 @@ namespace Ntw {
         UdpReceiver _receiver;
         UdpSender _sender;
         ClientPacketInterpreter _interpreter;
-        DisplayLoop _displayLoop;
     };
 };

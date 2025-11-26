@@ -34,7 +34,7 @@ add_custom_target(myfclean
 )
 
 add_custom_target(myre
-    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target fclean
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target myfclean
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}
     COMMENT "Nettoie et recompile tout"
 )

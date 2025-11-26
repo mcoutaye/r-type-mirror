@@ -9,7 +9,6 @@
 #include "../../include/network/UdpReceiver.hpp"
 #include "../../include/network/UdpSender.hpp"
 #include "../../include/packet/ServerPacketInterpreter.hpp"
-#include "GameLoop.hpp"
 
 namespace Ntw {
     class NetworkManager {
@@ -26,6 +25,5 @@ namespace Ntw {
             UdpReceiver       _receiver;
             UdpSender         _sender;
             ServerPacketInterpreter _interpreter;
-            GameLoop          _gameLoop;
     };
 };

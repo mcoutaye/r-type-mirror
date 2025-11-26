@@ -7,8 +7,16 @@
 
 #include "DisplayLoop.hpp"
 #include <iostream>
+#include "../../include/protocol/Protocol.hpp"
+#include "../../include/network/UdpSender.hpp"
 
-DisplayLoop::DisplayLoop() = default;
+
+DisplayLoop::DisplayLoop(Ntw::UdpSender &Sender, int port, sf::IpAddress ip)
+: _sender(Sender), _port(port), _ip(ip)
+{
+    std::cout << "[DisplayLoop] started " << std::endl;
+}
+
 
 DisplayLoop::~DisplayLoop()
 {
@@ -43,6 +51,9 @@ void DisplayLoop::displayLoop()
         float dt = _clock.restart().asSeconds();
         (void)dt;
         // TODO: Ajouter ici la logique de rendu/affichage du jeu
+        Protocol::InputPacket input(1, 0x01);
+        std::vector<char> server_packet = Protocol::Protocol::createInputPacket(input);
+        _sender.sendTo(server_packet, _ip, _port);
         std::this_thread::sleep_for(std::chrono::milliseconds(16));
     }
     std::cout << "[DisplayLoop] Stopped\n";

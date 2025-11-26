@@ -59,6 +59,8 @@ void Ntw::PacketInterpreter::interpreterLoop()
             }
             auto msgType = Protocol::Protocol::getMessageType(packet._data);
             auto data = Protocol::Protocol::getPacketData(packet._data);
+            // std::cout << "Message Type : " << msgType << std::endl;
+            // std::cout << "Packet Data = " << data << std::endl;
             switch (msgType) {
                 case Protocol::MessageType::INPUT: {
                     auto input = Protocol::InputPacket::deserialize(data);

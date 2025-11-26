@@ -29,7 +29,6 @@ void Ntw::NetworkManager::start()
     std::cout << "[NetworkManager] Starting server threads...\n";
     _receiver.start();
     _interpreter.start();
-    _gameLoop.start();
     std::cout << "[NetworkManager] Server is fully running!\n";
     printServerInfo();
 }
@@ -37,7 +36,6 @@ void Ntw::NetworkManager::start()
 void Ntw::NetworkManager::stop()
 {
     std::cout << "[NetworkManager] Stopping server...\n";
-    _gameLoop.stop();
     _interpreter.stop();
     _receiver.stop();
     std::cout << "[NetworkManager] Server stopped cleanly.\n";
@@ -46,7 +44,6 @@ void Ntw::NetworkManager::stop()
 void Ntw::NetworkManager::join()
 {
     std::cout << "[NetworkManager] Attente de la fin des threads...\n";
-    _gameLoop.join();
     _interpreter.join();
     _receiver.join();
     std::cout << "[NetworkManager] Tous les threads sont terminés.\n";

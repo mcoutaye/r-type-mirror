@@ -31,7 +31,6 @@ void Ntw::ClientManager::start()
     _receiver.start();
     _receiver.setDebug(true);
     _interpreter.start();
-    _displayLoop.start();
     std::cout << "[ClientManager] Client is fully running!\n";
     printClientInfo();
 }
@@ -39,7 +38,6 @@ void Ntw::ClientManager::start()
 void Ntw::ClientManager::stop()
 {
     std::cout << "[ClientManager] Stopping client...\n";
-    _displayLoop.stop();
     _interpreter.stop();
     _receiver.stop();
     std::cout << "[ClientManager] Client stopped cleanly.\n";
@@ -48,7 +46,6 @@ void Ntw::ClientManager::stop()
 void Ntw::ClientManager::join()
 {
     std::cout << "[ClientManager] Waiting for threads to finish...\n";
-    _displayLoop.join();
     _interpreter.join();
     _receiver.join();
     std::cout << "[ClientManager] All threads have terminated.\n";

@@ -55,7 +55,7 @@ struct WaveSpawner {
 };
 
 struct WaveData {
-    float time;
+    float delay;
     std::string enemyType;
     int count;
     float x, y;

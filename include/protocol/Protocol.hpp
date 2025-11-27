@@ -14,6 +14,8 @@ namespace Protocol {
     enum class MessageType : uint8_t {
         INPUT = 0x01,
         POSITION = 0x02,
+        JOIN = 0x03,
+        LEAVE = 0x04,
         NONE = 0x0,
     };
 
@@ -34,19 +36,17 @@ namespace Protocol {
     class PositionPacket {
         public:
             PositionPacket() = default;
-            PositionPacket(uint8_t entityId, float x, float y, float angle);
+            PositionPacket(uint8_t entityId, float x, float y);
             ~PositionPacket() = default;
             std::vector<char> serialize() const;
             static PositionPacket deserialize(const std::vector<char>& data);
             uint8_t getEntityId() const;
             float getX() const;
             float getY() const;
-            float getAngle() const;
         private:
             uint8_t _entityId;
             float _x;
             float _y;
-            float _angle;
     };
 
     class Protocol {
@@ -58,5 +58,7 @@ namespace Protocol {
             static std::vector<char> getPacketData(const std::vector<char>& packet);
             static std::vector<char> createInputPacket(const InputPacket& input);
             static std::vector<char> createPositionPacket(const PositionPacket& pos);
+            static std::vector<char> createJoinPacket();
+            static std::vector<char> createLeavePacket();
     };
 };

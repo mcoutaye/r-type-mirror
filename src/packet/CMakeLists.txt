@@ -13,6 +13,7 @@ target_link_libraries(packet
     PRIVATE
         network
         protocol
+        game
 )
 
 add_custom_target(packet_clean

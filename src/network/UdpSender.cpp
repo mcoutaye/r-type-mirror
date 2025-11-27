@@ -8,7 +8,8 @@
 #include "../../include/network/UdpSender.hpp"
 #include <iostream>
 
-Ntw::UdpSender::UdpSender()
+Ntw::UdpSender::UdpSender(sf::UdpSocket& socket)
+: _socket(socket)
 {
     _socket.setBlocking(false);
 }

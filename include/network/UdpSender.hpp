@@ -12,10 +12,10 @@
 namespace Ntw {
     class UdpSender {
         public:
-            UdpSender();
+            UdpSender(sf::UdpSocket& socket);
             bool sendTo(const std::vector<char>& data, const sf::IpAddress& ip, unsigned short port);
             bool broadcast(const std::vector<char>& data, unsigned short port);
         private:
-            sf::UdpSocket _socket;
+            sf::UdpSocket& _socket;
     };
 };

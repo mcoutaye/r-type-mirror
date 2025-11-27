@@ -1,12 +1,16 @@
 /*
 ** EPITECH PROJECT, 2025
-** R-Type - ClientPacketInterpreter
+** r-type-mirror
+** File description:
+** ClientPacketInterpreter
 */
+
 #include "../../include/packet/ClientPacketInterpreter.hpp"
 #include <iostream>
 
-Ntw::ClientPacketInterpreter::ClientPacketInterpreter(UdpReceiver& receiver)
-: PacketInterpreter(receiver)
+Ntw::ClientPacketInterpreter::ClientPacketInterpreter(
+    UdpReceiver& receiver, GuiLoop& gameLoop)
+: PacketInterpreter(receiver), _gameLoop(gameLoop)
 {
 }
 
@@ -18,6 +22,18 @@ void Ntw::ClientPacketInterpreter::onInputPacket(const Protocol::InputPacket& in
 
 void Ntw::ClientPacketInterpreter::onPositionPacket(const Protocol::PositionPacket& pos)
 {
-    std::cout << "[Client] Entity " << +pos.getEntityId()
-                << " is at (" << pos.getX() << ", " << pos.getY() << ")\n";
+    std::cout << "[Client] Position update: EntityID=" << +pos.getEntityId()
+                << ", X=" << pos.getX() << ", Y=" << pos.getY() << std::endl;
+}
+
+void Ntw::ClientPacketInterpreter::onJoinPacket(const ReceivedPacket packet)
+{
+    (void)packet;
+    std::cout << "[Client] Joined the server\n";
+}
+
+void Ntw::ClientPacketInterpreter::onLeavePacket(const ReceivedPacket packet)
+{
+    (void)packet;
+    std::cout << "[Client] Server closed the connection\n";
 }

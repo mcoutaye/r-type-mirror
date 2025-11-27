@@ -1,20 +1,20 @@
 set(SRC_FILES
     main.cpp
-    ClientManager.cpp
-    DisplayLoop.cpp
 )
 
 add_executable(rtype_client ${SRC_FILES})
 
 target_link_libraries(rtype_client
     PRIVATE
-        protocol
         network
+        protocol
         args
+        game
         packet
         pthread
         sfml-network
         sfml-system
+        sfml-window
 )
 
 target_include_directories(rtype_client
@@ -23,13 +23,13 @@ target_include_directories(rtype_client
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_custom_target(server_clean
-    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/rtype_server.dir/*.o
-    COMMENT "Supprime les fichiers objets du serveur"
+add_custom_target(client_clean
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/rtype_client.dir/*.o
+    COMMENT "Supprime les fichiers objets du client"
 )
 
-add_custom_target(server_fclean
-    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/rtype_server.dir/*.o
-    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/rtype_server
-    COMMENT "Supprime les fichiers objets et l'exécutable du serveur"
+add_custom_target(client_fclean
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/rtype_client.dir/*.o
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/rtype_client
+    COMMENT "Supprime les fichiers objets et l'exécutable du client"
 )

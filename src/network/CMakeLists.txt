@@ -1,4 +1,5 @@
 add_library(network STATIC
+    NetworkManager.cpp
     UdpSender.cpp
     UdpReceiver.cpp
 )

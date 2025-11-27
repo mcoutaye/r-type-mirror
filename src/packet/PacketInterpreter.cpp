@@ -6,6 +6,7 @@
 */
 
 #include "../../include/packet/PacketInterpreter.hpp"
+#include "../../include/protocol/Protocol.hpp"
 #include <iostream>
 
 Ntw::PacketInterpreter::PacketInterpreter(UdpReceiver& receiver)
@@ -39,6 +40,11 @@ void Ntw::PacketInterpreter::join()
         _thread.join();
 }
 
+void Ntw::PacketInterpreter::setOnPositionUpdate(OnPositionUpdate callback)
+{
+    _onPositionUpdate = callback;
+}
+
 void Ntw::PacketInterpreter::interpreterLoop()
 {
     ReceivedPacket packet;
@@ -57,23 +63,30 @@ void Ntw::PacketInterpreter::interpreterLoop()
                 std::cerr << "[PacketInterpreter] Invalid packet (no magic)\n";
                 continue;
             }
-            auto msgType = Protocol::Protocol::getMessageType(packet._data);
-            auto data = Protocol::Protocol::getPacketData(packet._data);
-            // std::cout << "Message Type : " << msgType << std::endl;
-            // std::cout << "Packet Data = " << data << std::endl;
+            Protocol::MessageType msgType = Protocol::Protocol::getMessageType(packet._data);
+            std::vector<char> data = Protocol::Protocol::getPacketData(packet._data);
             switch (msgType) {
                 case Protocol::MessageType::INPUT: {
-                    auto input = Protocol::InputPacket::deserialize(data);
+                    const Protocol::InputPacket& input = Protocol::InputPacket::deserialize(data);
                     onInputPacket(input);
                     break;
                 }
                 case Protocol::MessageType::POSITION: {
-                    auto pos = Protocol::PositionPacket::deserialize(data);
+                    const Protocol::PositionPacket& pos = Protocol::PositionPacket::deserialize(data);
                     onPositionPacket(pos);
+                    if (_onPositionUpdate)
+                        _onPositionUpdate(pos.getEntityId(), pos.getX(), pos.getY());
                     break;
                 }
+                case Protocol::MessageType::JOIN:
+                    onJoinPacket(packet);
+                    break;
+                case Protocol::MessageType::LEAVE:
+                    onLeavePacket(packet);
+                    break;
                 default:
-                    std::cerr << "[PacketInterpreter] Unknown message type: " << +static_cast<uint8_t>(msgType) << "\n";
+                    std::cerr << "[PacketInterpreter] Unknown message type: "
+                                << +static_cast<uint8_t>(msgType) << "\n";
             }
         }
         std::this_thread::sleep_for(std::chrono::microseconds(100));

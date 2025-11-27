@@ -20,7 +20,7 @@ Ntw::ReceivedPacket::ReceivedPacket()
 }
 
 Ntw::UdpReceiver::UdpReceiver(unsigned short port)
-    : _port(port)
+: _port(port)
 {
     if (_port != 0 && _socket.bind(_port) != sf::Socket::Done) {
         std::cerr << "Erreur bind port " << _port << std::endl;
@@ -125,4 +125,9 @@ unsigned short Ntw::UdpReceiver::getPort() const
 void Ntw::UdpReceiver::setDebug(bool enabled)
 {
     _debug = enabled;
+}
+
+sf::UdpSocket& Ntw::UdpReceiver::getSocket()
+{
+    return _socket;
 }

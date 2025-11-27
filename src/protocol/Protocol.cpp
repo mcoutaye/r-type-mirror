@@ -13,13 +13,15 @@ Protocol::InputPacket::InputPacket(uint8_t playerId, uint32_t keys)
 {
 }
 
-std::vector<char> Protocol::InputPacket::serialize() const {
+std::vector<char> Protocol::InputPacket::serialize() const
+{
     std::vector<char> data(sizeof(InputPacket));
     std::memcpy(data.data(), this, sizeof(InputPacket));
     return data;
 }
 
-Protocol::InputPacket Protocol::InputPacket::deserialize(const std::vector<char>& data) {
+Protocol::InputPacket Protocol::InputPacket::deserialize(const std::vector<char>& data)
+{
     InputPacket input;
     std::memcpy(&input, data.data(), sizeof(InputPacket));
     return input;
@@ -35,18 +37,20 @@ uint32_t Protocol::InputPacket::getKeys() const
     return _keys;
 }
 
-Protocol::PositionPacket::PositionPacket(uint8_t entityId, float x, float y, float angle)
-: _entityId(entityId), _x(x), _y(y), _angle(angle)
+Protocol::PositionPacket::PositionPacket(uint8_t entityId, float x, float y)
+: _entityId(entityId), _x(x), _y(y)
 {
 }
 
-std::vector<char> Protocol::PositionPacket::serialize() const {
+std::vector<char> Protocol::PositionPacket::serialize() const
+{
     std::vector<char> data(sizeof(PositionPacket));
     std::memcpy(data.data(), this, sizeof(PositionPacket));
     return data;
 }
 
-Protocol::PositionPacket Protocol::PositionPacket::deserialize(const std::vector<char>& data) {
+Protocol::PositionPacket Protocol::PositionPacket::deserialize(const std::vector<char>& data)
+{
     PositionPacket pos;
     std::memcpy(&pos, data.data(), sizeof(PositionPacket));
     return pos;
@@ -67,11 +71,6 @@ float Protocol::PositionPacket::getY() const
     return _y;
 }
 
-float Protocol::PositionPacket::getAngle() const
-{
-    return _angle;
-}
-
 namespace Protocol {
     std::vector<char> Protocol::createPacket(MessageType type, const std::vector<char>& data)
     {
@@ -85,8 +84,7 @@ namespace Protocol {
 
     bool Protocol::isValidPacket(const std::vector<char>& packet)
     {
-        if (packet.size() < 5)
-            return false;
+        if (packet.size() < 5) return false;
         return (packet[0] == 'R' && packet[1] == 'T' && packet[2] == 'Y' && packet[3] == 'P');
     }
 
@@ -99,8 +97,7 @@ namespace Protocol {
 
     std::vector<char> Protocol::getPacketData(const std::vector<char>& packet)
     {
-        if (!isValidPacket(packet))
-            return {};
+        if (!isValidPacket(packet)) return {};
         return std::vector<char>(packet.begin() + 5, packet.end());
     }
 
@@ -113,4 +110,14 @@ namespace Protocol {
     {
         return createPacket(MessageType::POSITION, pos.serialize());
     }
-};
+
+    std::vector<char> Protocol::createJoinPacket()
+    {
+        return createPacket(MessageType::JOIN, {});
+    }
+
+    std::vector<char> Protocol::createLeavePacket()
+    {
+        return createPacket(MessageType::LEAVE, {});
+    }
+}

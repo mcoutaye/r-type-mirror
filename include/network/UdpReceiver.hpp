@@ -33,6 +33,7 @@ namespace Ntw {
             bool getPacket(ReceivedPacket& packet);
             unsigned short getPort() const;
             void setDebug(bool enabled);
+            sf::UdpSocket& getSocket();
         private:
             void receiveLoop();
             void printPacketDebug(const sf::IpAddress& sender, unsigned short port,

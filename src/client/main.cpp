@@ -6,20 +6,26 @@
 */
 
 #include "../../include/args/Args.hpp"
-#include "ClientManager.hpp"
-#include "DisplayLoop.hpp"
-#include <iostream>
+#include "../../include/network/NetworkManager.hpp"
+#include "../../include/network/UdpReceiver.hpp"
+#include "../../include/network/UdpSender.hpp"
+#include "../../include/game/GuiLoop.hpp"
+#include "../../include/packet/ClientPacketInterpreter.hpp"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char* argv[]) {
     Args args(argc, argv, Args::Mode::CLIENT);
     Args::Config config = args.parse();
-    Ntw::ClientManager client(config.machine, config.port);
-    DisplayLoop gui(client.getSender(), config.port, config.machine);
-    client.start();
-    gui.start();
-    // auto& sender = client.getSender();
-    client.join();
-    gui.join();
+    Ntw::UdpReceiver receiver(55003);
+    Ntw::UdpSender sender(receiver.getSocket());
+    GuiLoop gameLoop(sender);
+    Ntw::ClientPacketInterpreter interpreter(receiver, gameLoop);
+    std::vector<char> joinPacket = Protocol::Protocol::createJoinPacket();
+    sender.sendTo(joinPacket, sf::IpAddress(config.machine), config.port);
+    receiver.start();
+    interpreter.start();
+    gameLoop.start();
+    gameLoop.join();
+    interpreter.join();
+    receiver.join();
     return 0;
 }

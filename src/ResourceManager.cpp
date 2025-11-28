@@ -18,8 +18,19 @@ bool ResourceManager::loadTexture(const std::string& id, const std::string& file
     return true;
 }
 
-sf::Texture& ResourceManager::getTexture(const std::string& id) {
-    static sf::Texture dummy;
+sf::Texture& ResourceManager::getTexture(const std::string& id)
+{
     auto it = _textures.find(id);
-    return (it != _textures.end()) ? it->second : dummy;
+    if (it != _textures.end()) return it->second;
+
+    // Texture par défaut rouge si rien n’est chargé
+    static sf::Texture fallback;
+    static bool init = false;
+    if (!init) {
+        sf::Image img;
+        img.create(64, 64, sf::Color::Red);
+        fallback.loadFromImage(img);
+        init = true;
+    }
+    return fallback;
 }

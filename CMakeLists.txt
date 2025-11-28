@@ -15,6 +15,15 @@ set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 # ====================
 # SFML (obligatoire pour client + réseau serveur)
 # ====================
+include(FetchContent)
+FetchContent_Declare(
+  SFML
+  GIT_REPOSITORY https://github.com/SFML/SFML.git
+  GIT_TAG        2.6.x
+  GIT_SHALLOW    TRUE
+)
+FetchContent_MakeAvailable(SFML)
+
 find_package(SFML 2.6 REQUIRED COMPONENTS graphics window system network)
 
 # ====================

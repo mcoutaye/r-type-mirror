@@ -26,6 +26,13 @@ int main()
         std::cerr << "ERREUR : impossible de charger enemy.png\n";
     }
 
+    std::cout << "Texture player chargée ? " 
+          << rm.loadTexture("player", "assets/player.png") << "\n";
+    std::cout << "Texture player chargée ? " 
+            << rm.loadTexture("player", "assets/ship.png") << "\n";
+    std::cout << "Texture enemy chargée ? " 
+            << rm.loadTexture("enemy", "assets/enemy.png") << "\n";
+
     // === SYSTÈMES ===
     RenderSystem    render(ecs, window);
     InputSystem     input(ecs);

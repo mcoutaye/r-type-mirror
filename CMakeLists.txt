@@ -11,17 +11,22 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-find_package(SFML 2.5 COMPONENTS system window graphics network QUIET)
+find_package(SFML 2.5 QUIET COMPONENTS system window graphics network)
 
-if(NOT SFML_FOUND)
-    message(STATUS "SFML non trouvé sur le système → téléchargement/compilation automatique")
-    add_subdirectory(external)
-    include(${CMAKE_SOURCE_DIR}/cmake/SetupSFML.cmake)
-else()
+if(SFML_FOUND)
     message(STATUS "SFML trouvé sur le système (version ${SFML_VERSION})")
+else()
+    message(STATUS "SFML non trouvé → compilation automatique depuis external/")
+
+    add_subdirectory(external)
+
+    list(APPEND CMAKE_PREFIX_PATH "${SFML_INSTALL_DIR}")
+
+    find_package(SFML 2.5 REQUIRED COMPONENTS system window graphics network)
 endif()
 
-include_directories(${SFML_INCLUDE_DIR})
+message(STATUS "SFML include dir : ${SFML_INCLUDE_DIR}")
+message(STATUS "SFML libraries   : ${SFML_LIBRARIES}")
 
 add_subdirectory(src/protocol)
 add_subdirectory(src/network)
@@ -30,18 +35,6 @@ add_subdirectory(src/game)
 add_subdirectory(src/packet)
 add_subdirectory(src/server)
 add_subdirectory(src/client)
-
-include(GNUInstallDirs)
-
-install(TARGETS rtype_client rtype_server
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-
-if(TARGET sfml-system)
-    install(DIRECTORY "${SFML_INSTALL_DIR}/"
-            DESTINATION .
-            USE_SOURCE_PERMISSIONS
-            PATTERN "*.git" EXCLUDE)
-endif()
 
 add_custom_target(myclean
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target protocol_clean

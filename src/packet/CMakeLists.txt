@@ -14,6 +14,8 @@ target_link_libraries(packet
         network
         protocol
         game
+        sfml-network
+        sfml-system
 )
 
 add_custom_target(packet_clean

@@ -5,6 +5,12 @@ target_include_directories(protocol
         ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
+target_link_libraries(protocol
+    PRIVATE
+        sfml-network
+        sfml-system
+)
+
 add_custom_target(protocol_clean
     COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/protocol.dir/*.o
     COMMENT "Supprime les fichiers objets du protocole"

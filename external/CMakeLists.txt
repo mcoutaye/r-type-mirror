@@ -4,7 +4,7 @@ if(WIN32)
     ExternalProject_Add(
         sfml
         URL https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip
-        URL_MD5 1234567890abcdef1234567890abcdef  # Remplace par le vrai MD5
+        URL_MD5 1234567890abcdef1234567890abcdef
         CONFIGURE_COMMAND ""
         BUILD_COMMAND ""
         INSTALL_COMMAND ""
@@ -13,6 +13,22 @@ if(WIN32)
     ExternalProject_Get_Property(sfml SOURCE_DIR)
     set(SFML_INCLUDE_DIR ${SOURCE_DIR}/include)
     set(SFML_LIBRARY_DIR ${SOURCE_DIR}/lib)
+
+    add_library(sfml-system INTERFACE IMPORTED)
+    target_include_directories(sfml-system INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-system INTERFACE "${SFML_LIBRARY_DIR}/libsfml-system.a")
+
+    add_library(sfml-window INTERFACE IMPORTED)
+    target_include_directories(sfml-window INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-window INTERFACE "${SFML_LIBRARY_DIR}/libsfml-window.a")
+
+    add_library(sfml-graphics INTERFACE IMPORTED)
+    target_include_directories(sfml-graphics INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-graphics INTERFACE "${SFML_LIBRARY_DIR}/libsfml-graphics.a")
+
+    add_library(sfml-network INTERFACE IMPORTED)
+    target_include_directories(sfml-network INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-network INTERFACE "${SFML_LIBRARY_DIR}/libsfml-network.a")
 
     set(SFML_FOUND TRUE)
     set(SFML_VERSION 2.5)
@@ -34,6 +50,22 @@ else()
     ExternalProject_Get_Property(sfml SOURCE_DIR BINARY_DIR)
     set(SFML_INCLUDE_DIR ${SOURCE_DIR}/include)
     set(SFML_LIBRARY_DIR ${BINARY_DIR}/lib)
+
+    add_library(sfml-system INTERFACE IMPORTED)
+    target_include_directories(sfml-system INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-system INTERFACE "${SFML_LIBRARY_DIR}/libsfml-system.a")
+
+    add_library(sfml-window INTERFACE IMPORTED)
+    target_include_directories(sfml-window INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-window INTERFACE "${SFML_LIBRARY_DIR}/libsfml-window.a")
+
+    add_library(sfml-graphics INTERFACE IMPORTED)
+    target_include_directories(sfml-graphics INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-graphics INTERFACE "${SFML_LIBRARY_DIR}/libsfml-graphics.a")
+
+    add_library(sfml-network INTERFACE IMPORTED)
+    target_include_directories(sfml-network INTERFACE ${SFML_INCLUDE_DIR})
+    target_link_libraries(sfml-network INTERFACE "${SFML_LIBRARY_DIR}/libsfml-network.a")
 
     set(SFML_FOUND TRUE)
     set(SFML_VERSION 2.5)

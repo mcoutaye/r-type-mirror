@@ -9,8 +9,6 @@ if(NOT MSVC)
     add_compile_options(-Wall -Wextra -Werror)
 endif()
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-
 find_package(SFML 2.5 QUIET COMPONENTS system window graphics network)
 
 if(SFML_FOUND)

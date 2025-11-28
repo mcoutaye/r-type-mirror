@@ -10,7 +10,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(SFML 2.5 COMPONENTS system network window)
 
 if(NOT SFML_FOUND)
-    include(external/SFML)
+    add_subdirectory(external)
 endif()
 
 include_directories(${SFML_INCLUDE_DIR})

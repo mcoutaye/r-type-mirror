@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-file(GLOB SRC_FILES CONFIGURE_DEPENDS src/*.cpp)
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS src/*.cpp)
 file(GLOB HEADER_FILES CONFIGURE_DEPENDS "include/*.hpp")
 
 add_executable(r-type
@@ -17,3 +17,7 @@ target_include_directories(r-type
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+if(WIN32)
+    target_link_libraries(r-type PRIVATE ws2_32)
+endif()

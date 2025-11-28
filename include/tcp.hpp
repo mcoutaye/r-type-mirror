@@ -17,6 +17,8 @@
     #include <string>
     #include <chrono>
     #include <iostream>
+    #include <thread>
+    #include <atomic>
 
 
 constexpr size_t MAX_USERS = 2;
@@ -29,6 +31,10 @@ class Server {
         bool init();
         int run();
 
+        void start();
+        void stop();
+        void join();
+
     private:
         void handleClients();
         void connexion();
@@ -39,12 +45,15 @@ class Server {
 
         int _port;
         int _sockfd;
-        bool _active;
+        std::atomic<bool> _active;
+
         sockaddr_in _sockAddr;
         std::vector<pollfd> _fds;
         std::vector<bool> _clientActive;
-        std::chrono::steady_clock::time_point _lastPing;
-};
 
+        std::chrono::steady_clock::time_point _lastPing;
+
+        std::thread _thread;
+};
 
 #endif /* !TCP_HPP_ */

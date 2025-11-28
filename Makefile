@@ -17,14 +17,11 @@ all:
 	mkdir -p ./build
 	@cd ./build && cmake .. && make
 	cp ./build/$(NAME) .
-	make -C ./server
 
 clean:
 	rm -rf ./build
-	make clean -C ./server
 
 fclean:	clean
 	rm -f $(NAME)
-	make fclean -C ./server
 
 re:	fclean all

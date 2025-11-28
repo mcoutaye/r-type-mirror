@@ -84,6 +84,26 @@ int Server::run()
     return 0;
 }
 
+void Server::start()
+{
+    _active = true;
+    _thread = std::thread([this] {
+        run();
+    });
+}
+
+void Server::stop()
+{
+    std::cout << "Stopping server..." << std::endl;
+    _active = false;
+}
+
+void Server::join()
+{
+    if (_thread.joinable())
+        _thread.join();
+}
+
 void Server::handleClients()
 {
     for (size_t i = 0; i < _fds.size(); ++i) {

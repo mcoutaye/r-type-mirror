@@ -17,3 +17,7 @@ target_include_directories(r-type
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+if(WIN32)
+    target_link_libraries(r-type PRIVATE ws2_32)
+endif()

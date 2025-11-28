@@ -9,10 +9,25 @@
     #define TCP_HPP_
 
     #include <vector>
-    #include <poll.h>
-    #include <netinet/in.h>
-    #include <sys/socket.h>
-    #include <unistd.h>
+    
+    #ifdef _WIN32
+        #include <winsock2.h>
+        #include <ws2tcpip.h>
+        #pragma comment(lib, "Ws2_32.lib")
+        typedef WSAPOLLFD pollfd;
+        #define poll WSAPoll
+        using ssize_t = int;
+    #else
+        #include <poll.h>
+        #include <netinet/in.h>
+        #include <sys/socket.h>
+        #include <unistd.h>
+        using SOCKET = int;
+        #define INVALID_SOCKET -1
+        #define SOCKET_ERROR -1
+        #define closesocket close
+    #endif
+
     #include <cstring>
     #include <string>
     #include <chrono>
@@ -44,7 +59,7 @@ class Server {
         void heartbeat();
 
         int _port;
-        int _sockfd;
+        SOCKET _sockfd;
         std::atomic<bool> _active;
 
         sockaddr_in _sockAddr;

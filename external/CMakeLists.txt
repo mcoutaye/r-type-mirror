@@ -38,4 +38,4 @@ ExternalProject_Get_Property(sfml SOURCE_DIR BINARY_DIR)
 set(SFML_SOURCE_DIR ${SOURCE_DIR})
 set(SFML_BINARY_DIR ${BINARY_DIR})
 
-include(${CMAKE_SOURCE_DIR}/SetupSFML.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/SetupSFML.cmake)

@@ -5,26 +5,19 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-if(NOT MSVC)
-    add_compile_options(-Wall -Wextra -Werror)
-endif()
+include(FetchContent)
 
-find_package(SFML 2.5 QUIET COMPONENTS system window graphics network)
+FetchContent_Declare(
+    SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG        2.6.1
+)
 
-if(SFML_FOUND)
-    message(STATUS "SFML trouvé sur le système (version ${SFML_VERSION})")
-else()
-    message(STATUS "SFML non trouvé → compilation automatique depuis external/")
+set(SFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 
-    add_subdirectory(external)
-
-    list(APPEND CMAKE_PREFIX_PATH "${SFML_INSTALL_DIR}")
-
-    find_package(SFML 2.5 REQUIRED COMPONENTS system window graphics network)
-endif()
-
-message(STATUS "SFML include dir : ${SFML_INCLUDE_DIR}")
-message(STATUS "SFML libraries   : ${SFML_LIBRARIES}")
+FetchContent_MakeAvailable(SFML)
 
 add_subdirectory(src/protocol)
 add_subdirectory(src/network)

@@ -7,7 +7,6 @@
 
 #include "Args.hpp"
 #include <iostream>
-#include <unistd.h>
 #include <cstdlib>
 #include <cctype>
 

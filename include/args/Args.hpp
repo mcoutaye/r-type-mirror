@@ -26,6 +26,7 @@ class Args {
         Config parse();
         [[noreturn]] static void printUsageAndExit(const std::string &programName, Mode mode);
     private:
+        static std::string getProgramName(const std::string& fullPath);
         int _argc;
         char **_argv;
         std::string _programName;

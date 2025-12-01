@@ -8,6 +8,7 @@
 #include "../../include/network/UdpReceiver.hpp"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 Ntw::ReceivedPacket::ReceivedPacket(sf::IpAddress sender, unsigned short port, std::vector<char> data)
 : _sender(sender), _port(port), _data(data)

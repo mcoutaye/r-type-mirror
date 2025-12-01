@@ -7,6 +7,7 @@
 
 #include "../../include/network/UdpSender.hpp"
 #include <iostream>
+#include <sstream>
 
 Ntw::UdpSender::UdpSender(sf::UdpSocket& socket)
 : _socket(socket)

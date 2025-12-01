@@ -7,6 +7,7 @@
 
 #include "../../include/packet/ClientPacketInterpreter.hpp"
 #include <iostream>
+#include <sstream>
 
 Ntw::ClientPacketInterpreter::ClientPacketInterpreter(
     UdpReceiver& receiver, GuiLoop& gameLoop)

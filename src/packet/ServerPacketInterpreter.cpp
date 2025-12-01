@@ -7,6 +7,7 @@
 
 #include "../../include/packet/ServerPacketInterpreter.hpp"
 #include <iostream>
+#include <sstream>
 
 
 Ntw::ServerPacketInterpreter::ServerPacketInterpreter(

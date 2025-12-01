@@ -8,6 +8,7 @@
 #include "../../include/game/GamePlayLoop.hpp"
 #include "../../include/protocol/Protocol.hpp"
 #include <iostream>
+#include <sstream>
 
 GamePlayLoop::GamePlayLoop(Ntw::UdpSender& sender, Ntw::NetworkManager& networkManager)
 : GameLoop(sender), _networkManager(networkManager)

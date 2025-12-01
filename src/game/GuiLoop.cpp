@@ -9,6 +9,7 @@
 #include "../../include/protocol/Protocol.hpp"
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
+#include <sstream>
 
 GuiLoop::GuiLoop(Ntw::UdpSender& sender)
 : GameLoop(sender)

@@ -9,6 +9,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 
 Ntw::ClientInfo::ClientInfo(const sf::IpAddress& ip, unsigned short port)
 : _ip(ip), _port(port)

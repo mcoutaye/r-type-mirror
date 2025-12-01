@@ -6,7 +6,6 @@
 */
 
 #include "udp.hpp"
-#define INVALID_SOCKET -1
 
 UDP::UDP(int port)
 {
@@ -20,11 +19,25 @@ UDP::UDP(int port)
 
 UDP::~UDP()
 {
+    if (_sockfd != INVALID_SOCKET)
+        closesocket(_sockfd);
+
+    #ifdef _WIN32
+        WSACleanup();
+    #endif
 }
 
 bool UDP::init()
 {
-    if ( (_sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
+    #ifdef _WIN32
+        WSADATA wsaData;
+        if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+            std::cerr << "WSAStartup failed" << std::endl;
+            return false;
+        }
+    #endif
+
+    if ( (_sockfd = socket(AF_INET, SOCK_DGRAM, 0)) == INVALID_SOCKET ) {
         std::cerr << "Error opening UDP socket" << std::endl;
         return false;
     }
@@ -32,7 +45,7 @@ bool UDP::init()
     _serverAddr.sin_family = AF_INET;
     _serverAddr.sin_addr.s_addr = INADDR_ANY;
     _serverAddr.sin_port = htons(_port);
-    if (bind(_sockfd, reinterpret_cast<struct sockaddr *>(&_serverAddr), sizeof(_serverAddr)) < 0) {
+    if (bind(_sockfd, reinterpret_cast<struct sockaddr *>(&_serverAddr), sizeof(_serverAddr)) == SOCKET_ERROR) {
         std::cerr << "Error binding UDP socket" << std::endl;
         return false;
     }

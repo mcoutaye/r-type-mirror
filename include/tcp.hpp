@@ -9,7 +9,7 @@
     #define TCP_HPP_
 
     #include <vector>
-    
+
     #ifdef _WIN32
         #include <winsock2.h>
         #include <ws2tcpip.h>

@@ -12,15 +12,28 @@
     #include <iostream>
     #include <atomic>
     #include <cstring>
-    #include <sys/socket.h>
-    #include <netinet/in.h>
+
+    #ifdef _WIN32
+        #include <winsock2.h>
+        #include <ws2tcpip.h>
+        #pragma comment(lib, "Ws2_32.lib")
+        using ssize_t = int;
+        using socklen_t = int;
+    #else
+        #include <sys/socket.h>
+        #include <netinet/in.h>
+        #include <unistd.h>
+        using SOCKET = int;
+        #define INVALID_SOCKET -1
+        #define SOCKET_ERROR -1
+        #define closesocket close
+    #endif
 
 #define MAX_INCOMING_UDP_SIZE 1 << 10
 #define MAX_CLIENTS 4
 
 typedef struct sockaddr_in SOCKADDR_IN_T;
 
-using SOCKET = int;
 using PORT = uint16_t;
 
 typedef struct input_s {

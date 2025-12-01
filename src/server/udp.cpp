@@ -84,7 +84,7 @@ int UDP::receiver()
 
         len = sizeof(SOCKADDR_IN_T);
         std::memset(&clientAddr, 0, sizeof(clientAddr));
-        n = recvfrom(_sockfd, reinterpret_cast<uint8_t *>(_buffer), MAX_INCOMING_UDP_SIZE, MSG_WAITALL,
+        n = recvfrom(_sockfd, reinterpret_cast<char *>(_buffer), MAX_INCOMING_UDP_SIZE, MSG_WAITALL,
                      reinterpret_cast<struct sockaddr *>(&clientAddr), &len);
         if (n < 0) {
             std::cerr << "Error receiving UDP data" << std::endl;
@@ -198,7 +198,7 @@ void UDP::send(std::pair<SOCKADDR_IN_T, uint8_t> data)
     const SOCKADDR_IN_T &clientAddr = data.first;
     uint8_t byte = data.second;
 
-    ssize_t n = sendto(_sockfd, reinterpret_cast<uint8_t *>(&byte), sizeof(byte), 0,
+    ssize_t n = sendto(_sockfd, reinterpret_cast<char *>(&byte), sizeof(byte), 0,
                        reinterpret_cast<const struct sockaddr *>(&clientAddr), sizeof(clientAddr));
     if (n == SOCKET_ERROR) {
         std::cerr << "Error sending UDP data to "

@@ -9,6 +9,9 @@
 #include "tcp.hpp"
 #include "udp.hpp"
 #include <iostream>
+#ifndef _WIN32
+#include <arpa/inet.h>
+#endif
 
 // Those will be componentstype used in the ECS
 typedef struct position_s {
@@ -61,17 +64,17 @@ int main(int ac, char **av)
     ECS ecs;
 
     // Init the TCP Server for heartbeat
-    Server TCP(8000);
+    // Server TCP(8000);
 
-    if (!TCP.init()) {
-        std::cerr << "Failed to init TCP Server." << std::endl;
-        return 84;
-    }
+    // if (!TCP.init()) {
+    //     std::cerr << "Failed to init TCP Server." << std::endl;
+    //     return 84;
+    // }
 
     // Server UDP
-    UDP udpServer(8080);
+    UDP server(8080);
 
-    if (!udpServer.init()) {
+    if (!server.init()) {
         std::cerr << "Failed to init UDP Server." << std::endl;
         return 84;
     }
@@ -80,8 +83,8 @@ int main(int ac, char **av)
     MovementSystem movementSystem(ecs);
 
     // Start server
-    TCP.start();
-    udpServer.start();
+    // TCP.start();
+    server.start();
 
     // Create 2 entites
     Entity e1 = ecs.createEntity();
@@ -95,6 +98,7 @@ int main(int ac, char **av)
     ecs.addComponent<velocity_t>(e1, velocity_t{0.54, -3.2});
 
     ecs.addComponent<position_t>(e2, position_t{5, 6});
+    ecs.addComponent<velocity_t>(e2, velocity_t{0, 0});
 
     ecs.addComponents(e3, position_t{12, 14.5}, velocity_t{0.54, -3.2});
     std::cout << "Created Entity " << e3 << "= velocity (struct):" << ecs.getConstComponent<velocity_t>(e3)
@@ -152,16 +156,41 @@ int main(int ac, char **av)
     else
         std::cout << "Successfully." << std::endl;
 
-    ecs.killEntity(e2);
     ecs.killEntity(e3);
 
-    std::this_thread::sleep_for(std::chrono::seconds(15));
+    auto start = std::chrono::steady_clock::now();
+    while (std::chrono::steady_clock::now() - start < std::chrono::seconds(20)) {
+        std::pair<SOCKADDR_IN_T, input_t> inputs;
+        while (server._inputQueue.TryPop(inputs)) {
+            SOCKADDR_IN_T client = inputs.first;
+            input_t input = inputs.second;
 
-    TCP.stop();
-    TCP.join();
+            auto *vel = ecs.getComponent<velocity_t>(e2);
+            if (vel) {
+                vel->x = 0.0f;
+                vel->y = 0.0f;
+                if (input.up)
+                    vel->y += 1.0f;
+                if (input.down)
+                    vel->y -= 1.0f;
+                if (input.left)
+                    vel->x -= 1.0f;
+                if (input.right)
+                    vel->x += 1.0f;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            movementSystem.update(0.1f);
+            std::cout << "Entity " << e2 << " moved to position: "
+                      << ecs.getConstComponent<position_t>(e2)->x << ", "
+                      << ecs.getConstComponent<position_t>(e2)->y << std::endl;
+        }
 
-    udpServer.stop();
-    udpServer.join();
+    }
+
+    ecs.killEntity(e2);
+
+    server.stop();
+    server.join();
 
     return 0;
 }

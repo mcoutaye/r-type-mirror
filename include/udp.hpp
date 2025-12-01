@@ -12,6 +12,7 @@
     #include <iostream>
     #include <atomic>
     #include <cstring>
+    #include <cstdint>
 
     #ifdef _WIN32
         #include <winsock2.h>
@@ -21,6 +22,7 @@
         using socklen_t = int;
     #else
         #include <sys/socket.h>
+        #include <sys/select.h>
         #include <netinet/in.h>
         #include <unistd.h>
         using SOCKET = int;
@@ -30,6 +32,7 @@
     #endif
 
     #include <thread>
+    #include "InterThreadData.hpp"
 
 #define MAX_INCOMING_UDP_SIZE 1 << 10
 #define MAX_CLIENTS 4
@@ -57,20 +60,36 @@ class UDP
         void start();
         void stop();
         void join();
+        void send(std::pair<SOCKADDR_IN_T, uint8_t> data);
 
+        ITD<SOCKADDR_IN_T> &getClientQueue() { return _clientQueue; }
+        ITD<std::pair<SOCKADDR_IN_T, input_t>> _inputQueue; // for received inputs
+        ITD<std::pair<SOCKADDR_IN_T, uint8_t>> _outputQueue; // for outputs to send
     private:
-
-        int run();
         uint8_t toByte(input_t input);
         input_t fromByte(uint8_t byte);
 
+        // Client Handling
+        std::array<SOCKADDR_IN_T, MAX_CLIENTS> _clients;
+        ITD<SOCKADDR_IN_T> _clientQueue;
+        bool isClientKnown(SOCKADDR_IN_T client);
+        void addClient(SOCKADDR_IN_T client);
+
+        // Server Networking
         SOCKET _sockfd;
         PORT _port;
-        char _buffer[MAX_INCOMING_UDP_SIZE];
-        std::array<SOCKADDR_IN_T, MAX_CLIENTS> _clients;
         SOCKADDR_IN_T _serverAddr;
         std::atomic<bool> _active;
-        std::thread _thread;
+
+        // Sending thread
+        int sender(); // Starting function
+        std::thread _threadSend;
+        uint8_t _buffer[MAX_INCOMING_UDP_SIZE];
+
+        // Receiving thread
+        int receiver(); // Starting function
+        std::thread _threadReceive;
+
 };
 
 #endif /* !UDP_HPP_ */

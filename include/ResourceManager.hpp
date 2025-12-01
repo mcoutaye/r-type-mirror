@@ -7,6 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <string>
+#include <iostream>
+#include <sstream>
 
 class ResourceManager {
 public:

@@ -1,8 +1,11 @@
 // include/WaveSystem.hpp
 #pragma once
 #include "ecs.hpp"
+#include "Components.hpp"
 #include <vector>
-#include "Components.hpp"   // WaveData est ici
+#include <iostream>
+#include <sstream>
+#include <algorithm>
 
 class WaveSystem : public ISystem {
 public:

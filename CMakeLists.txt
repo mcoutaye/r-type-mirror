@@ -9,7 +9,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Dossiers
 # ====================
 set(CLIENT_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
-set(SERVER_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/server")
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # ====================
@@ -86,31 +85,6 @@ add_custom_command(TARGET rtype_client POST_BUILD
 )
 
 # ====================
-# SERVEUR : rtype_server (ton code réseau actuel)
-# ====================
-set(SERVER_SOURCES
-    ${SERVER_SRC_DIR}/main.cpp
-    ${SERVER_SRC_DIR}/Args.cpp
-    ${SERVER_SRC_DIR}/NetworkManager.cpp
-    ${SERVER_SRC_DIR}/UdpReceiver.cpp
-    ${SERVER_SRC_DIR}/UdpSender.cpp
-    ${SERVER_SRC_DIR}/GameLoop.cpp
-    ${SERVER_SRC_DIR}/PacketInterpreter.cpp
-)
-
-add_executable(rtype_server ${SERVER_SOURCES})
-
-target_include_directories(rtype_server PRIVATE
-    ${INCLUDE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-target_link_libraries(rtype_server PRIVATE
-    sfml-network
-    sfml-system
-)
-
-# ====================
 # Commandes make clean / fclean / re personnalisées
 # ====================
 add_custom_target(clean-client
@@ -123,15 +97,9 @@ add_custom_target(clean-client
     COMMENT "Nettoyage complet du client"
 )
 
-add_custom_target(clean-server
-    COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_BINARY_DIR}/rtype_server
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/rtype_server.dir
-    COMMENT "Nettoyage du serveur"
-)
 
 add_custom_target(fclean
     COMMAND ${CMAKE_MAKE_PROGRAM} clean-client
-    COMMAND ${CMAKE_MAKE_PROGRAM} clean-server
     COMMENT "Nettoyage complet du projet"
 )
 

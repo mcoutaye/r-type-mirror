@@ -5,6 +5,7 @@
 // InputSystem.hpp
 #pragma once
 #include "ecs.hpp"
+#include <SFML/Graphics.hpp>
 
 class InputSystem : public ISystem {
 public:

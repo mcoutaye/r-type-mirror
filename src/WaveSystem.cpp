@@ -1,11 +1,7 @@
 // src/WaveSystem.cpp
 #include "WaveSystem.hpp"
 #include "Components.hpp"      // INDISPENSABLE : Position, Velocity, Drawable, etc.
-#include <iostream>
-#include <sstream>
 
-#include <vector>              // pour std::vector
-#include <algorithm>           // au cas où (pas utilisé ici mais safe)
 
 void WaveSystem::loadLevel(const std::vector<WaveData>& waves)
 {
@@ -36,14 +32,9 @@ void WaveSystem::update(double dt)
             float offsetY = (i % 4) * 60.f;     // un peu de dispersion verticale
 
             _ecs.addComponent(enemy, Position{wave.x + offsetX, wave.y + offsetY});
-            _ecs.addComponent(enemy, Velocity{-180.f - i * 10.f, 0.f}); // vitesse croissante
-            _ecs.addComponent(enemy, Drawable{
-                "enemy.png",                    // textureId
-                {0, 0, 64, 64},                 // rect
-                10,                             // layer
-                true                            // visible
-            });
-            _ecs.addComponent(enemy, Collider{50.f, 50.f, true, 2, 15}); // team 2 = ennemi
+            _ecs.addComponent(enemy, Velocity{-180.f - i * 10.f, 0.f});
+            _ecs.addComponent(enemy, Drawable{"enemy.png", {0, 0, 64, 64}, 10, true});
+            _ecs.addComponent(enemy, Collider{50.f, 50.f, true, 2, 15});
             _ecs.addComponent(enemy, Health{40, 40});
         }
 

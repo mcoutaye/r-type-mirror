@@ -1,7 +1,6 @@
 
 // InputSystem.cpp
 #include "InputSystem.hpp"
-#include <SFML/Graphics.hpp>
 #include "Components.hpp"
 
 InputSystem::InputSystem(ECS& ecs) : ISystem(ecs) {}

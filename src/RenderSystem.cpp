@@ -2,7 +2,6 @@
 #include "RenderSystem.hpp"
 #include "ResourceManager.hpp"
 #include "Components.hpp"
-#include <algorithm>
 
 RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window)
     : ISystem(ecs), _window(window) {}

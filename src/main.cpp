@@ -1,7 +1,4 @@
 // src/main.cpp
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <sstream>
 #include "ecs.hpp"
 #include "Components.hpp"
 #include "ResourceManager.hpp"
@@ -27,11 +24,11 @@ int main()
         std::cerr << "ERREUR : impossible de charger enemy.png\n";
     }
 
-    std::cout << "Texture player chargée ? " 
+    std::cout << "Texture player chargée ? "
           << rm.loadTexture("player", "assets/player.png") << "\n";
-    std::cout << "Texture player chargée ? " 
+    std::cout << "Texture player chargée ? "
             << rm.loadTexture("player", "assets/ship.png") << "\n";
-    std::cout << "Texture enemy chargée ? " 
+    std::cout << "Texture enemy chargée ? "
             << rm.loadTexture("enemy", "assets/enemy.png") << "\n";
 
     // === SYSTÈMES ===
@@ -42,10 +39,10 @@ int main()
 
     // === CRÉATION DU JOUEUR ===
     Entity player = ecs.createEntity();
-    ecs.addComponent(player, Position{300.f, 540.f});
+    ecs.addComponent(player, Position{100.f, 100.f});
+    ecs.addComponent(player, PlayerController{});
     ecs.addComponent(player, Velocity{0.f, 0.f});
-    ecs.addComponent(player, Drawable{"player", sf::IntRect(0,0,120,80), 20, true});
-    ecs.addComponent(player, PlayerController{0});
+    ecs.addComponent(player, Drawable{"player.png", {0, 0, 64, 64}, 10, true});
     ecs.addComponent(player, Collider{100.f, 70.f, true, 1, 50});
     ecs.addComponent(player, Health{200, 200});
 

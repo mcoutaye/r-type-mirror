@@ -6,6 +6,8 @@
 #pragma once
 #include "ecs.hpp"
 #include <SFML/Graphics.hpp>
+#include <algorithm>
+
 
 class RenderSystem : public ISystem {
 public:

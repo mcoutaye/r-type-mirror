@@ -1,7 +1,5 @@
 // ResourceManager.cpp
 #include "ResourceManager.hpp"
-#include <iostream>
-#include <sstream>
 
 #include "Components.hpp"
 

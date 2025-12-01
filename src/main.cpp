@@ -7,6 +7,7 @@
 
 #include "ecs.hpp"
 #include "tcp.hpp"
+#include "udp.hpp"
 #include <iostream>
 
 // Those will be componentstype used in the ECS
@@ -60,18 +61,18 @@ int main(int ac, char **av)
     ECS ecs;
 
     // Init the TCP Server for heartbeat
-    Server TCP(8000);
+    // Server TCP(8000);
 
-    if (!TCP.init()) {
-        std::cerr << "Failed to init TCP Server." << std::endl;
-        return 84;
-    }
+    // if (!TCP.init()) {
+    //     std::cerr << "Failed to init TCP Server." << std::endl;
+    //     return 84;
+    // }
 
     // Init the systems
     MovementSystem movementSystem(ecs);
 
     // Start server
-    TCP.start();
+    // TCP.start();
 
     // Create 2 entites
     Entity e1 = ecs.createEntity();
@@ -145,10 +146,19 @@ int main(int ac, char **av)
     ecs.killEntity(e2);
     ecs.killEntity(e3);
 
-    std::this_thread::sleep_for(std::chrono::seconds(20));
+    // std::this_thread::sleep_for(std::chrono::seconds(20));
 
-    TCP.stop();
-    TCP.join();
+    // TCP.stop();
+    // TCP.join();
+
+    // Server UDP
+    UDP udpServer(8080);
+
+    if (!udpServer.init()) {
+        std::cerr << "Failed to init UDP Server." << std::endl;
+        return 84;
+    }
+    udpServer.run();
 
     return 0;
 }

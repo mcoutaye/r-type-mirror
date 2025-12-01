@@ -2,12 +2,9 @@
 ** EPITECH PROJECT, 2025
 ** R-Type
 ** File description:
-** main
+** Server Main
 */
 
-#include <iostream>
-
 int main() {
-    std::cout << "R-Type" << std::endl;
     return 0;
 }

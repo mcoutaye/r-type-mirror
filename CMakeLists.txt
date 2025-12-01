@@ -77,3 +77,7 @@ add_custom_target(myre
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}
     COMMENT "Nettoie et recompile tout"
 )
+
+if(WIN32)
+    target_link_libraries(r-type PRIVATE ws2_32)
+endif()

@@ -7,6 +7,8 @@
 
 #include "Args.hpp"
 #include <iostream>
+#include <sstream>
+
 #include <cstdlib>
 #include <cctype>
 
@@ -60,27 +62,6 @@ Args::Config Args::parse()
 {
     int opt;
     optind = 0;
-    while ((opt = getopt(_argc, _argv, ":p:h:")) != -1) {
-        switch (opt) {
-            case 'p':
-                checkPort(optarg);
-                break;
-            case 'h':
-                _config.machine = optarg;
-                break;
-            case ':':
-                std::cerr << "Option -" << static_cast<char>(optopt)
-                          << " requires an argument." << std::endl;
-                printUsageAndExit(_programName);
-                break;
-            case '?':
-                std::cerr << "Unknown option: -" << static_cast<char>(optopt) << std::endl;
-                printUsageAndExit(_programName);
-                break;
-            default:
-                printUsageAndExit(_programName);
-        }
-    }
     if (optind < _argc) {
         std::cerr << "Error: unexpected argument." << std::endl;
         printUsageAndExit(_programName);

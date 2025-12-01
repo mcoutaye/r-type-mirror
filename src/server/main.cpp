@@ -8,6 +8,8 @@
 #include "Args.hpp"
 #include "NetworkManager.hpp"
 #include <iostream>
+#include <sstream>
+
 #include <SFML/System.hpp>
 
 int main(int argc, char *argv[])

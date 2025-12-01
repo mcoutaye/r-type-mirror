@@ -7,6 +7,8 @@
 
 #include "PacketInterpreter.hpp"
 #include <iostream>
+#include <sstream>
+
 #include <iomanip>
 Ntw::PacketInterpreter::PacketInterpreter(UdpReceiver& receiver)
 : _receiver(receiver)

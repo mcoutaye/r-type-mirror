@@ -2,6 +2,8 @@
 #include "WaveSystem.hpp"
 #include "Components.hpp"      // INDISPENSABLE : Position, Velocity, Drawable, etc.
 #include <iostream>
+#include <sstream>
+
 #include <vector>              // pour std::vector
 #include <algorithm>           // au cas où (pas utilisé ici mais safe)
 

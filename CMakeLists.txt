@@ -106,7 +106,6 @@ target_include_directories(rtype_server PRIVATE
 )
 
 target_link_libraries(rtype_server PRIVATE
-    pthread
     sfml-network
     sfml-system
 )

@@ -7,6 +7,8 @@
 
 #include "UdpSender.hpp"
 #include <iostream>
+#include <sstream>
+
 
 Ntw::UdpSender::UdpSender()
 {

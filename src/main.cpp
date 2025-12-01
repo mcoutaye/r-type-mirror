@@ -1,6 +1,7 @@
 // src/main.cpp
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <sstream>
 #include "ecs.hpp"
 #include "Components.hpp"
 #include "ResourceManager.hpp"

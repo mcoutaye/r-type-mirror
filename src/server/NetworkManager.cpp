@@ -7,6 +7,8 @@
 
 #include "NetworkManager.hpp"
 #include <iostream>
+#include <sstream>
+
 
 Ntw::NetworkManager::NetworkManager(unsigned short listenPort)
     : _receiver(listenPort), _interpreter(_receiver)

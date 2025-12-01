@@ -7,6 +7,8 @@
 
 #include "GameLoop.hpp"
 #include <iostream>
+#include <sstream>
+
 
 GameLoop::GameLoop() = default;
 

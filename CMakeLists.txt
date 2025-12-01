@@ -61,6 +61,8 @@ set(CLIENT_SOURCES
     ${CLIENT_SRC_DIR}/CollisionSystem.cpp
     ${CLIENT_SRC_DIR}/WaveSystem.cpp
     ${CLIENT_SRC_DIR}/ResourceManager.cpp
+    ${CLIENT_SRC_DIR}/MovementSystem.cpp
+
     # Ajoute ici d'autres .cpp du client si tu en crées plus tard
 )
 

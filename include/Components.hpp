@@ -60,3 +60,10 @@ struct WaveData {
     int count;
     float x, y;
 };
+
+struct MovementPattern {
+    enum class Type { Linear, Sinus, Cosinus };
+    Type type;
+    float amplitude;  // Amplitude de l'onde (pour sinus/cosinus)
+    float frequency;   // Fréquence de l'onde
+};

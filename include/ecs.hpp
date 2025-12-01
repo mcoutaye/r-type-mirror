@@ -284,8 +284,12 @@ class ECS
             __signatures[e].reset(TypeID);
         }
 
+        double getTime() const { return _time; }
+        void addTime(double dt) { _time += dt; }
+
 
     private:
+        double _time; 
         std::size_t __livingEntities = 0;
 
         // The entities not used yet

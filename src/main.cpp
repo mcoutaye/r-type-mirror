@@ -6,6 +6,7 @@
 #include "InputSystem.hpp"
 #include "CollisionSystem.hpp"
 #include "WaveSystem.hpp"
+#include "MovementSystem.hpp"
 
 int main()
 {
@@ -36,6 +37,7 @@ int main()
     InputSystem     input(ecs);
     CollisionSystem collision(ecs);
     WaveSystem      waves(ecs);
+    MovementSystem movementSystem(ecs);
 
     // === CRÉATION DU JOUEUR ===
     Entity player = ecs.createEntity();
@@ -67,8 +69,10 @@ int main()
         }
 
         float dt = clock.restart().asSeconds();
+        ecs.addTime(dt);
 
         input.update(dt);
+        movementSystem.update(dt);
         waves.update(dt);
         collision.update(dt);
 

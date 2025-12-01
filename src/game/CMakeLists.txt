@@ -13,7 +13,6 @@ target_link_libraries(game
     PRIVATE
         network
         protocol
-        pthread
         sfml-system
 )
 

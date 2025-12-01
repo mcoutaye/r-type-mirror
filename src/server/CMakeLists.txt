@@ -11,7 +11,6 @@ target_link_libraries(rtype_server
         args
         game
         packet
-        pthread
         sfml-network
         sfml-system
 )

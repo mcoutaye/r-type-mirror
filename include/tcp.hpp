@@ -44,13 +44,14 @@ class Server {
         ~Server();
 
         bool init();
-        int run();
 
         void start();
         void stop();
         void join();
 
     private:
+        int run();
+
         void handleClients();
         void connexion();
         void handleData(size_t id);

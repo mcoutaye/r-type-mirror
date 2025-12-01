@@ -111,3 +111,23 @@ input_t UDP::fromByte(uint8_t byte)
     input.shoot = (byte >> 4) & 0x01;
     return input;
 }
+
+void UDP::start()
+{
+    _active = true;
+    _thread = std::thread([this] {
+        run();
+    });
+}
+
+void UDP::stop()
+{
+    std::cout << "Stopping UDP server..." << std::endl;
+    _active = false;
+}
+
+void UDP::join()
+{
+    if (_thread.joinable())
+        _thread.join();
+}

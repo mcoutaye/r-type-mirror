@@ -29,6 +29,8 @@
         #define closesocket close
     #endif
 
+    #include <thread>
+
 #define MAX_INCOMING_UDP_SIZE 1 << 10
 #define MAX_CLIENTS 4
 
@@ -51,23 +53,24 @@ class UDP
         ~UDP();
 
         bool init();
-        int run();
 
-        uint8_t toByte(input_t input);
-
-        input_t fromByte(uint8_t byte);
-
-        // void start();
-        // void stop();
-        // void join();
+        void start();
+        void stop();
+        void join();
 
     private:
+
+        int run();
+        uint8_t toByte(input_t input);
+        input_t fromByte(uint8_t byte);
+
         SOCKET _sockfd;
         PORT _port;
         char _buffer[MAX_INCOMING_UDP_SIZE];
         std::array<SOCKADDR_IN_T, MAX_CLIENTS> _clients;
         SOCKADDR_IN_T _serverAddr;
         std::atomic<bool> _active;
+        std::thread _thread;
 };
 
 #endif /* !UDP_HPP_ */

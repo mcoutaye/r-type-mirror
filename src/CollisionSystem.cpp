@@ -20,54 +20,52 @@ void CollisionSystem::update(double dt) {
             auto* coll2 = _ecs.getComponent<Collider>(e2);
 
             // AABB collision
-            sf::FloatRect rect1(
-                pos1->x - coll1->width / 2,
-                pos1->y - coll1->height / 2,
-                coll1->width,
-                coll1->height
-            );
-            sf::FloatRect rect2(
-                pos2->x - coll2->width / 2,
-                pos2->y - coll2->height / 2,
-                coll2->width,
-                coll2->height
-            );
+            sf::FloatRect rect1(pos1->x - coll1->width/2, pos1->y - coll1->height/2, coll1->width, coll1->height);
+            sf::FloatRect rect2(pos2->x - coll2->width/2, pos2->y - coll2->height/2, coll2->width, coll2->height);
 
-            // Vérifie la collision
             if (rect1.intersects(rect2)) {
-                // Collision détectée entre équipes différentes
-                if (coll1->team != coll2->team) {
+                // Vérifie si l'une des entités est un projectile
+                auto* proj1 = _ecs.getComponent<Projectile>(e1);
+                auto* proj2 = _ecs.getComponent<Projectile>(e2);
+
+                if (proj1) {
+                // e1 est un projectile : applique les dégâts à e2 si c'est un ennemi (équipe différente)
+                auto* h2 = _ecs.getComponent<Health>(e2);
+                if (h2 && coll1->team != coll2->team) {
+                    h2->current -= proj1->damage;
+                    toDestroy.push_back(e1);  // Détruit le projectile
+                    if (h2->current <= 0) {
+                        toDestroy.push_back(e2);  // Détruit l'ennemi
+                    }
+                }
+            } else if (proj2) {
+                // e2 est un projectile : applique les dégâts à e1 si c'est un ennemi
+                auto* h1 = _ecs.getComponent<Health>(e1);
+                if (h1 && coll1->team != coll2->team) {
+                    h1->current -= proj2->damage;
+                    toDestroy.push_back(e2);  // Détruit le projectile
+                    if (h1->current <= 0) {
+                        toDestroy.push_back(e1);  // Détruit l'ennemi
+                    }
+                }
+                } else {
+                    // Collision classique (joueur/ennemi)
                     auto* h1 = _ecs.getComponent<Health>(e1);
                     auto* h2 = _ecs.getComponent<Health>(e2);
-
-                    // Applique les dégâts si les composants Health existent
-                    if (h1) {
-                        h1->current = std::max(0, h1->current - coll2->damage);
-                        if (_ecs.hasComponent<PlayerController>(e1)) {
-                            std::cout << "[Collision] PV du joueur : " << h1->current << "/" << h1->max << std::endl;
-                        }
-                    }
-                    if (h2) {
-                        h2->current = std::max(0, h2->current - coll1->damage);
-                        if (_ecs.hasComponent<PlayerController>(e2)) {
-                            std::cout << "[Collision] PV du joueur : " << h2->current << "/" << h2->max << std::endl;
-                        }
-                    }
-
-                    // Marquer pour destruction si PV ≤ 0
-                    if (h1 && h1->current <= 0) {
-                        toDestroy.push_back(e1);
-                    }
-                    if (h2 && h2->current <= 0) {
-                        toDestroy.push_back(e2);
+                    if (h1 && h2 && coll1->team != coll2->team) {
+                        h1->current -= coll2->damage;
+                        h2->current -= coll1->damage;
+                        if (h1->current <= 0) toDestroy.push_back(e1);
+                        if (h2->current <= 0) toDestroy.push_back(e2);
                     }
                 }
             }
         }
     }
 
-    // Supprime les entités marquées après la boucle
+    // Supprime les entités marquées
     for (Entity e : toDestroy) {
         _ecs.killEntity(e);
     }
 }
+

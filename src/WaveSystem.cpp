@@ -36,13 +36,30 @@ void WaveSystem::update(double dt)
 
             // Pattern de mouvement (alternance sinus/cosinus)
             MovementPattern pattern;
-            if (i % 2 == 0) {
-                pattern.type = MovementPattern::Type::Sinus;
-            } else {
-                pattern.type = MovementPattern::Type::Cosinus;
+            switch (i % 6) {
+                case 0:
+                    pattern.type = MovementPattern::Type::Linear;
+                    break;
+                case 1:
+                    pattern.type = MovementPattern::Type::Sinus;
+                    break;
+                case 2:
+                    pattern.type = MovementPattern::Type::Cosinus;
+                    break;
+                case 3:
+                    pattern.type = MovementPattern::Type::Circle;
+                    break;
+                case 4:
+                    pattern.type = MovementPattern::Type::Zigzag;
+                    break;
+                case 5:
+                    pattern.type = MovementPattern::Type::Spiral;
+                    break;
             }
             pattern.amplitude = 50.f;  // Amplitude de l'onde
             pattern.frequency = 1.f;    // Fréquence de l'onde
+            pattern.radius = 30.f;      // Rayon pour Circle/Spiral
+            pattern.speed = 2.f;        // Vitesse pour Circle/Zigzag/Spiral
             _ecs.addComponent(enemy, pattern);
 
             // Autres composants

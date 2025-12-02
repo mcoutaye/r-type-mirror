@@ -13,10 +13,8 @@
 class ResourceManager {
 public:
     static ResourceManager& getInstance();
-    
     bool loadTexture(const std::string& id, const std::string& filepath);
     sf::Texture& getTexture(const std::string& id);
-    
 private:
     ResourceManager() = default;
     std::unordered_map<std::string, sf::Texture> _textures;

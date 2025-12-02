@@ -1,6 +1,7 @@
 #pragma once
 #include "ecs.hpp"
 #include "Components.hpp"
+#include <cmath>
 
 class MovementSystem : public ISystem {
 public:

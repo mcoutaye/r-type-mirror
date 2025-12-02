@@ -62,8 +62,15 @@ struct WaveData {
 };
 
 struct MovementPattern {
-    enum class Type { Linear, Sinus, Cosinus };
+    enum class Type { Linear, Sinus, Cosinus, Circle, Zigzag, Spiral };
     Type type;
-    float amplitude;  // Amplitude de l'onde (pour sinus/cosinus)
-    float frequency;   // Fréquence de l'onde
+    float amplitude;  // Pour les mouvements ondulatoires
+    float frequency;  // Pour les mouvements ondulatoires
+    float radius;     // Pour le cercle/spirale
+    float speed;      // Pour le zigzag/spirale
+};
+
+struct Projectile {
+    float speed;  // Vitesse du projectile
+    int damage;   // Dégâts infligés
 };

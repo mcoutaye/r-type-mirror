@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(SFML 2.6 COMPONENTS window graphics REQUIRED)
+find_package(SFML 2.6.1 COMPONENTS window graphics REQUIRED)
 add_executable(r-type_client
     src/client/main.cpp
     src/engine/core/GameEngine.cpp

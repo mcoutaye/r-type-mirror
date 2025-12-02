@@ -1,19 +1,13 @@
 set(SRC_FILES
     main.cpp
+    UdpClient.cpp
 )
 
 add_executable(rtype_client ${SRC_FILES})
 
 target_link_libraries(rtype_client
     PRIVATE
-        network
-        protocol
-        args
-        game
-        packet
         sfml-network
-        sfml-system
-        sfml-window
 )
 
 target_include_directories(rtype_client

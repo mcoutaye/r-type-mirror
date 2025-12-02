@@ -1,24 +1,18 @@
 set(SRC_FILES
     main.cpp
+    UdpServer.cpp
 )
 
 add_executable(rtype_server ${SRC_FILES})
 
 target_link_libraries(rtype_server
     PRIVATE
-        network
-        protocol
-        args
-        game
-        packet
         sfml-network
-        sfml-system
 )
 
 target_include_directories(rtype_server
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../../include
-        ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(server_clean

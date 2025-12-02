@@ -5,27 +5,27 @@
 ** main
 */
 
-#include "../../include/args/Args.hpp"
-#include "../../include/network/NetworkManager.hpp"
-#include "../../include/network/UdpReceiver.hpp"
-#include "../../include/network/UdpSender.hpp"
-#include "../../include/game/GuiLoop.hpp"
-#include "../../include/packet/ClientPacketInterpreter.hpp"
+#include "UdpClient.hpp"
+#include <chrono>
+using namespace std::chrono_literals;
 
-int main(int argc, char* argv[]) {
-    Args args(argc, argv, Args::Mode::CLIENT);
-    Args::Config config = args.parse();
-    Ntw::UdpReceiver receiver(55003);
-    Ntw::UdpSender sender(receiver.getSocket());
-    GuiLoop gameLoop(sender);
-    Ntw::ClientPacketInterpreter interpreter(receiver, gameLoop);
-    std::vector<char> joinPacket = Protocol::Protocol::createJoinPacket();
-    sender.sendTo(joinPacket, sf::IpAddress(config.machine), config.port);
-    receiver.start();
-    interpreter.start();
-    gameLoop.start();
-    gameLoop.join();
-    interpreter.join();
-    receiver.join();
+int main()
+{
+    UdpClient client("127.0.0.1", 53000);
+    if (!client.start())
+        return -1;
+    while (true) {
+        InputState input{1, 0, 0, 0, 0};
+        client.inputsToSend.push(input);
+        std::vector<EntityUpdate> updates;
+        while (client.receivedUpdates.pop(updates)) {
+            std::cout << "Reçu " << updates.size() << " entités :\n";
+            for (const auto& e : updates)
+                std::cout << "  Entity " << e.entityId << " → (" << e.x << ", " << e.y << ")\n";
+        }
+        std::this_thread::sleep_for(100ms);
+    }
+    client.stop();
+    client.join();
     return 0;
 }

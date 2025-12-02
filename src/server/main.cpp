@@ -5,27 +5,46 @@
 ** main
 */
 
-#include "../../include/args/Args.hpp"
-#include "../../include/network/NetworkManager.hpp"
-#include "../../include/network/UdpReceiver.hpp"
-#include "../../include/network/UdpSender.hpp"
-#include "../../include/game/GamePlayLoop.hpp"
-#include "../../include/packet/ServerPacketInterpreter.hpp"
+#include "UdpServer.hpp"
+#include <chrono>
 
-int main(int argc, char* argv[])
+using namespace std::chrono_literals;
+
+int main()
 {
-    Args args(argc, argv, Args::Mode::SERVER);
-    Args::Config config = args.parse();
-    Ntw::NetworkManager networkManager;
-    Ntw::UdpReceiver receiver(config.port);
-    Ntw::UdpSender sender(receiver.getSocket());
-    GamePlayLoop gameLoop(sender, networkManager);
-    Ntw::ServerPacketInterpreter interpreter(receiver, networkManager, gameLoop);
-    receiver.start();
-    interpreter.start();
-    gameLoop.start();
-    gameLoop.join();
-    interpreter.join();
-    receiver.join();
-    return 0;
+    UdpServer server(53000);
+    if (!server.start())
+        return -1;
+    uint32_t tick = 0;
+    auto last = std::chrono::steady_clock::now();
+    while (true) {
+        std::pair<int, InputState> input;
+        while (server.receivedInputs.pop(input)) {
+            std::cout << "J" << input.first << " → "
+          << "↑" << (int)input.second.up
+          << " ↓" << (int)input.second.down
+          << " ←" << (int)input.second.left
+          << " →" << (int)input.second.right
+          << "  Shoot:" << (int)input.second.shoot
+          << '\n';
+        }
+        if (std::chrono::steady_clock::now() - last >= 16ms) {
+            std::vector<EntityUpdate> updates = {
+                {1, 100.0f, 200.0f},
+                {2, 300.0f, 400.0f},
+                {5, 150.0f, 150.0f}
+            };
+            std::vector<uint8_t> buffer(sizeof(EntityUpdate) * updates.size());
+            std::memcpy(buffer.data(), updates.data(), buffer.size());
+            for (const auto& client : server.getClients()) {
+                if (client)
+                    server.packetsToSend.push({
+                        client->address,
+                        client->port,
+                        buffer
+                    });
+            }
+        }
+        std::this_thread::sleep_for(1ms);
+    }
 }

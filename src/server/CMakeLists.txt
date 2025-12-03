@@ -3,6 +3,7 @@ add_executable(r-type_server
 )
 
 target_include_directories(r-type_server PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
 )
 

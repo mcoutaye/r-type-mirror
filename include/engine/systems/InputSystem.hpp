@@ -7,11 +7,13 @@
 
 #pragma once
 
-#include <map>
+#include "engine/ecs/ecs.hpp"
+#include "engine/systems/Components.hpp"
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Window.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Joystick.hpp>
+#include <map>
 
 enum class GameAction {
     MoveUp,
@@ -22,12 +24,13 @@ enum class GameAction {
     Quit
 };
 
-class InputSystem {
+class InputSystem : public ISystem {
 public:
-    InputSystem();
+    InputSystem(ECS& ecs);
     ~InputSystem() = default;
 
-    void update(sf::Window& window);
+    void update(double dt) override;
+    
     bool isActionActive(GameAction action) const;
     bool wasActionPressed(GameAction action) const;
     bool wasActionReleased(GameAction action) const;
@@ -38,6 +41,7 @@ public:
 private:
     void setDefaultMappings();
     void updateJoystickInput();
+    void applyInputToPlayers();
     
     std::map<sf::Keyboard::Key, GameAction> m_keyMappings;
     std::map<unsigned int, GameAction> m_joystickButtonMappings;
@@ -46,4 +50,5 @@ private:
     
     unsigned int m_joystickId = 0;
     float m_deadzone = 20.0f;
+    float m_playerSpeed = 400.0f;
 };

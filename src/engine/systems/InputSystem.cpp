@@ -2,12 +2,14 @@
 ** EPITECH PROJECT, 2025
 ** R-Type
 ** File description:
-** Input System
+** Input System (ECS-based)
 */
 
-#include "InputSystem.hpp"
+#include "engine/systems/InputSystem.hpp"
+#include <iostream>
 
-InputSystem::InputSystem() {
+InputSystem::InputSystem(ECS& ecs) : ISystem(ecs)
+{
     for (int i = static_cast<int>(GameAction::MoveUp); i <= static_cast<int>(GameAction::Quit); ++i)
     {
         GameAction action = static_cast<GameAction>(i);
@@ -85,53 +87,53 @@ void InputSystem::updateJoystickInput()
     }
 }
 
-void InputSystem::update(sf::Window& window)
+void InputSystem::applyInputToPlayers()
 {
+    auto players = _ecs.getEntitiesByComponents<PlayerController, Velocity>();
+    
+    for (Entity player : players) {
+        auto* vel = _ecs.getComponent<Velocity>(player);
+        auto* ctrl = _ecs.getComponent<PlayerController>(player);
+        if (!vel || !ctrl) continue;
+
+        vel->x = 0.f;
+        vel->y = 0.f;
+
+        if (isActionActive(GameAction::MoveUp))
+            vel->y = -m_playerSpeed;
+        if (isActionActive(GameAction::MoveDown))
+            vel->y = m_playerSpeed;
+        if (isActionActive(GameAction::MoveLeft))
+            vel->x = -m_playerSpeed;
+        if (isActionActive(GameAction::MoveRight))
+            vel->x = m_playerSpeed;
+
+        ctrl->isShooting = isActionActive(GameAction::Shoot);
+    }
+}
+
+void InputSystem::update(double dt)
+{
+    (void)dt;
+    
     m_previousActionStates = m_currentActionStates;
 
+    // Reset toutes les actions (elles seront remises à true si la touche est pressée)
     for (auto& [action, state] : m_currentActionStates) {
-        if (action == GameAction::MoveUp || action == GameAction::MoveDown ||
-            action == GameAction::MoveLeft || action == GameAction::MoveRight) {
-            state = false;
+        state = false;
+    }
+
+    // Keyboard polling (real-time)
+    for (const auto& [key, action] : m_keyMappings) {
+        if (sf::Keyboard::isKeyPressed(key)) {
+            m_currentActionStates[action] = true;
         }
     }
 
-    sf::Event event;
-    while (window.pollEvent(event)) {
-        
-        if (event.type == sf::Event::Closed) {
-            m_currentActionStates[GameAction::Quit] = true;
-        }
-
-        if (event.type == sf::Event::KeyPressed) {
-            if (m_keyMappings.count(event.key.code)) {
-                GameAction action = m_keyMappings.at(event.key.code);
-                m_currentActionStates[action] = true;
-            }
-        }
-
-        if (event.type == sf::Event::KeyReleased) {
-            if (m_keyMappings.count(event.key.code)) {
-                GameAction action = m_keyMappings.at(event.key.code);
-                m_currentActionStates[action] = false;
-            }
-        }
-        if (event.type == sf::Event::JoystickButtonPressed) {
-            if (m_joystickButtonMappings.count(event.joystickButton.button)) {
-                GameAction action = m_joystickButtonMappings.at(event.joystickButton.button);
-                m_currentActionStates[action] = true;
-            }
-        }
-
-        if (event.type == sf::Event::JoystickButtonReleased) {
-            if (m_joystickButtonMappings.count(event.joystickButton.button)) {
-                GameAction action = m_joystickButtonMappings.at(event.joystickButton.button);
-                m_currentActionStates[action] = false;
-            }
-        }
-    }
     sf::Joystick::update();
     updateJoystickInput();
+    
+    applyInputToPlayers();
 }
 
 bool InputSystem::isActionActive(GameAction action) const

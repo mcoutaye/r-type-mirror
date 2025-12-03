@@ -1,12 +1,16 @@
 add_executable(r-type_client
     main.cpp
-    ${CMAKE_SOURCE_DIR}/src/engine/core/GameEngine.cpp
     ${CMAKE_SOURCE_DIR}/src/engine/systems/InputSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/MovementSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/RenderSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/CollisionSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/WaveSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/RessourceManager.cpp
 )
 
 target_include_directories(r-type_client PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/src/engine
 )
 
 target_link_libraries(r-type_client PRIVATE

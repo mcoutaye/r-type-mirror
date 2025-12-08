@@ -88,12 +88,14 @@ void UdpServer::receiveThread()
         auto status = m_socket.receive(packet, senderIp, senderPort);
         if (status == sf::Socket::Done) {
             ClientInfo* client = findClient(senderIp, senderPort);
+            if (!client)
+                if (addClient(senderIp, senderPort, static_cast<int>(m_clients.size())))
+                    client = findClient(senderIp, senderPort);
             if (client && packet.getDataSize() == sizeof(InputState)) {
                 InputState input;
                 std::memcpy(&input, packet.getData(), sizeof(InputState));
                 receivedInputs.push({client->playerId, input});
-            } else
-                addClient(senderIp, senderPort, static_cast<int>(m_clients.size()));
+            }
             packet.clear();
         } else if (status == sf::Socket::NotReady)
             std::this_thread::sleep_for(std::chrono::microseconds(500));

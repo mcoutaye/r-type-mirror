@@ -87,5 +87,12 @@ struct Shootable {
     std::string textureId; // Texture du projectile
     float offsetX;        // Offset X pour le spawn du projectile
     float offsetY;        // Offset Y pour le spawn du projectile
-    bool isShooting;  // Nouveau champ pour indiquer si le joueur tire  
+    bool isShooting;  // Nouveau champ pour indiquer si le joueur tire
+    bool tripleShot;    
+};
+
+struct PowerUp {
+    enum class Type { TripleShot };
+    Type type;
+    float duration;  // Durée de l'effet (en secondes)
 };

@@ -36,5 +36,20 @@ void RenderSystem::update(double dt)
         _window.draw(sprite);
     }
 
+    // auto powerUps = _ecs.getEntitiesByComponents<Position, Drawable, PowerUp>();
+    // for (Entity e : powerUps) {
+    //     auto* pos = _ecs.getComponent<Position>(e);
+    //     auto* draw = _ecs.getComponent<Drawable>(e);
+
+    //     // Effet de clignotement
+    //     float alpha = 128 + 127 * sin(_ecs.getTime() * 5.f);  // Clignotement rapide
+    //     draw->color.a = static_cast<sf::Uint8>(alpha);
+
+    //     sf::Sprite sprite(ResourceManager::getInstance().getTexture(draw->textureId));
+    //     sprite.setPosition(pos->x, pos->y);
+    //     sprite.setColor(sf::Color(255, 255, 255, draw->color.a));
+    //     _window.draw(sprite);
+    // }
+
     _window.display();   // EN DERNIER
 }

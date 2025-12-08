@@ -14,6 +14,7 @@
 #include "engine/systems/WaveSystem.hpp"
 #include "engine/systems/MovementSystem.hpp"
 #include "engine/systems/MissileSystem.hpp"
+#include "engine/systems/PowerUpSystem.hpp"
 #include <iostream>
 
 int main()
@@ -50,6 +51,7 @@ int main()
     WaveSystem      waves(ecs);
     MovementSystem movementSystem(ecs);
     MissileSystem missileSystem(ecs);
+    PowerUpSystem powerUpSystem(ecs);
 
     // === CRÉATION DU JOUEUR ===
     Entity player = ecs.createEntity();
@@ -59,7 +61,7 @@ int main()
     ecs.addComponent(player, Drawable{"player.png", {0, 0, 64, 64}, 10, true});
     ecs.addComponent(player, Collider{100.f, 70.f, true, 1, 50});
     ecs.addComponent(player, Health{200, 200});
-    ecs.addComponent(player, Shootable{0.5f, 0.2f, 800.f, 50, 1, "bullet", 64.f, 20.f, false});
+    ecs.addComponent(player, Shootable{0.f, 0.2f, 800.f, 50, 1, "bullet", 64.f, 20.f, false, false});
     std::cout << "Joueur créé !\n";
 
     // === CHARGEMENT DU LEVEL ===
@@ -92,6 +94,7 @@ int main()
         waves.update(dt);
         collision.update(dt);
         missileSystem.update(dt);
+        powerUpSystem.update(dt);
 
         // === GESTION DU TIR ===
         // for (Entity e : ecs.getEntitiesByComponents<PlayerController, Position>()) {

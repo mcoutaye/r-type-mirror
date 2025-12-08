@@ -19,13 +19,25 @@ void MissileSystem::update(double dt) {
         }
 
         if (canShoot) {
-            // Crée un projectile
-            Entity missile = _ecs.createEntity();
-            _ecs.addComponent(missile, Position{pos->x + shootable->offsetX, pos->y + shootable->offsetY});
-            _ecs.addComponent(missile, Velocity{shootable->missileSpeed, 0.f});
-            _ecs.addComponent(missile, Drawable{shootable->textureId, {0, 0, 16, 8}, 20, true});
-            _ecs.addComponent(missile, Collider{16.f, 8.f, false, shootable->team, shootable->damage});
-            _ecs.addComponent(missile, Projectile{shootable->missileSpeed, shootable->damage});
+            if (shootable->tripleShot && _ecs.hasComponent<PlayerController>(e)) {
+                // Triple shot : crée trois projectiles
+                for (int i = -1; i <= 1; ++i) {
+                    Entity missile = _ecs.createEntity();
+                    _ecs.addComponent(missile, Position{pos->x + shootable->offsetX, pos->y + shootable->offsetY});
+                    _ecs.addComponent(missile, Velocity{shootable->missileSpeed, i * 200.f});  // Angle légèrement différent
+                    _ecs.addComponent(missile, Drawable{"bullet", {0, 0, 16, 8}, 20, true});
+                    _ecs.addComponent(missile, Collider{16.f, 8.f, false, shootable->team, shootable->damage});
+                    _ecs.addComponent(missile, Projectile{shootable->missileSpeed, shootable->damage});
+                }
+            } else {
+                // Tir normal : crée un seul projectile
+                Entity missile = _ecs.createEntity();
+                _ecs.addComponent(missile, Position{pos->x + shootable->offsetX, pos->y + shootable->offsetY});
+                _ecs.addComponent(missile, Velocity{shootable->missileSpeed, 0.f});
+                _ecs.addComponent(missile, Drawable{"bullet", {0, 0, 16, 8}, 20, true});
+                _ecs.addComponent(missile, Collider{16.f, 8.f, false, shootable->team, shootable->damage});
+                _ecs.addComponent(missile, Projectile{shootable->missileSpeed, shootable->damage});
+            }
 
             // Réinitialise le cooldown
             shootable->cooldown = shootable->shootDelay;

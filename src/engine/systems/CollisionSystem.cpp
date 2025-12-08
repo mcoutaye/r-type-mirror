@@ -39,8 +39,21 @@ void CollisionSystem::update(double dt) {
                 if (h2 && coll1->team != coll2->team) {
                     h2->current -= proj1->damage;
                     toDestroy.push_back(e1);  // Détruit le projectile
-                    if (h2->current <= 0) {
+                    if (h2 && h2->current <= 0) {
                         toDestroy.push_back(e2);  // Détruit l'ennemi
+
+                        // 20% de chance de drop un power-up
+                        if (rand() % 100 < 20) {
+                            Entity powerUp = _ecs.createEntity();
+                            _ecs.addComponent(powerUp, Position{pos2->x, pos2->y});
+                            _ecs.addComponent(powerUp, Drawable{"powerup.png", {0, 0, 32, 32}, 15, true});
+
+                            // Choisis un type de power-up aléatoirement
+                            PowerUp::Type type = PowerUp::Type::TripleShot;  // Pour l'instant, on ne gère que le triple shot
+                            _ecs.addComponent(powerUp, PowerUp{type, 10.f});  // Effet pendant 10 secondes
+
+                            std::cout << "[PowerUp] Power-up spawned at (" << pos2->x << ", " << pos2->y << ")" << std::endl;
+                        }
                     }
                 }
             } else if (proj2) {
@@ -48,7 +61,7 @@ void CollisionSystem::update(double dt) {
                 auto* h1 = _ecs.getComponent<Health>(e1);
                 if (h1 && coll1->team != coll2->team) {
                     h1->current -= proj2->damage;
-                    toDestroy.push_back(e2);  // Détruit le projectile
+                    toDestroy.push_back(e2);
                     if (h1->current <= 0) {
                         toDestroy.push_back(e1);  // Détruit l'ennemi
                     }

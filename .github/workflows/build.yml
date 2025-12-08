@@ -72,6 +72,4 @@ jobs:
 
       - name: Push to private repo
         run: |
-          BRANCH=$(git rev-parse --abbrev-ref HEAD)
-          echo "Pushing branch: $BRANCH"
-          git push epitech $BRANCH
+          git push epitech HEAD:${{ github.ref_name }}

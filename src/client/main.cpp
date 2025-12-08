@@ -1,6 +1,10 @@
 /*
 ** EPITECH PROJECT, 2025
+<<<<<<< HEAD
 ** r-type-mirror
+=======
+** R-type
+>>>>>>> game_engine
 ** File description:
 ** main
 */

@@ -1,6 +1,13 @@
 set(SRC_FILES
     main.cpp
+    GameLoop.cpp
     UdpServer.cpp
+    ../engine/systems/CollisionSystem.cpp
+    ../engine/systems/InputSystem.cpp
+    ../engine/systems/MovementSystem.cpp
+    ../engine/systems/RenderSystem.cpp
+    ../engine/systems/RessourceManager.cpp
+    ../engine/systems/WaveSystem.cpp
 )
 
 add_executable(rtype_server ${SRC_FILES})
@@ -8,6 +15,9 @@ add_executable(rtype_server ${SRC_FILES})
 target_link_libraries(rtype_server
     PRIVATE
         sfml-network
+        sfml-graphics
+        sfml-window
+        sfml-system
 )
 
 target_include_directories(rtype_server

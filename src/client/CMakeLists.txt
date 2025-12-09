@@ -1,6 +1,13 @@
 set(SRC_FILES
     main.cpp
+    GuiLoop.cpp
     UdpClient.cpp
+    ../engine/systems/CollisionSystem.cpp
+    ../engine/systems/InputSystem.cpp
+    ../engine/systems/MovementSystem.cpp
+    ../engine/systems/RenderSystem.cpp
+    ../engine/systems/RessourceManager.cpp
+    ../engine/systems/WaveSystem.cpp
 )
 
 add_executable(rtype_client ${SRC_FILES})
@@ -8,6 +15,9 @@ add_executable(rtype_client ${SRC_FILES})
 target_link_libraries(rtype_client
     PRIVATE
         sfml-network
+        sfml-graphics
+        sfml-window
+        sfml-system
 )
 
 target_include_directories(rtype_client

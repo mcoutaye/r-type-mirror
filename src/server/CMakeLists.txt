@@ -8,6 +8,9 @@ add_executable(rtype_server ${SRC_FILES})
 target_link_libraries(rtype_server
     PRIVATE
         sfml-network
+        sfml-system
+        sfml-window
+        sfml-graphics
 )
 
 target_include_directories(rtype_server

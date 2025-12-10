@@ -96,3 +96,20 @@ struct PowerUp {
     Type type;
     float duration;  // Durée de l'effet (en secondes)
 };
+
+// Obstacle de stage indestructible
+struct Obstacle {
+    bool blocking = true;  // Bloque le mouvement
+};
+
+// Tuile destructible
+struct DestructibleTile {
+    int health = 50;  // Points de vie de la tuile
+};
+
+// Étoile du fond (background starfield)
+struct Star {
+    float speed = 100.f;      // Vitesse de défilement
+    uint8_t brightness = 255; // Luminosité (pour effet de parallaxe)
+    uint8_t size = 2;         // Taille de l'étoile
+};

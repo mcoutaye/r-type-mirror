@@ -1,15 +1,23 @@
 add_executable(r-type_server
     main.cpp
+    Args.cpp
+    NetworkManager.cpp
+    UdpReceiver.cpp
+    UdpSender.cpp
+    GameLoop.cpp
+    PacketInterpreter.cpp
 )
 
 target_include_directories(r-type_server PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(r-type_server PRIVATE
     sfml-network
     sfml-system
+    pthread
 )
 
 add_custom_target(server_clean

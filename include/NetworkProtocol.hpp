@@ -4,8 +4,17 @@
 #include <vector>
 #include "engine/systems/Components.hpp"
 
+// Ensure packing is forced on all platforms
+#pragma pack(push, 1)
+
+#ifdef _MSC_VER
+    #define PACKED
+#else
+    #define PACKED __attribute__((packed))
+#endif
+
 // === INPUT CLIENT → SERVEUR ===
-struct InputState {
+struct PACKED InputState {
     uint8_t up    : 1;
     uint8_t down  : 1;
     uint8_t left  : 1;
@@ -13,7 +22,7 @@ struct InputState {
     uint8_t shoot : 1;
     uint8_t       : 3;
     uint16_t tick; // Wraps around 65535
-} __attribute__((packed));
+};
 static_assert(sizeof(InputState) == 3, "InputState must be 3 bytes");
 
 // Helper to check if 'newTick' is more recent than 'oldTick' handling wrap-around
@@ -25,22 +34,25 @@ inline bool IsTickNewer(uint16_t newTick, uint16_t oldTick) {
 
 
 // === UPDATE SERVEUR → CLIENT (ECS positions) ===
-struct __attribute__((packed)) EntityUpdate {
+struct PACKED EntityUpdate {
     uint32_t entityId;  // 4 bytes
     uint16_t tick;      // 2 bytes
 
-    struct __attribute__((packed)) { // position_t
+    struct PACKED { // position_t
         float x;
         float y;
     } position;         // 8 bytes
 
-    struct __attribute__((packed)) { // health_t
+    struct PACKED { // health_t
         int current;
         int max;
     } health;           // 8 bytes
 
-}__attribute__((packed));
-static_assert(sizeof(EntityUpdate) == 22, "EntityUpdate must be 20 bytes");
+};
+static_assert(sizeof(EntityUpdate) == 22, "EntityUpdate must be 22 bytes");
+
+#pragma pack(pop)
+#undef PACKED
 
 // === PAQUET À ENVOYER (serveur uniquement) ===
 struct PacketToSend {

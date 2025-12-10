@@ -13,51 +13,50 @@
 #include "engine/systems/CollisionSystem.hpp"
 #include "engine/systems/WaveSystem.hpp"
 #include "engine/systems/MovementSystem.hpp"
+#include "engine/systems/StageFactory.hpp"
+#include "engine/systems/EntityFactory.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 int main()
 {
+    srand(static_cast<unsigned>(time(nullptr)));
+    
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Fullscreen);
     window.setFramerateLimit(60);
 
     ECS ecs;
 
-    // === CHARGEMENT DES TEXTURES (OBLIGATOIRE) ===
+    // === CHARGEMENT DES TEXTURES ===
     auto& rm = ResourceManager::getInstance();
-    if (!rm.loadTexture("player", "assets/player.png") &&
-        !rm.loadTexture("player", "assets/ship.png")) {
-        std::cerr << "ERREUR : impossible de charger player.png ou ship.png\n";
-    }
-    if (!rm.loadTexture("enemy", "assets/enemy.png")) {
-        std::cerr << "ERREUR : impossible de charger enemy.png\n";
-    }
-    if (!rm.loadTexture("bullet", "assets/bullet.png")) {
-        std::cerr << "INFO : bullet.png non trouvé, utilisation texture par défaut\n";
-    }
+    rm.loadTexture("player", "assets/player.png");
+    rm.loadTexture("player", "assets/ship.png");
+    rm.loadTexture("enemy", "assets/enemy.png");
+    rm.loadTexture("bullet", "assets/bullet.png");
 
-    std::cout << "Texture player chargée ? "
-          << rm.loadTexture("player", "assets/player.png") << "\n";
-    std::cout << "Texture player chargée ? "
-            << rm.loadTexture("player", "assets/ship.png") << "\n";
-    std::cout << "Texture enemy chargée ? "
-            << rm.loadTexture("enemy", "assets/enemy.png") << "\n";
+    // === CRÉATION DU STAGE ===
+    Factory::createStarfield(ecs, 150, 1920.f, 1080.f);
+    Factory::createScreenBorders(ecs, 1920.f, 1080.f, 20.f);
+    
+    // Obstacles custom
+    Factory::createObstacle(ecs, 800.f, 200.f, 100.f, 150.f);
+    Factory::createObstacle(ecs, 1200.f, 600.f, 80.f, 200.f);
+    Factory::createObstacle(ecs, 1500.f, 300.f, 120.f, 100.f);
+    
+    // Grilles de tuiles destructibles
+    Factory::createTileGrid(ecs, 600.f, 400.f, 3, 2, 50.f, 50.f, 50);
+    Factory::createTileGrid(ecs, 1000.f, 500.f, 3, 2, 50.f, 50.f, 50);
 
     // === SYSTÈMES ===
     RenderSystem    render(ecs, window);
     InputSystem     input(ecs);
     CollisionSystem collision(ecs);
     WaveSystem      waves(ecs);
-    MovementSystem movementSystem(ecs);
+    MovementSystem  movementSystem(ecs);
 
     // === CRÉATION DU JOUEUR ===
-    Entity player = ecs.createEntity();
-    ecs.addComponent(player, Position{100.f, 100.f});
-    ecs.addComponent(player, PlayerController{});
-    ecs.addComponent(player, Velocity{0.f, 0.f});
-    ecs.addComponent(player, Drawable{"player.png", {0, 0, 64, 64}, 10, true});
-    ecs.addComponent(player, Collider{100.f, 70.f, true, 1, 50});
-    ecs.addComponent(player, Health{200, 200});
-
+    Entity player = Factory::createPlayer(ecs, 100.f, 540.f, 0, "player");
     std::cout << "Joueur créé !\n";
 
     // === CHARGEMENT DU LEVEL ===
@@ -71,7 +70,7 @@ int main()
     // === BOUCLE PRINCIPALE ===
     sf::Clock clock;
     float shootCooldown = 0.f;
-    const float SHOOT_DELAY = 0.2f;  // 200ms entre chaque tir
+    const float SHOOT_DELAY = 0.2f;
     
     while (window.isOpen()) {
         sf::Event event;
@@ -85,6 +84,7 @@ int main()
         ecs.addTime(dt);
         shootCooldown -= dt;
 
+        // Update systems
         input.update(dt);
         movementSystem.update(dt);
         waves.update(dt);
@@ -96,24 +96,26 @@ int main()
             auto* pos = ecs.getComponent<Position>(e);
             
             if (ctrl && ctrl->isShooting && shootCooldown <= 0.f) {
-                // Créer un projectile
-                Entity bullet = ecs.createEntity();
-                ecs.addComponent(bullet, Position{pos->x + 64.f, pos->y + 20.f});
-                ecs.addComponent(bullet, Velocity{800.f, 0.f});  // Vitesse vers la droite
-                ecs.addComponent(bullet, Drawable{"bullet", {0, 0, 16, 8}, 20, true, 1.f, 0.f});
-                ecs.addComponent(bullet, Collider{16.f, 8.f, false, 1, 25});  // team 1 = joueur
-                ecs.addComponent(bullet, Projectile{800.f, 25});
-                
+                Factory::createProjectile(ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 25, "bullet");
                 shootCooldown = SHOOT_DELAY;
             }
         }
 
-        // Mouvement simple
+        // Mouvement des entités
         for (Entity e : ecs.getEntitiesByComponents<Position, Velocity>()) {
             auto* pos = ecs.getComponent<Position>(e);
             auto* vel = ecs.getComponent<Velocity>(e);
             pos->x += vel->x * dt;
             pos->y += vel->y * dt;
+        }
+        
+        // Wrap des étoiles (scrolling infini)
+        for (Entity e : ecs.getEntitiesByComponents<Star, Position>()) {
+            auto* pos = ecs.getComponent<Position>(e);
+            if (pos->x < -10.f) {
+                pos->x = 1930.f;
+                pos->y = static_cast<float>(rand() % 1080);
+            }
         }
         
         // Supprimer les projectiles hors écran

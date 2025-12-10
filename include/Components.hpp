@@ -1,9 +1,6 @@
-/*
-** EPITECH PROJECT, 2025
-** R-type
-** File description:
-** Components hpp
-*/
+// ============================================
+// 1. COMPOSANTS MANQUANTS (à ajouter dans ecs.hpp ou un Components.hpp)
+// ============================================
 
 #pragma once
 #include <SFML/Graphics.hpp>
@@ -55,42 +52,4 @@ struct Health {
 struct WaveSpawner {
     float nextSpawnTime = 2.f;  // temps avant prochain spawn
     int currentWave = 0;
-};
-
-struct WaveData {
-    float delay;
-    std::string enemyType;
-    int count;
-    float x, y;
-};
-
-struct MovementPattern {
-    enum class Type { Linear, Sinus, Cosinus, Circle, Zigzag, Spiral };
-    Type type;
-    float amplitude;  // Pour les mouvements ondulatoires
-    float frequency;  // Pour les mouvements ondulatoires
-    float radius;     // Pour le cercle/spirale
-    float speed;      // Pour le zigzag/spirale
-};
-
-struct Projectile {
-    float speed;  // Vitesse du projectile
-    int damage;   // Dégâts infligés
-};
-
-// Obstacle de stage indestructible
-struct Obstacle {
-    bool blocking = true;  // Bloque le mouvement
-};
-
-// Tuile destructible
-struct DestructibleTile {
-    int health = 50;  // Points de vie de la tuile
-};
-
-// Étoile du fond (background starfield)
-struct Star {
-    float speed = 100.f;      // Vitesse de défilement
-    uint8_t brightness = 255; // Luminosité (pour effet de parallaxe)
-    uint8_t size = 2;         // Taille de l'étoile
 };

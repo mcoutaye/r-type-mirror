@@ -6,6 +6,8 @@ add_executable(r-type_client
     ${CMAKE_SOURCE_DIR}/src/engine/systems/CollisionSystem.cpp
     ${CMAKE_SOURCE_DIR}/src/engine/systems/WaveSystem.cpp
     ${CMAKE_SOURCE_DIR}/src/engine/systems/RessourceManager.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/MissileSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/engine/systems/PowerUpSystem.cpp
     ${CMAKE_SOURCE_DIR}/src/engine/systems/StageFactory.cpp
     ${CMAKE_SOURCE_DIR}/src/engine/systems/EntityFactory.cpp
 )

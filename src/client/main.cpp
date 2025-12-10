@@ -13,6 +13,8 @@
 #include "engine/systems/CollisionSystem.hpp"
 #include "engine/systems/WaveSystem.hpp"
 #include "engine/systems/MovementSystem.hpp"
+#include "engine/systems/MissileSystem.hpp"
+#include "engine/systems/PowerUpSystem.hpp"
 #include "engine/systems/StageFactory.hpp"
 #include "engine/systems/EntityFactory.hpp"
 #include <iostream>
@@ -53,7 +55,20 @@ int main()
     InputSystem     input(ecs);
     CollisionSystem collision(ecs);
     WaveSystem      waves(ecs);
-    MovementSystem  movementSystem(ecs);
+    MovementSystem movementSystem(ecs);
+    MissileSystem missileSystem(ecs);
+    PowerUpSystem powerUpSystem(ecs);
+
+    // === CRÉATION DU JOUEUR ===
+    //Entity player = ecs.createEntity();
+    //ecs.addComponent(player, Position{100.f, 100.f});
+    /*ecs.addComponent(player, PlayerController{});
+    ecs.addComponent(player, Velocity{0.f, 0.f});
+    ecs.addComponent(player, Drawable{"player.png", {0, 0, 64, 64}, 10, true});
+    ecs.addComponent(player, Collider{100.f, 70.f, true, 1, 50});
+    ecs.addComponent(player, Health{200, 200});
+    ecs.addComponent(player, Shootable{0.f, 0.2f, 800.f, 50, 1, "bullet", 64.f, 20.f, false, false});
+    MovementSystem  movementSystem(ecs); */
 
     // === CRÉATION DU JOUEUR ===
     Entity player = Factory::createPlayer(ecs, 100.f, 540.f, 0, "player");
@@ -89,12 +104,26 @@ int main()
         movementSystem.update(dt);
         waves.update(dt);
         collision.update(dt);
+        missileSystem.update(dt);
+        powerUpSystem.update(dt);
 
         // === GESTION DU TIR ===
-        for (Entity e : ecs.getEntitiesByComponents<PlayerController, Position>()) {
-            auto* ctrl = ecs.getComponent<PlayerController>(e);
-            auto* pos = ecs.getComponent<Position>(e);
+        // for (Entity e : ecs.getEntitiesByComponents<PlayerController, Position>()) {
+        //     auto* ctrl = ecs.getComponent<PlayerController>(e);
+        //     auto* pos = ecs.getComponent<Position>(e);
             
+        //     if (ctrl && ctrl->isShooting && shootCooldown <= 0.f) {
+        //         // Créer un projectile
+        //         Entity bullet = ecs.createEntity();
+        //         ecs.addComponent(bullet, Position{pos->x + 64.f, pos->y + 20.f});
+        //         ecs.addComponent(bullet, Velocity{800.f, 0.f});  // Vitesse vers la droite
+        //         ecs.addComponent(bullet, Drawable{"bullet", {0, 0, 16, 8}, 20, true, 1.f, 0.f});
+        //         ecs.addComponent(bullet, Collider{16.f, 8.f, false, 1, 25});  // team 1 = joueur
+        //         ecs.addComponent(bullet, Projectile{800.f, 25});
+                
+        //         shootCooldown = SHOOT_DELAY;
+        //     }
+        // }
             if (ctrl && ctrl->isShooting && shootCooldown <= 0.f) {
                 Factory::createProjectile(ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 25, "bullet");
                 shootCooldown = SHOOT_DELAY;

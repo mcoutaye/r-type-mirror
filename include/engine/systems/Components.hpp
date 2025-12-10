@@ -78,6 +78,25 @@ struct Projectile {
     int damage;   // Dégâts infligés
 };
 
+struct Shootable {
+    float cooldown;      // Temps restant avant le prochain tir
+    float shootDelay;    // Délai entre deux tirs
+    float missileSpeed;  // Vitesse des projectiles
+    int damage;          // Dégâts infligés
+    uint8_t team;             // Équipe du tireur (pour éviter les tirs alliés)
+    std::string textureId; // Texture du projectile
+    float offsetX;        // Offset X pour le spawn du projectile
+    float offsetY;        // Offset Y pour le spawn du projectile
+    bool isShooting;  // Nouveau champ pour indiquer si le joueur tire
+    bool tripleShot;    
+};
+
+struct PowerUp {
+    enum class Type { TripleShot };
+    Type type;
+    float duration;  // Durée de l'effet (en secondes)
+};
+
 // Obstacle de stage indestructible
 struct Obstacle {
     bool blocking = true;  // Bloque le mouvement

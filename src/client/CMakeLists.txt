@@ -1,6 +1,7 @@
 set(SRC_FILES
     main.cpp
     UdpClient.cpp
+    TcpClient.cpp
 )
 
 add_executable(rtype_client ${SRC_FILES})

@@ -14,6 +14,10 @@ UdpClient::~UdpClient()
 {
     stop();
     join();
+    if (m_socket.getLocalPort() != 0) {
+        m_socket.unbind();
+        std::cout << "[UDP Client] Port local libéré (destructeur)\n";
+    }
 }
 
 bool UdpClient::start(unsigned short localPort)

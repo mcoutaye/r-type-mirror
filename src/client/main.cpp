@@ -1,35 +1,54 @@
 /*
 ** EPITECH PROJECT, 2025
-<<<<<<< HEAD
 ** r-type-mirror
-=======
-** R-type
->>>>>>> game_engine
 ** File description:
 ** main
 */
 
 #include "UdpClient.hpp"
-#include <chrono>
-using namespace std::chrono_literals;
+#include "TcpClient.hpp"
+#include "NetworkProtocol.hpp"
+#include <iostream>
+#include <random>
 
 int main()
 {
-    UdpClient client("127.0.0.1", 53000);
-    if (!client.start())
-        return -1;
-    while (true) {
-        InputState input{1, 0, 0, 0, 0};
-        client.inputsToSend.push(input);
-        std::vector<EntityUpdate> updates;
-        while (client.receivedUpdates.pop(updates)) {
-            std::cout << "Reçu " << updates.size() << " entités :\n";
-            for (const auto& e : updates)
-                std::cout << "  Entity " << e.entityId << " → (" << e.x << ", " << e.y << ")\n";
+    TcpClient tcp("127.0.0.1", 53001);
+    UdpClient udp("127.0.0.1", 53000);
+    if (!tcp.start() || !udp.start())
+        return 1;
+    std::cout << "Client TCP + UDP lancé. Simulation d'envoi d'inputs aléatoires via UDP.\n";
+    std::thread simThread([&]() {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> dis(0, 1);
+        while (tcp.isConnected()) {
+            InputState in;
+            in.up = dis(gen);
+            in.down = dis(gen);
+            in.left = dis(gen);
+            in.right = dis(gen);
+            in.shoot = dis(gen);
+            udp.inputsToSend.push(in);
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
         }
-        std::this_thread::sleep_for(100ms);
-    }
-    client.stop();
-    client.join();
+    });
+    std::thread recvThread([&]() {
+        while (tcp.isConnected()) {
+            std::vector<EntityUpdate> updates;
+            if (udp.receivedUpdates.pop(updates)) {
+                std::cout << "Reçu snapshot du serveur :\n";
+                for (const auto& u : updates)
+                    std::cout << "Entity " << u.entityId << " : (" << u.x << ", " << u.y << ")\n";
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+    });
+    while (tcp.isConnected())
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::cout << "[Client] TCP déconnecté → arrêt UDP\n";
+    simThread.join();
+    recvThread.join();
+    std::cout << "Client arrêté.\n";
     return 0;
 }

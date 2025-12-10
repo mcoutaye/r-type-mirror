@@ -14,6 +14,10 @@ UdpServer::~UdpServer()
 {
     stop();
     join();
+    if (m_socket.getLocalPort() != 0) {
+        m_socket.unbind();
+        std::cout << "[UDP Server] Port " << m_port << " libéré (destructeur)\n";
+    }
 }
 
 bool UdpServer::start()

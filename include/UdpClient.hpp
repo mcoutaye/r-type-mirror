@@ -9,6 +9,7 @@
 #include "SafeQueue.hpp"
 #include <SFML/Network.hpp>
 #include "NetworkProtocol.hpp"
+#include "Timer.hpp"
 #include <vector>
 #include <memory>
 #include <thread>
@@ -28,6 +29,7 @@ class UdpClient {
         void join();
         SafeQueue<InputState>          inputsToSend;
         SafeQueue<std::vector<EntityUpdate>> receivedUpdates;
+        Timer _timer;
     private:
         void sendThread();
         void receiveThread();

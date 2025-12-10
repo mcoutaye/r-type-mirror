@@ -30,7 +30,7 @@ public:
     ~InputSystem() = default;
 
     void update(double dt) override;
-    
+
     bool isActionActive(GameAction action) const;
     bool wasActionPressed(GameAction action) const;
     bool wasActionReleased(GameAction action) const;
@@ -42,12 +42,12 @@ private:
     void setDefaultMappings();
     void updateJoystickInput();
     void applyInputToPlayers();
-    
+
     std::map<sf::Keyboard::Key, GameAction> m_keyMappings;
     std::map<unsigned int, GameAction> m_joystickButtonMappings;
     std::map<GameAction, bool> m_currentActionStates;
     std::map<GameAction, bool> m_previousActionStates;
-    
+
     unsigned int m_joystickId = 0;
     float m_deadzone = 20.0f;
     float m_playerSpeed = 400.0f;

@@ -16,6 +16,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstring>
+#include <mutex>
 
 #define MAX_CLIENTS 4
 
@@ -39,8 +40,11 @@ class UdpServer {
         SafeQueue<PacketToSend>               packetsToSend;
         bool addClient(sf::IpAddress ip, unsigned short port, int playerId = -1);
         void removeClient(int playerId);
-        std::size_t getClientCount() const { return m_clientCount; }
-        const std::vector<std::unique_ptr<ClientInfo>>& getClients() const { return m_clients; }
+        std::size_t getClientCount() const;
+        const ClientInfo getClient(std::size_t id) const;
+        std::vector<ClientInfo> getClients() const;
+        PacketToSend createPacket(std::size_t clientID, std::vector<uint8_t> data);
+        std::queue<PacketToSend> createEveryonePacket(std::vector<uint8_t> data);
     private:
         void receiveThread();
         void sendThread();
@@ -48,6 +52,7 @@ class UdpServer {
         sf::UdpSocket                                    m_socket;
         unsigned short                                   m_port;
         std::vector<std::unique_ptr<ClientInfo>>         m_clients;
+        mutable std::mutex                               m_clientsMutex;
         std::size_t                                      m_clientCount = 0;
         std::atomic<bool>                                m_running{false};
         std::thread                                      m_recvThread;

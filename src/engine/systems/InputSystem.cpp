@@ -61,7 +61,7 @@ void InputSystem::updateJoystickInput()
 
     float xAxis = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::X);
     float yAxis = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::Y);
-    
+
     // D-pad (PovX and PovY)
     float povX = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::PovX);
     float povY = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::PovY);
@@ -89,11 +89,11 @@ void InputSystem::updateJoystickInput()
 
 void InputSystem::applyInputToPlayers()
 {
-    auto players = _ecs.getEntitiesByComponents<PlayerController, Velocity>();
+    auto players = _ecs.getEntitiesByComponents<PlayerController_t, Velocity_t>();
     
     for (Entity player : players) {
-        auto* vel = _ecs.getComponent<Velocity>(player);
-        auto* ctrl = _ecs.getComponent<PlayerController>(player);
+        auto* vel = _ecs.getComponent<Velocity_t>(player);
+        auto* ctrl = _ecs.getComponent<PlayerController_t>(player);
         if (!vel || !ctrl) continue;
 
         vel->x = 0.f;

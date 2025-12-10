@@ -5,7 +5,7 @@
 ** Movement System
 */
 
-#include "engine/systems/MovementSystem.hpp"
+#include "ecs.hpp"
 
 void MovementSystem::update(double dt) {
     auto entities = _ecs.getEntitiesByComponents<Position, Velocity, MovementPattern>();

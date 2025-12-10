@@ -13,6 +13,7 @@ NC			=	\033[0m
 
 # Chemins
 BUILD_DIR	=	./build
+BIN_DIR		=	./binaries
 CMAKE		=	cmake
 MAKE		=	make
 
@@ -20,10 +21,19 @@ MAKE		=	make
 SERVER_EXE	=	rtype_server
 CLIENT_EXE	=	rtype_client
 
-all:	$(BUILD_DIR)/$(SERVER_EXE) $(BUILD_DIR)/$(CLIENT_EXE)
+all:
+	@$(MAKE) -C $(BUILD_DIR) --no-print-directory
+	mkdir -p $(BIN_DIR)
+	cp $(BUILD_DIR)/src/server/$(SERVER_EXE) $(BIN_DIR)/
+	cp $(BUILD_DIR)/src/client/$(CLIENT_EXE) $(BIN_DIR)/
+
+build:	$(BUILD_DIR)/$(SERVER_EXE) $(BUILD_DIR)/$(CLIENT_EXE)
 	@echo "$(GREEN)Compilation terminée !$(NC)"
 	@echo "$(CYAN)→ Serveur : $(BUILD_DIR)/$(SERVER_EXE)$(NC)"
 	@echo "$(CYAN)→ Client  : $(BUILD_DIR)/$(CLIENT_EXE)$(NC)"
+	mkdir -p $(BIN_DIR)
+	cp $(BUILD_DIR)/$(SERVER_EXE) $(BIN_DIR)/
+	cp $(BUILD_DIR)/$(CLIENT_EXE) $(BIN_DIR)/
 
 $(BUILD_DIR)/$(SERVER_EXE) $(BUILD_DIR)/$(CLIENT_EXE): $(BUILD_DIR)/Makefile
 	@echo "$(YELLOW)Compilation en cours...$(NC)"
@@ -38,8 +48,10 @@ clean:
 	@echo "$(YELLOW)Nettoyage des objets...$(NC)"
 
 fclean: clean
-	@rm -rf $(BUILD_DIR)
-	@echo "$(YELLOW)Suppression totale du dossier build$(NC)"
+	@find $(BUILD_DIR) -mindepth 1 ! -name Makefile -delete 2>/dev/null || true
+	@echo "$(YELLOW)Suppression du dossier build (sauf Makefile)$(NC)"
+	@rm -rf $(BIN_DIR)
+	@echo "$(YELLOW)Suppression totale du dossier binaries$(NC)"
 
 re:	fclean all
 
@@ -53,4 +65,4 @@ run_client: all
 	@echo "$(GREEN)Lancement du client...$(NC)"
 	@$(BUILD_DIR)/src/client/$(CLIENT_EXE)
 
-.PHONY: all clean fclean re run_server run_client
+.PHONY: all clean fclean re run_server run_client build

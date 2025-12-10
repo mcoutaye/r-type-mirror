@@ -6,7 +6,7 @@
 */
 
 #pragma once
-#include "engine/ecs/ecs.hpp"
+#include "ecs.hpp"
 #include "engine/systems/Components.hpp"
 #include <cmath>
 

@@ -14,6 +14,8 @@
     #include <vector>
     #include <limits>
     #include <bitset>
+    #include <type_traits>
+    #include <utility>
     #include <unordered_map>
 
 static constexpr size_t MAX_ENTITIES = 1 << 11; // 2048 Entities Max (Enough for our project)
@@ -33,7 +35,7 @@ inline ComponentTypeID newComponentTypeID()
     return last++;
 }
 
-template <typename T>
+template <typename T> // When used for a specific type, will retrieve the ID thanks to static
 ComponentTypeID getComponentID()
 {
     static ComponentTypeID id = newComponentTypeID();
@@ -97,7 +99,6 @@ class StorageComponent
             // No need to remove in __Storage, the [e] space is for this entity anyways.
             // In case of removing/re-adding, its better since we just change one bit instead of playing with memory
         }
-
 
     private:
         // Where the components are stocked.
@@ -170,9 +171,25 @@ class ECS
             auto typeID = getComponentID<ComponentType>(); // Fetch the TypeID of this ComponentType
             verifyComponentStorage<ComponentType>(typeID);
 
-            auto *storage = static_cast<StorageComponent<ComponentType> *>(_componentStorages[typeID]); // Get the storage of the componant type
+            auto *storage = static_cast<StorageComponent<ComponentType> *>(__componentStorage[typeID]); // Get the storage of the componant type
             storage->add(e, component);     // Add in storage
             __signatures[e].set(typeID);    // Set signature for the new added component
+
+            return e;
+        }
+
+        // Used for multipple add call with one function
+        // See 'Perfect Forwarding' and 'Forwarding reference pattern'
+        template<typename ... ComponentType>
+        Entity addComponents(Entity e, ComponentType && ... Components)
+        {
+            // Memory optimization -> one mov or one copy per argument instead of 1+ copy
+            // Usefull for BIG components
+
+            (addComponent<std::decay_t<ComponentType>>(e, std::forward<ComponentType>(Components)), ...);
+            // Decay gives the raw type of one components
+            // forward transfers the argument proprely into addComponent()
+            // ... is a fold expression, it will do addComponent for each Components
 
             return e;
         }
@@ -194,12 +211,12 @@ class ECS
                 return false;
 
             // Signature say entity SHOULD have this, for safety we do internal checks
-            if (TypeID >= _componentStorages.size())
+            if (TypeID >= __componentStorage.size())
                 return false;
-            if (_componentStorages[TypeID] == nullptr)
+            if (__componentStorage[TypeID] == nullptr)
                 return false;
 
-            auto *storage = static_cast<StorageComponent<ComponentType> *>(_componentStorages[TypeID]);
+            auto *storage = static_cast<StorageComponent<ComponentType> *>(__componentStorage[TypeID]);
             return storage->has(e);
         }
 
@@ -213,12 +230,12 @@ class ECS
                 return nullptr;
             if (!it->second.test(TypeID))
                 return nullptr;
-            if (TypeID >= _componentStorages.size())
+            if (TypeID >= __componentStorage.size())
                 return nullptr;
-            if (_componentStorages[TypeID] == nullptr)
+            if (__componentStorage[TypeID] == nullptr)
                 return nullptr;
 
-            auto *storage = static_cast<const StorageComponent<ComponentType> *>(_componentStorages[TypeID]);
+            auto *storage = static_cast<const StorageComponent<ComponentType> *>(__componentStorage[TypeID]);
             return storage->get(e);
         }
 
@@ -232,12 +249,12 @@ class ECS
                 return nullptr;
             if (!it->second.test(TypeID))
                 return nullptr;
-            if (TypeID >= _componentStorages.size())
+            if (TypeID >= __componentStorage.size())
                 return nullptr;
-            if (_componentStorages[TypeID] == nullptr)
+            if (__componentStorage[TypeID] == nullptr)
                 return nullptr;
 
-            auto *storage = static_cast<StorageComponent<ComponentType> *>(_componentStorages[TypeID]);
+            auto *storage = static_cast<StorageComponent<ComponentType> *>(__componentStorage[TypeID]);
             return storage->get(e);
         }
 
@@ -273,23 +290,19 @@ class ECS
                 return;
             if (!it->second.test(TypeID))
                 return;
-            if (TypeID >= _componentStorages.size())
+            if (TypeID >= __componentStorage.size())
                 return;
-            if (_componentStorages[TypeID] == nullptr)
+            if (__componentStorage[TypeID] == nullptr)
                 return;
 
-            auto *storage = static_cast<StorageComponent<ComponentType> *>(_componentStorages[TypeID]);
+            auto *storage = static_cast<StorageComponent<ComponentType> *>(__componentStorage[TypeID]);
 
             storage->kill(e);
             __signatures[e].reset(TypeID);
         }
 
-        double getTime() const { return _time; }
-        void addTime(double dt) { _time += dt; }
-
 
     private:
-        double _time; 
         std::size_t __livingEntities = 0;
 
         // The entities not used yet
@@ -298,7 +311,7 @@ class ECS
         // Bitmask used for linking entiteis to their component
         std::unordered_map<Entity, Signature> __signatures;
 
-        std::vector<void *> _componentStorages; // void* are std::Vector<ComponentType> from storageComponent class
+        std::vector<void *> __componentStorage; // void* are std::Vector<ComponentType> from storageComponent class
         // CHANGE void * INTO IComponentStorage and unique_ptr later
         // Also change the static_cast once IComponent created (std::vector<std::unique_ptr<IComponentStorage>>)
 
@@ -309,12 +322,12 @@ class ECS
             // Ensure that _componentStorage is pointing toward a StorageComponent instance
 
             // Resize the vector if storage is full
-            if (TypeID >= _componentStorages.size())
-                _componentStorages.resize(TypeID + 1, nullptr);
+            if (TypeID >= __componentStorage.size())
+                __componentStorage.resize(TypeID + 1, nullptr);
 
             // Add a new Component Type Storage if not existing at TypeID
-            if ( _componentStorages[TypeID] == nullptr)
-                _componentStorages[TypeID] = new StorageComponent<ComponentType>();
+            if ( __componentStorage[TypeID] == nullptr)
+                __componentStorage[TypeID] = new StorageComponent<ComponentType>();
         }
 };
 

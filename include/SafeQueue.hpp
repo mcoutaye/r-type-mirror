@@ -18,7 +18,7 @@ class SafeQueue {
             std::lock_guard<std::mutex> lock(mutex_);
             queue_.push(value);
         }
-        bool pop(T& value)
+        bool tryPop(T& value)
         {
             std::lock_guard<std::mutex> lock(mutex_);
             if (queue_.empty())
@@ -27,6 +27,7 @@ class SafeQueue {
             queue_.pop();
             return true;
         }
+        // 
     private:
         std::queue<T> queue_;
         std::mutex mutex_;

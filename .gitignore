@@ -1,4 +1,5 @@
 # Build directories (common)
+binaries/
 build/
 build-*/
 client_test

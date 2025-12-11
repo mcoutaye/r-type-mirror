@@ -7,6 +7,7 @@
 
 #include "engine/systems/CollisionSystem.hpp"
 #include <cmath>
+#include <iostream>
 
 CollisionSystem::CollisionSystem(ECS& ecs) : ISystem(ecs) {}
 
@@ -131,7 +132,7 @@ void CollisionSystem::update(double dt)
                 auto* h2 = _ecs.getComponent<Health>(e2);
                 if (h2 && coll1->team != coll2->team) {
                     h2->current -= proj1->damage;
-                   /* toDestroy.push_back(e1);  // Détruit le projectile
+                   toDestroy.push_back(e1);  // Détruit le projectile
                     if (h2 && h2->current <= 0) {
                         toDestroy.push_back(e2);  // Détruit l'ennemi
 
@@ -149,17 +150,17 @@ void CollisionSystem::update(double dt)
                         }
                     }
                     toDestroy.push_back(e1);
-                    if (h2->current <= 0) toDestroy.push_back(e2);*/
+                    if (h2->current <= 0) toDestroy.push_back(e2);
                 }
             } else if (proj2) {
                 auto* h1 = _ecs.getComponent<Health>(e1);
                 if (h1 && coll1->team != coll2->team) {
                     h1->current -= proj2->damage;
                     toDestroy.push_back(e2);
-                    /*if (h1->current <= 0) {
+                    if (h1->current <= 0) {
                         toDestroy.push_back(e1);  // Détruit l'ennemi
                     }
-                    if (h1->current <= 0) toDestroy.push_back(e1);*/
+                    if (h1->current <= 0) toDestroy.push_back(e1);
                 }
             } else {
                 auto* h1 = _ecs.getComponent<Health>(e1);

@@ -71,7 +71,7 @@ void WaveSystem::update(double dt)
             _ecs.addComponent(enemy, Drawable{"enemy.png", {0, 0, 64, 64}, 10, true});
             _ecs.addComponent(enemy, Collider{50.f, 50.f, true, 2, 15});
             _ecs.addComponent(enemy, Health{40, 40});
-            _ecs.addComponent(enemy, Shootable{0.f, 1.5f, -600.f, 15, 2, "bullet", -20.f, 0.f, true});
+            // _ecs.addComponent(enemy, Shootable{0.f, 1.5f, -600.f, 15, 2, "bullet", -20.f, 0.f, true});
         }
 
         ++_currentWave;

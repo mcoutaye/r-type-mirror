@@ -88,7 +88,7 @@ struct Shootable {
     float offsetX;        // Offset X pour le spawn du projectile
     float offsetY;        // Offset Y pour le spawn du projectile
     bool isShooting;  // Nouveau champ pour indiquer si le joueur tire
-    bool tripleShot;    
+    bool tripleShot;
 };
 
 struct PowerUp {

@@ -89,13 +89,12 @@ void InputSystem::updateJoystickInput()
 
 void InputSystem::applyInputToPlayers()
 {
-    auto players = _ecs.getEntitiesByComponents<PlayerController, Velocity, Shootable>();
+    auto players = _ecs.getEntitiesByComponents<PlayerController, Velocity>();
     for (Entity player : players) {
         auto* vel = _ecs.getComponent<Velocity>(player);
         auto* ctrl = _ecs.getComponent<PlayerController>(player);
-        auto* shootable = _ecs.getComponent<Shootable>(player);
 
-        if (!vel || !ctrl || !shootable) continue;
+        if (!vel || !ctrl ) continue;
 
         vel->x = 0.f;
         vel->y = 0.f;
@@ -109,10 +108,9 @@ void InputSystem::applyInputToPlayers()
         if (isActionActive(GameAction::MoveRight))
             vel->x = m_playerSpeed;
 
-        // ctrl->isShooting = isActionActive(GameAction::Shoot);
-        shootable->isShooting = isActionActive(GameAction::Shoot);
-        if (isActionActive(GameAction::Shoot)) {
-            shootable->cooldown = 0.f;  // Autorise le tir
+        if (_ecs.hasComponent<Shootable>(player)) {
+            auto* shootable = _ecs.getComponent<Shootable>(player);
+            shootable->isShooting = isActionActive(GameAction::Shoot);
         }
     }
 }

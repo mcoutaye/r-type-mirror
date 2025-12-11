@@ -17,6 +17,7 @@ namespace Factory {
         ecs.addComponent(player, Drawable{textureId, {0, 0, 64, 64}, 10, true});
         ecs.addComponent(player, Collider{64.f, 64.f, true, 1, 50});
         ecs.addComponent(player, Health{200, 200});
+        ecs.addComponent(player, Shootable{0.f, 0.2f, 800.f, 50, 1, "bullet", 64.f, 20.f, false, false});
         return player;
     }
 

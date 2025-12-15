@@ -2,7 +2,13 @@
 ** EPITECH PROJECT, 2025
 ** G-CPP-500-RUN-5-2-rtype-3
 ** File description:
-** ecs
+** main
+*/
+
+/*
+################################################
+# WARNING: This main.cpp is ONLY for testing  ##
+################################################
 */
 
 #include "ecs.hpp"

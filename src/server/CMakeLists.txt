@@ -16,7 +16,6 @@ target_include_directories(r-type_server PRIVATE
 target_link_libraries(r-type_server PRIVATE
     sfml-network
     sfml-system
-    pthread
 )
 
 add_custom_target(server_clean

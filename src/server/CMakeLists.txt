@@ -1,6 +1,5 @@
 add_executable(r-type_server
     main.cpp
-    Args.cpp
     NetworkManager.cpp
     UdpReceiver.cpp
     UdpSender.cpp

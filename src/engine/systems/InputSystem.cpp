@@ -61,7 +61,7 @@ void InputSystem::updateJoystickInput()
 
     float xAxis = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::X);
     float yAxis = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::Y);
-    
+
     // D-pad (PovX and PovY)
     float povX = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::PovX);
     float povY = sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::PovY);

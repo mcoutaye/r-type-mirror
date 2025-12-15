@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     // Args args(argc, argv);
     // auto config = args.parse();
     // Ntw::NetworkManager network(config.port);
-    network.start();
-    network.join();
+    // network.start();
+    // network.join();
     return 0;
 }

@@ -49,7 +49,7 @@ void processUpdates(const EntityUpdate update, ECS& ecsClient)
 
 int main()
 {
-    UdpClient client("127.0.0.1", 53000);
+    UdpClient client("10.49.84.103", 53000);
     ECS ecsClient;
     InputSystem inSys(ecsClient);
     if (!client.start())

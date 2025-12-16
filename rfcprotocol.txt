@@ -1,0 +1,159 @@
+Network Working Group                                      G. Villemonte
+Intended status: Informational                              C. Chellier
+                                                            M. Coutaye
+                                                            L. Hoareau
+Expires: June 2027                                          December 2025
+
+                   R-Type Mirror UDP Gameplay Protocol
+                            r-type-mirror
+
+Abstract
+
+   This document describes the UDP-based gameplay protocol used in the
+   r-type-mirror project, a multiplayer shoot'em up game.  The protocol
+   handles real-time transmission of player inputs from clients to the
+   server and entity position updates from the server to clients.  It is
+   designed to be lightweight and low-latency, relying on UDP for
+   performance while accepting potential packet loss.
+
+1.  Introduction
+
+   The r-type-mirror UDP Gameplay Protocol is a simple, connectionless
+   protocol used for the real-time exchange of game state in a
+   multiplayer horizontal shoot'em up game inspired by R-Type.  It
+   operates over UDP and is complemented by a separate TCP channel for
+   connection establishment, keep-alive (ping/pong), and client
+   discovery.
+
+   The protocol has two independent data flows:
+
+   o  Client to Server: frequent transmission of player input states.
+   o  Server to Client: periodic broadcast of entity position snapshots.
+
+   No handshake, sequencing, or reliability mechanisms are defined at
+   the UDP level; reliability for connection management is handled via
+   the parallel TCP channel.
+
+   Default UDP port: 53000 (configurable).
+
+2.  Data Structures
+
+   All multi-byte values are transmitted in network byte order
+   (big-endian).  Structures are packed with no padding beyond what is
+   explicitly defined.
+
+2.1.  InputState (Client -> Server)
+
+   The InputState structure represents the current control inputs of a
+   player.  It is exactly 1 byte in size.
+
+      0 1 2 3 4 5 6 7
+     +-+-+-+-+-+-+-+-+
+     |U|D|L|R|S|     |
+     +-+-+-+-+-+-+-+-+
+
+     U (bit 0): Up    (1 = pressed)
+     D (bit 1): Down  (1 = pressed)
+     L (bit 2): Left  (1 = pressed)
+     R (bit 3): Right (1 = pressed)
+     S (bit 4): Shoot (1 = pressed)
+     Bits 5-7: Reserved (must be 0)
+
+   Each InputState is sent in its own UDP datagram (1 byte payload).
+
+2.2.  EntityUpdate (Server -> Client)
+
+   The EntityUpdate structure conveys the minimal state of a single
+   game entity.  It is exactly 12 bytes in size.
+
+      0                   1                   2                   3
+      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                         entityId (uint32)                     |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                            x (float)                          |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                            y (float)                          |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+     entityId: Unique identifier for the entity.
+     x, y:     Floating-point position coordinates.
+
+   A single UDP datagram from server to client may contain zero or more
+   concatenated EntityUpdate structures.  The total payload length MUST
+   be an exact multiple of 12 bytes.  The number of updates is derived
+   as payload_length / 12.
+
+3.  Protocol Operation
+
+3.1.  Client to Server Flow (Player Inputs)
+
+   Clients send InputState datagrams as frequently as possible
+   (typically 60-120 Hz or on every input change).  Each datagram is
+   sent to the server's UDP port with a 1-byte payload.
+
+   The server identifies clients by source IP address and source port.
+   The first received InputState from an unknown endpoint automatically
+   registers the client (up to MAX_CLIENTS = 4).  Subsequent inputs from
+   the same endpoint are associated with the registered player.
+
+   No acknowledgment is sent.
+
+3.2.  Server to Client Flow (Entity Snapshots)
+
+   Periodically (typically 30-60 Hz), the server constructs a snapshot
+   containing the current position of all relevant entities.
+
+   For each connected client, the server queues a datagram containing
+   the concatenated EntityUpdate structures and sends it to the
+   client's registered IP and port.
+
+   All clients receive identical snapshots (full state, no delta
+   encoding in the current implementation).
+
+3.3.  Client Management and Discovery
+
+   Initial client discovery, player ID assignment, and connection
+   keep-alive are handled over a separate TCP channel (default port
+   53001) using a simple ping/pong mechanism.
+
+   The UDP gameplay protocol begins only after successful TCP
+   connection.
+
+4.  Packet Size Considerations
+
+   Datagrams should respect typical path MTU (approximately 1400 bytes
+   after headers).  With 12-byte EntityUpdate structures, a single
+   datagram can carry up to approximately 116 entities.
+
+5.  Security Considerations
+
+   This protocol provides no authentication, encryption, or integrity
+   checks.  Implementations operate under the assumption of a trusted
+   local or controlled network.  Spoofing of source IP/port is possible
+   and could lead to unauthorized input injection or denial of service.
+
+   Production deployments should consider additional measures such as
+   VPN tunneling or application-level authentication.
+
+6.  IANA Considerations
+
+   This document has no IANA actions.
+
+Authors' Addresses
+
+   Gabriel Villemonte
+   Epitech Student
+   Email: gabriel.villemonte@epitech.eu
+
+   Clement Chellier
+   Epitech Student
+   Email: clement.chellier@epitech.eu
+
+   Mathis Coutaye
+   Epitech Student
+   Email: mathis.coutaye@epitech.eu
+
+   Lucas Hoareau
+   Epitech Student
+   Email: lucas.hoareau@epitech.eu

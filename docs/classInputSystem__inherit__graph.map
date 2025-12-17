@@ -1,0 +1,5 @@
+<map id="InputSystem" name="InputSystem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,188,253,813"/>
+<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="53,5,206,140"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,154,132,188,127,188,127,154"/>
+</map>

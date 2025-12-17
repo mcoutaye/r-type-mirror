@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>R-Type Game Engine:  Fichier source de include/engine/systems/InputSystem.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">R-Type Game Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Documentation de l&#39;ECS et des systèmes pour le projet R-Type</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('InputSystem_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">InputSystem.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="InputSystem_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">    ** EPITECH PROJECT, 2025</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">    ** R-Type</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">    ** File description:</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">    ** Input System</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">    */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">    #pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">    #include &quot;<a class="code" href="ecs_8hpp.html">engine/ecs/ecs.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">    #include &quot;<a class="code" href="Components_8hpp.html">engine/systems/Components.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">    #include &lt;SFML/Window/Event.hpp&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">    #include &lt;SFML/Window/Window.hpp&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">    #include &lt;SFML/Window/Keyboard.hpp&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">    #include &lt;SFML/Window/Joystick.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">    #include &lt;map&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">   18</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_enumvalue" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c">MoveUp</a>,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_enumvalue" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5">MoveDown</a>,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_enumvalue" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca">MoveLeft</a>,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <a class="code hl_enumvalue" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b">MoveRight</a>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_enumvalue" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c">Shoot</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6">Quit</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    };</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classInputSystem.html">   27</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classInputSystem.html">InputSystem</a> : <span class="keyword">public</span> <a class="code hl_class" href="classISystem.html">ISystem</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classInputSystem.html#a26e9713157209f6f41225360f49ee90f">   29</a></span>        <a class="code hl_function" href="classInputSystem.html#a26e9713157209f6f41225360f49ee90f">InputSystem</a>(<a class="code hl_class" href="classECS.html">ECS</a>&amp; <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ecs</a>);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classInputSystem.html#a0d4dcf75be69044e88b17653925d35b7">   30</a></span>        <a class="code hl_function" href="classInputSystem.html#a0d4dcf75be69044e88b17653925d35b7">~InputSystem</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classInputSystem.html#ad0abae812dfe6bf0e58c48e5d0382f51">   32</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#ad0abae812dfe6bf0e58c48e5d0382f51">update</a>(<span class="keywordtype">double</span> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">dt</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classInputSystem.html#a853a52f3d59165b69bc7303913369395">   34</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classInputSystem.html#a853a52f3d59165b69bc7303913369395">isActionActive</a>(<a class="code hl_enumeration" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">action</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classInputSystem.html#ad6713488aefbde5a440da4014e374e9e">   35</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classInputSystem.html#ad6713488aefbde5a440da4014e374e9e">wasActionPressed</a>(<a class="code hl_enumeration" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">action</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classInputSystem.html#abc82ada36a00374dac556647e6e968c1">   36</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classInputSystem.html#abc82ada36a00374dac556647e6e968c1">wasActionReleased</a>(<a class="code hl_enumeration" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">action</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classInputSystem.html#afe7f4a0668c0185a26a235acfc302e23">   37</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#afe7f4a0668c0185a26a235acfc302e23">setKeyMapping</a>(sf::Keyboard::Key <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">key</a>, <a class="code hl_enumeration" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">action</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classInputSystem.html#a60cf5b4e159cd0c2eeb40982564b00a8">   38</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#a60cf5b4e159cd0c2eeb40982564b00a8">setJoystickButtonMapping</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">button</a>, <a class="code hl_enumeration" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">action</a>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classInputSystem.html#aa38c761ee2f3f77d71df26469963ae65">   39</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#aa38c761ee2f3f77d71df26469963ae65">setDeadzone</a>(<span class="keywordtype">float</span> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">deadzone</a>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classInputSystem.html#aedadc160e47234ac009775c0729f48f5">   42</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#aedadc160e47234ac009775c0729f48f5">setDefaultMappings</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classInputSystem.html#a7941bac0e62f7265d14894162c1e766e">   43</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#a7941bac0e62f7265d14894162c1e766e">updateJoystickInput</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classInputSystem.html#af162c4e6c2b6f9ea270a0856b160a9b4">   44</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classInputSystem.html#af162c4e6c2b6f9ea270a0856b160a9b4">applyInputToPlayers</a>();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classInputSystem.html#ab6163e904770a96feef3bfcdff7031f4">   46</a></span>        std::map&lt;sf::Keyboard::Key, GameAction&gt; <a class="code hl_variable" href="classInputSystem.html#ab6163e904770a96feef3bfcdff7031f4">m_keyMappings</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classInputSystem.html#a8e70fb0d2039e173daecd79012b59e43">   47</a></span>        std::map&lt;unsigned int, GameAction&gt; <a class="code hl_variable" href="classInputSystem.html#a8e70fb0d2039e173daecd79012b59e43">m_joystickButtonMappings</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classInputSystem.html#a8265793e5953c68b55bef7d12846fbe6">   48</a></span>        std::map&lt;GameAction, bool&gt; <a class="code hl_variable" href="classInputSystem.html#a8265793e5953c68b55bef7d12846fbe6">m_currentActionStates</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classInputSystem.html#ab3735380f9b9ed3631e67bfafdd5e349">   49</a></span>        std::map&lt;GameAction, bool&gt; <a class="code hl_variable" href="classInputSystem.html#ab3735380f9b9ed3631e67bfafdd5e349">m_previousActionStates</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classInputSystem.html#a36c35517ee827a9ba3b1d620c25eb630">   51</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classInputSystem.html#a36c35517ee827a9ba3b1d620c25eb630">m_joystickId</a> = 0;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classInputSystem.html#ac6eec646599585afa6e2ff4cbc82c219">   52</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classInputSystem.html#ac6eec646599585afa6e2ff4cbc82c219">m_deadzone</a> = 20.0f;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classInputSystem.html#a58b955ac05d2f0b1979fd0368295d3c3">   53</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classInputSystem.html#a58b955ac05d2f0b1979fd0368295d3c3">m_playerSpeed</a> = 400.0f;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    };</div>
+</div>
+<div class="ttc" id="aComponents_8hpp_html"><div class="ttname"><a href="Components_8hpp.html">Components.hpp</a></div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafc"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a></div><div class="ttdeci">GameAction</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:18</div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6">GameAction::Quit</a></div><div class="ttdeci">@ Quit</div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b">GameAction::MoveRight</a></div><div class="ttdeci">@ MoveRight</div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5">GameAction::MoveDown</a></div><div class="ttdeci">@ MoveDown</div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c">GameAction::MoveUp</a></div><div class="ttdeci">@ MoveUp</div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c">GameAction::Shoot</a></div><div class="ttdeci">@ Shoot</div></div>
+<div class="ttc" id="aInputSystem_8hpp_html_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca"><div class="ttname"><a href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca">GameAction::MoveLeft</a></div><div class="ttdeci">@ MoveLeft</div></div>
+<div class="ttc" id="aclassECS_html"><div class="ttname"><a href="classECS.html">ECS</a></div><div class="ttdoc">Entity Component System manager.</div><div class="ttdef"><b>Definition</b> ecs.hpp:190</div></div>
+<div class="ttc" id="aclassISystem_html"><div class="ttname"><a href="classISystem.html">ISystem</a></div><div class="ttdoc">Interface for systems in the ECS.</div><div class="ttdef"><b>Definition</b> ecs.hpp:470</div></div>
+<div class="ttc" id="aclassInputSystem_html"><div class="ttname"><a href="classInputSystem.html">InputSystem</a></div><div class="ttdef"><b>Definition</b> InputSystem.hpp:27</div></div>
+<div class="ttc" id="aclassInputSystem_html_a0d4dcf75be69044e88b17653925d35b7"><div class="ttname"><a href="classInputSystem.html#a0d4dcf75be69044e88b17653925d35b7">InputSystem::~InputSystem</a></div><div class="ttdeci">~InputSystem()=default</div></div>
+<div class="ttc" id="aclassInputSystem_html_a26e9713157209f6f41225360f49ee90f"><div class="ttname"><a href="classInputSystem.html#a26e9713157209f6f41225360f49ee90f">InputSystem::InputSystem</a></div><div class="ttdeci">InputSystem(ECS &amp;ecs)</div></div>
+<div class="ttc" id="aclassInputSystem_html_a36c35517ee827a9ba3b1d620c25eb630"><div class="ttname"><a href="classInputSystem.html#a36c35517ee827a9ba3b1d620c25eb630">InputSystem::m_joystickId</a></div><div class="ttdeci">unsigned int m_joystickId</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:51</div></div>
+<div class="ttc" id="aclassInputSystem_html_a58b955ac05d2f0b1979fd0368295d3c3"><div class="ttname"><a href="classInputSystem.html#a58b955ac05d2f0b1979fd0368295d3c3">InputSystem::m_playerSpeed</a></div><div class="ttdeci">float m_playerSpeed</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:53</div></div>
+<div class="ttc" id="aclassInputSystem_html_a60cf5b4e159cd0c2eeb40982564b00a8"><div class="ttname"><a href="classInputSystem.html#a60cf5b4e159cd0c2eeb40982564b00a8">InputSystem::setJoystickButtonMapping</a></div><div class="ttdeci">void setJoystickButtonMapping(unsigned int button, GameAction action)</div></div>
+<div class="ttc" id="aclassInputSystem_html_a7941bac0e62f7265d14894162c1e766e"><div class="ttname"><a href="classInputSystem.html#a7941bac0e62f7265d14894162c1e766e">InputSystem::updateJoystickInput</a></div><div class="ttdeci">void updateJoystickInput()</div></div>
+<div class="ttc" id="aclassInputSystem_html_a8265793e5953c68b55bef7d12846fbe6"><div class="ttname"><a href="classInputSystem.html#a8265793e5953c68b55bef7d12846fbe6">InputSystem::m_currentActionStates</a></div><div class="ttdeci">std::map&lt; GameAction, bool &gt; m_currentActionStates</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:48</div></div>
+<div class="ttc" id="aclassInputSystem_html_a853a52f3d59165b69bc7303913369395"><div class="ttname"><a href="classInputSystem.html#a853a52f3d59165b69bc7303913369395">InputSystem::isActionActive</a></div><div class="ttdeci">bool isActionActive(GameAction action) const</div></div>
+<div class="ttc" id="aclassInputSystem_html_a8e70fb0d2039e173daecd79012b59e43"><div class="ttname"><a href="classInputSystem.html#a8e70fb0d2039e173daecd79012b59e43">InputSystem::m_joystickButtonMappings</a></div><div class="ttdeci">std::map&lt; unsigned int, GameAction &gt; m_joystickButtonMappings</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:47</div></div>
+<div class="ttc" id="aclassInputSystem_html_aa38c761ee2f3f77d71df26469963ae65"><div class="ttname"><a href="classInputSystem.html#aa38c761ee2f3f77d71df26469963ae65">InputSystem::setDeadzone</a></div><div class="ttdeci">void setDeadzone(float deadzone)</div></div>
+<div class="ttc" id="aclassInputSystem_html_ab3735380f9b9ed3631e67bfafdd5e349"><div class="ttname"><a href="classInputSystem.html#ab3735380f9b9ed3631e67bfafdd5e349">InputSystem::m_previousActionStates</a></div><div class="ttdeci">std::map&lt; GameAction, bool &gt; m_previousActionStates</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:49</div></div>
+<div class="ttc" id="aclassInputSystem_html_ab6163e904770a96feef3bfcdff7031f4"><div class="ttname"><a href="classInputSystem.html#ab6163e904770a96feef3bfcdff7031f4">InputSystem::m_keyMappings</a></div><div class="ttdeci">std::map&lt; sf::Keyboard::Key, GameAction &gt; m_keyMappings</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:46</div></div>
+<div class="ttc" id="aclassInputSystem_html_abc82ada36a00374dac556647e6e968c1"><div class="ttname"><a href="classInputSystem.html#abc82ada36a00374dac556647e6e968c1">InputSystem::wasActionReleased</a></div><div class="ttdeci">bool wasActionReleased(GameAction action) const</div></div>
+<div class="ttc" id="aclassInputSystem_html_ac6eec646599585afa6e2ff4cbc82c219"><div class="ttname"><a href="classInputSystem.html#ac6eec646599585afa6e2ff4cbc82c219">InputSystem::m_deadzone</a></div><div class="ttdeci">float m_deadzone</div><div class="ttdef"><b>Definition</b> InputSystem.hpp:52</div></div>
+<div class="ttc" id="aclassInputSystem_html_ad0abae812dfe6bf0e58c48e5d0382f51"><div class="ttname"><a href="classInputSystem.html#ad0abae812dfe6bf0e58c48e5d0382f51">InputSystem::update</a></div><div class="ttdeci">void update(double dt) override</div><div class="ttdoc">Pure virtual function to update the system.</div></div>
+<div class="ttc" id="aclassInputSystem_html_ad6713488aefbde5a440da4014e374e9e"><div class="ttname"><a href="classInputSystem.html#ad6713488aefbde5a440da4014e374e9e">InputSystem::wasActionPressed</a></div><div class="ttdeci">bool wasActionPressed(GameAction action) const</div></div>
+<div class="ttc" id="aclassInputSystem_html_aedadc160e47234ac009775c0729f48f5"><div class="ttname"><a href="classInputSystem.html#aedadc160e47234ac009775c0729f48f5">InputSystem::setDefaultMappings</a></div><div class="ttdeci">void setDefaultMappings()</div></div>
+<div class="ttc" id="aclassInputSystem_html_af162c4e6c2b6f9ea270a0856b160a9b4"><div class="ttname"><a href="classInputSystem.html#af162c4e6c2b6f9ea270a0856b160a9b4">InputSystem::applyInputToPlayers</a></div><div class="ttdeci">void applyInputToPlayers()</div></div>
+<div class="ttc" id="aclassInputSystem_html_afe7f4a0668c0185a26a235acfc302e23"><div class="ttname"><a href="classInputSystem.html#afe7f4a0668c0185a26a235acfc302e23">InputSystem::setKeyMapping</a></div><div class="ttdeci">void setKeyMapping(sf::Keyboard::Key key, GameAction action)</div></div>
+<div class="ttc" id="aecs_8hpp_html"><div class="ttname"><a href="ecs_8hpp.html">ecs.hpp</a></div></div>
+<div class="ttc" id="aecs_8hpp_html_a5a868f82168f3b251aa7ca758686125c"><div class="ttname"><a href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">getComponentID</a></div><div class="ttdeci">ComponentTypeID getComponentID()</div><div class="ttdoc">Retrieves the unique ID for a given component type.</div><div class="ttdef"><b>Definition</b> ecs.hpp:71</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_a7f531b1c37460085cedd304cb8df01d.html">engine</a></li><li class="navelem"><a class="el" href="dir_5798507e9d2e7b8ffcab32c1ad4b7742.html">systems</a></li><li class="navelem"><a class="el" href="InputSystem_8hpp.html">InputSystem.hpp</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

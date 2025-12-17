@@ -34,8 +34,8 @@ class MoveSystem : public ISystem {
                     continue;
                 }
 
-                pos->x += velo->x * dt;
-                pos->y += velo->y * dt;
+                pos->x += (velo->x * 10) * dt;
+                pos->y += (velo->y * 10) * dt;
 
                 // Velocity should not reset here, better in game logic systems
                 velo->x = 0;
@@ -43,6 +43,5 @@ class MoveSystem : public ISystem {
             }
         }
 };
-
 
 #endif /* !MOVESYSTEM_HPP_ */

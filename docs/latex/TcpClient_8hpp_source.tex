@@ -1,0 +1,56 @@
+\doxysection{Tcp\+Client.\+hpp}
+\hypertarget{TcpClient_8hpp_source}{}\label{TcpClient_8hpp_source}\index{include/network/TcpClient.hpp@{include/network/TcpClient.hpp}}
+\mbox{\hyperlink{TcpClient_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ TcpClient}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SFML/Network.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceNwk}{Nwk}}\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNwk_1_1TcpClient}{TcpClient}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classNwk_1_1TcpClient}{TcpClient}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}}\ =\ \textcolor{stringliteral}{"{}127.0.0.1"{}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ port\ =\ 53001);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classNwk_1_1TcpClient_a75b35eec86218b964dc78fd8aec3c8d4}{\string~TcpClient}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a6e9588c92fb4682c922e699bcf804d87}{start}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1TcpClient_ad2b47abcf880a0e689e33273e95a6ff0}{stop}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1TcpClient_af54697c21724ea0137a5a71963aa7096}{join}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a729fd36794d4b2c14d3b00e0e9a20c43}{isConnected}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a21bb1c2b55b5c5f3a62f6bef86b99b82}{\_connected}}.load();\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a6ab53b2223d206ba007af5a98c464f94}{run}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ std::string\ \mbox{\hyperlink{classNwk_1_1TcpClient_a10aa47548330c39e637e9355fe25bb74}{\_ip}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a0f1637e3cb9dab5661ac6b15c0f2479a}{\_port}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ std::unique\_ptr<sf::TcpSocket>\ \mbox{\hyperlink{classNwk_1_1TcpClient_a96208c9a217607551bb0216593abc7d4}{\_socket}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ std::thread\ \mbox{\hyperlink{classNwk_1_1TcpClient_aabb539b0784209c79ce7e2687c727ae4}{\_thread}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classNwk_1_1TcpClient_a2bc6abad6784ae0137ace842919d2f50}{\_running}}\{\textcolor{keyword}{false}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classNwk_1_1TcpClient_a21bb1c2b55b5c5f3a62f6bef86b99b82}{\_connected}}\{\textcolor{keyword}{false}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ std::chrono::steady\_clock::time\_point\ \mbox{\hyperlink{classNwk_1_1TcpClient_aaa37d745f593caa17f3e02906af47d50}{\_lastPingSent}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ std::chrono::steady\_clock::time\_point\ \mbox{\hyperlink{classNwk_1_1TcpClient_ab4fa509399935067a59b90719337f17c}{\_lastPongReceived}};\ \ \ \ \ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a22d0f21639dda6d1fe6d1217b5bc4356}{PING\_INTERVAL\_MS}}\ =\ 1000;\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classNwk_1_1TcpClient_a2629f53c23e77b3970c0cd415a3e3913}{TIMEOUT\_SEC}}\ =\ 5;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \}\ \textcolor{comment}{//\ namespace\ Nwk}}
+
+\end{DoxyCode}

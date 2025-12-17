@@ -1,0 +1,99 @@
+\doxysection{Référence de la classe Nwk\+::Client\+Info}
+\hypertarget{classNwk_1_1ClientInfo}{}\label{classNwk_1_1ClientInfo}\index{Nwk::ClientInfo@{Nwk::ClientInfo}}
+
+
+Informations sur un client UDP connecté  
+
+
+
+
+{\ttfamily \#include $<$Udp\+Server.\+hpp$>$}
+
+
+
+Graphe de collaboration de Nwk\+::Client\+Info\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classNwk_1_1ClientInfo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNwk_1_1ClientInfo_aa8d5f137640be90f8132332756cab444}{Client\+Info}} (sf\+::\+Ip\+Address \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{p}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{id}})
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Ip\+Address \mbox{\hyperlink{classNwk_1_1ClientInfo_a3a4a5b8c951bf2a089450274f24807b8}{address}}
+\begin{DoxyCompactList}\small\item\em Adresse IP du client. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classNwk_1_1ClientInfo_a7928e19e7139eefa13f72fcd84ab274e}{port}}
+\begin{DoxyCompactList}\small\item\em Port source UDP du client. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{classNwk_1_1ClientInfo_a788dd0d0fa05bae249f0d6fcf7806d5e}{player\+Id}}
+\begin{DoxyCompactList}\small\item\em ID unique du joueur assigné par le serveur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Informations sur un client UDP connecté 
+
+Permet d\textquotesingle{}identifier un client par son adresse et port source, et de lui associer un ID joueur unique dans la partie. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classNwk_1_1ClientInfo_aa8d5f137640be90f8132332756cab444}\label{classNwk_1_1ClientInfo_aa8d5f137640be90f8132332756cab444} 
+\index{Nwk::ClientInfo@{Nwk::ClientInfo}!ClientInfo@{ClientInfo}}
+\index{ClientInfo@{ClientInfo}!Nwk::ClientInfo@{Nwk::ClientInfo}}
+\doxysubsubsection{\texorpdfstring{ClientInfo()}{ClientInfo()}}
+{\footnotesize\ttfamily Nwk\+::\+Client\+Info\+::\+Client\+Info (\begin{DoxyParamCaption}\item[{sf\+::\+Ip\+Address}]{ip,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{p,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ip} & Adresse IP du client \\
+\hline
+{\em p} & Port source du client \\
+\hline
+{\em id} & ID joueur \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classNwk_1_1ClientInfo_a3a4a5b8c951bf2a089450274f24807b8}\label{classNwk_1_1ClientInfo_a3a4a5b8c951bf2a089450274f24807b8} 
+\index{Nwk::ClientInfo@{Nwk::ClientInfo}!address@{address}}
+\index{address@{address}!Nwk::ClientInfo@{Nwk::ClientInfo}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily sf\+::\+Ip\+Address Nwk\+::\+Client\+Info\+::address}
+
+
+
+Adresse IP du client. 
+
+\Hypertarget{classNwk_1_1ClientInfo_a788dd0d0fa05bae249f0d6fcf7806d5e}\label{classNwk_1_1ClientInfo_a788dd0d0fa05bae249f0d6fcf7806d5e} 
+\index{Nwk::ClientInfo@{Nwk::ClientInfo}!playerId@{playerId}}
+\index{playerId@{playerId}!Nwk::ClientInfo@{Nwk::ClientInfo}}
+\doxysubsubsection{\texorpdfstring{playerId}{playerId}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Nwk\+::\+Client\+Info\+::player\+Id}
+
+
+
+ID unique du joueur assigné par le serveur. 
+
+\Hypertarget{classNwk_1_1ClientInfo_a7928e19e7139eefa13f72fcd84ab274e}\label{classNwk_1_1ClientInfo_a7928e19e7139eefa13f72fcd84ab274e} 
+\index{Nwk::ClientInfo@{Nwk::ClientInfo}!port@{port}}
+\index{port@{port}!Nwk::ClientInfo@{Nwk::ClientInfo}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Nwk\+::\+Client\+Info\+::port}
+
+
+
+Port source UDP du client. 
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/network/\mbox{\hyperlink{UdpServer_8hpp}{Udp\+Server.\+hpp}}\end{DoxyCompactItemize}

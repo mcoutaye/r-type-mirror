@@ -5,9 +5,9 @@
 ** main
 */
 
-#include "UdpClient.hpp"
-#include "TcpClient.hpp"
-#include "NetworkProtocol.hpp"
+#include "network/UdpClient.hpp"
+#include "network/TcpClient.hpp"
+#include "network/NetworkProtocol.hpp"
 #include <iostream>
 #include <random>
 

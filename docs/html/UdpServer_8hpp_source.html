@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>R-Type Network:  Fichier source de include/network/UdpServer.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">R-Type Network<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Documentation du module réseau pour R-Type Mirror</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('UdpServer_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">UdpServer.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="UdpServer_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">** EPITECH PROJECT, 2025</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">** r-type-mirror</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">** File description:</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">** UdpServer</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="SafeQueue_8hpp.html">SafeQueue.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;SFML/Network.hpp&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="NetworkProtocol_8hpp.html">NetworkProtocol.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="UdpServer_8hpp.html#a0a8f91f93d75a07f0ae45077db45b3eb">   21</a></span><span class="preprocessor">#define MAX_CLIENTS 4 </span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceNwk.html">Nwk</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classNwk_1_1ClientInfo.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="classNwk_1_1ClientInfo.html">ClientInfo</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classNwk_1_1ClientInfo.html#a3a4a5b8c951bf2a089450274f24807b8">   33</a></span>    sf::IpAddress <a class="code hl_variable" href="classNwk_1_1ClientInfo.html#a3a4a5b8c951bf2a089450274f24807b8">address</a>;   </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classNwk_1_1ClientInfo.html#a7928e19e7139eefa13f72fcd84ab274e">   34</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code hl_variable" href="classNwk_1_1ClientInfo.html#a7928e19e7139eefa13f72fcd84ab274e">port</a>;     </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classNwk_1_1ClientInfo.html#a788dd0d0fa05bae249f0d6fcf7806d5e">   35</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classNwk_1_1ClientInfo.html#a788dd0d0fa05bae249f0d6fcf7806d5e">playerId</a>;            </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classNwk_1_1ClientInfo.html#aa8d5f137640be90f8132332756cab444">   43</a></span>    <a class="code hl_function" href="classNwk_1_1ClientInfo.html#aa8d5f137640be90f8132332756cab444">ClientInfo</a>(sf::IpAddress <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">p</a>, <span class="keywordtype">int</span> <span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        : <a class="code hl_variable" href="classNwk_1_1ClientInfo.html#a3a4a5b8c951bf2a089450274f24807b8">address</a>(<a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a>), <a class="code hl_variable" href="classNwk_1_1ClientInfo.html#a7928e19e7139eefa13f72fcd84ab274e">port</a>(<a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">p</a>), <a class="code hl_variable" href="classNwk_1_1ClientInfo.html#a788dd0d0fa05bae249f0d6fcf7806d5e">playerId</a>(<a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">id</a>) {}</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html">   57</a></span><span class="keyword">class </span><a class="code hl_class" href="classNwk_1_1UdpServer.html">UdpServer</a> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classNwk_1_1UdpServer.html">UdpServer</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classNwk_1_1UdpServer.html#a192e05f241ac7da2de16109654165477">~UdpServer</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#acc02960a410d923f05c1e54e7bd0d44f">start</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#a47974964253561b19de653f8d841aa7b">stop</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#a12c9f8678b6abbed782b3df1e53a4b44">join</a>();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#abef70c1da14195bb3d81aa6d9cf506cc">   90</a></span>    <a class="code hl_class" href="classNwk_1_1SafeQueue.html">SafeQueue&lt;std::pair&lt;int, InputState&gt;</a>&gt; <a class="code hl_variable" href="classNwk_1_1UdpServer.html#abef70c1da14195bb3d81aa6d9cf506cc">receivedInputs</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a7be5c496383114e32ed27eac6496e35a">   93</a></span>    <a class="code hl_class" href="classNwk_1_1SafeQueue.html">SafeQueue&lt;PacketToSend&gt;</a> <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a7be5c496383114e32ed27eac6496e35a">packetsToSend</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#a56edbf49516f13d0f0dc70457ade6139">addClient</a>(sf::IpAddress <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port, <span class="keywordtype">int</span> playerId = -1);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#ad9de265284b5877c1567df449e407b04">removeClient</a>(<span class="keywordtype">int</span> playerId);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#afcc848339340c1b9a62661683d581b2b">  114</a></span>    std::size_t <a class="code hl_function" href="classNwk_1_1UdpServer.html#afcc848339340c1b9a62661683d581b2b">getClientCount</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a44054db91cb788804c57810f157ddb92">m_clientCount</a>; }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#af04f098a13bca26a1b499c938b20f454">  120</a></span>    <span class="keyword">const</span> std::vector&lt;std::unique_ptr&lt;ClientInfo&gt;&gt;&amp; <a class="code hl_function" href="classNwk_1_1UdpServer.html#af04f098a13bca26a1b499c938b20f454">getClients</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a2481a3c41f2706987ec88ba7868cdac1">m_clients</a>; }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#a90f50bba734719820593228ee7388578">receiveThread</a>();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1UdpServer.html#aa9bcef70549c51db0a178885bdae3176">sendThread</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <a class="code hl_class" href="classNwk_1_1ClientInfo.html">ClientInfo</a>* <a class="code hl_function" href="classNwk_1_1UdpServer.html#aadb5e3e0e4340ac2073d900fcd59486e">findClient</a>(<span class="keyword">const</span> sf::IpAddress&amp; <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a4929928aaddb07b0e8c0739bed44b182">  143</a></span>    sf::UdpSocket <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a4929928aaddb07b0e8c0739bed44b182">m_socket</a>;                                      </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a95836d57eeaed993e64302c5a86ffd11">  144</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a95836d57eeaed993e64302c5a86ffd11">m_port</a>;                                       </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a2481a3c41f2706987ec88ba7868cdac1">  145</a></span>    std::vector&lt;std::unique_ptr&lt;ClientInfo&gt;&gt; <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a2481a3c41f2706987ec88ba7868cdac1">m_clients</a>;          </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a44054db91cb788804c57810f157ddb92">  146</a></span>    std::size_t <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a44054db91cb788804c57810f157ddb92">m_clientCount</a> = 0;                               </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a05bea47aabdd439a979a16d29f3a8619">  147</a></span>    std::atomic&lt;bool&gt; <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a05bea47aabdd439a979a16d29f3a8619">m_running</a>{<span class="keyword">false</span>};                          </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a998cb5dac4ef98a2a1cfcf1196a53dbc">  148</a></span>    std::thread <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a998cb5dac4ef98a2a1cfcf1196a53dbc">m_recvThread</a>;                                    </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classNwk_1_1UdpServer.html#a0d8868c50ace29ff0f9513f9186d1e09">  149</a></span>    std::thread <a class="code hl_variable" href="classNwk_1_1UdpServer.html#a0d8868c50ace29ff0f9513f9186d1e09">m_sendThread</a>;                                    </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>} <span class="comment">// namespace Nwk</span></div>
+<div class="ttc" id="aNetworkProtocol_8hpp_html"><div class="ttname"><a href="NetworkProtocol_8hpp.html">NetworkProtocol.hpp</a></div></div>
+<div class="ttc" id="aSafeQueue_8hpp_html"><div class="ttname"><a href="SafeQueue_8hpp.html">SafeQueue.hpp</a></div></div>
+<div class="ttc" id="aclassNwk_1_1ClientInfo_html"><div class="ttname"><a href="classNwk_1_1ClientInfo.html">Nwk::ClientInfo</a></div><div class="ttdoc">Informations sur un client UDP connecté</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:31</div></div>
+<div class="ttc" id="aclassNwk_1_1ClientInfo_html_a3a4a5b8c951bf2a089450274f24807b8"><div class="ttname"><a href="classNwk_1_1ClientInfo.html#a3a4a5b8c951bf2a089450274f24807b8">Nwk::ClientInfo::address</a></div><div class="ttdeci">sf::IpAddress address</div><div class="ttdoc">Adresse IP du client.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:33</div></div>
+<div class="ttc" id="aclassNwk_1_1ClientInfo_html_a788dd0d0fa05bae249f0d6fcf7806d5e"><div class="ttname"><a href="classNwk_1_1ClientInfo.html#a788dd0d0fa05bae249f0d6fcf7806d5e">Nwk::ClientInfo::playerId</a></div><div class="ttdeci">int playerId</div><div class="ttdoc">ID unique du joueur assigné par le serveur.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:35</div></div>
+<div class="ttc" id="aclassNwk_1_1ClientInfo_html_a7928e19e7139eefa13f72fcd84ab274e"><div class="ttname"><a href="classNwk_1_1ClientInfo.html#a7928e19e7139eefa13f72fcd84ab274e">Nwk::ClientInfo::port</a></div><div class="ttdeci">unsigned short port</div><div class="ttdoc">Port source UDP du client.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:34</div></div>
+<div class="ttc" id="aclassNwk_1_1ClientInfo_html_aa8d5f137640be90f8132332756cab444"><div class="ttname"><a href="classNwk_1_1ClientInfo.html#aa8d5f137640be90f8132332756cab444">Nwk::ClientInfo::ClientInfo</a></div><div class="ttdeci">ClientInfo(sf::IpAddress ip, unsigned short p, int id)</div><div class="ttdoc">Constructeur.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:43</div></div>
+<div class="ttc" id="aclassNwk_1_1SafeQueue_html"><div class="ttname"><a href="classNwk_1_1SafeQueue.html">Nwk::SafeQueue</a></div><div class="ttdoc">File d'attente thread-safe générique.</div><div class="ttdef"><b>Definition</b> SafeQueue.hpp:25</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html"><div class="ttname"><a href="classNwk_1_1UdpServer.html">Nwk::UdpServer</a></div><div class="ttdoc">Serveur UDP dédié au gameplay en temps réel.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:57</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a05bea47aabdd439a979a16d29f3a8619"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a05bea47aabdd439a979a16d29f3a8619">Nwk::UdpServer::m_running</a></div><div class="ttdeci">std::atomic&lt; bool &gt; m_running</div><div class="ttdoc">État d'exécution des threads.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:147</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a0d8868c50ace29ff0f9513f9186d1e09"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a0d8868c50ace29ff0f9513f9186d1e09">Nwk::UdpServer::m_sendThread</a></div><div class="ttdeci">std::thread m_sendThread</div><div class="ttdoc">Thread envoi.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:149</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a12c9f8678b6abbed782b3df1e53a4b44"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a12c9f8678b6abbed782b3df1e53a4b44">Nwk::UdpServer::join</a></div><div class="ttdeci">void join()</div><div class="ttdoc">Attend la fin des threads.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:43</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a192e05f241ac7da2de16109654165477"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a192e05f241ac7da2de16109654165477">Nwk::UdpServer::~UdpServer</a></div><div class="ttdeci">~UdpServer()</div><div class="ttdoc">Destructeur Arrête les threads et libère le port UDP proprement.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:13</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a2481a3c41f2706987ec88ba7868cdac1"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a2481a3c41f2706987ec88ba7868cdac1">Nwk::UdpServer::m_clients</a></div><div class="ttdeci">std::vector&lt; std::unique_ptr&lt; ClientInfo &gt; &gt; m_clients</div><div class="ttdoc">Liste des clients connectés.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:145</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a44054db91cb788804c57810f157ddb92"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a44054db91cb788804c57810f157ddb92">Nwk::UdpServer::m_clientCount</a></div><div class="ttdeci">std::size_t m_clientCount</div><div class="ttdoc">Compteur rapide.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:146</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a47974964253561b19de653f8d841aa7b"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a47974964253561b19de653f8d841aa7b">Nwk::UdpServer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Arrête le serveur Ferme le socket et signale l'arrêt des threads.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:37</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a4929928aaddb07b0e8c0739bed44b182"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a4929928aaddb07b0e8c0739bed44b182">Nwk::UdpServer::m_socket</a></div><div class="ttdeci">sf::UdpSocket m_socket</div><div class="ttdoc">Socket UDP principal.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:143</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a56edbf49516f13d0f0dc70457ade6139"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a56edbf49516f13d0f0dc70457ade6139">Nwk::UdpServer::addClient</a></div><div class="ttdeci">bool addClient(sf::IpAddress ip, unsigned short port, int playerId=-1)</div><div class="ttdoc">Ajoute un client (manuellement ou auto-détection)</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:59</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a7be5c496383114e32ed27eac6496e35a"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a7be5c496383114e32ed27eac6496e35a">Nwk::UdpServer::packetsToSend</a></div><div class="ttdeci">SafeQueue&lt; PacketToSend &gt; packetsToSend</div><div class="ttdoc">File contenant les paquets à envoyer (destination + données brutes)</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:93</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a90f50bba734719820593228ee7388578"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a90f50bba734719820593228ee7388578">Nwk::UdpServer::receiveThread</a></div><div class="ttdeci">void receiveThread()</div><div class="ttdoc">Thread de réception des paquets UDP Identifie le client, ajoute s'il est nouveau, et pousse les input...</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:86</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a95836d57eeaed993e64302c5a86ffd11"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a95836d57eeaed993e64302c5a86ffd11">Nwk::UdpServer::m_port</a></div><div class="ttdeci">unsigned short m_port</div><div class="ttdoc">Port d'écoute.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:144</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_a998cb5dac4ef98a2a1cfcf1196a53dbc"><div class="ttname"><a href="classNwk_1_1UdpServer.html#a998cb5dac4ef98a2a1cfcf1196a53dbc">Nwk::UdpServer::m_recvThread</a></div><div class="ttdeci">std::thread m_recvThread</div><div class="ttdoc">Thread réception.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:148</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_aa9bcef70549c51db0a178885bdae3176"><div class="ttname"><a href="classNwk_1_1UdpServer.html#aa9bcef70549c51db0a178885bdae3176">Nwk::UdpServer::sendThread</a></div><div class="ttdeci">void sendThread()</div><div class="ttdoc">Thread d'envoi des paquets en attente Consomme packetsToSend et envoie aux destinations.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:109</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_aadb5e3e0e4340ac2073d900fcd59486e"><div class="ttname"><a href="classNwk_1_1UdpServer.html#aadb5e3e0e4340ac2073d900fcd59486e">Nwk::UdpServer::findClient</a></div><div class="ttdeci">ClientInfo * findClient(const sf::IpAddress &amp;ip, unsigned short port)</div><div class="ttdoc">Recherche un client existant par adresse et port.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:51</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_abef70c1da14195bb3d81aa6d9cf506cc"><div class="ttname"><a href="classNwk_1_1UdpServer.html#abef70c1da14195bb3d81aa6d9cf506cc">Nwk::UdpServer::receivedInputs</a></div><div class="ttdeci">SafeQueue&lt; std::pair&lt; int, InputState &gt; &gt; receivedInputs</div><div class="ttdoc">File contenant les inputs reçus, associés à leur playerId.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:90</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_acc02960a410d923f05c1e54e7bd0d44f"><div class="ttname"><a href="classNwk_1_1UdpServer.html#acc02960a410d923f05c1e54e7bd0d44f">Nwk::UdpServer::start</a></div><div class="ttdeci">bool start()</div><div class="ttdoc">Démarre le serveur UDP Bind le socket et lance les threads de réception/envoi.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:23</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_ad9de265284b5877c1567df449e407b04"><div class="ttname"><a href="classNwk_1_1UdpServer.html#ad9de265284b5877c1567df449e407b04">Nwk::UdpServer::removeClient</a></div><div class="ttdeci">void removeClient(int playerId)</div><div class="ttdoc">Supprime un client par son playerId.</div><div class="ttdef"><b>Definition</b> UdpServer.cpp:75</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_af04f098a13bca26a1b499c938b20f454"><div class="ttname"><a href="classNwk_1_1UdpServer.html#af04f098a13bca26a1b499c938b20f454">Nwk::UdpServer::getClients</a></div><div class="ttdeci">const std::vector&lt; std::unique_ptr&lt; ClientInfo &gt; &gt; &amp; getClients() const</div><div class="ttdoc">Accède à la liste complète des clients (lecture seule)</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:120</div></div>
+<div class="ttc" id="aclassNwk_1_1UdpServer_html_afcc848339340c1b9a62661683d581b2b"><div class="ttname"><a href="classNwk_1_1UdpServer.html#afcc848339340c1b9a62661683d581b2b">Nwk::UdpServer::getClientCount</a></div><div class="ttdeci">std::size_t getClientCount() const</div><div class="ttdoc">Retourne le nombre de clients connectés.</div><div class="ttdef"><b>Definition</b> UdpServer.hpp:114</div></div>
+<div class="ttc" id="aecs_8hpp_html_a5a868f82168f3b251aa7ca758686125c"><div class="ttname"><a href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">getComponentID</a></div><div class="ttdeci">ComponentTypeID getComponentID()</div><div class="ttdef"><b>Definition</b> ecs.hpp:39</div></div>
+<div class="ttc" id="anamespaceNwk_html"><div class="ttname"><a href="namespaceNwk.html">Nwk</a></div><div class="ttdef"><b>Definition</b> NetworkProtocol.hpp:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_dafb25a37831a87d2e2e8b780f24e872.html">network</a></li><li class="navelem"><a class="el" href="UdpServer_8hpp.html">UdpServer.hpp</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

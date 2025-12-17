@@ -5,12 +5,12 @@
 ** UdpClient
 */
 
-#include "UdpClient.hpp"
+#include "network/UdpClient.hpp"
 
-UdpClient::UdpClient(sf::IpAddress serverIp, unsigned short serverPort)
+Nwk::UdpClient::UdpClient(sf::IpAddress serverIp, unsigned short serverPort)
 : m_serverIp(serverIp), m_serverPort(serverPort) {}
 
-UdpClient::~UdpClient()
+Nwk::UdpClient::~UdpClient()
 {
     stop();
     join();
@@ -20,7 +20,7 @@ UdpClient::~UdpClient()
     }
 }
 
-bool UdpClient::start(unsigned short localPort)
+bool Nwk::UdpClient::start(unsigned short localPort)
 {
     if (m_socket.bind(localPort) != sf::Socket::Done) {
         std::cerr << "[UDP Client] Impossible de bind le port local\n";
@@ -30,18 +30,18 @@ bool UdpClient::start(unsigned short localPort)
     std::cout << "[UDP Client] Connecté à " << m_serverIp << ":" << m_serverPort
               << " (local port: " << m_socket.getLocalPort() << ")\n";
     m_running = true;
-    m_sendThread = std::thread(&UdpClient::sendThread, this);
-    m_recvThread = std::thread(&UdpClient::receiveThread, this);
+    m_sendThread = std::thread(&Nwk::UdpClient::sendThread, this);
+    m_recvThread = std::thread(&Nwk::UdpClient::receiveThread, this);
     return true;
 }
 
-void UdpClient::stop()
+void Nwk::UdpClient::stop()
 {
     m_running = false;
     m_socket.unbind();
 }
 
-void UdpClient::join()
+void Nwk::UdpClient::join()
 {
     if (m_sendThread.joinable())
         m_sendThread.join();
@@ -49,7 +49,7 @@ void UdpClient::join()
         m_recvThread.join();
 }
 
-void UdpClient::sendThread()
+void Nwk::UdpClient::sendThread()
 {
     InputState input;
     while (m_running) {
@@ -60,7 +60,7 @@ void UdpClient::sendThread()
     }
 }
 
-void UdpClient::receiveThread()
+void Nwk::UdpClient::receiveThread()
 {
     std::vector<uint8_t> buffer(2048);
     sf::IpAddress sender;

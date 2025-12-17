@@ -5,14 +5,14 @@
 ** TcpClient
 */
 
-#include "TcpClient.hpp"
+#include "network/TcpClient.hpp"
 
-TcpClient::TcpClient(const std::string& ip, unsigned short port)
+Nwk::TcpClient::TcpClient(const std::string& ip, unsigned short port)
     : _ip(ip), _port(port), _socket(std::make_unique<sf::TcpSocket>())
 {
 }
 
-TcpClient::~TcpClient()
+Nwk::TcpClient::~TcpClient()
 {
     stop();
     join();
@@ -22,7 +22,7 @@ TcpClient::~TcpClient()
     }
 }
 
-bool TcpClient::start()
+bool Nwk::TcpClient::start()
 {
     if (_running)
         return false;
@@ -36,12 +36,12 @@ bool TcpClient::start()
     _lastPongReceived = now;
     _connected = true;
     _running = true;
-    _thread = std::thread(&TcpClient::run, this);
+    _thread = std::thread(&Nwk::TcpClient::run, this);
     std::cout << "[TCP Client] Connecté – envoi ping toutes les secondes\n";
     return true;
 }
 
-void TcpClient::run() {
+void Nwk::TcpClient::run() {
     sf::SocketSelector selector;
     selector.add(*_socket);
     while (_running) {
@@ -72,9 +72,9 @@ void TcpClient::run() {
     _connected = false;
 }
 
-void TcpClient::stop() { _running = false; }
+void Nwk::TcpClient::stop() { _running = false; }
 
-void TcpClient::join()
+void Nwk::TcpClient::join()
 {
     if (_thread.joinable())
         _thread.join();

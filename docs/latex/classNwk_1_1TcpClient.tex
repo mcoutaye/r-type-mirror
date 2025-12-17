@@ -1,0 +1,276 @@
+\doxysection{Référence de la classe Nwk\+::Tcp\+Client}
+\hypertarget{classNwk_1_1TcpClient}{}\label{classNwk_1_1TcpClient}\index{Nwk::TcpClient@{Nwk::TcpClient}}
+
+
+Client TCP pour l\textquotesingle{}établissement de connexion et keep-\/alive.  
+
+
+
+
+{\ttfamily \#include $<$Tcp\+Client.\+hpp$>$}
+
+
+
+Graphe de collaboration de Nwk\+::Tcp\+Client\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{classNwk_1_1TcpClient__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNwk_1_1TcpClient_ad79312cff954b2b289987ee53bcb9ac5}{Tcp\+Client}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}}="{}127.\+0.\+0.\+1"{}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} port=53001)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNwk_1_1TcpClient_a75b35eec86218b964dc78fd8aec3c8d4}{\texorpdfstring{$\sim$}{\string~}\+Tcp\+Client}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur Déconnecte proprement si encore connecté. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNwk_1_1TcpClient_a6e9588c92fb4682c922e699bcf804d87}{start}} ()
+\begin{DoxyCompactList}\small\item\em Établit la connexion TCP et démarre le thread de gestion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1TcpClient_ad2b47abcf880a0e689e33273e95a6ff0}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Arrête le thread de gestion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1TcpClient_af54697c21724ea0137a5a71963aa7096}{join}} ()
+\begin{DoxyCompactList}\small\item\em Attend la fin du thread principal. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNwk_1_1TcpClient_a729fd36794d4b2c14d3b00e0e9a20c43}{is\+Connected}} () \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\begin{DoxyCompactList}\small\item\em Vérifie si la connexion est active (pong reçu récemment) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1TcpClient_a6ab53b2223d206ba007af5a98c464f94}{run}} ()
+\begin{DoxyCompactList}\small\item\em Boucle principale du client Gère l\textquotesingle{}envoi des ping et la surveillance des pong. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classNwk_1_1TcpClient_a10aa47548330c39e637e9355fe25bb74}{\+\_\+ip}}
+\begin{DoxyCompactList}\small\item\em IP du serveur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classNwk_1_1TcpClient_a0f1637e3cb9dab5661ac6b15c0f2479a}{\+\_\+port}}
+\begin{DoxyCompactList}\small\item\em Port du serveur. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ sf\+::\+Tcp\+Socket $>$ \mbox{\hyperlink{classNwk_1_1TcpClient_a96208c9a217607551bb0216593abc7d4}{\+\_\+socket}}
+\begin{DoxyCompactList}\small\item\em Socket TCP. \end{DoxyCompactList}\item 
+std\+::thread \mbox{\hyperlink{classNwk_1_1TcpClient_aabb539b0784209c79ce7e2687c727ae4}{\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em Thread de gestion. \end{DoxyCompactList}\item 
+std\+::atomic$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classNwk_1_1TcpClient_a2bc6abad6784ae0137ace842919d2f50}{\+\_\+running}} \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}
+\begin{DoxyCompactList}\small\item\em État d\textquotesingle{}exécution. \end{DoxyCompactList}\item 
+std\+::atomic$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classNwk_1_1TcpClient_a21bb1c2b55b5c5f3a62f6bef86b99b82}{\+\_\+connected}} \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}
+\begin{DoxyCompactList}\small\item\em Connexion valide. \end{DoxyCompactList}\item 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classNwk_1_1TcpClient_aaa37d745f593caa17f3e02906af47d50}{\+\_\+last\+Ping\+Sent}}
+\begin{DoxyCompactList}\small\item\em Dernier ping envoyé \end{DoxyCompactList}\item 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classNwk_1_1TcpClient_ab4fa509399935067a59b90719337f17c}{\+\_\+last\+Pong\+Received}}
+\begin{DoxyCompactList}\small\item\em Dernier pong reçu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{classNwk_1_1TcpClient_a22d0f21639dda6d1fe6d1217b5bc4356}{PING\+\_\+\+INTERVAL\+\_\+\+MS}} = 1000
+\begin{DoxyCompactList}\small\item\em Intervalle entre deux ping (1s) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{classNwk_1_1TcpClient_a2629f53c23e77b3970c0cd415a3e3913}{TIMEOUT\+\_\+\+SEC}} = 5
+\begin{DoxyCompactList}\small\item\em Timeout avant détection de déconnexion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Client TCP pour l\textquotesingle{}établissement de connexion et keep-\/alive. 
+
+Responsable de \+:
+\begin{DoxyItemize}
+\item Connexion initiale au serveur TCP
+\item Envoi régulier de "{}ping"{}
+\item Réception de "{}pong"{} pour détecter les déconnexions
+\end{DoxyItemize}
+
+Utilisé en parallèle du canal UDP pour le gameplay. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classNwk_1_1TcpClient_ad79312cff954b2b289987ee53bcb9ac5}\label{classNwk_1_1TcpClient_ad79312cff954b2b289987ee53bcb9ac5} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!TcpClient@{TcpClient}}
+\index{TcpClient@{TcpClient}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{TcpClient()}{TcpClient()}}
+{\footnotesize\ttfamily Nwk\+::\+Tcp\+Client\+::\+Tcp\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&}]{ip = {\ttfamily "{}127.0.0.1"{}},  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{port = {\ttfamily 53001} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ip} & Adresse IP du serveur TCP (défaut \+: localhost) \\
+\hline
+{\em port} & Port TCP du serveur (défaut \+: 53001) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNwk_1_1TcpClient_a75b35eec86218b964dc78fd8aec3c8d4}\label{classNwk_1_1TcpClient_a75b35eec86218b964dc78fd8aec3c8d4} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!````~TcpClient@{\texorpdfstring{$\sim$}{\string~}TcpClient}}
+\index{````~TcpClient@{\texorpdfstring{$\sim$}{\string~}TcpClient}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}TcpClient()}{\string~TcpClient()}}
+{\footnotesize\ttfamily Nwk\+::\+Tcp\+Client\+::\texorpdfstring{$\sim$}{\string~}\+Tcp\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur Déconnecte proprement si encore connecté. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classNwk_1_1TcpClient_a729fd36794d4b2c14d3b00e0e9a20c43}\label{classNwk_1_1TcpClient_a729fd36794d4b2c14d3b00e0e9a20c43} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!isConnected@{isConnected}}
+\index{isConnected@{isConnected}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{isConnected()}{isConnected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Nwk\+::\+Tcp\+Client\+::is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Vérifie si la connexion est active (pong reçu récemment) 
+
+\begin{DoxyReturn}{Renvoie}
+true si connecté et keep-\/alive valide 
+\end{DoxyReturn}
+\Hypertarget{classNwk_1_1TcpClient_af54697c21724ea0137a5a71963aa7096}\label{classNwk_1_1TcpClient_af54697c21724ea0137a5a71963aa7096} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!join@{join}}
+\index{join@{join}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Tcp\+Client\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Attend la fin du thread principal. 
+
+\Hypertarget{classNwk_1_1TcpClient_a6ab53b2223d206ba007af5a98c464f94}\label{classNwk_1_1TcpClient_a6ab53b2223d206ba007af5a98c464f94} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!run@{run}}
+\index{run@{run}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Tcp\+Client\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Boucle principale du client Gère l\textquotesingle{}envoi des ping et la surveillance des pong. 
+
+\Hypertarget{classNwk_1_1TcpClient_a6e9588c92fb4682c922e699bcf804d87}\label{classNwk_1_1TcpClient_a6e9588c92fb4682c922e699bcf804d87} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!start@{start}}
+\index{start@{start}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Nwk\+::\+Tcp\+Client\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Établit la connexion TCP et démarre le thread de gestion. 
+
+\begin{DoxyReturn}{Renvoie}
+true si la connexion a réussi 
+\end{DoxyReturn}
+\Hypertarget{classNwk_1_1TcpClient_ad2b47abcf880a0e689e33273e95a6ff0}\label{classNwk_1_1TcpClient_ad2b47abcf880a0e689e33273e95a6ff0} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!stop@{stop}}
+\index{stop@{stop}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Tcp\+Client\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Arrête le thread de gestion. 
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classNwk_1_1TcpClient_a21bb1c2b55b5c5f3a62f6bef86b99b82}\label{classNwk_1_1TcpClient_a21bb1c2b55b5c5f3a62f6bef86b99b82} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_connected@{\_connected}}
+\index{\_connected@{\_connected}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_connected}{\_connected}}
+{\footnotesize\ttfamily std\+::atomic$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Nwk\+::\+Tcp\+Client\+::\+\_\+connected \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Connexion valide. 
+
+\Hypertarget{classNwk_1_1TcpClient_a10aa47548330c39e637e9355fe25bb74}\label{classNwk_1_1TcpClient_a10aa47548330c39e637e9355fe25bb74} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_ip@{\_ip}}
+\index{\_ip@{\_ip}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_ip}{\_ip}}
+{\footnotesize\ttfamily std\+::string Nwk\+::\+Tcp\+Client\+::\+\_\+ip\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+IP du serveur. 
+
+\Hypertarget{classNwk_1_1TcpClient_aaa37d745f593caa17f3e02906af47d50}\label{classNwk_1_1TcpClient_aaa37d745f593caa17f3e02906af47d50} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_lastPingSent@{\_lastPingSent}}
+\index{\_lastPingSent@{\_lastPingSent}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_lastPingSent}{\_lastPingSent}}
+{\footnotesize\ttfamily std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point Nwk\+::\+Tcp\+Client\+::\+\_\+last\+Ping\+Sent\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dernier ping envoyé 
+
+\Hypertarget{classNwk_1_1TcpClient_ab4fa509399935067a59b90719337f17c}\label{classNwk_1_1TcpClient_ab4fa509399935067a59b90719337f17c} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_lastPongReceived@{\_lastPongReceived}}
+\index{\_lastPongReceived@{\_lastPongReceived}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_lastPongReceived}{\_lastPongReceived}}
+{\footnotesize\ttfamily std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point Nwk\+::\+Tcp\+Client\+::\+\_\+last\+Pong\+Received\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dernier pong reçu. 
+
+\Hypertarget{classNwk_1_1TcpClient_a0f1637e3cb9dab5661ac6b15c0f2479a}\label{classNwk_1_1TcpClient_a0f1637e3cb9dab5661ac6b15c0f2479a} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_port@{\_port}}
+\index{\_port@{\_port}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_port}{\_port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Nwk\+::\+Tcp\+Client\+::\+\_\+port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Port du serveur. 
+
+\Hypertarget{classNwk_1_1TcpClient_a2bc6abad6784ae0137ace842919d2f50}\label{classNwk_1_1TcpClient_a2bc6abad6784ae0137ace842919d2f50} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_running@{\_running}}
+\index{\_running@{\_running}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily std\+::atomic$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Nwk\+::\+Tcp\+Client\+::\+\_\+running \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+État d\textquotesingle{}exécution. 
+
+\Hypertarget{classNwk_1_1TcpClient_a96208c9a217607551bb0216593abc7d4}\label{classNwk_1_1TcpClient_a96208c9a217607551bb0216593abc7d4} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_socket@{\_socket}}
+\index{\_socket@{\_socket}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_socket}{\_socket}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$sf\+::\+Tcp\+Socket$>$ Nwk\+::\+Tcp\+Client\+::\+\_\+socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Socket TCP. 
+
+\Hypertarget{classNwk_1_1TcpClient_aabb539b0784209c79ce7e2687c727ae4}\label{classNwk_1_1TcpClient_aabb539b0784209c79ce7e2687c727ae4} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!\_thread@{\_thread}}
+\index{\_thread@{\_thread}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_thread}{\_thread}}
+{\footnotesize\ttfamily std\+::thread Nwk\+::\+Tcp\+Client\+::\+\_\+thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread de gestion. 
+
+\Hypertarget{classNwk_1_1TcpClient_a22d0f21639dda6d1fe6d1217b5bc4356}\label{classNwk_1_1TcpClient_a22d0f21639dda6d1fe6d1217b5bc4356} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!PING\_INTERVAL\_MS@{PING\_INTERVAL\_MS}}
+\index{PING\_INTERVAL\_MS@{PING\_INTERVAL\_MS}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{PING\_INTERVAL\_MS}{PING\_INTERVAL\_MS}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Nwk\+::\+Tcp\+Client\+::\+PING\+\_\+\+INTERVAL\+\_\+\+MS = 1000\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Intervalle entre deux ping (1s) 
+
+\Hypertarget{classNwk_1_1TcpClient_a2629f53c23e77b3970c0cd415a3e3913}\label{classNwk_1_1TcpClient_a2629f53c23e77b3970c0cd415a3e3913} 
+\index{Nwk::TcpClient@{Nwk::TcpClient}!TIMEOUT\_SEC@{TIMEOUT\_SEC}}
+\index{TIMEOUT\_SEC@{TIMEOUT\_SEC}!Nwk::TcpClient@{Nwk::TcpClient}}
+\doxysubsubsection{\texorpdfstring{TIMEOUT\_SEC}{TIMEOUT\_SEC}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Nwk\+::\+Tcp\+Client\+::\+TIMEOUT\+\_\+\+SEC = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Timeout avant détection de déconnexion. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/network/\mbox{\hyperlink{TcpClient_8hpp}{Tcp\+Client.\+hpp}}\item 
+src/client/\mbox{\hyperlink{TcpClient_8cpp}{Tcp\+Client.\+cpp}}\end{DoxyCompactItemize}

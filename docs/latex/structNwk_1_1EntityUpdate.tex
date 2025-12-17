@@ -1,0 +1,72 @@
+\doxysection{Référence de la structure Nwk\+::Entity\+Update}
+\hypertarget{structNwk_1_1EntityUpdate}{}\label{structNwk_1_1EntityUpdate}\index{Nwk::EntityUpdate@{Nwk::EntityUpdate}}
+
+
+Mise à jour minimale d\textquotesingle{}une entité du jeu (12 octets)  
+
+
+
+
+{\ttfamily \#include $<$Network\+Protocol.\+hpp$>$}
+
+
+
+Graphe de collaboration de Nwk\+::Entity\+Update\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{structNwk_1_1EntityUpdate__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint32\+\_\+t}} \mbox{\hyperlink{structNwk_1_1EntityUpdate_a556f7b54ef5de90e1436a260dda6d70c}{entity\+Id}}
+\begin{DoxyCompactList}\small\item\em Identifiant unique de l\textquotesingle{}entité \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structNwk_1_1EntityUpdate_abf8298bcf0d2794c35999cf53e809aaa}{x}}
+\begin{DoxyCompactList}\small\item\em Position horizontale. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structNwk_1_1EntityUpdate_ad1c3679b67ad403ad9ff954b608b8cc1}{y}}
+\begin{DoxyCompactList}\small\item\em Position verticale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Mise à jour minimale d\textquotesingle{}une entité du jeu (12 octets) 
+
+Envoyée par le serveur UDP à tous les clients pour synchroniser les positions des entités (joueurs, ennemis, projectiles, etc.). 
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{structNwk_1_1EntityUpdate_a556f7b54ef5de90e1436a260dda6d70c}\label{structNwk_1_1EntityUpdate_a556f7b54ef5de90e1436a260dda6d70c} 
+\index{Nwk::EntityUpdate@{Nwk::EntityUpdate}!entityId@{entityId}}
+\index{entityId@{entityId}!Nwk::EntityUpdate@{Nwk::EntityUpdate}}
+\doxysubsubsection{\texorpdfstring{entityId}{entityId}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint32\+\_\+t}} Nwk\+::\+Entity\+Update\+::entity\+Id}
+
+
+
+Identifiant unique de l\textquotesingle{}entité 
+
+\Hypertarget{structNwk_1_1EntityUpdate_abf8298bcf0d2794c35999cf53e809aaa}\label{structNwk_1_1EntityUpdate_abf8298bcf0d2794c35999cf53e809aaa} 
+\index{Nwk::EntityUpdate@{Nwk::EntityUpdate}!x@{x}}
+\index{x@{x}!Nwk::EntityUpdate@{Nwk::EntityUpdate}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Nwk\+::\+Entity\+Update\+::x}
+
+
+
+Position horizontale. 
+
+\Hypertarget{structNwk_1_1EntityUpdate_ad1c3679b67ad403ad9ff954b608b8cc1}\label{structNwk_1_1EntityUpdate_ad1c3679b67ad403ad9ff954b608b8cc1} 
+\index{Nwk::EntityUpdate@{Nwk::EntityUpdate}!y@{y}}
+\index{y@{y}!Nwk::EntityUpdate@{Nwk::EntityUpdate}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Nwk\+::\+Entity\+Update\+::y}
+
+
+
+Position verticale. 
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/network/\mbox{\hyperlink{NetworkProtocol_8hpp}{Network\+Protocol.\+hpp}}\end{DoxyCompactItemize}

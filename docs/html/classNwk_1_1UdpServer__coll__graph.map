@@ -1,0 +1,7 @@
+<map id="Nwk::UdpServer" name="Nwk::UdpServer">
+<area shape="rect" id="Node000001" title="Serveur UDP dédié au gameplay en temps réel." alt="" coords="157,208,293,613"/>
+<area shape="rect" id="Node000002" href="$classNwk_1_1SafeQueue.html" title=" " alt="" coords="5,5,227,145"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,145,157,192,151,193,136,146"/>
+<area shape="rect" id="Node000003" href="$classNwk_1_1SafeQueue.html" title=" " alt="" coords="251,5,418,145"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="315,146,299,193,294,192,309,145"/>
+</map>

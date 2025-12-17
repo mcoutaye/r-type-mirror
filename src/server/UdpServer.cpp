@@ -5,12 +5,12 @@
 ** UdpServer
 */
 
-#include "UdpServer.hpp"
+#include "network/UdpServer.hpp"
 #include <algorithm>
 
-UdpServer::UdpServer(unsigned short port) : m_port(port) {}
+Nwk::UdpServer::UdpServer(unsigned short port) : m_port(port) {}
 
-UdpServer::~UdpServer()
+Nwk::UdpServer::~UdpServer()
 {
     stop();
     join();
@@ -20,7 +20,7 @@ UdpServer::~UdpServer()
     }
 }
 
-bool UdpServer::start()
+bool Nwk::UdpServer::start()
 {
     if (m_socket.bind(m_port) != sf::Socket::Done) {
         std::cerr << "Impossible de binder le port UDP " << m_port << std::endl;
@@ -29,18 +29,18 @@ bool UdpServer::start()
     m_socket.setBlocking(false);
     std::cout << "Serveur UDP SFML demarre sur le port " << m_port << std::endl;
     m_running = true;
-    m_recvThread = std::thread(&UdpServer::receiveThread, this);
-    m_sendThread = std::thread(&UdpServer::sendThread, this);
+    m_recvThread = std::thread(&Nwk::UdpServer::receiveThread, this);
+    m_sendThread = std::thread(&Nwk::UdpServer::sendThread, this);
     return true;
 }
 
-void UdpServer::stop()
+void Nwk::UdpServer::stop()
 {
     m_running = false;
     m_socket.unbind();
 }
 
-void UdpServer::join()
+void Nwk::UdpServer::join()
 {
     if (m_recvThread.joinable())
         m_recvThread.join();
@@ -48,7 +48,7 @@ void UdpServer::join()
         m_sendThread.join();
 }
 
-ClientInfo* UdpServer::findClient(const sf::IpAddress& ip, unsigned short port)
+ClientInfo* Nwk::UdpServer::findClient(const sf::IpAddress& ip, unsigned short port)
 {
     for (auto& client : m_clients)
         if (client && client->address == ip && client->port == port)
@@ -56,7 +56,7 @@ ClientInfo* UdpServer::findClient(const sf::IpAddress& ip, unsigned short port)
     return nullptr;
 }
 
-bool UdpServer::addClient(sf::IpAddress ip, unsigned short port, int playerId)
+bool Nwk::UdpServer::addClient(sf::IpAddress ip, unsigned short port, int playerId)
 {
     if (m_clientCount >= MAX_CLIENTS) {
         std::cerr << "Serveur UDP plein !\n";
@@ -72,7 +72,7 @@ bool UdpServer::addClient(sf::IpAddress ip, unsigned short port, int playerId)
     return true;
 }
 
-void UdpServer::removeClient(int playerId)
+void Nwk::UdpServer::removeClient(int playerId)
 {
     auto it = std::remove_if(m_clients.begin(), m_clients.end(),
         [playerId](const auto& c) { return c && c->playerId == playerId; });
@@ -83,7 +83,7 @@ void UdpServer::removeClient(int playerId)
     }
 }
 
-void UdpServer::receiveThread()
+void Nwk::UdpServer::receiveThread()
 {
     sf::Packet packet;
     sf::IpAddress senderIp;
@@ -106,7 +106,7 @@ void UdpServer::receiveThread()
     }
 }
 
-void UdpServer::sendThread()
+void Nwk::UdpServer::sendThread()
 {
     PacketToSend toSend;
     while (m_running) {

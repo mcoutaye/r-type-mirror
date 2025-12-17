@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>R-Type Network:  Fichier source de include/network/TcpClient.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">R-Type Network<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Documentation du module réseau pour R-Type Mirror</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('TcpClient_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">TcpClient.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="TcpClient_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">** EPITECH PROJECT, 2025</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">** r-type-mirror</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">** File description:</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">** TcpClient</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;SFML/Network.hpp&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceNwk.html">Nwk</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classNwk_1_1TcpClient.html">TcpClient</a> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classNwk_1_1TcpClient.html">TcpClient</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a> = <span class="stringliteral">&quot;127.0.0.1&quot;</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port = 53001);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="classNwk_1_1TcpClient.html#a75b35eec86218b964dc78fd8aec3c8d4">~TcpClient</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNwk_1_1TcpClient.html#a6e9588c92fb4682c922e699bcf804d87">start</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1TcpClient.html#ad2b47abcf880a0e689e33273e95a6ff0">stop</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1TcpClient.html#af54697c21724ea0137a5a71963aa7096">join</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a729fd36794d4b2c14d3b00e0e9a20c43">   65</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNwk_1_1TcpClient.html#a729fd36794d4b2c14d3b00e0e9a20c43">isConnected</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a21bb1c2b55b5c5f3a62f6bef86b99b82">_connected</a>.load(); }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNwk_1_1TcpClient.html#a6ab53b2223d206ba007af5a98c464f94">run</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a10aa47548330c39e637e9355fe25bb74">   74</a></span>    std::string <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a10aa47548330c39e637e9355fe25bb74">_ip</a>;                                             </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a0f1637e3cb9dab5661ac6b15c0f2479a">   75</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a0f1637e3cb9dab5661ac6b15c0f2479a">_port</a>;                                        </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a96208c9a217607551bb0216593abc7d4">   76</a></span>    std::unique_ptr&lt;sf::TcpSocket&gt; <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a96208c9a217607551bb0216593abc7d4">_socket</a>;                       </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#aabb539b0784209c79ce7e2687c727ae4">   77</a></span>    std::thread <a class="code hl_variable" href="classNwk_1_1TcpClient.html#aabb539b0784209c79ce7e2687c727ae4">_thread</a>;                                         </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a2bc6abad6784ae0137ace842919d2f50">   78</a></span>    std::atomic&lt;bool&gt; <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a2bc6abad6784ae0137ace842919d2f50">_running</a>{<span class="keyword">false</span>};                           </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a21bb1c2b55b5c5f3a62f6bef86b99b82">   79</a></span>    std::atomic&lt;bool&gt; <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a21bb1c2b55b5c5f3a62f6bef86b99b82">_connected</a>{<span class="keyword">false</span>};                         </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#aaa37d745f593caa17f3e02906af47d50">   80</a></span>    std::chrono::steady_clock::time_point <a class="code hl_variable" href="classNwk_1_1TcpClient.html#aaa37d745f593caa17f3e02906af47d50">_lastPingSent</a>;         </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#ab4fa509399935067a59b90719337f17c">   81</a></span>    std::chrono::steady_clock::time_point <a class="code hl_variable" href="classNwk_1_1TcpClient.html#ab4fa509399935067a59b90719337f17c">_lastPongReceived</a>;     </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a22d0f21639dda6d1fe6d1217b5bc4356">   83</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a22d0f21639dda6d1fe6d1217b5bc4356">PING_INTERVAL_MS</a> = 1000; </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classNwk_1_1TcpClient.html#a2629f53c23e77b3970c0cd415a3e3913">   84</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classNwk_1_1TcpClient.html#a2629f53c23e77b3970c0cd415a3e3913">TIMEOUT_SEC</a> = 5;         </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>} <span class="comment">// namespace Nwk</span></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html"><div class="ttname"><a href="classNwk_1_1TcpClient.html">Nwk::TcpClient</a></div><div class="ttdoc">Client TCP pour l'établissement de connexion et keep-alive.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:30</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a0f1637e3cb9dab5661ac6b15c0f2479a"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a0f1637e3cb9dab5661ac6b15c0f2479a">Nwk::TcpClient::_port</a></div><div class="ttdeci">unsigned short _port</div><div class="ttdoc">Port du serveur.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:75</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a10aa47548330c39e637e9355fe25bb74"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a10aa47548330c39e637e9355fe25bb74">Nwk::TcpClient::_ip</a></div><div class="ttdeci">std::string _ip</div><div class="ttdoc">IP du serveur.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:74</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a21bb1c2b55b5c5f3a62f6bef86b99b82"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a21bb1c2b55b5c5f3a62f6bef86b99b82">Nwk::TcpClient::_connected</a></div><div class="ttdeci">std::atomic&lt; bool &gt; _connected</div><div class="ttdoc">Connexion valide.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:79</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a22d0f21639dda6d1fe6d1217b5bc4356"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a22d0f21639dda6d1fe6d1217b5bc4356">Nwk::TcpClient::PING_INTERVAL_MS</a></div><div class="ttdeci">static constexpr int PING_INTERVAL_MS</div><div class="ttdoc">Intervalle entre deux ping (1s)</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:83</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a2629f53c23e77b3970c0cd415a3e3913"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a2629f53c23e77b3970c0cd415a3e3913">Nwk::TcpClient::TIMEOUT_SEC</a></div><div class="ttdeci">static constexpr int TIMEOUT_SEC</div><div class="ttdoc">Timeout avant détection de déconnexion.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:84</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a2bc6abad6784ae0137ace842919d2f50"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a2bc6abad6784ae0137ace842919d2f50">Nwk::TcpClient::_running</a></div><div class="ttdeci">std::atomic&lt; bool &gt; _running</div><div class="ttdoc">État d'exécution.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:78</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a6ab53b2223d206ba007af5a98c464f94"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a6ab53b2223d206ba007af5a98c464f94">Nwk::TcpClient::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">Boucle principale du client Gère l'envoi des ping et la surveillance des pong.</div><div class="ttdef"><b>Definition</b> TcpClient.cpp:44</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a6e9588c92fb4682c922e699bcf804d87"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a6e9588c92fb4682c922e699bcf804d87">Nwk::TcpClient::start</a></div><div class="ttdeci">bool start()</div><div class="ttdoc">Établit la connexion TCP et démarre le thread de gestion.</div><div class="ttdef"><b>Definition</b> TcpClient.cpp:25</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a729fd36794d4b2c14d3b00e0e9a20c43"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a729fd36794d4b2c14d3b00e0e9a20c43">Nwk::TcpClient::isConnected</a></div><div class="ttdeci">bool isConnected() const</div><div class="ttdoc">Vérifie si la connexion est active (pong reçu récemment)</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:65</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a75b35eec86218b964dc78fd8aec3c8d4"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a75b35eec86218b964dc78fd8aec3c8d4">Nwk::TcpClient::~TcpClient</a></div><div class="ttdeci">~TcpClient()</div><div class="ttdoc">Destructeur Déconnecte proprement si encore connecté.</div><div class="ttdef"><b>Definition</b> TcpClient.cpp:15</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_a96208c9a217607551bb0216593abc7d4"><div class="ttname"><a href="classNwk_1_1TcpClient.html#a96208c9a217607551bb0216593abc7d4">Nwk::TcpClient::_socket</a></div><div class="ttdeci">std::unique_ptr&lt; sf::TcpSocket &gt; _socket</div><div class="ttdoc">Socket TCP.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:76</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_aaa37d745f593caa17f3e02906af47d50"><div class="ttname"><a href="classNwk_1_1TcpClient.html#aaa37d745f593caa17f3e02906af47d50">Nwk::TcpClient::_lastPingSent</a></div><div class="ttdeci">std::chrono::steady_clock::time_point _lastPingSent</div><div class="ttdoc">Dernier ping envoyé</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:80</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_aabb539b0784209c79ce7e2687c727ae4"><div class="ttname"><a href="classNwk_1_1TcpClient.html#aabb539b0784209c79ce7e2687c727ae4">Nwk::TcpClient::_thread</a></div><div class="ttdeci">std::thread _thread</div><div class="ttdoc">Thread de gestion.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:77</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_ab4fa509399935067a59b90719337f17c"><div class="ttname"><a href="classNwk_1_1TcpClient.html#ab4fa509399935067a59b90719337f17c">Nwk::TcpClient::_lastPongReceived</a></div><div class="ttdeci">std::chrono::steady_clock::time_point _lastPongReceived</div><div class="ttdoc">Dernier pong reçu.</div><div class="ttdef"><b>Definition</b> TcpClient.hpp:81</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_ad2b47abcf880a0e689e33273e95a6ff0"><div class="ttname"><a href="classNwk_1_1TcpClient.html#ad2b47abcf880a0e689e33273e95a6ff0">Nwk::TcpClient::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Arrête le thread de gestion.</div><div class="ttdef"><b>Definition</b> TcpClient.cpp:75</div></div>
+<div class="ttc" id="aclassNwk_1_1TcpClient_html_af54697c21724ea0137a5a71963aa7096"><div class="ttname"><a href="classNwk_1_1TcpClient.html#af54697c21724ea0137a5a71963aa7096">Nwk::TcpClient::join</a></div><div class="ttdeci">void join()</div><div class="ttdoc">Attend la fin du thread principal.</div><div class="ttdef"><b>Definition</b> TcpClient.cpp:77</div></div>
+<div class="ttc" id="aecs_8hpp_html_a5a868f82168f3b251aa7ca758686125c"><div class="ttname"><a href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">getComponentID</a></div><div class="ttdeci">ComponentTypeID getComponentID()</div><div class="ttdef"><b>Definition</b> ecs.hpp:39</div></div>
+<div class="ttc" id="anamespaceNwk_html"><div class="ttname"><a href="namespaceNwk.html">Nwk</a></div><div class="ttdef"><b>Definition</b> NetworkProtocol.hpp:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_dafb25a37831a87d2e2e8b780f24e872.html">network</a></li><li class="navelem"><a class="el" href="TcpClient_8hpp.html">TcpClient.hpp</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+\doxysection{Safe\+Queue.\+hpp}
+\hypertarget{SafeQueue_8hpp_source}{}\label{SafeQueue_8hpp_source}\index{include/network/SafeQueue.hpp@{include/network/SafeQueue.hpp}}
+\mbox{\hyperlink{SafeQueue_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ SafeQueue}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceNwk}{Nwk}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNwk_1_1SafeQueue}{SafeQueue}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classNwk_1_1SafeQueue_a61978eccdcd75b5242b6cab7350c4f2c}{SafeQueue}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1SafeQueue_a046806ef348f5b84ac943faa3954581e}{push}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}})}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{lock}}(\mbox{\hyperlink{classNwk_1_1SafeQueue_a0dc539a3ff96bcb1838cfd7e2e7ac95d}{mutex\_}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}{queue\_}}.push(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}});}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classNwk_1_1SafeQueue_a39890a76a5423588b677b7db0b4ef4f6}{pop}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}})}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{lock}}(\mbox{\hyperlink{classNwk_1_1SafeQueue_a0dc539a3ff96bcb1838cfd7e2e7ac95d}{mutex\_}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}{queue\_}}.empty())}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}}\ =\ \mbox{\hyperlink{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}{queue\_}}.front();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}{queue\_}}.pop();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \ \ std::queue<T>\ \mbox{\hyperlink{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}{queue\_}};\ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ std::mutex\ \mbox{\hyperlink{classNwk_1_1SafeQueue_a0dc539a3ff96bcb1838cfd7e2e7ac95d}{mutex\_}};\ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\ \textcolor{comment}{//\ namespace\ Nwk}}
+
+\end{DoxyCode}

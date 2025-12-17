@@ -1,0 +1,565 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>R-Type Network: Référence de la classe Nwk::TcpServer</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">R-Type Network<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Documentation du module réseau pour R-Type Mirror</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classNwk_1_1TcpServer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pri-methods">Fonctions membres privées</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
+<a href="#pri-static-attribs">Attributs privés statiques</a> &#124;
+<a href="classNwk_1_1TcpServer-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle"><div class="title">Référence de la classe Nwk::TcpServer</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Serveur TCP pour la gestion des connexions et keep-alive.  
+ <a href="classNwk_1_1TcpServer.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="TcpServer_8hpp_source.html">TcpServer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe de collaboration de Nwk::TcpServer:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNwk_1_1TcpServer__coll__graph.svg" width="147" height="356"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a53400c7c9f2cf5ed75aa4a27d843ef47" id="r_a53400c7c9f2cf5ed75aa4a27d843ef47"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a53400c7c9f2cf5ed75aa4a27d843ef47">TcpServer</a> (<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a> port=53001)</td></tr>
+<tr class="memdesc:a53400c7c9f2cf5ed75aa4a27d843ef47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur.  <br /></td></tr>
+<tr class="separator:a53400c7c9f2cf5ed75aa4a27d843ef47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3542218fb14dcbfd657b33c67c08451" id="r_af3542218fb14dcbfd657b33c67c08451"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#af3542218fb14dcbfd657b33c67c08451">~TcpServer</a> ()</td></tr>
+<tr class="memdesc:af3542218fb14dcbfd657b33c67c08451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur Arrête le serveur et déconnecte tous les clients.  <br /></td></tr>
+<tr class="separator:af3542218fb14dcbfd657b33c67c08451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac367c29e96d0b9fb65384ece981408e3" id="r_ac367c29e96d0b9fb65384ece981408e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#ac367c29e96d0b9fb65384ece981408e3">start</a> ()</td></tr>
+<tr class="memdesc:ac367c29e96d0b9fb65384ece981408e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Démarre le serveur TCP.  <br /></td></tr>
+<tr class="separator:ac367c29e96d0b9fb65384ece981408e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8499b64d921e552e3e90db3abed1d68" id="r_af8499b64d921e552e3e90db3abed1d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#af8499b64d921e552e3e90db3abed1d68">stop</a> ()</td></tr>
+<tr class="memdesc:af8499b64d921e552e3e90db3abed1d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrête le serveur et déconnecte tous les clients.  <br /></td></tr>
+<tr class="separator:af8499b64d921e552e3e90db3abed1d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8cd695187b2436f47a586458ef0ef29" id="r_ab8cd695187b2436f47a586458ef0ef29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#ab8cd695187b2436f47a586458ef0ef29">join</a> ()</td></tr>
+<tr class="memdesc:ab8cd695187b2436f47a586458ef0ef29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attend la fin du thread principal.  <br /></td></tr>
+<tr class="separator:ab8cd695187b2436f47a586458ef0ef29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc649966db43278e90a9fdb03a49a2fa" id="r_adc649966db43278e90a9fdb03a49a2fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#adc649966db43278e90a9fdb03a49a2fa">getClientCount</a> () <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a></td></tr>
+<tr class="memdesc:adc649966db43278e90a9fdb03a49a2fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne le nombre de clients connectés.  <br /></td></tr>
+<tr class="separator:adc649966db43278e90a9fdb03a49a2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Fonctions membres privées</h2></td></tr>
+<tr class="memitem:a18d03c2401e97a7fe52c74cc5bfee47d" id="r_a18d03c2401e97a7fe52c74cc5bfee47d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a18d03c2401e97a7fe52c74cc5bfee47d">run</a> ()</td></tr>
+<tr class="memdesc:a18d03c2401e97a7fe52c74cc5bfee47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boucle principale du serveur Gère les nouvelles connexions, ping/pong et timeouts.  <br /></td></tr>
+<tr class="separator:a18d03c2401e97a7fe52c74cc5bfee47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:aa8a97093d4fbff4116c119fee0606198" id="r_aa8a97093d4fbff4116c119fee0606198"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#aa8a97093d4fbff4116c119fee0606198">_port</a></td></tr>
+<tr class="memdesc:aa8a97093d4fbff4116c119fee0606198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port d'écoute TCP.  <br /></td></tr>
+<tr class="separator:aa8a97093d4fbff4116c119fee0606198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ad0c0b832e2b45638dc95f01035e7df" id="r_a2ad0c0b832e2b45638dc95f01035e7df"><td class="memItemLeft" align="right" valign="top">sf::TcpListener&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a2ad0c0b832e2b45638dc95f01035e7df">_listener</a></td></tr>
+<tr class="memdesc:a2ad0c0b832e2b45638dc95f01035e7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listener TCP.  <br /></td></tr>
+<tr class="separator:a2ad0c0b832e2b45638dc95f01035e7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9dea9393858df3e20cc709fb5a7629a" id="r_ac9dea9393858df3e20cc709fb5a7629a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; sf::TcpSocket &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#ac9dea9393858df3e20cc709fb5a7629a">_clients</a></td></tr>
+<tr class="memdesc:ac9dea9393858df3e20cc709fb5a7629a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sockets des clients.  <br /></td></tr>
+<tr class="separator:ac9dea9393858df3e20cc709fb5a7629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d20a3978f3a1e90ca9d83c579b65b42" id="r_a3d20a3978f3a1e90ca9d83c579b65b42"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::chrono::steady_clock::time_point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a3d20a3978f3a1e90ca9d83c579b65b42">_lastPing</a></td></tr>
+<tr class="memdesc:a3d20a3978f3a1e90ca9d83c579b65b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dernier ping reçu par client.  <br /></td></tr>
+<tr class="separator:a3d20a3978f3a1e90ca9d83c579b65b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad868e1a40034dd9dcbbec60fddf7ba5b" id="r_ad868e1a40034dd9dcbbec60fddf7ba5b"><td class="memItemLeft" align="right" valign="top">sf::SocketSelector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#ad868e1a40034dd9dcbbec60fddf7ba5b">_selector</a></td></tr>
+<tr class="memdesc:ad868e1a40034dd9dcbbec60fddf7ba5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sélecteur d'événements.  <br /></td></tr>
+<tr class="separator:ad868e1a40034dd9dcbbec60fddf7ba5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b2508d5c6fed9b4344abc54b3b74949" id="r_a9b2508d5c6fed9b4344abc54b3b74949"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a9b2508d5c6fed9b4344abc54b3b74949">_thread</a></td></tr>
+<tr class="memdesc:a9b2508d5c6fed9b4344abc54b3b74949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread principal.  <br /></td></tr>
+<tr class="separator:a9b2508d5c6fed9b4344abc54b3b74949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab615b96e519e29e2722902c108ddafee" id="r_ab615b96e519e29e2722902c108ddafee"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#ab615b96e519e29e2722902c108ddafee">_running</a> {<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">false</a>}</td></tr>
+<tr class="memdesc:ab615b96e519e29e2722902c108ddafee"><td class="mdescLeft">&#160;</td><td class="mdescRight">État d'exécution.  <br /></td></tr>
+<tr class="separator:ab615b96e519e29e2722902c108ddafee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4053eabba23c5c8da9705681f927a78c" id="r_a4053eabba23c5c8da9705681f927a78c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a4053eabba23c5c8da9705681f927a78c">_mutex</a></td></tr>
+<tr class="memdesc:a4053eabba23c5c8da9705681f927a78c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protection des collections.  <br /></td></tr>
+<tr class="separator:a4053eabba23c5c8da9705681f927a78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Attributs privés statiques</h2></td></tr>
+<tr class="memitem:a26e1e7335cd8691c604b5ce990a8834d" id="r_a26e1e7335cd8691c604b5ce990a8834d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">static</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">constexpr</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1TcpServer.html#a26e1e7335cd8691c604b5ce990a8834d">TIMEOUT_SEC</a> = 5</td></tr>
+<tr class="memdesc:a26e1e7335cd8691c604b5ce990a8834d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timeout avant déconnexion automatique (5s)  <br /></td></tr>
+<tr class="separator:a26e1e7335cd8691c604b5ce990a8834d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Serveur TCP pour la gestion des connexions et keep-alive. </p>
+<p>Fonctionnalités :</p><ul>
+<li>Acceptation de nouvelles connexions clientes</li>
+<li>Réponse aux ping avec pong</li>
+<li>Détection et suppression des clients inactifs (timeout)</li>
+</ul>
+<p>Utilise un SocketSelector pour gérer plusieurs clients dans un seul thread. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a53400c7c9f2cf5ed75aa4a27d843ef47" name="a53400c7c9f2cf5ed75aa4a27d843ef47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53400c7c9f2cf5ed75aa4a27d843ef47">&#9670;&#160;</a></span>TcpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Nwk::TcpServer::TcpServer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a>&#160;</td>
+          <td class="paramname"><em>port</em> = <code>53001</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>Port TCP d'écoute (défaut : 53001) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af3542218fb14dcbfd657b33c67c08451" name="af3542218fb14dcbfd657b33c67c08451"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3542218fb14dcbfd657b33c67c08451">&#9670;&#160;</a></span>~TcpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Nwk::TcpServer::~TcpServer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructeur Arrête le serveur et déconnecte tous les clients. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="adc649966db43278e90a9fdb03a49a2fa" name="adc649966db43278e90a9fdb03a49a2fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc649966db43278e90a9fdb03a49a2fa">&#9670;&#160;</a></span>getClientCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">size_t</a> Nwk::TcpServer::getClientCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne le nombre de clients connectés. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Nombre actuel de clients </dd></dl>
+
+</div>
+</div>
+<a id="ab8cd695187b2436f47a586458ef0ef29" name="ab8cd695187b2436f47a586458ef0ef29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8cd695187b2436f47a586458ef0ef29">&#9670;&#160;</a></span>join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::TcpServer::join </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attend la fin du thread principal. </p>
+
+</div>
+</div>
+<a id="a18d03c2401e97a7fe52c74cc5bfee47d" name="a18d03c2401e97a7fe52c74cc5bfee47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18d03c2401e97a7fe52c74cc5bfee47d">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::TcpServer::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Boucle principale du serveur Gère les nouvelles connexions, ping/pong et timeouts. </p>
+
+</div>
+</div>
+<a id="ac367c29e96d0b9fb65384ece981408e3" name="ac367c29e96d0b9fb65384ece981408e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac367c29e96d0b9fb65384ece981408e3">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a> Nwk::TcpServer::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Démarre le serveur TCP. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si l'écoute a réussi </dd></dl>
+
+</div>
+</div>
+<a id="af8499b64d921e552e3e90db3abed1d68" name="af8499b64d921e552e3e90db3abed1d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8499b64d921e552e3e90db3abed1d68">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::TcpServer::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arrête le serveur et déconnecte tous les clients. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="ac9dea9393858df3e20cc709fb5a7629a" name="ac9dea9393858df3e20cc709fb5a7629a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9dea9393858df3e20cc709fb5a7629a">&#9670;&#160;</a></span>_clients</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::unique_ptr&lt;sf::TcpSocket&gt; &gt; Nwk::TcpServer::_clients</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sockets des clients. </p>
+
+</div>
+</div>
+<a id="a3d20a3978f3a1e90ca9d83c579b65b42" name="a3d20a3978f3a1e90ca9d83c579b65b42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d20a3978f3a1e90ca9d83c579b65b42">&#9670;&#160;</a></span>_lastPing</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::chrono::steady_clock::time_point&gt; Nwk::TcpServer::_lastPing</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dernier ping reçu par client. </p>
+
+</div>
+</div>
+<a id="a2ad0c0b832e2b45638dc95f01035e7df" name="a2ad0c0b832e2b45638dc95f01035e7df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ad0c0b832e2b45638dc95f01035e7df">&#9670;&#160;</a></span>_listener</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::TcpListener Nwk::TcpServer::_listener</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Listener TCP. </p>
+
+</div>
+</div>
+<a id="a4053eabba23c5c8da9705681f927a78c" name="a4053eabba23c5c8da9705681f927a78c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4053eabba23c5c8da9705681f927a78c">&#9670;&#160;</a></span>_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex Nwk::TcpServer::_mutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Protection des collections. </p>
+
+</div>
+</div>
+<a id="aa8a97093d4fbff4116c119fee0606198" name="aa8a97093d4fbff4116c119fee0606198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a97093d4fbff4116c119fee0606198">&#9670;&#160;</a></span>_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a> Nwk::TcpServer::_port</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Port d'écoute TCP. </p>
+
+</div>
+</div>
+<a id="ab615b96e519e29e2722902c108ddafee" name="ab615b96e519e29e2722902c108ddafee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab615b96e519e29e2722902c108ddafee">&#9670;&#160;</a></span>_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a>&gt; Nwk::TcpServer::_running {<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">false</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>État d'exécution. </p>
+
+</div>
+</div>
+<a id="ad868e1a40034dd9dcbbec60fddf7ba5b" name="ad868e1a40034dd9dcbbec60fddf7ba5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad868e1a40034dd9dcbbec60fddf7ba5b">&#9670;&#160;</a></span>_selector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::SocketSelector Nwk::TcpServer::_selector</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sélecteur d'événements. </p>
+
+</div>
+</div>
+<a id="a9b2508d5c6fed9b4344abc54b3b74949" name="a9b2508d5c6fed9b4344abc54b3b74949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b2508d5c6fed9b4344abc54b3b74949">&#9670;&#160;</a></span>_thread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread Nwk::TcpServer::_thread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thread principal. </p>
+
+</div>
+</div>
+<a id="a26e1e7335cd8691c604b5ce990a8834d" name="a26e1e7335cd8691c604b5ce990a8834d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26e1e7335cd8691c604b5ce990a8834d">&#9670;&#160;</a></span>TIMEOUT_SEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">constexpr</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a> Nwk::TcpServer::TIMEOUT_SEC = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Timeout avant déconnexion automatique (5s) </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>include/network/<a class="el" href="TcpServer_8hpp_source.html">TcpServer.hpp</a></li>
+<li>src/server/<a class="el" href="TcpServer_8cpp.html">TcpServer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceNwk.html">Nwk</a></li><li class="navelem"><a class="el" href="classNwk_1_1TcpServer.html">TcpServer</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+\doxysection{Référence du modèle de la classe Nwk\+::Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}}
+\hypertarget{classNwk_1_1SafeQueue}{}\label{classNwk_1_1SafeQueue}\index{Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}}
+
+
+File d\textquotesingle{}attente thread-\/safe générique.  
+
+
+
+
+{\ttfamily \#include $<$Safe\+Queue.\+hpp$>$}
+
+
+
+Graphe de collaboration de Nwk\+::Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{classNwk_1_1SafeQueue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNwk_1_1SafeQueue_a61978eccdcd75b5242b6cab7350c4f2c}{Safe\+Queue}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1SafeQueue_a046806ef348f5b84ac943faa3954581e}{push}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}})
+\begin{DoxyCompactList}\small\item\em Ajoute un élément dans la file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNwk_1_1SafeQueue_a39890a76a5423588b677b7db0b4ef4f6}{pop}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}})
+\begin{DoxyCompactList}\small\item\em Retire un élément de la file (si disponible) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::queue$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \mbox{\hyperlink{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}{queue\+\_\+}}
+\begin{DoxyCompactList}\small\item\em File interne non protégée. \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{classNwk_1_1SafeQueue_a0dc539a3ff96bcb1838cfd7e2e7ac95d}{mutex\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Mutex pour la synchronisation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\subsubsection*{template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}}$>$\newline
+class Nwk\+::\+Safe\+Queue$<$ T $>$}
+File d\textquotesingle{}attente thread-\/safe générique. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em T} & Type des éléments stockés dans la file\\
+\hline
+\end{DoxyTemplParams}
+Utilisée pour communiquer entre les threads réseau et la logique du jeu (ex\+: inputs reçus, paquets à envoyer, snapshots d\textquotesingle{}entités). Protégée par un mutex pour un accès concurrentiel sécurisé. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classNwk_1_1SafeQueue_a61978eccdcd75b5242b6cab7350c4f2c}\label{classNwk_1_1SafeQueue_a61978eccdcd75b5242b6cab7350c4f2c} 
+\index{Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}!SafeQueue@{SafeQueue}}
+\index{SafeQueue@{SafeQueue}!Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{SafeQueue()}{SafeQueue()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
+\mbox{\hyperlink{classNwk_1_1SafeQueue}{Nwk\+::\+Safe\+Queue}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::\+Safe\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Constructeur par défaut. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classNwk_1_1SafeQueue_a39890a76a5423588b677b7db0b4ef4f6}\label{classNwk_1_1SafeQueue_a39890a76a5423588b677b7db0b4ef4f6} 
+\index{Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}!pop@{pop}}
+\index{pop@{pop}!Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNwk_1_1SafeQueue}{Nwk\+::\+Safe\+Queue}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retire un élément de la file (si disponible) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em value} & Référence où stocker l\textquotesingle{}élément retiré \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+true si un élément a été retiré, false si la file était vide 
+\end{DoxyReturn}
+\Hypertarget{classNwk_1_1SafeQueue_a046806ef348f5b84ac943faa3954581e}\label{classNwk_1_1SafeQueue_a046806ef348f5b84ac943faa3954581e} 
+\index{Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}!push@{push}}
+\index{push@{push}!Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1SafeQueue}{Nwk\+::\+Safe\+Queue}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ajoute un élément dans la file. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em value} & Valeur à pousser (copie) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classNwk_1_1SafeQueue_a0dc539a3ff96bcb1838cfd7e2e7ac95d}\label{classNwk_1_1SafeQueue_a0dc539a3ff96bcb1838cfd7e2e7ac95d} 
+\index{Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}!mutex\_@{mutex\_}}
+\index{mutex\_@{mutex\_}!Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{mutex\_}{mutex\_}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
+std\+::mutex \mbox{\hyperlink{classNwk_1_1SafeQueue}{Nwk\+::\+Safe\+Queue}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::mutex\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mutex pour la synchronisation. 
+
+\Hypertarget{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87}\label{classNwk_1_1SafeQueue_a52d05cb65a9ff8f2292c1d7bdef17f87} 
+\index{Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}!queue\_@{queue\_}}
+\index{queue\_@{queue\_}!Nwk::SafeQueue$<$ T $>$@{Nwk::SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{queue\_}{queue\_}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
+std\+::queue$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}}$>$ \mbox{\hyperlink{classNwk_1_1SafeQueue}{Nwk\+::\+Safe\+Queue}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::queue\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+File interne non protégée. 
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/network/\mbox{\hyperlink{SafeQueue_8hpp}{Safe\+Queue.\+hpp}}\end{DoxyCompactItemize}

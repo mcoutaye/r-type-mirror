@@ -1,0 +1,108 @@
+\doxysection{Référence de la structure Nwk\+::Input\+State}
+\hypertarget{structNwk_1_1InputState}{}\label{structNwk_1_1InputState}\index{Nwk::InputState@{Nwk::InputState}}
+
+
+État des inputs du joueur (1 octet)  
+
+
+
+
+{\ttfamily \#include $<$Network\+Protocol.\+hpp$>$}
+
+
+
+Graphe de collaboration de Nwk\+::Input\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{structNwk_1_1InputState__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structNwk_1_1InputState_a4d401e17094108d92233214bb54b96b9}{up}}\+: 1
+\begin{DoxyCompactList}\small\item\em Bouton haut appuyé \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structNwk_1_1InputState_a026ca0c33027b88a5be0af245b472783}{down}}\+: 1
+\begin{DoxyCompactList}\small\item\em Bouton bas appuyé \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structNwk_1_1InputState_aefe6653ba5fef204f46352a840bd5a8c}{left}}\+: 1
+\begin{DoxyCompactList}\small\item\em Bouton gauche appuyé \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structNwk_1_1InputState_ac48daf35792738fbc70b1c3ee074495e}{right}}\+: 1
+\begin{DoxyCompactList}\small\item\em Bouton droit appuyé \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structNwk_1_1InputState_ad6a02f0f9e46d976783afbb0c527a6e8}{shoot}}\+: 1
+\begin{DoxyCompactList}\small\item\em Tir appuyé \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \+: 3
+\begin{DoxyCompactList}\small\item\em Bits réservés (padding) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+État des inputs du joueur (1 octet) 
+
+Structure envoyée fréquemment du client UDP vers le serveur pour transmettre les commandes du joueur en temps réel. 
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{structNwk_1_1InputState_a441910cee0d64b6893d5678a76701b5d}\label{structNwk_1_1InputState_a441910cee0d64b6893d5678a76701b5d} 
+\index{Nwk::InputState@{Nwk::InputState}!\_\_pad0\_\_@{\_\_pad0\_\_}}
+\index{\_\_pad0\_\_@{\_\_pad0\_\_}!Nwk::InputState@{Nwk::InputState}}
+\doxysubsubsection{\texorpdfstring{\_\_pad0\_\_}{\_\_pad0\_\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Nwk\+::\+Input\+State\+::\+\_\+\+\_\+pad0\+\_\+\+\_\+}
+
+
+
+Bits réservés (padding) 
+
+\Hypertarget{structNwk_1_1InputState_a026ca0c33027b88a5be0af245b472783}\label{structNwk_1_1InputState_a026ca0c33027b88a5be0af245b472783} 
+\index{Nwk::InputState@{Nwk::InputState}!down@{down}}
+\index{down@{down}!Nwk::InputState@{Nwk::InputState}}
+\doxysubsubsection{\texorpdfstring{down}{down}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Nwk\+::\+Input\+State\+::down}
+
+
+
+Bouton bas appuyé 
+
+\Hypertarget{structNwk_1_1InputState_aefe6653ba5fef204f46352a840bd5a8c}\label{structNwk_1_1InputState_aefe6653ba5fef204f46352a840bd5a8c} 
+\index{Nwk::InputState@{Nwk::InputState}!left@{left}}
+\index{left@{left}!Nwk::InputState@{Nwk::InputState}}
+\doxysubsubsection{\texorpdfstring{left}{left}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Nwk\+::\+Input\+State\+::left}
+
+
+
+Bouton gauche appuyé 
+
+\Hypertarget{structNwk_1_1InputState_ac48daf35792738fbc70b1c3ee074495e}\label{structNwk_1_1InputState_ac48daf35792738fbc70b1c3ee074495e} 
+\index{Nwk::InputState@{Nwk::InputState}!right@{right}}
+\index{right@{right}!Nwk::InputState@{Nwk::InputState}}
+\doxysubsubsection{\texorpdfstring{right}{right}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Nwk\+::\+Input\+State\+::right}
+
+
+
+Bouton droit appuyé 
+
+\Hypertarget{structNwk_1_1InputState_ad6a02f0f9e46d976783afbb0c527a6e8}\label{structNwk_1_1InputState_ad6a02f0f9e46d976783afbb0c527a6e8} 
+\index{Nwk::InputState@{Nwk::InputState}!shoot@{shoot}}
+\index{shoot@{shoot}!Nwk::InputState@{Nwk::InputState}}
+\doxysubsubsection{\texorpdfstring{shoot}{shoot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Nwk\+::\+Input\+State\+::shoot}
+
+
+
+Tir appuyé 
+
+\Hypertarget{structNwk_1_1InputState_a4d401e17094108d92233214bb54b96b9}\label{structNwk_1_1InputState_a4d401e17094108d92233214bb54b96b9} 
+\index{Nwk::InputState@{Nwk::InputState}!up@{up}}
+\index{up@{up}!Nwk::InputState@{Nwk::InputState}}
+\doxysubsubsection{\texorpdfstring{up}{up}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Nwk\+::\+Input\+State\+::up}
+
+
+
+Bouton haut appuyé 
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/network/\mbox{\hyperlink{NetworkProtocol_8hpp}{Network\+Protocol.\+hpp}}\end{DoxyCompactItemize}

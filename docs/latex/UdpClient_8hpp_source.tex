@@ -1,0 +1,60 @@
+\doxysection{Udp\+Client.\+hpp}
+\hypertarget{UdpClient_8hpp_source}{}\label{UdpClient_8hpp_source}\index{include/network/UdpClient.hpp@{include/network/UdpClient.hpp}}
+\mbox{\hyperlink{UdpClient_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ UdpClient}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SafeQueue_8hpp}{SafeQueue.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/Network.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NetworkProtocol_8hpp}{NetworkProtocol.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SERVER\_PORT\ 53000\ }}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceNwk}{Nwk}}\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNwk_1_1UdpClient}{UdpClient}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classNwk_1_1UdpClient}{UdpClient}}(sf::IpAddress\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{serverIp}}\ =\ \textcolor{stringliteral}{"{}127.0.0.1"{}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{serverPort}}\ =\ \mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\_PORT}});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classNwk_1_1UdpClient_a1059bcae5d7bbcf2178804d7b715a9cc}{\string~UdpClient}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classNwk_1_1UdpClient_a8cfb8aeda2eb0b5dfd1bcab04cbacdff}{start}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{localPort}}\ =\ 0);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1UdpClient_a262707ab6dbd12ed3e37c0d80e811f67}{stop}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1UdpClient_a2f94bbb054460ab5a683aada39f98a3a}{join}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classNwk_1_1SafeQueue}{SafeQueue<InputState>}}\ \mbox{\hyperlink{classNwk_1_1UdpClient_a6c9079a880df05300d1d6aefdf615813}{inputsToSend}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classNwk_1_1SafeQueue}{SafeQueue<std::vector<EntityUpdate>}}>\ \mbox{\hyperlink{classNwk_1_1UdpClient_af121573143329573277e39e0d1998f60}{receivedUpdates}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1UdpClient_a441fecc287a269bd098f5e027031cf8d}{sendThread}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNwk_1_1UdpClient_a9ce120c3e965b63243d45cad6889eacc}{receiveThread}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ sf::UdpSocket\ \mbox{\hyperlink{classNwk_1_1UdpClient_a41ad94d76ca9a72c6bfb7d0ae043879e}{m\_socket}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ sf::IpAddress\ \mbox{\hyperlink{classNwk_1_1UdpClient_af9c418d71fbe6b39f33b9cd11bd24ee2}{m\_serverIp}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classNwk_1_1UdpClient_afb506d97da7a3daadf969462725bae3f}{m\_serverPort}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classNwk_1_1UdpClient_a92669ac4c7d00a0cb7cdc8aa8c9b7991}{m\_running}}\{\textcolor{keyword}{false}\};\ \ }
+\DoxyCodeLine{00091\ \ \ \ \ std::thread\ \mbox{\hyperlink{classNwk_1_1UdpClient_aa78dbba9089f9a6fd8d6eb776590f2fa}{m\_sendThread}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ std::thread\ \mbox{\hyperlink{classNwk_1_1UdpClient_a1b63975155a371853d7815145acc5bb0}{m\_recvThread}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\ \textcolor{comment}{//\ namespace\ Nwk}}
+
+\end{DoxyCode}

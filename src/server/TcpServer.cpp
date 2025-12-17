@@ -5,12 +5,11 @@
 ** TcpServer
 */
 
-// src/server/TcpServer.cpp
-#include "TcpServer.hpp"
+#include "network/TcpServer.hpp"
 
-TcpServer::TcpServer(unsigned short port) : _port(port) {}
+Nwk::TcpServer::TcpServer(unsigned short port) : _port(port) {}
 
-TcpServer::~TcpServer()
+Nwk::TcpServer::~TcpServer()
 {
     stop();
     join();
@@ -24,7 +23,7 @@ TcpServer::~TcpServer()
     std::cout << "[TCP Server] Port " << _port << " libéré (destructeur)\n";
 }
 
-bool TcpServer::start()
+bool Nwk::TcpServer::start()
 {
     if (_running)
         return false;
@@ -36,11 +35,11 @@ bool TcpServer::start()
     _selector.add(_listener);
     std::cout << "[TCP Server] Démarré sur le port " << _port << " (mode selector)\n";
     _running = true;
-    _thread = std::thread(&TcpServer::run, this);
+    _thread = std::thread(&Nwk::TcpServer::run, this);
     return true;
 }
 
-void TcpServer::run()
+void Nwk::TcpServer::run()
 {
     while (_running) {
         if (_selector.wait(sf::milliseconds(100))) {
@@ -92,7 +91,7 @@ void TcpServer::run()
     _selector.clear();
 }
 
-void TcpServer::stop()
+void Nwk::TcpServer::stop()
 {
     _running = false;
     _listener.close();
@@ -105,13 +104,13 @@ void TcpServer::stop()
     _lastPing.clear();
 }
 
-void TcpServer::join()
+void Nwk::TcpServer::join()
 {
     if (_thread.joinable())
         _thread.join();
 }
 
-size_t TcpServer::getClientCount() const
+size_t Nwk::TcpServer::getClientCount() const
 {
     std::lock_guard<std::mutex> lock(_mutex);
     return _clients.size();

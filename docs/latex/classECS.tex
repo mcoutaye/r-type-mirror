@@ -1,0 +1,190 @@
+\doxysection{Référence de la classe ECS}
+\hypertarget{classECS}{}\label{classECS}\index{ECS@{ECS}}
+
+
+{\ttfamily \#include $<$ecs.\+hpp$>$}
+
+
+
+Graphe de collaboration de ECS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classECS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS_a7fba8bcfbb8d238085ab7302d96a332f}{ECS}} ()
+\item 
+\mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\texorpdfstring{$\sim$}{\string~}\+ECS}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{create\+Entity}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{kill\+Entity}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\item 
+\mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{get\+Signature}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{set\+Signature}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sig}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{add\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ }\\\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{add\+Components}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\&... \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Components}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{has\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{get\+Const\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{get\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ }\\std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{get\+Entities\+By\+Components}} ()
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{kill\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verify\+Component\+Storage}} (\mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Type\+ID}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\+\_\+\+\_\+living\+Entities}} = 0
+\item 
+std\+::queue$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\+\_\+\+\_\+free\+Entities}}
+\item 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}, \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} $>$ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\+\_\+\+\_\+signatures}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\+\_\+\+\_\+component\+Storage}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classECS_a7fba8bcfbb8d238085ab7302d96a332f}\label{classECS_a7fba8bcfbb8d238085ab7302d96a332f} 
+\index{ECS@{ECS}!ECS@{ECS}}
+\index{ECS@{ECS}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{ECS()}{ECS()}}
+{\footnotesize\ttfamily ECS\+::\+ECS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}\label{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1} 
+\index{ECS@{ECS}!````~ECS@{\texorpdfstring{$\sim$}{\string~}ECS}}
+\index{````~ECS@{\texorpdfstring{$\sim$}{\string~}ECS}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ECS()}{\string~ECS()}}
+{\footnotesize\ttfamily ECS\+::\texorpdfstring{$\sim$}{\string~}\+ECS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classECS_ab25f63dc0523958d986069505b703c12}\label{classECS_ab25f63dc0523958d986069505b703c12} 
+\index{ECS@{ECS}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a729237fc4138af4f48df163dec088efb}\label{classECS_a729237fc4138af4f48df163dec088efb} 
+\index{ECS@{ECS}!addComponents@{addComponents}}
+\index{addComponents@{addComponents}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{addComponents()}{addComponents()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ \\
+\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\&...}]{Components }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a41b876f3725cbb04aac3f2edd95522c6}\label{classECS_a41b876f3725cbb04aac3f2edd95522c6} 
+\index{ECS@{ECS}!createEntity@{createEntity}}
+\index{createEntity@{createEntity}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{createEntity()}{createEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::create\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_aaae60c88af59dd7af9d86200eb522bbc}\label{classECS_aaae60c88af59dd7af9d86200eb522bbc} 
+\index{ECS@{ECS}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a358206e15202fccfa73017c47af07079}\label{classECS_a358206e15202fccfa73017c47af07079} 
+\index{ECS@{ECS}!getConstComponent@{getConstComponent}}
+\index{getConstComponent@{getConstComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getConstComponent()}{getConstComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Const\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a8d931ce389d47888768e1a5092bde26b}\label{classECS_a8d931ce389d47888768e1a5092bde26b} 
+\index{ECS@{ECS}!getEntitiesByComponents@{getEntitiesByComponents}}
+\index{getEntitiesByComponents@{getEntitiesByComponents}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getEntitiesByComponents()}{getEntitiesByComponents()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ \\
+std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ ECS\+::get\+Entities\+By\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}\label{classECS_a11aacce5459a5ce429ea8d181bb4ddc3} 
+\index{ECS@{ECS}!getSignature@{getSignature}}
+\index{getSignature@{getSignature}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getSignature()}{getSignature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} ECS\+::get\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a33c16853296e9784dfb558f35dffbd72}\label{classECS_a33c16853296e9784dfb558f35dffbd72} 
+\index{ECS@{ECS}!hasComponent@{hasComponent}}
+\index{hasComponent@{hasComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{hasComponent()}{hasComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}\label{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661} 
+\index{ECS@{ECS}!killComponent@{killComponent}}
+\index{killComponent@{killComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{killComponent()}{killComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a77bab58f7b7d5e53443078f60957b2d2}\label{classECS_a77bab58f7b7d5e53443078f60957b2d2} 
+\index{ECS@{ECS}!killEntity@{killEntity}}
+\index{killEntity@{killEntity}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{killEntity()}{killEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a2d9a9caa600c1982410d33ce3a88eeef}\label{classECS_a2d9a9caa600c1982410d33ce3a88eeef} 
+\index{ECS@{ECS}!setSignature@{setSignature}}
+\index{setSignature@{setSignature}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{setSignature()}{setSignature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::set\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classECS_a0d360a43bc140d37953297708afb8b86}\label{classECS_a0d360a43bc140d37953297708afb8b86} 
+\index{ECS@{ECS}!verifyComponentStorage@{verifyComponentStorage}}
+\index{verifyComponentStorage@{verifyComponentStorage}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{verifyComponentStorage()}{verifyComponentStorage()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::verify\+Component\+Storage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}}}]{Type\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classECS_af286a6b20b26839c7e96603ab2df7718}\label{classECS_af286a6b20b26839c7e96603ab2df7718} 
+\index{ECS@{ECS}!\_\_componentStorage@{\_\_componentStorage}}
+\index{\_\_componentStorage@{\_\_componentStorage}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_componentStorage}{\_\_componentStorage}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*}$>$ ECS\+::\+\_\+\+\_\+component\+Storage\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_a00a2f233abb0f55b486b2426e9aa3c39}\label{classECS_a00a2f233abb0f55b486b2426e9aa3c39} 
+\index{ECS@{ECS}!\_\_freeEntities@{\_\_freeEntities}}
+\index{\_\_freeEntities@{\_\_freeEntities}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_freeEntities}{\_\_freeEntities}}
+{\footnotesize\ttfamily std\+::queue$<$\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}$>$ ECS\+::\+\_\+\+\_\+free\+Entities\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_a07c2ca3008559fa7e2382abdcfab95be}\label{classECS_a07c2ca3008559fa7e2382abdcfab95be} 
+\index{ECS@{ECS}!\_\_livingEntities@{\_\_livingEntities}}
+\index{\_\_livingEntities@{\_\_livingEntities}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_livingEntities}{\_\_livingEntities}}
+{\footnotesize\ttfamily std\+::size\+\_\+t ECS\+::\+\_\+\+\_\+living\+Entities = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}\label{classECS_a5bc0cd3b9ff37378d7747b337258e9b2} 
+\index{ECS@{ECS}!\_\_signatures@{\_\_signatures}}
+\index{\_\_signatures@{\_\_signatures}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_signatures}{\_\_signatures}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}, \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}$>$ ECS\+::\+\_\+\+\_\+signatures\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{ecs_8hpp}{ecs.\+hpp}}\end{DoxyCompactItemize}

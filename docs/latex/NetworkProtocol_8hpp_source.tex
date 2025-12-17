@@ -1,0 +1,47 @@
+\doxysection{Network\+Protocol.\+hpp}
+\hypertarget{NetworkProtocol_8hpp_source}{}\label{NetworkProtocol_8hpp_source}\index{include/network/NetworkProtocol.hpp@{include/network/NetworkProtocol.hpp}}
+\mbox{\hyperlink{NetworkProtocol_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ NetworkProtocol}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <SFML/Network.hpp>}\ \ \textcolor{comment}{//\ Pour\ sf::IpAddress}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceNwk}{Nwk}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNwk_1_1InputState}{InputState}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structNwk_1_1InputState_a4d401e17094108d92233214bb54b96b9}{up}}\ \ \ \ :\ 1;\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structNwk_1_1InputState_a026ca0c33027b88a5be0af245b472783}{down}}\ \ :\ 1;\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structNwk_1_1InputState_aefe6653ba5fef204f46352a840bd5a8c}{left}}\ \ :\ 1;\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structNwk_1_1InputState_ac48daf35792738fbc70b1c3ee074495e}{right}}\ :\ 1;\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structNwk_1_1InputState_ad6a02f0f9e46d976783afbb0c527a6e8}{shoot}}\ :\ 1;\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \ \ \ \ \ \ :\ 3;\ }
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structNwk_1_1InputState}{InputState}})\ ==\ 1,\ \textcolor{stringliteral}{"{}InputState\ must\ be\ 1\ byte"{}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNwk_1_1EntityUpdate}{EntityUpdate}}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint32\_t}}\ \mbox{\hyperlink{structNwk_1_1EntityUpdate_a556f7b54ef5de90e1436a260dda6d70c}{entityId}};\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structNwk_1_1EntityUpdate_abf8298bcf0d2794c35999cf53e809aaa}{x}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structNwk_1_1EntityUpdate_ad1c3679b67ad403ad9ff954b608b8cc1}{y}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structNwk_1_1EntityUpdate}{EntityUpdate}})\ ==\ 12,\ \textcolor{stringliteral}{"{}EntityUpdate\ must\ be\ 12\ bytes"{}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNwk_1_1PacketToSend}{PacketToSend}}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ sf::IpAddress\ \mbox{\hyperlink{structNwk_1_1PacketToSend_abfd0207b72b5ada06eb4c73e4cd01d24}{destIp}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structNwk_1_1PacketToSend_abae3e36bd02ff20b03abc57eab0aff9b}{destPort}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{structNwk_1_1PacketToSend_a16f4b7c581bb7d200456282e84994ef8}{data}};\ \ \ \ \ }
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \}\ \textcolor{comment}{//\ namespace\ Nwk}}
+
+\end{DoxyCode}

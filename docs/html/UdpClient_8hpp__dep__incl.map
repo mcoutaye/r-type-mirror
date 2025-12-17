@@ -1,0 +1,7 @@
+<map id="include/network/UdpClient.hpp" name="include/network/UdpClient.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="74,5,297,31"/>
+<area shape="rect" id="Node000002" href="$UdpClient_8cpp.html" title=" " alt="" coords="5,79,181,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,41,110,81,107,76,158,37"/>
+<area shape="rect" id="Node000003" href="$client_2main_8cpp.html" title=" " alt="" coords="206,79,351,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,37,265,76,262,81,209,41"/>
+</map>

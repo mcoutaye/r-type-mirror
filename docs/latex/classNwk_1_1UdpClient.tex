@@ -1,0 +1,253 @@
+\doxysection{Référence de la classe Nwk\+::Udp\+Client}
+\hypertarget{classNwk_1_1UdpClient}{}\label{classNwk_1_1UdpClient}\index{Nwk::UdpClient@{Nwk::UdpClient}}
+
+
+Client UDP dédié au gameplay en temps réel.  
+
+
+
+
+{\ttfamily \#include $<$Udp\+Client.\+hpp$>$}
+
+
+
+Graphe de collaboration de Nwk\+::Udp\+Client\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classNwk_1_1UdpClient__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNwk_1_1UdpClient_a70ea23d76b8e1462cef9b95fcfc0b220}{Udp\+Client}} (sf\+::\+Ip\+Address \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{server\+Ip}}="{}127.\+0.\+0.\+1"{}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{server\+Port}}=\mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\+\_\+\+PORT}})
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNwk_1_1UdpClient_a1059bcae5d7bbcf2178804d7b715a9cc}{\texorpdfstring{$\sim$}{\string~}\+Udp\+Client}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur Arrête proprement les threads et libère le port local. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNwk_1_1UdpClient_a8cfb8aeda2eb0b5dfd1bcab04cbacdff}{start}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{local\+Port}}=0)
+\begin{DoxyCompactList}\small\item\em Démarre le client UDP Bind un port local et lance les threads d\textquotesingle{}envoi et de réception. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1UdpClient_a262707ab6dbd12ed3e37c0d80e811f67}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Arrête les threads et libère le socket. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1UdpClient_a2f94bbb054460ab5a683aada39f98a3a}{join}} ()
+\begin{DoxyCompactList}\small\item\em Attend la terminaison des threads d\textquotesingle{}envoi et de réception. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNwk_1_1SafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{structNwk_1_1InputState}{Input\+State}} $>$ \mbox{\hyperlink{classNwk_1_1UdpClient_a6c9079a880df05300d1d6aefdf615813}{inputs\+To\+Send}}
+\begin{DoxyCompactList}\small\item\em File thread-\/safe contenant les inputs locaux à envoyer au serveur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNwk_1_1SafeQueue}{Safe\+Queue}}$<$ std\+::vector$<$ \mbox{\hyperlink{structNwk_1_1EntityUpdate}{Entity\+Update}} $>$ $>$ \mbox{\hyperlink{classNwk_1_1UdpClient_af121573143329573277e39e0d1998f60}{received\+Updates}}
+\begin{DoxyCompactList}\small\item\em File thread-\/safe contenant les snapshots d\textquotesingle{}entités reçus du serveur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1UdpClient_a441fecc287a269bd098f5e027031cf8d}{send\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em Thread dédié à l\textquotesingle{}envoi des inputs Consomme inputs\+To\+Send et envoie chaque \doxylink{structNwk_1_1InputState}{Input\+State} individuellement au serveur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNwk_1_1UdpClient_a9ce120c3e965b63243d45cad6889eacc}{receive\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em Thread dédié à la réception des snapshots Reçoit les paquets UDP, vérifie leur taille et les découpe en \doxylink{structNwk_1_1EntityUpdate}{Entity\+Update}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Udp\+Socket \mbox{\hyperlink{classNwk_1_1UdpClient_a41ad94d76ca9a72c6bfb7d0ae043879e}{m\+\_\+socket}}
+\begin{DoxyCompactList}\small\item\em Socket UDP local bindé \end{DoxyCompactList}\item 
+sf\+::\+Ip\+Address \mbox{\hyperlink{classNwk_1_1UdpClient_af9c418d71fbe6b39f33b9cd11bd24ee2}{m\+\_\+server\+Ip}}
+\begin{DoxyCompactList}\small\item\em Adresse IP du serveur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classNwk_1_1UdpClient_afb506d97da7a3daadf969462725bae3f}{m\+\_\+server\+Port}}
+\begin{DoxyCompactList}\small\item\em Port UDP du serveur. \end{DoxyCompactList}\item 
+std\+::atomic$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classNwk_1_1UdpClient_a92669ac4c7d00a0cb7cdc8aa8c9b7991}{m\+\_\+running}} \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}
+\begin{DoxyCompactList}\small\item\em Indicateur d\textquotesingle{}exécution des threads. \end{DoxyCompactList}\item 
+std\+::thread \mbox{\hyperlink{classNwk_1_1UdpClient_aa78dbba9089f9a6fd8d6eb776590f2fa}{m\+\_\+send\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread responsable de l\textquotesingle{}envoi. \end{DoxyCompactList}\item 
+std\+::thread \mbox{\hyperlink{classNwk_1_1UdpClient_a1b63975155a371853d7815145acc5bb0}{m\+\_\+recv\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread responsable de la réception. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Client UDP dédié au gameplay en temps réel. 
+
+Responsable de \+:
+\begin{DoxyItemize}
+\item L\textquotesingle{}envoi fréquent des inputs du joueur vers le serveur
+\item La réception des snapshots d\textquotesingle{}entités (positions de toutes les entités du jeu)
+\end{DoxyItemize}
+
+Fonctionne avec deux threads indépendants et utilise des files thread-\/safe pour communiquer avec la logique du jeu. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classNwk_1_1UdpClient_a70ea23d76b8e1462cef9b95fcfc0b220}\label{classNwk_1_1UdpClient_a70ea23d76b8e1462cef9b95fcfc0b220} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!UdpClient@{UdpClient}}
+\index{UdpClient@{UdpClient}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{UdpClient()}{UdpClient()}}
+{\footnotesize\ttfamily Nwk\+::\+Udp\+Client\+::\+Udp\+Client (\begin{DoxyParamCaption}\item[{sf\+::\+Ip\+Address}]{server\+Ip = {\ttfamily "{}127.0.0.1"{}},  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{server\+Port = {\ttfamily \mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\+\_\+\+PORT}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em server\+Ip} & Adresse IP du serveur UDP (défaut \+: localhost) \\
+\hline
+{\em server\+Port} & Port UDP du serveur (défaut \+: 53000) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNwk_1_1UdpClient_a1059bcae5d7bbcf2178804d7b715a9cc}\label{classNwk_1_1UdpClient_a1059bcae5d7bbcf2178804d7b715a9cc} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!````~UdpClient@{\texorpdfstring{$\sim$}{\string~}UdpClient}}
+\index{````~UdpClient@{\texorpdfstring{$\sim$}{\string~}UdpClient}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}UdpClient()}{\string~UdpClient()}}
+{\footnotesize\ttfamily Nwk\+::\+Udp\+Client\+::\texorpdfstring{$\sim$}{\string~}\+Udp\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur Arrête proprement les threads et libère le port local. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classNwk_1_1UdpClient_a2f94bbb054460ab5a683aada39f98a3a}\label{classNwk_1_1UdpClient_a2f94bbb054460ab5a683aada39f98a3a} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!join@{join}}
+\index{join@{join}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Udp\+Client\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Attend la terminaison des threads d\textquotesingle{}envoi et de réception. 
+
+\Hypertarget{classNwk_1_1UdpClient_a9ce120c3e965b63243d45cad6889eacc}\label{classNwk_1_1UdpClient_a9ce120c3e965b63243d45cad6889eacc} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!receiveThread@{receiveThread}}
+\index{receiveThread@{receiveThread}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{receiveThread()}{receiveThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Udp\+Client\+::receive\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread dédié à la réception des snapshots Reçoit les paquets UDP, vérifie leur taille et les découpe en \doxylink{structNwk_1_1EntityUpdate}{Entity\+Update}. 
+
+\Hypertarget{classNwk_1_1UdpClient_a441fecc287a269bd098f5e027031cf8d}\label{classNwk_1_1UdpClient_a441fecc287a269bd098f5e027031cf8d} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!sendThread@{sendThread}}
+\index{sendThread@{sendThread}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{sendThread()}{sendThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Udp\+Client\+::send\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread dédié à l\textquotesingle{}envoi des inputs Consomme inputs\+To\+Send et envoie chaque \doxylink{structNwk_1_1InputState}{Input\+State} individuellement au serveur. 
+
+\Hypertarget{classNwk_1_1UdpClient_a8cfb8aeda2eb0b5dfd1bcab04cbacdff}\label{classNwk_1_1UdpClient_a8cfb8aeda2eb0b5dfd1bcab04cbacdff} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!start@{start}}
+\index{start@{start}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Nwk\+::\+Udp\+Client\+::start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{local\+Port = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Démarre le client UDP Bind un port local et lance les threads d\textquotesingle{}envoi et de réception. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em local\+Port} & Port local à binder (0 = port éphémère choisi par l\textquotesingle{}OS) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+true si le bind a réussi, false sinon 
+\end{DoxyReturn}
+\Hypertarget{classNwk_1_1UdpClient_a262707ab6dbd12ed3e37c0d80e811f67}\label{classNwk_1_1UdpClient_a262707ab6dbd12ed3e37c0d80e811f67} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!stop@{stop}}
+\index{stop@{stop}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Nwk\+::\+Udp\+Client\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Arrête les threads et libère le socket. 
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classNwk_1_1UdpClient_a6c9079a880df05300d1d6aefdf615813}\label{classNwk_1_1UdpClient_a6c9079a880df05300d1d6aefdf615813} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!inputsToSend@{inputsToSend}}
+\index{inputsToSend@{inputsToSend}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{inputsToSend}{inputsToSend}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNwk_1_1SafeQueue}{Safe\+Queue}}$<$\mbox{\hyperlink{structNwk_1_1InputState}{Input\+State}}$>$ Nwk\+::\+Udp\+Client\+::inputs\+To\+Send}
+
+
+
+File thread-\/safe contenant les inputs locaux à envoyer au serveur. 
+
+\Hypertarget{classNwk_1_1UdpClient_a1b63975155a371853d7815145acc5bb0}\label{classNwk_1_1UdpClient_a1b63975155a371853d7815145acc5bb0} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!m\_recvThread@{m\_recvThread}}
+\index{m\_recvThread@{m\_recvThread}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{m\_recvThread}{m\_recvThread}}
+{\footnotesize\ttfamily std\+::thread Nwk\+::\+Udp\+Client\+::m\+\_\+recv\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread responsable de la réception. 
+
+\Hypertarget{classNwk_1_1UdpClient_a92669ac4c7d00a0cb7cdc8aa8c9b7991}\label{classNwk_1_1UdpClient_a92669ac4c7d00a0cb7cdc8aa8c9b7991} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!m\_running@{m\_running}}
+\index{m\_running@{m\_running}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{m\_running}{m\_running}}
+{\footnotesize\ttfamily std\+::atomic$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Nwk\+::\+Udp\+Client\+::m\+\_\+running \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indicateur d\textquotesingle{}exécution des threads. 
+
+\Hypertarget{classNwk_1_1UdpClient_aa78dbba9089f9a6fd8d6eb776590f2fa}\label{classNwk_1_1UdpClient_aa78dbba9089f9a6fd8d6eb776590f2fa} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!m\_sendThread@{m\_sendThread}}
+\index{m\_sendThread@{m\_sendThread}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{m\_sendThread}{m\_sendThread}}
+{\footnotesize\ttfamily std\+::thread Nwk\+::\+Udp\+Client\+::m\+\_\+send\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread responsable de l\textquotesingle{}envoi. 
+
+\Hypertarget{classNwk_1_1UdpClient_af9c418d71fbe6b39f33b9cd11bd24ee2}\label{classNwk_1_1UdpClient_af9c418d71fbe6b39f33b9cd11bd24ee2} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!m\_serverIp@{m\_serverIp}}
+\index{m\_serverIp@{m\_serverIp}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{m\_serverIp}{m\_serverIp}}
+{\footnotesize\ttfamily sf\+::\+Ip\+Address Nwk\+::\+Udp\+Client\+::m\+\_\+server\+Ip\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Adresse IP du serveur. 
+
+\Hypertarget{classNwk_1_1UdpClient_afb506d97da7a3daadf969462725bae3f}\label{classNwk_1_1UdpClient_afb506d97da7a3daadf969462725bae3f} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!m\_serverPort@{m\_serverPort}}
+\index{m\_serverPort@{m\_serverPort}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{m\_serverPort}{m\_serverPort}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Nwk\+::\+Udp\+Client\+::m\+\_\+server\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Port UDP du serveur. 
+
+\Hypertarget{classNwk_1_1UdpClient_a41ad94d76ca9a72c6bfb7d0ae043879e}\label{classNwk_1_1UdpClient_a41ad94d76ca9a72c6bfb7d0ae043879e} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!m\_socket@{m\_socket}}
+\index{m\_socket@{m\_socket}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{m\_socket}{m\_socket}}
+{\footnotesize\ttfamily sf\+::\+Udp\+Socket Nwk\+::\+Udp\+Client\+::m\+\_\+socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Socket UDP local bindé 
+
+\Hypertarget{classNwk_1_1UdpClient_af121573143329573277e39e0d1998f60}\label{classNwk_1_1UdpClient_af121573143329573277e39e0d1998f60} 
+\index{Nwk::UdpClient@{Nwk::UdpClient}!receivedUpdates@{receivedUpdates}}
+\index{receivedUpdates@{receivedUpdates}!Nwk::UdpClient@{Nwk::UdpClient}}
+\doxysubsubsection{\texorpdfstring{receivedUpdates}{receivedUpdates}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNwk_1_1SafeQueue}{Safe\+Queue}}$<$std\+::vector$<$\mbox{\hyperlink{structNwk_1_1EntityUpdate}{Entity\+Update}}$>$ $>$ Nwk\+::\+Udp\+Client\+::received\+Updates}
+
+
+
+File thread-\/safe contenant les snapshots d\textquotesingle{}entités reçus du serveur. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/network/\mbox{\hyperlink{UdpClient_8hpp}{Udp\+Client.\+hpp}}\item 
+src/client/\mbox{\hyperlink{UdpClient_8cpp}{Udp\+Client.\+cpp}}\end{DoxyCompactItemize}

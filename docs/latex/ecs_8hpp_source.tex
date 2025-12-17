@@ -1,0 +1,362 @@
+\doxysection{ecs.\+hpp}
+\hypertarget{ecs_8hpp_source}{}\label{ecs_8hpp_source}\index{include/ecs.hpp@{include/ecs.hpp}}
+\mbox{\hyperlink{ecs_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ G-\/CPP-\/500-\/RUN-\/5-\/2-\/rtype-\/3}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ ecs}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ ECS\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ ECS\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <queue>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <cstdint>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <cassert>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ \ \ \#include\ <limits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#include\ <bitset>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \#include\ <type\_traits>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \#include\ <utility>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \#include\ <unordered\_map>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}}\ =\ 1\ <<\ 11;\ \textcolor{comment}{//\ 2048\ Entities\ Max\ (Enough\ for\ our\ project)}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\_COMPONENT}}\ =\ 1\ <<\ 7;\ \textcolor{comment}{//\ 128\ Components\ max\ par\ Entites}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ }\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ =\ std::uint32\_t;\ \textcolor{comment}{//\ Entity\ is\ just\ an\ ID}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{using\ }\mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}\ =\ std::bitset<MAX\_COMPONENT>;\ \textcolor{comment}{//\ The\ checker\ for\ an\ entity\ has\ a\ certain\ component}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }\mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{ComponentTypeID}}\ =\ std::size\_t;\ \textcolor{comment}{//\ TypeID's\ for\ ComposentType}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \#\#\#\ COMPONENT\ TYPE\ ID\ \#\#\#}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ Create\ a\ new\ type\ of\ component}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{ComponentTypeID}}\ \mbox{\hyperlink{ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06}{newComponentTypeID}}()}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{ComponentTypeID}}\ last\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ last++;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{comment}{//\ When\ used\ for\ a\ specific\ type,\ will\ retrieve\ the\ ID\ thanks\ to\ static}}
+\DoxyCodeLine{00039\ \mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{ComponentTypeID}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID}}()}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{ComponentTypeID}}\ \textcolor{keywordtype}{id}\ =\ \mbox{\hyperlink{ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06}{newComponentTypeID}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ id;}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \#\#\#\ STORAGE\ COMPONENTS\ \#\#\#}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ Used\ for\ each\ type\ of\ component.\ Stock\ every\ component\ w\ the\ same\ type\ together.}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStorageComponent}{StorageComponent}}}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_a775ec7b9f2f8fefc08266f39dfa6fece}{StorageComponent}}()}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}{\_\_Storage}}.resize(\mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});\ \textcolor{comment}{//\ Posibly\ one\ for\ every\ entity}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_a98f0fc714398265edc15803941cf552d}{\_\_checker}}.reset();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}{\string~StorageComponent}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FUCK\ storage\ :\ Find,\ Update,\ Create\ \&\ Kill\ for\ component}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e,\ \textcolor{keyword}{const}\ ComponentType\ \&component)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}{\_\_Storage}}[e]\ =\ component;\ \textcolor{comment}{//component\ for\ 'e'\ entity\ is\ in\ [e]}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_a98f0fc714398265edc15803941cf552d}{\_\_checker}}.set(e);\ \textcolor{comment}{//\ Update\ checker}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classStorageComponent_a98f0fc714398265edc15803941cf552d}{\_\_checker}}.test(e);\ \textcolor{comment}{//\ Check\ 'e'\ bit\ to\ see\ if\ 'e'\ entity\ has\ this\ component\ type}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ComponentType\ *\mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e)\ \textcolor{keyword}{const}\ \textcolor{comment}{//\ READ-\/ONLY\ version\ because\ const\ (FIND)}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}}(e))}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&\mbox{\hyperlink{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}{\_\_Storage}}[e];\ \textcolor{comment}{//\ Reference\ to\ the\ component\ to\ modify\ it\ IN\ SYSTEM\ ONLY}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ ComponentType\ *\mbox{\hyperlink{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}{get}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e)\ \textcolor{comment}{//\ get\ version\ for\ UPDATE}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}}(e))}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&\mbox{\hyperlink{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}{\_\_Storage}}[e];}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStorageComponent_a98f0fc714398265edc15803941cf552d}{\_\_checker}}.reset(e);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ remove\ in\ \_\_Storage,\ the\ [e]\ space\ is\ for\ this\ entity\ anyways.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ case\ of\ removing/re-\/adding,\ its\ better\ since\ we\ just\ change\ one\ bit\ instead\ of\ playing\ with\ memory}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Where\ the\ components\ are\ stocked.}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ std::vector<ComponentType>\ \mbox{\hyperlink{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}{\_\_Storage}};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Those\ bits\ are\ check\ to\ know\ if\ an\ entity\ has\ a\ component\ of\ this\ specific\ type}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ doesnt\ tell\ which\ one,\ just\ if\ it\ has\ this\ type\ or\ not.}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::bitset<MAX\_ENTITIES>\ \mbox{\hyperlink{classStorageComponent_a98f0fc714398265edc15803941cf552d}{\_\_checker}};}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classECS}{ECS}}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a7fba8bcfbb8d238085ab7302d96a332f}{ECS}}()}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ =\ 0;\ e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}};\ e++)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\_\_freeEntities}}.push(e);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ assert(!\mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\_\_freeEntities}}.empty());}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\string~ECS}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \#\#\ 'FUCK'\ all\ entities\ \#\#}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ an\ entity.\ Remove\ a\ free\ entity\ and\ count\ it\ as\ a\ living\ one.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}()}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\_\_livingEntities}}\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \textcolor{keywordtype}{id}\ =\ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\_\_freeEntities}}.front();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\_\_freeEntities}}.pop();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\_\_livingEntities}}++;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ id;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}[e].reset();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\_\_freeEntities}}.push(e);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\_\_livingEntities}}-\/-\/;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}\ \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{getSignature}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.find(e);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.end())}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}();\ \textcolor{comment}{//\ An\ empty\ bitset}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second;\ \textcolor{comment}{//\ The\ Entity\ is\ first\ in\ the\ unordered\ map,\ their\ signature\ is\ second}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{setSignature}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e,\ \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}\ sig)}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ assert(e\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}[e]\ =\ sig;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \#\#\#\ Composant\ manager\ \#\#\#}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 'FUCK'\ All\ type\ components\ to\ an\ entity}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e,\ \textcolor{keyword}{const}\ ComponentType\ \&component)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ typeID\ =\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID<ComponentType>}}();\ \textcolor{comment}{//\ Fetch\ the\ TypeID\ of\ this\ ComponentType}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{verifyComponentStorage<ComponentType>}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typeID}});}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classStorageComponent}{StorageComponent<ComponentType>}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typeID}}]);\ \textcolor{comment}{//\ Get\ the\ storage\ of\ the\ componant\ type}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}-\/>\mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}},\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}});\ \ \ \ \ \textcolor{comment}{//\ Add\ in\ storage}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}].set(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typeID}});\ \ \ \ \textcolor{comment}{//\ Set\ signature\ for\ the\ new\ added\ component}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Used\ for\ multipple\ add\ call\ with\ one\ function}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See\ 'Perfect\ Forwarding'\ and\ 'Forwarding\ reference\ pattern'}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ...\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ComponentType}}>}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}},\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ComponentType}}\ \&\&\ ...\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Components}})}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Memory\ optimization\ -\/>\ one\ mov\ or\ one\ copy\ per\ argument\ instead\ of\ 1+\ copy}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Usefull\ for\ BIG\ components}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{addComponent<std::decay\_t<ComponentType>}}>(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}},\ std::forward<ComponentType>(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Components}})),\ ...);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decay\ gives\ the\ raw\ type\ of\ one\ components}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ forward\ transfers\ the\ argument\ proprely\ into\ addComponent()}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...\ is\ a\ fold\ expression,\ it\ will\ do\ addComponent\ for\ each\ Components}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{hasComponent}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{assert}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}\ <\ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\_ENTITIES}});}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ =\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID<ComponentType>}}();}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Signatures\ are\ telling\ if\ entity\ SHOULD\ have\ a\ component\ or\ not}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ MAY\ be\ possible\ that\ an\ entity\ has\ a\ component\ set,\ but\ signature\ denies\ it.}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ trust\ Signature,\ All\ composents\ will\ be\ destroyed\ proprely\ at\ \string~ECS}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ =\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.find(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ ==\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.end())}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}-\/>second.test(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}))}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Signature\ say\ entity\ SHOULD\ have\ this,\ for\ safety\ we\ do\ internal\ checks}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ >=\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}.size())}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classStorageComponent}{StorageComponent<ComponentType>}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}-\/>\mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ComponentType}}\ *\mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{getConstComponent}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ =\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID<ComponentType>}}();}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ =\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.find(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ ==\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.end())}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}-\/>second.test(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}))}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ >=\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}.size())}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classStorageComponent}{StorageComponent<ComponentType>}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}-\/>\mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ComponentType}}\ *\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ =\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID<ComponentType>}}();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ =\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.find(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ ==\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.end())}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}-\/>second.test(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}))}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ >=\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}.size())}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classStorageComponent}{StorageComponent<ComponentType>}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}-\/>\mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ THIS\ IS\ SO\ USEFULL\ FOR\ SYSTEMS\ UPDATES\ +\ MORE\ OPTIMIZED\ FOR\ THE\ SYSTEM}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ...\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ComponentType}}>}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ std::vector<Entity>\ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}()}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Entity>\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{validEntities}};\ \textcolor{comment}{//\ Entities\ having\ the\ following\ ComponentTypes}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{requiredSignature}};\ \textcolor{comment}{//\ This\ is\ a\ combinaison\ of\ all\ required\ component\ in\ one\ signature.}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ will\ be\ compared\ to\ the\ Entity\ signature\ with\ bit\ manipulation}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ will\ set\ bits\ of\ the\ required\ components}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{requiredSignature}}.set(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID<ComponentType>}}()),\ ...);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{entity}},\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{signature}}]\ :\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}})}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ entity\ has\ all\ required\ components}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{signature}}\ \&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{requiredSignature}})\ ==\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{requiredSignature}})}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{validEntities}}.push\_back(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{entity}});}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Could\ to\ a\ \_cacheQuery\ later}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stock\ last\ vector<Entity>\ and\ return\ it\ in\ case\ of\ same\ request\ with\ requiredSignature}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{validEntities}};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{killComponent}}(\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ =\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{getComponentID<ComponentType>}}();}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ =\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.find(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}\ ==\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}.end())}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{it}}-\/>second.test(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}))}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ >=\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}.size())}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classStorageComponent}{StorageComponent<ComponentType>}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{storage}}-\/>\mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}});}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}].reset(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}});}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\_\_livingEntities}}\ =\ 0;}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ entities\ not\ used\ yet}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ std::queue<Entity>\ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\_\_freeEntities}};}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmask\ used\ for\ linking\ entiteis\ to\ their\ component}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ std::unordered\_map<Entity,\ Signature>\ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\_\_signatures}};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ std::vector<void\ *>\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}};\ \textcolor{comment}{//\ void*\ are\ std::Vector<ComponentType>\ from\ storageComponent\ class}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CHANGE\ void\ *\ INTO\ IComponentStorage\ and\ unique\_ptr\ later}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Also\ change\ the\ static\_cast\ once\ IComponent\ created\ (std::vector<std::unique\_ptr<IComponentStorage>>)}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ComponentType>}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verifyComponentStorage}}(\mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{ComponentTypeID}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}})}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ types\ storage\ size\ if\ full\ and\ add\ them\ if\ not\ existing}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ that\ \_componentStorage\ is\ pointing\ toward\ a\ StorageComponent\ instance}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Resize\ the\ vector\ if\ storage\ is\ full}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ >=\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}.size())}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}.resize(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}\ +\ 1,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ new\ Component\ Type\ Storage\ if\ not\ existing\ at\ TypeID}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\_\_componentStorage}}[\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{TypeID}}]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{StorageComponent<ComponentType>}}();}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \};}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \textcolor{comment}{//\ DONT\ FORGET\ TO\ DESTROY\ PROPRELY\ COMPONENTS\ IN\ \string~ECS()}}
+\DoxyCodeLine{00335\ \textcolor{comment}{//\ Right\ now:\ Always\ Trusting\ signature\ "{}Inshallah"{}}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \textcolor{comment}{//\ \#\#\#\ ISYSTEM\ CLASS\ \#\#\#}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \textcolor{comment}{//\ ISystem\ interface\ for\ creating\ systems}}
+\DoxyCodeLine{00341\ \textcolor{comment}{//\ system\ are\ used\ to\ update\ component\ at\ a\ certain\ delta\ time\ (dt)}}
+\DoxyCodeLine{00342\ \textcolor{comment}{//\ It\ performs\ logic\ and\ calculations\ of\ components\ at\ dt.}}
+\DoxyCodeLine{00343\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classISystem}{ISystem}}}
+\DoxyCodeLine{00344\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}}(\mbox{\hyperlink{classECS}{ECS}}\ \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa}{\_ecs}}(\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})\ \{\};}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\string~ISystem}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{update}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})\ =\ 0;\ \textcolor{comment}{//\ Double\ is\ 2\ more\ precise\ than\ a\ float}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS}{ECS}}\ \&\mbox{\hyperlink{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa}{\_ecs}};}
+\DoxyCodeLine{00354\ \};}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ECS\_HPP\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

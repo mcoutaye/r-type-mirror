@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>R-Type Network: Référence de la classe Nwk::UdpServer</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">R-Type Network<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Documentation du module réseau pour R-Type Mirror</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classNwk_1_1UdpServer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="#pri-methods">Fonctions membres privées</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
+<a href="classNwk_1_1UdpServer-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle"><div class="title">Référence de la classe Nwk::UdpServer</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Serveur UDP dédié au gameplay en temps réel.  
+ <a href="classNwk_1_1UdpServer.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="UdpServer_8hpp_source.html">UdpServer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe de collaboration de Nwk::UdpServer:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classNwk_1_1UdpServer__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a51f9d9aa2d44685d1129908522164bd2" id="r_a51f9d9aa2d44685d1129908522164bd2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a51f9d9aa2d44685d1129908522164bd2">UdpServer</a> (<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a> port)</td></tr>
+<tr class="memdesc:a51f9d9aa2d44685d1129908522164bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur.  <br /></td></tr>
+<tr class="separator:a51f9d9aa2d44685d1129908522164bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a192e05f241ac7da2de16109654165477" id="r_a192e05f241ac7da2de16109654165477"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a192e05f241ac7da2de16109654165477">~UdpServer</a> ()</td></tr>
+<tr class="memdesc:a192e05f241ac7da2de16109654165477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur Arrête les threads et libère le port UDP proprement.  <br /></td></tr>
+<tr class="separator:a192e05f241ac7da2de16109654165477"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc02960a410d923f05c1e54e7bd0d44f" id="r_acc02960a410d923f05c1e54e7bd0d44f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#acc02960a410d923f05c1e54e7bd0d44f">start</a> ()</td></tr>
+<tr class="memdesc:acc02960a410d923f05c1e54e7bd0d44f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Démarre le serveur UDP Bind le socket et lance les threads de réception/envoi.  <br /></td></tr>
+<tr class="separator:acc02960a410d923f05c1e54e7bd0d44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47974964253561b19de653f8d841aa7b" id="r_a47974964253561b19de653f8d841aa7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a47974964253561b19de653f8d841aa7b">stop</a> ()</td></tr>
+<tr class="memdesc:a47974964253561b19de653f8d841aa7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrête le serveur Ferme le socket et signale l'arrêt des threads.  <br /></td></tr>
+<tr class="separator:a47974964253561b19de653f8d841aa7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c9f8678b6abbed782b3df1e53a4b44" id="r_a12c9f8678b6abbed782b3df1e53a4b44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a12c9f8678b6abbed782b3df1e53a4b44">join</a> ()</td></tr>
+<tr class="memdesc:a12c9f8678b6abbed782b3df1e53a4b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attend la fin des threads.  <br /></td></tr>
+<tr class="separator:a12c9f8678b6abbed782b3df1e53a4b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56edbf49516f13d0f0dc70457ade6139" id="r_a56edbf49516f13d0f0dc70457ade6139"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a56edbf49516f13d0f0dc70457ade6139">addClient</a> (sf::IpAddress <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a>, <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a> port, <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a> playerId=-1)</td></tr>
+<tr class="memdesc:a56edbf49516f13d0f0dc70457ade6139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un client (manuellement ou auto-détection)  <br /></td></tr>
+<tr class="separator:a56edbf49516f13d0f0dc70457ade6139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9de265284b5877c1567df449e407b04" id="r_ad9de265284b5877c1567df449e407b04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#ad9de265284b5877c1567df449e407b04">removeClient</a> (<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a> playerId)</td></tr>
+<tr class="memdesc:ad9de265284b5877c1567df449e407b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime un client par son playerId.  <br /></td></tr>
+<tr class="separator:ad9de265284b5877c1567df449e407b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcc848339340c1b9a62661683d581b2b" id="r_afcc848339340c1b9a62661683d581b2b"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#afcc848339340c1b9a62661683d581b2b">getClientCount</a> () <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a></td></tr>
+<tr class="memdesc:afcc848339340c1b9a62661683d581b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne le nombre de clients connectés.  <br /></td></tr>
+<tr class="separator:afcc848339340c1b9a62661683d581b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04f098a13bca26a1b499c938b20f454" id="r_af04f098a13bca26a1b499c938b20f454"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> std::vector&lt; std::unique_ptr&lt; <a class="el" href="classNwk_1_1ClientInfo.html">ClientInfo</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#af04f098a13bca26a1b499c938b20f454">getClients</a> () <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a></td></tr>
+<tr class="memdesc:af04f098a13bca26a1b499c938b20f454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accède à la liste complète des clients (lecture seule)  <br /></td></tr>
+<tr class="separator:af04f098a13bca26a1b499c938b20f454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:abef70c1da14195bb3d81aa6d9cf506cc" id="r_abef70c1da14195bb3d81aa6d9cf506cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNwk_1_1SafeQueue.html">SafeQueue</a>&lt; std::pair&lt; <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a>, <a class="el" href="structNwk_1_1InputState.html">InputState</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#abef70c1da14195bb3d81aa6d9cf506cc">receivedInputs</a></td></tr>
+<tr class="memdesc:abef70c1da14195bb3d81aa6d9cf506cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">File contenant les inputs reçus, associés à leur playerId.  <br /></td></tr>
+<tr class="separator:abef70c1da14195bb3d81aa6d9cf506cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7be5c496383114e32ed27eac6496e35a" id="r_a7be5c496383114e32ed27eac6496e35a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNwk_1_1SafeQueue.html">SafeQueue</a>&lt; <a class="el" href="structNwk_1_1PacketToSend.html">PacketToSend</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a7be5c496383114e32ed27eac6496e35a">packetsToSend</a></td></tr>
+<tr class="memdesc:a7be5c496383114e32ed27eac6496e35a"><td class="mdescLeft">&#160;</td><td class="mdescRight">File contenant les paquets à envoyer (destination + données brutes)  <br /></td></tr>
+<tr class="separator:a7be5c496383114e32ed27eac6496e35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Fonctions membres privées</h2></td></tr>
+<tr class="memitem:a90f50bba734719820593228ee7388578" id="r_a90f50bba734719820593228ee7388578"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a90f50bba734719820593228ee7388578">receiveThread</a> ()</td></tr>
+<tr class="memdesc:a90f50bba734719820593228ee7388578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread de réception des paquets UDP Identifie le client, ajoute s'il est nouveau, et pousse les inputs dans receivedInputs.  <br /></td></tr>
+<tr class="separator:a90f50bba734719820593228ee7388578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9bcef70549c51db0a178885bdae3176" id="r_aa9bcef70549c51db0a178885bdae3176"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#aa9bcef70549c51db0a178885bdae3176">sendThread</a> ()</td></tr>
+<tr class="memdesc:aa9bcef70549c51db0a178885bdae3176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread d'envoi des paquets en attente Consomme packetsToSend et envoie aux destinations.  <br /></td></tr>
+<tr class="separator:aa9bcef70549c51db0a178885bdae3176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadb5e3e0e4340ac2073d900fcd59486e" id="r_aadb5e3e0e4340ac2073d900fcd59486e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNwk_1_1ClientInfo.html">ClientInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#aadb5e3e0e4340ac2073d900fcd59486e">findClient</a> (<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> sf::IpAddress &amp;<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">ip</a>, <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a> port)</td></tr>
+<tr class="memdesc:aadb5e3e0e4340ac2073d900fcd59486e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche un client existant par adresse et port.  <br /></td></tr>
+<tr class="separator:aadb5e3e0e4340ac2073d900fcd59486e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:a4929928aaddb07b0e8c0739bed44b182" id="r_a4929928aaddb07b0e8c0739bed44b182"><td class="memItemLeft" align="right" valign="top">sf::UdpSocket&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a4929928aaddb07b0e8c0739bed44b182">m_socket</a></td></tr>
+<tr class="memdesc:a4929928aaddb07b0e8c0739bed44b182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Socket UDP principal.  <br /></td></tr>
+<tr class="separator:a4929928aaddb07b0e8c0739bed44b182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95836d57eeaed993e64302c5a86ffd11" id="r_a95836d57eeaed993e64302c5a86ffd11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a95836d57eeaed993e64302c5a86ffd11">m_port</a></td></tr>
+<tr class="memdesc:a95836d57eeaed993e64302c5a86ffd11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port d'écoute.  <br /></td></tr>
+<tr class="separator:a95836d57eeaed993e64302c5a86ffd11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2481a3c41f2706987ec88ba7868cdac1" id="r_a2481a3c41f2706987ec88ba7868cdac1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="classNwk_1_1ClientInfo.html">ClientInfo</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a2481a3c41f2706987ec88ba7868cdac1">m_clients</a></td></tr>
+<tr class="memdesc:a2481a3c41f2706987ec88ba7868cdac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste des clients connectés.  <br /></td></tr>
+<tr class="separator:a2481a3c41f2706987ec88ba7868cdac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44054db91cb788804c57810f157ddb92" id="r_a44054db91cb788804c57810f157ddb92"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a44054db91cb788804c57810f157ddb92">m_clientCount</a> = 0</td></tr>
+<tr class="memdesc:a44054db91cb788804c57810f157ddb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compteur rapide.  <br /></td></tr>
+<tr class="separator:a44054db91cb788804c57810f157ddb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bea47aabdd439a979a16d29f3a8619" id="r_a05bea47aabdd439a979a16d29f3a8619"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a05bea47aabdd439a979a16d29f3a8619">m_running</a> {<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">false</a>}</td></tr>
+<tr class="memdesc:a05bea47aabdd439a979a16d29f3a8619"><td class="mdescLeft">&#160;</td><td class="mdescRight">État d'exécution des threads.  <br /></td></tr>
+<tr class="separator:a05bea47aabdd439a979a16d29f3a8619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a998cb5dac4ef98a2a1cfcf1196a53dbc" id="r_a998cb5dac4ef98a2a1cfcf1196a53dbc"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a998cb5dac4ef98a2a1cfcf1196a53dbc">m_recvThread</a></td></tr>
+<tr class="memdesc:a998cb5dac4ef98a2a1cfcf1196a53dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread réception.  <br /></td></tr>
+<tr class="separator:a998cb5dac4ef98a2a1cfcf1196a53dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d8868c50ace29ff0f9513f9186d1e09" id="r_a0d8868c50ace29ff0f9513f9186d1e09"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNwk_1_1UdpServer.html#a0d8868c50ace29ff0f9513f9186d1e09">m_sendThread</a></td></tr>
+<tr class="memdesc:a0d8868c50ace29ff0f9513f9186d1e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread envoi.  <br /></td></tr>
+<tr class="separator:a0d8868c50ace29ff0f9513f9186d1e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Serveur UDP dédié au gameplay en temps réel. </p>
+<p>Gère :</p><ul>
+<li>La réception des <a class="el" href="structNwk_1_1InputState.html" title="État des inputs du joueur (1 octet)">InputState</a> des clients</li>
+<li>L'envoi de snapshots (<a class="el" href="structNwk_1_1EntityUpdate.html" title="Mise à jour minimale d&#39;une entité du jeu (12 octets)">EntityUpdate</a>) à tous les clients connectés</li>
+</ul>
+<p>Les clients sont automatiquement ajoutés à la réception du premier paquet. Utilise deux threads dédiés et des files thread-safe. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a51f9d9aa2d44685d1129908522164bd2" name="a51f9d9aa2d44685d1129908522164bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51f9d9aa2d44685d1129908522164bd2">&#9670;&#160;</a></span>UdpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Nwk::UdpServer::UdpServer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a>&#160;</td>
+          <td class="paramname"><em>port</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructeur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>Port UDP sur lequel le serveur écoute (par défaut configurable) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a192e05f241ac7da2de16109654165477" name="a192e05f241ac7da2de16109654165477"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a192e05f241ac7da2de16109654165477">&#9670;&#160;</a></span>~UdpServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Nwk::UdpServer::~UdpServer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructeur Arrête les threads et libère le port UDP proprement. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a56edbf49516f13d0f0dc70457ade6139" name="a56edbf49516f13d0f0dc70457ade6139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56edbf49516f13d0f0dc70457ade6139">&#9670;&#160;</a></span>addClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a> Nwk::UdpServer::addClient </td>
+          <td>(</td>
+          <td class="paramtype">sf::IpAddress&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a>&#160;</td>
+          <td class="paramname"><em>playerId</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute un client (manuellement ou auto-détection) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ip</td><td>Adresse IP du client </td></tr>
+    <tr><td class="paramname">port</td><td>Port source du client </td></tr>
+    <tr><td class="paramname">playerId</td><td>ID à assigner (-1 = auto-incrément) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>true si ajouté ou déjà présent </dd></dl>
+
+</div>
+</div>
+<a id="aadb5e3e0e4340ac2073d900fcd59486e" name="aadb5e3e0e4340ac2073d900fcd59486e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb5e3e0e4340ac2073d900fcd59486e">&#9670;&#160;</a></span>findClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNwk_1_1ClientInfo.html">ClientInfo</a> * Nwk::UdpServer::findClient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> sf::IpAddress &amp;&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a>&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recherche un client existant par adresse et port. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ip</td><td>Adresse IP </td></tr>
+    <tr><td class="paramname">port</td><td>Port source </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers <a class="el" href="classNwk_1_1ClientInfo.html" title="Informations sur un client UDP connecté">ClientInfo</a> ou nullptr </dd></dl>
+
+</div>
+</div>
+<a id="afcc848339340c1b9a62661683d581b2b" name="afcc848339340c1b9a62661683d581b2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcc848339340c1b9a62661683d581b2b">&#9670;&#160;</a></span>getClientCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t Nwk::UdpServer::getClientCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne le nombre de clients connectés. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Nombre actuel de clients </dd></dl>
+
+</div>
+</div>
+<a id="af04f098a13bca26a1b499c938b20f454" name="af04f098a13bca26a1b499c938b20f454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04f098a13bca26a1b499c938b20f454">&#9670;&#160;</a></span>getClients()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> std::vector&lt; std::unique_ptr&lt; <a class="el" href="classNwk_1_1ClientInfo.html">ClientInfo</a> &gt; &gt; &amp; Nwk::UdpServer::getClients </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Accède à la liste complète des clients (lecture seule) </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Référence constante vers le vecteur de clients </dd></dl>
+
+</div>
+</div>
+<a id="a12c9f8678b6abbed782b3df1e53a4b44" name="a12c9f8678b6abbed782b3df1e53a4b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c9f8678b6abbed782b3df1e53a4b44">&#9670;&#160;</a></span>join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::UdpServer::join </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attend la fin des threads. </p>
+
+</div>
+</div>
+<a id="a90f50bba734719820593228ee7388578" name="a90f50bba734719820593228ee7388578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f50bba734719820593228ee7388578">&#9670;&#160;</a></span>receiveThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::UdpServer::receiveThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thread de réception des paquets UDP Identifie le client, ajoute s'il est nouveau, et pousse les inputs dans receivedInputs. </p>
+
+</div>
+</div>
+<a id="ad9de265284b5877c1567df449e407b04" name="ad9de265284b5877c1567df449e407b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9de265284b5877c1567df449e407b04">&#9670;&#160;</a></span>removeClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::UdpServer::removeClient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a>&#160;</td>
+          <td class="paramname"><em>playerId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime un client par son playerId. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playerId</td><td>ID du joueur à retirer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa9bcef70549c51db0a178885bdae3176" name="aa9bcef70549c51db0a178885bdae3176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9bcef70549c51db0a178885bdae3176">&#9670;&#160;</a></span>sendThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::UdpServer::sendThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thread d'envoi des paquets en attente Consomme packetsToSend et envoie aux destinations. </p>
+
+</div>
+</div>
+<a id="acc02960a410d923f05c1e54e7bd0d44f" name="acc02960a410d923f05c1e54e7bd0d44f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc02960a410d923f05c1e54e7bd0d44f">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a> Nwk::UdpServer::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Démarre le serveur UDP Bind le socket et lance les threads de réception/envoi. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si le bind réussit </dd></dl>
+
+</div>
+</div>
+<a id="a47974964253561b19de653f8d841aa7b" name="a47974964253561b19de653f8d841aa7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47974964253561b19de653f8d841aa7b">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">void</a> Nwk::UdpServer::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arrête le serveur Ferme le socket et signale l'arrêt des threads. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="a44054db91cb788804c57810f157ddb92" name="a44054db91cb788804c57810f157ddb92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44054db91cb788804c57810f157ddb92">&#9670;&#160;</a></span>m_clientCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t Nwk::UdpServer::m_clientCount = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compteur rapide. </p>
+
+</div>
+</div>
+<a id="a2481a3c41f2706987ec88ba7868cdac1" name="a2481a3c41f2706987ec88ba7868cdac1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2481a3c41f2706987ec88ba7868cdac1">&#9670;&#160;</a></span>m_clients</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="classNwk_1_1ClientInfo.html">ClientInfo</a>&gt; &gt; Nwk::UdpServer::m_clients</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liste des clients connectés. </p>
+
+</div>
+</div>
+<a id="a95836d57eeaed993e64302c5a86ffd11" name="a95836d57eeaed993e64302c5a86ffd11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95836d57eeaed993e64302c5a86ffd11">&#9670;&#160;</a></span>m_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">unsigned</a> <a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">short</a> Nwk::UdpServer::m_port</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Port d'écoute. </p>
+
+</div>
+</div>
+<a id="a998cb5dac4ef98a2a1cfcf1196a53dbc" name="a998cb5dac4ef98a2a1cfcf1196a53dbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a998cb5dac4ef98a2a1cfcf1196a53dbc">&#9670;&#160;</a></span>m_recvThread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread Nwk::UdpServer::m_recvThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thread réception. </p>
+
+</div>
+</div>
+<a id="a05bea47aabdd439a979a16d29f3a8619" name="a05bea47aabdd439a979a16d29f3a8619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05bea47aabdd439a979a16d29f3a8619">&#9670;&#160;</a></span>m_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a>&gt; Nwk::UdpServer::m_running {<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">false</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>État d'exécution des threads. </p>
+
+</div>
+</div>
+<a id="a0d8868c50ace29ff0f9513f9186d1e09" name="a0d8868c50ace29ff0f9513f9186d1e09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d8868c50ace29ff0f9513f9186d1e09">&#9670;&#160;</a></span>m_sendThread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread Nwk::UdpServer::m_sendThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thread envoi. </p>
+
+</div>
+</div>
+<a id="a4929928aaddb07b0e8c0739bed44b182" name="a4929928aaddb07b0e8c0739bed44b182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4929928aaddb07b0e8c0739bed44b182">&#9670;&#160;</a></span>m_socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::UdpSocket Nwk::UdpServer::m_socket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Socket UDP principal. </p>
+
+</div>
+</div>
+<a id="a7be5c496383114e32ed27eac6496e35a" name="a7be5c496383114e32ed27eac6496e35a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be5c496383114e32ed27eac6496e35a">&#9670;&#160;</a></span>packetsToSend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNwk_1_1SafeQueue.html">SafeQueue</a>&lt;<a class="el" href="structNwk_1_1PacketToSend.html">PacketToSend</a>&gt; Nwk::UdpServer::packetsToSend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>File contenant les paquets à envoyer (destination + données brutes) </p>
+
+</div>
+</div>
+<a id="abef70c1da14195bb3d81aa6d9cf506cc" name="abef70c1da14195bb3d81aa6d9cf506cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abef70c1da14195bb3d81aa6d9cf506cc">&#9670;&#160;</a></span>receivedInputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNwk_1_1SafeQueue.html">SafeQueue</a>&lt;std::pair&lt;<a class="el" href="ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">int</a>, <a class="el" href="structNwk_1_1InputState.html">InputState</a>&gt; &gt; Nwk::UdpServer::receivedInputs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>File contenant les inputs reçus, associés à leur playerId. </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>include/network/<a class="el" href="UdpServer_8hpp_source.html">UdpServer.hpp</a></li>
+<li>src/server/<a class="el" href="UdpServer_8cpp.html">UdpServer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceNwk.html">Nwk</a></li><li class="navelem"><a class="el" href="classNwk_1_1UdpServer.html">UdpServer</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

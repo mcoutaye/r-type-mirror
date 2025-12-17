@@ -1,0 +1,91 @@
+# =============================================================================
+# Doxyfile complet pour le module réseau R-Type Mirror
+# Optimisé pour : README.md comme page d'accueil + thème moderne + diagrammes SVG
+# =============================================================================
+
+# ----------------------------- Projet ---------------------------------------
+PROJECT_NAME           = "R-Type Network"
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Documentation du module réseau pour R-Type Mirror"
+PROJECT_LOGO           = path/to/logo.png          # Optionnel : chemin vers ton logo (PNG ou SVG)
+
+# ----------------------------- Entrées --------------------------------------
+INPUT                  = include src .             # . pour inclure README.md à la racine
+RECURSIVE              = YES
+
+# Exclusions
+EXCLUDE                = build .git CMakeFiles cmake-build-*
+EXCLUDE_PATTERNS       = */tests/* */external/*
+
+# ----------------------------- Page d'accueil -------------------------------
+# Utilisation de README.md comme page principale (méthode moderne)
+USE_MDFILE_AS_MAINPAGE = mainpage.md
+
+# Support Markdown (obligatoire pour README.md et commandes Doxygen dedans)
+MARKDOWN_SUPPORT       = YES
+
+# ----------------------------- Sortie ---------------------------------------
+OUTPUT_DIRECTORY       = docs
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
+GENERATE_LATEX         = YES                       # Optionnel : pour générer un PDF
+
+# ----------------------------- Thème et style HTML ---------------------------
+# Thème moderne fortement recommandé : doxygen-awesome-css
+HTML_EXTRA_STYLESHEET  = doxygen-awesome.css
+# Tu peux ajouter d'autres CSS personnalisés si besoin
+# HTML_COLORSTYLE        = LIGHT   # ou DARK pour thème sombre par défaut
+
+# Barre de recherche
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO                        # Recherche côté client (plus rapide)
+
+# Sidebar et navigation
+GENERATE_TREEVIEW      = YES
+FULL_SIDEBAR           = NO                        # Sidebar minimal et élégant
+DISABLE_INDEX          = NO
+
+# ----------------------------- Diagrammes Graphviz --------------------------
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES                       # SVG zoomables et cliquables
+DOT_GRAPH_MAX_NODES    = 100                       # Augmenté pour projets complexes
+MAX_DOT_GRAPH_DEPTH    = 0                         # Pas de limite en profondeur
+
+CLASS_DIAGRAMS         = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+GRAPHICAL_HIERARCHY    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = YES
+
+# ----------------------------- Images ----------------------------------------
+IMAGE_PATH             = assets                    # Dossier contenant network_overview.png, etc.
+
+# ----------------------------- Options de documentation ---------------------
+EXTRACT_ALL            = YES                       # Documente même sans commentaires
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+JAVADOC_AUTOBRIEF       = YES
+
+# Fichiers à analyser
+FILE_PATTERNS          = *.cpp *.hpp *.h *.cc *.cxx *.hh *.cxx *.md
+
+# ----------------------------- Langue ----------------------------------------
+OUTPUT_LANGUAGE        = French
+
+# ----------------------------- Autres options utiles ------------------------
+QUIET                  = NO                        # Affiche les warnings (utile en dev)
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO                        # Moins de bruit si tu n'as pas tout documenté
+
+# Optimisations
+DOT_CLEANUP            = YES

@@ -1,0 +1,116 @@
+\doxysection{Référence du modèle de la classe Storage\+Component\texorpdfstring{$<$}{<} Component\+Type \texorpdfstring{$>$}{>}}
+\hypertarget{classStorageComponent}{}\label{classStorageComponent}\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+
+
+{\ttfamily \#include $<$ecs.\+hpp$>$}
+
+
+
+Graphe de collaboration de Storage\+Component\texorpdfstring{$<$}{<} Component\+Type \texorpdfstring{$>$}{>}\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{classStorageComponent__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStorageComponent_a775ec7b9f2f8fefc08266f39dfa6fece}{Storage\+Component}} ()
+\item 
+\mbox{\hyperlink{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}{\texorpdfstring{$\sim$}{\string~}\+Storage\+Component}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}{get}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \mbox{\hyperlink{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}{\+\_\+\+\_\+\+Storage}}
+\item 
+std\+::bitset$<$ \mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} $>$ \mbox{\hyperlink{classStorageComponent_a98f0fc714398265edc15803941cf552d}{\+\_\+\+\_\+checker}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classStorageComponent_a775ec7b9f2f8fefc08266f39dfa6fece}\label{classStorageComponent_a775ec7b9f2f8fefc08266f39dfa6fece} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!StorageComponent@{StorageComponent}}
+\index{StorageComponent@{StorageComponent}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{StorageComponent()}{StorageComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\mbox{\hyperlink{classStorageComponent}{\+::\+Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}\label{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!````~StorageComponent@{\texorpdfstring{$\sim$}{\string~}StorageComponent}}
+\index{````~StorageComponent@{\texorpdfstring{$\sim$}{\string~}StorageComponent}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StorageComponent()}{\string~StorageComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classStorageComponent}{Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classStorageComponent_aafb0684b10615747aab071b895d97d47}\label{classStorageComponent_aafb0684b10615747aab071b895d97d47} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!add@{add}}
+\index{add@{add}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}\label{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!get@{get}}
+\index{get@{get}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}\label{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!get@{get}}
+\index{get@{get}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}\label{classStorageComponent_a6de145a1ea5570363f566ab9fce66578} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!has@{has}}
+\index{has@{has}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{has()}{has()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::has (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}\label{classStorageComponent_a9584f43386171c9196aa127830fbbf5a} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!kill@{kill}}
+\index{kill@{kill}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::kill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classStorageComponent_a98f0fc714398265edc15803941cf552d}\label{classStorageComponent_a98f0fc714398265edc15803941cf552d} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!\_\_checker@{\_\_checker}}
+\index{\_\_checker@{\_\_checker}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{\_\_checker}{\_\_checker}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+std\+::bitset$<$\mbox{\hyperlink{ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}}$>$ \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\+\_\+\+\_\+checker\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d}\label{classStorageComponent_a53fb07ad6f26b1edcb7c9ad0335f326d} 
+\index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!\_\_Storage@{\_\_Storage}}
+\index{\_\_Storage@{\_\_Storage}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
+\doxysubsubsection{\texorpdfstring{\_\_Storage}{\_\_Storage}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+std\+::vector$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}}$>$ \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\+\_\+\+\_\+\+Storage\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{ecs_8hpp}{ecs.\+hpp}}\end{DoxyCompactItemize}

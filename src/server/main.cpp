@@ -5,9 +5,9 @@
 ** main
 */
 
-#include "UdpServer.hpp"
-#include "TcpServer.hpp"
-#include "NetworkProtocol.hpp"
+#include "network/UdpServer.hpp"
+#include "network/TcpServer.hpp"
+#include "network/NetworkProtocol.hpp"
 #include <iostream>
 #include <csignal>
 #include <random>

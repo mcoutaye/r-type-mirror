@@ -5,6 +5,14 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(SFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_AUDIO OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_GRAPHICS ON CACHE BOOL "" FORCE)
+set(SFML_BUILD_WINDOW ON CACHE BOOL "" FORCE)
+set(SFML_BUILD_NETWORK ON CACHE BOOL "" FORCE)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+
 if(UNIX AND NOT APPLE)
     include(CheckIncludeFile)
     check_include_file("X11/Xcursor/Xcursor.h" HAVE_XCURSOR_H)
@@ -29,21 +37,21 @@ if(UNIX AND NOT APPLE)
     endif()
 endif()
 
-include(FetchContent)
-FetchContent_Declare(
-    SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.1
-)
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_AUDIO OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_GRAPHICS OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_WINDOW OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_NETWORK ON CACHE BOOL "" FORCE)
+find_package(SFML 2.6 COMPONENTS graphics window system network QUIET)
 
-FetchContent_MakeAvailable(SFML)
+if(SFML_FOUND)
+    message(STATUS "SFML trouvée sur le système (version ${SFML_VERSION}). Utilisation de cette version.")
+else()
+    message(STATUS "SFML non trouvée sur le système. Téléchargement et compilation via FetchContent...")
+
+    include(FetchContent)
+    FetchContent_Declare(
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG        2.6.1
+    )
+    FetchContent_MakeAvailable(SFML)
+endif()
 
 add_subdirectory(src/server)
 add_subdirectory(src/client)

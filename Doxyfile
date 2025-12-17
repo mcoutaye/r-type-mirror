@@ -35,6 +35,8 @@ DOT_NODE_ATTR          = "shape=box,style=filled,fillcolor=lightblue"  # Style d
 DOT_EDGE_ATTR          = "arrowhead=normal,color=blue"  # Style des arêtes
 DOT_GRAPH_MAX_NODES    = 50   # Limite les noeuds par graph (augmente si besoin)
 MAX_DOT_GRAPH_DEPTH    = 0
+CALL_GRAPH = YES
+CALLER_GRAPH = YES
 
 
 # Sorties : HTML principal, avec thème moderne
@@ -63,7 +65,7 @@ EXTRACT_PRIVATE        = YES  # Inclut membres privés
 EXTRACT_STATIC         = YES  # Inclut static
 ENABLE_PREPROCESSING   = YES  # Traite macros
 FILE_PATTERNS          = *.cpp *.hpp *.h *.cc *.cxx *.md  # Fichiers à scanner
-IMAGE_PATH             = assets  # Dossier pour images dans la doc
+IMAGE_PATH             = .  # Dossier pour images dans la doc
 GENERATE_TREEVIEW      = YES  # Arborescence latérale en HTML
 FULL_SIDEBAR           = NO   # Sidebar complet ou minimal
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_0',['Documentation du Projet R-Type',['../index.html',1,'']]]
+  ['type_20game_20engine_0',['R-Type Game Engine',['../index.html',1,'']]]
 ];

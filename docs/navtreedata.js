@@ -25,7 +25,38 @@
 var NAVTREE =
 [
   [ "R-Type Game Engine", "index.html", [
-    [ "Documentation du Projet R-Type", "index.html", "index" ],
+    [ "Documentation de la Game Engine dans le Projet R-Type", "index.html#autotoc_md0", [
+      [ "1. Introduction à la Game Engine", "index.html#autotoc_md1", [
+        [ "Relations clés :", "index.html#autotoc_md2", null ]
+      ] ],
+      [ "2. L'Entity Component System (ECS)", "index.html#autotoc_md3", [
+        [ "Concepts Clés de l'ECS :", "index.html#autotoc_md4", null ],
+        [ "Relations dans l'ECS :", "index.html#autotoc_md5", null ],
+        [ "Exemple de flux :", "index.html#autotoc_md6", null ]
+      ] ],
+      [ "3. Les Composants", "index.html#autotoc_md7", [
+        [ "Exemples principaux :", "index.html#autotoc_md8", null ],
+        [ "Relations :", "index.html#autotoc_md9", null ]
+      ] ],
+      [ "4. Les Systèmes", "index.html#autotoc_md10", [
+        [ "Liste des systèmes (dans <tt>systems/</tt> ) :", "index.html#autotoc_md11", null ],
+        [ "Autres :", "index.html#autotoc_md12", null ],
+        [ "Relations générales des systèmes :", "index.html#autotoc_md13", null ]
+      ] ],
+      [ "5. Utilisation dans le <tt>main.cpp</tt> (Client)", "index.html#autotoc_md14", [
+        [ "Initialisation :", "index.html#autotoc_md15", null ],
+        [ "Setup du Stage :", "index.html#autotoc_md16", null ],
+        [ "Boucle de Jeu :", "index.html#autotoc_md17", null ],
+        [ "Relations dans <tt>main</tt> :", "index.html#autotoc_md18", null ]
+      ] ],
+      [ "6. Relations Globales et Flux", "index.html#autotoc_md19", null ]
+    ] ],
+    [ "Bienvenue dans la Documentation de R-Type", "index.html#autotoc_md20", [
+      [ "Aperçu Général", "index.html#autotoc_md21", null ],
+      [ "Sections Principales", "index.html#autotoc_md22", null ],
+      [ "Comment Naviguer", "index.html#autotoc_md23", null ],
+      [ "Contact", "index.html#autotoc_md24", null ]
+    ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Espaces de nommage", "namespaces.html", [
       [ "Liste des espaces de nommage", "namespaces.html", "namespaces_dup" ],
@@ -61,7 +92,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CollisionSystem_8hpp.html",
-"structComponents_1_1PowerUp.html"
+"structComponents_1_1MovementPattern.html#a13f0421f09618e5eaadcf893f4ea9b6f"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

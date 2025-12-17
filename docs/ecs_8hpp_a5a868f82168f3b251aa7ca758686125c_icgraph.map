@@ -1,0 +1,19 @@
+<map id="getComponentID" name="getComponentID">
+<area shape="rect" id="Node000001" title="Retrieves the unique ID for a given component type." alt="" coords="277,179,409,204"/>
+<area shape="rect" id="Node000002" href="$classECS.html#ab25f63dc0523958d986069505b703c12" title="Adds a component to an entity." alt="" coords="40,5,195,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="328,167,289,105,261,72,228,44,194,29,196,25,231,40,265,68,294,101,332,165"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a9e8a8388bce60d993a5ef04fd42dc0f0" title="Adds delta time to the ECS time." alt="" coords="61,55,173,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="321,170,281,130,255,110,228,94,201,83,173,76,174,71,203,78,231,89,258,106,284,126,325,166"/>
+<area shape="rect" id="Node000004" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="42,104,193,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="304,175,228,143,188,132,189,127,230,138,306,170"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a358206e15202fccfa73017c47af07079" title="Retrieves a read&#45;only pointer to a component." alt="" coords="23,153,211,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="263,185,211,179,212,174,263,180"/>
+<area shape="rect" id="Node000006" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="5,203,229,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="264,202,230,206,229,201,263,197"/>
+<area shape="rect" id="Node000007" href="$classECS.html#a33c16853296e9784dfb558f35dffbd72" title="Checks if an entity has a specific component." alt="" coords="41,252,194,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="304,212,230,242,184,255,182,249,228,237,302,207"/>
+<area shape="rect" id="Node000008" href="$classECS.html#aa790d7ea384b5aad8a2dbe0d2cee1661" title="Removes a specific component from an entity." alt="" coords="42,301,193,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="324,216,283,255,258,275,230,291,194,305,192,300,228,286,255,270,280,251,320,212"/>
+<area shape="rect" id="Node000009" href="$classECS.html#a0d360a43bc140d37953297708afb8b86" title="Verifies and initializes storage for a component type if needed." alt="" coords="9,351,226,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="332,218,293,280,264,313,231,340,204,353,202,348,228,336,261,309,289,277,327,215"/>
+</map>

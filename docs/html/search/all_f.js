@@ -1,12 +1,7 @@
 var searchData=
 [
-  ['playercontroller_0',['PlayerController',['../structComponents_1_1PlayerController.html',1,'Components']]],
-  ['playerid_1',['playerId',['../structComponents_1_1PlayerController.html#ab626bbc7d999b6b1b51d0cb03cd68fd8',1,'Components::PlayerController']]],
-  ['powerup_2',['PowerUp',['../structComponents_1_1PowerUp.html',1,'Components']]],
-  ['powerupsystem_3',['powerupsystem',['../classPowerUpSystem.html',1,'PowerUpSystem'],['../classPowerUpSystem.html#a16f84cdd6212d7bc0a16a0b1783b0b0a',1,'PowerUpSystem::PowerUpSystem()']]],
-  ['powerupsystem_2ehpp_4',['PowerUpSystem.hpp',['../PowerUpSystem_8hpp.html',1,'']]],
-  ['principales_5',['Sections Principales',['../index.html#autotoc_md2',1,'']]],
-  ['processinputs_6',['processInputs',['../classGameEngine.html#af96454fa46424f93e210df5441626c22',1,'GameEngine']]],
-  ['projectile_7',['Projectile',['../structComponents_1_1Projectile.html',1,'Components']]],
-  ['projet_20r_20type_8',['Documentation du Projet R-Type',['../index.html',1,'']]]
+  ['has_0',['has',['../classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578',1,'StorageComponent']]],
+  ['hascomponent_1',['hasComponent',['../classECS.html#a33c16853296e9784dfb558f35dffbd72',1,'ECS']]],
+  ['health_2',['health',['../structComponents_1_1Health.html',1,'Components::Health'],['../structComponents_1_1DestructibleTile.html#a8d0d689563c6bca55859fa66ed833652',1,'Components::DestructibleTile::health']]],
+  ['height_3',['height',['../structComponents_1_1Collider.html#ae3919b40a8818971bdfe1b9e617b65fe',1,'Components::Collider']]]
 ];

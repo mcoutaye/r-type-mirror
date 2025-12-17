@@ -19,8 +19,8 @@ void signalHandler(int) { g_running = false; }
 int main()
 {
     std::signal(SIGINT, signalHandler);
-    TcpServer tcp(53001);
-    UdpServer udp(53000);
+    Nwk::TcpServer tcp(53001);
+    Nwk::UdpServer udp(53000);
     if (!tcp.start() || !udp.start())
         return 1;
     std::cout << "Serveur TCP + UDP lancé. Simulation d'envoi de positions aléatoires via UDP.\n";

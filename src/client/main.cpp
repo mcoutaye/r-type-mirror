@@ -13,8 +13,8 @@
 
 int main()
 {
-    TcpClient tcp("127.0.0.1", 53001);
-    UdpClient udp("127.0.0.1", 53000);
+    Nwk::TcpClient tcp("127.0.0.1", 53001);
+    Nwk::UdpClient udp("127.0.0.1", 53000);
     if (!tcp.start() || !udp.start())
         return 1;
     std::cout << "Client TCP + UDP lancé. Simulation d'envoi d'inputs aléatoires via UDP.\n";

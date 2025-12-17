@@ -29,7 +29,7 @@ int main()
         std::mt19937 gen(rd());
         std::uniform_real_distribution<float> dis(0.0f, 1280.0f);
         while (g_running) {
-            std::vector<EntityUpdate> snapshot;
+            std::vector<Nwk::EntityUpdate> snapshot;
             for (uint32_t id = 1; id <= 5; ++id)
                 snapshot.push_back({id, dis(gen), dis(gen)});
             auto &clients = udp.getClients();
@@ -37,7 +37,7 @@ int main()
                 PacketToSend p;
                 p.destIp = client->address;
                 p.destPort = client->port;
-                p.data.resize(snapshot.size() * sizeof(EntityUpdate));
+                p.data.resize(snapshot.size() * sizeof(Nwk::EntityUpdate));
                 std::memcpy(p.data.data(), snapshot.data(), p.data.size());
                 udp.packetsToSend.push(std::move(p));
             }
@@ -45,7 +45,7 @@ int main()
         }
     });
     while (g_running) {
-        std::pair<int, InputState> input;
+        std::pair<int, Nwk::InputState> input;
         while (udp.receivedInputs.pop(input)) {
             std::cout << "[Server] Input player " << input.first
                     << " → ↑" << int(input.second.up)

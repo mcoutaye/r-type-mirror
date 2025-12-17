@@ -23,7 +23,7 @@ int main()
         std::mt19937 gen(rd());
         std::uniform_int_distribution<int> dis(0, 1);
         while (tcp.isConnected()) {
-            InputState in;
+            Nwk::InputState in;
             in.up = dis(gen);
             in.down = dis(gen);
             in.left = dis(gen);
@@ -35,7 +35,7 @@ int main()
     });
     std::thread recvThread([&]() {
         while (tcp.isConnected()) {
-            std::vector<EntityUpdate> updates;
+            std::vector<Nwk::EntityUpdate> updates;
             if (udp.receivedUpdates.pop(updates)) {
                 std::cout << "Reçu snapshot du serveur :\n";
                 for (const auto& u : updates)

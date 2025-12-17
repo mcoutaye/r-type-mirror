@@ -1,0 +1,37 @@
+\doxysection{Packet\+Interpreter.\+hpp}
+\hypertarget{PacketInterpreter_8hpp_source}{}\label{PacketInterpreter_8hpp_source}\index{src/server/PacketInterpreter.hpp@{src/server/PacketInterpreter.hpp}}
+\mbox{\hyperlink{PacketInterpreter_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Teck3}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ PacketInterpreter}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{UdpReceiver_8hpp}{UdpReceiver.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceNtw}{Ntw}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNtw_1_1PacketInterpreter}{PacketInterpreter}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter}{PacketInterpreter}}(\mbox{\hyperlink{classNtw_1_1UdpReceiver}{UdpReceiver}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{receiver}});}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_a19f9f9d2fc9441e476e999765eda6d80}{\string~PacketInterpreter}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_ab139a2f3a5f971c5d74dbbea12d509af}{start}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_affc32a74906028759d885c0beda68378}{stop}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_a354f712af27560f2d3c39e6d93526f43}{join}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_abc3139782ed24d9b03e7102b9c2efb8f}{interpreterLoop}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1UdpReceiver}{UdpReceiver}}\&\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_aac9898db935cc3938fa1d582a56acaa7}{\_receiver}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ std::queue<ReceivedPacket>\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_a81c7afd6f1c423f9113e64d3b0d34f38}{\_packetBuffer}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ std::mutex\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_a513cb95f4537bf78e8fc80b2f093fbb6}{\_mutex}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ std::thread\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_aabe23eaf6048a3e0001511e05f8ff9a7}{\_thread}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classNtw_1_1PacketInterpreter_a5384091131ad18fef5a99c544dbc36a5}{\_running}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00030\ \ \ \ \ \};}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}

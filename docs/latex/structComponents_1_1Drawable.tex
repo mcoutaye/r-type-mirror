@@ -1,0 +1,107 @@
+\doxysection{Référence de la structure Components\+::Drawable}
+\hypertarget{structComponents_1_1Drawable}{}\label{structComponents_1_1Drawable}\index{Components::Drawable@{Components::Drawable}}
+
+
+Component for rendering entities.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Graphe de collaboration de Components\+::Drawable\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{structComponents_1_1Drawable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structComponents_1_1Drawable_a8ed79e4903e4cfa13344d0be17f6b2b5}{texture\+Id}}
+\begin{DoxyCompactList}\small\item\em ID of the texture to use. \end{DoxyCompactList}\item 
+sf\+::\+Int\+Rect \mbox{\hyperlink{structComponents_1_1Drawable_a872276338aa1dd0b6d8e4fe41c31db3f}{rect}} = \{0, 0, 64, 64\}
+\begin{DoxyCompactList}\small\item\em Rectangle defining the frame in the texture. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{structComponents_1_1Drawable_a5aa1e3aa4ac18f9a8f8e39adc491dd79}{layer}} = 0
+\begin{DoxyCompactList}\small\item\em Rendering layer (lower values drawn first). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{structComponents_1_1Drawable_aad3e7a7496e6ce972bfae04ae33be5cb}{visible}} = \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{true}}
+\begin{DoxyCompactList}\small\item\em Visibility flag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structComponents_1_1Drawable_aabcf151f2540eae3e61f165d0f06eb7c}{scale}} = 1.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}
+\begin{DoxyCompactList}\small\item\em Scale factor for rendering. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structComponents_1_1Drawable_a4d0444dc3ba0bd21e1f3fbcf9603001e}{rotation}} = 0.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}
+\begin{DoxyCompactList}\small\item\em Rotation angle in degrees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Component for rendering entities. 
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{structComponents_1_1Drawable_a5aa1e3aa4ac18f9a8f8e39adc491dd79}\label{structComponents_1_1Drawable_a5aa1e3aa4ac18f9a8f8e39adc491dd79} 
+\index{Components::Drawable@{Components::Drawable}!layer@{layer}}
+\index{layer@{layer}!Components::Drawable@{Components::Drawable}}
+\doxysubsubsection{\texorpdfstring{layer}{layer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Components\+::\+Drawable\+::layer = 0}
+
+
+
+Rendering layer (lower values drawn first). 
+
+\Hypertarget{structComponents_1_1Drawable_a872276338aa1dd0b6d8e4fe41c31db3f}\label{structComponents_1_1Drawable_a872276338aa1dd0b6d8e4fe41c31db3f} 
+\index{Components::Drawable@{Components::Drawable}!rect@{rect}}
+\index{rect@{rect}!Components::Drawable@{Components::Drawable}}
+\doxysubsubsection{\texorpdfstring{rect}{rect}}
+{\footnotesize\ttfamily sf\+::\+Int\+Rect Components\+::\+Drawable\+::rect = \{0, 0, 64, 64\}}
+
+
+
+Rectangle defining the frame in the texture. 
+
+\Hypertarget{structComponents_1_1Drawable_a4d0444dc3ba0bd21e1f3fbcf9603001e}\label{structComponents_1_1Drawable_a4d0444dc3ba0bd21e1f3fbcf9603001e} 
+\index{Components::Drawable@{Components::Drawable}!rotation@{rotation}}
+\index{rotation@{rotation}!Components::Drawable@{Components::Drawable}}
+\doxysubsubsection{\texorpdfstring{rotation}{rotation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Components\+::\+Drawable\+::rotation = 0.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}}
+
+
+
+Rotation angle in degrees. 
+
+\Hypertarget{structComponents_1_1Drawable_aabcf151f2540eae3e61f165d0f06eb7c}\label{structComponents_1_1Drawable_aabcf151f2540eae3e61f165d0f06eb7c} 
+\index{Components::Drawable@{Components::Drawable}!scale@{scale}}
+\index{scale@{scale}!Components::Drawable@{Components::Drawable}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Components\+::\+Drawable\+::scale = 1.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}}
+
+
+
+Scale factor for rendering. 
+
+\Hypertarget{structComponents_1_1Drawable_a8ed79e4903e4cfa13344d0be17f6b2b5}\label{structComponents_1_1Drawable_a8ed79e4903e4cfa13344d0be17f6b2b5} 
+\index{Components::Drawable@{Components::Drawable}!textureId@{textureId}}
+\index{textureId@{textureId}!Components::Drawable@{Components::Drawable}}
+\doxysubsubsection{\texorpdfstring{textureId}{textureId}}
+{\footnotesize\ttfamily std\+::string Components\+::\+Drawable\+::texture\+Id}
+
+
+
+ID of the texture to use. 
+
+\Hypertarget{structComponents_1_1Drawable_aad3e7a7496e6ce972bfae04ae33be5cb}\label{structComponents_1_1Drawable_aad3e7a7496e6ce972bfae04ae33be5cb} 
+\index{Components::Drawable@{Components::Drawable}!visible@{visible}}
+\index{visible@{visible}!Components::Drawable@{Components::Drawable}}
+\doxysubsubsection{\texorpdfstring{visible}{visible}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Components\+::\+Drawable\+::visible = \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{true}}}
+
+
+
+Visibility flag. 
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

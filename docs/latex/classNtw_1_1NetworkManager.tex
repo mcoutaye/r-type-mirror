@@ -1,0 +1,133 @@
+\doxysection{Référence de la classe Ntw\+::Network\+Manager}
+\hypertarget{classNtw_1_1NetworkManager}{}\label{classNtw_1_1NetworkManager}\index{Ntw::NetworkManager@{Ntw::NetworkManager}}
+
+
+{\ttfamily \#include $<$Network\+Manager.\+hpp$>$}
+
+
+
+Graphe de collaboration de Ntw\+::Network\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classNtw_1_1NetworkManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNtw_1_1NetworkManager_a3ae01f97d631363ada7078a4ee1b7d6d}{Network\+Manager}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{listen\+Port}}=55002)
+\item 
+\mbox{\hyperlink{classNtw_1_1NetworkManager_a9bd1b20a8a31a82ce00d80b6d7fb8888}{\texorpdfstring{$\sim$}{\string~}\+Network\+Manager}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1NetworkManager_ab4ea7f2ae23aa6948cbe65b784472bf6}{start}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1NetworkManager_a9d9cd110e3eea2deaaa0cd9bc465685d}{stop}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1NetworkManager_a5fc509c56fed290dff031d2c6e5554b3}{join}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1NetworkManager_a9d4ea46c71b62862dce18a6922b7014e}{print\+Server\+Info}} () \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+std\+::vector$<$ sf\+::\+Ip\+Address $>$ \mbox{\hyperlink{classNtw_1_1NetworkManager_ad31fd711f95e79ddfe92586c571a1ca5}{get\+Local\+Ip\+Addresses}} () \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{classNtw_1_1UdpSender}{Udp\+Sender}} \& \mbox{\hyperlink{classNtw_1_1NetworkManager_a208465f4c38121057cc392c4931ba3fc}{get\+Sender}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNtw_1_1UdpReceiver}{Udp\+Receiver}} \mbox{\hyperlink{classNtw_1_1NetworkManager_a50de3056132ff5612c0f1752a4b2fe10}{\+\_\+receiver}}
+\item 
+\mbox{\hyperlink{classNtw_1_1UdpSender}{Udp\+Sender}} \mbox{\hyperlink{classNtw_1_1NetworkManager_ade52e822915371399cb606f0a6a7b72b}{\+\_\+sender}}
+\item 
+\mbox{\hyperlink{classNtw_1_1PacketInterpreter}{Packet\+Interpreter}} \mbox{\hyperlink{classNtw_1_1NetworkManager_a453ac40113278c0749f54b42eeab9bb5}{\+\_\+interpreter}}
+\item 
+\mbox{\hyperlink{classGameLoop}{Game\+Loop}} \mbox{\hyperlink{classNtw_1_1NetworkManager_a54bfa553367213d0665de1285df1f531}{\+\_\+game\+Loop}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classNtw_1_1NetworkManager_a3ae01f97d631363ada7078a4ee1b7d6d}\label{classNtw_1_1NetworkManager_a3ae01f97d631363ada7078a4ee1b7d6d} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!NetworkManager@{NetworkManager}}
+\index{NetworkManager@{NetworkManager}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{NetworkManager()}{NetworkManager()}}
+{\footnotesize\ttfamily Ntw\+::\+Network\+Manager\+::\+Network\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{listen\+Port = {\ttfamily 55002} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classNtw_1_1NetworkManager_a9bd1b20a8a31a82ce00d80b6d7fb8888}\label{classNtw_1_1NetworkManager_a9bd1b20a8a31a82ce00d80b6d7fb8888} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!````~NetworkManager@{\texorpdfstring{$\sim$}{\string~}NetworkManager}}
+\index{````~NetworkManager@{\texorpdfstring{$\sim$}{\string~}NetworkManager}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}NetworkManager()}{\string~NetworkManager()}}
+{\footnotesize\ttfamily Ntw\+::\+Network\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Network\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classNtw_1_1NetworkManager_ad31fd711f95e79ddfe92586c571a1ca5}\label{classNtw_1_1NetworkManager_ad31fd711f95e79ddfe92586c571a1ca5} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!getLocalIpAddresses@{getLocalIpAddresses}}
+\index{getLocalIpAddresses@{getLocalIpAddresses}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{getLocalIpAddresses()}{getLocalIpAddresses()}}
+{\footnotesize\ttfamily std\+::vector$<$ sf\+::\+Ip\+Address $>$ Ntw\+::\+Network\+Manager\+::get\+Local\+Ip\+Addresses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classNtw_1_1NetworkManager_a208465f4c38121057cc392c4931ba3fc}\label{classNtw_1_1NetworkManager_a208465f4c38121057cc392c4931ba3fc} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!getSender@{getSender}}
+\index{getSender@{getSender}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{getSender()}{getSender()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNtw_1_1UdpSender}{Ntw\+::\+Udp\+Sender}} \& Ntw\+::\+Network\+Manager\+::get\+Sender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classNtw_1_1NetworkManager_a5fc509c56fed290dff031d2c6e5554b3}\label{classNtw_1_1NetworkManager_a5fc509c56fed290dff031d2c6e5554b3} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!join@{join}}
+\index{join@{join}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Network\+Manager\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classNtw_1_1NetworkManager_a9d4ea46c71b62862dce18a6922b7014e}\label{classNtw_1_1NetworkManager_a9d4ea46c71b62862dce18a6922b7014e} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!printServerInfo@{printServerInfo}}
+\index{printServerInfo@{printServerInfo}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{printServerInfo()}{printServerInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Network\+Manager\+::print\+Server\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classNtw_1_1NetworkManager_ab4ea7f2ae23aa6948cbe65b784472bf6}\label{classNtw_1_1NetworkManager_ab4ea7f2ae23aa6948cbe65b784472bf6} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!start@{start}}
+\index{start@{start}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Network\+Manager\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classNtw_1_1NetworkManager_a9d9cd110e3eea2deaaa0cd9bc465685d}\label{classNtw_1_1NetworkManager_a9d9cd110e3eea2deaaa0cd9bc465685d} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!stop@{stop}}
+\index{stop@{stop}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Network\+Manager\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classNtw_1_1NetworkManager_a54bfa553367213d0665de1285df1f531}\label{classNtw_1_1NetworkManager_a54bfa553367213d0665de1285df1f531} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!\_gameLoop@{\_gameLoop}}
+\index{\_gameLoop@{\_gameLoop}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{\_gameLoop}{\_gameLoop}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGameLoop}{Game\+Loop}} Ntw\+::\+Network\+Manager\+::\+\_\+game\+Loop\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1NetworkManager_a453ac40113278c0749f54b42eeab9bb5}\label{classNtw_1_1NetworkManager_a453ac40113278c0749f54b42eeab9bb5} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!\_interpreter@{\_interpreter}}
+\index{\_interpreter@{\_interpreter}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{\_interpreter}{\_interpreter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNtw_1_1PacketInterpreter}{Packet\+Interpreter}} Ntw\+::\+Network\+Manager\+::\+\_\+interpreter\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1NetworkManager_a50de3056132ff5612c0f1752a4b2fe10}\label{classNtw_1_1NetworkManager_a50de3056132ff5612c0f1752a4b2fe10} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!\_receiver@{\_receiver}}
+\index{\_receiver@{\_receiver}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{\_receiver}{\_receiver}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNtw_1_1UdpReceiver}{Udp\+Receiver}} Ntw\+::\+Network\+Manager\+::\+\_\+receiver\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1NetworkManager_ade52e822915371399cb606f0a6a7b72b}\label{classNtw_1_1NetworkManager_ade52e822915371399cb606f0a6a7b72b} 
+\index{Ntw::NetworkManager@{Ntw::NetworkManager}!\_sender@{\_sender}}
+\index{\_sender@{\_sender}!Ntw::NetworkManager@{Ntw::NetworkManager}}
+\doxysubsubsection{\texorpdfstring{\_sender}{\_sender}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNtw_1_1UdpSender}{Udp\+Sender}} Ntw\+::\+Network\+Manager\+::\+\_\+sender\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/server/\mbox{\hyperlink{NetworkManager_8hpp}{Network\+Manager.\+hpp}}\item 
+src/server/\mbox{\hyperlink{NetworkManager_8cpp}{Network\+Manager.\+cpp}}\end{DoxyCompactItemize}

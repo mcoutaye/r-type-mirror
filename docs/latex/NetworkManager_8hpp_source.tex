@@ -1,0 +1,37 @@
+\doxysection{Network\+Manager.\+hpp}
+\hypertarget{NetworkManager_8hpp_source}{}\label{NetworkManager_8hpp_source}\index{src/server/NetworkManager.hpp@{src/server/NetworkManager.hpp}}
+\mbox{\hyperlink{NetworkManager_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Teck3}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ NetworkManager}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{UdpReceiver_8hpp}{UdpReceiver.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{UdpSender_8hpp}{UdpSender.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PacketInterpreter_8hpp}{PacketInterpreter.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GameLoop_8hpp}{GameLoop.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceNtw}{Ntw}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNtw_1_1NetworkManager}{NetworkManager}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classNtw_1_1NetworkManager}{NetworkManager}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{listenPort}}\ =\ 55002);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1NetworkManager_a9bd1b20a8a31a82ce00d80b6d7fb8888}{\string~NetworkManager}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1NetworkManager_ab4ea7f2ae23aa6948cbe65b784472bf6}{start}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1NetworkManager_a9d9cd110e3eea2deaaa0cd9bc465685d}{stop}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1NetworkManager_a5fc509c56fed290dff031d2c6e5554b3}{join}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNtw_1_1NetworkManager_a9d4ea46c71b62862dce18a6922b7014e}{printServerInfo}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<sf::IpAddress>\ \mbox{\hyperlink{classNtw_1_1NetworkManager_ad31fd711f95e79ddfe92586c571a1ca5}{getLocalIpAddresses}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1UdpSender}{UdpSender}}\&\ \mbox{\hyperlink{classNtw_1_1NetworkManager_a208465f4c38121057cc392c4931ba3fc}{getSender}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1UdpReceiver}{UdpReceiver}}\ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1NetworkManager_a50de3056132ff5612c0f1752a4b2fe10}{\_receiver}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1UdpSender}{UdpSender}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1NetworkManager_ade52e822915371399cb606f0a6a7b72b}{\_sender}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1PacketInterpreter}{PacketInterpreter}}\ \mbox{\hyperlink{classNtw_1_1NetworkManager_a453ac40113278c0749f54b42eeab9bb5}{\_interpreter}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGameLoop}{GameLoop}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNtw_1_1NetworkManager_a54bfa553367213d0665de1285df1f531}{\_gameLoop}};}
+\DoxyCodeLine{00030\ \ \ \ \ \};}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}

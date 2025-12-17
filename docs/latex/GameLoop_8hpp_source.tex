@@ -1,0 +1,31 @@
+\doxysection{Game\+Loop.\+hpp}
+\hypertarget{GameLoop_8hpp_source}{}\label{GameLoop_8hpp_source}\index{src/server/GameLoop.hpp@{src/server/GameLoop.hpp}}
+\mbox{\hyperlink{GameLoop_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Teck3}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ GameLoop}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <SFML/System.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGameLoop}{GameLoop}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGameLoop_a1b3a349263c8c243400c8cc8fe718655}{GameLoop}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGameLoop_ae6c558d0d751a068dbafe2cae465ec1f}{\string~GameLoop}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGameLoop_a4d167abf32f3850bd2e1676f38f3889d}{start}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGameLoop_aee78756218e0fcf3ab73f4810c13dd0d}{stop}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGameLoop_a51d4890c6b9c1a68801b5b4a5b19d28e}{join}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGameLoop_ac49376157ae53855367db03d2c5629be}{gameLoop}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ sf::Clock\ \mbox{\hyperlink{classGameLoop_a6aac10971cf9f07b5060b6f6f57e58c5}{\_clock}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ std::thread\ \mbox{\hyperlink{classGameLoop_a785a11614079346563b99ec3be165ef6}{\_thread}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classGameLoop_a6f4a39ad85355f34a463da2d47d79f2c}{\_running}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00025\ \};}
+
+\end{DoxyCode}

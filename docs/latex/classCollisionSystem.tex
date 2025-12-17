@@ -1,0 +1,102 @@
+\doxysection{Référence de la classe Collision\+System}
+\hypertarget{classCollisionSystem}{}\label{classCollisionSystem}\index{CollisionSystem@{CollisionSystem}}
+
+
+{\ttfamily \#include $<$Collision\+System.\+hpp$>$}
+
+
+
+Graphe d\textquotesingle{}héritage de Collision\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{classCollisionSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de Collision\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classCollisionSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCollisionSystem_ad60ca2c5c1aecb37d82281244a0ee28c}{Collision\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classCollisionSystem_a3e6d83a4d384ed4a85ad1fc05b1d96e7}{update}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{override}}
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classCollisionSystem_ac6ab669a0d3e06d93e943d10b626b735}{check\+AABB}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} Components\+::\+Position \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{pos1}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{coll1}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} Components\+::\+Position \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{pos2}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{coll2}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classCollisionSystem_a3eb3e947d43139ff06ff56ec910bbdd2}{resolve\+Collision}} (Components\+::\+Position \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{mobile\+Pos}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{mobile\+Coll}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} Components\+::\+Position \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static\+Pos}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static\+Coll}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Attributs protégés hérités de \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classCollisionSystem_ad60ca2c5c1aecb37d82281244a0ee28c}\label{classCollisionSystem_ad60ca2c5c1aecb37d82281244a0ee28c} 
+\index{CollisionSystem@{CollisionSystem}!CollisionSystem@{CollisionSystem}}
+\index{CollisionSystem@{CollisionSystem}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{CollisionSystem()}{CollisionSystem()}}
+{\footnotesize\ttfamily Collision\+System\+::\+Collision\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classCollisionSystem_ac6ab669a0d3e06d93e943d10b626b735}\label{classCollisionSystem_ac6ab669a0d3e06d93e943d10b626b735} 
+\index{CollisionSystem@{CollisionSystem}!checkAABB@{checkAABB}}
+\index{checkAABB@{checkAABB}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{checkAABB()}{checkAABB()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Collision\+System\+::check\+AABB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} Components\+::\+Position \&}]{pos1,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&}]{coll1,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} Components\+::\+Position \&}]{pos2,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&}]{coll2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classCollisionSystem_a3eb3e947d43139ff06ff56ec910bbdd2}\label{classCollisionSystem_a3eb3e947d43139ff06ff56ec910bbdd2} 
+\index{CollisionSystem@{CollisionSystem}!resolveCollision@{resolveCollision}}
+\index{resolveCollision@{resolveCollision}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{resolveCollision()}{resolveCollision()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Collision\+System\+::resolve\+Collision (\begin{DoxyParamCaption}\item[{Components\+::\+Position \&}]{mobile\+Pos,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&}]{mobile\+Coll,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} Components\+::\+Position \&}]{static\+Pos,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{structComponents_1_1Collider}{Components\+::\+Collider}} \&}]{static\+Coll }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classCollisionSystem_a3e6d83a4d384ed4a85ad1fc05b1d96e7}\label{classCollisionSystem_a3e6d83a4d384ed4a85ad1fc05b1d96e7} 
+\index{CollisionSystem@{CollisionSystem}!update@{update}}
+\index{update@{update}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Collision\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implémente \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{CollisionSystem_8hpp}{Collision\+System.\+hpp}}\item 
+src/engine/systems/\mbox{\hyperlink{CollisionSystem_8cpp}{Collision\+System.\+cpp}}\end{DoxyCompactItemize}

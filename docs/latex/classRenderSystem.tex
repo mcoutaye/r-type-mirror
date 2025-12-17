@@ -1,0 +1,97 @@
+\doxysection{Référence de la classe Render\+System}
+\hypertarget{classRenderSystem}{}\label{classRenderSystem}\index{RenderSystem@{RenderSystem}}
+
+
+{\ttfamily \#include $<$Render\+System.\+hpp$>$}
+
+
+
+Graphe d\textquotesingle{}héritage de Render\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classRenderSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de Render\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classRenderSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRenderSystem_a4f06abf224e6e5ca1504e46eae2cd5a6}{Render\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, sf\+::\+Render\+Window \&window)
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{update}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{override}}
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\+\_\+window}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Attributs protégés hérités de \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classRenderSystem_a4f06abf224e6e5ca1504e46eae2cd5a6}\label{classRenderSystem_a4f06abf224e6e5ca1504e46eae2cd5a6} 
+\index{RenderSystem@{RenderSystem}!RenderSystem@{RenderSystem}}
+\index{RenderSystem@{RenderSystem}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{RenderSystem()}{RenderSystem()}}
+{\footnotesize\ttfamily Render\+System\+::\+Render\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}\label{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369} 
+\index{RenderSystem@{RenderSystem}!update@{update}}
+\index{update@{update}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Render\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implémente \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classRenderSystem_adb763824d4393af00a5769f92c84d635}\label{classRenderSystem_adb763824d4393af00a5769f92c84d635} 
+\index{RenderSystem@{RenderSystem}!\_window@{\_window}}
+\index{\_window@{\_window}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{\_window}{\_window}}
+{\footnotesize\ttfamily sf\+::\+Render\+Window\& Render\+System\+::\+\_\+window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{RenderSystem_8hpp}{Render\+System.\+hpp}}\item 
+src/engine/systems/\mbox{\hyperlink{RenderSystem_8cpp}{Render\+System.\+cpp}}\end{DoxyCompactItemize}

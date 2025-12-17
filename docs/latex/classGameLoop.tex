@@ -1,0 +1,112 @@
+\doxysection{Référence de la classe Game\+Loop}
+\hypertarget{classGameLoop}{}\label{classGameLoop}\index{GameLoop@{GameLoop}}
+
+
+{\ttfamily \#include $<$Game\+Loop.\+hpp$>$}
+
+
+
+Graphe de collaboration de Game\+Loop\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{classGameLoop__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGameLoop_a1b3a349263c8c243400c8cc8fe718655}{Game\+Loop}} ()
+\item 
+\mbox{\hyperlink{classGameLoop_ae6c558d0d751a068dbafe2cae465ec1f}{\texorpdfstring{$\sim$}{\string~}\+Game\+Loop}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classGameLoop_a4d167abf32f3850bd2e1676f38f3889d}{start}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classGameLoop_aee78756218e0fcf3ab73f4810c13dd0d}{stop}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classGameLoop_a51d4890c6b9c1a68801b5b4a5b19d28e}{join}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classGameLoop_ac49376157ae53855367db03d2c5629be}{game\+Loop}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{classGameLoop_a6aac10971cf9f07b5060b6f6f57e58c5}{\+\_\+clock}}
+\item 
+std\+::thread \mbox{\hyperlink{classGameLoop_a785a11614079346563b99ec3be165ef6}{\+\_\+thread}}
+\item 
+std\+::atomic$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classGameLoop_a6f4a39ad85355f34a463da2d47d79f2c}{\+\_\+running}} \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classGameLoop_a1b3a349263c8c243400c8cc8fe718655}\label{classGameLoop_a1b3a349263c8c243400c8cc8fe718655} 
+\index{GameLoop@{GameLoop}!GameLoop@{GameLoop}}
+\index{GameLoop@{GameLoop}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{GameLoop()}{GameLoop()}}
+{\footnotesize\ttfamily Game\+Loop\+::\+Game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classGameLoop_ae6c558d0d751a068dbafe2cae465ec1f}\label{classGameLoop_ae6c558d0d751a068dbafe2cae465ec1f} 
+\index{GameLoop@{GameLoop}!````~GameLoop@{\texorpdfstring{$\sim$}{\string~}GameLoop}}
+\index{````~GameLoop@{\texorpdfstring{$\sim$}{\string~}GameLoop}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameLoop()}{\string~GameLoop()}}
+{\footnotesize\ttfamily Game\+Loop\+::\texorpdfstring{$\sim$}{\string~}\+Game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classGameLoop_ac49376157ae53855367db03d2c5629be}\label{classGameLoop_ac49376157ae53855367db03d2c5629be} 
+\index{GameLoop@{GameLoop}!gameLoop@{gameLoop}}
+\index{gameLoop@{gameLoop}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{gameLoop()}{gameLoop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Game\+Loop\+::game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classGameLoop_a51d4890c6b9c1a68801b5b4a5b19d28e}\label{classGameLoop_a51d4890c6b9c1a68801b5b4a5b19d28e} 
+\index{GameLoop@{GameLoop}!join@{join}}
+\index{join@{join}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Game\+Loop\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classGameLoop_a4d167abf32f3850bd2e1676f38f3889d}\label{classGameLoop_a4d167abf32f3850bd2e1676f38f3889d} 
+\index{GameLoop@{GameLoop}!start@{start}}
+\index{start@{start}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Game\+Loop\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classGameLoop_aee78756218e0fcf3ab73f4810c13dd0d}\label{classGameLoop_aee78756218e0fcf3ab73f4810c13dd0d} 
+\index{GameLoop@{GameLoop}!stop@{stop}}
+\index{stop@{stop}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Game\+Loop\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classGameLoop_a6aac10971cf9f07b5060b6f6f57e58c5}\label{classGameLoop_a6aac10971cf9f07b5060b6f6f57e58c5} 
+\index{GameLoop@{GameLoop}!\_clock@{\_clock}}
+\index{\_clock@{\_clock}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{\_clock}{\_clock}}
+{\footnotesize\ttfamily sf\+::\+Clock Game\+Loop\+::\+\_\+clock\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classGameLoop_a6f4a39ad85355f34a463da2d47d79f2c}\label{classGameLoop_a6f4a39ad85355f34a463da2d47d79f2c} 
+\index{GameLoop@{GameLoop}!\_running@{\_running}}
+\index{\_running@{\_running}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily std\+::atomic$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Game\+Loop\+::\+\_\+running \{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classGameLoop_a785a11614079346563b99ec3be165ef6}\label{classGameLoop_a785a11614079346563b99ec3be165ef6} 
+\index{GameLoop@{GameLoop}!\_thread@{\_thread}}
+\index{\_thread@{\_thread}!GameLoop@{GameLoop}}
+\doxysubsubsection{\texorpdfstring{\_thread}{\_thread}}
+{\footnotesize\ttfamily std\+::thread Game\+Loop\+::\+\_\+thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/server/\mbox{\hyperlink{GameLoop_8hpp}{Game\+Loop.\+hpp}}\item 
+src/server/\mbox{\hyperlink{GameLoop_8cpp}{Game\+Loop.\+cpp}}\end{DoxyCompactItemize}

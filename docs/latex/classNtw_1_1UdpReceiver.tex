@@ -1,0 +1,152 @@
+\doxysection{Référence de la classe Ntw\+::Udp\+Receiver}
+\hypertarget{classNtw_1_1UdpReceiver}{}\label{classNtw_1_1UdpReceiver}\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+
+
+{\ttfamily \#include $<$Udp\+Receiver.\+hpp$>$}
+
+
+
+Graphe de collaboration de Ntw\+::Udp\+Receiver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classNtw_1_1UdpReceiver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNtw_1_1UdpReceiver_ad4fe3049dd14dfd1ba5e214c918e9b69}{Udp\+Receiver}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{port}})
+\item 
+\mbox{\hyperlink{classNtw_1_1UdpReceiver_a2f3a0e8a4e78d9f92178d84b15ccbe91}{\texorpdfstring{$\sim$}{\string~}\+Udp\+Receiver}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_a2598cd4037f3e2a731dbbe5e0c067b5e}{start}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_afd62a34fd19c0b680c4b691cc76c6c73}{stop}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_aaa75038a68f4b5234e3600ab2bfda20b}{join}} ()
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_af22902f4222b639e59e9b83698f47c51}{get\+Packet}} (\mbox{\hyperlink{classNtw_1_1ReceivedPacket}{Received\+Packet}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{packet}})
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_a06fc959b6d7db6b9dde80570fc1ea792}{get\+Port}} () \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_ae84632d71d58f87616049000f9f28a69}{receive\+Loop}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Udp\+Socket \mbox{\hyperlink{classNtw_1_1UdpReceiver_a0b0636741eec5bb5a260a3c729aee3eb}{\+\_\+socket}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_a66c80e8a19eb631c8f73015bb5fd949f}{\+\_\+port}}
+\item 
+std\+::queue$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classNtw_1_1ReceivedPacket}{Received\+Packet}} $>$ $>$ \mbox{\hyperlink{classNtw_1_1UdpReceiver_a79dd679bc73476e2d7327aba0a172c22}{\+\_\+packet\+Queue}}
+\item 
+std\+::mutex \mbox{\hyperlink{classNtw_1_1UdpReceiver_a8524b2bd20d271101945012e9a2adc74}{\+\_\+mutex}}
+\item 
+std\+::thread \mbox{\hyperlink{classNtw_1_1UdpReceiver_a08ccd8d8103d36d1a864e9d873c0e5cd}{\+\_\+thread}}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classNtw_1_1UdpReceiver_ab9e8612dc94aa42ea8a6de444027444c}{\+\_\+running}} = \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{true}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classNtw_1_1UdpReceiver_ad4fe3049dd14dfd1ba5e214c918e9b69}\label{classNtw_1_1UdpReceiver_ad4fe3049dd14dfd1ba5e214c918e9b69} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!UdpReceiver@{UdpReceiver}}
+\index{UdpReceiver@{UdpReceiver}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{UdpReceiver()}{UdpReceiver()}}
+{\footnotesize\ttfamily Ntw\+::\+Udp\+Receiver\+::\+Udp\+Receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a2f3a0e8a4e78d9f92178d84b15ccbe91}\label{classNtw_1_1UdpReceiver_a2f3a0e8a4e78d9f92178d84b15ccbe91} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!````~UdpReceiver@{\texorpdfstring{$\sim$}{\string~}UdpReceiver}}
+\index{````~UdpReceiver@{\texorpdfstring{$\sim$}{\string~}UdpReceiver}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}UdpReceiver()}{\string~UdpReceiver()}}
+{\footnotesize\ttfamily Ntw\+::\+Udp\+Receiver\+::\texorpdfstring{$\sim$}{\string~}\+Udp\+Receiver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classNtw_1_1UdpReceiver_af22902f4222b639e59e9b83698f47c51}\label{classNtw_1_1UdpReceiver_af22902f4222b639e59e9b83698f47c51} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!getPacket@{getPacket}}
+\index{getPacket@{getPacket}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{getPacket()}{getPacket()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Ntw\+::\+Udp\+Receiver\+::get\+Packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNtw_1_1ReceivedPacket}{Received\+Packet}} \&}]{packet }\end{DoxyParamCaption})}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a06fc959b6d7db6b9dde80570fc1ea792}\label{classNtw_1_1UdpReceiver_a06fc959b6d7db6b9dde80570fc1ea792} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!getPort@{getPort}}
+\index{getPort@{getPort}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Ntw\+::\+Udp\+Receiver\+::get\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classNtw_1_1UdpReceiver_aaa75038a68f4b5234e3600ab2bfda20b}\label{classNtw_1_1UdpReceiver_aaa75038a68f4b5234e3600ab2bfda20b} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!join@{join}}
+\index{join@{join}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Udp\+Receiver\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classNtw_1_1UdpReceiver_ae84632d71d58f87616049000f9f28a69}\label{classNtw_1_1UdpReceiver_ae84632d71d58f87616049000f9f28a69} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!receiveLoop@{receiveLoop}}
+\index{receiveLoop@{receiveLoop}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{receiveLoop()}{receiveLoop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Udp\+Receiver\+::receive\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a2598cd4037f3e2a731dbbe5e0c067b5e}\label{classNtw_1_1UdpReceiver_a2598cd4037f3e2a731dbbe5e0c067b5e} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!start@{start}}
+\index{start@{start}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Udp\+Receiver\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classNtw_1_1UdpReceiver_afd62a34fd19c0b680c4b691cc76c6c73}\label{classNtw_1_1UdpReceiver_afd62a34fd19c0b680c4b691cc76c6c73} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!stop@{stop}}
+\index{stop@{stop}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Ntw\+::\+Udp\+Receiver\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classNtw_1_1UdpReceiver_a8524b2bd20d271101945012e9a2adc74}\label{classNtw_1_1UdpReceiver_a8524b2bd20d271101945012e9a2adc74} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!\_mutex@{\_mutex}}
+\index{\_mutex@{\_mutex}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\_mutex}{\_mutex}}
+{\footnotesize\ttfamily std\+::mutex Ntw\+::\+Udp\+Receiver\+::\+\_\+mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a79dd679bc73476e2d7327aba0a172c22}\label{classNtw_1_1UdpReceiver_a79dd679bc73476e2d7327aba0a172c22} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!\_packetQueue@{\_packetQueue}}
+\index{\_packetQueue@{\_packetQueue}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\_packetQueue}{\_packetQueue}}
+{\footnotesize\ttfamily std\+::queue$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classNtw_1_1ReceivedPacket}{Received\+Packet}}$>$ $>$ Ntw\+::\+Udp\+Receiver\+::\+\_\+packet\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a66c80e8a19eb631c8f73015bb5fd949f}\label{classNtw_1_1UdpReceiver_a66c80e8a19eb631c8f73015bb5fd949f} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!\_port@{\_port}}
+\index{\_port@{\_port}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\_port}{\_port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Ntw\+::\+Udp\+Receiver\+::\+\_\+port\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_ab9e8612dc94aa42ea8a6de444027444c}\label{classNtw_1_1UdpReceiver_ab9e8612dc94aa42ea8a6de444027444c} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!\_running@{\_running}}
+\index{\_running@{\_running}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Ntw\+::\+Udp\+Receiver\+::\+\_\+running = \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{true}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a0b0636741eec5bb5a260a3c729aee3eb}\label{classNtw_1_1UdpReceiver_a0b0636741eec5bb5a260a3c729aee3eb} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!\_socket@{\_socket}}
+\index{\_socket@{\_socket}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\_socket}{\_socket}}
+{\footnotesize\ttfamily sf\+::\+Udp\+Socket Ntw\+::\+Udp\+Receiver\+::\+\_\+socket\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classNtw_1_1UdpReceiver_a08ccd8d8103d36d1a864e9d873c0e5cd}\label{classNtw_1_1UdpReceiver_a08ccd8d8103d36d1a864e9d873c0e5cd} 
+\index{Ntw::UdpReceiver@{Ntw::UdpReceiver}!\_thread@{\_thread}}
+\index{\_thread@{\_thread}!Ntw::UdpReceiver@{Ntw::UdpReceiver}}
+\doxysubsubsection{\texorpdfstring{\_thread}{\_thread}}
+{\footnotesize\ttfamily std\+::thread Ntw\+::\+Udp\+Receiver\+::\+\_\+thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/server/\mbox{\hyperlink{UdpReceiver_8hpp}{Udp\+Receiver.\+hpp}}\item 
+src/server/\mbox{\hyperlink{UdpReceiver_8cpp}{Udp\+Receiver.\+cpp}}\end{DoxyCompactItemize}

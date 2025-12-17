@@ -1,0 +1,12 @@
+<map id="Ntw::NetworkManager" name="Ntw::NetworkManager">
+<area shape="rect" id="Node000001" title=" " alt="" coords="360,779,591,1028"/>
+<area shape="rect" id="Node000002" href="$classNtw_1_1UdpReceiver.html" title=" " alt="" coords="5,5,236,384"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,385,64,467,65,553,70,595,80,637,94,677,114,715,134,744,159,769,217,813,281,846,345,870,343,875,279,851,214,817,156,773,130,747,109,717,89,679,75,638,65,596,59,553,58,467,68,384"/>
+<area shape="rect" id="Node000004" href="$classNtw_1_1PacketInterpreter.html" title=" " alt="" coords="193,447,406,716"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="211,383,233,431,228,433,206,385"/>
+<area shape="rect" id="Node000003" href="$classNtw_1_1UdpSender.html" title=" " alt="" coords="430,492,641,671"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="521,671,504,763,499,762,516,670"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="375,715,402,763,397,765,371,718"/>
+<area shape="rect" id="Node000005" href="$classGameLoop.html" title=" " alt="" coords="665,471,825,691"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="674,693,655,718,604,776,600,773,651,714,670,690"/>
+</map>

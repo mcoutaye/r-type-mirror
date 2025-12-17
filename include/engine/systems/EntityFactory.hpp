@@ -15,6 +15,6 @@ namespace Factory {
     Entity createProjectile(ECS& ecs, float x, float y, float velocityX, float velocityY,
                             uint8_t team = 1, int damage = 25, const std::string& textureId = "bullet");
     Entity createEnemy(ECS& ecs, float x, float y, int health = 100,
-                       MovementPattern::Type pattern = MovementPattern::Type::Linear,
+                       Components::MovementPattern::Type pattern = Components::MovementPattern::Type::Linear,
                        const std::string& textureId = "enemy");
 }

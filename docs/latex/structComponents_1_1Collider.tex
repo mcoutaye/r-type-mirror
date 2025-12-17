@@ -1,0 +1,95 @@
+\doxysection{Référence de la structure Components\+::Collider}
+\hypertarget{structComponents_1_1Collider}{}\label{structComponents_1_1Collider}\index{Components::Collider@{Components::Collider}}
+
+
+Component for simple AABB collision detection.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Graphe de collaboration de Components\+::Collider\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{structComponents_1_1Collider__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structComponents_1_1Collider_a3cff820f690f7a47a76a23f9047526fa}{width}} = 32.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}
+\begin{DoxyCompactList}\small\item\em Width of the collider box. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structComponents_1_1Collider_ae3919b40a8818971bdfe1b9e617b65fe}{height}} = 32.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}
+\begin{DoxyCompactList}\small\item\em Height of the collider box. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{structComponents_1_1Collider_a71adb7d3c7f3efbf00100c8fa52bd438}{solid}} = \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{true}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if the collider is solid (blocking). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structComponents_1_1Collider_adede3f35531bde5e8283a1757af4420b}{team}} = 0
+\begin{DoxyCompactList}\small\item\em Team ID for collision filtering (0=neutral, 1=player, 2=enemy). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{structComponents_1_1Collider_ae52e0d67741627f78dbed6a670189107}{damage}} = 1
+\begin{DoxyCompactList}\small\item\em Damage value on collision. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Component for simple AABB collision detection. 
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{structComponents_1_1Collider_ae52e0d67741627f78dbed6a670189107}\label{structComponents_1_1Collider_ae52e0d67741627f78dbed6a670189107} 
+\index{Components::Collider@{Components::Collider}!damage@{damage}}
+\index{damage@{damage}!Components::Collider@{Components::Collider}}
+\doxysubsubsection{\texorpdfstring{damage}{damage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Components\+::\+Collider\+::damage = 1}
+
+
+
+Damage value on collision. 
+
+\Hypertarget{structComponents_1_1Collider_ae3919b40a8818971bdfe1b9e617b65fe}\label{structComponents_1_1Collider_ae3919b40a8818971bdfe1b9e617b65fe} 
+\index{Components::Collider@{Components::Collider}!height@{height}}
+\index{height@{height}!Components::Collider@{Components::Collider}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Components\+::\+Collider\+::height = 32.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}}
+
+
+
+Height of the collider box. 
+
+\Hypertarget{structComponents_1_1Collider_a71adb7d3c7f3efbf00100c8fa52bd438}\label{structComponents_1_1Collider_a71adb7d3c7f3efbf00100c8fa52bd438} 
+\index{Components::Collider@{Components::Collider}!solid@{solid}}
+\index{solid@{solid}!Components::Collider@{Components::Collider}}
+\doxysubsubsection{\texorpdfstring{solid}{solid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Components\+::\+Collider\+::solid = \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{true}}}
+
+
+
+Flag indicating if the collider is solid (blocking). 
+
+\Hypertarget{structComponents_1_1Collider_adede3f35531bde5e8283a1757af4420b}\label{structComponents_1_1Collider_adede3f35531bde5e8283a1757af4420b} 
+\index{Components::Collider@{Components::Collider}!team@{team}}
+\index{team@{team}!Components::Collider@{Components::Collider}}
+\doxysubsubsection{\texorpdfstring{team}{team}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Components\+::\+Collider\+::team = 0}
+
+
+
+Team ID for collision filtering (0=neutral, 1=player, 2=enemy). 
+
+\Hypertarget{structComponents_1_1Collider_a3cff820f690f7a47a76a23f9047526fa}\label{structComponents_1_1Collider_a3cff820f690f7a47a76a23f9047526fa} 
+\index{Components::Collider@{Components::Collider}!width@{width}}
+\index{width@{width}!Components::Collider@{Components::Collider}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Components\+::\+Collider\+::width = 32.\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}}
+
+
+
+Width of the collider box. 
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

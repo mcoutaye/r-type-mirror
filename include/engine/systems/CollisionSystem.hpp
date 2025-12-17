@@ -17,10 +17,10 @@ public:
     
 private:
     // Vérifie si deux rectangles AABB se chevauchent
-    bool checkAABB(const Position& pos1, const Collider& coll1,
-                   const Position& pos2, const Collider& coll2) const;
+    bool checkAABB(const Components::Position& pos1, const Components::Collider& coll1,
+                   const Components::Position& pos2, const Components::Collider& coll2) const;
     
     // Résout la collision en repoussant l'entité mobile
-    void resolveCollision(Position& mobilePos, const Collider& mobileColl,
-                          const Position& staticPos, const Collider& staticColl) const;
+    void resolveCollision(Components::Position& mobilePos, const Components::Collider& mobileColl,
+                          const Components::Position& staticPos, const Components::Collider& staticColl) const;
 };

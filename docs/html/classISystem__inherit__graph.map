@@ -1,0 +1,17 @@
+<map id="ISystem" name="ISystem">
+<area shape="rect" id="Node000001" title="Interface for systems in the ECS." alt="" coords="823,5,977,140"/>
+<area shape="rect" id="Node000002" href="$classCollisionSystem.html" title=" " alt="" coords="5,343,336,659"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="810,86,691,102,555,125,432,154,384,171,350,190,313,222,281,260,253,301,230,344,225,341,249,299,276,257,309,219,346,186,382,167,431,149,554,119,690,97,810,81"/>
+<area shape="rect" id="Node000003" href="$classInputSystem.html" title=" " alt="" coords="360,188,608,813"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="811,95,763,109,713,129,665,156,622,190,610,202,606,198,618,186,662,152,711,125,761,104,809,89"/>
+<area shape="rect" id="Node000004" href="$classMissileSystem.html" title=" " alt="" coords="632,443,787,558"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="826,152,801,189,771,255,748,323,731,388,720,444,715,443,726,387,743,321,766,253,796,187,822,149"/>
+<area shape="rect" id="Node000005" href="$classMovementSystem.html" title=" " alt="" coords="811,443,989,558"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="903,154,903,443,897,443,897,154"/>
+<area shape="rect" id="Node000006" href="$classPowerUpSystem.html" title=" " alt="" coords="1013,443,1179,558"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="978,149,1004,187,1035,253,1059,321,1089,442,1084,444,1054,323,1030,255,999,189,974,152"/>
+<area shape="rect" id="Node000007" href="$classRenderSystem.html" title=" " alt="" coords="1203,436,1421,565"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="991,87,1041,101,1095,122,1147,150,1193,186,1217,214,1237,244,1270,310,1292,376,1305,435,1300,436,1287,378,1265,312,1233,247,1212,217,1189,190,1144,154,1093,126,1040,106,989,92"/>
+<area shape="rect" id="Node000008" href="$classWaveSystem.html" title=" " alt="" coords="1446,399,1645,603"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="991,80,1108,95,1239,117,1356,147,1402,165,1435,186,1457,208,1475,232,1504,286,1524,343,1537,398,1532,399,1519,345,1499,288,1471,235,1453,211,1432,190,1400,170,1355,152,1237,122,1107,100,990,85"/>
+</map>

@@ -1,0 +1,155 @@
+\doxysection{Components.\+hpp}
+\hypertarget{Components_8hpp_source}{}\label{Components_8hpp_source}\index{include/engine/systems/Components.hpp@{include/engine/systems/Components.hpp}}
+\mbox{\hyperlink{Components_8hpp}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ \ **\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ **\ R-\/type}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ **\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ \ **\ Components\ hpp}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ once}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceComponents}{Components}}\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00032\ \ @\{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Position}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ 0.f;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ 0.f;}
+\DoxyCodeLine{00048\ \ \ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Velocity}{Velocity}}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Velocity_a434830e2ddf77341b9312d3562542328}{x}}\ =\ 0.f;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Velocity_a1981a2a70a37532c827bb36a549a3b13}{y}}\ =\ 0.f;}
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Drawable}{Drawable}}\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Drawable_a8ed79e4903e4cfa13344d0be17f6b2b5}{textureId}};\ \textcolor{comment}{//\ "{}ship.png"{},\ "{}bullet.png"{}}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ sf::IntRect\ \mbox{\hyperlink{structComponents_1_1Drawable_a872276338aa1dd0b6d8e4fe41c31db3f}{rect}}\ =\ \{0,\ 0,\ 64,\ 64\};\ \textcolor{comment}{//\ frame\ actuelle}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Drawable_a5aa1e3aa4ac18f9a8f8e39adc491dd79}{layer}}\ =\ 0;\ \textcolor{comment}{//\ 0=background,\ 10=player,\ 20=bullets,\ 50=particles}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Drawable_aad3e7a7496e6ce972bfae04ae33be5cb}{visible}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable_aabcf151f2540eae3e61f165d0f06eb7c}{scale}}\ =\ 1.f;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable_a4d0444dc3ba0bd21e1f3fbcf9603001e}{rotation}}\ =\ 0.f;}
+\DoxyCodeLine{00100\ \ \ \ \ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PlayerController}{PlayerController}}\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structComponents_1_1PlayerController_ab626bbc7d999b6b1b51d0cb03cd68fd8}{playerId}}\ =\ 0;\ \textcolor{comment}{//\ 0=joueur1,\ 1=joueur2...}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1PlayerController_a4dc2bdf1ca51df9b61cfc18fdcb06b03}{isShooting}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \ \ \ \ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Collider}{Collider}}\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Collider_a3cff820f690f7a47a76a23f9047526fa}{width}}\ =\ 32.f;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Collider_ae3919b40a8818971bdfe1b9e617b65fe}{height}}\ =\ 32.f;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Collider_a71adb7d3c7f3efbf00100c8fa52bd438}{solid}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ bloquant\ ou\ pas}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structComponents_1_1Collider_adede3f35531bde5e8283a1757af4420b}{team}}\ =\ 0;\ \textcolor{comment}{//\ 0=neutre,\ 1=player,\ 2=enemy}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Collider_ae52e0d67741627f78dbed6a670189107}{damage}}\ =\ 1;}
+\DoxyCodeLine{00147\ \ \ \ \ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Health}{Health}}\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health_ac152194e42b52db5b5c3550d3d5f9036}{max}}\ =\ 100;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health_ab2c65b1a4738dcc5cb43aedf1323714d}{current}}\ =\ 100;}
+\DoxyCodeLine{00163\ \ \ \ \ \};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1WaveSpawner}{WaveSpawner}}\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveSpawner_a96f2ce36ade99140d9e992f9aa57d86c}{nextSpawnTime}}\ =\ 2.f;\ \textcolor{comment}{//\ temps\ avant\ prochain\ spawn}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1WaveSpawner_aa8e7b69e73eab1ffb996acf0539ee404}{currentWave}}\ =\ 0;}
+\DoxyCodeLine{00179\ \ \ \ \ \};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1WaveData}{WaveData}}\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData_a52c58106f8e02f06a9d09365f01ad090}{delay}};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1WaveData_a93a4fa0ab30cb15601e8984cf85b432a}{enemyType}};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1WaveData_afc266e01fcae2fa0a7e3980c19bddf89}{count}};}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData_a73bd2fa49bf676f52249ab2ea0990e37}{x}};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData_aa2aecee2ec8d1b60118fb1e2f99d8b12}{y}};}
+\DoxyCodeLine{00210\ \ \ \ \ \};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1MovementPattern}{MovementPattern}}\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a32a843da6ea40ab3b17a3421ccdf671b}{Linear}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5add100b0529fbea266a73d2b764a5ff7a}{Sinus}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a40d094cb3919d9f6fe5d2858e46486d4}{Cosinus}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a30954d90085f6eaaf5817917fc5fecb3}{Circle}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a4fae8be981bd327f1302f4b678afe734}{Zigzag}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5ac978545ade9f5ce21bfa0353c04feda9}{Spiral}}\ \};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Type}}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a6e71a27920ec592bfec9e63b6970e4fe}{type}};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_acb33d69a05fbbdd5ce6fb6b43360c608}{amplitude}};\ \textcolor{comment}{//\ Pour\ les\ mouvements\ ondulatoires}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a13f0421f09618e5eaadcf893f4ea9b6f}{frequency}};\ \textcolor{comment}{//\ Pour\ les\ mouvements\ ondulatoires}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a76d3abc1ecccce1f81b052dfde5f9b77}{radius}};\ \textcolor{comment}{//\ Pour\ le\ cercle/spirale}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a8ea734f6c29cfc6902ac6001bd8173ed}{speed}};\ \textcolor{comment}{//\ Pour\ le\ zigzag/spirale}}
+\DoxyCodeLine{00246\ \ \ \ \ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Projectile}{Projectile}}\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Projectile_ad448be528153937c3d0c53732fbc9c6f}{speed}};\ \textcolor{comment}{//\ Vitesse\ du\ projectile}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Projectile_ad7ad006f2928ab0aa51a2f7364c75cc1}{damage}};\ \textcolor{comment}{//\ Dégâts\ infligés}}
+\DoxyCodeLine{00262\ \ \ \ \ \};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Shootable}{Shootable}}\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a401f18981b844971fc63b540ba973db9}{cooldown}};\ \textcolor{comment}{//\ Temps\ restant\ avant\ le\ prochain\ tir}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a9944afebe4e72787e8c7eadf1138ac80}{shootDelay}};\ \textcolor{comment}{//\ Délai\ entre\ deux\ tirs}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a59284381db1aac115804c8135ef37872}{missileSpeed}};\ \textcolor{comment}{//\ Vitesse\ des\ projectiles}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Shootable_a91b2391c0f747fe99b3bfed011b37e01}{damage}};\ \textcolor{comment}{//\ Dégâts\ infligés}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structComponents_1_1Shootable_aed95d7e3b42c6c7ab6a7afae78e8fa98}{team}};\ \textcolor{comment}{//\ Équipe\ du\ tireur\ (pour\ éviter\ les\ tirs\ alliés)}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Shootable_afca36194207417f616af8fd1eb6dfbae}{textureId}};\ \textcolor{comment}{//\ Texture\ du\ projectile}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a18c37910e9636f9a5eac14fc46c8bcd3}{offsetX}};\ \textcolor{comment}{//\ Offset\ X\ pour\ le\ spawn\ du\ projectile}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a22c18deb5458dc10a43534d6ee0655a3}{offsetY}};\ \textcolor{comment}{//\ Offset\ Y\ pour\ le\ spawn\ du\ projectile}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Shootable_ac8520820f5125d6a56139a11d4316486}{isShooting}};\ \textcolor{comment}{//\ Nouveau\ champ\ pour\ indiquer\ si\ le\ joueur\ tire}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Shootable_a3ae314c57d1bad5cdfbcaa931245c2bf}{tripleShot}};}
+\DoxyCodeLine{00318\ \ \ \ \ \};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PowerUp}{PowerUp}}\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1PowerUp_a9ece4055070003617d50e6ee7a207889}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1PowerUp_a9ece4055070003617d50e6ee7a207889a2a2f418aeda3454fb82f74aff782bb8f}{TripleShot}}\ \};}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1PowerUp_a9ece4055070003617d50e6ee7a207889}{Type}}\ \mbox{\hyperlink{structComponents_1_1PowerUp_ad9288964cc913cac6d5ed4e173343ee6}{type}};}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PowerUp_a2fc053404d329650832ecea0f1083422}{duration}};\ \textcolor{comment}{//\ Durée\ de\ l'effet\ (en\ secondes)}}
+\DoxyCodeLine{00339\ \ \ \ \ \};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Obstacle}{Obstacle}}\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Obstacle_af5a4b89acf82054f3a7d5303349dd484}{blocking}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Bloque\ le\ mouvement}}
+\DoxyCodeLine{00350\ \ \ \ \ \};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1DestructibleTile}{DestructibleTile}}\ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1DestructibleTile_a8d0d689563c6bca55859fa66ed833652}{health}}\ =\ 50;\ \textcolor{comment}{//\ Points\ de\ vie\ de\ la\ tuile}}
+\DoxyCodeLine{00361\ \ \ \ \ \};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Star}{Star}}\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Star_a458498047d5e2faaaa3b15f041b88c70}{speed}}\ =\ 100.f;\ \textcolor{comment}{//\ Vitesse\ de\ défilement}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structComponents_1_1Star_ae6bc365ac51f664135a65cd995313e67}{brightness}}\ =\ 255;\ \textcolor{comment}{//\ Luminosité\ (pour\ effet\ de\ parallaxe)}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structComponents_1_1Star_a897e8173e8f0ab2a286f135b3a45ca54}{size}}\ =\ 2;\ \textcolor{comment}{//\ Taille\ de\ l'étoile}}
+\DoxyCodeLine{00382\ \ \ \ \ \};}
+\DoxyCodeLine{00383\ \ \ \ \ @\}}
+\DoxyCodeLine{00384\ \ \ \ \ \}}
+
+\end{DoxyCode}

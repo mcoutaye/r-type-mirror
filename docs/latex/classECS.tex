@@ -1,0 +1,389 @@
+\doxysection{Référence de la classe ECS}
+\hypertarget{classECS}{}\label{classECS}\index{ECS@{ECS}}
+
+
+Entity Component System manager.  
+
+
+
+
+{\ttfamily \#include $<$ecs.\+hpp$>$}
+
+
+
+Graphe de collaboration de ECS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classECS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS_a7fba8bcfbb8d238085ab7302d96a332f}{ECS}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classECS}{ECS}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\texorpdfstring{$\sim$}{\string~}\+ECS}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classECS}{ECS}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{create\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{kill\+Entity}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\begin{DoxyCompactList}\small\item\em Destroys an entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{get\+Signature}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\begin{DoxyCompactList}\small\item\em Retrieves the signature of an entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{set\+Signature}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sig}})
+\begin{DoxyCompactList}\small\item\em Sets the signature for an entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{add\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+\begin{DoxyCompactList}\small\item\em Adds a component to an entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{has\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\begin{DoxyCompactList}\small\item\em Checks if an entity has a specific component. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{get\+Const\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\begin{DoxyCompactList}\small\item\em Retrieves a read-\/only pointer to a component. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{get\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\begin{DoxyCompactList}\small\item\em Retrieves a mutable pointer to a component. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ }\\std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{get\+Entities\+By\+Components}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves entities that have all specified components. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{kill\+Component}} (\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+\begin{DoxyCompactList}\small\item\em Removes a specific component from an entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{classECS_a5c0787ab975107fe402c5dc16dc945e5}{get\+Time}} () \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\begin{DoxyCompactList}\small\item\em Gets the current time in the \doxylink{classECS}{ECS}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a9e8a8388bce60d993a5ef04fd42dc0f0}{add\+Time}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})
+\begin{DoxyCompactList}\small\item\em Adds delta time to the \doxylink{classECS}{ECS} time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verify\+Component\+Storage}} (\mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Type\+ID}})
+\begin{DoxyCompactList}\small\item\em Verifies and initializes storage for a component type if needed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{classECS_a620302f938f8646f1348dcfdb5f6cddb}{\+\_\+time}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\+\_\+\+\_\+living\+Entities}} = 0
+\item 
+std\+::queue$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a00a2f233abb0f55b486b2426e9aa3c39}{\+\_\+\+\_\+free\+Entities}}
+\item 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}, \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} $>$ \mbox{\hyperlink{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}{\+\_\+\+\_\+signatures}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classECS_ac685d0056ab87feb1c2be13b49a1a98c}{\+\_\+component\+Storages}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Entity Component System manager. 
+
+This class handles entity creation, component management, and signatures for efficient querying. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classECS_a7fba8bcfbb8d238085ab7302d96a332f}\label{classECS_a7fba8bcfbb8d238085ab7302d96a332f} 
+\index{ECS@{ECS}!ECS@{ECS}}
+\index{ECS@{ECS}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{ECS()}{ECS()}}
+{\footnotesize\ttfamily ECS\+::\+ECS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classECS}{ECS}. 
+
+Initializes free entities queue and asserts it\textquotesingle{}s not empty. \Hypertarget{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}\label{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1} 
+\index{ECS@{ECS}!````~ECS@{\texorpdfstring{$\sim$}{\string~}ECS}}
+\index{````~ECS@{\texorpdfstring{$\sim$}{\string~}ECS}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ECS()}{\string~ECS()}}
+{\footnotesize\ttfamily ECS\+::\texorpdfstring{$\sim$}{\string~}\+ECS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for \doxylink{classECS}{ECS}. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classECS_ab25f63dc0523958d986069505b703c12}\label{classECS_ab25f63dc0523958d986069505b703c12} 
+\index{ECS@{ECS}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a component to an entity. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & The type of component. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+{\em component} & The component to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+The entity (for chaining). 
+\end{DoxyReturn}
+\Hypertarget{classECS_a9e8a8388bce60d993a5ef04fd42dc0f0}\label{classECS_a9e8a8388bce60d993a5ef04fd42dc0f0} 
+\index{ECS@{ECS}!addTime@{addTime}}
+\index{addTime@{addTime}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{addTime()}{addTime()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::add\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds delta time to the \doxylink{classECS}{ECS} time. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em dt} & The delta time to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classECS_a41b876f3725cbb04aac3f2edd95522c6}\label{classECS_a41b876f3725cbb04aac3f2edd95522c6} 
+\index{ECS@{ECS}!createEntity@{createEntity}}
+\index{createEntity@{createEntity}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{createEntity()}{createEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::create\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new entity. 
+
+\begin{DoxyReturn}{Renvoie}
+The ID of the newly created entity. 
+\end{DoxyReturn}
+\Hypertarget{classECS_aaae60c88af59dd7af9d86200eb522bbc}\label{classECS_aaae60c88af59dd7af9d86200eb522bbc} 
+\index{ECS@{ECS}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a mutable pointer to a component. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & The component type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Pointer to the component, or nullptr. 
+\end{DoxyReturn}
+\Hypertarget{classECS_a358206e15202fccfa73017c47af07079}\label{classECS_a358206e15202fccfa73017c47af07079} 
+\index{ECS@{ECS}!getConstComponent@{getConstComponent}}
+\index{getConstComponent@{getConstComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getConstComponent()}{getConstComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Const\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a read-\/only pointer to a component. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & The component type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Const pointer to the component, or nullptr. 
+\end{DoxyReturn}
+\Hypertarget{classECS_a8d931ce389d47888768e1a5092bde26b}\label{classECS_a8d931ce389d47888768e1a5092bde26b} 
+\index{ECS@{ECS}!getEntitiesByComponents@{getEntitiesByComponents}}
+\index{getEntitiesByComponents@{getEntitiesByComponents}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getEntitiesByComponents()}{getEntitiesByComponents()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ \\
+std\+::vector$<$ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ ECS\+::get\+Entities\+By\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves entities that have all specified components. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & Variadic template for component types. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Renvoie}
+Vector of entities matching the components. 
+\end{DoxyReturn}
+\Hypertarget{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}\label{classECS_a11aacce5459a5ce429ea8d181bb4ddc3} 
+\index{ECS@{ECS}!getSignature@{getSignature}}
+\index{getSignature@{getSignature}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getSignature()}{getSignature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} ECS\+::get\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the signature of an entity. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+The signature bitset. 
+\end{DoxyReturn}
+\Hypertarget{classECS_a5c0787ab975107fe402c5dc16dc945e5}\label{classECS_a5c0787ab975107fe402c5dc16dc945e5} 
+\index{ECS@{ECS}!getTime@{getTime}}
+\index{getTime@{getTime}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} ECS\+::get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current time in the \doxylink{classECS}{ECS}. 
+
+\begin{DoxyReturn}{Renvoie}
+The current time. 
+\end{DoxyReturn}
+\Hypertarget{classECS_a33c16853296e9784dfb558f35dffbd72}\label{classECS_a33c16853296e9784dfb558f35dffbd72} 
+\index{ECS@{ECS}!hasComponent@{hasComponent}}
+\index{hasComponent@{hasComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{hasComponent()}{hasComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if an entity has a specific component. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & The component type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+True if the entity has the component, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}\label{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661} 
+\index{ECS@{ECS}!killComponent@{killComponent}}
+\index{killComponent@{killComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{killComponent()}{killComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a specific component from an entity. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & The component type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classECS_a77bab58f7b7d5e53443078f60957b2d2}\label{classECS_a77bab58f7b7d5e53443078f60957b2d2} 
+\index{ECS@{ECS}!killEntity@{killEntity}}
+\index{killEntity@{killEntity}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{killEntity()}{killEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destroys an entity. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity to destroy. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classECS_a2d9a9caa600c1982410d33ce3a88eeef}\label{classECS_a2d9a9caa600c1982410d33ce3a88eeef} 
+\index{ECS@{ECS}!setSignature@{setSignature}}
+\index{setSignature@{setSignature}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{setSignature()}{setSignature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::set\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the signature for an entity. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & The entity. \\
+\hline
+{\em sig} & The new signature. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classECS_a0d360a43bc140d37953297708afb8b86}\label{classECS_a0d360a43bc140d37953297708afb8b86} 
+\index{ECS@{ECS}!verifyComponentStorage@{verifyComponentStorage}}
+\index{verifyComponentStorage@{verifyComponentStorage}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{verifyComponentStorage()}{verifyComponentStorage()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
+\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::verify\+Component\+Storage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}}}]{Type\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Verifies and initializes storage for a component type if needed. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em Component\+Type} & The component type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em Type\+ID} & The ID of the component type. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classECS_a00a2f233abb0f55b486b2426e9aa3c39}\label{classECS_a00a2f233abb0f55b486b2426e9aa3c39} 
+\index{ECS@{ECS}!\_\_freeEntities@{\_\_freeEntities}}
+\index{\_\_freeEntities@{\_\_freeEntities}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_freeEntities}{\_\_freeEntities}}
+{\footnotesize\ttfamily std\+::queue$<$\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}$>$ ECS\+::\+\_\+\+\_\+free\+Entities\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_a07c2ca3008559fa7e2382abdcfab95be}\label{classECS_a07c2ca3008559fa7e2382abdcfab95be} 
+\index{ECS@{ECS}!\_\_livingEntities@{\_\_livingEntities}}
+\index{\_\_livingEntities@{\_\_livingEntities}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_livingEntities}{\_\_livingEntities}}
+{\footnotesize\ttfamily std\+::size\+\_\+t ECS\+::\+\_\+\+\_\+living\+Entities = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_a5bc0cd3b9ff37378d7747b337258e9b2}\label{classECS_a5bc0cd3b9ff37378d7747b337258e9b2} 
+\index{ECS@{ECS}!\_\_signatures@{\_\_signatures}}
+\index{\_\_signatures@{\_\_signatures}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_\_signatures}{\_\_signatures}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$\mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}, \mbox{\hyperlink{ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}$>$ ECS\+::\+\_\+\+\_\+signatures\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_ac685d0056ab87feb1c2be13b49a1a98c}\label{classECS_ac685d0056ab87feb1c2be13b49a1a98c} 
+\index{ECS@{ECS}!\_componentStorages@{\_componentStorages}}
+\index{\_componentStorages@{\_componentStorages}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_componentStorages}{\_componentStorages}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*}$>$ ECS\+::\+\_\+component\+Storages\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classECS_a620302f938f8646f1348dcfdb5f6cddb}\label{classECS_a620302f938f8646f1348dcfdb5f6cddb} 
+\index{ECS@{ECS}!\_time@{\_time}}
+\index{\_time@{\_time}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{\_time}{\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} ECS\+::\+\_\+time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/engine/ecs/\mbox{\hyperlink{ecs_8hpp}{ecs.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,72 @@
+# Nom du projet et infos générales
+PROJECT_NAME           = "R-Type Game Engine"
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Documentation de l'ECS et des systèmes pour le projet R-Type"
+PROJECT_LOGO           = path/to/logo.png  # Ajoute un logo si tu en as un (PNG/SVG)
+
+# Chemins d'entrée : Spécifie où Doxygen cherche le code
+INPUT                  = . include src  # Répertoires include/ et src/ (ajoute plus si besoin)
+USE_MDFILE_AS_MAINPAGE = mainpage.docs
+RECURSIVE              = YES  # Scanne récursivement les sous-dossiers
+EXCLUDE_PATTERNS       = */build/* */.git/*  # Exclut les dossiers build et git
+
+SHOW_NAMESPACES        = YES
+INLINE_INFO            = YES
+
+MARKDOWN_SUPPORT       = YES  # (Défaut YES, mais confirme)
+AUTOLINK_SUPPORT       = YES  # Liens auto vers classes
+TOC_EXPAND             = YES
+
+# Activer les diagrammes "cool" (nécessite Graphviz installé)
+HAVE_DOT               = YES
+CLASS_DIAGRAMS         = YES
+CLASS_GRAPH            = YES
+GRAPHICAL_HIERARCHY    = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = YES  # Diagrammes UML-like
+UML_LIMIT_NUM_FIELDS   = 10
+UML_MAX_EDGE_LABELS    = 10
+DOT_UML_DETAILS        = YES
+TEMPLATE_RELATIONS     = YES
+HIDE_UNDOC_RELATIONS   = YES
+DOT_IMAGE_FORMAT       = svg  # SVG pour interactif (ou png)
+INTERACTIVE_SVG        = YES  # SVG cliquables en HTML
+DOT_NODE_ATTR          = "shape=box,style=filled,fillcolor=lightblue"  # Style des noeuds
+DOT_EDGE_ATTR          = "arrowhead=normal,color=blue"  # Style des arêtes
+DOT_GRAPH_MAX_NODES    = 50   # Limite les noeuds par graph (augmente si besoin)
+MAX_DOT_GRAPH_DEPTH    = 0
+
+
+# Sorties : HTML principal, avec thème moderne
+OUTPUT_DIRECTORY       = docs  # Dossier de sortie (créé automatiquement)
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_HEADER            = ""  # Optionnel : Fichier HTML personnalisé pour header
+HTML_FOOTER            = ""  # Idem pour footer
+HTML_STYLESHEET        = ""  # Optionnel : CSS personnalisé pour styliser
+HTML_EXTRA_STYLESHEET  = doxygen-awesome.css  # Télécharge ce CSS depuis GitHub (doxygen-awesome) pour un thème moderne et cool !
+
+# Recherche et navigation améliorées
+SEARCHENGINE           = YES  # Barre de recherche
+SERVER_BASED_SEARCH    = NO   # Recherche client-side
+JAVADOC_AUTOBRIEF      = YES  # Auto-brief pour commentaires courts
+
+# Générer PDF (optionnel, via LaTeX)
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+MAKEINDEX_CMD_NAME     = makeindex
+LATEX_MAKEINDEX_CMD    = makeindex
+
+# Autres options utiles pour une doc complète
+EXTRACT_ALL            = YES  # Documente même sans commentaires (utile pour début)
+EXTRACT_PRIVATE        = YES  # Inclut membres privés
+EXTRACT_STATIC         = YES  # Inclut static
+ENABLE_PREPROCESSING   = YES  # Traite macros
+FILE_PATTERNS          = *.cpp *.hpp *.h *.cc *.cxx  # Fichiers à scanner
+IMAGE_PATH             = assets  # Dossier pour images dans la doc
+GENERATE_TREEVIEW      = YES  # Arborescence latérale en HTML
+FULL_SIDEBAR           = NO   # Sidebar complet ou minimal
+
+# Langue (si tu veux en français)
+OUTPUT_LANGUAGE        = French

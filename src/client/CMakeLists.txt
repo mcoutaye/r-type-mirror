@@ -1,7 +1,6 @@
 set(SRC_FILES
     main.cpp
     UdpClient.cpp
-    ../engine/systems/InputSystem.cpp
 )
 
 add_executable(rtype_client ${SRC_FILES})

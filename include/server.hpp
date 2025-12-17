@@ -33,7 +33,6 @@ class Server {
         void applyInput(std::pair<int, InputState> &currentItem);
         void entityForClients(); // Create ECS Entity if a client connect itself
 
-        // SafeQueue<std::pair<int, InputState>> &getRecievedInput();
         uint16_t _nbPlayer;
         std::unordered_map<std::size_t, std::size_t> clientToPlayerRelation;
 

@@ -48,7 +48,7 @@ void Nwk::UdpServer::join()
         m_sendThread.join();
 }
 
-ClientInfo* Nwk::UdpServer::findClient(const sf::IpAddress& ip, unsigned short port)
+Nwk::ClientInfo* Nwk::UdpServer::findClient(const sf::IpAddress& ip, unsigned short port)
 {
     for (auto& client : m_clients)
         if (client && client->address == ip && client->port == port)

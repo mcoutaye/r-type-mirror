@@ -9,6 +9,13 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+#define SHOOT_DELAY 0.5f
+
+// Should send updates to clients or not
+typedef struct SendUpdate_s {
+    bool needsUpdate = false;
+} SendUpdate_t;
+
 // Positions et mouvements (basiques)
 typedef struct Position_s {
     float x = 0.f;
@@ -34,6 +41,7 @@ typedef struct Drawable_s {
 typedef struct PlayerController_s {
     uint8_t playerId = 0;       // 0=joueur1, 1=joueur2...
     bool isShooting = false;
+    float shootCooldown = 0.f;
 } PlayerController_t;
 
 // Collision AABB simple
@@ -77,3 +85,15 @@ typedef struct Projectile_s {
     float speed;  // Vitesse du projectile
     int damage;   // Dégâts infligés
 } Projectile_t;
+
+// Obstacle de stage indestructible
+typedef struct Obstacle_s {
+    bool blocking = true;  // Bloque le mouvement
+} Obstacle_t;
+
+// Étoile du fond (background starfield)
+typedef struct Star_s {
+    float speed = 100.f;      // Vitesse de défilement
+    uint8_t brightness = 255; // Luminosité (pour effet de parallaxe)
+    uint8_t size = 2;         // Taille de l'étoile
+} Star_t;

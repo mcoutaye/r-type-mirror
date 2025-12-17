@@ -15,6 +15,8 @@
     #include "engine/systems/InputSystem.hpp"
     #include "engine/systems/RenderSystem.hpp"
     #include "engine/systems/RessourceManager.hpp"
+    #include "engine/StageFactory.hpp"
+    #include "engine/EntityFactory.hpp"
     #include "serializer.hpp"
 
 class Client {
@@ -52,18 +54,22 @@ Client::Client(sf::IpAddress serverIp)
     _UDP.start();
     _timer = Timer();
     _running = true;
+
+        // === CRÉATION DU STAGE ===
+    Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
 }
 
 Client::~Client() {}
 
 void Client::update()
 {
+    _timer.updateClock();
     std::vector<EntityUpdate> updates;
 
-    if (!_UDP.receivedUpdates.tryPop(updates))
-        return; // No updates to process
-    for (auto &update : updates)
-        this->applyUpdate(update);
+    while (_UDP.receivedUpdates.tryPop(updates)) {
+        for (auto &update : updates)
+            this->applyUpdate(update);
+    }
 }
 
 void Client::applyUpdate(EntityUpdate &update)
@@ -107,6 +113,7 @@ void Client::render()
 void Client::processInput()
 {
     InputState inputs = {0, 0, 0, 0, 0, 0};
+    inputs.tick = _timer.getCurrentFrame();
     _inputSystem.update(0);
     if (_inputSystem.isActionActive(GameAction::MoveUp))
         inputs.up = 1;

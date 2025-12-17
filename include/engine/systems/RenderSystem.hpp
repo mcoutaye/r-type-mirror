@@ -11,6 +11,7 @@
 #include "engine/systems/RessourceManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <algorithm>
+#include <cstdlib>
 
 
 class RenderSystem : public ISystem {
@@ -29,6 +30,21 @@ RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& 
 void RenderSystem::update(double dt)
 {
     _window.clear(sf::Color::Black);   // OBLIGATOIRE EN PREMIER
+
+    // Do a background system for clear code later
+    std::vector<Entity> stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
+    for (Entity e : stars) {
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        auto* star = _ecs.getComponent<Star_t>(e);
+        if (pos->x < -10.f) {
+            pos->x = 1930.f;
+            pos->y = static_cast<float>(rand() % 1080);
+        }
+        sf::RectangleShape shape(sf::Vector2f(star->size, star->size));
+        shape.setPosition(pos->x, pos->y);
+        shape.setFillColor(sf::Color(255, 255, 255, star->brightness));
+        _window.draw(shape);
+    }
 
     auto entities = _ecs.getEntitiesByComponents<Position_t, Drawable_t>();
     std::vector<std::pair<int, Entity>> sorted;

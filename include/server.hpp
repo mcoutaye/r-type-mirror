@@ -13,7 +13,12 @@
     #include "ecs.hpp"
     #include "engine/systems/Components.hpp"
     #include "engine/systems/MoveSystem.hpp"
+    #include "engine/systems/MovementSystem.hpp"
+    #include "engine/systems/WaveSystem.hpp"
+    #include "engine/systems/CollisionSystem.hpp"
     #include "serializer.hpp"
+    #include "engine/EntityFactory.hpp"
+    #include "engine/StageFactory.hpp"
 
 #define FRAME 60000
 
@@ -29,16 +34,18 @@ class Server {
         Timer _timer;
         bool _running;
     private:
-
         void applyInput(std::pair<int, InputState> &currentItem);
         void entityForClients(); // Create ECS Entity if a client connect itself
 
         uint16_t _nbPlayer;
         std::unordered_map<std::size_t, std::size_t> clientToPlayerRelation;
 
+        WaveSystem _waveSystem{_ecs};
+        MoveSystem _movSys{_ecs};
+        MovementSystem _movementSystem{_ecs};
+
         UdpServer _UDP;
         ECS _ecs;
-
 };
 
 Server::Server(unsigned short port)
@@ -48,6 +55,24 @@ Server::Server(unsigned short port)
     _timer = Timer();
     _running = true;
     _nbPlayer = 0;
+
+    // Factory::createScreenBorders(_ecs, 1920.f, 1080.f, 20.f);
+
+    std::vector<WaveData_t> level = {
+        {3.0f,  "enemy", 6,  2000.f, 200.f},
+        {8.0f,  "enemy", 10, 2000.f, 400.f},
+        {15.0f, "enemy", 15, 2000.f, 600.f}
+    };
+    _waveSystem.loadLevel(level);
+
+    // Obstacles custom
+    // Factory::createObstacle(_ecs, 800.f, 200.f, 100.f, 150.f);
+    // Factory::createObstacle(_ecs, 1200.f, 600.f, 80.f, 200.f);
+    // Factory::createObstacle(_ecs, 1500.f, 300.f, 120.f, 100.f);
+
+    // Grilles de tuiles destructibles
+    Factory::createTileGrid(_ecs, 600.f, 400.f, 3, 2, 50.f, 50.f, 50);
+    Factory::createTileGrid(_ecs, 1000.f, 500.f, 3, 2, 50.f, 50.f, 50);
 }
 
 Server::~Server() {}
@@ -62,18 +87,32 @@ void Server::applyInput(std::pair<int, InputState> &currentItem)
 
     if (!velo)
         return;
+
+    float speed = 400.0f;
+    velo->x = 0;
+    velo->y = 0;
+
     if (currentItem.second.right)
-        velo->x += 10;
+        velo->x = speed;
     if (currentItem.second.left)
-        velo->x -= 10;
+        velo->x = -speed;
     if (currentItem.second.up)
-        velo->y += 10;
+        velo->y = -speed;
     if (currentItem.second.down)
-        velo->y -= 10;
+        velo->y = speed;
 }
 
 void Server::processInputs()
 {
+    // Reset velocity for all players to prevent sliding
+    for (auto& pair : clientToPlayerRelation) {
+        auto velo = _ecs.getComponent<Velocity_t>(pair.second);
+        if (velo) {
+            velo->x = 0;
+            velo->y = 0;
+        }
+    }
+
     this->entityForClients();
     std::pair<int, InputState> first;
     std::pair<int, InputState> input;
@@ -95,15 +134,33 @@ void Server::processInputs()
 
 void Server::update()
 {
-    MoveSystem movSys(this->_ecs);
-    movSys.update(1.0f / 60.0f); // Update with fixed delta time
+    _movSys.update(1.0f / 60.f); // Update with fixed delta time
+    _movementSystem.update(1.0f / 60.f);
+    _waveSystem.update(1.0f / 60.f);
+
+    // for (Entity e : _ecs.getEntitiesByComponents<PlayerController_t, Position_t>()) {
+    //     auto* ctrl = _ecs.getComponent<PlayerController_t>(e);
+    //     auto* pos = _ecs.getComponent<Position_t>(e);
+
+    //     if (ctrl && ctrl->isShooting && ctrl->shootCooldown <= 0.f) {
+    //         Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 25, "bullet");
+    //         ctrl->shootCooldown = SHOOT_DELAY;
+    //     }
+    //     ctrl->shootCooldown -= this->_timer.getLastTick() / 1'000'000.f;
+    // }
+
+    // // Updates to remove projectiles out of bounds
+    // for (Entity e : _ecs.getEntitiesByComponents<Projectile_t, Position_t>()) {
+    //     auto* pos = _ecs.getComponent<Position_t>(e);
+    //     if (pos->x > 2000.f || pos->x < -100.f || pos->y > 1200.f || pos->y < -100.f)
+    //         _ecs.killEntity(e);
+    // }
 }
 
 void Server::broadcast()
 {
     // send every player entities or projectile for the moment
-    // use HasChanged component later
-    auto entities = _ecs.getEntitiesByComponents<Position_t, Health_t>(); // Players & Enemies
+    auto entities = _ecs.getEntitiesByComponents<Position_t, Health_t, SendUpdate_t>(); // Players & Enemies
 
     for (Entity e : entities) {
         auto pos = _ecs.getConstComponent<Position_t>(e);
@@ -126,7 +183,7 @@ void Server::broadcast()
         std::queue<PacketToSend> queue = _UDP.createEveryonePacket(packetData);
 
         std::cout << "Entity " << e << " at {" << pos->x << ", " << pos->y
-            << "} with " << pv->current << " pv" << std::endl;
+            << "}" << std::endl;
 
         while (!queue.empty()) {
             _UDP.packetsToSend.push(queue.front());
@@ -161,8 +218,7 @@ void Server::entityForClients()
 
     for (const auto &client : Clients) {
         if (clientToPlayerRelation.find(client.playerId) == clientToPlayerRelation.end()) {
-            auto newEntity = _ecs.createEntity();
-            _ecs.addComponents<Position_t, Health_t, Velocity_t>(newEntity, {0.f, 0.f}, {100, 100}, {0.f, 0.f});
+            Entity newEntity = Factory::createPlayer(_ecs, 0.f, 0.f, client.playerId, "player");
             clientToPlayerRelation.insert({ client.playerId, newEntity });
             this->_nbPlayer++;
         }

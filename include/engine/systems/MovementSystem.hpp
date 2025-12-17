@@ -14,11 +14,14 @@ class MovementSystem : public ISystem {
 public:
     MovementSystem(ECS& ecs) : ISystem(ecs) {}
     void update(double dt) override;
+private:
+    float _totalTime = 0.f;
 };
 
 void MovementSystem::update(double dt) {
     auto entities = _ecs.getEntitiesByComponents<Position_t, Velocity_t, MovementPattern_t>();
-    float time = dt;
+    _totalTime += static_cast<float>(dt);
+    float time = _totalTime;
 
     for (Entity e : entities) {
         auto* pos = _ecs.getComponent<Position_t>(e);
@@ -32,7 +35,7 @@ void MovementSystem::update(double dt) {
         // Applique le pattern de mouvement
         switch (pattern->type) {
             case MovementPattern_t::Type::Linear:
-                // Mouvement linéaire (pas de modification, utilise juste la vélocité de base)
+                // Mouvement linéaire (géré par MoveSystem)
                 break;
 
             case MovementPattern_t::Type::Sinus:
@@ -53,7 +56,7 @@ void MovementSystem::update(double dt) {
 
             case MovementPattern_t::Type::Zigzag:
                 // Mouvement en zigzag (gauche/droite + avance)
-                pos->x += baseX * dt;
+                // pos->x += baseX * dt; // Géré par MoveSystem
                 pos->y += sin(time * pattern->speed) * pattern->amplitude * dt;
                 break;
 
@@ -65,12 +68,12 @@ void MovementSystem::update(double dt) {
         }
 
         // Applique la vélocité de base (sauf pour les patterns qui gèrent déjà x/y)
-        if (pattern->type == MovementPattern_t::Type::Linear ||
-            pattern->type == MovementPattern_t::Type::Zigzag) {
-            pos->x += baseX * dt;
-        }
-        if (pattern->type == MovementPattern_t::Type::Linear) {
-            pos->y += baseY * dt;
-        }
+        // if (pattern->type == MovementPattern_t::Type::Linear ||
+        //     pattern->type == MovementPattern_t::Type::Zigzag) {
+        //     pos->x += baseX * dt;
+        // }
+        // if (pattern->type == MovementPattern_t::Type::Linear) {
+        //     pos->y += baseY * dt;
+        // }
     }
 }

@@ -89,6 +89,7 @@ void WaveSystem::update(double dt)
             _ecs.addComponent(enemy, Drawable_t{"enemy.png", {0, 0, 64, 64}, 10, true});
             _ecs.addComponent(enemy, Collider_t{50.f, 50.f, true, 2, 15});
             _ecs.addComponent(enemy, Health_t{40, 40});
+            _ecs.addComponent(enemy, SendUpdate_t{true});
         }
 
         ++_currentWave;
@@ -97,6 +98,6 @@ void WaveSystem::update(double dt)
         if (_currentWave < _waves.size())
             _timer = _waves[_currentWave].delay;
         else
-            _timer = 99999.f; // plus de vagues
+            _timer = 10.f; // plus de vagues
     }
 }

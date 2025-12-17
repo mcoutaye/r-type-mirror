@@ -12,7 +12,7 @@
 
 class Timer {
     public:
-        explicit Timer() {
+        explicit Timer() : _frameNumber(0) {
             _clock.restart();
         }
         ~Timer() {}
@@ -36,7 +36,7 @@ class Timer {
     private:
         sf::Clock _clock;
         sf::Time _lastTick;
-        uint16_t _frameNumber;
+        uint16_t _frameNumber = 0;
 };
 
 #endif /* !TIMER_HPP_ */

@@ -10,6 +10,5 @@ var namespaces_dup =
       [ "createScreenBorders", "namespaceFactory.html#a46cd969803b3a2d51624f7d1a880e90c", null ],
       [ "createStarfield", "namespaceFactory.html#a28b6f5d53214fe164bee1ecf77706370", null ],
       [ "createTileGrid", "namespaceFactory.html#a7e8cefb2f1094bf3a3b56575b315301b", null ]
-    ] ],
-    [ "Ntw", "namespaceNtw.html", "namespaceNtw" ]
+    ] ]
 ];

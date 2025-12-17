@@ -16,17 +16,9 @@ var annotated_dup =
       [ "WaveData", "structComponents_1_1WaveData.html", "structComponents_1_1WaveData" ],
       [ "WaveSpawner", "structComponents_1_1WaveSpawner.html", "structComponents_1_1WaveSpawner" ]
     ] ],
-    [ "Ntw", "namespaceNtw.html", [
-      [ "NetworkManager", "classNtw_1_1NetworkManager.html", "classNtw_1_1NetworkManager" ],
-      [ "PacketInterpreter", "classNtw_1_1PacketInterpreter.html", "classNtw_1_1PacketInterpreter" ],
-      [ "ReceivedPacket", "classNtw_1_1ReceivedPacket.html", "classNtw_1_1ReceivedPacket" ],
-      [ "UdpReceiver", "classNtw_1_1UdpReceiver.html", "classNtw_1_1UdpReceiver" ],
-      [ "UdpSender", "classNtw_1_1UdpSender.html", "classNtw_1_1UdpSender" ]
-    ] ],
     [ "CollisionSystem", "classCollisionSystem.html", "classCollisionSystem" ],
     [ "ECS", "classECS.html", "classECS" ],
     [ "GameEngine", "classGameEngine.html", "classGameEngine" ],
-    [ "GameLoop", "classGameLoop.html", "classGameLoop" ],
     [ "InputSystem", "classInputSystem.html", "classInputSystem" ],
     [ "ISystem", "classISystem.html", "classISystem" ],
     [ "MissileSystem", "classMissileSystem.html", "classMissileSystem" ],

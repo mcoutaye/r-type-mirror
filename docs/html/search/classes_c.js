@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['udpreceiver_0',['UdpReceiver',['../classNtw_1_1UdpReceiver.html',1,'Ntw']]],
-  ['udpsender_1',['UdpSender',['../classNtw_1_1UdpSender.html',1,'Ntw']]]
+  ['wavedata_0',['WaveData',['../structComponents_1_1WaveData.html',1,'Components']]],
+  ['wavespawner_1',['WaveSpawner',['../structComponents_1_1WaveSpawner.html',1,'Components']]],
+  ['wavesystem_2',['WaveSystem',['../classWaveSystem.html',1,'']]]
 ];

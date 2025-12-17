@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['inputsystem_0',['InputSystem',['../classInputSystem.html#a26e9713157209f6f41225360f49ee90f',1,'InputSystem']]],
-  ['interpreterloop_1',['interpreterLoop',['../classNtw_1_1PacketInterpreter.html#abc3139782ed24d9b03e7102b9c2efb8f',1,'Ntw::PacketInterpreter']]],
-  ['isactionactive_2',['isActionActive',['../classInputSystem.html#a853a52f3d59165b69bc7303913369395',1,'InputSystem']]],
-  ['isystem_3',['ISystem',['../classISystem.html#a0cb213e9200b0463a803d4c4a37efe75',1,'ISystem']]]
+  ['kill_0',['kill',['../classStorageComponent.html#a9584f43386171c9196aa127830fbbf5a',1,'StorageComponent']]],
+  ['killcomponent_1',['killComponent',['../classECS.html#aa790d7ea384b5aad8a2dbe0d2cee1661',1,'ECS']]],
+  ['killentity_2',['killEntity',['../classECS.html#a77bab58f7b7d5e53443078f60957b2d2',1,'ECS']]]
 ];

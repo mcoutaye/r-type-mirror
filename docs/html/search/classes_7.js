@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['networkmanager_0',['NetworkManager',['../classNtw_1_1NetworkManager.html',1,'Ntw']]]
+  ['obstacle_0',['Obstacle',['../structComponents_1_1Obstacle.html',1,'Components']]]
 ];

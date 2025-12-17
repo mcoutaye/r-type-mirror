@@ -2,11 +2,10 @@
 PROJECT_NAME           = "R-Type Game Engine"
 PROJECT_NUMBER         = 1.0
 PROJECT_BRIEF          = "Documentation de l'ECS et des systèmes pour le projet R-Type"
-PROJECT_LOGO           = path/to/logo.png  # Ajoute un logo si tu en as un (PNG/SVG)
 
 # Chemins d'entrée : Spécifie où Doxygen cherche le code
-INPUT                  = . include src  # Répertoires include/ et src/ (ajoute plus si besoin)
-USE_MDFILE_AS_MAINPAGE = mainpage.docs
+INPUT                  = . include  # Répertoires include/ et src/ (ajoute plus si besoin)
+USE_MDFILE_AS_MAINPAGE = mainpage.md
 RECURSIVE              = YES  # Scanne récursivement les sous-dossiers
 EXCLUDE_PATTERNS       = */build/* */.git/*  # Exclut les dossiers build et git
 
@@ -63,7 +62,7 @@ EXTRACT_ALL            = YES  # Documente même sans commentaires (utile pour d�
 EXTRACT_PRIVATE        = YES  # Inclut membres privés
 EXTRACT_STATIC         = YES  # Inclut static
 ENABLE_PREPROCESSING   = YES  # Traite macros
-FILE_PATTERNS          = *.cpp *.hpp *.h *.cc *.cxx  # Fichiers à scanner
+FILE_PATTERNS          = *.cpp *.hpp *.h *.cc *.cxx *.md  # Fichiers à scanner
 IMAGE_PATH             = assets  # Dossier pour images dans la doc
 GENERATE_TREEVIEW      = YES  # Arborescence latérale en HTML
 FULL_SIDEBAR           = NO   # Sidebar complet ou minimal

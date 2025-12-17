@@ -1,3 +1,17 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="Node000000" href="$classGameLoop.html" title=" " alt="" coords="5,5,97,31"/>
+<area shape="rect" id="Node000000" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="5,153,80,179"/>
+<area shape="rect" id="Node000001" href="$classCollisionSystem.html" title=" " alt="" coords="135,5,262,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="53,140,81,89,102,63,126,40,146,28,149,33,130,44,106,66,86,92,57,142"/>
+<area shape="rect" id="Node000002" href="$classInputSystem.html" title=" " alt="" coords="147,55,251,80"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="63,141,92,114,127,89,151,78,153,82,129,94,95,119,66,145"/>
+<area shape="rect" id="Node000003" href="$classMissileSystem.html" title=" " alt="" coords="140,104,257,129"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="93,148,157,127,158,132,94,153"/>
+<area shape="rect" id="Node000004" href="$classMovementSystem.html" title=" " alt="" coords="128,153,269,179"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="94,163,128,163,128,169,94,169"/>
+<area shape="rect" id="Node000005" href="$classPowerUpSystem.html" title=" " alt="" coords="134,203,263,228"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="94,179,158,200,157,205,93,184"/>
+<area shape="rect" id="Node000006" href="$classRenderSystem.html" title=" " alt="" coords="140,252,257,277"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="67,187,96,213,129,237,156,250,154,254,127,242,92,217,64,191"/>
+<area shape="rect" id="Node000007" href="$classWaveSystem.html" title=" " alt="" coords="145,301,252,327"/>
+<area shape="poly" id="edge7_Node000000_Node000007" title=" " alt="" coords="58,190,86,239,106,264,130,287,151,299,149,304,126,291,102,268,82,242,53,192"/>
 </map>

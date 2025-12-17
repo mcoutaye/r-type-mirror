@@ -5,7 +5,6 @@ var hierarchy =
     [ "Components::Drawable", "structComponents_1_1Drawable.html", null ],
     [ "ECS", "classECS.html", null ],
     [ "GameEngine", "classGameEngine.html", null ],
-    [ "GameLoop", "classGameLoop.html", null ],
     [ "Components::Health", "structComponents_1_1Health.html", null ],
     [ "ISystem", "classISystem.html", [
       [ "CollisionSystem", "classCollisionSystem.html", null ],
@@ -17,19 +16,14 @@ var hierarchy =
       [ "WaveSystem", "classWaveSystem.html", null ]
     ] ],
     [ "Components::MovementPattern", "structComponents_1_1MovementPattern.html", null ],
-    [ "Ntw::NetworkManager", "classNtw_1_1NetworkManager.html", null ],
     [ "Components::Obstacle", "structComponents_1_1Obstacle.html", null ],
-    [ "Ntw::PacketInterpreter", "classNtw_1_1PacketInterpreter.html", null ],
     [ "Components::PlayerController", "structComponents_1_1PlayerController.html", null ],
     [ "Components::PowerUp", "structComponents_1_1PowerUp.html", null ],
     [ "Components::Projectile", "structComponents_1_1Projectile.html", null ],
-    [ "Ntw::ReceivedPacket", "classNtw_1_1ReceivedPacket.html", null ],
     [ "ResourceManager", "classResourceManager.html", null ],
     [ "Components::Shootable", "structComponents_1_1Shootable.html", null ],
     [ "Components::Star", "structComponents_1_1Star.html", null ],
     [ "StorageComponent< ComponentType >", "classStorageComponent.html", null ],
-    [ "Ntw::UdpReceiver", "classNtw_1_1UdpReceiver.html", null ],
-    [ "Ntw::UdpSender", "classNtw_1_1UdpSender.html", null ],
     [ "Components::Velocity", "structComponents_1_1Velocity.html", null ],
     [ "Components::WaveData", "structComponents_1_1WaveData.html", null ],
     [ "Components::WaveSpawner", "structComponents_1_1WaveSpawner.html", null ]

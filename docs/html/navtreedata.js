@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "R-Type Game Engine", "index.html", [
+    [ "Documentation du Projet R-Type", "index.html", "index" ],
     [ "Topics", "topics.html", "topics" ],
     [ "Espaces de nommage", "namespaces.html", [
       [ "Liste des espaces de nommage", "namespaces.html", "namespaces_dup" ],
@@ -59,8 +60,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"CollisionSystem_8cpp.html",
-"classStorageComponent.html"
+"CollisionSystem_8hpp.html",
+"structComponents_1_1PowerUp.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

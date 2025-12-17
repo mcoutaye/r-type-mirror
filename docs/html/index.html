@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type Game Engine: Page principale</title>
+<title>R-Type Game Engine: Documentation du Projet R-Type</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,10 +90,36 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">R-Type Game Engine Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Documentation du Projet R-Type </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
+Bienvenue dans la Documentation de R-Type</h1>
+<p>Ce projet est une implémentation d'un shoot'em up inspiré de R-Type, utilisant un <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> (Entity Component System) pour la game engine côté client, et un serveur UDP pour le réseau.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Aperçu Général</h2>
+<ul>
+<li><b>Client</b> : Gère le rendering (SFML), inputs, mouvements, collisions, etc. via <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>.</li>
+<li><b>Serveur</b> : Gère le réseau (UDP), interprétation de paquets, et boucle de jeu.</li>
+<li><b>Architecture</b> : Basée sur <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> pour flexibilité ; voir la hiérarchie des classes pour les systèmes héritant de <a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a>.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Sections Principales</h2>
+<ul>
+<li><a href="hierarchy.html">Hiérarchie des classes</a> : Vue graphique des héritages (ex. systèmes → <a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a>).</li>
+<li><a href="namespaces.html">Espaces de nommage</a> : Détails sur <code><a class="el" href="namespaceComponents.html" title="Espace dédié pour tous les composants ECS.">Components</a></code> et autres.</li>
+<li><a href="files.html">Fichiers</a> : Liste des sources.</li>
+<li><a href="modules.html">Modules</a> : Groupes comme les composants <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Comment Naviguer</h2>
+<p>Utilisez la barre de recherche en haut pour trouver des classes spécifiques (ex. <code><a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a></code>, <code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>).</p>
+<p>Pour plus de détails sur l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, voir <a href="classECS.html">Classe ECS</a>.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Contact</h2>
+<p>Projet Epitech 2025 - Gabriel VILLEMONTE - Mathis COUTAYE - Clement CHELLIER - Lucas HOAREAU </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

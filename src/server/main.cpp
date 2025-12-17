@@ -34,7 +34,7 @@ int main()
                 snapshot.push_back({id, dis(gen), dis(gen)});
             auto &clients = udp.getClients();
             for (const auto& client : clients) {
-                PacketToSend p;
+                Nwk::PacketToSend p;
                 p.destIp = client->address;
                 p.destPort = client->port;
                 p.data.resize(snapshot.size() * sizeof(Nwk::EntityUpdate));

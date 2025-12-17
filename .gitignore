@@ -2,6 +2,7 @@
 build/
 build-*/
 client_test
+binaries
 
 # C/C++ object files and binaries
 *.o

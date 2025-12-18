@@ -56,7 +56,7 @@ Server::Server(unsigned short port)
     _running = true;
     _nbPlayer = 0;
 
-    // Factory::createScreenBorders(_ecs, 1920.f, 1080.f, 20.f);
+    Factory::createScreenBorders(_ecs, 1920.f, 1080.f, 5.f);
 
     std::vector<WaveData_t> level = {
         {3.0f,  "enemy", 6,  2000.f, 200.f},
@@ -100,6 +100,11 @@ void Server::applyInput(std::pair<int, InputState> &currentItem)
         velo->y = -speed;
     if (currentItem.second.down)
         velo->y = speed;
+
+    auto ctrl = _ecs.getComponent<PlayerController_t>(e);
+    if (ctrl) {
+        ctrl->isShooting = currentItem.second.shoot;
+    }
 }
 
 void Server::processInputs()
@@ -138,74 +143,164 @@ void Server::update()
     _movementSystem.update(1.0f / 60.f);
     _waveSystem.update(1.0f / 60.f);
 
-    // for (Entity e : _ecs.getEntitiesByComponents<PlayerController_t, Position_t>()) {
-    //     auto* ctrl = _ecs.getComponent<PlayerController_t>(e);
-    //     auto* pos = _ecs.getComponent<Position_t>(e);
+    // Remove entities out of bounds
+    auto entities = _ecs.getEntitiesByComponents<Position_t>();
+    for (Entity e : entities) {
+        if (_ecs.hasComponent<PlayerController_t>(e))
+            continue;
 
-    //     if (ctrl && ctrl->isShooting && ctrl->shootCooldown <= 0.f) {
-    //         Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 25, "bullet");
-    //         ctrl->shootCooldown = SHOOT_DELAY;
-    //     }
-    //     ctrl->shootCooldown -= this->_timer.getLastTick() / 1'000'000.f;
-    // }
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        if (pos->x < -100.f || pos->x > 2200.f || pos->y < -100.f || pos->y > 1200.f) {
+             _ecs.killEntity(e);
+        }
+    }
 
-    // // Updates to remove projectiles out of bounds
-    // for (Entity e : _ecs.getEntitiesByComponents<Projectile_t, Position_t>()) {
-    //     auto* pos = _ecs.getComponent<Position_t>(e);
-    //     if (pos->x > 2000.f || pos->x < -100.f || pos->y > 1200.f || pos->y < -100.f)
-    //         _ecs.killEntity(e);
-    // }
+    for (Entity e : _ecs.getEntitiesByComponents<PlayerController_t, Position_t>()) {
+        auto* ctrl = _ecs.getComponent<PlayerController_t>(e);
+        auto* pos = _ecs.getComponent<Position_t>(e);
+
+        if (ctrl && ctrl->isShooting && ctrl->shootCooldown <= 0.f) {
+            Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 50, "bullet", e);
+            ctrl->shootCooldown = SHOOT_DELAY;
+        }
+        ctrl->shootCooldown -= 1.0f / 60.f;
+    }
+
+    // Collision detection
+    auto projectiles = _ecs.getEntitiesByComponents<Projectile_t, Collider_t, Position_t>();
+    auto targets = _ecs.getEntitiesByComponents<Health_t, Collider_t, Position_t>();
+
+    for (Entity p : projectiles) {
+        auto proj = _ecs.getComponent<Projectile_t>(p);
+        auto projCol = _ecs.getComponent<Collider_t>(p);
+        auto projPos = _ecs.getComponent<Position_t>(p);
+
+        for (Entity t : targets) {
+            if (p == t) continue;
+            auto targetCol = _ecs.getComponent<Collider_t>(t);
+            auto targetPos = _ecs.getComponent<Position_t>(t);
+            auto targetHealth = _ecs.getComponent<Health_t>(t);
+
+            // Check teams (1=player, 2=enemy)
+            // if (projCol->team == targetCol->team) continue;
+            if (projCol->team == targetCol->team && targetCol->team != 0) continue;
+
+            // AABB Collision
+            if (projPos->x < targetPos->x + targetCol->width &&
+                projPos->x + projCol->width > targetPos->x &&
+                projPos->y < targetPos->y + targetCol->height &&
+                projPos->y + projCol->height > targetPos->y) {
+
+                // Hit!
+                targetHealth->current -= proj->damage;
+                targetHealth->lastAttackerId = proj->ownerId;
+                _ecs.killEntity(p); // Destroy projectile
+                break; // Projectile destroyed, move to next projectile
+            }
+        }
+    }
+    for (Entity e : _ecs.getEntitiesByComponents<Projectile_t, Position_t>()) {
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        if (pos->x > 2000.f || pos->x < -100.f || pos->y > 1200.f || pos->y < -100.f)
+            _ecs.killEntity(e);
+    }
 }
 
 void Server::broadcast()
 {
     // send every player entities or projectile for the moment
     auto entities = _ecs.getEntitiesByComponents<Position_t, Health_t, SendUpdate_t>(); // Players & Enemies
+    auto clients = _UDP.getClients();
+    uint16_t serverTick = _timer.getCurrentFrame();
 
     for (Entity e : entities) {
         auto pos = _ecs.getConstComponent<Position_t>(e);
         auto pv = _ecs.getConstComponent<Health_t>(e);
-        auto tick = _timer.getCurrentFrame();
 
-        // total size needed (Entity ID + Position + Health)
-        size_t totalSize = sizeof(Entity) + sizeof(uint16_t) + sizeof(Position_t) + sizeof(Health_t);
-        std::vector<uint8_t> packetData(totalSize);
-        size_t offset = 0;
+        // Check if this entity belongs to a client
+        int ownerClientId = -1;
+        for (const auto& pair : clientToPlayerRelation) {
+            if (pair.second == e) {
+                ownerClientId = pair.first;
+                break;
+            }
+        }
 
-        std::memcpy(packetData.data() + offset, &e, sizeof(Entity));
-        offset += sizeof(Entity);
-        std::memcpy(packetData.data() + offset, &tick, sizeof(uint16_t));
-        offset += sizeof(uint16_t);
-        std::memcpy(packetData.data() + offset, pos, sizeof(Position_t));
-        offset += sizeof(Position_t);
-        std::memcpy(packetData.data() + offset, pv, sizeof(Health_t));
+        for (const auto& client : clients) {
+            uint16_t tickToSend = serverTick;
+            if (client.playerId == ownerClientId) {
+                tickToSend = 0xFFFF; // Magic value for "This is you"
+            }
 
-        std::queue<PacketToSend> queue = _UDP.createEveryonePacket(packetData);
+            // Handle death events
+            if (pv->current <= 0) {
+                // Check if this client killed the entity
+                // We need to find the player ID associated with the lastAttackerId entity
+                int attackerClientId = -1;
+                for (const auto& pair : clientToPlayerRelation) {
+                    if (pair.second == pv->lastAttackerId) {
+                        attackerClientId = pair.first;
+                        break;
+                    }
+                }
 
-        std::cout << "Entity " << e << " at {" << pos->x << ", " << pos->y
-            << "}" << std::endl;
+                if (client.playerId == attackerClientId) {
+                    tickToSend = 0xFFFD; // You killed it
+                } else {
+                    tickToSend = 0xFFFE; // It died
+                }
+            }
 
-        while (!queue.empty()) {
-            _UDP.packetsToSend.push(queue.front());
-            queue.pop();
+            // total size needed (Entity ID + Position + Health (current + max))
+            // Note: We manually serialize health to exclude lastAttackerId and match EntityUpdate struct
+            size_t totalSize = sizeof(Entity) + sizeof(uint16_t) + sizeof(Position_t) + (2 * sizeof(int));
+            std::vector<uint8_t> packetData(totalSize);
+            size_t offset = 0;
+
+            std::memcpy(packetData.data() + offset, &e, sizeof(Entity));
+            offset += sizeof(Entity);
+            std::memcpy(packetData.data() + offset, &tickToSend, sizeof(uint16_t));
+            offset += sizeof(uint16_t);
+            std::memcpy(packetData.data() + offset, pos, sizeof(Position_t));
+            offset += sizeof(Position_t);
+
+            // Manual Health serialization
+            int currentHealth = pv->current;
+            int maxHealth = pv->max;
+            std::memcpy(packetData.data() + offset, &currentHealth, sizeof(int));
+            offset += sizeof(int);
+            std::memcpy(packetData.data() + offset, &maxHealth, sizeof(int));
+
+            _UDP.packetsToSend.push({client.address, client.port, packetData});
+        }
+
+        if (pv->current <= 0) {
+             std::cout << "Entity " << e << " died (Killer: " << pv->lastAttackerId << ")" << std::endl;
         }
     }
 
-    auto projectiles = _ecs.getEntitiesByComponents<Projectile_t>();
-
-    for (Entity projectile : projectiles) {
-        auto comp =  _ecs.getConstComponent<Projectile_t>(projectile);
-        std::vector<uint8_t> packetData(sizeof(Projectile_t));
-        std::memcpy(packetData.data(), &comp, sizeof(Projectile_t));
-        std::queue<PacketToSend> queue = _UDP.createEveryonePacket(packetData);
-
-        while (!queue.empty()) {
-            _UDP.packetsToSend.push(queue.front());
-            queue.pop();
+    // Cleanup dead entities after broadcast
+    for (Entity e : entities) {
+        auto pv = _ecs.getConstComponent<Health_t>(e);
+        if (pv->current <= 0) {
+            _ecs.killEntity(e);
         }
     }
-
 }
+
+    // auto projectiles = _ecs.getEntitiesByComponents<Projectile_t>();
+
+    // for (Entity projectile : projectiles) {
+    //     auto comp =  _ecs.getConstComponent<Projectile_t>(projectile);
+    //     std::vector<uint8_t> packetData(sizeof(Projectile_t));
+    //     std::memcpy(packetData.data(), &comp, sizeof(Projectile_t));
+    //     std::queue<PacketToSend> queue = _UDP.createEveryonePacket(packetData);
+
+    //     while (!queue.empty()) {
+    //         _UDP.packetsToSend.push(queue.front());
+    //         queue.pop();
+    //     }
+    // }
 
 void Server::entityForClients()
 {

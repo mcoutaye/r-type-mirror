@@ -44,7 +44,7 @@ namespace Factory {
     }
 
     Entity createProjectile(ECS& ecs, float x, float y, float velocityX, float velocityY,
-                            uint8_t team, int damage, const std::string& textureId)
+                            uint8_t team, int damage, const std::string& textureId, int ownerId = -1)
     {
         Entity bullet = ecs.createEntity();
 
@@ -55,7 +55,7 @@ namespace Factory {
                 Velocity_t{velocityX, velocityY},
                 createDrawable(textureId, {0, 0, 16, 8}, 20, true, 1.f, 0.f),
                 Collider_t{16.f, 8.f, false, team, damage},
-                Projectile_t{velocityX, damage});
+                Projectile_t{velocityX, damage, ownerId});
                 // SendUpdate_t{true});
         return bullet;
     }

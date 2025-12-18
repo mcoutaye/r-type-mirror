@@ -57,6 +57,7 @@ typedef struct Collider_s {
 typedef struct Health_s {
     int max = 100;
     int current = 100;
+    int lastAttackerId = -1;
 } Health_t;
 
 // Pour les vagues
@@ -84,6 +85,7 @@ typedef struct MovementPattern_s {
 typedef struct Projectile_s {
     float speed;  // Vitesse du projectile
     int damage;   // Dégâts infligés
+    int ownerId = -1;
 } Projectile_t;
 
 // Obstacle de stage indestructible

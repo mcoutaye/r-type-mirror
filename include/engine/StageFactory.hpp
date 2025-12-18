@@ -43,12 +43,6 @@ namespace Factory {
         return obstacle;
     }
 
-    void createScreenBorders(ECS& ecs, float screenWidth, float screenHeight, float wallThickness)
-    {
-        createObstacle(ecs, 0.f, 0.f, screenWidth, wallThickness);
-        createObstacle(ecs, 0.f, screenHeight - wallThickness, screenWidth, wallThickness);
-    }
-
     Entity createDestructibleTile(ECS& ecs, float x, float y, float width, float height, int health)
     {
         Entity tile = ecs.createEntity();
@@ -60,6 +54,12 @@ namespace Factory {
                 Health_t{health, health},
                 SendUpdate_t{true});
         return tile;
+    }
+
+    void createScreenBorders(ECS& ecs, float screenWidth, float screenHeight, float wallThickness)
+    {
+        createDestructibleTile(ecs, 0.f, 0.f, screenWidth, wallThickness, 9999);
+        createDestructibleTile(ecs, 0.f, screenHeight - wallThickness, screenWidth, wallThickness, 9999);
     }
 
     std::vector<Entity> createTileGrid(ECS& ecs, float startX, float startY,

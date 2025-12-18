@@ -37,7 +37,7 @@ class MoveSystem : public ISystem {
 
                 auto collider = _ecs.getComponent<Collider_t>(e);
 
-                if (collider) {
+                if (collider && collider->solid) {
                     // Check X axis
                     float nextX = pos->x + velo->x * dt;
                     bool collisionX = false;

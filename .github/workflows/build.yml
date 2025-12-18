@@ -46,38 +46,35 @@ jobs:
       - name: Build project
         run: cmake --build build --config Release
 
-      # ---------- Artifacts (Linux) ----------
+      # ---------- Linux Artifacts ----------
       - name: Upload Linux binaries
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
           name: linux-binary
-          path: |
-            build/**/rtype_server
-            build/**/rtype_client
+          path: build/
 
-      # ---------- Artifacts (Windows) ----------
+      # ---------- Windows Artifacts ----------
       - name: Upload Windows binaries
         if: matrix.os == 'windows-latest'
         uses: actions/upload-artifact@v4
         with:
           name: windows-binary
-          path: |
-            build/**/rtype_server.exe
-            build/**/rtype_client.exe
+          path: build/
 
+  # 🚫 Mirror UNIQUEMENT sur les branches (JAMAIS sur les tags)
   mirror:
     name: Mirror to Private Epitech Repo
     needs: build
+    if: startsWith(github.ref, 'refs/heads/')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout current repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ---- SSH Setup ----
       - name: Install SSH key
         run: |
           mkdir -p ~/.ssh
@@ -105,23 +102,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download Linux binaries
+      - name: Download Linux build
         uses: actions/download-artifact@v4
         with:
           name: linux-binary
           path: dist/linux
+        continue-on-error: true
 
-      - name: Download Windows binaries
+      - name: Download Windows build
         uses: actions/download-artifact@v4
         with:
           name: windows-binary
           path: dist/windows
+        continue-on-error: true
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/linux/rtype_server
-            dist/linux/rtype_client
-            dist/windows/rtype_server.exe
-            dist/windows/rtype_client.exe
+            dist/linux/**/rtype_server
+            dist/linux/**/rtype_client
+            dist/windows/**/rtype_server.exe
+            dist/windows/**/rtype_client.exe

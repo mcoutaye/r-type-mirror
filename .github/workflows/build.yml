@@ -46,20 +46,25 @@ jobs:
       - name: Build project
         run: cmake --build build --config Release
 
-      # ---------- Artifacts ----------
-      - name: Upload Windows binary
-        if: matrix.os == 'windows-latest'
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-binary
-          path: build/**/*.exe
-
-      - name: Upload Linux binary
+      # ---------- Artifacts (Linux) ----------
+      - name: Upload Linux binaries
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
           name: linux-binary
-          path: build/**/rtype
+          path: |
+            build/**/rtype_server
+            build/**/rtype_client
+
+      # ---------- Artifacts (Windows) ----------
+      - name: Upload Windows binaries
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-binary
+          path: |
+            build/**/rtype_server.exe
+            build/**/rtype_client.exe
 
   mirror:
     name: Mirror to Private Epitech Repo
@@ -100,21 +105,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download Windows binary
-        uses: actions/download-artifact@v4
-        with:
-          name: windows-binary
-          path: dist/windows
-
-      - name: Download Linux binary
+      - name: Download Linux binaries
         uses: actions/download-artifact@v4
         with:
           name: linux-binary
           path: dist/linux
 
+      - name: Download Windows binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-binary
+          path: dist/windows
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/windows/**/*.exe
-            dist/linux/**/*
+            dist/linux/rtype_server
+            dist/linux/rtype_client
+            dist/windows/rtype_server.exe
+            dist/windows/rtype_client.exe

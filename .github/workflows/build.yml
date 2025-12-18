@@ -46,15 +46,29 @@ jobs:
       - name: Build project
         run: cmake --build build --config Release
 
+      # ---------- Prepare Artifacts (Linux) ----------
+      - name: Prepare artifacts (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          mkdir -p bin
+          find build -name "rtype_server" -exec cp {} bin/ \;
+          find build -name "rtype_client" -exec cp {} bin/ \;
+
+      # ---------- Prepare Artifacts (Windows) ----------
+      - name: Prepare artifacts (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path bin
+          Get-ChildItem -Path build -Recurse -Include rtype_server.exe,rtype_client.exe | Copy-Item -Destination bin
+
       # ---------- Artifacts (Linux) ----------
       - name: Upload Linux binaries
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
           name: linux-binary
-          path: |
-            build/**/rtype_server
-            build/**/rtype_client
+          path: bin/*
 
       # ---------- Artifacts (Windows) ----------
       - name: Upload Windows binaries
@@ -62,9 +76,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-binary
-          path: |
-            build/**/rtype_server.exe
-            build/**/rtype_client.exe
+          path: bin/*
 
   mirror:
     name: Mirror to Private Epitech Repo

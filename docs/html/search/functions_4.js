@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['has_0',['has',['../classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578',1,'StorageComponent']]],
-  ['hascomponent_1',['hasComponent',['../classECS.html#a33c16853296e9784dfb558f35dffbd72',1,'ECS']]]
+  ['ecs_0',['ecs',['../classECS.html#a7fba8bcfbb8d238085ab7302d96a332f',1,'ECS::ECS()'],['../classECS.html#a7fba8bcfbb8d238085ab7302d96a332f',1,'ECS::ECS()']]],
+  ['entityforclients_1',['entityForClients',['../classServer.html#a167f3f27856b0e3c707f4f98c0bb75be',1,'Server']]]
 ];

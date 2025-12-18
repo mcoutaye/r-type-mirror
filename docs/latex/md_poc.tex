@@ -1,0 +1,135 @@
+\chapter{Proof of Concept\+: Choice of SFML for R-\/\+Type Project}
+\hypertarget{md_poc}{}\label{md_poc}\index{Proof of Concept: Choice of SFML for R-\/Type Project@{Proof of Concept: Choice of SFML for R-\/Type Project}}
+\label{md_poc_autotoc_md25}%
+\Hypertarget{md_poc_autotoc_md25}%
+ \hypertarget{md_poc_autotoc_md26}{}\doxysection{\texorpdfstring{1. Introduction}{1. Introduction}}\label{md_poc_autotoc_md26}
+This document outlines the technical reasoning behind choosing {\bfseries{SFML (Simple and Fast Multimedia Library)}} for the R-\/\+Type project, specifically focusing on architectural fit and networking capabilities compared to major alternatives (SDL2, Raylib, Qt).\hypertarget{md_poc_autotoc_md27}{}\doxysection{\texorpdfstring{2. Comparison with Alternatives}{2. Comparison with Alternatives}}\label{md_poc_autotoc_md27}
+\hypertarget{md_poc_autotoc_md28}{}\doxysubsection{\texorpdfstring{A. SFML vs. SDL2 (\+Simple Direct\+Media Layer)}{A. SFML vs. SDL2 (Simple DirectMedia Layer)}}\label{md_poc_autotoc_md28}
+
+\begin{DoxyItemize}
+\item {\bfseries{Language Paradigm\+:}} SDL2 is a {\bfseries{C library}}. It requires manual memory management (destroying textures/windows) and pointer handling. SFML is a {\bfseries{C++ library}} that uses RAII (Resource Acquisition Is Initialization), meaning resources are automatically cleaned up when they go out of scope.
+\item {\bfseries{Networking\+:}} SDL2 is strictly a media layer (Graphics, Audio, Input). It {\bfseries{does not}} have a networking module. To use SDL2, we would need to integrate a separate, complex library like {\ttfamily Boost.\+Asio} or raw OS sockets.
+\item {\bfseries{Architecture\+:}} SFML\textquotesingle{}s Object-\/\+Oriented design ({\ttfamily sf\+::\+Sprite}, {\ttfamily sf\+::\+Texture}) aligns perfectly with the C++ Class-\/based architecture of our \doxylink{classECS}{ECS} (Entity Component System). SDL2\textquotesingle{}s procedural C style would require writing extensive C++ wrappers.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md29}{}\doxysubsection{\texorpdfstring{B. SFML vs. Raylib}{B. SFML vs. Raylib}}\label{md_poc_autotoc_md29}
+
+\begin{DoxyItemize}
+\item {\bfseries{Rendering Paradigm\+:}} Raylib often uses "{}\+Immediate Mode"{} rendering (drawing commands issued every frame procedurally). While powerful for prototyping, this can conflict with the strict state management required in a distributed multiplayer game. SFML\textquotesingle{}s "{}\+Retained Mode"{} style (configuring objects and drawing them) fits better with persistent game entities.
+\item {\bfseries{Networking\+:}} Like SDL2, Raylib is primarily for graphics and audio. It lacks a robust, built-\/in object-\/oriented networking class compatible with C++ streams.
+\item {\bfseries{Language\+:}} Raylib is C-\/based. Using it in a C++20 project means losing out on modern C++ features (references, classes, templates) in the graphics layer.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md30}{}\doxysubsection{\texorpdfstring{C. SFML vs. Qt (\+Qt 6)}{C. SFML vs. Qt (Qt 6)}}\label{md_poc_autotoc_md30}
+
+\begin{DoxyItemize}
+\item {\bfseries{Performance\+:}} Qt is a heavy application framework designed for GUIs, not real-\/time arcade games. Its event loop and Signal/\+Slot mechanism introduce significant overhead compared to SFML\textquotesingle{}s lightweight {\ttfamily poll\+Event} loop.
+\item {\bfseries{Architecture Control\+:}} Qt enforces a strict architecture ({\ttfamily QObject} hierarchy, {\ttfamily moc} compiler). SFML is "{}passive,"{} allowing us to build our own custom architecture (like the \doxylink{classECS}{ECS} in {\ttfamily include/ecs.\+hpp}) without framework interference.
+\item {\bfseries{Complexity\+:}} Qt includes tools for everything (Web\+Engine, SQL, XML), which is unnecessary bloat for a game client/server.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md31}{}\doxysection{\texorpdfstring{3. Why SFML is the Superior Choice for R-\/\+Type}{3. Why SFML is the Superior Choice for R-Type}}\label{md_poc_autotoc_md31}
+\hypertarget{md_poc_autotoc_md32}{}\doxysubsection{\texorpdfstring{A. Unified Networking \& Graphics}{A. Unified Networking \& Graphics}}\label{md_poc_autotoc_md32}
+SFML is unique among lightweight libraries because it provides {\bfseries{Graphics, Audio, and Networking}} in a single cohesive package.
+\begin{DoxyItemize}
+\item {\bfseries{Benefit\+:}} We do not need to manage two separate dependencies (e.\+g., SDL for graphics + Boost for network).
+\item {\bfseries{Synergy\+:}} We can use {\ttfamily sf\+::\+Ip\+Address} and {\ttfamily sf\+::\+Udp\+Socket} on the server, and {\ttfamily sf\+::\+Render\+Window} on the client, all sharing the same style and conventions.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md33}{}\doxysubsection{\texorpdfstring{B. Protocol \& Serialization ($<$tt$>$sf\+::\+Packet$<$/tt$>$)}{B. Protocol \& Serialization (<tt>sf::Packet</tt>)}}\label{md_poc_autotoc_md33}
+
+\begin{DoxyItemize}
+\item {\bfseries{Endianness\+:}} SFML\textquotesingle{}s {\ttfamily sf\+::\+Packet} automatically handles "{}\+Endianness"{} (byte order) conversion. This ensures that a Linux \doxylink{classServer}{Server} and a Windows \doxylink{classClient}{Client} can communicate integers and floats without data corruption.
+\item {\bfseries{Ease of Use\+:}} We can stream data directly into packets ({\ttfamily packet \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} x \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} y;}) without complex pointer arithmetic or {\ttfamily memcpy} operations required by raw sockets.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md34}{}\doxysubsection{\texorpdfstring{C. Modern C++ Compatibility}{C. Modern C++ Compatibility}}\label{md_poc_autotoc_md34}
+
+\begin{DoxyItemize}
+\item Our project uses {\bfseries{C++20}}. SFML is written in C++ and supports modern idioms naturally.
+\item It integrates seamlessly with {\ttfamily std\+::shared\+\_\+ptr} and {\ttfamily std\+::vector}, which are heavily used in our \doxylink{classECS}{ECS} and Entity \doxylink{namespaceFactory}{Factory}.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md35}{}\doxysubsection{\texorpdfstring{D. Development Velocity}{D. Development Velocity}}\label{md_poc_autotoc_md35}
+
+\begin{DoxyItemize}
+\item SFML abstracts away low-\/level Open\+GL and Socket API calls, allowing the team to focus on Game Logic (\doxylink{classECS}{ECS}, Physics, Wave Systems) rather than boilerplate code.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md36}{}\doxysection{\texorpdfstring{4. Architectural Study\+: ECS vs. OOP}{4. Architectural Study: ECS vs. OOP}}\label{md_poc_autotoc_md36}
+\hypertarget{md_poc_autotoc_md37}{}\doxysubsection{\texorpdfstring{A. Traditional OOP (\+Object-\/\+Oriented Programming)}{A. Traditional OOP (Object-Oriented Programming)}}\label{md_poc_autotoc_md37}
+
+\begin{DoxyItemize}
+\item {\bfseries{Structure\+:}} Uses deep inheritance hierarchies (e.\+g., {\ttfamily Game\+Object} -\/\texorpdfstring{$>$}{>} {\ttfamily Movable} -\/\texorpdfstring{$>$}{>} {\ttfamily Enemy} -\/\texorpdfstring{$>$}{>} {\ttfamily Boss}).
+\item {\bfseries{The Problem (Diamond of Death)\+:}} If we want an entity that is both a "{}\+Building"{} and "{}\+Movable"{} (like a flying fortress), we run into multiple inheritance issues.
+\item {\bfseries{Memory\+:}} Objects are often scattered in heap memory, causing "{}cache misses"{} as the CPU jumps around to find data.
+\item {\bfseries{Coupling\+:}} Logic (methods) and Data (member variables) are tightly bound in the same class.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md38}{}\doxysubsection{\texorpdfstring{B. ECS (\+Entity Component System) -\/ Chosen for R-\/\+Type}{B. ECS (Entity Component System) - Chosen for R-Type}}\label{md_poc_autotoc_md38}
+
+\begin{DoxyItemize}
+\item {\bfseries{Structure\+:}}
+\begin{DoxyItemize}
+\item {\bfseries{Entity\+:}} Just a unique ID (uint32).
+\item {\bfseries{Component\+:}} Pure data (Position, Velocity, Sprite, Health). No logic.
+\item {\bfseries{System\+:}} Pure logic (\doxylink{classMovementSystem}{Movement\+System}, \doxylink{classRenderSystem}{Render\+System}). Iterates over entities that have specific components.
+\end{DoxyItemize}
+\item {\bfseries{Composition over Inheritance\+:}} We build entities by "{}plugging in"{} components. A "{}\+Flying Fortress"{} is just an Entity with {\ttfamily Position}, {\ttfamily Sprite}, and {\ttfamily Velocity} components. No complex inheritance needed.
+\item {\bfseries{Performance (Data Locality)\+:}} \doxylink{namespaceComponents}{Components} of the same type are stored in contiguous arrays. This allows the CPU to prefetch data efficiently, drastically improving performance for games with many objects (like bullets in R-\/\+Type).
+\item {\bfseries{Network Serialization\+:}} Since \doxylink{namespaceComponents}{Components} are POD (Plain Old Data) structs, they are trivial to serialize and send over the network compared to complex OOP objects with vtables.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md39}{}\doxysection{\texorpdfstring{5. Algorithms \& Data Structures}{5. Algorithms \& Data Structures}}\label{md_poc_autotoc_md39}
+\hypertarget{md_poc_autotoc_md40}{}\doxysubsection{\texorpdfstring{A. Algorithms}{A. Algorithms}}\label{md_poc_autotoc_md40}
+
+\begin{DoxyItemize}
+\item {\bfseries{Collision Detection (AABB)\+:}} We use Axis-\/\+Aligned Bounding Box collision detection ({\ttfamily sf\+::\+Float\+Rect\+::intersects}). This is an \$\+O(\+N\texorpdfstring{$^\wedge$}{\string^}2)\$ algorithm in its simplest form, iterating through entity pairs. While simple, it is sufficient for the entity count in R-\/\+Type (\texorpdfstring{$<$}{<} 2048).
+\item {\bfseries{System Iteration\+:}} Systems iterate over entities matching a specific {\ttfamily Signature} (Bitset). This is an \$\+O(\+N)\$ operation where N is the number of entities with that specific component combination.
+\end{DoxyItemize}\hypertarget{md_poc_autotoc_md41}{}\doxysubsection{\texorpdfstring{B. Data Structures}{B. Data Structures}}\label{md_poc_autotoc_md41}
+
+\begin{DoxyItemize}
+\item {\bfseries{Bitsets ({\ttfamily std\+::bitset})\+:\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Used for Entity Signatures to quickly check if an entity has the required components for a system (O(1) check).}}
+\item {\bfseries{ \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Contiguous Arrays ({\ttfamily std\+::vector})\+:\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \doxylink{namespaceComponents}{Components} are stored in dense arrays to maximize cache locality.}}
+\item {\bfseries{ \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Thread-\/\+Safe Queues ({\ttfamily \doxylink{classSafeQueue}{Safe\+Queue}})\+:\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} A custom thread-\/safe queue using {\ttfamily std\+::mutex} and {\ttfamily std\+::condition\+\_\+variable} is used to buffer network packets between the \doxylink{classUDP}{UDP} reception thread and the main game loop.}}
+\end{DoxyItemize}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md42}{}\doxysection{\texorpdfstring{6. Network Protocol \& Reliability}{6. Network Protocol \& Reliability}}\label{md_poc_autotoc_md42}
+{\bfseries{}}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md43}{}\doxysubsection{\texorpdfstring{A. Hybrid Protocol Strategy}{A. Hybrid Protocol Strategy}}\label{md_poc_autotoc_md43}
+{\bfseries{
+\begin{DoxyItemize}
+\item {\bfseries{\doxylink{classUDP}{UDP} (User Datagram Protocol)\+:}} Used for high-\/frequency, low-\/latency data\+:
+\begin{DoxyItemize}
+\item {\bfseries{\doxylink{classClient}{Client} -\/\texorpdfstring{$>$}{>} \doxylink{classServer}{Server}\+:}} {\ttfamily \doxylink{structInputState}{Input\+State}} (Player inputs).
+\item {\bfseries{\doxylink{classServer}{Server} -\/\texorpdfstring{$>$}{>} \doxylink{classClient}{Client}\+:}} {\ttfamily \doxylink{structEntityUpdate}{Entity\+Update}} (Positions, Health).
+\item {\bfseries{Reliability\+:}} We accept packet loss for movement data because a newer packet will arrive \texorpdfstring{$\sim$}{\string~}16ms later (60Hz), making the old one obsolete.
+\end{DoxyItemize}
+\item {\bfseries{TCP (Transmission Control Protocol)\+:}} Used for critical, low-\/frequency events\+:
+\begin{DoxyItemize}
+\item Connection/\+Disconnection.
+\item Lobby Management.
+\item Reliability is guaranteed by TCP itself.
+\end{DoxyItemize}
+\end{DoxyItemize}}}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md44}{}\doxysubsection{\texorpdfstring{B. Protocol Documentation (\+RFC Style)}{B. Protocol Documentation (RFC Style)}}\label{md_poc_autotoc_md44}
+{\bfseries{ The protocol is documented in {\ttfamily rfcprotocol.\+txt}, defining packet structures in Big-\/\+Endian format.
+\begin{DoxyItemize}
+\item {\bfseries{\doxylink{structInputState}{Input\+State}\+:}} 3 bytes (ID + Buttons).
+\item {\bfseries{\doxylink{structEntityUpdate}{Entity\+Update}\+:}} Packed struct with ID, X, Y coordinates.
+\end{DoxyItemize}}}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md45}{}\doxysection{\texorpdfstring{7. Security \& Data Integrity}{7. Security \& Data Integrity}}\label{md_poc_autotoc_md45}
+{\bfseries{}}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md46}{}\doxysubsection{\texorpdfstring{A. Vulnerabilities}{A. Vulnerabilities}}\label{md_poc_autotoc_md46}
+{\bfseries{
+\begin{DoxyItemize}
+\item {\bfseries{\doxylink{classUDP}{UDP} Spoofing\+:}} Since \doxylink{classUDP}{UDP} is connectionless, an attacker could forge packets with a victim\textquotesingle{}s Player ID.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Replay Attacks\+: Capturing valid packets and resending them to simulate movement.
+\item {\bfseries{Plaintext\+:}} Data is currently sent unencrypted.
+\end{DoxyItemize}}}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md47}{}\doxysubsection{\texorpdfstring{B. Mitigation \& Monitoring}{B. Mitigation \& Monitoring}}\label{md_poc_autotoc_md47}
+{\bfseries{
+\begin{DoxyItemize}
+\item {\bfseries{Source Validation\+:}} The server validates that the {\ttfamily sf\+::\+Ip\+Address} and Port of the incoming \doxylink{classUDP}{UDP} packet match the registered client for that Player ID.
+\item {\bfseries{Future Security (Long Term)\+:}}
+\begin{DoxyItemize}
+\item {\bfseries{Sequence Numbers\+:}} To prevent replay attacks, we will implement a rolling sequence number in the \doxylink{classUDP}{UDP} header.
+\item {\bfseries{Token Authentication\+:}} A session token exchanged via TCP during handshake will be required in \doxylink{classUDP}{UDP} packets.
+\item {\bfseries{Sanity Checks\+:}} The server enforces game logic (e.\+g., max speed) to prevent "{}speed hacks"{} even if the client sends modified coordinates.
+\end{DoxyItemize}
+\end{DoxyItemize}}}
+
+{\bfseries{}}\hypertarget{md_poc_autotoc_md48}{}\doxysection{\texorpdfstring{8. Documentation Strategy}{8. Documentation Strategy}}\label{md_poc_autotoc_md48}
+{\bfseries{
+\begin{DoxyItemize}
+\item {\bfseries{Technical Documentation\+:}} We use Markdown ({\ttfamily .md}) files in the repository for architectural decisions (like this POC).
+\item {\bfseries{Protocol Documentation\+:}} The network protocol is strictly defined in {\ttfamily rfcprotocol.\+txt} to ensure any client (even non-\/\+SFML ones) can implement the standard.
+\item {\bfseries{Code Documentation\+:}} Doxygen-\/style comments are used in headers ({\ttfamily .hpp}) to describe classes and methods. 
+\end{DoxyItemize}}}

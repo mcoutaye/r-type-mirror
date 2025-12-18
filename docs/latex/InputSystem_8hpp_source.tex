@@ -1,6 +1,6 @@
 \doxysection{Input\+System.\+hpp}
 \hypertarget{InputSystem_8hpp_source}{}\label{InputSystem_8hpp_source}\index{include/engine/systems/InputSystem.hpp@{include/engine/systems/InputSystem.hpp}}
-\mbox{\hyperlink{InputSystem_8hpp}{Aller à la documentation de ce fichier.}}
+\mbox{\hyperlink{InputSystem_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \ \ \ \ \textcolor{comment}{/*}}
 \DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ \ **\ EPITECH\ PROJECT,\ 2025}}
@@ -11,7 +11,7 @@
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ once}}
 \DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{ecs_8hpp}{engine/ecs/ecs.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp}{engine/ecs/ecs.hpp}}"{}}}
 \DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
 \DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <SFML/Window/Event.hpp>}}
 \DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <SFML/Window/Window.hpp>}}
@@ -30,17 +30,17 @@
 \DoxyCodeLine{00026\ }
 \DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classInputSystem}{InputSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
 \DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classInputSystem_a26e9713157209f6f41225360f49ee90f}{InputSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classInputSystem_a26e9713157209f6f41225360f49ee90f}{InputSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs);}
 \DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classInputSystem_a0d4dcf75be69044e88b17653925d35b7}{\string~InputSystem}}()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{update}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInputSystem_ad6713488aefbde5a440da4014e374e9e}{wasActionPressed}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInputSystem_abc82ada36a00374dac556647e6e968c1}{wasActionReleased}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_afe7f4a0668c0185a26a235acfc302e23}{setKeyMapping}}(sf::Keyboard::Key\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{key}},\ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}});}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8}{setJoystickButtonMapping}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{button}},\ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}});}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_aa38c761ee2f3f77d71df26469963ae65}{setDeadzone}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{deadzone}});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInputSystem_ad6713488aefbde5a440da4014e374e9e}{wasActionPressed}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInputSystem_abc82ada36a00374dac556647e6e968c1}{wasActionReleased}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_afe7f4a0668c0185a26a235acfc302e23}{setKeyMapping}}(sf::Keyboard::Key\ key,\ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ action);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8}{setJoystickButtonMapping}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ button,\ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ action);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_aa38c761ee2f3f77d71df26469963ae65}{setDeadzone}}(\textcolor{keywordtype}{float}\ deadzone);}
 \DoxyCodeLine{00040\ }
 \DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInputSystem_aedadc160e47234ac009775c0729f48f5}{setDefaultMappings}}();}

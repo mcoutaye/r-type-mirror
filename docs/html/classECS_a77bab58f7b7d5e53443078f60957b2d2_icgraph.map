@@ -1,0 +1,14 @@
+<map id="ECS::killEntity" name="ECS::killEntity">
+<area shape="rect" id="Node000001" title="Destroys an entity." alt="" coords="365,105,479,131"/>
+<area shape="rect" id="Node000002" href="$classClient.html#ad361032d607e05a51b215e1300029bbc" title=" " alt="" coords="167,29,317,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="377,102,272,57,274,52,379,97"/>
+<area shape="rect" id="Node000003" href="$classClient.html#a6e7a5e19c40bef39ae1c0f5996b8c471" title=" " alt="" coords="5,29,119,55"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="351,107,166,69,116,57,117,52,167,63,352,102"/>
+<area shape="rect" id="Node000004" href="$classServer.html#af36f3a832531844b5f18d40c6db22cc9" title=" " alt="" coords="174,131,310,156"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="352,130,311,136,310,131,351,125"/>
+<area shape="rect" id="Node000005" href="$classServer.html#af7b0a4370ac2c1e573f292870adfa81c" title=" " alt="" coords="183,180,301,205"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="385,139,318,170,284,182,282,177,316,165,383,134"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,54,119,53,119,48,153,48"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="132,31,166,30,166,36,132,36"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="93,19,84,11,62,8,43,10,33,15,31,20,37,28,32,31,26,21,29,11,42,5,62,3,87,6,97,15"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="StorageComponent::kill" name="StorageComponent::kill">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,180,55"/>
+<area shape="rect" id="Node000002" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="228,29,360,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,39,215,39,215,45,181,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="261,31,255,21,258,11,272,5,294,3,321,6,332,15,329,19,319,11,294,8,273,10,262,15,260,20,266,28"/>
+<area shape="rect" id="Node000003" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="408,29,576,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="360,39,394,39,394,45,360,45"/>
+</map>

@@ -1,0 +1,216 @@
+\doxysection{client.\+hpp}
+\hypertarget{client_8hpp_source}{}\label{client_8hpp_source}\index{include/server/client.hpp@{include/server/client.hpp}}
+\mbox{\hyperlink{client_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ client}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ CLIENT\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ CLIENT\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{server_2ecs_8hpp}{ecs.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{UdpClient_8hpp}{UdpClient.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{Timer_8hpp}{Timer.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{InputSystem_8hpp}{engine/systems/InputSystem.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{RenderSystem_8hpp}{engine/systems/RenderSystem.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}engine/systems/MoveSystem.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{RessourceManager_8hpp}{engine/systems/RessourceManager.hpp}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}engine/StageFactory.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}engine/EntityFactory.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{serializer_8hpp}{serializer.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classClient}{Client}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient}{Client}}(sf::IpAddress\ serverIp\ =\ \textcolor{stringliteral}{"{}127.0.0.1"{}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{\string~Client}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}();\ \textcolor{comment}{//\ Process\ all\ recieved\ updates\ from\ server}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_aad66fa701396a4392c2b52f316b25987}{render}}();\ \textcolor{comment}{//\ Render\ all\ entities\ from\ ECS}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_a643ed09341f07f8c81696741f2d2ca07}{processInput}}();\ \textcolor{comment}{//\ Retrieve\ and\ send\ inputs\ to\ server}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTimer}{Timer}}\ \mbox{\hyperlink{classClient_adcb6c04304d2dbd02474c2317d5c76b9}{\_timer}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classClient_af49251de2a995a0e491da25c1e72d33a}{\_running}};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_ad361032d607e05a51b215e1300029bbc}{applyUpdate}}(\mbox{\hyperlink{structEntityUpdate}{EntityUpdate}}\ \&\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::unordered\_map<std::size\_t,\ std::size\_t>\ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\_shootCooldown}}\ =\ 0.f;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\_localPlayerEntity}}\ =\ -\/1;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ \mbox{\hyperlink{classClient_a6ce2c592384a952ffe7c05cf4fe94b19}{\_resourceManager}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS}{ECS}}\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ sf::RenderWindow\ \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c17254a}{\_window}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classInputSystem}{InputSystem}}\ \mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}\{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}\};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRenderSystem}{RenderSystem}}\ \mbox{\hyperlink{classClient_a264bdbc71e1627d27dda4cbb8652d752}{\_renderSystem}}\{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}},\ \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c17254a}{\_window}},\ \mbox{\hyperlink{classClient_a6ce2c592384a952ffe7c05cf4fe94b19}{\_resourceManager}}\};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ MoveSystem\ \mbox{\hyperlink{classClient_a5e73c9ff310e577999469b19f0ee0030}{\_moveSystem}}\{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}\};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpClient}{UdpClient}}\ \mbox{\hyperlink{classClient_ac918169c7b101892744c43434966f365}{\_UDP}};}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \mbox{\hyperlink{classClient_ac515414a687ecfdf701f9f31497a72f7}{Client::Client}}(sf::IpAddress\ serverIp)}
+\DoxyCodeLine{00054\ \ \ \ \ :\ \_UDP(\mbox{\hyperlink{classUdpClient}{UdpClient}}(serverIp,\ \mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\_PORT}})),\ \_resourceManager(\mbox{\hyperlink{classResourceManager}{ResourceManager}}::getInstance()),\ \_ecs(\mbox{\hyperlink{classECS}{ECS}}())}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c17254a}{\_window}}.create(sf::VideoMode(1920,\ 1080),\ \textcolor{stringliteral}{"{}R-\/TYPE\ -\/\ CLIENT"{}},\ sf::Style::Fullscreen);}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c17254a}{\_window}}.setFramerateLimit(60);}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classClient_ac918169c7b101892744c43434966f365}{\_UDP}}.\mbox{\hyperlink{classUdpClient_af1dcc0f4f1ce5194bd4be556ad453353}{start}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classClient_adcb6c04304d2dbd02474c2317d5c76b9}{\_timer}}\ =\ \mbox{\hyperlink{classTimer}{Timer}}();}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classClient_af49251de2a995a0e491da25c1e72d33a}{\_running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ===\ CRÉATION\ DU\ STAGE\ ===}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a28b6f5d53214fe164bee1ecf77706370}{Factory::createStarfield}}(\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}},\ 150,\ 1920.f,\ 1080.f,\ 10);}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \mbox{\hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{Client::\string~Client}}()\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{Client::update}}()}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classClient_adcb6c04304d2dbd02474c2317d5c76b9}{\_timer}}.\mbox{\hyperlink{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa}{updateClock}}();}
+\DoxyCodeLine{00071\ \ \ \ \ std::vector<EntityUpdate>\ updates;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classClient_ac918169c7b101892744c43434966f365}{\_UDP}}.\mbox{\hyperlink{classUdpClient_a90f532a0d9eee82faa9b89a41343efcf}{receivedUpdates}}.\mbox{\hyperlink{classSafeQueue_ab2f40bad1a39f332c1a8c7b4e858b190}{tryPop}}(updates))\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}\ :\ updates)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classClient_ad361032d607e05a51b215e1300029bbc}{applyUpdate}}(\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}});}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classClient_a5e73c9ff310e577999469b19f0ee0030}{\_moveSystem}}.update(1.0f\ /\ 60.f);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Remove\ entities\ out\ of\ bounds}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t>();}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ entities)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ kill\ the\ local\ player\ if\ they\ go\ out\ of\ bounds\ (let\ server\ handle\ it\ or\ block\ movement)}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e\ ==\ \mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\_localPlayerEntity}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(e);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ \&\&\ (pos-\/>x\ <\ -\/100.f\ ||\ pos-\/>x\ >\ 2200.f\ ||\ pos-\/>y\ <\ -\/100.f\ ||\ pos-\/>y\ >\ 1200.f))\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(e);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Client\ side\ collision\ to\ remove\ projectiles}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{auto}\ projectiles\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Projectile\_t,\ Position\_t,\ Collider\_t>();}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{auto}\ targets\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ Collider\_t>();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ p\ :\ projectiles)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ projPos\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(p);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ projCol\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Collider\_t>(p);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!projPos\ ||\ !projCol)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ t\ :\ targets)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ ==\ t)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t\ ==\ \mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\_localPlayerEntity}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{hasComponent}}<Projectile\_t>(t))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ targetPos\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(t);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ targetCol\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Collider\_t>(t);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!targetPos\ ||\ !targetCol)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (projPos-\/>x\ <\ targetPos-\/>x\ +\ targetCol-\/>width\ \&\&}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ projPos-\/>x\ +\ projCol-\/>width\ >\ targetPos-\/>x\ \&\&}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ projPos-\/>y\ <\ targetPos-\/>y\ +\ targetCol-\/>height\ \&\&}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ projPos-\/>y\ +\ projCol-\/>height\ >\ targetPos-\/>y)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(p);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_ad361032d607e05a51b215e1300029bbc}{Client::applyUpdate}}(\mbox{\hyperlink{structEntityUpdate}{EntityUpdate}}\ \&update)}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity\ =\ 0;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}.find(\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.entityId)\ ==\ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}.end())\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Entity\ does\ not\ exist\ for\ client,\ create\ it}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ entity\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}[\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.entityId]\ =\ entity;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Suppose\ entity\ is\ Player,\ but\ can\ be\ everything\ else.}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ should\ add\ EntityType\ to\ EntityUpdate\ later.}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Health\_t,\ Drawable\_t,\ Collider\_t>(entity,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.position.x,\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.position.y\},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.health.current,\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.health.max\},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}ship.png"{}},\ sf::IntRect(0,\ 0,\ 64,\ 64),\ 10,\ \textcolor{keyword}{true},\ 1.f,\ 0.f\},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ Collider\_t\{64.f,\ 64.f,\ \textcolor{keyword}{true},\ 2,\ 0\});}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ entity\ =\ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}[\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.entityId];}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{auto}\ pos\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(entity);}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{auto}\ health\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(entity);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ pos-\/>x\ =\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.position.x;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ pos-\/>y\ =\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.position.y;}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}\ (health)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ health-\/>current\ =\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.health.current;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ health-\/>max\ =\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.health.max;}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.tick\ ==\ 0xFFFF)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\_localPlayerEntity}}\ =\ entity;}
+\DoxyCodeLine{00158\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.tick\ ==\ 0xFFFE\ ||\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.tick\ ==\ 0xFFFD)\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Entity\ died}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(entity);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}.find(\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.entityId)\ !=\ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}.end())\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{serverToClientEntityRelation}}.erase(\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.entityId);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.tick\ ==\ 0xFFFD)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Played\ killed\ it,\ maybe\ play\ sound\ or\ add\ score}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}I\ killed\ entity\ "{}}\ <<\ \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}}.entityId\ <<\ \textcolor{stringliteral}{"{}!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_aad66fa701396a4392c2b52f316b25987}{Client::render}}()}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classClient_a264bdbc71e1627d27dda4cbb8652d752}{\_renderSystem}}.\mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{update}}(0);\ \textcolor{comment}{//\ dt\ is\ not\ used\ in\ render\ system}}
+\DoxyCodeLine{00174\ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classClient_a643ed09341f07f8c81696741f2d2ca07}{Client::processInput}}()}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{structInputState}{InputState}}\ inputs\ =\ \{0,\ 0,\ 0,\ 0,\ 0,\ 0\};}
+\DoxyCodeLine{00179\ \ \ \ \ inputs.\mbox{\hyperlink{structInputState_a6a2fa0953feca6b01b1fd5f9917bdf7e}{tick}}\ =\ \mbox{\hyperlink{classClient_adcb6c04304d2dbd02474c2317d5c76b9}{\_timer}}.\mbox{\hyperlink{classTimer_a8748fdae906f806c6071d2a985cdb359}{getCurrentFrame}}();}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{update}}(0);}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c}{GameAction::MoveUp}}))}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ inputs.\mbox{\hyperlink{structInputState_ab2034d3170b2a4508928a7bb07a98ca5}{up}}\ =\ 1;}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5}{GameAction::MoveDown}}))}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ inputs.\mbox{\hyperlink{structInputState_aa2e75bb0ac6112a1c494ab69201a0914}{down}}\ =\ 1;}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca}{GameAction::MoveLeft}}))}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ inputs.\mbox{\hyperlink{structInputState_aaefddbc6254f97da5c39b7cc71908a45}{left}}\ =\ 1;}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b}{GameAction::MoveRight}}))}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ inputs.\mbox{\hyperlink{structInputState_aafef50dcb9ea9f31df195a75767d5d1d}{right}}\ =\ 1;}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c}{GameAction::Shoot}}))\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ inputs.\mbox{\hyperlink{structInputState_a943e3e27da883be34b099ce334701b20}{shoot}}\ =\ 1;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\_shootCooldown}}\ <=\ 0.f)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\_localPlayerEntity}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pos\ =\ \mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(\mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\_localPlayerEntity}});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76}{Factory::createProjectile}}(\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\_ecs}},\ pos-\/>x\ +\ 64.f,\ pos-\/>y\ +\ 20.f,\ 800.f,\ 0.f,\ 1,\ 25,\ \textcolor{stringliteral}{"{}bullet"{}});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\_shootCooldown}}\ =\ SHOOT\_DELAY;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\_shootCooldown}}\ >\ 0.f)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\_shootCooldown}}\ -\/=\ 1.0f\ /\ 60.f;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classClient_a6578d20a82c19c3231d99676845b74d4}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6}{GameAction::Quit}}))}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClient_af49251de2a995a0e491da25c1e72d33a}{\_running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{classClient_ac918169c7b101892744c43434966f365}{\_UDP}}.\mbox{\hyperlink{classUdpClient_af0fa766b3f0e9ec64df4ba6eabafbba4}{inputsToSend}}.\mbox{\hyperlink{classSafeQueue_ae51181f65378234bf3a0f66a86d4b33a}{push}}(inputs);}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !CLIENT\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

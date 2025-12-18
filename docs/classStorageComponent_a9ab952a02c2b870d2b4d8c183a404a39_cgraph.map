@@ -1,5 +1,0 @@
-<map id="StorageComponent::get" name="StorageComponent::get">
-<area shape="rect" id="Node000001" title="Retrieves a mutable pointer to the component for the entity." alt="" coords="5,5,181,31"/>
-<area shape="rect" id="Node000002" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="229,5,408,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,15,216,15,216,21,181,21"/>
-</map>

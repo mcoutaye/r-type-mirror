@@ -1,0 +1,108 @@
+\doxysection{include/server/udp.hpp File Reference}
+\hypertarget{udp_8hpp}{}\label{udp_8hpp}\index{include/server/udp.hpp@{include/server/udp.hpp}}
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+Include dependency graph for udp.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{udp_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structinput__s}{input\+\_\+s}}
+\item 
+class \mbox{\hyperlink{classUDP}{UDP}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{udp_8hpp_a26769957ec1a2beaf223f33b66ee64ab}{INVALID\+\_\+\+SOCKET}}~-\/1
+\item 
+\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{udp_8hpp_a633b0396ff93d336a088412a190a5072}{SOCKET\+\_\+\+ERROR}}~-\/1
+\item 
+\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{udp_8hpp_afdbb9d84bd17efd2ae7290e664992c48}{closesocket}}~\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{close}}
+\item 
+\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{udp_8hpp_a4410c29cdd5a4bba06618347df94d6e2}{MAX\+\_\+\+INCOMING\+\_\+\+UDP\+\_\+\+SIZE}}~1 $<$$<$ 10
+\item 
+\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{udp_8hpp_a0a8f91f93d75a07f0ae45077db45b3eb}{MAX\+\_\+\+CLIENTS}}~4
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{udp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typedef}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{struct}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sockaddr\+\_\+in}} \mbox{\hyperlink{udp_8hpp_a7c30b454bdda7334cfc260ae618b6533}{SOCKADDR\+\_\+\+IN\+\_\+T}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{udp_8hpp_adf5e2b0794330e8d2fe65181894594c9}{PORT}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typedef}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{struct}} \mbox{\hyperlink{structinput__s}{input\+\_\+s}} \mbox{\hyperlink{udp_8hpp_a24b99380eb74c9b048f2788cd1976e18}{input\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{udp_8hpp_afdbb9d84bd17efd2ae7290e664992c48}\label{udp_8hpp_afdbb9d84bd17efd2ae7290e664992c48} 
+\index{udp.hpp@{udp.hpp}!closesocket@{closesocket}}
+\index{closesocket@{closesocket}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{closesocket}{closesocket}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} closesocket~\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{close}}}
+
+\Hypertarget{udp_8hpp_a26769957ec1a2beaf223f33b66ee64ab}\label{udp_8hpp_a26769957ec1a2beaf223f33b66ee64ab} 
+\index{udp.hpp@{udp.hpp}!INVALID\_SOCKET@{INVALID\_SOCKET}}
+\index{INVALID\_SOCKET@{INVALID\_SOCKET}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{INVALID\_SOCKET}{INVALID\_SOCKET}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} INVALID\+\_\+\+SOCKET~-\/1}
+
+\Hypertarget{udp_8hpp_a0a8f91f93d75a07f0ae45077db45b3eb}\label{udp_8hpp_a0a8f91f93d75a07f0ae45077db45b3eb} 
+\index{udp.hpp@{udp.hpp}!MAX\_CLIENTS@{MAX\_CLIENTS}}
+\index{MAX\_CLIENTS@{MAX\_CLIENTS}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_CLIENTS}{MAX\_CLIENTS}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} MAX\+\_\+\+CLIENTS~4}
+
+\Hypertarget{udp_8hpp_a4410c29cdd5a4bba06618347df94d6e2}\label{udp_8hpp_a4410c29cdd5a4bba06618347df94d6e2} 
+\index{udp.hpp@{udp.hpp}!MAX\_INCOMING\_UDP\_SIZE@{MAX\_INCOMING\_UDP\_SIZE}}
+\index{MAX\_INCOMING\_UDP\_SIZE@{MAX\_INCOMING\_UDP\_SIZE}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_INCOMING\_UDP\_SIZE}{MAX\_INCOMING\_UDP\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} MAX\+\_\+\+INCOMING\+\_\+\+UDP\+\_\+\+SIZE~1 $<$$<$ 10}
+
+\Hypertarget{udp_8hpp_a633b0396ff93d336a088412a190a5072}\label{udp_8hpp_a633b0396ff93d336a088412a190a5072} 
+\index{udp.hpp@{udp.hpp}!SOCKET\_ERROR@{SOCKET\_ERROR}}
+\index{SOCKET\_ERROR@{SOCKET\_ERROR}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{SOCKET\_ERROR}{SOCKET\_ERROR}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} SOCKET\+\_\+\+ERROR~-\/1}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{udp_8hpp_a24b99380eb74c9b048f2788cd1976e18}\label{udp_8hpp_a24b99380eb74c9b048f2788cd1976e18} 
+\index{udp.hpp@{udp.hpp}!input\_t@{input\_t}}
+\index{input\_t@{input\_t}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{input\_t}{input\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typedef}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{struct}} \mbox{\hyperlink{structinput__s}{input\+\_\+s}} \mbox{\hyperlink{udp_8hpp_a24b99380eb74c9b048f2788cd1976e18}{input\+\_\+t}}}
+
+\Hypertarget{udp_8hpp_adf5e2b0794330e8d2fe65181894594c9}\label{udp_8hpp_adf5e2b0794330e8d2fe65181894594c9} 
+\index{udp.hpp@{udp.hpp}!PORT@{PORT}}
+\index{PORT@{PORT}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{PORT}{PORT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{udp_8hpp_adf5e2b0794330e8d2fe65181894594c9}{PORT}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}}}
+
+\Hypertarget{udp_8hpp_a7c30b454bdda7334cfc260ae618b6533}\label{udp_8hpp_a7c30b454bdda7334cfc260ae618b6533} 
+\index{udp.hpp@{udp.hpp}!SOCKADDR\_IN\_T@{SOCKADDR\_IN\_T}}
+\index{SOCKADDR\_IN\_T@{SOCKADDR\_IN\_T}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{SOCKADDR\_IN\_T}{SOCKADDR\_IN\_T}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typedef}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{struct}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sockaddr\+\_\+in}} \mbox{\hyperlink{udp_8hpp_a7c30b454bdda7334cfc260ae618b6533}{SOCKADDR\+\_\+\+IN\+\_\+T}}}
+
+\Hypertarget{udp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}\label{udp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f} 
+\index{udp.hpp@{udp.hpp}!SOCKET@{SOCKET}}
+\index{SOCKET@{SOCKET}!udp.hpp@{udp.hpp}}
+\doxysubsubsection{\texorpdfstring{SOCKET}{SOCKET}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}
+

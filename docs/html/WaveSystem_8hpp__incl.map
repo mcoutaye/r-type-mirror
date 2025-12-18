@@ -1,6 +1,6 @@
 <map id="include/engine/systems/WaveSystem.hpp" name="include/engine/systems/WaveSystem.hpp">
 <area shape="rect" id="Node000001" title=" " alt="" coords="775,5,951,45"/>
-<area shape="rect" id="Node000002" href="$ecs_8hpp.html" title=" " alt="" coords="274,93,421,119"/>
+<area shape="rect" id="Node000002" href="$engine_2ecs_2ecs_8hpp.html" title=" " alt="" coords="274,93,421,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="776,43,435,94,434,89,775,37"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="591,167,653,192"/>
 <area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="775,34,740,42,704,54,670,71,641,95,633,108,627,123,623,154,618,153,622,122,628,106,637,92,667,67,701,49,738,37,774,29"/>

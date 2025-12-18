@@ -1,7 +1,0 @@
-<map id="CollisionSystem" name="CollisionSystem">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,897,336,1213"/>
-<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="94,713,247,848"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,862,173,897,168,897,168,862"/>
-<area shape="rect" id="Node000003" href="$classECS.html" title="Entity Component System manager." alt="" coords="48,5,293,651"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,651,173,697,168,697,168,651"/>
-</map>

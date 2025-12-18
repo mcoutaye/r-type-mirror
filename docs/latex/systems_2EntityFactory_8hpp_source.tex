@@ -1,6 +1,6 @@
 \doxysection{Entity\+Factory.\+hpp}
 \hypertarget{systems_2EntityFactory_8hpp_source}{}\label{systems_2EntityFactory_8hpp_source}\index{include/engine/systems/EntityFactory.hpp@{include/engine/systems/EntityFactory.hpp}}
-\mbox{\hyperlink{systems_2EntityFactory_8hpp}{Aller à la documentation de ce fichier.}}
+\mbox{\hyperlink{systems_2EntityFactory_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{/*}}
 \DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
@@ -10,16 +10,16 @@
 \DoxyCodeLine{00006\ \textcolor{comment}{*/}}
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ecs_8hpp}{engine/ecs/ecs.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp}{engine/ecs/ecs.hpp}}"{}}}
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
 \DoxyCodeLine{00011\ }
 \DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceFactory}{Factory}}\ \{}
-\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a676a86a062ce8ffcbe6f1fb3360f5948}{createPlayer}}(\mbox{\hyperlink{classECS}{ECS}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}},\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ playerId\ =\ 0,\ }
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a676a86a062ce8ffcbe6f1fb3360f5948}{createPlayer}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ uint8\_t\ playerId\ =\ 0,\ }
 \DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}player"{}});}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76}{createProjectile}}(\mbox{\hyperlink{classECS}{ECS}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}},\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{velocityX}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{velocityY}},}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ team\ =\ 1,\ \textcolor{keywordtype}{int}\ damage\ =\ 25,\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}bullet"{}});}
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_af3c916a013934b36b7c0966dc273c95b}{createEnemy}}(\mbox{\hyperlink{classECS}{ECS}}\&\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}},\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{int}\ health\ =\ 100,}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Components::MovementPattern::Type}}\ \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{pattern}}\ =\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a32a843da6ea40ab3b17a3421ccdf671b}{Components::MovementPattern::Type::Linear}},}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76}{createProjectile}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ velocityX,\ \textcolor{keywordtype}{float}\ velocityY,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ team\ =\ 1,\ \textcolor{keywordtype}{int}\ damage\ =\ 25,\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}bullet"{}});}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_af3c916a013934b36b7c0966dc273c95b}{createEnemy}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{int}\ health\ =\ 100,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Components::MovementPattern::Type}}\ pattern\ =\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a32a843da6ea40ab3b17a3421ccdf671b}{Components::MovementPattern::Type::Linear}},}
 \DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}enemy"{}});}
 \DoxyCodeLine{00020\ \}}
 

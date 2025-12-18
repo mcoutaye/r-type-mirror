@@ -57,33 +57,65 @@ var NAVTREE =
       [ "Comment Naviguer", "index.html#autotoc_md23", null ],
       [ "Contact", "index.html#autotoc_md24", null ]
     ] ],
+    [ "Proof of Concept: Choice of SFML for R-Type Project", "md_poc.html", [
+      [ "1. Introduction", "md_poc.html#autotoc_md26", null ],
+      [ "2. Comparison with Alternatives", "md_poc.html#autotoc_md27", [
+        [ "A. SFML vs. SDL2 (Simple DirectMedia Layer)", "md_poc.html#autotoc_md28", null ],
+        [ "B. SFML vs. Raylib", "md_poc.html#autotoc_md29", null ],
+        [ "C. SFML vs. Qt (Qt 6)", "md_poc.html#autotoc_md30", null ]
+      ] ],
+      [ "3. Why SFML is the Superior Choice for R-Type", "md_poc.html#autotoc_md31", [
+        [ "A. Unified Networking & Graphics", "md_poc.html#autotoc_md32", null ],
+        [ "B. Protocol & Serialization (<tt>sf::Packet</tt>)", "md_poc.html#autotoc_md33", null ],
+        [ "C. Modern C++ Compatibility", "md_poc.html#autotoc_md34", null ],
+        [ "D. Development Velocity", "md_poc.html#autotoc_md35", null ]
+      ] ],
+      [ "4. Architectural Study: ECS vs. OOP", "md_poc.html#autotoc_md36", [
+        [ "A. Traditional OOP (Object-Oriented Programming)", "md_poc.html#autotoc_md37", null ],
+        [ "B. ECS (Entity Component System) - Chosen for R-Type", "md_poc.html#autotoc_md38", null ]
+      ] ],
+      [ "5. Algorithms & Data Structures", "md_poc.html#autotoc_md39", [
+        [ "A. Algorithms", "md_poc.html#autotoc_md40", null ],
+        [ "B. Data Structures", "md_poc.html#autotoc_md41", null ]
+      ] ],
+      [ "6. Network Protocol & Reliability", "md_poc.html#autotoc_md42", [
+        [ "A. Hybrid Protocol Strategy", "md_poc.html#autotoc_md43", null ],
+        [ "B. Protocol Documentation (RFC Style)", "md_poc.html#autotoc_md44", null ]
+      ] ],
+      [ "7. Security & Data Integrity", "md_poc.html#autotoc_md45", [
+        [ "A. Vulnerabilities", "md_poc.html#autotoc_md46", null ],
+        [ "B. Mitigation & Monitoring", "md_poc.html#autotoc_md47", null ]
+      ] ],
+      [ "8. Documentation Strategy", "md_poc.html#autotoc_md48", null ]
+    ] ],
     [ "Topics", "topics.html", "topics" ],
-    [ "Espaces de nommage", "namespaces.html", [
-      [ "Liste des espaces de nommage", "namespaces.html", "namespaces_dup" ],
-      [ "Membres de l'espace de nommage", "namespacemembers.html", [
-        [ "Tout", "namespacemembers.html", null ],
-        [ "Fonctions", "namespacemembers_func.html", null ]
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
-      [ "Liste des classes", "annotated.html", "annotated_dup" ],
-      [ "Index des classes", "classes.html", null ],
-      [ "Hiérarchie des classes", "hierarchy.html", "hierarchy" ],
-      [ "Membres de classe", "functions.html", [
-        [ "Tout", "functions.html", null ],
-        [ "Fonctions", "functions_func.html", null ],
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Énumérations", "functions_enum.html", null ]
+        [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
-    [ "Fichiers", "files.html", [
-      [ "Liste des fichiers", "files.html", "files_dup" ],
-      [ "Membres de fichier", "globals.html", [
-        [ "Tout", "globals.html", null ],
-        [ "Fonctions", "globals_func.html", null ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
-        [ "Définitions de type", "globals_type.html", null ],
-        [ "Énumérations", "globals_enum.html", null ]
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -92,8 +124,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CollisionSystem_8hpp.html",
-"structComponents_1_1MovementPattern.html#a13f0421f09618e5eaadcf893f4ea9b6f"
+"classUDP.html#ae94f4f5c790cc0913de9ff26821e8842",
+"structComponents_1_1MovementPattern.html#a6e71a27920ec592bfec9e63b6970e4fe"
 ];
 
-var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';
-var SYNCOFFMSG = 'cliquez pour activer la synchronisation du panel';
+var SYNCONMSG = 'click to disable panel synchronisation';
+var SYNCOFFMSG = 'click to enable panel synchronisation';

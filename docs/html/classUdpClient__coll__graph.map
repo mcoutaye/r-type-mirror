@@ -1,0 +1,12 @@
+<map id="UdpClient" name="UdpClient">
+<area shape="rect" id="Node000001" title=" " alt="" coords="229,455,445,813"/>
+<area shape="rect" id="Node000002" href="$classSafeQueue.html" title=" " alt="" coords="5,208,208,377"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,376,222,459,218,462,161,379"/>
+<area shape="rect" id="Node000003" href="$classSafeQueue.html" title=" " alt="" coords="122,5,321,131"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="186,144,152,209,147,207,181,142"/>
+<area shape="rect" id="Node000004" href="$classSafeQueue.html" title=" " alt="" coords="233,193,442,392"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="276,141,284,153,303,192,298,194,279,156,272,144"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="340,392,340,438,335,438,335,392"/>
+<area shape="rect" id="Node000005" href="$classTimer.html" title=" " alt="" coords="467,200,672,385"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="509,387,457,463,453,460,504,384"/>
+</map>

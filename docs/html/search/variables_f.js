@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['scale_0',['scale',['../structComponents_1_1Drawable.html#aabcf151f2540eae3e61f165d0f06eb7c',1,'Components::Drawable']]],
-  ['shootdelay_1',['shootDelay',['../structComponents_1_1Shootable.html#a9944afebe4e72787e8c7eadf1138ac80',1,'Components::Shootable']]],
-  ['size_2',['size',['../structComponents_1_1Star.html#a897e8173e8f0ab2a286f135b3a45ca54',1,'Components::Star']]],
-  ['solid_3',['solid',['../structComponents_1_1Collider.html#a71adb7d3c7f3efbf00100c8fa52bd438',1,'Components::Collider']]],
-  ['speed_4',['speed',['../structComponents_1_1MovementPattern.html#a8ea734f6c29cfc6902ac6001bd8173ed',1,'Components::MovementPattern::speed'],['../structComponents_1_1Projectile.html#ad448be528153937c3d0c53732fbc9c6f',1,'Components::Projectile::speed'],['../structComponents_1_1Star.html#a458498047d5e2faaaa3b15f041b88c70',1,'Components::Star::speed']]]
+  ['radius_0',['radius',['../structComponents_1_1MovementPattern.html#a76d3abc1ecccce1f81b052dfde5f9b77',1,'Components::MovementPattern']]],
+  ['receivedinputs_1',['receivedInputs',['../classUdpServer.html#a335a6b7cc1ac0e490efb7d560abfbcde',1,'UdpServer']]],
+  ['receivedupdates_2',['receivedUpdates',['../classUdpClient.html#a90f532a0d9eee82faa9b89a41343efcf',1,'UdpClient']]],
+  ['rect_3',['rect',['../structComponents_1_1Drawable.html#a872276338aa1dd0b6d8e4fe41c31db3f',1,'Components::Drawable']]],
+  ['right_4',['right',['../structInputState.html#aafef50dcb9ea9f31df195a75767d5d1d',1,'InputState::right'],['../structinput__s.html#ac5bfe34905faf550ec7f33580dfacac1',1,'input_s::right']]],
+  ['rotation_5',['rotation',['../structComponents_1_1Drawable.html#a4d0444dc3ba0bd21e1f3fbcf9603001e',1,'Components::Drawable']]]
 ];

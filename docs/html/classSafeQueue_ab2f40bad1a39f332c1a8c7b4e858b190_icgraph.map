@@ -1,0 +1,11 @@
+<map id="SafeQueue::tryPop" name="SafeQueue::tryPop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="415,43,557,68"/>
+<area shape="rect" id="Node000002" href="$classServer.html#aeee363eaf9f494aa542f2e0ad1d7813b" title=" " alt="" coords="204,5,367,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="403,43,353,33,354,28,404,37"/>
+<area shape="rect" id="Node000003" href="$classClient.html#a6e7a5e19c40bef39ae1c0f5996b8c471" title=" " alt="" coords="229,79,342,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="402,73,343,84,342,79,401,68"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="321,69,311,61,285,57,264,59,253,64,251,70,257,77,252,80,245,70,249,60,263,54,285,52,313,56,324,65"/>
+<area shape="rect" id="Node000004" href="$classClient.html#ad361032d607e05a51b215e1300029bbc" title=" " alt="" coords="5,79,156,104"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="215,103,156,103,156,97,215,97"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="170,80,228,81,228,86,170,85"/>
+</map>

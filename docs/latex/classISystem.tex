@@ -1,4 +1,4 @@
-\doxysection{Référence de la classe ISystem}
+\doxysection{ISystem Class Reference}
 \hypertarget{classISystem}{}\label{classISystem}\index{ISystem@{ISystem}}
 
 
@@ -11,7 +11,7 @@ Interface for systems in the \doxylink{classECS}{ECS}.
 
 
 
-Graphe d\textquotesingle{}héritage de ISystem\+:\nopagebreak
+Inheritance diagram for ISystem\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,39 +20,46 @@ Graphe d\textquotesingle{}héritage de ISystem\+:\nopagebreak
 \end{figure}
 
 
-Graphe de collaboration de ISystem\+:\nopagebreak
+Collaboration diagram for ISystem\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=550pt]{classISystem__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Fonctions membres publiques}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
 \begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
 \begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{update}} (\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})=0
-\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Attributs protégés}
+\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{update}} (\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\item 
+\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\item 
+\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{update}} (\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa}{\+\_\+ecs}}
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Description détaillée}
+\doxysubsection{Detailed Description}
 Interface for systems in the \doxylink{classECS}{ECS}. 
 
 Systems update components at a given delta time. 
 
-\doxysubsection{Documentation des constructeurs et destructeur}
+\doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classISystem_a0cb213e9200b0463a803d4c4a37efe75}\label{classISystem_a0cb213e9200b0463a803d4c4a37efe75} 
 \index{ISystem@{ISystem}!ISystem@{ISystem}}
 \index{ISystem@{ISystem}!ISystem@{ISystem}}
-\doxysubsubsection{\texorpdfstring{ISystem()}{ISystem()}}
+\doxysubsubsection{\texorpdfstring{ISystem()}{ISystem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily ISystem\+::\+ISystem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -60,53 +67,76 @@ Systems update components at a given delta time.
 Constructor for \doxylink{classISystem}{ISystem}. 
 
 
-\begin{DoxyParams}{Paramètres}
+\begin{DoxyParams}{Parameters}
 {\em ecs} & Reference to the \doxylink{classECS}{ECS} instance. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}\label{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a} 
 \index{ISystem@{ISystem}!````~ISystem@{\texorpdfstring{$\sim$}{\string~}ISystem}}
 \index{````~ISystem@{\texorpdfstring{$\sim$}{\string~}ISystem}!ISystem@{ISystem}}
-\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ISystem()}{\string~ISystem()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} ISystem\+::\texorpdfstring{$\sim$}{\string~}\+ISystem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ISystem()}{\string~ISystem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} ISystem\+::\texorpdfstring{$\sim$}{\string~}\+ISystem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
 
 
 
 Virtual destructor for \doxylink{classISystem}{ISystem}. 
 
+\Hypertarget{classISystem_a0cb213e9200b0463a803d4c4a37efe75}\label{classISystem_a0cb213e9200b0463a803d4c4a37efe75} 
+\index{ISystem@{ISystem}!ISystem@{ISystem}}
+\index{ISystem@{ISystem}!ISystem@{ISystem}}
+\doxysubsubsection{\texorpdfstring{ISystem()}{ISystem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ISystem\+::\+ISystem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}\label{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a} 
+\index{ISystem@{ISystem}!````~ISystem@{\texorpdfstring{$\sim$}{\string~}ISystem}}
+\index{````~ISystem@{\texorpdfstring{$\sim$}{\string~}ISystem}!ISystem@{ISystem}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ISystem()}{\string~ISystem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} ISystem\+::\texorpdfstring{$\sim$}{\string~}\+ISystem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
 
 
-\doxysubsection{Documentation des fonctions membres}
+
+\doxysubsection{Member Function Documentation}
 \Hypertarget{classISystem_a739106b9af90852f4a2ce03f68248c00}\label{classISystem_a739106b9af90852f4a2ce03f68248c00} 
 \index{ISystem@{ISystem}!update@{update}}
 \index{update@{update}!ISystem@{ISystem}}
-\doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ISystem\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ISystem\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
 Pure virtual function to update the system. 
 
 
-\begin{DoxyParams}{Paramètres}
+\begin{DoxyParams}{Parameters}
 {\em dt} & Delta time for the update. \\
 \hline
 \end{DoxyParams}
 
 
-Implémenté dans \mbox{\hyperlink{classCollisionSystem_a3e6d83a4d384ed4a85ad1fc05b1d96e7}{Collision\+System}}, \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{Input\+System}}, \mbox{\hyperlink{classMissileSystem_a146fd40daeed6ce5216eae405567893f}{Missile\+System}}, \mbox{\hyperlink{classMovementSystem_afd53a085ce047480cbd2a004cb557003}{Movement\+System}}, \mbox{\hyperlink{classPowerUpSystem_a05245e51548976a01ba95f61aaf878f5}{Power\+Up\+System}}, \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{Render\+System}}, et \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{Wave\+System}}.
+Implemented in \mbox{\hyperlink{classCollisionSystem_a3e6d83a4d384ed4a85ad1fc05b1d96e7}{Collision\+System}}, \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{Input\+System}}, \mbox{\hyperlink{classMissileSystem_a146fd40daeed6ce5216eae405567893f}{Missile\+System}}, \mbox{\hyperlink{classMovementSystem_afd53a085ce047480cbd2a004cb557003}{Movement\+System}}, \mbox{\hyperlink{classPowerUpSystem_a05245e51548976a01ba95f61aaf878f5}{Power\+Up\+System}}, \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{Render\+System}}, and \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{Wave\+System}}.
+
+\Hypertarget{classISystem_a739106b9af90852f4a2ce03f68248c00}\label{classISystem_a739106b9af90852f4a2ce03f68248c00} 
+\index{ISystem@{ISystem}!update@{update}}
+\index{update@{update}!ISystem@{ISystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ISystem\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
-\doxysubsection{Documentation des données membres}
-\Hypertarget{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa}\label{classISystem_a7e1c812c3c001c628b0f17e89ecb13fa} 
+Implemented in \mbox{\hyperlink{classCollisionSystem_a3e6d83a4d384ed4a85ad1fc05b1d96e7}{Collision\+System}}, \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{Input\+System}}, \mbox{\hyperlink{classMissileSystem_a146fd40daeed6ce5216eae405567893f}{Missile\+System}}, \mbox{\hyperlink{classMovementSystem_afd53a085ce047480cbd2a004cb557003}{Movement\+System}}, \mbox{\hyperlink{classPowerUpSystem_a05245e51548976a01ba95f61aaf878f5}{Power\+Up\+System}}, \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{Render\+System}}, and \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{Wave\+System}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classISystem_add78dbb839ae61fe69929cce0e666664}\label{classISystem_add78dbb839ae61fe69929cce0e666664} 
 \index{ISystem@{ISystem}!\_ecs@{\_ecs}}
 \index{\_ecs@{\_ecs}!ISystem@{ISystem}}
 \doxysubsubsection{\texorpdfstring{\_ecs}{\_ecs}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classECS}{ECS}}\& ISystem\+::\+\_\+ecs\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classECS}{ECS}} \& ISystem\+::\+\_\+ecs\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
-La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/engine/ecs/\mbox{\hyperlink{ecs_8hpp}{ecs.\+hpp}}\end{DoxyCompactItemize}
+include/engine/ecs/\mbox{\hyperlink{engine_2ecs_2ecs_8hpp}{ecs.\+hpp}}\item 
+include/server/\mbox{\hyperlink{server_2ecs_8hpp}{ecs.\+hpp}}\end{DoxyCompactItemize}

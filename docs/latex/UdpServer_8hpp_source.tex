@@ -1,0 +1,66 @@
+\doxysection{Udp\+Server.\+hpp}
+\hypertarget{UdpServer_8hpp_source}{}\label{UdpServer_8hpp_source}\index{include/server/UdpServer.hpp@{include/server/UdpServer.hpp}}
+\mbox{\hyperlink{UdpServer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ UdpServer}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SafeQueue_8hpp}{SafeQueue.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SFML/Network.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NetworkProtocol_8hpp}{NetworkProtocol.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MAX\_CLIENTS\ 4}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classClientInfo}{ClientInfo}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ sf::IpAddress\ \ \ \mbox{\hyperlink{classClientInfo_a3760b1bec98b68cea57171a38adc9778}{address}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \ \mbox{\hyperlink{classClientInfo_a32cb3d7ed1111c5570b1888aa001fdb9}{port}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClientInfo_acb7f8ad1009ad6fcd1ee30f4d9ad1f46}{playerId}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClientInfo_a87f2dea86340967f1bdf433f8a6bfbe5}{ClientInfo}}(sf::IpAddress\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{p}},\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classClientInfo_a3760b1bec98b68cea57171a38adc9778}{address}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}}),\ \mbox{\hyperlink{classClientInfo_a32cb3d7ed1111c5570b1888aa001fdb9}{port}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{p}}),\ \mbox{\hyperlink{classClientInfo_acb7f8ad1009ad6fcd1ee30f4d9ad1f46}{playerId}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{id}})\ \{\}}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUdpServer}{UdpServer}}\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classUdpServer_a82b9a5af2c41233be255eff68ee63ac0}{UdpServer}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ port);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_aef1871384fbc46ef425242be4474af3a}{\string~UdpServer}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUdpServer_a2e6eba1c68cc214f6df97a5c7724697f}{start}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUdpServer_a3c63f939f69058812082e8ec71cc89b9}{stop}}();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUdpServer_a17043b75890cf2a767e11338fbb1f3b5}{join}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSafeQueue}{SafeQueue<std::pair<int,\ InputState>}}>\ \mbox{\hyperlink{classUdpServer_a335a6b7cc1ac0e490efb7d560abfbcde}{receivedInputs}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSafeQueue}{SafeQueue<PacketToSend>}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a7dd72b9b9f6a74a9067148b13333a7b3}{packetsToSend}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUdpServer_a59bf044c68c9bb215f389717e2bee848}{addClient}}(sf::IpAddress\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ port,\ \textcolor{keywordtype}{int}\ playerId\ =\ -\/1);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUdpServer_a0377604e80aa7c8189db354d501b8430}{removeClient}}(\textcolor{keywordtype}{int}\ playerId);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classUdpServer_a9bbfe357b5fd6f3eae04605bb3ebce4f}{getClientCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classClientInfo}{ClientInfo}}\ \mbox{\hyperlink{classUdpServer_a422473e6d8436cae8b6f58b7659409ca}{getClient}}(std::size\_t\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ std::vector<ClientInfo>\ \mbox{\hyperlink{classUdpServer_a52f6bd3ca7b3f20cddee608ee96f68bb}{getClients}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPacketToSend}{PacketToSend}}\ \mbox{\hyperlink{classUdpServer_ad553a228b425e55cde5e65b4b34a9724}{createPacket}}(std::size\_t\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{clientID}},\ std::vector<uint8\_t>\ data);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ std::queue<PacketToSend>\ \mbox{\hyperlink{classUdpServer_a54a087188b21f71bda6ba7607b16d5b9}{createEveryonePacket}}(std::vector<uint8\_t>\ data);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUdpServer_a5bcfd92135c9e59fd54d490cb4e895b4}{receiveThread}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUdpServer_acd6dcf10a93866708660348a2e68f4b9}{sendThread}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClientInfo}{ClientInfo}}*\ \mbox{\hyperlink{classUdpServer_a586c9a3e90a4e6b3499a95280ffe70d4}{findClient}}(\textcolor{keyword}{const}\ sf::IpAddress\&\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ port);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ sf::UdpSocket\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a7b2e01e82834462404208c047be4ad15}{m\_socket}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a56585e0c048ad3b8de407d6b6f32c4f4}{m\_port}};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ClientInfo>>\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a6237c2aade65d50b35283eb5c201341c}{m\_clients}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{mutable}\ std::mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_aa5a828d24a1e5be5ee81cb690ad7409c}{m\_clientsMutex}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_aa439fda460347018e7596d46d77a6be6}{m\_clientCount}}\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::atomic<bool>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a64120e10a3df5502ea0cb4e6d115df98}{m\_running}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::thread\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a4a3e06fb484fadbdbb3889cc67fb09da}{m\_recvThread}};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::thread\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUdpServer_a3a89065abce20c020e5d238dd7d61820}{m\_sendThread}};}
+\DoxyCodeLine{00060\ \};}
+
+\end{DoxyCode}

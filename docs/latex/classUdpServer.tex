@@ -1,0 +1,262 @@
+\doxysection{Udp\+Server Class Reference}
+\hypertarget{classUdpServer}{}\label{classUdpServer}\index{UdpServer@{UdpServer}}
+
+
+{\ttfamily \#include $<$Udp\+Server.\+hpp$>$}
+
+
+
+Collaboration diagram for Udp\+Server\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classUdpServer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUdpServer_a82b9a5af2c41233be255eff68ee63ac0}{Udp\+Server}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} port)
+\item 
+\mbox{\hyperlink{classUdpServer_aef1871384fbc46ef425242be4474af3a}{\texorpdfstring{$\sim$}{\string~}\+Udp\+Server}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classUdpServer_a2e6eba1c68cc214f6df97a5c7724697f}{start}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpServer_a3c63f939f69058812082e8ec71cc89b9}{stop}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpServer_a17043b75890cf2a767e11338fbb1f3b5}{join}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classUdpServer_a59bf044c68c9bb215f389717e2bee848}{add\+Client}} (sf\+::\+Ip\+Address \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} port, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} player\+Id=-\/1)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpServer_a0377604e80aa7c8189db354d501b8430}{remove\+Client}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} player\+Id)
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classUdpServer_a9bbfe357b5fd6f3eae04605bb3ebce4f}{get\+Client\+Count}} () \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{classClientInfo}{Client\+Info}} \mbox{\hyperlink{classUdpServer_a422473e6d8436cae8b6f58b7659409ca}{get\+Client}} (std\+::size\+\_\+t \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{id}}) \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classClientInfo}{Client\+Info}} $>$ \mbox{\hyperlink{classUdpServer_a52f6bd3ca7b3f20cddee608ee96f68bb}{get\+Clients}} () \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\item 
+\mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}} \mbox{\hyperlink{classUdpServer_ad553a228b425e55cde5e65b4b34a9724}{create\+Packet}} (std\+::size\+\_\+t \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{client\+ID}}, std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} $>$ data)
+\item 
+std\+::queue$<$ \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}} $>$ \mbox{\hyperlink{classUdpServer_a54a087188b21f71bda6ba7607b16d5b9}{create\+Everyone\+Packet}} (std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} $>$ data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ std\+::pair$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}, \mbox{\hyperlink{structInputState}{Input\+State}} $>$ $>$ \mbox{\hyperlink{classUdpServer_a335a6b7cc1ac0e490efb7d560abfbcde}{received\+Inputs}}
+\item 
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}} $>$ \mbox{\hyperlink{classUdpServer_a7dd72b9b9f6a74a9067148b13333a7b3}{packets\+To\+Send}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpServer_a5bcfd92135c9e59fd54d490cb4e895b4}{receive\+Thread}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpServer_acd6dcf10a93866708660348a2e68f4b9}{send\+Thread}} ()
+\item 
+\mbox{\hyperlink{classClientInfo}{Client\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classUdpServer_a586c9a3e90a4e6b3499a95280ffe70d4}{find\+Client}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} sf\+::\+Ip\+Address \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ip}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} port)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Udp\+Socket \mbox{\hyperlink{classUdpServer_a7b2e01e82834462404208c047be4ad15}{m\+\_\+socket}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classUdpServer_a56585e0c048ad3b8de407d6b6f32c4f4}{m\+\_\+port}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classClientInfo}{Client\+Info}} $>$ $>$ \mbox{\hyperlink{classUdpServer_a6237c2aade65d50b35283eb5c201341c}{m\+\_\+clients}}
+\item 
+std\+::mutex \mbox{\hyperlink{classUdpServer_aa5a828d24a1e5be5ee81cb690ad7409c}{m\+\_\+clients\+Mutex}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classUdpServer_aa439fda460347018e7596d46d77a6be6}{m\+\_\+client\+Count}} = 0
+\item 
+std\+::atomic$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classUdpServer_a64120e10a3df5502ea0cb4e6d115df98}{m\+\_\+running}} \{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}
+\item 
+std\+::thread \mbox{\hyperlink{classUdpServer_a4a3e06fb484fadbdbb3889cc67fb09da}{m\+\_\+recv\+Thread}}
+\item 
+std\+::thread \mbox{\hyperlink{classUdpServer_a3a89065abce20c020e5d238dd7d61820}{m\+\_\+send\+Thread}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classUdpServer_a82b9a5af2c41233be255eff68ee63ac0}\label{classUdpServer_a82b9a5af2c41233be255eff68ee63ac0} 
+\index{UdpServer@{UdpServer}!UdpServer@{UdpServer}}
+\index{UdpServer@{UdpServer}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{UdpServer()}{UdpServer()}}
+{\footnotesize\ttfamily Udp\+Server\+::\+Udp\+Server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classUdpServer_aef1871384fbc46ef425242be4474af3a}\label{classUdpServer_aef1871384fbc46ef425242be4474af3a} 
+\index{UdpServer@{UdpServer}!````~UdpServer@{\texorpdfstring{$\sim$}{\string~}UdpServer}}
+\index{````~UdpServer@{\texorpdfstring{$\sim$}{\string~}UdpServer}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}UdpServer()}{\string~UdpServer()}}
+{\footnotesize\ttfamily Udp\+Server\+::\texorpdfstring{$\sim$}{\string~}\+Udp\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUdpServer_a59bf044c68c9bb215f389717e2bee848}\label{classUdpServer_a59bf044c68c9bb215f389717e2bee848} 
+\index{UdpServer@{UdpServer}!addClient@{addClient}}
+\index{addClient@{addClient}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{addClient()}{addClient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Udp\+Server\+::add\+Client (\begin{DoxyParamCaption}\item[{sf\+::\+Ip\+Address}]{ip,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{port,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{player\+Id = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\Hypertarget{classUdpServer_a54a087188b21f71bda6ba7607b16d5b9}\label{classUdpServer_a54a087188b21f71bda6ba7607b16d5b9} 
+\index{UdpServer@{UdpServer}!createEveryonePacket@{createEveryonePacket}}
+\index{createEveryonePacket@{createEveryonePacket}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{createEveryonePacket()}{createEveryonePacket()}}
+{\footnotesize\ttfamily std\+::queue$<$ \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}} $>$ Udp\+Server\+::create\+Everyone\+Packet (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} $>$}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{classUdpServer_ad553a228b425e55cde5e65b4b34a9724}\label{classUdpServer_ad553a228b425e55cde5e65b4b34a9724} 
+\index{UdpServer@{UdpServer}!createPacket@{createPacket}}
+\index{createPacket@{createPacket}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{createPacket()}{createPacket()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}} Udp\+Server\+::create\+Packet (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{client\+ID,  }\item[{std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} $>$}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{classUdpServer_a586c9a3e90a4e6b3499a95280ffe70d4}\label{classUdpServer_a586c9a3e90a4e6b3499a95280ffe70d4} 
+\index{UdpServer@{UdpServer}!findClient@{findClient}}
+\index{findClient@{findClient}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{findClient()}{findClient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classClientInfo}{Client\+Info}} \texorpdfstring{$\ast$}{*} Udp\+Server\+::find\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} sf\+::\+Ip\+Address \&}]{ip,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a422473e6d8436cae8b6f58b7659409ca}\label{classUdpServer_a422473e6d8436cae8b6f58b7659409ca} 
+\index{UdpServer@{UdpServer}!getClient@{getClient}}
+\index{getClient@{getClient}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{getClient()}{getClient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{classClientInfo}{Client\+Info}} Udp\+Server\+::get\+Client (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{id }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classUdpServer_a9bbfe357b5fd6f3eae04605bb3ebce4f}\label{classUdpServer_a9bbfe357b5fd6f3eae04605bb3ebce4f} 
+\index{UdpServer@{UdpServer}!getClientCount@{getClientCount}}
+\index{getClientCount@{getClientCount}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{getClientCount()}{getClientCount()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Udp\+Server\+::get\+Client\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUdpServer_a9bbfe357b5fd6f3eae04605bb3ebce4f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classUdpServer_a52f6bd3ca7b3f20cddee608ee96f68bb}\label{classUdpServer_a52f6bd3ca7b3f20cddee608ee96f68bb} 
+\index{UdpServer@{UdpServer}!getClients@{getClients}}
+\index{getClients@{getClients}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{getClients()}{getClients()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classClientInfo}{Client\+Info}} $>$ Udp\+Server\+::get\+Clients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUdpServer_a52f6bd3ca7b3f20cddee608ee96f68bb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classUdpServer_a17043b75890cf2a767e11338fbb1f3b5}\label{classUdpServer_a17043b75890cf2a767e11338fbb1f3b5} 
+\index{UdpServer@{UdpServer}!join@{join}}
+\index{join@{join}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Server\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classUdpServer_a5bcfd92135c9e59fd54d490cb4e895b4}\label{classUdpServer_a5bcfd92135c9e59fd54d490cb4e895b4} 
+\index{UdpServer@{UdpServer}!receiveThread@{receiveThread}}
+\index{receiveThread@{receiveThread}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{receiveThread()}{receiveThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Server\+::receive\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a0377604e80aa7c8189db354d501b8430}\label{classUdpServer_a0377604e80aa7c8189db354d501b8430} 
+\index{UdpServer@{UdpServer}!removeClient@{removeClient}}
+\index{removeClient@{removeClient}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{removeClient()}{removeClient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Server\+::remove\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{player\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classUdpServer_acd6dcf10a93866708660348a2e68f4b9}\label{classUdpServer_acd6dcf10a93866708660348a2e68f4b9} 
+\index{UdpServer@{UdpServer}!sendThread@{sendThread}}
+\index{sendThread@{sendThread}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{sendThread()}{sendThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Server\+::send\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a2e6eba1c68cc214f6df97a5c7724697f}\label{classUdpServer_a2e6eba1c68cc214f6df97a5c7724697f} 
+\index{UdpServer@{UdpServer}!start@{start}}
+\index{start@{start}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Udp\+Server\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classUdpServer_a2e6eba1c68cc214f6df97a5c7724697f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classUdpServer_a3c63f939f69058812082e8ec71cc89b9}\label{classUdpServer_a3c63f939f69058812082e8ec71cc89b9} 
+\index{UdpServer@{UdpServer}!stop@{stop}}
+\index{stop@{stop}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Server\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classUdpServer_aa439fda460347018e7596d46d77a6be6}\label{classUdpServer_aa439fda460347018e7596d46d77a6be6} 
+\index{UdpServer@{UdpServer}!m\_clientCount@{m\_clientCount}}
+\index{m\_clientCount@{m\_clientCount}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_clientCount}{m\_clientCount}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Udp\+Server\+::m\+\_\+client\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a6237c2aade65d50b35283eb5c201341c}\label{classUdpServer_a6237c2aade65d50b35283eb5c201341c} 
+\index{UdpServer@{UdpServer}!m\_clients@{m\_clients}}
+\index{m\_clients@{m\_clients}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_clients}{m\_clients}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classClientInfo}{Client\+Info}}$>$ $>$ Udp\+Server\+::m\+\_\+clients\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_aa5a828d24a1e5be5ee81cb690ad7409c}\label{classUdpServer_aa5a828d24a1e5be5ee81cb690ad7409c} 
+\index{UdpServer@{UdpServer}!m\_clientsMutex@{m\_clientsMutex}}
+\index{m\_clientsMutex@{m\_clientsMutex}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_clientsMutex}{m\_clientsMutex}}
+{\footnotesize\ttfamily std\+::mutex Udp\+Server\+::m\+\_\+clients\+Mutex\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a56585e0c048ad3b8de407d6b6f32c4f4}\label{classUdpServer_a56585e0c048ad3b8de407d6b6f32c4f4} 
+\index{UdpServer@{UdpServer}!m\_port@{m\_port}}
+\index{m\_port@{m\_port}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_port}{m\_port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Udp\+Server\+::m\+\_\+port\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a4a3e06fb484fadbdbb3889cc67fb09da}\label{classUdpServer_a4a3e06fb484fadbdbb3889cc67fb09da} 
+\index{UdpServer@{UdpServer}!m\_recvThread@{m\_recvThread}}
+\index{m\_recvThread@{m\_recvThread}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_recvThread}{m\_recvThread}}
+{\footnotesize\ttfamily std\+::thread Udp\+Server\+::m\+\_\+recv\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a64120e10a3df5502ea0cb4e6d115df98}\label{classUdpServer_a64120e10a3df5502ea0cb4e6d115df98} 
+\index{UdpServer@{UdpServer}!m\_running@{m\_running}}
+\index{m\_running@{m\_running}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_running}{m\_running}}
+{\footnotesize\ttfamily std\+::atomic$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Udp\+Server\+::m\+\_\+running \{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a3a89065abce20c020e5d238dd7d61820}\label{classUdpServer_a3a89065abce20c020e5d238dd7d61820} 
+\index{UdpServer@{UdpServer}!m\_sendThread@{m\_sendThread}}
+\index{m\_sendThread@{m\_sendThread}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_sendThread}{m\_sendThread}}
+{\footnotesize\ttfamily std\+::thread Udp\+Server\+::m\+\_\+send\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a7b2e01e82834462404208c047be4ad15}\label{classUdpServer_a7b2e01e82834462404208c047be4ad15} 
+\index{UdpServer@{UdpServer}!m\_socket@{m\_socket}}
+\index{m\_socket@{m\_socket}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{m\_socket}{m\_socket}}
+{\footnotesize\ttfamily sf\+::\+Udp\+Socket Udp\+Server\+::m\+\_\+socket\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classUdpServer_a7dd72b9b9f6a74a9067148b13333a7b3}\label{classUdpServer_a7dd72b9b9f6a74a9067148b13333a7b3} 
+\index{UdpServer@{UdpServer}!packetsToSend@{packetsToSend}}
+\index{packetsToSend@{packetsToSend}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{packetsToSend}{packetsToSend}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$\mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}}$>$ Udp\+Server\+::packets\+To\+Send}
+
+\Hypertarget{classUdpServer_a335a6b7cc1ac0e490efb7d560abfbcde}\label{classUdpServer_a335a6b7cc1ac0e490efb7d560abfbcde} 
+\index{UdpServer@{UdpServer}!receivedInputs@{receivedInputs}}
+\index{receivedInputs@{receivedInputs}!UdpServer@{UdpServer}}
+\doxysubsubsection{\texorpdfstring{receivedInputs}{receivedInputs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$std\+::pair$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}, \mbox{\hyperlink{structInputState}{Input\+State}}$>$ $>$ Udp\+Server\+::received\+Inputs}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/server/\mbox{\hyperlink{UdpServer_8hpp}{Udp\+Server.\+hpp}}\end{DoxyCompactItemize}

@@ -1,5 +1,0 @@
-<map id="CollisionSystem" name="CollisionSystem">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,188,336,504"/>
-<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="94,5,247,140"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,154,173,188,168,188,168,154"/>
-</map>

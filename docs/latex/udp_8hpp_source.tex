@@ -1,0 +1,82 @@
+\doxysection{udp.\+hpp}
+\hypertarget{udp_8hpp_source}{}\label{udp_8hpp_source}\index{include/server/udp.hpp@{include/server/udp.hpp}}
+\mbox{\hyperlink{udp_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ udp}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ UDP\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ UDP\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <array>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <iostream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <atomic>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ <cstring>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <winsock2.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <ws2tcpip.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ comment(lib,\ "{}Ws2\_32.lib"{})}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ssize\_t}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{socklen\_t}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}};}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <sys/socket.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <netinet/in.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <unistd.h>}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}};}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ INVALID\_SOCKET\ -\/1}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SOCKET\_ERROR\ -\/1}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ closesocket\ close}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ \#include\ <thread>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ MAX\_INCOMING\_UDP\_SIZE\ 1\ <<\ 10}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ MAX\_CLIENTS\ 4}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sockaddr\_in}}\ \mbox{\hyperlink{udp_8hpp_a7c30b454bdda7334cfc260ae618b6533}{SOCKADDR\_IN\_T}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{using\ }\mbox{\hyperlink{udp_8hpp_adf5e2b0794330e8d2fe65181894594c9}{PORT}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinput__s}{input\_s}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structinput__s_a325bfe84fecc84095520986357735f24}{up}}\ :\ 1;}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structinput__s_afe824ee2ea99342c01543dda6c2e49df}{down}}\ :\ 1;}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structinput__s_a148810b2df50889dff145bb782de0e60}{left}}\ :\ 1;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structinput__s_ac5bfe34905faf550ec7f33580dfacac1}{right}}\ :\ 1;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structinput__s_a0443e8421734cd44ae1feb7fa95930eb}{shoot}}\ :\ 1;}
+\DoxyCodeLine{00047\ \}\ \mbox{\hyperlink{udp_8hpp_a24b99380eb74c9b048f2788cd1976e18}{input\_t}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUDP}{UDP}}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classUDP_a0a52bdb24be3f3257d7a10862279a246}{UDP}}(\textcolor{keywordtype}{int}\ port);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUDP_ac9c6eaf3e5f1bd64ea3ac0552137ca0e}{\string~UDP}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUDP_a9a9f9dc8b8c7420bf1dc300f7dee6508}{init}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUDP_ab119eb3e07a5314d2d26a788aae286dd}{start}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUDP_a197437e57cd81094fe72f9453fa42beb}{stop}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUDP_a3e7e22cb37e0729961b5181d19f9fd6d}{join}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classUDP_af717bd63756b3b60f08a47316fb312a9}{run}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{classUDP_abaec51b98228daf05755630aa742c235}{toByte}}(\mbox{\hyperlink{structinput__s}{input\_t}}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{input}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structinput__s}{input\_t}}\ \mbox{\hyperlink{classUDP_a10625015b7ade2516acf018d52114ee3}{fromByte}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{udp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}}\ \mbox{\hyperlink{classUDP_a1f4e9185ed2db23b849dc0910213e68a}{\_sockfd}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{udp_8hpp_adf5e2b0794330e8d2fe65181894594c9}{PORT}}\ \mbox{\hyperlink{classUDP_a5b3cac0dcd54ba72b74d20b5984ddbd1}{\_port}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classUDP_ae94f4f5c790cc0913de9ff26821e8842}{\_buffer}}[\mbox{\hyperlink{udp_8hpp_a4410c29cdd5a4bba06618347df94d6e2}{MAX\_INCOMING\_UDP\_SIZE}}];}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ std::array<SOCKADDR\_IN\_T,\ MAX\_CLIENTS>\ \mbox{\hyperlink{classUDP_af2a08f234252edc6c2b9399b1f0379ad}{\_clients}};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{udp_8hpp_a7c30b454bdda7334cfc260ae618b6533}{SOCKADDR\_IN\_T}}\ \mbox{\hyperlink{classUDP_a75ffd5cd4861ffc69384c8caa92a307c}{\_serverAddr}};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classUDP_afe354ed50eb0f9a7f9a5e0e80e7b35d4}{\_active}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::thread\ \mbox{\hyperlink{classUDP_a1964e757a55d00df42b2332a84df8b6f}{\_thread}};}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !UDP\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

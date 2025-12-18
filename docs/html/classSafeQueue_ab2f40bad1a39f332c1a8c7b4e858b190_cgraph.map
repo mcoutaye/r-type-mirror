@@ -1,0 +1,7 @@
+<map id="SafeQueue::tryPop" name="SafeQueue::tryPop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="196,5,328,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,15,182,15,182,21,148,21"/>
+<area shape="rect" id="Node000003" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="376,5,544,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,15,362,15,362,21,328,21"/>
+</map>

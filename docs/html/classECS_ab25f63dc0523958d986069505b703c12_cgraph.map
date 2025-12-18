@@ -1,9 +1,10 @@
 <map id="ECS::addComponent" name="ECS::addComponent">
-<area shape="rect" id="Node000001" title="Adds a component to an entity." alt="" coords="5,31,160,56"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,160,68"/>
 <area shape="rect" id="Node000002" href="$classStorageComponent.html#aafb0684b10615747aab071b895d97d47" title="Adds a component to the specified entity." alt="" coords="208,5,387,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,32,194,27,195,33,161,37"/>
-<area shape="rect" id="Node000003" href="$ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="231,55,363,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,49,218,56,217,61,160,55"/>
-<area shape="rect" id="Node000004" href="$ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="435,55,603,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="364,65,420,65,420,70,364,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,40,210,30,211,36,157,45"/>
+<area shape="rect" id="Node000003" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="231,79,363,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,65,218,75,217,81,158,71"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="262,80,255,70,259,60,273,54,297,52,327,56,339,65,336,69,325,61,297,57,275,59,263,64,260,70,267,77"/>
+<area shape="rect" id="Node000004" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="435,79,603,104"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="364,89,420,89,420,94,364,94"/>
 </map>

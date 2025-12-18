@@ -1,7 +1,0 @@
-<map id="ECS::verifyComponentStorage" name="ECS::verifyComponentStorage">
-<area shape="rect" id="Node000001" title="Verifies and initializes storage for a component type if needed." alt="" coords="5,5,223,31"/>
-<area shape="rect" id="Node000002" href="$ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="271,5,403,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,15,257,15,257,21,223,21"/>
-<area shape="rect" id="Node000003" href="$ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="451,5,619,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,15,437,15,437,21,403,21"/>
-</map>

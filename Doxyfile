@@ -70,4 +70,4 @@ GENERATE_TREEVIEW      = YES  # Arborescence latérale en HTML
 FULL_SIDEBAR           = NO   # Sidebar complet ou minimal
 
 # Langue (si tu veux en français)
-OUTPUT_LANGUAGE        = French
+OUTPUT_LANGUAGE        = English

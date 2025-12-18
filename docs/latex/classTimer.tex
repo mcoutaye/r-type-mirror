@@ -1,0 +1,120 @@
+\doxysection{Timer Class Reference}
+\hypertarget{classTimer}{}\label{classTimer}\index{Timer@{Timer}}
+
+
+{\ttfamily \#include $<$Timer.\+hpp$>$}
+
+
+
+Collaboration diagram for Timer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{classTimer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTimer_a5f16e8da27d2a5a5242dead46de05d97}{Timer}} ()
+\item 
+\mbox{\hyperlink{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}{\texorpdfstring{$\sim$}{\string~}\+Timer}} ()
+\item 
+sf\+::\+Int64 \mbox{\hyperlink{classTimer_af3badf7c5cfdecd86d051b5ed955f986}{get\+Last\+Tick}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}} \mbox{\hyperlink{classTimer_a8748fdae906f806c6071d2a985cdb359}{get\+Current\+Frame}} ()
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa}{update\+Clock}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{classTimer_a6146149d2bf9233823a4ce392fb0768b}{\+\_\+clock}}
+\item 
+sf\+::\+Time \mbox{\hyperlink{classTimer_af11a98cd3020860d759b7bb78f6ecc9b}{\+\_\+last\+Tick}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}} \mbox{\hyperlink{classTimer_afa3ae060701ee7db5ac30821755fadb6}{\+\_\+frame\+Number}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTimer_a5f16e8da27d2a5a5242dead46de05d97}\label{classTimer_a5f16e8da27d2a5a5242dead46de05d97} 
+\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{Timer()}{Timer()}}
+{\footnotesize\ttfamily Timer\+::\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\Hypertarget{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}\label{classTimer_a14fa469c4c295c5fa6e66a4ad1092146} 
+\index{Timer@{Timer}!````~Timer@{\texorpdfstring{$\sim$}{\string~}Timer}}
+\index{````~Timer@{\texorpdfstring{$\sim$}{\string~}Timer}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Timer()}{\string~Timer()}}
+{\footnotesize\ttfamily Timer\+::\texorpdfstring{$\sim$}{\string~}\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTimer_a8748fdae906f806c6071d2a985cdb359}\label{classTimer_a8748fdae906f806c6071d2a985cdb359} 
+\index{Timer@{Timer}!getCurrentFrame@{getCurrentFrame}}
+\index{getCurrentFrame@{getCurrentFrame}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{getCurrentFrame()}{getCurrentFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}} Timer\+::get\+Current\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTimer_a8748fdae906f806c6071d2a985cdb359_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTimer_af3badf7c5cfdecd86d051b5ed955f986}\label{classTimer_af3badf7c5cfdecd86d051b5ed955f986} 
+\index{Timer@{Timer}!getLastTick@{getLastTick}}
+\index{getLastTick@{getLastTick}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{getLastTick()}{getLastTick()}}
+{\footnotesize\ttfamily sf\+::\+Int64 Timer\+::get\+Last\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa}\label{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa} 
+\index{Timer@{Timer}!updateClock@{updateClock}}
+\index{updateClock@{updateClock}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{updateClock()}{updateClock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Timer\+::update\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classTimer_a6146149d2bf9233823a4ce392fb0768b}\label{classTimer_a6146149d2bf9233823a4ce392fb0768b} 
+\index{Timer@{Timer}!\_clock@{\_clock}}
+\index{\_clock@{\_clock}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{\_clock}{\_clock}}
+{\footnotesize\ttfamily sf\+::\+Clock Timer\+::\+\_\+clock\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classTimer_afa3ae060701ee7db5ac30821755fadb6}\label{classTimer_afa3ae060701ee7db5ac30821755fadb6} 
+\index{Timer@{Timer}!\_frameNumber@{\_frameNumber}}
+\index{\_frameNumber@{\_frameNumber}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{\_frameNumber}{\_frameNumber}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}} Timer\+::\+\_\+frame\+Number = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classTimer_af11a98cd3020860d759b7bb78f6ecc9b}\label{classTimer_af11a98cd3020860d759b7bb78f6ecc9b} 
+\index{Timer@{Timer}!\_lastTick@{\_lastTick}}
+\index{\_lastTick@{\_lastTick}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{\_lastTick}{\_lastTick}}
+{\footnotesize\ttfamily sf\+::\+Time Timer\+::\+\_\+last\+Tick\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/server/\mbox{\hyperlink{Timer_8hpp}{Timer.\+hpp}}\end{DoxyCompactItemize}

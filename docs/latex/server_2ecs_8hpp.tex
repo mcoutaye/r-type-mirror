@@ -1,0 +1,130 @@
+\doxysection{include/server/ecs.hpp File Reference}
+\hypertarget{server_2ecs_8hpp}{}\label{server_2ecs_8hpp}\index{include/server/ecs.hpp@{include/server/ecs.hpp}}
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$bitset$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+Include dependency graph for ecs.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2ecs_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2ecs_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classStorageComponent}{Storage\+Component$<$ Component\+Type $>$}}
+\begin{DoxyCompactList}\small\item\em Manages storage for a specific type of component. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classECS}{ECS}}
+\begin{DoxyCompactList}\small\item\em Entity Component System manager. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classISystem}{ISystem}}
+\begin{DoxyCompactList}\small\item\em Interface for systems in the \doxylink{classECS}{ECS}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::uint32\+\_\+t}}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::bitset}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}} $>$
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::size\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} \mbox{\hyperlink{server_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06}{new\+Component\+Type\+ID}} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{get\+Component\+ID}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} \mbox{\hyperlink{server_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} = 1 $<$$<$ 11
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} \mbox{\hyperlink{server_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}} = 1 $<$$<$ 7
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}\label{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53} 
+\index{ecs.hpp@{ecs.hpp}!ComponentTypeID@{ComponentTypeID}}
+\index{ComponentTypeID@{ComponentTypeID}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{ComponentTypeID}{ComponentTypeID}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::size\+\_\+t}}}
+
+\Hypertarget{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}\label{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e} 
+\index{ecs.hpp@{ecs.hpp}!Entity@{Entity}}
+\index{Entity@{Entity}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{Entity}{Entity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::uint32\+\_\+t}}}
+
+\Hypertarget{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}\label{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e} 
+\index{ecs.hpp@{ecs.hpp}!Signature@{Signature}}
+\index{Signature@{Signature}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{Signature}{Signature}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::bitset}}$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}}$>$}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}\label{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c} 
+\index{ecs.hpp@{ecs.hpp}!getComponentID@{getComponentID}}
+\index{getComponentID@{getComponentID}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{getComponentID()}{getComponentID()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} get\+Component\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{server_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06}\label{server_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06} 
+\index{ecs.hpp@{ecs.hpp}!newComponentTypeID@{newComponentTypeID}}
+\index{newComponentTypeID@{newComponentTypeID}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{newComponentTypeID()}{newComponentTypeID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} new\+Component\+Type\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{server_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}\label{server_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672} 
+\index{ecs.hpp@{ecs.hpp}!MAX\_COMPONENT@{MAX\_COMPONENT}}
+\index{MAX\_COMPONENT@{MAX\_COMPONENT}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_COMPONENT}{MAX\_COMPONENT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} MAX\+\_\+\+COMPONENT = 1 $<$$<$ 7\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{server_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}\label{server_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180} 
+\index{ecs.hpp@{ecs.hpp}!MAX\_ENTITIES@{MAX\_ENTITIES}}
+\index{MAX\_ENTITIES@{MAX\_ENTITIES}!ecs.hpp@{ecs.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_ENTITIES}{MAX\_ENTITIES}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} MAX\+\_\+\+ENTITIES = 1 $<$$<$ 11\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+

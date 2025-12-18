@@ -1,0 +1,81 @@
+\doxysection{tcp.\+hpp}
+\hypertarget{tcp_8hpp_source}{}\label{tcp_8hpp_source}\index{include/server/tcp.hpp@{include/server/tcp.hpp}}
+\mbox{\hyperlink{tcp_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ tcp}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ TCP\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ TCP\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <vector>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <winsock2.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <ws2tcpip.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ comment(lib,\ "{}Ws2\_32.lib"{})}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{WSAPOLLFD}}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{pollfd}};}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ poll\ WSAPoll}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ssize\_t}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}};}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <poll.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <netinet/in.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <sys/socket.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <unistd.h>}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}};}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ INVALID\_SOCKET\ -\/1}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SOCKET\_ERROR\ -\/1}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ closesocket\ close}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \#include\ <cstring>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \#include\ <chrono>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \#include\ <iostream>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ \#include\ <thread>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \#include\ <atomic>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{tcp_8hpp_a01b7de3bc62ea6ebb29d8b1162eb2785}{MAX\_USERS}}\ =\ 2;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classServer}{Server}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classServer_a7d1fe6ba5f0fe9190a4f039662ea0e85}{Server}}(\textcolor{keywordtype}{int}\ port);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}{\string~Server}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classServer_ae9908a84c86c5a7c1529ca81701a38b6}{init}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_a7eac07d2582fa01c2671362efa955b31}{start}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_a07c45a7e101a3926d8f9685c3c5d14e4}{stop}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_a7c4501173cd10b9dfff472be5b3ebb5d}{join}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classServer_a30362b937b125d27916cf595bfc4c1a7}{run}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_aeec7eeb1e658bcc8b16ecf99b07ad2da}{handleClients}}();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_ab9e7fd2c389e585916cc1b7dcd8069a3}{connexion}}();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_afe05422d471a43409488af7a624ac9b4}{handleData}}(\textcolor{keywordtype}{size\_t}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_aac59c0708617182eec46cb9da28da4a7}{disconnectClient}}(\textcolor{keywordtype}{size\_t}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_a6e54a618ade285dac89e1758eca41aa7}{ping}}(\textcolor{keywordtype}{size\_t}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_a43b95e0d86f9ab1b25a592cfc256d008}{heartbeat}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classServer_a5728cddcbae1978b78724329060f9fa2}{\_port}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}}\ \mbox{\hyperlink{classServer_a9facd5500b158ebbaf759d715396da91}{\_sockfd}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classServer_a11f368dc72a0c2c63d02f7aecf9c7018}{\_active}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sockaddr\_in}}\ \mbox{\hyperlink{classServer_ad9143611e1178ceba1cb0ec746ff50c0}{\_sockAddr}};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ std::vector<pollfd>\ \mbox{\hyperlink{classServer_a388769a4f0392de06c4cf4b67d6933cb}{\_fds}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classServer_a4c8fe81545b01da1cc0406264e22c5b2}{\_clientActive}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ std::chrono::steady\_clock::time\_point\ \mbox{\hyperlink{classServer_a74e30add9534ab6af2728e5640e5be87}{\_lastPing}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ std::thread\ \mbox{\hyperlink{classServer_acc80c799c799b5a1e2fc083be03e709b}{\_thread}};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !TCP\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

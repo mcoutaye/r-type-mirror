@@ -1,5 +1,0 @@
-<map id="ISystem" name="ISystem">
-<area shape="rect" id="Node000001" title="Interface for systems in the ECS." alt="" coords="51,713,205,848"/>
-<area shape="rect" id="Node000002" href="$classECS.html" title="Entity Component System manager." alt="" coords="5,5,251,651"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,651,131,697,125,697,125,651"/>
-</map>

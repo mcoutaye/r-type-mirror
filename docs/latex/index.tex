@@ -3,7 +3,7 @@
 \hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Documentation de la Game Engine dans le Projet R-\/\+Type}{Documentation de la Game Engine dans le Projet R-Type}}\label{index_autotoc_md0}
 Cette documentation se concentre sur la game engine du projet R-\/\+Type, en particulier sur l\textquotesingle{}Entity Component System (\doxylink{classECS}{ECS}), les systèmes (systems), et leur utilisation dans le fichier {\ttfamily main.\+cpp} du client. L\textquotesingle{}objectif est de clarifier les relations entre ces éléments, en expliquant comment l\textquotesingle{}\doxylink{classECS}{ECS} gère les entités, les composants et les systèmes, et comment tout cela est orchestré pour créer un jeu de type shoot\textquotesingle{}em up.
 
-La game engine est implémentée dans les répertoires {\ttfamily include/engine} et {\ttfamily src/engine}, avec une séparation claire entre le core (\doxylink{classECS}{ECS}), les factories (pour créer des entités), et les systems (pour la logique du jeu). Le server gère le réseau UDP, mais la game engine est principalement utilisée côté client pour la logique de jeu, le rendering et les inputs.\hypertarget{index_autotoc_md1}{}\doxysubsection{\texorpdfstring{1. Introduction à la Game Engine}{1. Introduction à la Game Engine}}\label{index_autotoc_md1}
+La game engine est implémentée dans les répertoires {\ttfamily include/engine} et {\ttfamily src/engine}, avec une séparation claire entre le core (\doxylink{classECS}{ECS}), les factories (pour créer des entités), et les systems (pour la logique du jeu). Le server gère le réseau \doxylink{classUDP}{UDP}, mais la game engine est principalement utilisée côté client pour la logique de jeu, le rendering et les inputs.\hypertarget{index_autotoc_md1}{}\doxysubsection{\texorpdfstring{1. Introduction à la Game Engine}{1. Introduction à la Game Engine}}\label{index_autotoc_md1}
 La game engine est basée sur un paradigme \doxylink{classECS}{ECS} (Entity-\/\+Component-\/\+System), qui est une architecture courante en développement de jeux pour favoriser la composition plutôt que l\textquotesingle{}héritage. Cela permet une flexibilité accrue \+: les entités sont des IDs simples, les composants stockent les données, et les systèmes appliquent la logique.
 
 
@@ -13,7 +13,7 @@ La game engine est basée sur un paradigme \doxylink{classECS}{ECS} (Entity-\/\+
 \item {\bfseries{System}} \+: Des classes qui itèrent sur les entités ayant certains composants et appliquent des mises à jour (ex. \+: mouvement, collisions, rendering).
 \end{DoxyItemize}
 
-L\textquotesingle{}\doxylink{classECS}{ECS} est défini dans {\ttfamily \doxylink{ecs_8hpp}{ecs.\+hpp}} et utilisé dans le {\ttfamily main.\+cpp} du client pour initialiser le jeu, créer des entités via des factories, et boucler sur les updates des systèmes.\hypertarget{index_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Relations clés \+:}{Relations clés :}}\label{index_autotoc_md2}
+L\textquotesingle{}\doxylink{classECS}{ECS} est défini dans {\ttfamily ecs.\+hpp} et utilisé dans le {\ttfamily main.\+cpp} du client pour initialiser le jeu, créer des entités via des factories, et boucler sur les updates des systèmes.\hypertarget{index_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Relations clés \+:}{Relations clés :}}\label{index_autotoc_md2}
 
 \begin{DoxyItemize}
 \item L\textquotesingle{}\doxylink{classECS}{ECS} est le "{}coeur"{} \+: il stocke les entités, composants et systèmes.
@@ -21,7 +21,7 @@ L\textquotesingle{}\doxylink{classECS}{ECS} est défini dans {\ttfamily \doxylin
 \item Les systèmes héritent de {\ttfamily \doxylink{classISystem}{ISystem}} et sont ajoutés à l\textquotesingle{}\doxylink{classECS}{ECS} pour être exécutés dans la boucle de jeu.
 \item Dans {\ttfamily main.\+cpp}, tout est assemblé \+: création de l\textquotesingle{}\doxylink{classECS}{ECS}, ajout de systèmes, initialisation d\textquotesingle{}entités, et boucle update/render.
 \end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{2. L\textquotesingle{}\+Entity Component System (\+ECS)}{2. L'Entity Component System (ECS)}}\label{index_autotoc_md3}
-L\textquotesingle{}implémentation de l\textquotesingle{}\doxylink{classECS}{ECS} est dans {\ttfamily \doxylink{ecs_8hpp}{ecs.\+hpp}}. C\textquotesingle{}est une implémentation légère, optimisée pour un maximum de 2048 entités ({\ttfamily MAX\+\_\+\+ENTITIES}) et 128 types de composants ({\ttfamily MAX\+\_\+\+COMPONENT}).\hypertarget{index_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Concepts Clés de l\textquotesingle{}\+ECS \+:}{Concepts Clés de l'ECS :}}\label{index_autotoc_md4}
+L\textquotesingle{}implémentation de l\textquotesingle{}\doxylink{classECS}{ECS} est dans {\ttfamily ecs.\+hpp}. C\textquotesingle{}est une implémentation légère, optimisée pour un maximum de 2048 entités ({\ttfamily MAX\+\_\+\+ENTITIES}) et 128 types de composants ({\ttfamily MAX\+\_\+\+COMPONENT}).\hypertarget{index_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Concepts Clés de l\textquotesingle{}\+ECS \+:}{Concepts Clés de l'ECS :}}\label{index_autotoc_md4}
 
 \begin{DoxyItemize}
 \item {\bfseries{Entity}} \+: Un ID unique ({\ttfamily std\+::uint32\+\_\+t}). Les entités sont créées via {\ttfamily create\+Entity()} et détruites via {\ttfamily kill\+Entity()}. Une queue recycle les IDs des entités détruites pour éviter la fragmentation.
@@ -77,7 +77,7 @@ Les composants sont des structs simples définis dans {\ttfamily \doxylink{Compo
 \item Les composants sont attachés aux entités via l\textquotesingle{}\doxylink{classECS}{ECS}.
 \item Les systèmes itèrent sur des combinaisons spécifiques de composants (ex. \+: {\ttfamily \doxylink{classMovementSystem}{Movement\+System}} sur {\ttfamily \texorpdfstring{$<$}{<}Position, Velocity, Movement\+Pattern\texorpdfstring{$>$}{>}}).
 \end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{4. Les Systèmes}{4. Les Systèmes}}\label{index_autotoc_md10}
-Les systèmes héritent de {\ttfamily \doxylink{classISystem}{ISystem}} (dans {\ttfamily \doxylink{ecs_8hpp}{ecs.\+hpp}}), qui définit {\ttfamily virtual void update(double dt) = 0;}. Chaque système accède à l\textquotesingle{}\doxylink{classECS}{ECS} pour query les entités pertinentes et updater leurs composants.\hypertarget{index_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Liste des systèmes (dans $<$tt$>$systems/$<$/tt$>$ ) \+:}{Liste des systèmes (dans <tt>systems/</tt> ) :}}\label{index_autotoc_md11}
+Les systèmes héritent de {\ttfamily \doxylink{classISystem}{ISystem}} (dans {\ttfamily ecs.\+hpp}), qui définit {\ttfamily virtual void update(double dt) = 0;}. Chaque système accède à l\textquotesingle{}\doxylink{classECS}{ECS} pour query les entités pertinentes et updater leurs composants.\hypertarget{index_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Liste des systèmes (dans $<$tt$>$systems/$<$/tt$>$ ) \+:}{Liste des systèmes (dans <tt>systems/</tt> ) :}}\label{index_autotoc_md11}
 
 \begin{DoxyItemize}
 \item {\bfseries{\doxylink{classInputSystem}{Input\+System}}} \+: Gère les inputs clavier/manette. Mappe des actions (Move\+Up, Shoot, etc.) et applique aux entités avec {\ttfamily \texorpdfstring{$<$}{<}Player\+Controller, Velocity, Shootable\texorpdfstring{$>$}{>}}. Relations \+: Lit SFML events, met à jour Velocity et is\+Shooting.
@@ -137,11 +137,11 @@ Le {\ttfamily main.\+cpp} du client (dans {\ttfamily src/client}) assemble tout 
 \item {\bfseries{Avantages \doxylink{classECS}{ECS}}} \+: Scalable, facile d\textquotesingle{}ajouter systèmes/composants sans toucher le core.
 \item {\bfseries{Points d\textquotesingle{}Amélioration}} \+: Ordre des systèmes non garanti (vecteur), pas de multithreading, confiance en signatures (risque de corruption).
 \end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysection{\texorpdfstring{Bienvenue dans la Documentation de R-\/\+Type}{Bienvenue dans la Documentation de R-Type}}\label{index_autotoc_md20}
-Ce projet est une implémentation d\textquotesingle{}un shoot\textquotesingle{}em up inspiré de R-\/\+Type, utilisant un \doxylink{classECS}{ECS} (Entity Component System) pour la game engine côté client, et un serveur UDP pour le réseau.\hypertarget{index_autotoc_md21}{}\doxysubsection{\texorpdfstring{Aperçu Général}{Aperçu Général}}\label{index_autotoc_md21}
+Ce projet est une implémentation d\textquotesingle{}un shoot\textquotesingle{}em up inspiré de R-\/\+Type, utilisant un \doxylink{classECS}{ECS} (Entity Component System) pour la game engine côté client, et un serveur \doxylink{classUDP}{UDP} pour le réseau.\hypertarget{index_autotoc_md21}{}\doxysubsection{\texorpdfstring{Aperçu Général}{Aperçu Général}}\label{index_autotoc_md21}
 
 \begin{DoxyItemize}
-\item {\bfseries{Client}} \+: Gère le rendering (SFML), inputs, mouvements, collisions, etc. via \doxylink{classECS}{ECS}.
-\item {\bfseries{Serveur}} \+: Gère le réseau (UDP), interprétation de paquets, et boucle de jeu.
+\item {\bfseries{\doxylink{classClient}{Client}}} \+: Gère le rendering (SFML), inputs, mouvements, collisions, etc. via \doxylink{classECS}{ECS}.
+\item {\bfseries{Serveur}} \+: Gère le réseau (\doxylink{classUDP}{UDP}), interprétation de paquets, et boucle de jeu.
 \item {\bfseries{Architecture}} \+: Basée sur \doxylink{classECS}{ECS} pour flexibilité ; voir la hiérarchie des classes pour les systèmes héritant de {\ttfamily \doxylink{classISystem}{ISystem}}.
 \end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysubsection{\texorpdfstring{Sections Principales}{Sections Principales}}\label{index_autotoc_md22}
 

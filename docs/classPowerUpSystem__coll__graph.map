@@ -1,7 +1,0 @@
-<map id="PowerUpSystem" name="PowerUpSystem">
-<area shape="rect" id="Node000001" title=" " alt="" coords="45,897,211,1012"/>
-<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="51,713,205,848"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,862,131,897,125,897,125,862"/>
-<area shape="rect" id="Node000003" href="$classECS.html" title="Entity Component System manager." alt="" coords="5,5,251,651"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,651,131,697,125,697,125,651"/>
-</map>

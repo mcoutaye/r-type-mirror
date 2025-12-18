@@ -1,7 +1,0 @@
-<map id="ECS::addTime" name="ECS::addTime">
-<area shape="rect" id="Node000001" title="Adds delta time to the ECS time." alt="" coords="5,5,117,31"/>
-<area shape="rect" id="Node000002" href="$ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="165,5,297,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,15,152,15,152,21,117,21"/>
-<area shape="rect" id="Node000003" href="$ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="345,5,513,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="298,15,332,15,332,21,298,21"/>
-</map>

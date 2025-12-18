@@ -1,0 +1,68 @@
+\doxysection{Network\+Protocol.\+hpp}
+\hypertarget{NetworkProtocol_8hpp_source}{}\label{NetworkProtocol_8hpp_source}\index{include/server/NetworkProtocol.hpp@{include/server/NetworkProtocol.hpp}}
+\mbox{\hyperlink{NetworkProtocol_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ include/NetworkProtocol.hpp}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Ensure\ packing\ is\ forced\ on\ all\ platforms}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 1)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#define\ PACKED}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#define\ PACKED\ \_\_attribute\_\_((packed))}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ===\ INPUT\ CLIENT\ →\ SERVEUR\ ===}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{NetworkProtocol_8hpp_a36d525cf4d116b2fe4ecc00222b256f1}{PACKED}}\ \mbox{\hyperlink{structInputState}{InputState}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structInputState_ab2034d3170b2a4508928a7bb07a98ca5}{up}}\ \ \ \ :\ 1;}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structInputState_aa2e75bb0ac6112a1c494ab69201a0914}{down}}\ \ :\ 1;}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structInputState_aaefddbc6254f97da5c39b7cc71908a45}{left}}\ \ :\ 1;}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structInputState_aafef50dcb9ea9f31df195a75767d5d1d}{right}}\ :\ 1;}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \mbox{\hyperlink{structInputState_a943e3e27da883be34b099ce334701b20}{shoot}}\ :\ 1;}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\_t}}\ \ \ \ \ \ \ :\ 3;}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}}\ \mbox{\hyperlink{structInputState_a6a2fa0953feca6b01b1fd5f9917bdf7e}{tick}};\ \textcolor{comment}{//\ Wraps\ around\ 65535}}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structInputState}{InputState}})\ ==\ 3,\ \textcolor{stringliteral}{"{}InputState\ must\ be\ 3\ bytes"{}});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Helper\ to\ check\ if\ 'newTick'\ is\ more\ recent\ than\ 'oldTick'\ handling\ wrap-\/around}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{NetworkProtocol_8hpp_a31decf49dac3ae6a95dd28cb3607e37e}{IsTickNewer}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{newTick}},\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{oldTick}})\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ If\ the\ difference\ is\ small\ (e.g.,\ <\ 32768),\ it's\ a\ normal\ increase.}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ If\ the\ difference\ is\ huge\ (e.g.,\ new=5,\ old=65530),\ it's\ a\ wrap-\/around.}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{newTick}}\ !=\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{oldTick}})\ \&\&\ ((\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{newTick}}\ -\/\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{oldTick}})\ <\ 32768);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ ===\ UPDATE\ SERVEUR\ →\ CLIENT\ (ECS\ positions)\ ===}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEntityUpdate_1_1PACKED}{PACKED}}\ \mbox{\hyperlink{structEntityUpdate}{EntityUpdate}}\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint32\_t}}\ \mbox{\hyperlink{structEntityUpdate_ac9e0ab526dd46342421395c6e5127287}{entityId}};\ \ \textcolor{comment}{//\ 4\ bytes}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}}\ \mbox{\hyperlink{structEntityUpdate_aebbf8795478ce1383c95db794154c34f}{tick}};\ \ \ \ \ \ \textcolor{comment}{//\ 2\ bytes}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEntityUpdate_1_1PACKED}{PACKED}}\ \{\ \textcolor{comment}{//\ position\_t}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEntityUpdate_1_1PACKED_a878f38e6d22ee5d5e3e12d35af24d67d}{x}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEntityUpdate_1_1PACKED_a469ef56352239366cfb9332021480425}{y}};}
+\DoxyCodeLine{00044\ \ \ \ \ \}\ position;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8\ bytes}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{NetworkProtocol_8hpp_a36d525cf4d116b2fe4ecc00222b256f1}{PACKED}}\ \{\ \textcolor{comment}{//\ health\_t}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structEntityUpdate_1_1PACKED_ad8119cfec34c19612b40e56ab3d79e25}{current}};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structEntityUpdate_1_1PACKED_af12f35d2a0fcae4610ea6b29bb6c3a5e}{max}};}
+\DoxyCodeLine{00049\ \ \ \ \ \}\ health;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8\ bytes}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structEntityUpdate}{EntityUpdate}})\ ==\ 22,\ \textcolor{stringliteral}{"{}EntityUpdate\ must\ be\ 22\ bytes"{}});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#undef\ PACKED}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ ===\ PAQUET\ À\ ENVOYER\ (serveur\ uniquement)\ ===}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPacketToSend}{PacketToSend}}\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ sf::IpAddress\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPacketToSend_a30cb911638dfc2ac438806b489420eb3}{destIp}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPacketToSend_a3518d454478bab261959a606e2371231}{destPort}};}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<uint8\_t>\ \ \ \mbox{\hyperlink{structPacketToSend_a0ffdb7bda60d8ab9c1e448f4746090af}{data}};}
+\DoxyCodeLine{00062\ \};}
+
+\end{DoxyCode}

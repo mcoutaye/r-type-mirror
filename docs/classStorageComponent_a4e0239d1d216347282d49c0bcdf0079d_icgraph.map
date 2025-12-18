@@ -1,0 +1,25 @@
+<map id="StorageComponent::get" name="StorageComponent::get">
+<area shape="rect" id="Node000001" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="651,232,827,257"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="433,157,584,183"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="685,230,548,185,549,180,686,225"/>
+<area shape="rect" id="Node000009" href="$classECS.html#a358206e15202fccfa73017c47af07079" title="Retrieves a read&#45;only pointer to a component." alt="" coords="415,256,603,281"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="637,258,603,262,602,256,636,253"/>
+<area shape="rect" id="Node000003" href="$classServer.html#aac4110712ec347909be9bd4a5140ac4f" title=" " alt="" coords="221,5,362,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="483,149,431,102,365,52,327,33,329,28,368,48,435,97,487,145"/>
+<area shape="rect" id="Node000004" href="$classServer.html#aeee363eaf9f494aa542f2e0ad1d7813b" title=" " alt="" coords="5,20,168,45"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="475,152,425,123,366,96,264,66,168,47,169,42,265,61,368,92,427,119,478,148"/>
+<area shape="rect" id="Node000005" href="$classClient.html#ad361032d607e05a51b215e1300029bbc" title=" " alt="" coords="216,107,367,132"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="440,157,346,135,347,129,441,152"/>
+<area shape="rect" id="Node000006" href="$classClient.html#a6e7a5e19c40bef39ae1c0f5996b8c471" title=" " alt="" coords="30,107,143,132"/>
+<area shape="poly" id="edge10_Node000002_Node000006" title=" " alt="" coords="419,167,216,146,143,134,144,128,216,141,420,161"/>
+<area shape="rect" id="Node000007" href="$classClient.html#a643ed09341f07f8c81696741f2d2ca07" title=" " alt="" coords="216,208,367,233"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="441,188,347,211,346,205,440,183"/>
+<area shape="rect" id="Node000008" href="$classServer.html#af7b0a4370ac2c1e573f292870adfa81c" title=" " alt="" coords="233,257,350,283"/>
+<area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="476,192,426,220,368,248,338,260,336,255,366,244,423,216,473,188"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="207,27,168,30,168,24,207,21"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="202,131,144,130,144,125,202,126"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="157,108,216,108,216,113,157,113"/>
+<area shape="poly" id="edge7_Node000006_Node000006" title=" " alt="" coords="123,97,113,89,87,85,65,87,54,92,51,98,58,105,53,108,46,98,50,88,64,82,87,80,115,84,126,93"/>
+<area shape="rect" id="Node000010" href="$classServer.html#af36f3a832531844b5f18d40c6db22cc9" title=" " alt="" coords="223,307,359,332"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="441,287,347,309,346,304,440,282"/>
+</map>

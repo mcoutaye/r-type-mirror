@@ -1,5 +1,5 @@
 <map id="ECS::hasComponent" name="ECS::hasComponent">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,159,80"/>
+<area shape="rect" id="Node000001" title="Checks if an entity has a specific component." alt="" coords="5,55,159,80"/>
 <area shape="rect" id="Node000002" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="230,29,362,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,56,216,49,217,54,159,61"/>
 <area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="207,79,385,104"/>

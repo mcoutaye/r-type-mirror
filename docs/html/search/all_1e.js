@@ -1,15 +1,12 @@
 var searchData=
 [
-  ['udp_0',['udp',['../classUDP.html#a0a52bdb24be3f3257d7a10862279a246',1,'UDP::UDP()'],['../classUDP.html',1,'UDP']]],
-  ['udp_2ehpp_1',['udp.hpp',['../udp_8hpp.html',1,'']]],
-  ['udpclient_2',['udpclient',['../classUdpClient.html',1,'UdpClient'],['../classUdpClient.html#ac0a8179d32c5dff8bc91be2cc826c2c3',1,'UdpClient::UdpClient()']]],
-  ['udpclient_2ehpp_3',['UdpClient.hpp',['../UdpClient_8hpp.html',1,'']]],
-  ['udpserver_4',['udpserver',['../classUdpServer.html',1,'UdpServer'],['../classUdpServer.html#a82b9a5af2c41233be255eff68ee63ac0',1,'UdpServer::UdpServer()']]],
-  ['udpserver_2ehpp_5',['UdpServer.hpp',['../UdpServer_8hpp.html',1,'']]],
-  ['unified_20networking_20graphics_6',['A. Unified Networking &amp; Graphics',['../md_poc.html#autotoc_md32',1,'']]],
-  ['up_7',['up',['../structInputState.html#ab2034d3170b2a4508928a7bb07a98ca5',1,'InputState::up'],['../structinput__s.html#a325bfe84fecc84095520986357735f24',1,'input_s::up']]],
-  ['update_8',['update',['../classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369',1,'RenderSystem::update()'],['../classServer.html#af7b0a4370ac2c1e573f292870adfa81c',1,'Server::update()'],['../classISystem.html#a739106b9af90852f4a2ce03f68248c00',1,'ISystem::update()'],['../classClient.html#a6e7a5e19c40bef39ae1c0f5996b8c471',1,'Client::update()'],['../classWaveSystem.html#a9a5c16c210763a371d4b535e76b2208c',1,'WaveSystem::update()'],['../classPowerUpSystem.html#a05245e51548976a01ba95f61aaf878f5',1,'PowerUpSystem::update()'],['../classMovementSystem.html#afd53a085ce047480cbd2a004cb557003',1,'MovementSystem::update()'],['../classMissileSystem.html#a146fd40daeed6ce5216eae405567893f',1,'MissileSystem::update()'],['../classInputSystem.html#ad0abae812dfe6bf0e58c48e5d0382f51',1,'InputSystem::update()'],['../classCollisionSystem.html#a3e6d83a4d384ed4a85ad1fc05b1d96e7',1,'CollisionSystem::update()'],['../classISystem.html#a739106b9af90852f4a2ce03f68248c00',1,'ISystem::update()'],['../classGameEngine.html#ae03241b464040b659b6a91f27920e8c3',1,'GameEngine::update()']]],
-  ['updateclock_9',['updateClock',['../classTimer.html#a5dfc60401871aa32cfe0ca0a775f31fa',1,'Timer']]],
-  ['updatejoystickinput_10',['updateJoystickInput',['../classInputSystem.html#a7941bac0e62f7265d14894162c1e766e',1,'InputSystem']]],
-  ['utilisation_20dans_20le_20tt_20main_20cpp_20tt_20client_11',['5. Utilisation dans le &lt;tt&gt;main.cpp&lt;/tt&gt; (Client)',['../index.html#autotoc_md14',1,'']]]
+  ['values_0',['Values',['../rfcprotocol_8txt.html#a31cbc3c69ea6900a95b5dfa2f8129563',1,'rfcprotocol.txt']]],
+  ['velocity_1',['velocity',['../md_poc.html#autotoc_md32',1,'D. Development Velocity'],['../structComponents_1_1Velocity.html',1,'Components::Velocity']]],
+  ['verifycomponentstorage_2',['verifycomponentstorage',['../classECS.html#a0d360a43bc140d37953297708afb8b86',1,'ECS::verifyComponentStorage(ComponentTypeID TypeID)'],['../classECS.html#a0d360a43bc140d37953297708afb8b86',1,'ECS::verifyComponentStorage(ComponentTypeID TypeID)']]],
+  ['visible_3',['visible',['../structComponents_1_1Drawable.html#aad3e7a7496e6ce972bfae04ae33be5cb',1,'Components::Drawable']]],
+  ['vs_20oop_4',['vs oop',['../md_poc.html#autotoc_md33',1,'4. Architectural Study: ECS vs. OOP'],['../index.html#autotoc_md4',1,'ECS vs. OOP']]],
+  ['vs_20qt_20qt_206_5',['C. SFML vs. Qt (Qt 6)',['../md_poc.html#autotoc_md27',1,'']]],
+  ['vs_20raylib_6',['B. SFML vs. Raylib',['../md_poc.html#autotoc_md26',1,'']]],
+  ['vs_20sdl2_20simple_20directmedia_20layer_7',['A. SFML vs. SDL2 (Simple DirectMedia Layer)',['../md_poc.html#autotoc_md25',1,'']]],
+  ['vulnerabilities_8',['A. Vulnerabilities',['../md_poc.html#autotoc_md43',1,'']]]
 ];

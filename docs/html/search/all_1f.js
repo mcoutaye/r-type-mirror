@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['velocity_0',['velocity',['../md_poc.html#autotoc_md35',1,'D. Development Velocity'],['../structComponents_1_1Velocity.html',1,'Components::Velocity']]],
-  ['verifycomponentstorage_1',['verifycomponentstorage',['../classECS.html#a0d360a43bc140d37953297708afb8b86',1,'ECS::verifyComponentStorage(ComponentTypeID TypeID)'],['../classECS.html#a0d360a43bc140d37953297708afb8b86',1,'ECS::verifyComponentStorage(ComponentTypeID TypeID)']]],
-  ['visible_2',['visible',['../structComponents_1_1Drawable.html#aad3e7a7496e6ce972bfae04ae33be5cb',1,'Components::Drawable']]],
-  ['vs_20oop_3',['4. Architectural Study: ECS vs. OOP',['../md_poc.html#autotoc_md36',1,'']]],
-  ['vs_20qt_20qt_206_4',['C. SFML vs. Qt (Qt 6)',['../md_poc.html#autotoc_md30',1,'']]],
-  ['vs_20raylib_5',['B. SFML vs. Raylib',['../md_poc.html#autotoc_md29',1,'']]],
-  ['vs_20sdl2_20simple_20directmedia_20layer_6',['A. SFML vs. SDL2 (Simple DirectMedia Layer)',['../md_poc.html#autotoc_md28',1,'']]],
-  ['vulnerabilities_7',['A. Vulnerabilities',['../md_poc.html#autotoc_md46',1,'']]]
+  ['wasactionpressed_0',['wasActionPressed',['../classInputSystem.html#ad6713488aefbde5a440da4014e374e9e',1,'InputSystem']]],
+  ['wasactionreleased_1',['wasActionReleased',['../classInputSystem.html#abc82ada36a00374dac556647e6e968c1',1,'InputSystem']]],
+  ['wavedata_2',['WaveData',['../structComponents_1_1WaveData.html',1,'Components']]],
+  ['wavespawner_3',['WaveSpawner',['../structComponents_1_1WaveSpawner.html',1,'Components']]],
+  ['wavesystem_4',['wavesystem',['../classWaveSystem.html',1,'WaveSystem'],['../classWaveSystem.html#a53bc3c7754a0cb45c159f094df8be70f',1,'WaveSystem::WaveSystem()']]],
+  ['wavesystem_2ehpp_5',['WaveSystem.hpp',['../WaveSystem_8hpp.html',1,'']]],
+  ['why_20sfml_6',['Why SFML?',['../index.html#autotoc_md3',1,'']]],
+  ['why_20sfml_20is_20the_20superior_20choice_20for_20r_20type_7',['3. Why SFML is the Superior Choice for R-Type',['../md_poc.html#autotoc_md28',1,'']]],
+  ['width_8',['width',['../structComponents_1_1Collider.html#a3cff820f690f7a47a76a23f9047526fa',1,'Components::Collider']]],
+  ['window_9',['window',['../classGameEngine.html#ac91a68b9e136eda3dc8cabcb46a5dbaa',1,'GameEngine']]],
+  ['with_20alternatives_10',['2. Comparison with Alternatives',['../md_poc.html#autotoc_md24',1,'']]]
 ];

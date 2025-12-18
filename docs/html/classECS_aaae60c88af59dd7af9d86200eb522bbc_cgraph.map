@@ -1,5 +1,5 @@
 <map id="ECS::getComponent" name="ECS::getComponent">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,156,68"/>
+<area shape="rect" id="Node000001" title="Retrieves a mutable pointer to a component." alt="" coords="5,43,156,68"/>
 <area shape="rect" id="Node000002" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="204,5,380,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,40,206,30,207,36,154,45"/>
 <area shape="rect" id="Node000004" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="226,79,358,104"/>

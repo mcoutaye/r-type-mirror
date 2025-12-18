@@ -5,6 +5,7 @@ var searchData=
   ['delay_2',['delay',['../structComponents_1_1WaveData.html#a52c58106f8e02f06a9d09365f01ad090',1,'Components::WaveData']]],
   ['destip_3',['destIp',['../structPacketToSend.html#a30cb911638dfc2ac438806b489420eb3',1,'PacketToSend']]],
   ['destport_4',['destPort',['../structPacketToSend.html#a3518d454478bab261959a606e2371231',1,'PacketToSend']]],
-  ['down_5',['down',['../structInputState.html#aa2e75bb0ac6112a1c494ab69201a0914',1,'InputState::down'],['../structinput__s.html#afe824ee2ea99342c01543dda6c2e49df',1,'input_s::down']]],
-  ['duration_6',['duration',['../structComponents_1_1PowerUp.html#a2fc053404d329650832ecea0f1083422',1,'Components::PowerUp']]]
+  ['display_5',['display',['../rfcprotocol_8txt.html#a8e42650073adb90519f21d7eedef2e50',1,'rfcprotocol.txt']]],
+  ['down_6',['down',['../structInputState.html#aa2e75bb0ac6112a1c494ab69201a0914',1,'InputState::down'],['../structinput__s.html#afe824ee2ea99342c01543dda6c2e49df',1,'input_s::down']]],
+  ['duration_7',['duration',['../structComponents_1_1PowerUp.html#a2fc053404d329650832ecea0f1083422',1,'Components::PowerUp']]]
 ];

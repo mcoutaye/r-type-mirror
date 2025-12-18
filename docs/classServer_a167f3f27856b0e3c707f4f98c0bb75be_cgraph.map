@@ -1,0 +1,13 @@
+<map id="Server::entityForClients" name="Server::entityForClients">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,180,105"/>
+<area shape="rect" id="Node000002" href="$namespaceFactory.html#a676a86a062ce8ffcbe6f1fb3360f5948" title=" " alt="" coords="246,5,405,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,77,227,39,254,32,256,37,229,45,125,82"/>
+<area shape="rect" id="Node000003" href="$classUdpServer.html#a9bbfe357b5fd6f3eae04605bb3ebce4f" title=" " alt="" coords="228,55,423,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,81,214,77,215,82,181,86"/>
+<area shape="rect" id="Node000004" href="$classUdpServer.html#a52f6bd3ca7b3f20cddee608ee96f68bb" title=" " alt="" coords="243,104,407,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,99,230,104,229,109,180,104"/>
+<area shape="rect" id="Node000005" href="$engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="259,153,391,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="128,103,229,138,260,147,259,152,227,143,126,108"/>
+<area shape="rect" id="Node000006" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="471,153,639,179"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="392,163,457,163,457,169,392,169"/>
+</map>

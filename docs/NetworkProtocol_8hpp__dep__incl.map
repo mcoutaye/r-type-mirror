@@ -1,0 +1,11 @@
+<map id="include/server/NetworkProtocol.hpp" name="include/server/NetworkProtocol.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,5,355,31"/>
+<area shape="rect" id="Node000002" href="$UdpClient_8hpp.html" title=" " alt="" coords="5,79,216,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,40,131,81,128,76,196,35"/>
+<area shape="rect" id="Node000004" href="$UdpServer_8hpp.html" title=" " alt="" coords="240,79,453,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="260,35,329,76,326,81,258,40"/>
+<area shape="rect" id="Node000003" href="$client_8hpp.html" title=" " alt="" coords="19,152,202,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,118,113,152,108,152,108,118"/>
+<area shape="rect" id="Node000005" href="$server_8hpp.html" title=" " alt="" coords="253,152,440,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="349,118,349,152,344,152,344,118"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="ECS::getComponent" name="ECS::getComponent">
+<area shape="rect" id="Node000001" title="Retrieves a mutable pointer to a component." alt="" coords="415,132,565,157"/>
+<area shape="rect" id="Node000002" href="$classServer.html#aac4110712ec347909be9bd4a5140ac4f" title=" " alt="" coords="221,5,362,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="462,125,418,89,365,52,326,33,328,28,368,48,422,84,466,120"/>
+<area shape="rect" id="Node000003" href="$classServer.html#aeee363eaf9f494aa542f2e0ad1d7813b" title=" " alt="" coords="5,20,168,45"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="449,129,366,97,260,68,162,48,163,43,261,63,367,91,451,124"/>
+<area shape="rect" id="Node000004" href="$classClient.html#ad361032d607e05a51b215e1300029bbc" title=" " alt="" coords="216,107,367,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="401,136,367,132,367,126,402,131"/>
+<area shape="rect" id="Node000005" href="$classClient.html#a6e7a5e19c40bef39ae1c0f5996b8c471" title=" " alt="" coords="30,107,143,132"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="401,152,311,152,216,147,140,135,140,129,216,142,311,147,401,146"/>
+<area shape="rect" id="Node000006" href="$classClient.html#a643ed09341f07f8c81696741f2d2ca07" title=" " alt="" coords="216,208,367,233"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="444,165,327,210,325,205,442,160"/>
+<area shape="rect" id="Node000007" href="$classServer.html#af7b0a4370ac2c1e573f292870adfa81c" title=" " alt="" coords="233,257,350,283"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="469,169,425,209,368,248,342,260,340,255,365,244,421,205,465,165"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="207,27,168,30,168,24,207,21"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,131,144,130,144,125,202,126"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="157,108,216,108,216,113,157,113"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="123,97,113,89,87,85,65,87,54,92,51,98,58,105,53,108,46,98,50,88,64,82,87,80,115,84,126,93"/>
+</map>

@@ -1,161 +1,121 @@
-\chapter{R-\/\+Type Game Engine}
-\hypertarget{index}{}\label{index}\index{R-\/Type Game Engine@{R-\/Type Game Engine}}
-\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Documentation de la Game Engine dans le Projet R-\/\+Type}{Documentation de la Game Engine dans le Projet R-Type}}\label{index_autotoc_md0}
-Cette documentation se concentre sur la game engine du projet R-\/\+Type, en particulier sur l\textquotesingle{}Entity Component System (\doxylink{classECS}{ECS}), les systèmes (systems), et leur utilisation dans le fichier {\ttfamily main.\+cpp} du client. L\textquotesingle{}objectif est de clarifier les relations entre ces éléments, en expliquant comment l\textquotesingle{}\doxylink{classECS}{ECS} gère les entités, les composants et les systèmes, et comment tout cela est orchestré pour créer un jeu de type shoot\textquotesingle{}em up.
+\chapter{R-\/\+Type Mirror — Global Technical Documentation}
+\hypertarget{index}{}\label{index}\index{R-\/Type Mirror — Global Technical Documentation@{R-\/Type Mirror — Global Technical Documentation}}
+\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{R-\/\+Type Mirror}{R-Type Mirror}}\label{index_autotoc_md0}
+{\bfseries{R-\/\+Type Mirror}} is a multiplayer shoot’em up inspired by {\itshape R-\/\+Type}, developed as an {\bfseries{Epitech 2025}} project. It features a custom {\bfseries{Entity Component System (\doxylink{classECS}{ECS})}} game engine on the client side and a {\bfseries{\doxylink{classUDP}{UDP}}} networking architecture for real-\/time multiplayer gameplay.
 
-La game engine est implémentée dans les répertoires {\ttfamily include/engine} et {\ttfamily src/engine}, avec une séparation claire entre le core (\doxylink{classECS}{ECS}), les factories (pour créer des entités), et les systems (pour la logique du jeu). Le server gère le réseau \doxylink{classUDP}{UDP}, mais la game engine est principalement utilisée côté client pour la logique de jeu, le rendering et les inputs.\hypertarget{index_autotoc_md1}{}\doxysubsection{\texorpdfstring{1. Introduction à la Game Engine}{1. Introduction à la Game Engine}}\label{index_autotoc_md1}
-La game engine est basée sur un paradigme \doxylink{classECS}{ECS} (Entity-\/\+Component-\/\+System), qui est une architecture courante en développement de jeux pour favoriser la composition plutôt que l\textquotesingle{}héritage. Cela permet une flexibilité accrue \+: les entités sont des IDs simples, les composants stockent les données, et les systèmes appliquent la logique.
+This documentation is the {\bfseries{single entry point}} for the whole project\+: game engine, client systems, network module, and protocol specification.
 
-
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{1. Architectural Decisions (\+POC)}{1. Architectural Decisions (POC)}}\label{index_autotoc_md2}
+The project architecture is based on a detailed Proof of Concept (POC) comparing various technologies. For more details, see the \doxysectlink{md_poc}{POC document}{0}.\hypertarget{index_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{Why SFML?}{Why SFML?}}\label{index_autotoc_md3}
+We selected {\bfseries{SFML (Simple and Fast Multimedia Library)}} over alternatives like SDL2, Raylib, or Qt for the following reasons\+:
 \begin{DoxyItemize}
-\item {\bfseries{Entity}} \+: Un simple ID ({\ttfamily uint32\+\_\+t}) représentant un objet dans le jeu (ex. \+: joueur, ennemi, projectile).
-\item {\bfseries{Component}} \+: Des données attachées à une entité (ex. \+: Position, Velocity, Health).
-\item {\bfseries{System}} \+: Des classes qui itèrent sur les entités ayant certains composants et appliquent des mises à jour (ex. \+: mouvement, collisions, rendering).
+\item {\bfseries{Unified Stack\+:}} SFML handles Graphics, Audio, and Networking in a single C++ library, reducing dependencies.
+\item {\bfseries{Modern C++\+:}} It supports RAII and C++20 features natively, unlike C-\/based libraries (SDL2, Raylib).
+\item {\bfseries{Architecture Fit\+:}} Its Object-\/\+Oriented design aligns perfectly with our \doxylink{classECS}{ECS} architecture.
+\item {\bfseries{Protocol Safety\+:}} {\ttfamily sf\+::\+Packet} handles Endianness automatically for cross-\/platform networking.
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{ECS vs. OOP}{ECS vs. OOP}}\label{index_autotoc_md4}
+We chose an {\bfseries{Entity Component System (\doxylink{classECS}{ECS})}} over traditional Object-\/\+Oriented Programming (OOP) to solve the "{}\+Diamond of Death"{} inheritance problem and improve performance through data locality.
+\begin{DoxyItemize}
+\item {\bfseries{Composition over Inheritance\+:}} Entities are built by composing data components, not by deep inheritance trees.
+\item {\bfseries{Performance\+:}} \doxylink{namespaceComponents}{Components} are stored in contiguous arrays ({\ttfamily std\+::vector}), maximizing CPU cache efficiency.
 \end{DoxyItemize}
 
-L\textquotesingle{}\doxylink{classECS}{ECS} est défini dans {\ttfamily ecs.\+hpp} et utilisé dans le {\ttfamily main.\+cpp} du client pour initialiser le jeu, créer des entités via des factories, et boucler sur les updates des systèmes.\hypertarget{index_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Relations clés \+:}{Relations clés :}}\label{index_autotoc_md2}
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{2. Game Engine (\+ECS)}{2. Game Engine (ECS)}}\label{index_autotoc_md6}
+The game engine is a custom lightweight \doxylink{classECS}{ECS} implementation.\hypertarget{index_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Core Concepts}{Core Concepts}}\label{index_autotoc_md7}
 
 \begin{DoxyItemize}
-\item L\textquotesingle{}\doxylink{classECS}{ECS} est le "{}coeur"{} \+: il stocke les entités, composants et systèmes.
-\item Les factories ({\ttfamily Entity\+Factory.\+hpp}, {\ttfamily Stage\+Factory.\+hpp}) créent des entités pré-\/configurées avec des composants.
-\item Les systèmes héritent de {\ttfamily \doxylink{classISystem}{ISystem}} et sont ajoutés à l\textquotesingle{}\doxylink{classECS}{ECS} pour être exécutés dans la boucle de jeu.
-\item Dans {\ttfamily main.\+cpp}, tout est assemblé \+: création de l\textquotesingle{}\doxylink{classECS}{ECS}, ajout de systèmes, initialisation d\textquotesingle{}entités, et boucle update/render.
-\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{2. L\textquotesingle{}\+Entity Component System (\+ECS)}{2. L'Entity Component System (ECS)}}\label{index_autotoc_md3}
-L\textquotesingle{}implémentation de l\textquotesingle{}\doxylink{classECS}{ECS} est dans {\ttfamily ecs.\+hpp}. C\textquotesingle{}est une implémentation légère, optimisée pour un maximum de 2048 entités ({\ttfamily MAX\+\_\+\+ENTITIES}) et 128 types de composants ({\ttfamily MAX\+\_\+\+COMPONENT}).\hypertarget{index_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Concepts Clés de l\textquotesingle{}\+ECS \+:}{Concepts Clés de l'ECS :}}\label{index_autotoc_md4}
+\item {\bfseries{Entity\+:}} A simple unique ID ({\ttfamily uint32\+\_\+t}).
+\item {\bfseries{Component\+:}} Pure data structs (POD) with no logic (e.\+g., {\ttfamily Position}, {\ttfamily Velocity}, {\ttfamily Health}).
+\item {\bfseries{System\+:}} Pure logic that iterates over entities with specific component signatures (e.\+g., {\ttfamily \doxylink{classMovementSystem}{Movement\+System}}, {\ttfamily \doxylink{classRenderSystem}{Render\+System}}).
+\end{DoxyItemize}\hypertarget{index_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Key Characteristics}{Key Characteristics}}\label{index_autotoc_md8}
 
 \begin{DoxyItemize}
-\item {\bfseries{Entity}} \+: Un ID unique ({\ttfamily std\+::uint32\+\_\+t}). Les entités sont créées via {\ttfamily create\+Entity()} et détruites via {\ttfamily kill\+Entity()}. Une queue recycle les IDs des entités détruites pour éviter la fragmentation.
-\item {\bfseries{Signature}} \+: Un bitset ({\ttfamily std\+::bitset\texorpdfstring{$<$}{<}MAX\+\_\+\+COMPONENT\texorpdfstring{$>$}{>}}) qui indique quels composants une entité possède. Cela permet des requêtes rapides comme {\ttfamily get\+Entities\+By\+Components\texorpdfstring{$<$}{<}T1, T2...\texorpdfstring{$>$}{>}()}.
-\item {\bfseries{Component\+Type\+ID}} \+: Un ID unique pour chaque type de composant, généré via {\ttfamily get\+Component\+ID\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}()} (utilise un compteur statique).
-\item {\bfseries{Storage\+Component$<$\+T$>$}} \+: Une classe template qui stocke les composants d\textquotesingle{}un type donné pour toutes les entités (vecteur de taille {\ttfamily MAX\+\_\+\+ENTITIES}). Elle utilise un bitset pour tracker quelles entités ont ce composant.
-\item {\bfseries{\doxylink{classECS}{ECS} Class}} \+: La classe principale qui gère tout \+:
+\item {\bfseries{Max Entities\+:}} 2048
+\item {\bfseries{Max Component Types\+:}} 128
+\item {\bfseries{Signatures\+:}} {\ttfamily std\+::bitset} used for \$\+O(1)\$ component checks.
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Systems Overview}{Systems Overview}}\label{index_autotoc_md9}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ System   }&\cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ System   }&\cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{classInputSystem}{Input\+System}}   &Captures player inputs and sends them to the server.    \\\cline{1-2}
+{\ttfamily \doxylink{classMovementSystem}{Movement\+System}}   &Updates positions based on velocity and patterns.    \\\cline{1-2}
+{\ttfamily \doxylink{classCollisionSystem}{Collision\+System}}   &Handles AABB collisions between projectiles, enemies, and players.    \\\cline{1-2}
+{\ttfamily \doxylink{classWaveSystem}{Wave\+System}}   &Manages enemy spawning patterns.    \\\cline{1-2}
+{\ttfamily \doxylink{classRenderSystem}{Render\+System}}   &Draws entities using SFML.   \\\cline{1-2}
+\end{longtabu}
+
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{class_graph.png}
+\doxyfigcaption{Hiérarchie des classes -\/ Graphe détaillé}
+\end{DoxyImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{3. Network Architecture}{3. Network Architecture}}\label{index_autotoc_md11}
+The project uses a {\bfseries{\doxylink{classUDP}{UDP}}} architecture to balance reliability and latency.\hypertarget{index_autotoc_md12}{}\doxysubsubsection{\texorpdfstring{UDP (\+Gameplay Channel) -\/ Port 53000}{UDP (Gameplay Channel) - Port 53000}}\label{index_autotoc_md12}
+
 \begin{DoxyItemize}
-\item Stocke les entités vivantes et une queue pour recycler les IDs.
-\item Un vecteur de pointeurs vers des storages de composants ({\ttfamily std\+::vector\texorpdfstring{$<$}{<}IComponent\+Storage\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>}}).
-\item Un vecteur de systèmes ({\ttfamily std\+::vector\texorpdfstring{$<$}{<}std\+::unique\+\_\+ptr\texorpdfstring{$<$}{<}\doxylink{classISystem}{ISystem}\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}).
-\item Méthodes clés \+:
-\begin{DoxyItemize}
-\item {\ttfamily create\+Entity()} \+: Alloue un nouvel ID.
-\item {\ttfamily add\+Component\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(Entity e, T component)} \+: Ajoute un composant à une entité, met à jour la signature.
-\item {\ttfamily get\+Component\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(Entity e)} \+: Récupère un composant (pointeur).
-\item {\ttfamily get\+Entities\+By\+Components\texorpdfstring{$<$}{<}T1, T2...\texorpdfstring{$>$}{>}()} \+: Retourne les entités ayant tous les composants spécifiés (via signatures).
-\item {\ttfamily add\+System(std\+::unique\+\_\+ptr\texorpdfstring{$<$}{<}\doxylink{classISystem}{ISystem}\texorpdfstring{$>$}{>} system)} \+: Ajoute un système.
-\item {\ttfamily update(double dt)} \+: Appelle {\ttfamily update(dt)} sur tous les systèmes.
+\item {\bfseries{Role\+:}} Real-\/time high-\/frequency data transfer.
+\item {\bfseries{Functions\+:}} Player inputs (\doxylink{classClient}{Client} -\/\texorpdfstring{$>$}{>} \doxylink{classServer}{Server}) and Entity snapshots (\doxylink{classServer}{Server} -\/\texorpdfstring{$>$}{>} \doxylink{classClient}{Client}).
+\item {\bfseries{Reliability\+:}} Packet loss is accepted. Newer packets replace older ones (60Hz update rate).
 \end{DoxyItemize}
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{network_graph.png}
+\doxyfigcaption{Network Architecture Graph}
+\end{DoxyImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{4. Network Protocol (\+RFC)}{4. Network Protocol (RFC)}}\label{index_autotoc_md14}
+The communication follows a strict protocol defined in \href{rfcprotocol.txt}{\texttt{ RFC Protocol}}. \hypertarget{index_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{Client -\/$>$ Server\+: $<$tt$>$\+Input\+State$<$/tt$>$}{Client -> Server: <tt>InputState</tt>}}\label{index_autotoc_md15}
+Sent every frame to update the player\textquotesingle{}s intent.
+\begin{DoxyItemize}
+\item {\bfseries{Size\+:}} 3 Bytes
+\item {\bfseries{Structure\+:}} {\ttfamily \mbox{[}Player\+ID (1B)\mbox{]} \mbox{[}Input Bitmask (1B)\mbox{]} \mbox{[}Padding/\+Seq (1B)\mbox{]}}
+\item {\bfseries{Inputs\+:}} Up, Down, Left, Right, Shoot.
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsubsection{\texorpdfstring{Server -\/$>$ Client\+: $<$tt$>$\+Entity\+Update$<$/tt$>$}{Server -> Client: <tt>EntityUpdate</tt>}}\label{index_autotoc_md16}
+Broadcasted to all clients to synchronize the game state.
+\begin{DoxyItemize}
+\item {\bfseries{Size\+:}} Packed Struct (\texorpdfstring{$\sim$}{\string~}22 Bytes)
+\item {\bfseries{Structure\+:}} {\ttfamily \mbox{[}Entity\+ID\mbox{]} \mbox{[}Type\mbox{]} \mbox{[}Position X\mbox{]} \mbox{[}Position Y\mbox{]} \mbox{[}Health\mbox{]} \mbox{[}State\mbox{]}}
+\item {\bfseries{Magic Values\+:}} Special IDs are used to denote events (e.\+g., {\ttfamily 0x\+FFFE} for Entity Death).
+\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysubsubsection{\texorpdfstring{Security \& Integrity}{Security \& Integrity}}\label{index_autotoc_md17}
+
+\begin{DoxyItemize}
+\item {\bfseries{Source Validation\+:}} The server validates the sender\textquotesingle{}s IP/\+Port against the registered \doxylink{classClient}{Client} ID.
+\item {\bfseries{Sequence Numbers\+:}} Used to discard out-\/of-\/order or replayed packets.
+\item {\bfseries{\doxylink{classServer}{Server} Authority\+:}} The server is the single source of truth for positions and collisions; clients only send inputs.
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Relations dans l\textquotesingle{}\+ECS \+:}{Relations dans l'ECS :}}\label{index_autotoc_md5}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{5. Project Structure}{5. Project Structure}}\label{index_autotoc_md19}
 
 \begin{DoxyItemize}
-\item {\bfseries{Entité → Composants}} \+: Une entité n\textquotesingle{}a pas de données intrinsèques ; elle référence des composants via son ID et sa signature.
-\item {\bfseries{Composants → Storage}} \+: Chaque type de composant a son propre storage (vector$<$\+T$>$), indexé par l\textquotesingle{}ID d\textquotesingle{}entité.
-\item {\bfseries{Systèmes → \doxylink{classECS}{ECS}}} \+: Les systèmes ont une référence à l\textquotesingle{}\doxylink{classECS}{ECS} ({\ttfamily \&\+\_\+ecs}) pour accéder aux entités et composants via des queries comme {\ttfamily get\+Entities\+By\+Components()}.
-\item {\bfseries{Gestion de la Mémoire}} \+: Les storages sont dynamiquement alloués quand un nouveau type de composant est ajouté. La destruction des entités met à jour les signatures mais ne libère pas immédiatement les composants (confiance en la signature).
-\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Exemple de flux \+:}{Exemple de flux :}}\label{index_autotoc_md6}
-
-\begin{DoxyItemize}
-\item Créer une entité \+: {\ttfamily Entity e = ecs.\+create\+Entity();}
-\item Ajouter un composant \+: {\ttfamily ecs.\+add\+Component(e, Position\{0.\+f, 0.\+f\});} → Met à jour la signature de l\textquotesingle{}entité et stocke dans {\ttfamily \doxylink{classStorageComponent}{Storage\+Component}\texorpdfstring{$<$}{<}Position\texorpdfstring{$>$}{>}}.
-\item Query \+: {\ttfamily auto entities = ecs.\+get\+Entities\+By\+Components\texorpdfstring{$<$}{<}Position\texorpdfstring{$>$}{>}();} → Itère sur les signatures pour trouver les matches.
-\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{3. Les Composants}{3. Les Composants}}\label{index_autotoc_md7}
-Les composants sont des structs simples définis dans {\ttfamily \doxylink{Components_8hpp}{Components.\+hpp}}. Ils représentent des données pures, sans logique.\hypertarget{index_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Exemples principaux \+:}{Exemples principaux :}}\label{index_autotoc_md8}
-
-\begin{DoxyItemize}
-\item {\bfseries{Position}} \+: {\ttfamily \{float x, y\}} – Position dans l\textquotesingle{}espace 2D.
-\item {\bfseries{Velocity}} \+: {\ttfamily \{float x, y\}} – Vitesse de déplacement.
-\item {\bfseries{Drawable}} \+: {\ttfamily \{std\+::string texture\+Id, sf\+::\+Int\+Rect rect, int layer, bool visible, float scale, float rotation\}} – Pour le rendering.
-\item {\bfseries{Player\+Controller}} \+: {\ttfamily \{uint8\+\_\+t player\+Id, bool is\+Shooting\}} – Contrôles du joueur.
-\item {\bfseries{Collider}} \+: {\ttfamily \{float width, height, bool solid, uint8\+\_\+t team, int damage\}} – Pour les collisions.
-\item {\bfseries{Health}} \+: {\ttfamily \{int current, int max\}} – Points de vie.
-\item {\bfseries{Shootable}} \+: {\ttfamily \{float cooldown, float shoot\+Delay, float missile\+Speed, int damage, uint8\+\_\+t team, std\+::string texture\+Id, float offsetX, float offsetY, bool is\+Shooting, bool triple\+Shot\}} – Pour les tirs.
-\item {\bfseries{Movement\+Pattern}} \+: {\ttfamily \{Type type (enum\+: Linear, Sinus, etc.), float amplitude, frequency, radius, speed\}} – Patterns de mouvement pour ennemis.
-\item {\bfseries{Projectile}} \+: {\ttfamily \{float velocity, int damage\}} – Pour les missiles.
-\item {\bfseries{Power\+Up}} \+: {\ttfamily \{Type type (ex. Triple\+Shot), float duration\}} – Bonus.
-\item {\bfseries{Obstacle / Destructible\+Tile / Star}} \+: Spécifiques au stage/background.
-\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Relations \+:}{Relations :}}\label{index_autotoc_md9}
-
-\begin{DoxyItemize}
-\item Les composants sont attachés aux entités via l\textquotesingle{}\doxylink{classECS}{ECS}.
-\item Les systèmes itèrent sur des combinaisons spécifiques de composants (ex. \+: {\ttfamily \doxylink{classMovementSystem}{Movement\+System}} sur {\ttfamily \texorpdfstring{$<$}{<}Position, Velocity, Movement\+Pattern\texorpdfstring{$>$}{>}}).
-\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{4. Les Systèmes}{4. Les Systèmes}}\label{index_autotoc_md10}
-Les systèmes héritent de {\ttfamily \doxylink{classISystem}{ISystem}} (dans {\ttfamily ecs.\+hpp}), qui définit {\ttfamily virtual void update(double dt) = 0;}. Chaque système accède à l\textquotesingle{}\doxylink{classECS}{ECS} pour query les entités pertinentes et updater leurs composants.\hypertarget{index_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Liste des systèmes (dans $<$tt$>$systems/$<$/tt$>$ ) \+:}{Liste des systèmes (dans <tt>systems/</tt> ) :}}\label{index_autotoc_md11}
-
-\begin{DoxyItemize}
-\item {\bfseries{\doxylink{classInputSystem}{Input\+System}}} \+: Gère les inputs clavier/manette. Mappe des actions (Move\+Up, Shoot, etc.) et applique aux entités avec {\ttfamily \texorpdfstring{$<$}{<}Player\+Controller, Velocity, Shootable\texorpdfstring{$>$}{>}}. Relations \+: Lit SFML events, met à jour Velocity et is\+Shooting.
-\item {\bfseries{\doxylink{classMovementSystem}{Movement\+System}}} \+: Met à jour {\ttfamily \texorpdfstring{$<$}{<}Position\texorpdfstring{$>$}{>}} basé sur {\ttfamily \texorpdfstring{$<$}{<}Velocity\texorpdfstring{$>$}{>}} et {\ttfamily \texorpdfstring{$<$}{<}Movement\+Pattern\texorpdfstring{$>$}{>}} (pour patterns comme Sinus, Zigzag). Relations \+: Applique dt à la position, avec modulations pour patterns ennemis.
-\item {\bfseries{\doxylink{classCollisionSystem}{Collision\+System}}} \+: Détecte et résout collisions AABB sur {\ttfamily \texorpdfstring{$<$}{<}Position, Collider\texorpdfstring{$>$}{>}}. Gère dommages via {\ttfamily \texorpdfstring{$<$}{<}Health, Projectile\texorpdfstring{$>$}{>}}. Relations \+: Itère sur paires d\textquotesingle{}entités, résout overlaps, applique dégâts, détruit entités ({\ttfamily ecs.\+kill\+Entity}).
-\item {\bfseries{\doxylink{classMissileSystem}{Missile\+System}}} \+: Gère les tirs via {\ttfamily \texorpdfstring{$<$}{<}Shootable, Position\texorpdfstring{$>$}{>}}. Crée projectiles (via {\ttfamily Entity\+Factory}), gère cooldowns et triple\+Shot. Relations \+: Utilise factories pour spawn, supprime hors-\/écran.
-\item {\bfseries{\doxylink{classPowerUpSystem}{Power\+Up\+System}}} \+: Gère collisions power-\/ups avec joueurs, active effets comme triple\+Shot sur {\ttfamily \texorpdfstring{$<$}{<}Shootable\texorpdfstring{$>$}{>}}. Relations \+: Détruit power-\/up après collision.
-\item {\bfseries{\doxylink{classWaveSystem}{Wave\+System}}} \+: Spawn vagues d\textquotesingle{}ennemis basé sur Wave\+Data (delay, count, etc.). Crée ennemis via {\ttfamily \doxylink{classECS_ab25f63dc0523958d986069505b703c12}{ECS.\+add\+Component}}. Relations \+: Timer-\/based, utilise factories implicitement.
-\item {\bfseries{\doxylink{classRenderSystem}{Render\+System}}} \+: Dessine tout via SFML sur {\ttfamily \texorpdfstring{$<$}{<}Position, Drawable, Star, etc.\texorpdfstring{$>$}{>}}. Tri par layers. Relations \+: Accède à {\ttfamily \doxylink{classResourceManager}{Resource\+Manager}} pour textures, clear/draw/display sur window.
-\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsubsection{\texorpdfstring{Autres \+:}{Autres :}}\label{index_autotoc_md12}
-
-\begin{DoxyItemize}
-\item {\bfseries{\doxylink{classResourceManager}{Resource\+Manager}}} \+: Singleton pour charger textures (non un système \doxylink{classECS}{ECS}, mais utilisé par {\ttfamily \doxylink{classRenderSystem}{Render\+System}}).
-\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysubsubsection{\texorpdfstring{Relations générales des systèmes \+:}{Relations générales des systèmes :}}\label{index_autotoc_md13}
-
-\begin{DoxyItemize}
-\item Tous les systèmes sont ajoutés à l\textquotesingle{}\doxylink{classECS}{ECS} via {\ttfamily ecs.\+add\+System(std\+::make\+\_\+unique\texorpdfstring{$<$}{<}System\texorpdfstring{$>$}{>}(ecs, ...));}.
-\item Dans {\ttfamily update(dt)}, chaque système query des entités spécifiques et modifie leurs composants.
-\item Ordre d\textquotesingle{}exécution important \+: Typiquement Input → Movement → Collision → Missile/\+Power\+Up/\+Wave → Render.
-\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{5. Utilisation dans le $<$tt$>$main.\+cpp$<$/tt$>$ (\+Client)}{5. Utilisation dans le <tt>main.cpp</tt> (Client)}}\label{index_autotoc_md14}
-Le {\ttfamily main.\+cpp} du client (dans {\ttfamily src/client}) assemble tout \+:\hypertarget{index_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{Initialisation \+:}{Initialisation :}}\label{index_autotoc_md15}
-
-\begin{DoxyItemize}
-\item Crée {\ttfamily sf\+::\+Render\+Window} (1920x1080 fullscreen).
-\item Crée {\ttfamily \doxylink{classECS}{ECS} ecs}.
-\item Charge textures via {\ttfamily \doxylink{classResourceManager}{Resource\+Manager}} (singleton).
-\item Ajoute systèmes \+: {\ttfamily \doxylink{classInputSystem}{Input\+System}}, {\ttfamily \doxylink{classMovementSystem}{Movement\+System}}, {\ttfamily \doxylink{classCollisionSystem}{Collision\+System}}, {\ttfamily \doxylink{classMissileSystem}{Missile\+System}}, {\ttfamily \doxylink{classPowerUpSystem}{Power\+Up\+System}}, {\ttfamily \doxylink{classWaveSystem}{Wave\+System}}, {\ttfamily \doxylink{classRenderSystem}{Render\+System}} (certains avec params comme window).
-\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsubsection{\texorpdfstring{Setup du Stage \+:}{Setup du Stage :}}\label{index_autotoc_md16}
-
-\begin{DoxyItemize}
-\item Crée starfield via {\ttfamily Factory\+::create\+Starfield(ecs, ...)}.
-\item Crée borders via {\ttfamily Factory\+::create\+Screen\+Borders(ecs, ...)}.
-\item Crée joueur via {\ttfamily Factory\+::create\+Player(ecs, ...)}.
-\item Charge level waves via {\ttfamily Wave\+System.\+load\+Level(...)}.
-\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysubsubsection{\texorpdfstring{Boucle de Jeu \+:}{Boucle de Jeu :}}\label{index_autotoc_md17}
-
-\begin{DoxyItemize}
-\item {\ttfamily sf\+::\+Clock} pour dt.
-\item Tant que {\ttfamily window.\+is\+Open()} \+:
-\begin{DoxyItemize}
-\item Gère events SFML (close, etc.).
-\item Appelle {\ttfamily ecs.\+update(dt)} → Exécute tous les systèmes.
-\item Mises à jour manuelles (ex. \+: wrap étoiles, delete projectiles hors-\/écran).
-\item Render via {\ttfamily render.\+update(dt)} (mais déjà dans {\ttfamily ecs.\+update} ? Attends, render est un système, mais code montre un appel manuel ? Dans le code truncaté, il y a des updates manuelles après {\ttfamily ecs.\+update}, mais idéalement tout via systèmes).
+\item {\ttfamily include/} -\/ Header files (\doxylink{classECS}{ECS}, Systems, Network).
+\item {\ttfamily src/client/} -\/ Client-\/specific logic (Main loop, Input handling).
+\item {\ttfamily src/server/} -\/ Server-\/specific logic (Game loop, Broadcast).
+\item {\ttfamily src/engine/} -\/ Core \doxylink{classECS}{ECS} implementation.
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{index_autotoc_md18}{}\doxysubsubsection{\texorpdfstring{Relations dans $<$tt$>$main$<$/tt$>$ \+:}{Relations dans <tt>main</tt> :}}\label{index_autotoc_md18}
 
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md21}{}\doxysubsection{\texorpdfstring{Authors}{Authors}}\label{index_autotoc_md21}
+{\bfseries{Epitech 2025 – R-\/\+Type Mirror}}
 \begin{DoxyItemize}
-\item \doxylink{classECS}{ECS} est central \+: Factories l\textquotesingle{}utilisent pour créer/add composants.
-\item Boucle \+: dt passé à {\ttfamily ecs.\+update} → Propagé à chaque système.
-\item SFML intégré \+: Window passé à {\ttfamily \doxylink{classRenderSystem}{Render\+System}}, events à {\ttfamily \doxylink{classInputSystem}{Input\+System}}.
-\end{DoxyItemize}\hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{6. Relations Globales et Flux}{6. Relations Globales et Flux}}\label{index_autotoc_md19}
-
-\begin{DoxyItemize}
-\item {\bfseries{Flux Typique}} \+: Main → \doxylink{classECS}{ECS} (add systems/factories) → Boucle (update dt) → Systèmes (query entités/composants via \doxylink{classECS}{ECS}) → Modif composants → Render.
-\item {\bfseries{Dépendances}} \+: Systèmes dépendent de composants (queries). Factories configurent entités avec composants spécifiques pour matcher les queries des systèmes.
-\item {\bfseries{Avantages \doxylink{classECS}{ECS}}} \+: Scalable, facile d\textquotesingle{}ajouter systèmes/composants sans toucher le core.
-\item {\bfseries{Points d\textquotesingle{}Amélioration}} \+: Ordre des systèmes non garanti (vecteur), pas de multithreading, confiance en signatures (risque de corruption).
-\end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysection{\texorpdfstring{Bienvenue dans la Documentation de R-\/\+Type}{Bienvenue dans la Documentation de R-Type}}\label{index_autotoc_md20}
-Ce projet est une implémentation d\textquotesingle{}un shoot\textquotesingle{}em up inspiré de R-\/\+Type, utilisant un \doxylink{classECS}{ECS} (Entity Component System) pour la game engine côté client, et un serveur \doxylink{classUDP}{UDP} pour le réseau.\hypertarget{index_autotoc_md21}{}\doxysubsection{\texorpdfstring{Aperçu Général}{Aperçu Général}}\label{index_autotoc_md21}
-
-\begin{DoxyItemize}
-\item {\bfseries{\doxylink{classClient}{Client}}} \+: Gère le rendering (SFML), inputs, mouvements, collisions, etc. via \doxylink{classECS}{ECS}.
-\item {\bfseries{Serveur}} \+: Gère le réseau (\doxylink{classUDP}{UDP}), interprétation de paquets, et boucle de jeu.
-\item {\bfseries{Architecture}} \+: Basée sur \doxylink{classECS}{ECS} pour flexibilité ; voir la hiérarchie des classes pour les systèmes héritant de {\ttfamily \doxylink{classISystem}{ISystem}}.
-\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysubsection{\texorpdfstring{Sections Principales}{Sections Principales}}\label{index_autotoc_md22}
-
-\begin{DoxyItemize}
-\item \href{hierarchy.html}{\texttt{ Hiérarchie des classes}} \+: Vue graphique des héritages (ex. systèmes → {\ttfamily \doxylink{classISystem}{ISystem}}).  
-\begin{DoxyInlineImage}
-\includegraphics[height=\baselineskip,keepaspectratio=true]{class_graph.png}%Hiérarchie des classes -\/ Graphe détaillé
-\end{DoxyInlineImage}
-    {\itshape Description \+: Graphe UML montrant les relations entre \doxylink{classECS}{ECS}, \doxylink{classISystem}{ISystem}, les systèmes et les composants.}
-\item \href{namespaces.html}{\texttt{ Espaces de nommage}} \+: Détails sur {\ttfamily \doxylink{namespaceComponents}{Components}} et autres.
-\item \href{files.html}{\texttt{ Fichiers}} \+: Liste des sources.
-\item \href{modules.html}{\texttt{ Modules}} \+: Groupes comme les composants \doxylink{classECS}{ECS}.
-\end{DoxyItemize}\hypertarget{index_autotoc_md23}{}\doxysubsection{\texorpdfstring{Comment Naviguer}{Comment Naviguer}}\label{index_autotoc_md23}
-Utilisez la barre de recherche en haut pour trouver des classes spécifiques (ex. {\ttfamily \doxylink{classECS}{ECS}}, {\ttfamily \doxylink{classMovementSystem}{Movement\+System}}).
-
-Pour plus de détails sur l\textquotesingle{}\doxylink{classECS}{ECS}, voir \href{classECS.html}{\texttt{ Classe ECS}}.\hypertarget{index_autotoc_md24}{}\doxysubsection{\texorpdfstring{Contact}{Contact}}\label{index_autotoc_md24}
-Projet Epitech 2025 -\/ Gabriel VILLEMONTE -\/ Mathis COUTAYE -\/ Clement CHELLIER -\/ Lucas HOAREAU 
+\item Gabriel Villemonte
+\item Clément Chellier
+\item Mathis Coutaye
+\item Lucas Hoareau 
+\end{DoxyItemize}

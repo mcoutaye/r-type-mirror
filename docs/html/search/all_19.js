@@ -1,29 +1,6 @@
 var searchData=
 [
-  ['packed_0',['packed',['../NetworkProtocol_8hpp.html#a36d525cf4d116b2fe4ecc00222b256f1',1,'PACKED:&#160;NetworkProtocol.hpp'],['../structEntityUpdate_1_1PACKED.html',1,'EntityUpdate::PACKED']]],
-  ['packetstosend_1',['packetsToSend',['../classUdpServer.html#a7dd72b9b9f6a74a9067148b13333a7b3',1,'UdpServer']]],
-  ['packettosend_2',['PacketToSend',['../structPacketToSend.html',1,'']]],
-  ['ping_3',['ping',['../classServer.html#a6e54a618ade285dac89e1758eca41aa7',1,'Server']]],
-  ['playercontroller_4',['PlayerController',['../structComponents_1_1PlayerController.html',1,'Components']]],
-  ['playerid_5',['playerid',['../structComponents_1_1PlayerController.html#ab626bbc7d999b6b1b51d0cb03cd68fd8',1,'Components::PlayerController::playerId'],['../classClientInfo.html#acb7f8ad1009ad6fcd1ee30f4d9ad1f46',1,'ClientInfo::playerId']]],
-  ['poc_2emd_6',['poc.md',['../poc_8md.html',1,'']]],
-  ['port_7',['port',['../classClientInfo.html#a32cb3d7ed1111c5570b1888aa001fdb9',1,'ClientInfo::port'],['../udp_8hpp.html#adf5e2b0794330e8d2fe65181894594c9',1,'PORT:&#160;udp.hpp']]],
-  ['position_8',['position',['../structEntityUpdate.html#aace106ce208e6bf003cf20dad31789e7',1,'EntityUpdate']]],
-  ['powerup_9',['PowerUp',['../structComponents_1_1PowerUp.html',1,'Components']]],
-  ['powerupsystem_10',['powerupsystem',['../classPowerUpSystem.html',1,'PowerUpSystem'],['../classPowerUpSystem.html#a16f84cdd6212d7bc0a16a0b1783b0b0a',1,'PowerUpSystem::PowerUpSystem()']]],
-  ['powerupsystem_2ehpp_11',['PowerUpSystem.hpp',['../PowerUpSystem_8hpp.html',1,'']]],
-  ['principales_12',['Sections Principales',['../index.html#autotoc_md22',1,'']]],
-  ['principaux_20_3a_13',['Exemples principaux :',['../index.html#autotoc_md8',1,'']]],
-  ['processinput_14',['processInput',['../classClient.html#a643ed09341f07f8c81696741f2d2ca07',1,'Client']]],
-  ['processinputs_15',['processinputs',['../classServer.html#aeee363eaf9f494aa542f2e0ad1d7813b',1,'Server::processInputs()'],['../classGameEngine.html#af96454fa46424f93e210df5441626c22',1,'GameEngine::processInputs()']]],
-  ['programming_16',['A. Traditional OOP (Object-Oriented Programming)',['../md_poc.html#autotoc_md37',1,'']]],
-  ['project_17',['Proof of Concept: Choice of SFML for R-Type Project',['../md_poc.html',1,'']]],
-  ['projectile_18',['Projectile',['../structComponents_1_1Projectile.html',1,'Components']]],
-  ['projet_20r_20type_19',['Documentation de la Game Engine dans le Projet R-Type',['../index.html#autotoc_md0',1,'']]],
-  ['proof_20of_20concept_3a_20choice_20of_20sfml_20for_20r_20type_20project_20',['Proof of Concept: Choice of SFML for R-Type Project',['../md_poc.html',1,'']]],
-  ['protocol_20documentation_20rfc_20style_21',['B. Protocol Documentation (RFC Style)',['../md_poc.html#autotoc_md44',1,'']]],
-  ['protocol_20reliability_22',['6. Network Protocol &amp; Reliability',['../md_poc.html#autotoc_md42',1,'']]],
-  ['protocol_20serialization_20tt_20sf_3a_3apacket_20tt_23',['B. Protocol &amp; Serialization (&lt;tt&gt;sf::Packet&lt;/tt&gt;)',['../md_poc.html#autotoc_md33',1,'']]],
-  ['protocol_20strategy_24',['A. Hybrid Protocol Strategy',['../md_poc.html#autotoc_md43',1,'']]],
-  ['push_25',['push',['../classSafeQueue.html#ae51181f65378234bf3a0f66a86d4b33a',1,'SafeQueue']]]
+  ['qt_20qt_206_0',['C. SFML vs. Qt (Qt 6)',['../md_poc.html#autotoc_md27',1,'']]],
+  ['queue_5f_1',['queue_',['../classSafeQueue.html#a7583ea5873df6295bd8964a0457cf9e6',1,'SafeQueue']]],
+  ['quit_2',['Quit',['../InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6',1,'InputSystem.hpp']]]
 ];

@@ -1,0 +1,17 @@
+<map id="Server::applyInput" name="Server::applyInput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,147,129"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="195,79,345,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,105,181,100,181,106,147,110"/>
+<area shape="rect" id="Node000007" href="$engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="204,128,336,153"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="147,123,191,128,190,133,147,128"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="393,5,569,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,76,392,39,416,32,418,37,394,45,301,81"/>
+<area shape="rect" id="Node000005" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="415,79,547,104"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="345,89,401,89,401,94,345,94"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="617,5,796,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="569,15,604,15,604,21,569,21"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="447,80,439,70,443,60,458,54,481,52,511,56,522,65,519,69,509,61,481,57,459,59,447,64,445,70,451,77"/>
+<area shape="rect" id="Node000006" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="623,104,791,129"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="548,96,609,103,609,108,547,101"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="336,134,609,119,609,125,336,140"/>
+</map>

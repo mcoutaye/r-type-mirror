@@ -1,0 +1,24 @@
+<map id="Server" name="Server">
+<area shape="rect" id="Node000001" title=" " alt="" coords="269,1763,499,2604"/>
+<area shape="rect" id="Node000002" href="$classTimer.html" title=" " alt="" coords="5,1247,211,1433"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,1433,137,1578,153,1659,175,1738,215,1849,264,1957,259,1959,210,1851,169,1739,148,1660,132,1579,113,1433"/>
+<area shape="rect" id="Node000003" href="$classWaveSystem.html" title=" " alt="" coords="285,1238,483,1442"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="387,1442,387,1746,381,1746,381,1442"/>
+<area shape="rect" id="Node000004" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="307,693,461,917"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="387,931,387,1238,381,1238,381,931"/>
+<area shape="rect" id="Node000006" href="$classMovementSystem.html" title=" " alt="" coords="507,1283,685,1397"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="470,927,497,979,529,1059,554,1142,588,1282,583,1283,549,1143,524,1061,492,981,465,929"/>
+<area shape="rect" id="Node000005" href="$classECS.html" title="Entity Component System manager." alt="" coords="171,5,416,631"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="268,631,255,865,248,1134,253,1418,262,1560,275,1700,281,1746,275,1747,269,1700,256,1561,248,1418,243,1134,250,865,263,631"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="354,630,363,677,358,678,349,631"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="584,1398,496,1747,491,1746,579,1397"/>
+<area shape="rect" id="Node000007" href="$classUdpServer.html" title=" " alt="" coords="709,980,925,1700"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="712,1673,698,1701,656,1783,608,1864,511,2013,507,2010,604,1862,651,1781,694,1699,707,1670"/>
+<area shape="rect" id="Node000008" href="$classSafeQueue.html" title=" " alt="" coords="597,699,803,912"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="726,912,737,963,732,964,721,913"/>
+<area shape="rect" id="Node000009" href="$classSafeQueue.html" title=" " alt="" coords="717,255,915,381"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="784,395,737,515,716,585,700,655,700,669,700,698,695,699,695,669,695,654,711,583,732,513,779,393"/>
+<area shape="rect" id="Node000010" href="$classSafeQueue.html" title=" " alt="" coords="832,721,1035,890"/>
+<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="841,393,875,515,909,654,922,720,917,721,904,655,870,516,836,395"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="918,891,902,964,896,963,912,890"/>
+</map>

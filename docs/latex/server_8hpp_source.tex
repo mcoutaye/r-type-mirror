@@ -28,7 +28,7 @@
 \DoxyCodeLine{00024\ }
 \DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classServer}{Server}}\ \{}
 \DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classServer}{Server}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ port);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classServer}{Server}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{rfcprotocol_8txt_a866ebc4aa5f69e7038e0dc25b69529ab}{port}});}
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}{\string~Server}}();}
 \DoxyCodeLine{00029\ }
 \DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classServer_aeee363eaf9f494aa542f2e0ad1d7813b}{processInputs}}();\ \textcolor{comment}{//\ Change\ position\ with\ recieved\ inputs}}
@@ -52,8 +52,8 @@
 \DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classECS}{ECS}}\ \mbox{\hyperlink{classServer_aa40cf916c43ac983d372376382b5340e}{\_ecs}};}
 \DoxyCodeLine{00049\ \};}
 \DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \mbox{\hyperlink{classServer_afdc204b21eae699fb44042665c44bbd0}{Server::Server}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ port)}
-\DoxyCodeLine{00052\ \ \ \ \ :\ \_UDP(\mbox{\hyperlink{classUdpServer}{UdpServer}}(port)),\ \_ecs(\mbox{\hyperlink{classECS}{ECS}}())}
+\DoxyCodeLine{00051\ \mbox{\hyperlink{classServer_afdc204b21eae699fb44042665c44bbd0}{Server::Server}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{rfcprotocol_8txt_a866ebc4aa5f69e7038e0dc25b69529ab}{port}})}
+\DoxyCodeLine{00052\ \ \ \ \ :\ \_UDP(\mbox{\hyperlink{classUdpServer}{UdpServer}}(\mbox{\hyperlink{rfcprotocol_8txt_a866ebc4aa5f69e7038e0dc25b69529ab}{port}})),\ \_ecs(\mbox{\hyperlink{classECS}{ECS}}())}
 \DoxyCodeLine{00053\ \{}
 \DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classServer_a37091a3b8ed4f8919db71c594374a7b5}{\_UDP}}.\mbox{\hyperlink{classUdpServer_a2e6eba1c68cc214f6df97a5c7724697f}{start}}();}
 \DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classServer_a88935f3b112369eecc2092459a3f5e58}{\_timer}}\ =\ \mbox{\hyperlink{classTimer}{Timer}}();}
@@ -62,12 +62,12 @@
 \DoxyCodeLine{00058\ }
 \DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a46cd969803b3a2d51624f7d1a880e90c}{Factory::createScreenBorders}}(\mbox{\hyperlink{classServer_aa40cf916c43ac983d372376382b5340e}{\_ecs}},\ 1920.f,\ 1080.f,\ 5.f);}
 \DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ std::vector<WaveData\_t>\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{level}}\ =\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<WaveData\_t>\ \mbox{\hyperlink{rfcprotocol_8txt_a4e4aa29b5f08b1ac25c00ff0b404a304}{level}}\ =\ \{}
 \DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{3.0f,\ \ \textcolor{stringliteral}{"{}enemy"{}},\ 6,\ \ 2000.f,\ 200.f\},}
 \DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{8.0f,\ \ \textcolor{stringliteral}{"{}enemy"{}},\ 10,\ 2000.f,\ 400.f\},}
 \DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{15.0f,\ \textcolor{stringliteral}{"{}enemy"{}},\ 15,\ 2000.f,\ 600.f\}}
 \DoxyCodeLine{00065\ \ \ \ \ \};}
-\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classServer_a3889c733366297a7cc54e28cb2e46234}{\_waveSystem}}.\mbox{\hyperlink{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960}{loadLevel}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{level}});}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classServer_a3889c733366297a7cc54e28cb2e46234}{\_waveSystem}}.\mbox{\hyperlink{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960}{loadLevel}}(\mbox{\hyperlink{rfcprotocol_8txt_a4e4aa29b5f08b1ac25c00ff0b404a304}{level}});}
 \DoxyCodeLine{00067\ }
 \DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Obstacles\ custom}}
 \DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Factory::createObstacle(\_ecs,\ 800.f,\ 200.f,\ 100.f,\ 150.f);}}

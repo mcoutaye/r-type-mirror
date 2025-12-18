@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['jeu_20_3a_0',['Boucle de Jeu :',['../index.html#autotoc_md17',1,'']]],
-  ['join_1',['join',['../classServer.html#a7c4501173cd10b9dfff472be5b3ebb5d',1,'Server::join()'],['../classUDP.html#a3e7e22cb37e0729961b5181d19f9fd6d',1,'UDP::join()'],['../classUdpClient.html#a92023ed9187161c26c5a6619681ed23c',1,'UdpClient::join()'],['../classUdpServer.html#a17043b75890cf2a767e11338fbb1f3b5',1,'UdpServer::join()']]]
+  ['key_20characteristics_0',['Key Characteristics',['../index.html#autotoc_md8',1,'']]],
+  ['kill_1',['kill',['../classStorageComponent.html#a9584f43386171c9196aa127830fbbf5a',1,'StorageComponent::kill(Entity e)'],['../classStorageComponent.html#a9584f43386171c9196aa127830fbbf5a',1,'StorageComponent::kill(Entity e)']]],
+  ['killcomponent_2',['killcomponent',['../classECS.html#aa790d7ea384b5aad8a2dbe0d2cee1661',1,'ECS::killComponent(Entity e)'],['../classECS.html#aa790d7ea384b5aad8a2dbe0d2cee1661',1,'ECS::killComponent(Entity e)']]],
+  ['killentity_3',['killentity',['../classECS.html#a77bab58f7b7d5e53443078f60957b2d2',1,'ECS::killEntity(Entity e)'],['../classECS.html#a77bab58f7b7d5e53443078f60957b2d2',1,'ECS::killEntity(Entity e)']]]
 ];

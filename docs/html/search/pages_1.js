@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['engine_0',['R-Type Game Engine',['../index.html',1,'']]]
+  ['documentation_0',['R-Type Mirror — Global Technical Documentation',['../index.html',1,'']]]
 ];

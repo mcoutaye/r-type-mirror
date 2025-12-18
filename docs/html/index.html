@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type Game Engine: R-Type Game Engine</title>
+<title>R-Type Game Engine: R-Type Mirror — Global Technical Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,192 +91,127 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">R-Type Game Engine </div></div>
+  <div class="headertitle"><div class="title">R-Type Mirror — Global Technical Documentation </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
-Documentation de la Game Engine dans le Projet R-Type</h1>
-<p>Cette documentation se concentre sur la game engine du projet R-Type, en particulier sur l'Entity Component System (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>), les systèmes (systems), et leur utilisation dans le fichier <code>main.cpp</code> du client. L'objectif est de clarifier les relations entre ces éléments, en expliquant comment l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> gère les entités, les composants et les systèmes, et comment tout cela est orchestré pour créer un jeu de type shoot'em up.</p>
-<p>La game engine est implémentée dans les répertoires <code>include/engine</code> et <code>src/engine</code>, avec une séparation claire entre le core (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>), les factories (pour créer des entités), et les systems (pour la logique du jeu). Le server gère le réseau <a class="el" href="classUDP.html">UDP</a>, mais la game engine est principalement utilisée côté client pour la logique de jeu, le rendering et les inputs.</p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-1. Introduction à la Game Engine</h2>
-<p>La game engine est basée sur un paradigme <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> (Entity-Component-System), qui est une architecture courante en développement de jeux pour favoriser la composition plutôt que l'héritage. Cela permet une flexibilité accrue : les entités sont des IDs simples, les composants stockent les données, et les systèmes appliquent la logique.</p>
-<ul>
-<li><b>Entity</b> : Un simple ID (<code>uint32_t</code>) représentant un objet dans le jeu (ex. : joueur, ennemi, projectile).</li>
-<li><b>Component</b> : Des données attachées à une entité (ex. : Position, Velocity, Health).</li>
-<li><b>System</b> : Des classes qui itèrent sur les entités ayant certains composants et appliquent des mises à jour (ex. : mouvement, collisions, rendering).</li>
+R-Type Mirror</h1>
+<p><b>R-Type Mirror</b> is a multiplayer shoot’em up inspired by <em>R-Type</em>, developed as an <b>Epitech 2025</b> project. It features a custom <b>Entity Component System (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>)</b> game engine on the client side and a <b><a class="el" href="classUDP.html">UDP</a></b> networking architecture for real-time multiplayer gameplay.</p>
+<p>This documentation is the <b>single entry point</b> for the whole project: game engine, client systems, network module, and protocol specification.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md2"></a>
+1. Architectural Decisions (POC)</h2>
+<p>The project architecture is based on a detailed Proof of Concept (POC) comparing various technologies. For more details, see the <a class="el" href="md_poc.html">POC document</a>.</p>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Why SFML?</h3>
+<p>We selected <b>SFML (Simple and Fast Multimedia Library)</b> over alternatives like SDL2, Raylib, or Qt for the following reasons:</p><ul>
+<li><b>Unified Stack:</b> SFML handles Graphics, Audio, and Networking in a single C++ library, reducing dependencies.</li>
+<li><b>Modern C++:</b> It supports RAII and C++20 features natively, unlike C-based libraries (SDL2, Raylib).</li>
+<li><b>Architecture Fit:</b> Its Object-Oriented design aligns perfectly with our <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> architecture.</li>
+<li><b>Protocol Safety:</b> <code>sf::Packet</code> handles Endianness automatically for cross-platform networking.</li>
 </ul>
-<p>L'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> est défini dans <code>ecs.hpp</code> et utilisé dans le <code>main.cpp</code> du client pour initialiser le jeu, créer des entités via des factories, et boucler sur les updates des systèmes.</p>
-<h3><a class="anchor" id="autotoc_md2"></a>
-Relations clés :</h3>
-<ul>
-<li>L'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> est le "coeur" : il stocke les entités, composants et systèmes.</li>
-<li>Les factories (<code>EntityFactory.hpp</code>, <code>StageFactory.hpp</code>) créent des entités pré-configurées avec des composants.</li>
-<li>Les systèmes héritent de <code><a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a></code> et sont ajoutés à l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> pour être exécutés dans la boucle de jeu.</li>
-<li>Dans <code>main.cpp</code>, tout est assemblé : création de l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, ajout de systèmes, initialisation d'entités, et boucle update/render.</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md3"></a>
-2. L'Entity Component System (ECS)</h2>
-<p>L'implémentation de l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> est dans <code>ecs.hpp</code>. C'est une implémentation légère, optimisée pour un maximum de 2048 entités (<code>MAX_ENTITIES</code>) et 128 types de composants (<code>MAX_COMPONENT</code>).</p>
 <h3><a class="anchor" id="autotoc_md4"></a>
-Concepts Clés de l'ECS :</h3>
+ECS vs. OOP</h3>
+<p>We chose an <b>Entity Component System (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>)</b> over traditional Object-Oriented Programming (OOP) to solve the "Diamond of Death" inheritance problem and improve performance through data locality.</p><ul>
+<li><b>Composition over Inheritance:</b> Entities are built by composing data components, not by deep inheritance trees.</li>
+<li><b>Performance:</b> <a class="el" href="namespaceComponents.html" title="Espace dédié pour tous les composants ECS.">Components</a> are stored in contiguous arrays (<code>std::vector</code>), maximizing CPU cache efficiency.</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md6"></a>
+2. Game Engine (ECS)</h2>
+<p>The game engine is a custom lightweight <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> implementation.</p>
+<h3><a class="anchor" id="autotoc_md7"></a>
+Core Concepts</h3>
 <ul>
-<li><b>Entity</b> : Un ID unique (<code>std::uint32_t</code>). Les entités sont créées via <code>createEntity()</code> et détruites via <code>killEntity()</code>. Une queue recycle les IDs des entités détruites pour éviter la fragmentation.</li>
-<li><b>Signature</b> : Un bitset (<code>std::bitset&lt;MAX_COMPONENT&gt;</code>) qui indique quels composants une entité possède. Cela permet des requêtes rapides comme <code>getEntitiesByComponents&lt;T1, T2...&gt;()</code>.</li>
-<li><b>ComponentTypeID</b> : Un ID unique pour chaque type de composant, généré via <code>getComponentID&lt;T&gt;()</code> (utilise un compteur statique).</li>
-<li><b>StorageComponent&lt;T&gt;</b> : Une classe template qui stocke les composants d'un type donné pour toutes les entités (vecteur de taille <code>MAX_ENTITIES</code>). Elle utilise un bitset pour tracker quelles entités ont ce composant.</li>
-<li><b><a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> Class</b> : La classe principale qui gère tout :<ul>
-<li>Stocke les entités vivantes et une queue pour recycler les IDs.</li>
-<li>Un vecteur de pointeurs vers des storages de composants (<code>std::vector&lt;IComponentStorage*&gt;</code>).</li>
-<li>Un vecteur de systèmes (<code>std::vector&lt;std::unique_ptr&lt;<a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a>&gt;&gt;</code>).</li>
-<li>Méthodes clés :<ul>
-<li><code>createEntity()</code> : Alloue un nouvel ID.</li>
-<li><code>addComponent&lt;T&gt;(Entity e, T component)</code> : Ajoute un composant à une entité, met à jour la signature.</li>
-<li><code>getComponent&lt;T&gt;(Entity e)</code> : Récupère un composant (pointeur).</li>
-<li><code>getEntitiesByComponents&lt;T1, T2...&gt;()</code> : Retourne les entités ayant tous les composants spécifiés (via signatures).</li>
-<li><code>addSystem(std::unique_ptr&lt;<a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a>&gt; system)</code> : Ajoute un système.</li>
-<li><code>update(double dt)</code> : Appelle <code>update(dt)</code> sur tous les systèmes.</li>
+<li><b>Entity:</b> A simple unique ID (<code>uint32_t</code>).</li>
+<li><b>Component:</b> Pure data structs (POD) with no logic (e.g., <code>Position</code>, <code>Velocity</code>, <code>Health</code>).</li>
+<li><b>System:</b> Pure logic that iterates over entities with specific component signatures (e.g., <code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>, <code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>).</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md5"></a>
-Relations dans l'ECS :</h3>
-<ul>
-<li><b>Entité → Composants</b> : Une entité n'a pas de données intrinsèques ; elle référence des composants via son ID et sa signature.</li>
-<li><b>Composants → Storage</b> : Chaque type de composant a son propre storage (vector&lt;T&gt;), indexé par l'ID d'entité.</li>
-<li><b>Systèmes → <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a></b> : Les systèmes ont une référence à l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> (<code>&amp;_ecs</code>) pour accéder aux entités et composants via des queries comme <code>getEntitiesByComponents()</code>.</li>
-<li><b>Gestion de la Mémoire</b> : Les storages sont dynamiquement alloués quand un nouveau type de composant est ajouté. La destruction des entités met à jour les signatures mais ne libère pas immédiatement les composants (confiance en la signature).</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md6"></a>
-Exemple de flux :</h3>
-<ul>
-<li>Créer une entité : <code>Entity e = ecs.createEntity();</code></li>
-<li>Ajouter un composant : <code>ecs.addComponent(e, Position{0.f, 0.f});</code> → Met à jour la signature de l'entité et stocke dans <code><a class="el" href="classStorageComponent.html" title="Manages storage for a specific type of component.">StorageComponent</a>&lt;Position&gt;</code>.</li>
-<li>Query : <code>auto entities = ecs.getEntitiesByComponents&lt;Position&gt;();</code> → Itère sur les signatures pour trouver les matches.</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-3. Les Composants</h2>
-<p>Les composants sont des structs simples définis dans <code><a class="el" href="Components_8hpp.html">Components.hpp</a></code>. Ils représentent des données pures, sans logique.</p>
 <h3><a class="anchor" id="autotoc_md8"></a>
-Exemples principaux :</h3>
+Key Characteristics</h3>
 <ul>
-<li><b>Position</b> : <code>{float x, y}</code> – Position dans l'espace 2D.</li>
-<li><b>Velocity</b> : <code>{float x, y}</code> – Vitesse de déplacement.</li>
-<li><b>Drawable</b> : <code>{std::string textureId, sf::IntRect rect, int layer, bool visible, float scale, float rotation}</code> – Pour le rendering.</li>
-<li><b>PlayerController</b> : <code>{uint8_t playerId, bool isShooting}</code> – Contrôles du joueur.</li>
-<li><b>Collider</b> : <code>{float width, height, bool solid, uint8_t team, int damage}</code> – Pour les collisions.</li>
-<li><b>Health</b> : <code>{int current, int max}</code> – Points de vie.</li>
-<li><b>Shootable</b> : <code>{float cooldown, float shootDelay, float missileSpeed, int damage, uint8_t team, std::string textureId, float offsetX, float offsetY, bool isShooting, bool tripleShot}</code> – Pour les tirs.</li>
-<li><b>MovementPattern</b> : <code>{Type type (enum: Linear, Sinus, etc.), float amplitude, frequency, radius, speed}</code> – Patterns de mouvement pour ennemis.</li>
-<li><b>Projectile</b> : <code>{float velocity, int damage}</code> – Pour les missiles.</li>
-<li><b>PowerUp</b> : <code>{Type type (ex. TripleShot), float duration}</code> – Bonus.</li>
-<li><b>Obstacle / DestructibleTile / Star</b> : Spécifiques au stage/background.</li>
+<li><b>Max Entities:</b> 2048</li>
+<li><b>Max Component Types:</b> 128</li>
+<li><b>Signatures:</b> <code>std::bitset</code> used for $O(1)$ component checks.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md9"></a>
-Relations :</h3>
-<ul>
-<li>Les composants sont attachés aux entités via l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>.</li>
-<li>Les systèmes itèrent sur des combinaisons spécifiques de composants (ex. : <code><a class="el" href="classMovementSystem.html">MovementSystem</a></code> sur <code>&lt;Position, Velocity, MovementPattern&gt;</code>).</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
-4. Les Systèmes</h2>
-<p>Les systèmes héritent de <code><a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a></code> (dans <code>ecs.hpp</code>), qui définit <code>virtual void update(double dt) = 0;</code>. Chaque système accède à l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> pour query les entités pertinentes et updater leurs composants.</p>
-<h3><a class="anchor" id="autotoc_md11"></a>
-Liste des systèmes (dans &lt;tt&gt;systems/&lt;/tt&gt; ) :</h3>
-<ul>
-<li><b><a class="el" href="classInputSystem.html">InputSystem</a></b> : Gère les inputs clavier/manette. Mappe des actions (MoveUp, Shoot, etc.) et applique aux entités avec <code>&lt;PlayerController, Velocity, Shootable&gt;</code>. Relations : Lit SFML events, met à jour Velocity et isShooting.</li>
-<li><b><a class="el" href="classMovementSystem.html">MovementSystem</a></b> : Met à jour <code>&lt;Position&gt;</code> basé sur <code>&lt;Velocity&gt;</code> et <code>&lt;MovementPattern&gt;</code> (pour patterns comme Sinus, Zigzag). Relations : Applique dt à la position, avec modulations pour patterns ennemis.</li>
-<li><b><a class="el" href="classCollisionSystem.html">CollisionSystem</a></b> : Détecte et résout collisions AABB sur <code>&lt;Position, Collider&gt;</code>. Gère dommages via <code>&lt;Health, Projectile&gt;</code>. Relations : Itère sur paires d'entités, résout overlaps, applique dégâts, détruit entités (<code>ecs.killEntity</code>).</li>
-<li><b><a class="el" href="classMissileSystem.html">MissileSystem</a></b> : Gère les tirs via <code>&lt;Shootable, Position&gt;</code>. Crée projectiles (via <code>EntityFactory</code>), gère cooldowns et tripleShot. Relations : Utilise factories pour spawn, supprime hors-écran.</li>
-<li><b><a class="el" href="classPowerUpSystem.html">PowerUpSystem</a></b> : Gère collisions power-ups avec joueurs, active effets comme tripleShot sur <code>&lt;Shootable&gt;</code>. Relations : Détruit power-up après collision.</li>
-<li><b><a class="el" href="classWaveSystem.html">WaveSystem</a></b> : Spawn vagues d'ennemis basé sur WaveData (delay, count, etc.). Crée ennemis via <code><a class="el" href="classECS.html#ab25f63dc0523958d986069505b703c12" title="Adds a component to an entity.">ECS.addComponent</a></code>. Relations : Timer-based, utilise factories implicitement.</li>
-<li><b><a class="el" href="classRenderSystem.html">RenderSystem</a></b> : Dessine tout via SFML sur <code>&lt;Position, Drawable, Star, etc.&gt;</code>. Tri par layers. Relations : Accède à <code><a class="el" href="classResourceManager.html">ResourceManager</a></code> pour textures, clear/draw/display sur window.</li>
-</ul>
+Systems Overview</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">System   </th><th class="markdownTableHeadLeft">Responsibility    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classInputSystem.html">InputSystem</a></code>   </td><td class="markdownTableBodyLeft">Captures player inputs and sends them to the server.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>   </td><td class="markdownTableBodyLeft">Updates positions based on velocity and patterns.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classCollisionSystem.html">CollisionSystem</a></code>   </td><td class="markdownTableBodyLeft">Handles AABB collisions between projectiles, enemies, and players.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classWaveSystem.html">WaveSystem</a></code>   </td><td class="markdownTableBodyLeft">Manages enemy spawning patterns.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>   </td><td class="markdownTableBodyLeft">Draws entities using SFML.   </td></tr>
+</table>
+<div class="image">
+<img src="class_graph.png" alt=""/>
+<div class="caption">
+Hiérarchie des classes - Graphe détaillé</div></div>
+    <hr  />
+<h2><a class="anchor" id="autotoc_md11"></a>
+3. Network Architecture</h2>
+<p>The project uses a <b><a class="el" href="classUDP.html">UDP</a></b> architecture to balance reliability and latency.</p>
 <h3><a class="anchor" id="autotoc_md12"></a>
-Autres :</h3>
+UDP (Gameplay Channel) - Port 53000</h3>
 <ul>
-<li><b><a class="el" href="classResourceManager.html">ResourceManager</a></b> : Singleton pour charger textures (non un système <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, mais utilisé par <code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>).</li>
+<li><b>Role:</b> Real-time high-frequency data transfer.</li>
+<li><b>Functions:</b> Player inputs (<a class="el" href="classClient.html">Client</a> -&gt; <a class="el" href="classServer.html">Server</a>) and Entity snapshots (<a class="el" href="classServer.html">Server</a> -&gt; <a class="el" href="classClient.html">Client</a>).</li>
+<li><b>Reliability:</b> Packet loss is accepted. Newer packets replace older ones (60Hz update rate).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md13"></a>
-Relations générales des systèmes :</h3>
-<ul>
-<li>Tous les systèmes sont ajoutés à l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> via <code>ecs.addSystem(std::make_unique&lt;System&gt;(ecs, ...));</code>.</li>
-<li>Dans <code>update(dt)</code>, chaque système query des entités spécifiques et modifie leurs composants.</li>
-<li>Ordre d'exécution important : Typiquement Input → Movement → Collision → Missile/PowerUp/Wave → Render.</li>
-</ul>
+<div class="image">
+<img src="network_graph.png" alt=""/>
+<div class="caption">
+Network Architecture Graph</div></div>
+    <hr  />
 <h2><a class="anchor" id="autotoc_md14"></a>
-5. Utilisation dans le &lt;tt&gt;main.cpp&lt;/tt&gt; (Client)</h2>
-<p>Le <code>main.cpp</code> du client (dans <code>src/client</code>) assemble tout :</p>
+4. Network Protocol (RFC)</h2>
+<p>The communication follows a strict protocol defined in <a href="rfcprotocol.txt">RFC Protocol</a>. </p>
 <h3><a class="anchor" id="autotoc_md15"></a>
-Initialisation :</h3>
-<ul>
-<li>Crée <code>sf::RenderWindow</code> (1920x1080 fullscreen).</li>
-<li>Crée <code><a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> ecs</code>.</li>
-<li>Charge textures via <code><a class="el" href="classResourceManager.html">ResourceManager</a></code> (singleton).</li>
-<li>Ajoute systèmes : <code><a class="el" href="classInputSystem.html">InputSystem</a></code>, <code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>, <code><a class="el" href="classCollisionSystem.html">CollisionSystem</a></code>, <code><a class="el" href="classMissileSystem.html">MissileSystem</a></code>, <code><a class="el" href="classPowerUpSystem.html">PowerUpSystem</a></code>, <code><a class="el" href="classWaveSystem.html">WaveSystem</a></code>, <code><a class="el" href="classRenderSystem.html">RenderSystem</a></code> (certains avec params comme window).</li>
+Client -&gt; Server: &lt;tt&gt;InputState&lt;/tt&gt;</h3>
+<p>Sent every frame to update the player's intent.</p><ul>
+<li><b>Size:</b> 3 Bytes</li>
+<li><b>Structure:</b> <code>[PlayerID (1B)] [Input Bitmask (1B)] [Padding/Seq (1B)]</code></li>
+<li><b>Inputs:</b> Up, Down, Left, Right, Shoot.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md16"></a>
-Setup du Stage :</h3>
-<ul>
-<li>Crée starfield via <code>Factory::createStarfield(ecs, ...)</code>.</li>
-<li>Crée borders via <code>Factory::createScreenBorders(ecs, ...)</code>.</li>
-<li>Crée joueur via <code>Factory::createPlayer(ecs, ...)</code>.</li>
-<li>Charge level waves via <code>WaveSystem.loadLevel(...)</code>.</li>
+Server -&gt; Client: &lt;tt&gt;EntityUpdate&lt;/tt&gt;</h3>
+<p>Broadcasted to all clients to synchronize the game state.</p><ul>
+<li><b>Size:</b> Packed Struct (~22 Bytes)</li>
+<li><b>Structure:</b> <code>[EntityID] [Type] [Position X] [Position Y] [Health] [State]</code></li>
+<li><b>Magic Values:</b> Special IDs are used to denote events (e.g., <code>0xFFFE</code> for Entity Death).</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md17"></a>
-Boucle de Jeu :</h3>
+Security &amp; Integrity</h3>
 <ul>
-<li><code>sf::Clock</code> pour dt.</li>
-<li>Tant que <code>window.isOpen()</code> :<ul>
-<li>Gère events SFML (close, etc.).</li>
-<li>Appelle <code>ecs.update(dt)</code> → Exécute tous les systèmes.</li>
-<li>Mises à jour manuelles (ex. : wrap étoiles, delete projectiles hors-écran).</li>
-<li>Render via <code>render.update(dt)</code> (mais déjà dans <code>ecs.update</code> ? Attends, render est un système, mais code montre un appel manuel ? Dans le code truncaté, il y a des updates manuelles après <code>ecs.update</code>, mais idéalement tout via systèmes).</li>
+<li><b>Source Validation:</b> The server validates the sender's IP/Port against the registered <a class="el" href="classClient.html">Client</a> ID.</li>
+<li><b>Sequence Numbers:</b> Used to discard out-of-order or replayed packets.</li>
+<li><b><a class="el" href="classServer.html">Server</a> Authority:</b> The server is the single source of truth for positions and collisions; clients only send inputs.</li>
 </ul>
-</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md18"></a>
-Relations dans &lt;tt&gt;main&lt;/tt&gt; :</h3>
-<ul>
-<li><a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> est central : Factories l'utilisent pour créer/add composants.</li>
-<li>Boucle : dt passé à <code>ecs.update</code> → Propagé à chaque système.</li>
-<li>SFML intégré : Window passé à <code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>, events à <code><a class="el" href="classInputSystem.html">InputSystem</a></code>.</li>
-</ul>
+<hr  />
 <h2><a class="anchor" id="autotoc_md19"></a>
-6. Relations Globales et Flux</h2>
+5. Project Structure</h2>
 <ul>
-<li><b>Flux Typique</b> : Main → <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> (add systems/factories) → Boucle (update dt) → Systèmes (query entités/composants via <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>) → Modif composants → Render.</li>
-<li><b>Dépendances</b> : Systèmes dépendent de composants (queries). Factories configurent entités avec composants spécifiques pour matcher les queries des systèmes.</li>
-<li><b>Avantages <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a></b> : Scalable, facile d'ajouter systèmes/composants sans toucher le core.</li>
-<li><b>Points d'Amélioration</b> : Ordre des systèmes non garanti (vecteur), pas de multithreading, confiance en signatures (risque de corruption).</li>
+<li><code>include/</code> - Header files (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, Systems, Network).</li>
+<li><code>src/client/</code> - Client-specific logic (Main loop, Input handling).</li>
+<li><code>src/server/</code> - Server-specific logic (Game loop, Broadcast).</li>
+<li><code>src/engine/</code> - Core <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> implementation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md20"></a>
-Bienvenue dans la Documentation de R-Type</h1>
-<p>Ce projet est une implémentation d'un shoot'em up inspiré de R-Type, utilisant un <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> (Entity Component System) pour la game engine côté client, et un serveur <a class="el" href="classUDP.html">UDP</a> pour le réseau.</p>
+<hr  />
 <h2><a class="anchor" id="autotoc_md21"></a>
-Aperçu Général</h2>
-<ul>
-<li><b><a class="el" href="classClient.html">Client</a></b> : Gère le rendering (SFML), inputs, mouvements, collisions, etc. via <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>.</li>
-<li><b>Serveur</b> : Gère le réseau (<a class="el" href="classUDP.html">UDP</a>), interprétation de paquets, et boucle de jeu.</li>
-<li><b>Architecture</b> : Basée sur <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> pour flexibilité ; voir la hiérarchie des classes pour les systèmes héritant de <code><a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a></code>.</li>
+Authors</h2>
+<p><b>Epitech 2025 – R-Type Mirror</b></p><ul>
+<li>Gabriel Villemonte</li>
+<li>Clément Chellier</li>
+<li>Mathis Coutaye</li>
+<li>Lucas Hoareau </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md22"></a>
-Sections Principales</h2>
-<ul>
-<li><a href="hierarchy.html">Hiérarchie des classes</a> : Vue graphique des héritages (ex. systèmes → <code><a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a></code>). <img src="class_graph.png" alt="" class="inline" title="Hiérarchie des classes - Graphe détaillé"/>     <em>Description : Graphe UML montrant les relations entre <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, <a class="el" href="classISystem.html" title="Interface for systems in the ECS.">ISystem</a>, les systèmes et les composants.</em></li>
-<li><a href="namespaces.html">Espaces de nommage</a> : Détails sur <code><a class="el" href="namespaceComponents.html" title="Espace dédié pour tous les composants ECS.">Components</a></code> et autres.</li>
-<li><a href="files.html">Fichiers</a> : Liste des sources.</li>
-<li><a href="modules.html">Modules</a> : Groupes comme les composants <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>.</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md23"></a>
-Comment Naviguer</h2>
-<p>Utilisez la barre de recherche en haut pour trouver des classes spécifiques (ex. <code><a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a></code>, <code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>).</p>
-<p>Pour plus de détails sur l'<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, voir <a href="classECS.html">Classe ECS</a>.</p>
-<h2><a class="anchor" id="autotoc_md24"></a>
-Contact</h2>
-<p>Projet Epitech 2025 - Gabriel VILLEMONTE - Mathis COUTAYE - Clement CHELLIER - Lucas HOAREAU </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

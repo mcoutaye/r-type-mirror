@@ -25,68 +25,37 @@
 var NAVTREE =
 [
   [ "R-Type Game Engine", "index.html", [
-    [ "Documentation de la Game Engine dans le Projet R-Type", "index.html#autotoc_md0", [
-      [ "1. Introduction à la Game Engine", "index.html#autotoc_md1", [
-        [ "Relations clés :", "index.html#autotoc_md2", null ]
-      ] ],
-      [ "2. L'Entity Component System (ECS)", "index.html#autotoc_md3", [
-        [ "Concepts Clés de l'ECS :", "index.html#autotoc_md4", null ],
-        [ "Relations dans l'ECS :", "index.html#autotoc_md5", null ],
-        [ "Exemple de flux :", "index.html#autotoc_md6", null ]
-      ] ],
-      [ "3. Les Composants", "index.html#autotoc_md7", [
-        [ "Exemples principaux :", "index.html#autotoc_md8", null ],
-        [ "Relations :", "index.html#autotoc_md9", null ]
-      ] ],
-      [ "4. Les Systèmes", "index.html#autotoc_md10", [
-        [ "Liste des systèmes (dans <tt>systems/</tt> ) :", "index.html#autotoc_md11", null ],
-        [ "Autres :", "index.html#autotoc_md12", null ],
-        [ "Relations générales des systèmes :", "index.html#autotoc_md13", null ]
-      ] ],
-      [ "5. Utilisation dans le <tt>main.cpp</tt> (Client)", "index.html#autotoc_md14", [
-        [ "Initialisation :", "index.html#autotoc_md15", null ],
-        [ "Setup du Stage :", "index.html#autotoc_md16", null ],
-        [ "Boucle de Jeu :", "index.html#autotoc_md17", null ],
-        [ "Relations dans <tt>main</tt> :", "index.html#autotoc_md18", null ]
-      ] ],
-      [ "6. Relations Globales et Flux", "index.html#autotoc_md19", null ]
-    ] ],
-    [ "Bienvenue dans la Documentation de R-Type", "index.html#autotoc_md20", [
-      [ "Aperçu Général", "index.html#autotoc_md21", null ],
-      [ "Sections Principales", "index.html#autotoc_md22", null ],
-      [ "Comment Naviguer", "index.html#autotoc_md23", null ],
-      [ "Contact", "index.html#autotoc_md24", null ]
-    ] ],
+    [ "R-Type Mirror — Global Technical Documentation", "index.html", "index" ],
     [ "Proof of Concept: Choice of SFML for R-Type Project", "md_poc.html", [
-      [ "1. Introduction", "md_poc.html#autotoc_md26", null ],
-      [ "2. Comparison with Alternatives", "md_poc.html#autotoc_md27", [
-        [ "A. SFML vs. SDL2 (Simple DirectMedia Layer)", "md_poc.html#autotoc_md28", null ],
-        [ "B. SFML vs. Raylib", "md_poc.html#autotoc_md29", null ],
-        [ "C. SFML vs. Qt (Qt 6)", "md_poc.html#autotoc_md30", null ]
+      [ "1. Introduction", "md_poc.html#autotoc_md23", null ],
+      [ "2. Comparison with Alternatives", "md_poc.html#autotoc_md24", [
+        [ "A. SFML vs. SDL2 (Simple DirectMedia Layer)", "md_poc.html#autotoc_md25", null ],
+        [ "B. SFML vs. Raylib", "md_poc.html#autotoc_md26", null ],
+        [ "C. SFML vs. Qt (Qt 6)", "md_poc.html#autotoc_md27", null ]
       ] ],
-      [ "3. Why SFML is the Superior Choice for R-Type", "md_poc.html#autotoc_md31", [
-        [ "A. Unified Networking & Graphics", "md_poc.html#autotoc_md32", null ],
-        [ "B. Protocol & Serialization (<tt>sf::Packet</tt>)", "md_poc.html#autotoc_md33", null ],
-        [ "C. Modern C++ Compatibility", "md_poc.html#autotoc_md34", null ],
-        [ "D. Development Velocity", "md_poc.html#autotoc_md35", null ]
+      [ "3. Why SFML is the Superior Choice for R-Type", "md_poc.html#autotoc_md28", [
+        [ "A. Unified Networking & Graphics", "md_poc.html#autotoc_md29", null ],
+        [ "B. Protocol & Serialization (<tt>sf::Packet</tt>)", "md_poc.html#autotoc_md30", null ],
+        [ "C. Modern C++ Compatibility", "md_poc.html#autotoc_md31", null ],
+        [ "D. Development Velocity", "md_poc.html#autotoc_md32", null ]
       ] ],
-      [ "4. Architectural Study: ECS vs. OOP", "md_poc.html#autotoc_md36", [
-        [ "A. Traditional OOP (Object-Oriented Programming)", "md_poc.html#autotoc_md37", null ],
-        [ "B. ECS (Entity Component System) - Chosen for R-Type", "md_poc.html#autotoc_md38", null ]
+      [ "4. Architectural Study: ECS vs. OOP", "md_poc.html#autotoc_md33", [
+        [ "A. Traditional OOP (Object-Oriented Programming)", "md_poc.html#autotoc_md34", null ],
+        [ "B. ECS (Entity Component System) - Chosen for R-Type", "md_poc.html#autotoc_md35", null ]
       ] ],
-      [ "5. Algorithms & Data Structures", "md_poc.html#autotoc_md39", [
-        [ "A. Algorithms", "md_poc.html#autotoc_md40", null ],
-        [ "B. Data Structures", "md_poc.html#autotoc_md41", null ]
+      [ "5. Algorithms & Data Structures", "md_poc.html#autotoc_md36", [
+        [ "A. Algorithms", "md_poc.html#autotoc_md37", null ],
+        [ "B. Data Structures", "md_poc.html#autotoc_md38", null ]
       ] ],
-      [ "6. Network Protocol & Reliability", "md_poc.html#autotoc_md42", [
-        [ "A. Hybrid Protocol Strategy", "md_poc.html#autotoc_md43", null ],
-        [ "B. Protocol Documentation (RFC Style)", "md_poc.html#autotoc_md44", null ]
+      [ "6. Network Protocol & Reliability", "md_poc.html#autotoc_md39", [
+        [ "A. Hybrid Protocol Strategy", "md_poc.html#autotoc_md40", null ],
+        [ "B. Protocol Documentation (RFC Style)", "md_poc.html#autotoc_md41", null ]
       ] ],
-      [ "7. Security & Data Integrity", "md_poc.html#autotoc_md45", [
-        [ "A. Vulnerabilities", "md_poc.html#autotoc_md46", null ],
-        [ "B. Mitigation & Monitoring", "md_poc.html#autotoc_md47", null ]
+      [ "7. Security & Data Integrity", "md_poc.html#autotoc_md42", [
+        [ "A. Vulnerabilities", "md_poc.html#autotoc_md43", null ],
+        [ "B. Mitigation & Monitoring", "md_poc.html#autotoc_md44", null ]
       ] ],
-      [ "8. Documentation Strategy", "md_poc.html#autotoc_md48", null ]
+      [ "8. Documentation Strategy", "md_poc.html#autotoc_md45", null ]
     ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
@@ -125,7 +94,7 @@ var NAVTREEINDEX =
 [
 "CollisionSystem_8hpp.html",
 "classUDP.html#ae94f4f5c790cc0913de9ff26821e8842",
-"structComponents_1_1MovementPattern.html#a6e71a27920ec592bfec9e63b6970e4fe"
+"structComponents_1_1Obstacle.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

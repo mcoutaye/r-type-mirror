@@ -1,5 +1,5 @@
 <map id="ECS::getEntitiesByComponents" name="ECS::getEntitiesByComponents">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,229,55"/>
+<area shape="rect" id="Node000001" title="Retrieves entities that have all specified components." alt="" coords="5,29,229,55"/>
 <area shape="rect" id="Node000002" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="277,29,409,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,39,263,39,263,45,230,45"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="311,31,304,21,307,11,321,5,343,3,370,6,382,15,378,19,368,11,343,8,322,10,311,15,309,20,315,28"/>

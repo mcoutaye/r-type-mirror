@@ -1,10 +1,5 @@
 <map id="StorageComponent::get" name="StorageComponent::get">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,181,80"/>
-<area shape="rect" id="Node000002" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="253,29,385,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,55,239,48,240,54,182,60"/>
-<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="229,79,408,104"/>
-<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="182,74,216,78,215,83,181,79"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="283,31,275,21,279,11,294,5,319,3,349,6,362,15,358,20,347,11,319,8,295,10,282,15,280,20,287,28"/>
-<area shape="rect" id="Node000003" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="456,29,624,55"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="385,39,442,39,442,45,385,45"/>
+<area shape="rect" id="Node000001" title="Retrieves a mutable pointer to the component for the entity." alt="" coords="5,5,181,31"/>
+<area shape="rect" id="Node000002" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="229,5,408,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,15,216,15,216,21,181,21"/>
 </map>

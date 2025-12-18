@@ -1,5 +1,5 @@
 <map id="ECS::killComponent" name="ECS::killComponent">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,156,80"/>
+<area shape="rect" id="Node000001" title="Removes a specific component from an entity." alt="" coords="5,55,156,80"/>
 <area shape="rect" id="Node000002" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="225,29,357,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,56,211,49,212,54,157,61"/>
 <area shape="rect" id="Node000004" href="$classStorageComponent.html#a9584f43386171c9196aa127830fbbf5a" title="Removes the component from the entity." alt="" coords="204,79,379,104"/>

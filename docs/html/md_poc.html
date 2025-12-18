@@ -94,61 +94,61 @@ $(document).ready(function(){initNavTree('md_poc.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Proof of Concept: Choice of SFML for R-Type Project</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md25"></a> </p>
-<h1><a class="anchor" id="autotoc_md26"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md22"></a> </p>
+<h1><a class="anchor" id="autotoc_md23"></a>
 1. Introduction</h1>
 <p>This document outlines the technical reasoning behind choosing <b>SFML (Simple and Fast Multimedia Library)</b> for the R-Type project, specifically focusing on architectural fit and networking capabilities compared to major alternatives (SDL2, Raylib, Qt).</p>
-<h1><a class="anchor" id="autotoc_md27"></a>
+<h1><a class="anchor" id="autotoc_md24"></a>
 2. Comparison with Alternatives</h1>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 A. SFML vs. SDL2 (Simple DirectMedia Layer)</h2>
 <ul>
 <li><b>Language Paradigm:</b> SDL2 is a <b>C library</b>. It requires manual memory management (destroying textures/windows) and pointer handling. SFML is a <b>C++ library</b> that uses RAII (Resource Acquisition Is Initialization), meaning resources are automatically cleaned up when they go out of scope.</li>
 <li><b>Networking:</b> SDL2 is strictly a media layer (Graphics, Audio, Input). It <b>does not</b> have a networking module. To use SDL2, we would need to integrate a separate, complex library like <code>Boost.Asio</code> or raw OS sockets.</li>
 <li><b>Architecture:</b> SFML's Object-Oriented design (<code>sf::Sprite</code>, <code>sf::Texture</code>) aligns perfectly with the C++ Class-based architecture of our <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> (Entity Component System). SDL2's procedural C style would require writing extensive C++ wrappers.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 B. SFML vs. Raylib</h2>
 <ul>
 <li><b>Rendering Paradigm:</b> Raylib often uses "Immediate Mode" rendering (drawing commands issued every frame procedurally). While powerful for prototyping, this can conflict with the strict state management required in a distributed multiplayer game. SFML's "Retained Mode" style (configuring objects and drawing them) fits better with persistent game entities.</li>
 <li><b>Networking:</b> Like SDL2, Raylib is primarily for graphics and audio. It lacks a robust, built-in object-oriented networking class compatible with C++ streams.</li>
 <li><b>Language:</b> Raylib is C-based. Using it in a C++20 project means losing out on modern C++ features (references, classes, templates) in the graphics layer.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 C. SFML vs. Qt (Qt 6)</h2>
 <ul>
 <li><b>Performance:</b> Qt is a heavy application framework designed for GUIs, not real-time arcade games. Its event loop and Signal/Slot mechanism introduce significant overhead compared to SFML's lightweight <code>pollEvent</code> loop.</li>
 <li><b>Architecture Control:</b> Qt enforces a strict architecture (<code>QObject</code> hierarchy, <code>moc</code> compiler). SFML is "passive," allowing us to build our own custom architecture (like the <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> in <code>include/ecs.hpp</code>) without framework interference.</li>
 <li><b>Complexity:</b> Qt includes tools for everything (WebEngine, SQL, XML), which is unnecessary bloat for a game client/server.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md28"></a>
 3. Why SFML is the Superior Choice for R-Type</h1>
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 A. Unified Networking &amp; Graphics</h2>
 <p>SFML is unique among lightweight libraries because it provides <b>Graphics, Audio, and Networking</b> in a single cohesive package.</p><ul>
 <li><b>Benefit:</b> We do not need to manage two separate dependencies (e.g., SDL for graphics + Boost for network).</li>
 <li><b>Synergy:</b> We can use <code>sf::IpAddress</code> and <code>sf::UdpSocket</code> on the server, and <code>sf::RenderWindow</code> on the client, all sharing the same style and conventions.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 B. Protocol &amp; Serialization (&lt;tt&gt;sf::Packet&lt;/tt&gt;)</h2>
 <ul>
 <li><b>Endianness:</b> SFML's <code>sf::Packet</code> automatically handles "Endianness" (byte order) conversion. This ensures that a Linux <a class="el" href="classServer.html">Server</a> and a Windows <a class="el" href="classClient.html">Client</a> can communicate integers and floats without data corruption.</li>
 <li><b>Ease of Use:</b> We can stream data directly into packets (<code>packet &lt;&lt; x &lt;&lt; y;</code>) without complex pointer arithmetic or <code>memcpy</code> operations required by raw sockets.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 C. Modern C++ Compatibility</h2>
 <ul>
 <li>Our project uses <b>C++20</b>. SFML is written in C++ and supports modern idioms naturally.</li>
 <li>It integrates seamlessly with <code>std::shared_ptr</code> and <code>std::vector</code>, which are heavily used in our <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> and Entity <a class="el" href="namespaceFactory.html">Factory</a>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md35"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 D. Development Velocity</h2>
 <ul>
 <li>SFML abstracts away low-level OpenGL and Socket API calls, allowing the team to focus on Game Logic (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, Physics, Wave Systems) rather than boilerplate code.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md36"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 4. Architectural Study: ECS vs. OOP</h1>
-<h2><a class="anchor" id="autotoc_md37"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 A. Traditional OOP (Object-Oriented Programming)</h2>
 <ul>
 <li><b>Structure:</b> Uses deep inheritance hierarchies (e.g., <code>GameObject</code> -&gt; <code>Movable</code> -&gt; <code>Enemy</code> -&gt; <code>Boss</code>).</li>
@@ -156,7 +156,7 @@ A. Traditional OOP (Object-Oriented Programming)</h2>
 <li><b>Memory:</b> Objects are often scattered in heap memory, causing "cache misses" as the CPU jumps around to find data.</li>
 <li><b>Coupling:</b> Logic (methods) and Data (member variables) are tightly bound in the same class.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 B. ECS (Entity Component System) - Chosen for R-Type</h2>
 <ul>
 <li><b>Structure:</b><ul>
@@ -169,15 +169,15 @@ B. ECS (Entity Component System) - Chosen for R-Type</h2>
 <li><b>Performance (Data Locality):</b> <a class="el" href="namespaceComponents.html" title="Espace dédié pour tous les composants ECS.">Components</a> of the same type are stored in contiguous arrays. This allows the CPU to prefetch data efficiently, drastically improving performance for games with many objects (like bullets in R-Type).</li>
 <li><b>Network Serialization:</b> Since <a class="el" href="namespaceComponents.html" title="Espace dédié pour tous les composants ECS.">Components</a> are POD (Plain Old Data) structs, they are trivial to serialize and send over the network compared to complex OOP objects with vtables.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md36"></a>
 5. Algorithms &amp; Data Structures</h1>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 A. Algorithms</h2>
 <ul>
 <li><b>Collision Detection (AABB):</b> We use Axis-Aligned Bounding Box collision detection (<code>sf::FloatRect::intersects</code>). This is an $O(N^2)$ algorithm in its simplest form, iterating through entity pairs. While simple, it is sufficient for the entity count in R-Type (&lt; 2048).</li>
 <li><b>System Iteration:</b> Systems iterate over entities matching a specific <code>Signature</code> (Bitset). This is an $O(N)$ operation where N is the number of entities with that specific component combination.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md38"></a>
 B. Data Structures</h2>
 <ul>
 <li><b>Bitsets (<code>std::bitset</code>):** Used for Entity Signatures to quickly check if an entity has the required components for a system (O(1) check).</b></li>
@@ -185,11 +185,11 @@ B. Data Structures</h2>
 <li><b> **Thread-Safe Queues (<code><a class="el" href="classSafeQueue.html">SafeQueue</a></code>):** A custom thread-safe queue using <code>std::mutex</code> and <code>std::condition_variable</code> is used to buffer network packets between the <a class="el" href="classUDP.html">UDP</a> reception thread and the main game loop.</b></li>
 </ul>
 <p><b></b></p>
-<h1><a class="anchor" id="autotoc_md42"></a>
+<h1><a class="anchor" id="autotoc_md39"></a>
 6. Network Protocol &amp; Reliability</h1>
 <p><b></b></p>
 <p><b></b></p>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 A. Hybrid Protocol Strategy</h2>
 <p><b></p><ul>
 <li><b><a class="el" href="classUDP.html">UDP</a> (User Datagram Protocol):</b> Used for high-frequency, low-latency data:<ul>
@@ -207,19 +207,19 @@ A. Hybrid Protocol Strategy</h2>
 </ul>
 <p></b></p>
 <p><b></b></p>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 B. Protocol Documentation (RFC Style)</h2>
-<p><b> The protocol is documented in <code>rfcprotocol.txt</code>, defining packet structures in Big-Endian format.</p><ul>
+<p><b> The protocol is documented in <code><a class="el" href="rfcprotocol_8txt.html">rfcprotocol.txt</a></code>, defining packet structures in Big-Endian format.</p><ul>
 <li><b><a class="el" href="structInputState.html">InputState</a>:</b> 3 bytes (ID + Buttons).</li>
 <li><b><a class="el" href="structEntityUpdate.html">EntityUpdate</a>:</b> Packed struct with ID, X, Y coordinates.</li>
 </ul>
 <p></b></p>
 <p><b></b></p>
-<h1><a class="anchor" id="autotoc_md45"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 7. Security &amp; Data Integrity</h1>
 <p><b></b></p>
 <p><b></b></p>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 A. Vulnerabilities</h2>
 <p><b></p><ul>
 <li><b><a class="el" href="classUDP.html">UDP</a> Spoofing:</b> Since <a class="el" href="classUDP.html">UDP</a> is connectionless, an attacker could forge packets with a victim's Player ID.</li>
@@ -228,7 +228,7 @@ A. Vulnerabilities</h2>
 </ul>
 <p></b></p>
 <p><b></b></p>
-<h2><a class="anchor" id="autotoc_md47"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 B. Mitigation &amp; Monitoring</h2>
 <p><b></p><ul>
 <li><b>Source Validation:</b> The server validates that the <code>sf::IpAddress</code> and Port of the incoming <a class="el" href="classUDP.html">UDP</a> packet match the registered client for that Player ID.</li>
@@ -241,11 +241,11 @@ B. Mitigation &amp; Monitoring</h2>
 </ul>
 <p></b></p>
 <p><b></b></p>
-<h1><a class="anchor" id="autotoc_md48"></a>
+<h1><a class="anchor" id="autotoc_md45"></a>
 8. Documentation Strategy</h1>
 <p><b></p><ul>
 <li><b>Technical Documentation:</b> We use Markdown (<code>.md</code>) files in the repository for architectural decisions (like this POC).</li>
-<li><b>Protocol Documentation:</b> The network protocol is strictly defined in <code>rfcprotocol.txt</code> to ensure any client (even non-SFML ones) can implement the standard.</li>
+<li><b>Protocol Documentation:</b> The network protocol is strictly defined in <code><a class="el" href="rfcprotocol_8txt.html">rfcprotocol.txt</a></code> to ensure any client (even non-SFML ones) can implement the standard.</li>
 <li><b>Code Documentation:</b> Doxygen-style comments are used in headers (<code>.hpp</code>) to describe classes and methods. </li>
 </ul>
 <p></b></p>

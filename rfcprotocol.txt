@@ -61,7 +61,13 @@ Abstract
      R (bit 3): Right (1 = pressed)
      S (bit 4): Shoot (1 = pressed)
      Bits 5-7: Reserved (must be 0)
-     Tick:     Client-side frame counter (for input ordering)
+     Tick:     Client-side frame counter (for input ordering) or Magic Number.
+
+   Reserved Values for InputState Tick:
+
+   o  0xFFFA (65530): "Client Quit"
+      - Indicates that the client is disconnecting voluntarily.
+      - The server should remove the player entity and close the session.
 
    Each InputState is sent in its own UDP datagram (3 bytes payload).
 
@@ -105,7 +111,7 @@ Abstract
    the client without adding extra packet overhead.
 
    Reserved Values:
-   
+
    o  0xFFFF (65535): "This Is You"
       - Indicates that the entity described in this update belongs to
         the receiving client (i.e., it is their player ship).
@@ -123,6 +129,14 @@ Abstract
         client was the one who dealt the final blow.
       - The client should remove the entity and may trigger specific
         feedback (score increase, "kill" sound effect, visual flair).
+
+   o  0xFFFC (65532): "Enemy Shot"
+      - Indicates that a non-player entity (enemy) has fired a projectile.
+      - Used to trigger visual/audio effects on the client.
+
+   o  0xFFFB (65531): "Player Shot"
+      - Indicates that a player entity has fired a projectile.
+      - Used to trigger visual/audio effects on the client.
 
    o  Any other value: Standard Server Tick
       - Represents the frame number at which this state was captured.

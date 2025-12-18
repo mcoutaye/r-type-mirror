@@ -45,11 +45,14 @@ Abstract
 2.1.  InputState (Client -> Server)
 
    The InputState structure represents the current control inputs of a
-   player.  It is exactly 1 byte in size.
+   player.  It is exactly 3 bytes in size.
 
       0 1 2 3 4 5 6 7
      +-+-+-+-+-+-+-+-+
      |U|D|L|R|S|     |
+     +-+-+-+-+-+-+-+-+
+     |      Tick     |
+     |    (uint16)   |
      +-+-+-+-+-+-+-+-+
 
      U (bit 0): Up    (1 = pressed)
@@ -58,31 +61,85 @@ Abstract
      R (bit 3): Right (1 = pressed)
      S (bit 4): Shoot (1 = pressed)
      Bits 5-7: Reserved (must be 0)
+     Tick:     Client-side frame counter (for input ordering) or Magic Number.
 
-   Each InputState is sent in its own UDP datagram (1 byte payload).
+   Reserved Values for InputState Tick:
+
+   o  0xFFFA (65530): "Client Quit"
+      - Indicates that the client is disconnecting voluntarily.
+      - The server should remove the player entity and close the session.
+
+   Each InputState is sent in its own UDP datagram (3 bytes payload).
 
 2.2.  EntityUpdate (Server -> Client)
 
    The EntityUpdate structure conveys the minimal state of a single
-   game entity.  It is exactly 12 bytes in size.
+   game entity.  It is exactly 22 bytes in size.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                         entityId (uint32)                     |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                           tick (uint16)                       |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                            x (float)                          |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                            y (float)                          |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                       health_current (int32)                  |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                         health_max (int32)                    |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-     entityId: Unique identifier for the entity.
-     x, y:     Floating-point position coordinates.
+     entityId:       Unique identifier for the entity.
+     tick:           Server frame counter or Magic Number (see 2.3).
+     x, y:           Floating-point position coordinates.
+     health_current: Current health points of the entity.
+     health_max:     Maximum health points of the entity.
 
    A single UDP datagram from server to client may contain zero or more
    concatenated EntityUpdate structures.  The total payload length MUST
-   be an exact multiple of 12 bytes.  The number of updates is derived
-   as payload_length / 12.
+   be an exact multiple of 22 bytes.  The number of updates is derived
+   as payload_length / 22.
+
+2.3.  Magic Numbers (Tick Field)
+
+   The `tick` field in the EntityUpdate structure is normally used to
+   synchronize game state. However, specific values are reserved as
+   "Magic Numbers" to convey special events or status information to
+   the client without adding extra packet overhead.
+
+   Reserved Values:
+
+   o  0xFFFF (65535): "This Is You"
+      - Indicates that the entity described in this update belongs to
+        the receiving client (i.e., it is their player ship).
+      - Used by the client to identify its own character for camera
+        tracking, UI display, or local prediction.
+
+   o  0xFFFE (65534): "Entity Died"
+      - Indicates that the entity has been destroyed (health <= 0).
+      - The client should remove this entity from its local state.
+      - This is a generic death notification (e.g., killed by enemy,
+        environment, or another player).
+
+   o  0xFFFD (65533): "You Killed It"
+      - Indicates that the entity has been destroyed AND the receiving
+        client was the one who dealt the final blow.
+      - The client should remove the entity and may trigger specific
+        feedback (score increase, "kill" sound effect, visual flair).
+
+   o  0xFFFC (65532): "Enemy Shot"
+      - Indicates that a non-player entity (enemy) has fired a projectile.
+      - Used to trigger visual/audio effects on the client.
+
+   o  0xFFFB (65531): "Player Shot"
+      - Indicates that a player entity has fired a projectile.
+      - Used to trigger visual/audio effects on the client.
+
+   o  Any other value: Standard Server Tick
+      - Represents the frame number at which this state was captured.
 
 3.  Protocol Operation
 
@@ -90,7 +147,7 @@ Abstract
 
    Clients send InputState datagrams as frequently as possible
    (typically 60-120 Hz or on every input change).  Each datagram is
-   sent to the server's UDP port with a 1-byte payload.
+   sent to the server's UDP port with a 3-byte payload.
 
    The server identifies clients by source IP address and source port.
    The first received InputState from an unknown endpoint automatically
@@ -123,8 +180,8 @@ Abstract
 4.  Packet Size Considerations
 
    Datagrams should respect typical path MTU (approximately 1400 bytes
-   after headers).  With 12-byte EntityUpdate structures, a single
-   datagram can carry up to approximately 116 entities.
+   after headers).  With 22-byte EntityUpdate structures, a single
+   datagram can carry up to approximately 63 entities.
 
 5.  Security Considerations
 

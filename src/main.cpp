@@ -2,11 +2,18 @@
 ** EPITECH PROJECT, 2025
 ** G-CPP-500-RUN-5-2-rtype-3
 ** File description:
-** ecs
+** main
+*/
+
+/*
+################################################
+# WARNING: This main.cpp is ONLY for testing  ##
+################################################
 */
 
 #include "ecs.hpp"
 #include "tcp.hpp"
+#include "udp.hpp"
 #include <iostream>
 
 // Those will be componentstype used in the ECS
@@ -67,11 +74,20 @@ int main(int ac, char **av)
         return 84;
     }
 
+    // Server UDP
+    UDP udpServer(8080);
+
+    if (!udpServer.init()) {
+        std::cerr << "Failed to init UDP Server." << std::endl;
+        return 84;
+    }
+
     // Init the systems
     MovementSystem movementSystem(ecs);
 
     // Start server
     TCP.start();
+    udpServer.start();
 
     // Create 2 entites
     Entity e1 = ecs.createEntity();
@@ -145,10 +161,13 @@ int main(int ac, char **av)
     ecs.killEntity(e2);
     ecs.killEntity(e3);
 
-    std::this_thread::sleep_for(std::chrono::seconds(20));
+    std::this_thread::sleep_for(std::chrono::seconds(15));
 
     TCP.stop();
     TCP.join();
+
+    udpServer.stop();
+    udpServer.join();
 
     return 0;
 }

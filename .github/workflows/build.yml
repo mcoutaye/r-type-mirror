@@ -126,5 +126,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/linux/** dist/windows/**
+          files: |
+            dist/linux/**
+            dist/windows/**
           token: ${{ secrets.GH_RELEASE_TOKEN }}

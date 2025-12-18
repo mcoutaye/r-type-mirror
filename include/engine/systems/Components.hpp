@@ -99,3 +99,7 @@ typedef struct Star_s {
     uint8_t brightness = 255; // Luminosité (pour effet de parallaxe)
     uint8_t size = 2;         // Taille de l'étoile
 } Star_t;
+
+typedef struct JustShot_s {
+    bool active = true;
+} JustShot_t;

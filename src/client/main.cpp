@@ -7,9 +7,13 @@
 
 #include "client.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    Client client("127.0.0.1");
+    sf::IpAddress ip = "127.0.0.1";
+    if (ac == 2)
+        ip = sf::IpAddress(av[1]);
+
+    Client client(ip);
 
     while (client._running) {
         client._timer.updateClock();

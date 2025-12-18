@@ -82,6 +82,19 @@ void Server::applyInput(std::pair<int, InputState> &currentItem)
     if (clientToPlayerRelation.find(currentItem.first) == clientToPlayerRelation.end())
         return;
 
+    if (currentItem.second.tick == MAGIC_TICK_CLIENT_QUIT) {
+        Entity e = clientToPlayerRelation[currentItem.first];
+        auto health = _ecs.getComponent<Health_t>(e);
+        if (health) {
+            health->current = 0;
+            health->lastAttackerId = -1;
+        }
+        clientToPlayerRelation.erase(currentItem.first);
+        _nbPlayer--;
+        std::cout << "Client " << currentItem.first << " disconnected." << std::endl;
+        return;
+    }
+
     Entity e = clientToPlayerRelation[currentItem.first];
     auto velo = _ecs.getComponent<Velocity_t>(e);
 
@@ -162,6 +175,7 @@ void Server::update()
         if (ctrl && ctrl->isShooting && ctrl->shootCooldown <= 0.f) {
             Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 50, "bullet", e);
             ctrl->shootCooldown = SHOOT_DELAY;
+            _ecs.addComponent<JustShot_t>(e, {true});
         }
         ctrl->shootCooldown -= 1.0f / 60.f;
     }
@@ -229,7 +243,15 @@ void Server::broadcast()
         for (const auto& client : clients) {
             uint16_t tickToSend = serverTick;
             if (client.playerId == ownerClientId) {
-                tickToSend = 0xFFFF; // Magic value for "This is you"
+                tickToSend = MAGIC_TICK_LOCAL_PLAYER; // Magic value for "This is you"
+            }
+
+            if (_ecs.hasComponent<JustShot_t>(e)) {
+                if (_ecs.hasComponent<PlayerController_t>(e)) {
+                    tickToSend = MAGIC_TICK_SHOOT_PLAYER;
+                } else {
+                    tickToSend = MAGIC_TICK_SHOOT_ENEMY;
+                }
             }
 
             // Handle death events
@@ -245,9 +267,9 @@ void Server::broadcast()
                 }
 
                 if (client.playerId == attackerClientId) {
-                    tickToSend = 0xFFFD; // You killed it
+                    tickToSend = MAGIC_TICK_DEATH_PLAYER; // You killed it
                 } else {
-                    tickToSend = 0xFFFE; // It died
+                    tickToSend = MAGIC_TICK_DEATH_OTHER; // It died
                 }
             }
 
@@ -284,6 +306,9 @@ void Server::broadcast()
         auto pv = _ecs.getConstComponent<Health_t>(e);
         if (pv->current <= 0) {
             _ecs.killEntity(e);
+        }
+        if (_ecs.hasComponent<JustShot_t>(e)) {
+            _ecs.killComponent<JustShot_t>(e);
         }
     }
 }

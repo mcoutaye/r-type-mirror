@@ -25,6 +25,15 @@ struct PACKED InputState {
 };
 static_assert(sizeof(InputState) == 3, "InputState must be 3 bytes");
 
+// Magic numbers for tick
+#define MAGIC_TICK_SHOOT_PLAYER 0xFFFB
+#define MAGIC_TICK_SHOOT_ENEMY  0xFFFC
+#define MAGIC_TICK_CLIENT_QUIT  0xFFFA // Client wants to quit
+
+#define MAGIC_TICK_DEATH_PLAYER 0xFFFD // You killed it
+#define MAGIC_TICK_DEATH_OTHER  0xFFFE // It died
+#define MAGIC_TICK_LOCAL_PLAYER 0xFFFF // This is you
+
 // Helper to check if 'newTick' is more recent than 'oldTick' handling wrap-around
 inline bool IsTickNewer(uint16_t newTick, uint16_t oldTick) {
     // If the difference is small (e.g., < 32768), it's a normal increase.

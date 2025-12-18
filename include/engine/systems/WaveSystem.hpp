@@ -52,7 +52,7 @@ void WaveSystem::update(double dt)
             Entity enemy = _ecs.createEntity();
 
             float offsetX = i * 70.f;           // espacement horizontal
-            float offsetY = (i % 4) * 60.f;     // un peu de dispersion verticale
+            float offsetY = (i % 8) * 100.f;     // un peu de dispersion verticale
 
             _ecs.addComponent(enemy, Position_t{wave.x + offsetX, wave.y + offsetY});
             _ecs.addComponent(enemy, Velocity_t{-180.f - i * 10.f, 0.f});

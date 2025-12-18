@@ -48,14 +48,20 @@ void UdpClient::join()
 void UdpClient::sendThread()
 {
     InputState input;
-    while (m_running) {
-        if (inputsToSend.tryPop(input)) {
-            _timer.updateClock();
-             // Add the clent frame in whick this packet is sent for the server
-            input.tick = _timer.getCurrentFrame();
+    while (true) {
+        bool popped = inputsToSend.tryPop(input);
+        if (popped) {
+            if (input.tick != MAGIC_TICK_CLIENT_QUIT) {
+                _timer.updateClock();
+                input.tick = _timer.getCurrentFrame();
+            }
             m_socket.send(&input, sizeof(input), m_serverIp, m_serverPort);
         }
-        else
+
+        if (!m_running && !popped)
+            break;
+
+        if (!popped)
             std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
 }

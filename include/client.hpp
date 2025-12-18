@@ -153,17 +153,25 @@ void Client::applyUpdate(EntityUpdate &update)
         health->max = update.health.max;
     }
 
-    if (update.tick == 0xFFFF) {
+    if (update.tick == MAGIC_TICK_LOCAL_PLAYER) {
         _localPlayerEntity = entity;
-    } else if (update.tick == 0xFFFE || update.tick == 0xFFFD) {
+    } else if (update.tick == MAGIC_TICK_DEATH_OTHER || update.tick == MAGIC_TICK_DEATH_PLAYER) {
         // Entity died
         _ecs.killEntity(entity);
         if (serverToClientEntityRelation.find(update.entityId) != serverToClientEntityRelation.end()) {
             serverToClientEntityRelation.erase(update.entityId);
         }
-        if (update.tick == 0xFFFD) {
+        if (update.tick == MAGIC_TICK_DEATH_PLAYER) {
             // Played killed it, maybe play sound or add score
             std::cout << "I killed entity " << update.entityId << "!" << std::endl;
+        }
+    } else if (update.tick == MAGIC_TICK_SHOOT_PLAYER || update.tick == MAGIC_TICK_SHOOT_ENEMY) {
+        if (entity != _localPlayerEntity) {
+            if (update.tick == MAGIC_TICK_SHOOT_PLAYER) {
+                Factory::createProjectile(_ecs, update.position.x + 64.f, update.position.y + 20.f, 800.f, 0.f, 1, 25, "bullet");
+            } else {
+                Factory::createProjectile(_ecs, update.position.x - 20.f, update.position.y + 20.f, -800.f, 0.f, 2, 25, "bullet");
+            }
         }
     }
 }
@@ -201,8 +209,10 @@ void Client::processInput()
     if (_shootCooldown > 0.f)
         _shootCooldown -= 1.0f / 60.f;
 
-    if (_inputSystem.isActionActive(GameAction::Quit))
+    if (_inputSystem.isActionActive(GameAction::Quit)) {
+        inputs.tick = MAGIC_TICK_CLIENT_QUIT;
         _running = false;
+    }
     _UDP.inputsToSend.push(inputs);
 }
 

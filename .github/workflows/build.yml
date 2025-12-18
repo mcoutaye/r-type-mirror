@@ -116,11 +116,15 @@ jobs:
           path: dist/windows
         continue-on-error: true
 
+      - name: List downloaded files (debug)
+        run: |
+          echo "Linux files:"
+          ls -R dist/linux
+          echo "Windows files:"
+          ls -R dist/windows
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            dist/linux/**/rtype_server
-            dist/linux/**/rtype_client
-            dist/windows/**/rtype_server.exe
-            dist/windows/**/rtype_client.exe
+          files: dist/linux/** dist/windows/**
+          token: ${{ secrets.GH_RELEASE_TOKEN }}

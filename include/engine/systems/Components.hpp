@@ -103,3 +103,17 @@ typedef struct Star_s {
 typedef struct JustShot_s {
     bool active = true;
 } JustShot_t;
+
+// Trigger pour jouer un effet sonore une seule fois
+typedef struct PlaySound_s {
+    char soundId[64];      // ex: "player_shoot.wav", "enemy_explosion.wav", "hit.wav"
+    float volume = 100.f;  // 0-100 (SFML utilise 0-100)
+    float pitch = 1.0f;     // variation de tonalité
+} PlaySound_t;
+
+// Musique de fond (une seule à la fois généralement)
+typedef struct BackgroundMusic_s {
+    char musicId[64];      // ex: "level1.ogg", "menu_theme.ogg"
+    bool looping = true;
+    float volume = 50.f;
+} BackgroundMusic_t;

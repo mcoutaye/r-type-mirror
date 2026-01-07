@@ -18,6 +18,7 @@
     #include "engine/systems/RessourceManager.hpp"
     #include "engine/StageFactory.hpp"
     #include "engine/EntityFactory.hpp"
+    #include "engine/systems/SoundSystem.hpp"
     #include "serializer.hpp"
 
 class Client {
@@ -46,12 +47,15 @@ class Client {
         InputSystem _inputSystem{_ecs};
         RenderSystem _renderSystem{_ecs, _window, _resourceManager};
         MoveSystem _moveSystem{_ecs};
+        SoundSystem _soundSystem{_ecs};
 
         UdpClient _UDP;
 };
 
 Client::Client(sf::IpAddress serverIp)
-    : _UDP(UdpClient(serverIp, SERVER_PORT)), _resourceManager(ResourceManager::getInstance()), _ecs(ECS())
+    : _UDP(UdpClient(serverIp, SERVER_PORT)),
+      _resourceManager(ResourceManager::getInstance()),
+      _ecs(ECS())
 {
     _window.create(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Fullscreen);
     _window.setFramerateLimit(60);
@@ -59,10 +63,21 @@ Client::Client(sf::IpAddress serverIp)
     _timer = Timer();
     _running = true;
 
-        // === CRÉATION DU STAGE ===
+    // === CRÉATION DU STAGE ===
     Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
-}
 
+    // === CHARGEMENT DES SONS ===
+    _soundSystem.loadSound("shoot.ogg", "assets/sound/shoot.ogg");
+    _soundSystem.loadSound("enemy_death.ogg", "assets/sound/enemy_death.ogg");
+    _soundSystem.loadSound("player_death.ogg", "assets/sound/player_death.ogg");
+    _soundSystem.loadSound("block_destruction.ogg", "assets/sound/block_destruction.ogg");
+    _soundSystem.loadSound("hit.ogg", "assets/sound/hit.ogg");
+
+    // Musique de fond (optionnel)
+    // Tu peux créer une entité avec BackgroundMusic_t plus tard, ou ici :
+    Entity music = _ecs.createEntity();
+    _ecs.addComponent(music, BackgroundMusic_t{"assets/music/background.ogg", true, 40.f});
+}
 Client::~Client() {}
 
 void Client::update()
@@ -95,7 +110,7 @@ void Client::update()
     for (Entity p : projectiles) {
         auto projPos = _ecs.getComponent<Position_t>(p);
         auto projCol = _ecs.getComponent<Collider_t>(p);
-        
+
         if (!projPos || !projCol) continue;
 
         for (Entity t : targets) {
@@ -112,7 +127,7 @@ void Client::update()
                 projPos->x + projCol->width > targetPos->x &&
                 projPos->y < targetPos->y + targetCol->height &&
                 projPos->y + projCol->height > targetPos->y) {
-                
+
                 _ecs.killEntity(p);
                 break;
             }
@@ -123,6 +138,16 @@ void Client::update()
 void Client::applyUpdate(EntityUpdate &update)
 {
     Entity entity = 0;
+
+    _timer.updateClock();
+    std::vector<EntityUpdate> updates;
+    while (_UDP.receivedUpdates.tryPop(updates)) {
+        for (auto &update : updates)
+            this->applyUpdate(update);
+    }
+
+    _moveSystem.update(1.0f / 60.f);
+    _soundSystem.update(1.0f / 60.f);
 
     if (serverToClientEntityRelation.find(update.entityId) == serverToClientEntityRelation.end()) {
         // Entity does not exist for client, create it
@@ -158,19 +183,36 @@ void Client::applyUpdate(EntityUpdate &update)
     } else if (update.tick == MAGIC_TICK_DEATH_OTHER || update.tick == MAGIC_TICK_DEATH_PLAYER) {
         // Entity died
         _ecs.killEntity(entity);
+        // Jouer un son d'explosion selon le type (approximation simple)
+        if (_ecs.hasComponent<Projectile_t>(entity)) {
+            // C'était un projectile → petit hit
+            Entity hitSound = _ecs.createEntity();
+            _ecs.addComponent(hitSound, Factory::createSound("hit.ogg", 70.f));
+        } else {
+            // Ennemi ou joueur → explosion
+            Entity explosionSound = _ecs.createEntity();
+            _ecs.addComponent(explosionSound, Factory::createSound("enemy_death.ogg", 90.f));
+        }
+
         if (serverToClientEntityRelation.find(update.entityId) != serverToClientEntityRelation.end()) {
             serverToClientEntityRelation.erase(update.entityId);
         }
+
         if (update.tick == MAGIC_TICK_DEATH_PLAYER) {
-            // Played killed it, maybe play sound or add score
             std::cout << "I killed entity " << update.entityId << "!" << std::endl;
         }
     } else if (update.tick == MAGIC_TICK_SHOOT_PLAYER || update.tick == MAGIC_TICK_SHOOT_ENEMY) {
-        if (entity != _localPlayerEntity) {
+        if (entity != _localPlayerEntity) {  // On ne joue pas le son si c'est notre propre tir (déjà joué localement)
             if (update.tick == MAGIC_TICK_SHOOT_PLAYER) {
-                Factory::createProjectile(_ecs, update.position.x + 64.f, update.position.y + 20.f, 800.f, 0.f, 1, 25, "bullet");
+                Factory::createProjectile(_ecs,
+                    update.position.x + 64.f, update.position.y + 20.f,
+                    800.f, 0.f, 1, 25, "shoot.png",
+                    -1, "shoot.ogg");
             } else {
-                Factory::createProjectile(_ecs, update.position.x - 20.f, update.position.y + 20.f, -800.f, 0.f, 2, 25, "bullet");
+                Factory::createProjectile(_ecs,
+                    update.position.x - 20.f, update.position.y + 20.f,
+                    -800.f, 0.f, 2, 25, "shoot.png",
+                    -1, "shoot.ogg");
             }
         }
     }
@@ -197,13 +239,19 @@ void Client::processInput()
     if (_inputSystem.isActionActive(GameAction::Shoot)) {
         inputs.shoot = 1;
         if (_shootCooldown <= 0.f) {
-             if (_localPlayerEntity != -1) {
-                 auto pos = _ecs.getComponent<Position_t>(_localPlayerEntity);
-                 if (pos) {
-                     Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 25, "bullet");
-                     _shootCooldown = SHOOT_DELAY;
-                 }
-             }
+            if (_localPlayerEntity != -1) {
+                auto pos = _ecs.getComponent<Position_t>(_localPlayerEntity);
+                if (pos) {
+                    // Création du projectile + son
+                    Factory::createProjectile(_ecs,
+                        pos->x + 64.f, pos->y + 20.f,
+                        800.f, 0.f,
+                        1, 25, "shoot.png",
+                        -1, "shoot.ogg");  // <-- le son est ajouté via la factory
+
+                    _shootCooldown = SHOOT_DELAY;
+                }
+            }
         }
     }
     if (_shootCooldown > 0.f)

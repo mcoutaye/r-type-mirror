@@ -11,6 +11,7 @@ target_link_libraries(rtype_client
         sfml-window
         sfml-system
         sfml-graphics
+        sfml-audio
 )
 
 target_include_directories(rtype_client

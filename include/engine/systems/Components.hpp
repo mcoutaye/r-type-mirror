@@ -8,7 +8,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-
+#include <sol/sol.hpp>
 #define SHOOT_DELAY 0.5f
 
 // Should send updates to clients or not
@@ -103,3 +103,13 @@ typedef struct Star_s {
 typedef struct JustShot_s {
     bool active = true;
 } JustShot_t;
+
+// Scripting Lua
+typedef struct Script_s {
+    char path[256];                // Chemin du fichier Lua (e.g., "scripts/enemy_sin.lua")
+    sol::table instance;           // Instance Lua per-entité (pour variables locales)
+    sol::function onInit;          // Callback Lua: function onInit(entity)
+    sol::function onUpdate;        // Callback Lua: function onUpdate(dt, entity)
+    sol::function onCollision;     // Callback Lua: function onCollision(otherEntity)
+    bool loaded = false;           // Flag pour éviter re-load
+} Script_t;

@@ -16,6 +16,7 @@
     #include "engine/systems/MovementSystem.hpp"
     #include "engine/systems/WaveSystem.hpp"
     #include "engine/systems/CollisionSystem.hpp"
+    #include "engine/systems/ScriptSystem.hpp"
     #include "serializer.hpp"
     #include "engine/EntityFactory.hpp"
     #include "engine/StageFactory.hpp"
@@ -43,6 +44,8 @@ class Server {
         WaveSystem _waveSystem{_ecs};
         MoveSystem _movSys{_ecs};
         MovementSystem _movementSystem{_ecs};
+        ScriptSystem _scriptSystem{_ecs};
+
 
         UdpServer _UDP;
         ECS _ecs;
@@ -155,6 +158,7 @@ void Server::update()
     _movSys.update(1.0f / 60.f); // Update with fixed delta time
     _movementSystem.update(1.0f / 60.f);
     _waveSystem.update(1.0f / 60.f);
+    _scriptSystem.update(1.0f / 60.f);
 
     // Remove entities out of bounds
     auto entities = _ecs.getEntitiesByComponents<Position_t>();
@@ -173,7 +177,7 @@ void Server::update()
         auto* pos = _ecs.getComponent<Position_t>(e);
 
         if (ctrl && ctrl->isShooting && ctrl->shootCooldown <= 0.f) {
-            Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 50, "bullet", e);
+            Factory::createProjectile(_ecs, pos->x + 64.f, pos->y + 20.f, 800.f, 0.f, 1, 50, "bullet", e, "");
             ctrl->shootCooldown = SHOOT_DELAY;
             _ecs.addComponent<JustShot_t>(e, {true});
         }
@@ -338,7 +342,7 @@ void Server::entityForClients()
 
     for (const auto &client : Clients) {
         if (clientToPlayerRelation.find(client.playerId) == clientToPlayerRelation.end()) {
-            Entity newEntity = Factory::createPlayer(_ecs, 0.f, 0.f, client.playerId, "player");
+            Entity newEntity = Factory::createPlayer(_ecs, 0.f, 0.f, client.playerId, "player", "./src/scripts/player_test.lua");
             clientToPlayerRelation.insert({ client.playerId, newEntity });
             this->_nbPlayer++;
         }

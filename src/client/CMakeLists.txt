@@ -11,12 +11,15 @@ target_link_libraries(rtype_client
         sfml-window
         sfml-system
         sfml-graphics
+        ${LUA_LIBRARIES}  # Si Lua linké
 )
 
 target_include_directories(rtype_client
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../../include
         ${CMAKE_CURRENT_SOURCE_DIR}
+        ${sol2_SOURCE_DIR}/include
+        ${LUA_INCLUDE_DIR}
 )
 
 add_custom_target(client_clean

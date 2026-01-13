@@ -7,6 +7,7 @@
 #pragma once
 #include "ecs.hpp"
 #include "engine/systems/Components.hpp"
+#include "engine/Menu.hpp"
 #include <cstring>
 #include <string>
 
@@ -98,6 +99,93 @@ void playDeathSound(ECS& ecs, Entity entity, const std::string& soundId = "enemy
         return;
     }
     ecs.addComponent(entity, createSound(soundId, volume));
+}
+
+inline Text_t createText(
+    const std::string& textStr,
+    uint32_t fontSize = 48,
+    sf::Color color = sf::Color::White,
+    bool centered = true,
+    const std::string& fontId = "default",
+    bool visible = true
+) {
+    Text_t t;
+    std::memset(t.text, 0, sizeof(t.text));
+    std::strncpy(t.text, textStr.c_str(), sizeof(t.text) - 1);
+    t.text[sizeof(t.text) - 1] = '\0';
+    t.fontSize = fontSize;
+    t.color = color;
+    t.originalColor = color;  // Sauvegarde la couleur originale
+    t.centered = centered;
+    std::strncpy(t.fontId, fontId.c_str(), sizeof(t.fontId) - 1);
+    t.visible = visible;
+    return t;
+}
+
+Entity createMenuTitle(ECS& ecs, const Menu& menu)
+{
+    Entity titleEntity = ecs.createEntity();
+    ecs.addComponents<Position_t, Text_t>(
+        titleEntity,
+        Position_t{menu.titleXPosition, menu.titleYPosition},
+        createText(menu.title, menu.titleFontSize, menu.titleColor, menu.titleCentered, menu.titleFontId, true)
+    );
+    return titleEntity;
+}
+
+Entity createMenuItem(ECS& ecs, const MenuItem& item) {
+    Entity menuItem = ecs.createEntity();
+    ecs.addComponents<Position_t, Text_t, MenuItem_t, Highlight_t>(
+        menuItem,
+        Position_t{item.xPosition, item.yPosition},
+        createText(item.text, item.fontSize, item.color, item.centered, item.fontId, item.visible),
+        MenuItem_t{item.action, false},
+        Highlight_t{item.selectedColor, item.scale}
+    );
+    return menuItem;
+}
+
+// Crée un menu complet à partir d'une structure Menu
+void createMenu(ECS& ecs, const Menu& menu)
+{
+    // Crée le titre si défini
+    if (!menu.title.empty()) {
+        createMenuTitle(ecs, menu);
+    }
+
+    // Crée les éléments du menu
+    for (const auto& item : menu.items) {
+        createMenuItem(ecs, item);
+    }
+
+    // Joue la musique de fond si définie
+    if (!menu.backgroundMusicId.empty()) {
+        Entity musicEntity = ecs.createEntity();
+        BackgroundMusic_t musicComp;
+        std::strncpy(musicComp.musicId, menu.backgroundMusicId.c_str(), sizeof(musicComp.musicId) - 1);
+        musicComp.musicId[sizeof(musicComp.musicId) - 1] = '\0';  // Assure le terminateur nul
+        musicComp.looping = true;
+        musicComp.volume = 40.f;
+        ecs.addComponent(musicEntity, musicComp);
+    }
+}
+
+// Supprime un menu existant
+void clearMenu(ECS& ecs)
+{
+    auto menuItems = ecs.getEntitiesByComponents<Position_t, Text_t, MenuItem_t>();
+    for (Entity e : menuItems) {
+        ecs.killEntity(e);
+    }
+    auto titles = ecs.getEntitiesByComponents<Position_t, Text_t>();
+    for (Entity e : titles) {
+        // Vérifie que c'est bien un titre de menu (simplification)
+        ecs.killEntity(e);
+    }
+    auto musics = ecs.getEntitiesByComponents<BackgroundMusic_t>();
+    for (Entity e : musics) {
+        ecs.killEntity(e);
+    }
 }
 
 } // namespace Factory

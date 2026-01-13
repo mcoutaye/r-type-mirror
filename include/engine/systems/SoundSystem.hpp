@@ -37,12 +37,12 @@ private:
     // Sons en cours de lecture (pour pouvoir limiter le nombre simultané si besoin)
     std::vector<sf::Sound> _activeSounds;
 
-    // Musique de fond actuelle
-    sf::Music _currentMusic;
-
     // Pour éviter le spam de sons identiques trop rapprochés
     std::unordered_map<std::string, float> _soundCooldowns;
     static constexpr float DEFAULT_SOUND_COOLDOWN = 0.05f; // 50ms minimum entre deux mêmes sons
+    std::unordered_map<std::string, std::string> _musicPaths;
+    sf::Music _currentMusic;
+    std::string _currentMusicId;
 };
 
 SoundSystem::SoundSystem(ECS& ecs) : ISystem(ecs)
@@ -59,13 +59,6 @@ bool SoundSystem::loadSound(const std::string& soundId, const std::string& filen
     }
     _soundBuffers[soundId] = std::move(buffer);
     return true;
-}
-
-bool SoundSystem::loadMusic(const std::string& musicId, const std::string& filename)
-{
-    // On ne stocke pas toutes les musiques en mémoire, on les ouvre à la demande
-    // Mais on peut vérifier que le fichier existe si tu veux
-    return true; // on vérifiera à l'ouverture
 }
 
 void SoundSystem::processPlaySoundTriggers()
@@ -115,41 +108,52 @@ void SoundSystem::processPlaySoundTriggers()
     );
 }
 
-void SoundSystem::processBackgroundMusic()
+bool SoundSystem::loadMusic(const std::string& musicId, const std::string& filename)
 {
+    _musicPaths[musicId] = filename;
+    return true;  // On vérifie l'existence du fichier plus tard
+}
+
+void SoundSystem::processBackgroundMusic() {
     auto entities = _ecs.getEntitiesByComponents<BackgroundMusic_t>();
 
     if (entities.empty()) {
         if (_currentMusic.getStatus() == sf::Music::Playing) {
-            _currentMusic.stop();
+            _currentMusic.stop();  // Arrête la musique actuelle s'il n'y a plus d'entité
+            _currentMusicId.clear();
         }
         return;
     }
 
     // On ne gère qu'une seule musique à la fois (la première trouvée)
     Entity musicEntity = entities[0];
-    auto* music = _ecs.getComponent<BackgroundMusic_t>(musicEntity);
-    if (!music) return;
+    auto* musicComp = _ecs.getComponent<BackgroundMusic_t>(musicEntity);
+    if (!musicComp) return;
 
-    std::string musicId(music->musicId);
+    std::string musicId(musicComp->musicId);
 
-    // Si c'est déjà la bonne musique en cours et bien configurée, rien à faire
-    if (_currentMusic.getStatus() == sf::Music::Playing &&
-        _currentMusic.getLoop() == music->looping &&
-        std::abs(_currentMusic.getVolume() - music->volume) < 0.1f) {
-        // On vérifie que c'est bien le bon fichier (approximatif)
-        // SFML n'offre pas de moyen simple de récupérer le chemin ouvert
-        return;
+    // Si la musique demandée est différente de celle en cours
+    if (_currentMusicId != musicId) {
+        // Arrête la musique actuelle
+        _currentMusic.stop();
+
+        // Charge et joue la nouvelle musique
+        auto it = _musicPaths.find(musicId);
+        if (it == _musicPaths.end()) {
+            std::cerr << "Music not loaded: " << musicId << std::endl;
+            return;
+        }
+
+        if (!_currentMusic.openFromFile(it->second)) {
+            std::cerr << "Failed to open music: " << it->second << std::endl;
+            return;
+        }
+
+        _currentMusic.setVolume(musicComp->volume);
+        _currentMusic.setLoop(musicComp->looping);
+        _currentMusic.play();
+        _currentMusicId = musicId;
     }
-
-    if (!_currentMusic.openFromFile(musicId)) {
-        std::cerr << "Failed to open music: " << musicId << std::endl;
-        return;
-    }
-
-    _currentMusic.setVolume(music->volume);
-    _currentMusic.setLoop(music->looping);
-    _currentMusic.play();
 }
 
 void SoundSystem::update(double dt)

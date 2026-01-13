@@ -11,24 +11,26 @@
 
 namespace Factory {
 
-    void createStarfield(ECS& ecs, int numStars, float screenWidth, float screenHeight, int layers)
-    {
-        for (int i = 0; i < numStars; ++i) {
+    void createStarfield(ECS& ecs, int starCount, float screenWidth, float screenHeight, float maxSpeed) {
+        for (int i = 0; i < starCount; ++i) {
             Entity star = ecs.createEntity();
             float x = static_cast<float>(rand() % static_cast<int>(screenWidth));
             float y = static_cast<float>(rand() % static_cast<int>(screenHeight));
-            int layer = rand() % layers;
-            float speed = 50.f + layer * 75.f;
-            uint8_t brightness = static_cast<uint8_t>(80 + layer * (170 / layers));
-            uint8_t size = static_cast<uint8_t>(1 + layer);
 
-            ecs.addComponents<Position_t, Velocity_t, Star_t>
-                (star,
-                    Position_t{x, y},
-                    Velocity_t{-speed, 0.f},
-                    Star_t{speed, brightness, size});
+            // Taille aléatoire (1-3)
+            uint8_t size = 1 + (rand() % 5);
+            // La vitesse dépend de la taille (plus grosse = plus rapide)
+            float speed = (15 - size) * 50.f; // Ex: taille 1 → 150, taille 3 → 50
+            uint8_t brightness = 150 + (rand() % 105); // 150-255 (plus visible)
+
+            ecs.addComponents<Position_t, Star_t>(
+                star,
+                Position_t{x, y},
+                Star_t{speed, brightness, size}
+            );
         }
     }
+
 
     Entity createObstacle(ECS& ecs, float x, float y, float width, float height)
     {

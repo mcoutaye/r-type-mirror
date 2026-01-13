@@ -7,6 +7,7 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "engine/Menu.hpp"
 #include <string>
 
 #define SHOOT_DELAY 0.5f
@@ -117,3 +118,26 @@ typedef struct BackgroundMusic_s {
     bool looping = true;
     float volume = 50.f;
 } BackgroundMusic_t;
+
+// Texte simple pour les items du menu (titre, boutons...)
+typedef struct Text_s {
+    char text[128];
+    char fontId[32] = "default";
+    uint32_t fontSize = 48;
+    sf::Color color;
+    sf::Color originalColor;  // Ajout du champ pour sauvegarder la couleur originale
+    bool centered = true;
+    bool visible = true;
+} Text_t;
+
+// Indique que c'est un item de menu sélectionnable
+typedef struct MenuItem_s {
+    MenuAction action;
+    bool isSelected = false;
+} MenuItem_t;
+
+// Optionnel : pour highlight visuel (ex: changer couleur ou scale quand sélectionné)
+typedef struct Highlight_s {
+    sf::Color selectedColor = sf::Color::Yellow;
+    float selectedScale = 1.2f;
+} Highlight_t;

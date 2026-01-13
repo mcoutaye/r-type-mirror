@@ -5,52 +5,63 @@
 ** client
 */
 
-#ifndef CLIENT_HPP_
-    #define CLIENT_HPP_
-
-    #include "ecs.hpp"
-    #include "UdpClient.hpp"
-    #include "Timer.hpp"
-    #include "engine/systems/Components.hpp"
-    #include "engine/systems/InputSystem.hpp"
-    #include "engine/systems/RenderSystem.hpp"
-    #include "engine/systems/MoveSystem.hpp"
-    #include "engine/systems/RessourceManager.hpp"
-    #include "engine/StageFactory.hpp"
-    #include "engine/EntityFactory.hpp"
-    #include "engine/systems/SoundSystem.hpp"
-    #include "serializer.hpp"
+#pragma once
+#include "ecs.hpp"
+#include "UdpClient.hpp"
+#include "Timer.hpp"
+#include "engine/systems/Components.hpp"
+#include "engine/systems/InputSystem.hpp"
+#include "engine/systems/RenderSystem.hpp"
+#include "engine/systems/MoveSystem.hpp"
+#include "engine/systems/RessourceManager.hpp"
+#include "engine/systems/SoundSystem.hpp"
+#include "engine/systems/MenuSystem.hpp"
+#include "engine/systems/SceneManager.hpp"
+#include <memory>
 
 class Client {
-    public:
-        Client(sf::IpAddress serverIp = "127.0.0.1");
-        ~Client();
+public:
+    Client(sf::IpAddress serverIp = "127.0.0.1");
+    ~Client() = default;
+    void update();
+    void render();
+    void processInput();
 
-        void update(); // Process all recieved updates from server
-        void render(); // Render all entities from ECS
-        void processInput(); // Retrieve and send inputs to server
+    Timer _timer;
+    bool _running = true;
 
-        Timer _timer;
-        bool _running;
-    private:
-        void applyUpdate(EntityUpdate &update);
+private:
+    void initializeMenus();
+    void initializeGame();
+    void onQuit();
+    void onStartGame();
+    void onOpenOptions();
+    void onResumeGame();
+    void onBackToMainMenu();
+    void applyUpdate(EntityUpdate &update);
 
-        std::unordered_map<std::size_t, std::size_t> serverToClientEntityRelation;
-        float _shootCooldown = 0.f;
-        Entity _localPlayerEntity = -1;
+    std::unique_ptr<SceneManager> _sceneManager;
+    std::unordered_map<std::string, std::vector<Entity>> _sceneEntities;
+    std::unordered_map<std::size_t, std::size_t> serverToClientEntityRelation;
+    float _shootCooldown = 0.f;
+    Entity _localPlayerEntity = -1;
 
-        ResourceManager& _resourceManager;
-        ECS _ecs;
+    ResourceManager& _resourceManager;
+    ECS _ecs;
+    sf::RenderWindow _window;
 
-        sf::RenderWindow _window;
+    InputSystem _inputSystem{_ecs};
+    RenderSystem _renderSystem{_ecs, _window, _resourceManager};
+    MoveSystem _moveSystem{_ecs};
+    SoundSystem _soundSystem{_ecs};
+    MenuSystem _menuSystem{_ecs};
 
-        InputSystem _inputSystem{_ecs};
-        RenderSystem _renderSystem{_ecs, _window, _resourceManager};
-        MoveSystem _moveSystem{_ecs};
-        SoundSystem _soundSystem{_ecs};
+    enum class GameState { Menu, InGame };
+    GameState _gameState = GameState::Menu;
 
-        UdpClient _UDP;
+    UdpClient _UDP;
 };
+
 
 Client::Client(sf::IpAddress serverIp)
     : _UDP(UdpClient(serverIp, SERVER_PORT)),
@@ -63,8 +74,14 @@ Client::Client(sf::IpAddress serverIp)
     _timer = Timer();
     _running = true;
 
-    // === CRÉATION DU STAGE ===
-    Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
+    _sceneManager = std::make_unique<SceneManager>();
+    _sceneManager->addScene("main_menu");
+    _sceneManager->addScene("options_menu");
+    _sceneManager->addScene("game");
+    _menuSystem.setSceneManager(std::make_unique<SceneManager>(*_sceneManager));
+
+    _resourceManager.loadFont("default", "assets/font/Vipnagorgialla-Rg.ttf");
+    _resourceManager.loadFont("title", "assets/font/Rostex-Outline.ttf");
 
     // === CHARGEMENT DES SONS ===
     _soundSystem.loadSound("shoot.ogg", "assets/sound/shoot.ogg");
@@ -72,66 +89,239 @@ Client::Client(sf::IpAddress serverIp)
     _soundSystem.loadSound("player_death.ogg", "assets/sound/player_death.ogg");
     _soundSystem.loadSound("block_destruction.ogg", "assets/sound/block_destruction.ogg");
     _soundSystem.loadSound("hit.ogg", "assets/sound/hit.ogg");
+    _soundSystem.loadSound("click.ogg", "assets/sound/click.ogg");
+    _soundSystem.loadMusic("menu_theme", "assets/music/menu.ogg");
+    _soundSystem.loadMusic("game_theme", "assets/music/background.ogg");
 
-    // Musique de fond (optionnel)
-    // Tu peux créer une entité avec BackgroundMusic_t plus tard, ou ici :
-    Entity music = _ecs.createEntity();
-    _ecs.addComponent(music, BackgroundMusic_t{"assets/music/background.ogg", true, 40.f});
+    _menuSystem.registerAction("quit", [this]() { onQuit(); });
+    _menuSystem.registerAction("start_game", [this]() { onStartGame(); });
+    _menuSystem.registerAction("open_options", [this]() { onOpenOptions(); });
+    _menuSystem.registerAction("resume_game", [this]() { onResumeGame(); });
+    _menuSystem.registerAction("back_to_main_menu", [this]() { onBackToMainMenu(); });
+
+    initializeMenus();
+    _sceneManager->setActiveScene("main_menu");
+    Entity gameMusic = _ecs.createEntity();
+    _ecs.addComponent(gameMusic, BackgroundMusic_t{"menu_theme", true, 40.f});
 }
-Client::~Client() {}
+
+void Client::onQuit()
+{
+    _running = false;
+}
+
+void Client::onStartGame()
+{
+    _gameState = GameState::InGame;
+    _sceneManager->setActiveScene("game");
+    _menuSystem.setEnabled(false);
+    initializeGame();
+}
+
+void Client::onResumeGame()
+{
+    _sceneManager->setActiveScene("game");
+    _menuSystem.setEnabled(false);
+}
+
+void Client::onBackToMainMenu()
+{
+    _sceneManager->setActiveScene("main_menu");
+    _menuSystem.setEnabled(true);
+}
+
+void Client::onOpenOptions()
+{
+    _sceneManager->setActiveScene("options_menu");
+    _menuSystem.setEnabled(true);
+}
+
+
+void Client::initializeMenus()
+{
+    // Menu principal
+    Menu mainMenu = {
+        "main",
+        {
+            {"Play", {"start_game"}, 960.f, 400.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
+            {"Settings", {"open_options"}, 960.f, 520.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
+            {"Quit", {"quit"}, 960.f, 640.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
+        },
+        "R-TYPE",
+        960.f, 200.f,
+        "title", 120, sf::Color::Red,
+        true,
+        "menu_theme"
+    };
+
+    // Menu options
+    Menu optionsMenu = {
+        "options",
+        {
+            {"Audio", {""}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false},
+            {"Back", {"back_to_main_menu"}, 960.f, 500.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false}
+        },
+        "SETTINGS",
+        960.f, 200.f,
+        "title", 100, sf::Color::Blue,
+        true,
+        ""
+    };
+
+    // Menu pause
+    Menu pauseMenu = {
+        "pause",
+        {
+            {"Resume", {"resume_game"}, 960.f, 400.f, "default", 50, sf::Color::Green, sf::Color::Yellow, 1.1f, true, false},
+            {"Settings", {"open_options"}, 960.f, 480.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
+            {"Quit", {"quit"}, 960.f, 560.f, "default", 50, sf::Color::Red, sf::Color::Yellow, 1.1f, true, false}
+        },
+        "PAUSE",
+        960.f, 300.f,
+        "title", 100, sf::Color::Yellow,
+        true,
+        ""
+    };
+
+    // Création des entités pour le menu principal
+    std::vector<Entity> mainMenuEntities;
+    mainMenuEntities.push_back(Factory::createMenuTitle(_ecs, mainMenu));
+    for (const auto& item : mainMenu.items) {
+        mainMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["main_menu"] = mainMenuEntities;
+
+    // Création des entités pour le menu options
+    std::vector<Entity> optionsMenuEntities;
+    optionsMenuEntities.push_back(Factory::createMenuTitle(_ecs, optionsMenu));
+    for (const auto& item : optionsMenu.items) {
+        optionsMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["options_menu"] = optionsMenuEntities;
+
+    // Création des entités pour le menu pause
+    std::vector<Entity> pauseMenuEntities;
+    pauseMenuEntities.push_back(Factory::createMenuTitle(_ecs, pauseMenu));
+    for (const auto& item : pauseMenu.items) {
+        pauseMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["pause_menu"] = pauseMenuEntities;
+}
+
+
+void Client::initializeGame()
+{
+    // Crée le starfield pour le jeu
+    Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
+
+    // Crée la musique du jeu
+    Entity gameMusic = _ecs.createEntity();
+    _ecs.addComponent(gameMusic, BackgroundMusic_t{"game_theme", true, 40.f});
+}
 
 void Client::update()
 {
     _timer.updateClock();
-    std::vector<EntityUpdate> updates;
+    double dt = 1.0 / 60.0;  // 60 FPS fixe – tu peux utiliser _timer.getDeltaTime() si tu préfères variable
 
-    while (_UDP.receivedUpdates.tryPop(updates)) {
-        for (auto &update : updates)
-            this->applyUpdate(update);
-    }
-    _moveSystem.update(1.0f / 60.f);
+    // === INPUTS & MENU : toujours actifs (nécessaire pour naviguer dans le menu et quitter à tout moment) ===
+    _inputSystem.update(dt);
+    _menuSystem.update(dt);
 
-    // Remove entities out of bounds
-    auto entities = _ecs.getEntitiesByComponents<Position_t>();
-    for (Entity e : entities) {
-        // Don't kill the local player if they go out of bounds (let server handle it or block movement)
-        if (e == _localPlayerEntity) continue;
+    std::string activeSceneId = _sceneManager->getActiveSceneId();
 
-        auto* pos = _ecs.getComponent<Position_t>(e);
-        if (pos && (pos->x < -100.f || pos->x > 2200.f || pos->y < -100.f || pos->y > 1200.f)) {
-             _ecs.killEntity(e);
-        }
-    }
-
-    // Client side collision to remove projectiles
-    auto projectiles = _ecs.getEntitiesByComponents<Projectile_t, Position_t, Collider_t>();
-    auto targets = _ecs.getEntitiesByComponents<Position_t, Collider_t>();
-
-    for (Entity p : projectiles) {
-        auto projPos = _ecs.getComponent<Position_t>(p);
-        auto projCol = _ecs.getComponent<Collider_t>(p);
-
-        if (!projPos || !projCol) continue;
-
-        for (Entity t : targets) {
-            if (p == t) continue;
-            if (t == _localPlayerEntity) continue;
-            if (_ecs.hasComponent<Projectile_t>(t)) continue;
-
-            auto targetPos = _ecs.getComponent<Position_t>(t);
-            auto targetCol = _ecs.getComponent<Collider_t>(t);
-
-            if (!targetPos || !targetCol) continue;
-
-            if (projPos->x < targetPos->x + targetCol->width &&
-                projPos->x + projCol->width > targetPos->x &&
-                projPos->y < targetPos->y + targetCol->height &&
-                projPos->y + projCol->height > targetPos->y) {
-
-                _ecs.killEntity(p);
-                break;
+    for (auto& [sceneId, entities] : _sceneEntities) {
+        bool isActive = (sceneId == activeSceneId);
+        for (Entity e : entities) {
+            if (auto* text = _ecs.getComponent<Text_t>(e)) {
+                text->visible = isActive;
+            }
+            if (auto* drawable = _ecs.getComponent<Drawable_t>(e)) {
+                drawable->visible = isActive;
             }
         }
+    }
+
+    // === GESTION DU MENU ===
+    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" || activeSceneId == "pause_menu") {
+        _soundSystem.update(dt);
+        return;
+    }
+
+    // === MODE IN-GAME : tout ton code original, intact ===
+    if (activeSceneId == "game") {
+        // 1. Réception et application des updates du serveur
+        auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
+        for (Entity e : stars) {
+            auto* pos = _ecs.getComponent<Position_t>(e);
+            auto* star = _ecs.getComponent<Star_t>(e);
+            if (!pos || !star) continue;
+
+            // Déplace l'étoile vers la gauche
+            pos->x -= star->speed * dt;
+
+            // Réapparition à droite si elle sort de l'écran
+            if (pos->x < -10.f) {
+                pos->x = 1930.f;
+                pos->y = static_cast<float>(rand() % 1080);
+            }
+        }
+        std::vector<EntityUpdate> updates;
+        while (_UDP.receivedUpdates.tryPop(updates)) {
+            for (auto& update : updates) {
+                this->applyUpdate(update);
+            }
+        }
+
+        // 2. Mise à jour des systèmes physiques
+        _moveSystem.update(dt);
+
+        // 3. Nettoyage des entités hors écran (sauf le joueur local)
+        // Dans Client::update()
+        auto entities = _ecs.getEntitiesByComponents<Position_t>();
+        for (Entity e : entities) {
+            if (e == _localPlayerEntity) continue;
+            if (_ecs.hasComponent<Star_t>(e)) continue;  // <-- Ignore les étoiles !
+            auto* pos = _ecs.getComponent<Position_t>(e);
+            if (pos && (pos->x < -100.f || pos->x > 2200.f || pos->y < -100.f || pos->y > 1200.f)) {
+                _ecs.killEntity(e);
+            }
+        }
+
+        // 4. Collisions client-side pour supprimer les projectiles immédiatement (meilleure réactivité visuelle)
+        auto projectiles = _ecs.getEntitiesByComponents<Projectile_t, Position_t, Collider_t>();
+        auto targets = _ecs.getEntitiesByComponents<Position_t, Collider_t>();
+
+        for (Entity p : projectiles) {
+            auto* projPos = _ecs.getComponent<Position_t>(p);
+            auto* projCol = _ecs.getComponent<Collider_t>(p);
+            if (!projPos || !projCol) continue;
+
+            for (Entity t : targets) {
+                if (p == t) continue;
+                if (t == _localPlayerEntity) continue;  // Le serveur gère les dommages sur le joueur
+                if (_ecs.hasComponent<Projectile_t>(t)) continue;  // Projectile vs projectile → ignoré ici
+
+                auto* targetPos = _ecs.getComponent<Position_t>(t);
+                auto* targetCol = _ecs.getComponent<Collider_t>(t);
+                if (!targetPos || !targetCol) continue;
+
+                // Test AABB simple
+                if (projPos->x < targetPos->x + targetCol->width &&
+                    projPos->x + projCol->width > targetPos->x &&
+                    projPos->y < targetPos->y + targetCol->height &&
+                    projPos->y + projCol->height > targetPos->y) {
+                    _ecs.killEntity(p);
+                    // Optionnel : jouer un son d'impact ici si tu veux un feedback immédiat
+                    // Entity hitSound = _ecs.createEntity();
+                    // _ecs.addComponent(hitSound, PlaySound_t{"hit.wav", 70.f});
+                    break;
+                }
+            }
+        }
+
+        // 5. Mise à jour des sons (toujours en dernier, car ils peuvent être déclenchés par applyUpdate ou collisions)
+        _soundSystem.update(dt);
     }
 }
 
@@ -159,7 +349,7 @@ void Client::applyUpdate(EntityUpdate &update)
         _ecs.addComponents<Position_t, Health_t, Drawable_t, Collider_t>(entity,
             {update.position.x, update.position.y},
             {update.health.current, update.health.max},
-            {"ship.png", sf::IntRect(0, 0, 64, 64), 10, true, 1.f, 0.f},
+            {"", sf::IntRect(0, 0, 64, 64), 10, true, 1.f, 0.f},
             Collider_t{64.f, 64.f, true, 2, 0});
 
     } else {
@@ -206,12 +396,12 @@ void Client::applyUpdate(EntityUpdate &update)
             if (update.tick == MAGIC_TICK_SHOOT_PLAYER) {
                 Factory::createProjectile(_ecs,
                     update.position.x + 64.f, update.position.y + 20.f,
-                    800.f, 0.f, 1, 25, "shoot.png",
+                    800.f, 0.f, 1, 25, "",
                     -1, "shoot.ogg");
             } else {
                 Factory::createProjectile(_ecs,
                     update.position.x - 20.f, update.position.y + 20.f,
-                    -800.f, 0.f, 2, 25, "shoot.png",
+                    -800.f, 0.f, 2, 25, "",
                     -1, "shoot.ogg");
             }
         }
@@ -246,7 +436,7 @@ void Client::processInput()
                     Factory::createProjectile(_ecs,
                         pos->x + 64.f, pos->y + 20.f,
                         800.f, 0.f,
-                        1, 25, "shoot.png",
+                        1, 25, "",
                         -1, "shoot.ogg");  // <-- le son est ajouté via la factory
 
                     _shootCooldown = SHOOT_DELAY;
@@ -263,6 +453,3 @@ void Client::processInput()
     }
     _UDP.inputsToSend.push(inputs);
 }
-
-
-#endif /* !CLIENT_HPP_ */

@@ -62,7 +62,6 @@ endif()
 
 # Gestion de Lua avec anti-boucle
 find_package(Lua 5.4 QUIET)
-
 if(LUA_FOUND)
     message(STATUS "Lua trouvée sur le système (version ${LUA_VERSION_STRING}). Utilisation de cette version.")
 else()
@@ -71,10 +70,9 @@ else()
     FetchContent_Declare(
         lua
         GIT_REPOSITORY https://github.com/marovira/lua.git
-        GIT_TAG main  # Ou un tag spécifique, e.g., "v5.4.6" si disponible
+        GIT_TAG master  # CHANGÉ : "master" au lieu de "main"
     )
     FetchContent_MakeAvailable(lua)
-    # Lua est maintenant disponible comme target 'lua' (ou 'lua::lua' selon repo)
     set(LUA_LIBRARIES lua)  # Pour link plus bas
     set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/include)  # Pour includes
 endif()

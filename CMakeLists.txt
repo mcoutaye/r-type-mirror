@@ -66,31 +66,17 @@ find_package(Lua 5.4 QUIET)
 if(LUA_FOUND)
     message(STATUS "Lua trouvée sur le système (version ${LUA_VERSION_STRING}). Utilisation de cette version.")
 else()
-    message(STATUS "Lua non trouvée sur le système.")
-    if(UNIX AND NOT APPLE)
-        if(NOT LUA_INSTALL_ATTEMPTED)
-            set(LUA_INSTALL_ATTEMPTED TRUE CACHE BOOL "Tentative d'installation Lua effectuée")
-            message(STATUS "Installation automatique de Lua via apt...")
-            execute_process(
-                COMMAND bash -c "
-                    sudo apt-get update -qq || true &&
-                    sudo apt-get clean &&
-                    sudo apt-get install -y -qq --reinstall lua5.4 liblua5.4-dev
-                "
-                RESULT_VARIABLE APT_RESULT
-            )
-            if(NOT APT_RESULT EQUAL 0)
-                message(FATAL_ERROR "Impossible d'installer Lua automatiquement. Lance manuellement 'sudo apt-get update && sudo apt-get install lua5.4 liblua5.4-dev'.")
-            endif()
-            execute_process(COMMAND ${CMAKE_COMMAND} ${CMAKE_SOURCE_DIR}
-                            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
-            return()
-        else()
-            message(FATAL_ERROR "Lua toujours non détectée après tentative d'installation. Vérifie manuellement : installe 'lua5.4 liblua5.4-dev' via apt, puis relance CMake dans un nouveau build dir. Vérifie aussi 'find /usr/include -name lua.h' (devrait être en /usr/include/lua5.4/lua.h).")
-        endif()
-    else()
-        message(FATAL_ERROR "Lua non trouvée et installation automatique non supportée sur cette plateforme. Veuillez installer Lua manuellement.")
-    endif()
+    message(STATUS "Lua non trouvée sur le système. Téléchargement et compilation via FetchContent...")
+    include(FetchContent)
+    FetchContent_Declare(
+        lua
+        GIT_REPOSITORY https://github.com/marovira/lua.git
+        GIT_TAG main  # Ou un tag spécifique, e.g., "v5.4.6" si disponible
+    )
+    FetchContent_MakeAvailable(lua)
+    # Lua est maintenant disponible comme target 'lua' (ou 'lua::lua' selon repo)
+    set(LUA_LIBRARIES lua)  # Pour link plus bas
+    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/include)  # Pour includes
 endif()
 
 # sol2 est header-only, donc on l'intègre toujours via FetchContent

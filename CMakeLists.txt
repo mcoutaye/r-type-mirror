@@ -76,26 +76,50 @@ else()
     )
     FetchContent_Populate(lua)  # Extract tar.gz
 
-    # Build Lua manuellement (official has makefile)
     if (WIN32)
-        execute_process(COMMAND nmake -f makefile.vc
-                        WORKING_DIRECTORY ${lua_SOURCE_DIR}
-                        RESULT_VARIABLE LUA_BUILD_RESULT
+        # Build static lib and executables with MSVC cl
+        execute_process(
+            COMMAND cl /MD /O2 /c /DLUA_BUILD_AS_DLL *.c
+            WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
+            RESULT_VARIABLE LUA_BUILD_RESULT
         )
+        if (NOT LUA_BUILD_RESULT EQUAL 0)
+            message(FATAL_ERROR "Lua compilation of sources failed!")
+        endif()
+
+        execute_process(
+            COMMAND lib /OUT:lua54.lib *.obj
+            WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
+            RESULT_VARIABLE LUA_BUILD_RESULT
+        )
+        if (NOT LUA_BUILD_RESULT EQUAL 0)
+            message(FATAL_ERROR "Lua static lib creation failed!")
+        endif()
+
+        # Optional: Build lua.exe if needed, but not required for linking
+        # execute_process(COMMAND cl /MD /O2 /c lua.c
+        #                 WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
+        #                 RESULT_VARIABLE LUA_BUILD_RESULT)
+        # execute_process(COMMAND link lua.obj lua54.lib /OUT:lua.exe
+        #                 WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
+        #                 RESULT_VARIABLE LUA_BUILD_RESULT)
+
+        # Set vars pour link/include
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/src/lua54.lib)
+        set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)
     else()
         execute_process(COMMAND make
                         WORKING_DIRECTORY ${lua_SOURCE_DIR}
                         RESULT_VARIABLE LUA_BUILD_RESULT
         )
-    endif()
-    if (NOT LUA_BUILD_RESULT EQUAL 0)
-        message(FATAL_ERROR "Lua build failed!")
-    endif()
+        if (NOT LUA_BUILD_RESULT EQUAL 0)
+            message(FATAL_ERROR "Lua build failed!")
+        endif()
 
-    # Set vars pour link/include
-    set(LUA_LIBRARIES ${lua_BINARY_DIR}/lua)  # Exe/lib selon build
-    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)
-endif()
+        # On Unix, make builds liblua.a (static)
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/src/liblua.a)
+        set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)
+    endif()
 
 # sol2 est header-only, donc on l'intègre toujours via FetchContent
 include(FetchContent)

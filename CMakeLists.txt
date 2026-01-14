@@ -60,8 +60,9 @@ else()
     FetchContent_MakeAvailable(SFML)
 endif()
 
-# Gestion de Lua avec anti-boucle
+# Gestion de Lua
 find_package(Lua 5.4 QUIET)
+
 if(LUA_FOUND)
     message(STATUS "Lua trouvée sur le système (version ${LUA_VERSION_STRING}). Utilisation de cette version.")
 else()
@@ -69,12 +70,14 @@ else()
     include(FetchContent)
     FetchContent_Declare(
         lua
-        GIT_REPOSITORY https://github.com/marovira/lua.git
-        GIT_TAG v5.4.0  # CHANGÉ : "master" au lieu de "main"
+        GIT_REPOSITORY https://github.com/eliasdaler/lua-cmake.git
+        GIT_TAG v5.4.0  # Tag stable
     )
     FetchContent_MakeAvailable(lua)
-    set(LUA_LIBRARIES lua)  # Pour link plus bas
-    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)  # Pour includes
+    set(LUA_LIBRARIES lua_static)  # Target créé par le repo
+    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)  # Headers ici
+    # Force include sur le target pour cross-platform
+    target_include_directories(lua_static INTERFACE ${lua_SOURCE_DIR}/src)
 endif()
 
 # sol2 est header-only, donc on l'intègre toujours via FetchContent

@@ -70,11 +70,11 @@ else()
     FetchContent_Declare(
         lua
         GIT_REPOSITORY https://github.com/marovira/lua.git
-        GIT_TAG master  # CHANGÉ : "master" au lieu de "main"
+        GIT_TAG v5.4.0  # CHANGÉ : "master" au lieu de "main"
     )
     FetchContent_MakeAvailable(lua)
     set(LUA_LIBRARIES lua)  # Pour link plus bas
-    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/include)  # Pour includes
+    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)  # Pour includes
 endif()
 
 # sol2 est header-only, donc on l'intègre toujours via FetchContent

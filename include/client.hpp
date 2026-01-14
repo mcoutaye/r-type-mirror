@@ -38,6 +38,9 @@ private:
     void onOpenOptions();
     void onResumeGame();
     void onBackToMainMenu();
+    void onVictory();
+    void onGameOver();
+    void onGoBack();
     void applyUpdate(EntityUpdate &update);
 
     std::unique_ptr<SceneManager> _sceneManager;
@@ -78,12 +81,14 @@ Client::Client(sf::IpAddress serverIp)
     _sceneManager->addScene("main_menu");
     _sceneManager->addScene("options_menu");
     _sceneManager->addScene("game");
+    _sceneManager->addScene("pause_menu");
+    _sceneManager->addScene("victory_menu");
+    _sceneManager->addScene("game_over_menu");
     _menuSystem.setSceneManager(std::make_unique<SceneManager>(*_sceneManager));
 
     _resourceManager.loadFont("default", "assets/font/Vipnagorgialla-Rg.ttf");
     _resourceManager.loadFont("title", "assets/font/Rostex-Outline.ttf");
 
-    // === CHARGEMENT DES SONS ===
     _soundSystem.loadSound("shoot.ogg", "assets/sound/shoot.ogg");
     _soundSystem.loadSound("enemy_death.ogg", "assets/sound/enemy_death.ogg");
     _soundSystem.loadSound("player_death.ogg", "assets/sound/player_death.ogg");
@@ -97,8 +102,7 @@ Client::Client(sf::IpAddress serverIp)
     _menuSystem.registerAction("start_game", [this]() { onStartGame(); });
     _menuSystem.registerAction("open_options", [this]() { onOpenOptions(); });
     _menuSystem.registerAction("resume_game", [this]() { onResumeGame(); });
-    _menuSystem.registerAction("back_to_main_menu", [this]() { onBackToMainMenu(); });
-
+   _menuSystem.registerAction("back", [this]() { onGoBack(); });
     initializeMenus();
     _sceneManager->setActiveScene("main_menu");
     Entity gameMusic = _ecs.createEntity();
@@ -136,10 +140,25 @@ void Client::onOpenOptions()
     _menuSystem.setEnabled(true);
 }
 
+void Client::onVictory()
+{
+    _sceneManager->setActiveScene("victory_menu");
+    _menuSystem.setEnabled(true);
+}
+
+void Client::onGameOver()
+{
+    _sceneManager->setActiveScene("game_over_menu");
+    _menuSystem.setEnabled(true);
+}
+
+void Client::onGoBack()
+{
+    _sceneManager->goBack();
+}
 
 void Client::initializeMenus()
 {
-    // Menu principal
     Menu mainMenu = {
         "main",
         {
@@ -154,12 +173,11 @@ void Client::initializeMenus()
         "menu_theme"
     };
 
-    // Menu options
     Menu optionsMenu = {
         "options",
         {
             {"Audio", {""}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false},
-            {"Back", {"back_to_main_menu"}, 960.f, 500.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false}
+            {"Back", {"back"}, 960.f, 500.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false}
         },
         "SETTINGS",
         960.f, 200.f,
@@ -168,13 +186,12 @@ void Client::initializeMenus()
         ""
     };
 
-    // Menu pause
     Menu pauseMenu = {
         "pause",
         {
-            {"Resume", {"resume_game"}, 960.f, 400.f, "default", 50, sf::Color::Green, sf::Color::Yellow, 1.1f, true, false},
+            {"Resume", {"resume_game"}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
             {"Settings", {"open_options"}, 960.f, 480.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
-            {"Quit", {"quit"}, 960.f, 560.f, "default", 50, sf::Color::Red, sf::Color::Yellow, 1.1f, true, false}
+            {"Quit", {"quit"}, 960.f, 560.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false}
         },
         "PAUSE",
         960.f, 300.f,
@@ -183,7 +200,30 @@ void Client::initializeMenus()
         ""
     };
 
-    // Création des entités pour le menu principal
+    Menu victoryMenu = {
+        "victory",
+        {
+            {"Quit", {"quit"}, 960.f, 600.f, "default", 50, sf::Color::Green, sf::Color::Yellow, 1.1f, true, true}
+        },
+        "VICTORY",
+        960.f, 300.f,
+        "title", 100, sf::Color::Green,
+        true,
+        ""
+    };
+
+    Menu gameOverMenu = {
+        "game_over",
+        {
+            {"Quit", {"quit"}, 960.f, 600.f, "default", 50, sf::Color::Red, sf::Color::Yellow, 1.1f, true, true}
+        },
+        "GAME OVER",
+        960.f, 300.f,
+        "title", 100, sf::Color::Red,
+        true,
+        ""
+    };
+
     std::vector<Entity> mainMenuEntities;
     mainMenuEntities.push_back(Factory::createMenuTitle(_ecs, mainMenu));
     for (const auto& item : mainMenu.items) {
@@ -191,7 +231,6 @@ void Client::initializeMenus()
     }
     _sceneEntities["main_menu"] = mainMenuEntities;
 
-    // Création des entités pour le menu options
     std::vector<Entity> optionsMenuEntities;
     optionsMenuEntities.push_back(Factory::createMenuTitle(_ecs, optionsMenu));
     for (const auto& item : optionsMenu.items) {
@@ -199,22 +238,33 @@ void Client::initializeMenus()
     }
     _sceneEntities["options_menu"] = optionsMenuEntities;
 
-    // Création des entités pour le menu pause
     std::vector<Entity> pauseMenuEntities;
     pauseMenuEntities.push_back(Factory::createMenuTitle(_ecs, pauseMenu));
     for (const auto& item : pauseMenu.items) {
         pauseMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
     }
     _sceneEntities["pause_menu"] = pauseMenuEntities;
+
+    std::vector<Entity> victoryMenuEntities;
+    victoryMenuEntities.push_back(Factory::createMenuTitle(_ecs, victoryMenu));
+    for (const auto& item : victoryMenu.items) {
+        victoryMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["victory_menu"] = victoryMenuEntities;
+
+    std::vector<Entity> gameOverMenuEntities;
+    gameOverMenuEntities.push_back(Factory::createMenuTitle(_ecs, gameOverMenu));
+    for (const auto& item : gameOverMenu.items) {
+        gameOverMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["game_over_menu"] = gameOverMenuEntities;
 }
 
 
 void Client::initializeGame()
 {
-    // Crée le starfield pour le jeu
     Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
 
-    // Crée la musique du jeu
     Entity gameMusic = _ecs.createEntity();
     _ecs.addComponent(gameMusic, BackgroundMusic_t{"game_theme", true, 40.f});
 }
@@ -222,9 +272,8 @@ void Client::initializeGame()
 void Client::update()
 {
     _timer.updateClock();
-    double dt = 1.0 / 60.0;  // 60 FPS fixe – tu peux utiliser _timer.getDeltaTime() si tu préfères variable
+    double dt = 1.0 / 60.0;
 
-    // === INPUTS & MENU : toujours actifs (nécessaire pour naviguer dans le menu et quitter à tout moment) ===
     _inputSystem.update(dt);
     _menuSystem.update(dt);
 
@@ -242,25 +291,27 @@ void Client::update()
         }
     }
 
-    // === GESTION DU MENU ===
-    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" || activeSceneId == "pause_menu") {
+    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" ||
+        activeSceneId == "pause_menu" || activeSceneId == "victory_menu" || activeSceneId == "game_over_menu") {
         _soundSystem.update(dt);
         return;
     }
 
-    // === MODE IN-GAME : tout ton code original, intact ===
     if (activeSceneId == "game") {
-        // 1. Réception et application des updates du serveur
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
+            _sceneManager->setActiveScene("pause_menu");
+            _menuSystem.setEnabled(true);
+            return;
+        }
+
         auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
         for (Entity e : stars) {
             auto* pos = _ecs.getComponent<Position_t>(e);
             auto* star = _ecs.getComponent<Star_t>(e);
             if (!pos || !star) continue;
 
-            // Déplace l'étoile vers la gauche
             pos->x -= star->speed * dt;
 
-            // Réapparition à droite si elle sort de l'écran
             if (pos->x < -10.f) {
                 pos->x = 1930.f;
                 pos->y = static_cast<float>(rand() % 1080);
@@ -273,22 +324,18 @@ void Client::update()
             }
         }
 
-        // 2. Mise à jour des systèmes physiques
         _moveSystem.update(dt);
 
-        // 3. Nettoyage des entités hors écran (sauf le joueur local)
-        // Dans Client::update()
         auto entities = _ecs.getEntitiesByComponents<Position_t>();
         for (Entity e : entities) {
             if (e == _localPlayerEntity) continue;
-            if (_ecs.hasComponent<Star_t>(e)) continue;  // <-- Ignore les étoiles !
+            if (_ecs.hasComponent<Star_t>(e)) continue;
             auto* pos = _ecs.getComponent<Position_t>(e);
             if (pos && (pos->x < -100.f || pos->x > 2200.f || pos->y < -100.f || pos->y > 1200.f)) {
                 _ecs.killEntity(e);
             }
         }
 
-        // 4. Collisions client-side pour supprimer les projectiles immédiatement (meilleure réactivité visuelle)
         auto projectiles = _ecs.getEntitiesByComponents<Projectile_t, Position_t, Collider_t>();
         auto targets = _ecs.getEntitiesByComponents<Position_t, Collider_t>();
 
@@ -299,28 +346,22 @@ void Client::update()
 
             for (Entity t : targets) {
                 if (p == t) continue;
-                if (t == _localPlayerEntity) continue;  // Le serveur gère les dommages sur le joueur
-                if (_ecs.hasComponent<Projectile_t>(t)) continue;  // Projectile vs projectile → ignoré ici
+                if (t == _localPlayerEntity) continue;
+                if (_ecs.hasComponent<Projectile_t>(t)) continue;
 
                 auto* targetPos = _ecs.getComponent<Position_t>(t);
                 auto* targetCol = _ecs.getComponent<Collider_t>(t);
                 if (!targetPos || !targetCol) continue;
 
-                // Test AABB simple
                 if (projPos->x < targetPos->x + targetCol->width &&
                     projPos->x + projCol->width > targetPos->x &&
                     projPos->y < targetPos->y + targetCol->height &&
                     projPos->y + projCol->height > targetPos->y) {
                     _ecs.killEntity(p);
-                    // Optionnel : jouer un son d'impact ici si tu veux un feedback immédiat
-                    // Entity hitSound = _ecs.createEntity();
-                    // _ecs.addComponent(hitSound, PlaySound_t{"hit.wav", 70.f});
                     break;
                 }
             }
         }
-
-        // 5. Mise à jour des sons (toujours en dernier, car ils peuvent être déclenchés par applyUpdate ou collisions)
         _soundSystem.update(dt);
     }
 }
@@ -340,12 +381,9 @@ void Client::applyUpdate(EntityUpdate &update)
     _soundSystem.update(1.0f / 60.f);
 
     if (serverToClientEntityRelation.find(update.entityId) == serverToClientEntityRelation.end()) {
-        // Entity does not exist for client, create it
         entity = _ecs.createEntity();
         serverToClientEntityRelation[update.entityId] = entity;
 
-        // Suppose entity is Player, but can be everything else.
-        // should add EntityType to EntityUpdate later.
         _ecs.addComponents<Position_t, Health_t, Drawable_t, Collider_t>(entity,
             {update.position.x, update.position.y},
             {update.health.current, update.health.max},
@@ -371,15 +409,11 @@ void Client::applyUpdate(EntityUpdate &update)
     if (update.tick == MAGIC_TICK_LOCAL_PLAYER) {
         _localPlayerEntity = entity;
     } else if (update.tick == MAGIC_TICK_DEATH_OTHER || update.tick == MAGIC_TICK_DEATH_PLAYER) {
-        // Entity died
         _ecs.killEntity(entity);
-        // Jouer un son d'explosion selon le type (approximation simple)
         if (_ecs.hasComponent<Projectile_t>(entity)) {
-            // C'était un projectile → petit hit
             Entity hitSound = _ecs.createEntity();
             _ecs.addComponent(hitSound, Factory::createSound("hit.ogg", 70.f));
         } else {
-            // Ennemi ou joueur → explosion
             Entity explosionSound = _ecs.createEntity();
             _ecs.addComponent(explosionSound, Factory::createSound("enemy_death.ogg", 90.f));
         }
@@ -392,7 +426,7 @@ void Client::applyUpdate(EntityUpdate &update)
             std::cout << "I killed entity " << update.entityId << "!" << std::endl;
         }
     } else if (update.tick == MAGIC_TICK_SHOOT_PLAYER || update.tick == MAGIC_TICK_SHOOT_ENEMY) {
-        if (entity != _localPlayerEntity) {  // On ne joue pas le son si c'est notre propre tir (déjà joué localement)
+        if (entity != _localPlayerEntity) {
             if (update.tick == MAGIC_TICK_SHOOT_PLAYER) {
                 Factory::createProjectile(_ecs,
                     update.position.x + 64.f, update.position.y + 20.f,
@@ -410,7 +444,7 @@ void Client::applyUpdate(EntityUpdate &update)
 
 void Client::render()
 {
-    _renderSystem.update(0); // dt is not used in render system
+    _renderSystem.update(0);
 }
 
 void Client::processInput()
@@ -432,12 +466,11 @@ void Client::processInput()
             if (_localPlayerEntity != -1) {
                 auto pos = _ecs.getComponent<Position_t>(_localPlayerEntity);
                 if (pos) {
-                    // Création du projectile + son
                     Factory::createProjectile(_ecs,
                         pos->x + 64.f, pos->y + 20.f,
                         800.f, 0.f,
                         1, 25, "",
-                        -1, "shoot.ogg");  // <-- le son est ajouté via la factory
+                        -1, "shoot.ogg");
 
                     _shootCooldown = SHOOT_DELAY;
                 }

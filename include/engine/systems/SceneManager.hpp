@@ -15,7 +15,6 @@ enum class SceneState { Active, Inactive };
 struct Scene {
     std::string id;
     SceneState state;
-    // Autres données spécifiques à la scène (ex: entités, musique, etc.)
 };
 
 class SceneManager {
@@ -25,43 +24,68 @@ public:
     void deactivateScene(const std::string& id);
     SceneState getSceneState(const std::string& id) const;
     const std::string& getActiveSceneId() const;
+    void goBack();
 
 private:
-    std::vector<std::string> _sceneStack;  // Ordre des scènes (pour la superposition)
-    std::unordered_map<std::string, Scene> _scenes;  // Scènes disponibles
-    std::string _activeSceneId;  // Scène actuellement active
+    std::vector<std::string> _sceneStack;
+    std::unordered_map<std::string, Scene> _scenes;
+    std::string _activeSceneId;
 };
 
-void SceneManager::addScene(const std::string& id) {
+void SceneManager::addScene(const std::string& id)
+{
     _scenes[id] = Scene{id, SceneState::Inactive};
 }
 
-void SceneManager::setActiveScene(const std::string& id) {
-    // Désactive la scène active précédente
+void SceneManager::setActiveScene(const std::string& id)
+{
+    if (_scenes.find(id) == _scenes.end()) return;
+
     if (!_activeSceneId.empty()) {
         _scenes[_activeSceneId].state = SceneState::Inactive;
     }
-    // Active la nouvelle scène
-    _scenes[id].state = SceneState::Active;
+
+    if (!_activeSceneId.empty()) {
+        _sceneStack.push_back(_activeSceneId);
+    }
+
     _activeSceneId = id;
-    // Ajoute à la pile si elle n'y est pas déjà
-    if (std::find(_sceneStack.begin(), _sceneStack.end(), id) == _sceneStack.end()) {
-        _sceneStack.push_back(id);
+    _scenes[id].state = SceneState::Active;
+}
+
+void SceneManager::goBack()
+{
+    if (_sceneStack.empty()) return;
+
+    if (!_activeSceneId.empty()) {
+        _scenes[_activeSceneId].state = SceneState::Inactive;
+    }
+
+    _activeSceneId = _sceneStack.back();
+    _sceneStack.pop_back();
+
+    if (!_activeSceneId.empty()) {
+        _scenes[_activeSceneId].state = SceneState::Active;
     }
 }
 
-void SceneManager::deactivateScene(const std::string& id) {
-    _scenes[id].state = SceneState::Inactive;
-    if (_activeSceneId == id) {
-        _activeSceneId.clear();
+void SceneManager::deactivateScene(const std::string& id)
+{
+    if (_scenes.find(id) != _scenes.end()) {
+        _scenes[id].state = SceneState::Inactive;
     }
 }
 
-SceneState SceneManager::getSceneState(const std::string& id) const {
+SceneState SceneManager::getSceneState(const std::string& id) const
+{
     auto it = _scenes.find(id);
-    return (it != _scenes.end()) ? it->second.state : SceneState::Inactive;
+    if (it != _scenes.end()) {
+        return it->second.state;
+    }
+    return SceneState::Inactive;
 }
 
-const std::string& SceneManager::getActiveSceneId() const {
+const std::string& SceneManager::getActiveSceneId() const
+{
     return _activeSceneId;
 }

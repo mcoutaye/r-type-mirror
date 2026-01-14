@@ -61,23 +61,40 @@ else()
 endif()
 
 # Gestion de Lua
+# Gestion de Lua
 find_package(Lua 5.4 QUIET)
 
 if(LUA_FOUND)
     message(STATUS "Lua trouvée sur le système (version ${LUA_VERSION_STRING}). Utilisation de cette version.")
 else()
-    message(STATUS "Lua non trouvée sur le système. Téléchargement et compilation via FetchContent...")
+    message(STATUS "Lua non trouvée sur le système. Téléchargement et compilation via FetchContent avec tar.gz...")
     include(FetchContent)
     FetchContent_Declare(
         lua
-        GIT_REPOSITORY https://github.com/eliasdaler/lua-cmake.git
-        GIT_TAG v5.4.0  # Tag stable
+        URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
+        URL_HASH MD5=7d5ea1d9cb6aa1b59ca3c08f09cef0e8  # Hash pour vérif (de site officiel)
     )
-    FetchContent_MakeAvailable(lua)
-    set(LUA_LIBRARIES lua_static)  # Target créé par le repo
-    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)  # Headers ici
-    # Force include sur le target pour cross-platform
-    target_include_directories(lua_static INTERFACE ${lua_SOURCE_DIR}/src)
+    FetchContent_Populate(lua)  # Extract tar.gz
+
+    # Build Lua manuellement (official has makefile)
+    if (WIN32)
+        execute_process(COMMAND nmake -f makefile.vc
+                        WORKING_DIRECTORY ${lua_SOURCE_DIR}
+                        RESULT_VARIABLE LUA_BUILD_RESULT
+        )
+    else()
+        execute_process(COMMAND make
+                        WORKING_DIRECTORY ${lua_SOURCE_DIR}
+                        RESULT_VARIABLE LUA_BUILD_RESULT
+        )
+    endif()
+    if (NOT LUA_BUILD_RESULT EQUAL 0)
+        message(FATAL_ERROR "Lua build failed!")
+    endif()
+
+    # Set vars pour link/include
+    set(LUA_LIBRARIES ${lua_BINARY_DIR}/lua)  # Exe/lib selon build
+    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)
 endif()
 
 # sol2 est header-only, donc on l'intègre toujours via FetchContent

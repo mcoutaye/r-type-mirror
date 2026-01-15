@@ -79,28 +79,15 @@ else()
 
     # Build Lua manuel
     message(STATUS "Building Lua...")
-    if (WIN32)
-        execute_process(COMMAND nmake -f makefile.vc
-                        WORKING_DIRECTORY ${lua_SOURCE_DIR}
-                        RESULT_VARIABLE LUA_BUILD_RESULT
-        )
+    if(WIN32)
+        target_compile_definitions(lua PRIVATE LUA_USE_WINDOWS)
     else()
-        execute_process(COMMAND make
-                        WORKING_DIRECTORY ${lua_SOURCE_DIR}
-                        RESULT_VARIABLE LUA_BUILD_RESULT
-        )
-    endif()
-    if (NOT LUA_BUILD_RESULT EQUAL 0)
-        message(FATAL_ERROR "Lua build failed! Code: ${LUA_BUILD_RESULT}")
+        target_compile_definitions(lua PRIVATE LUA_USE_POSIX LUA_USE_DLOPEN)
     endif()
 
-    # Set vars
-    if (WIN32)
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/lua.lib)
-    else()
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/liblua.a)
-    endif()
-    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR})
+    # Set vars pour l'intégration
+    set(LUA_LIBRARIES lua)
+    set(LUA_INCLUDE_DIR "${lua_SOURCE_DIR}/src")
 endif()
 
 # sol2

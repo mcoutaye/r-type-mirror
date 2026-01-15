@@ -18,7 +18,7 @@ if(UNIX AND NOT APPLE)
     check_include_file("X11/Xcursor/Xcursor.h" HAVE_XCURSOR_H)
     check_include_file("X11/extensions/Xrandr.h" HAVE_XRANDR_H)
     check_include_file("AL/al.h" HAVE_OPENAL_H)
-    check_include_file("lua5.4/lua.h" HAVE_LUA_H)  # Corrigé pour le chemin réel sur Ubuntu
+    check_include_file("lua5.4/lua.h" HAVE_LUA_H)
 
     set(MISSING_SFML_DEPS FALSE)
     if(NOT HAVE_XCURSOR_H OR NOT HAVE_XRANDR_H OR NOT HAVE_OPENAL_H)
@@ -67,17 +67,20 @@ if(LUA_FOUND)
 else()
     message(STATUS "Lua non trouvée. Téléchargement via URL tar.gz...")
     include(FetchContent)
+    cmake_policy(SET CMP0135 NEW)  # Fix warning deprecation on DOWNLOAD_EXTRACT_TIMESTAMP
+
     FetchContent_Declare(
         lua
-        URL https://www.lua.org/ftp/lua-5.4.0.tar.gz
-        URL_HASH MD5=164c78496543d09e4b42c3c5b8bec896  # Hash officiel pour vérif
+        URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
+        URL_HASH MD5=7d5ea1d9cb6aa1b59ca3c08f09cef0e8  # Hash officiel pour 5.4.6
+        DOWNLOAD_EXTRACT_TIMESTAMP TRUE  # Fix warning
     )
-    FetchContent_Populate(lua)  # Download et extract tar.gz
+    FetchContent_Populate(lua)  # Download et extract
 
-    # Build Lua manuel (makefile in source)
+    # Build Lua manuel
     message(STATUS "Building Lua...")
     if (WIN32)
-        execute_process(COMMAND nmake /f makefile.vc
+        execute_process(COMMAND nmake -f makefile.vc
                         WORKING_DIRECTORY ${lua_SOURCE_DIR}
                         RESULT_VARIABLE LUA_BUILD_RESULT
         )
@@ -91,11 +94,11 @@ else()
         message(FATAL_ERROR "Lua build failed! Code: ${LUA_BUILD_RESULT}")
     endif()
 
-    # Set vars pour link/include (adapté platform)
+    # Set vars
     if (WIN32)
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/lua.lib)  # Lib on Windows
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/lua.lib)
     else()
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/liblua.a)  # Lib on Unix
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/liblua.a)
     endif()
     set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR})
 endif()

@@ -122,6 +122,19 @@ inline Text_t createText(
     return t;
 }
 
+Entity createTextEntity(ECS& ecs, const std::string& text, float x, float y,
+                                const std::string& fontId = "default", uint32_t fontSize = 32,
+                                sf::Color color = sf::Color::White, bool centered = false)
+{
+    Entity textEntity = ecs.createEntity();
+    ecs.addComponents<Position_t, Text_t>(
+        textEntity,
+        Position_t{x, y},
+        createText(text, fontSize, color, centered, fontId)
+    );
+    return textEntity;
+}
+
 Entity createMenuTitle(ECS& ecs, const Menu& menu)
 {
     Entity titleEntity = ecs.createEntity();
@@ -133,7 +146,8 @@ Entity createMenuTitle(ECS& ecs, const Menu& menu)
     return titleEntity;
 }
 
-Entity createMenuItem(ECS& ecs, const MenuItem& item) {
+Entity createMenuItem(ECS& ecs, const MenuItem& item)
+{
     Entity menuItem = ecs.createEntity();
     ecs.addComponents<Position_t, Text_t, MenuItem_t, Highlight_t>(
         menuItem,

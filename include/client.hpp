@@ -26,6 +26,11 @@ public:
     void update();
     void render();
     void processInput();
+    void showScene(const std::string& id);
+    void showScenes(const std::vector<std::string>& sceneIds);
+    void hideScene(const std::string& id);
+    void hideScenes(const std::vector<std::string>& sceneIds);
+    void toggleScene(const std::string& id);
 
     Timer _timer;
     bool _running = true;
@@ -33,14 +38,17 @@ public:
 private:
     void initializeMenus();
     void initializeGame();
+    void initializeHUD();
     void onQuit();
     void onStartGame();
-    void onOpenOptions();
-    void onResumeGame();
+    void onToggleOptions();
     void onBackToMainMenu();
+    void onGoBack();
+    void onToggleHUD();
+    void onTogglePauseMenu();
     void onVictory();
     void onGameOver();
-    void onGoBack();
+    void updateHUD();
     void applyUpdate(EntityUpdate &update);
 
     std::unique_ptr<SceneManager> _sceneManager;
@@ -63,6 +71,8 @@ private:
     GameState _gameState = GameState::Menu;
 
     UdpClient _UDP;
+    int _score = 0;
+    int _lives = 3;
 };
 
 
@@ -100,13 +110,50 @@ Client::Client(sf::IpAddress serverIp)
 
     _menuSystem.registerAction("quit", [this]() { onQuit(); });
     _menuSystem.registerAction("start_game", [this]() { onStartGame(); });
-    _menuSystem.registerAction("open_options", [this]() { onOpenOptions(); });
-    _menuSystem.registerAction("resume_game", [this]() { onResumeGame(); });
-   _menuSystem.registerAction("back", [this]() { onGoBack(); });
+    _menuSystem.registerAction("toggle_options", [this]() { onToggleOptions(); });
+    _menuSystem.registerAction("back_to_main_menu", [this]() { onBackToMainMenu(); });
+    _menuSystem.registerAction("back", [this]() { onGoBack(); });
+    _menuSystem.registerAction("toggle_hud", [this]() { onToggleHUD(); });
+    _menuSystem.registerAction("toggle_pause", [this]() { onTogglePauseMenu(); });
     initializeMenus();
-    _sceneManager->setActiveScene("main_menu");
-    Entity gameMusic = _ecs.createEntity();
-    _ecs.addComponent(gameMusic, BackgroundMusic_t{"menu_theme", true, 40.f});
+    showScene("main_menu");
+    hideScenes({"game", "options_menu", "pause_menu", "victory_menu", "game_over_menu"});
+    _soundSystem.setCurrentMusic("menu_theme", true, 50.f);
+}
+
+void Client::showScene(const std::string& id)
+{
+    _sceneManager->setSceneVisibility(id, true);
+    _menuSystem.setEnabled(true);
+}
+
+void Client::showScenes(const std::vector<std::string>& sceneIds)
+{
+    _sceneManager->setScenesVisibility(sceneIds, true);
+    _menuSystem.setEnabled(true);
+}
+
+void Client::hideScene(const std::string& id)
+{
+    _sceneManager->setSceneVisibility(id, false);
+    if (_sceneManager->getTopSceneId() == "game") {
+        _menuSystem.setEnabled(false);
+    }
+}
+
+void Client::hideScenes(const std::vector<std::string>& sceneIds)
+{
+    _sceneManager->setScenesVisibility(sceneIds, false);
+    _menuSystem.setEnabled(true);
+    if (_sceneManager->getTopSceneId() == "game") {
+        _menuSystem.setEnabled(false);
+    }
+}
+
+void Client::toggleScene(const std::string& id)
+{
+    _sceneManager->toggleSceneVisibility(id);
+    _menuSystem.setEnabled(!_sceneManager->getVisibleScenes().empty());
 }
 
 void Client::onQuit()
@@ -116,46 +163,72 @@ void Client::onQuit()
 
 void Client::onStartGame()
 {
-    _gameState = GameState::InGame;
-    _sceneManager->setActiveScene("game");
-    _menuSystem.setEnabled(false);
+    hideScenes({"main_menu", "options_menu", "pause_menu", "victory_menu", "game_over_menu"});
+    showScene("game");
+    _soundSystem.setCurrentMusic("game_theme", true, 50.f);
     initializeGame();
 }
 
-void Client::onResumeGame()
+void Client::onToggleOptions()
 {
-    _sceneManager->setActiveScene("game");
-    _menuSystem.setEnabled(false);
+    hideScenes({"main_menu", "pause_menu", "victory_menu", "game_over_menu"});
+    toggleScene("options_menu");
+    if (_sceneManager->getSceneState("options_menu") == SceneState::Active) {
+        _menuSystem.setEnabled(true);
+    }
 }
 
 void Client::onBackToMainMenu()
 {
-    _sceneManager->setActiveScene("main_menu");
-    _menuSystem.setEnabled(true);
-}
-
-void Client::onOpenOptions()
-{
-    _sceneManager->setActiveScene("options_menu");
-    _menuSystem.setEnabled(true);
+    hideScenes({"options_menu", "pause_menu", "victory_menu", "game_over_menu"});
+    showScene("main_menu");
+    _soundSystem.setCurrentMusic("menu_theme", true, 50.f);
 }
 
 void Client::onVictory()
 {
-    _sceneManager->setActiveScene("victory_menu");
+    hideScenes({"main_menu", "options_menu", "pause_menu", "game_over_menu"});
+    showScene("victory_menu");
     _menuSystem.setEnabled(true);
 }
 
 void Client::onGameOver()
 {
-    _sceneManager->setActiveScene("game_over_menu");
+    hideScenes({"main_menu", "options_menu", "pause_menu", "victory_menu"});
+    showScene("game_over_menu");
     _menuSystem.setEnabled(true);
 }
 
 void Client::onGoBack()
 {
-    _sceneManager->goBack();
+    if (_sceneManager->getSceneState("game") == SceneState::Active) {
+        hideScenes({"main_menu", "options_menu", "victory_menu", "game_over_menu"});
+        _sceneManager->goBack("pause_menu");
+        _menuSystem.setEnabled(true);
+    } else {
+        hideScenes({"options_menu", "pause_menu", "victory_menu", "game_over_menu"});
+        _sceneManager->goBack("main_menu");
+        _menuSystem.setEnabled(true);
+        _soundSystem.setCurrentMusic("menu_theme", true, 50.f);
+    }
 }
+
+void Client::onToggleHUD()
+{
+    hideScenes({"main_menu", "options_menu", "pause_menu", "victory_menu", "game_over_menu"});
+    showScene("hud");
+}
+
+void Client::onTogglePauseMenu()
+{
+    hideScenes({"main_menu", "options_menu", "victory_menu", "game_over_menu"});
+    toggleScene("pause_menu");
+
+    if (_sceneManager->getSceneState("pause_menu") == SceneState::Active) {
+        _menuSystem.setEnabled(true);
+    }
+}
+
 
 void Client::initializeMenus()
 {
@@ -163,7 +236,7 @@ void Client::initializeMenus()
         "main",
         {
             {"Play", {"start_game"}, 960.f, 400.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
-            {"Settings", {"open_options"}, 960.f, 520.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
+            {"Settings", {"toggle_options"}, 960.f, 520.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
             {"Quit", {"quit"}, 960.f, 640.f, "default", 64, sf::Color::White, sf::Color::Yellow, 1.2f, true, true},
         },
         "R-TYPE",
@@ -189,8 +262,8 @@ void Client::initializeMenus()
     Menu pauseMenu = {
         "pause",
         {
-            {"Resume", {"resume_game"}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
-            {"Settings", {"open_options"}, 960.f, 480.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
+            {"Resume", {"toggle_pause"}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
+            {"Settings", {"toggle_options"}, 960.f, 480.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
             {"Quit", {"quit"}, 960.f, 560.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false}
         },
         "PAUSE",
@@ -260,13 +333,40 @@ void Client::initializeMenus()
     _sceneEntities["game_over_menu"] = gameOverMenuEntities;
 }
 
+void Client::initializeHUD()
+{
+    Entity scoreEntity = Factory::createTextEntity(_ecs, "Score: 0", 50, 50, "default", 32, sf::Color::White, false);
+    Entity livesEntity = Factory::createTextEntity(_ecs, "Vies: 3", 50, 100, "default", 32, sf::Color::White, false);
+
+    _sceneEntities["hud"] = {scoreEntity, livesEntity};
+}
 
 void Client::initializeGame()
 {
     Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
 
+    initializeHUD();
+
     Entity gameMusic = _ecs.createEntity();
     _ecs.addComponent(gameMusic, BackgroundMusic_t{"game_theme", true, 40.f});
+}
+
+void Client::updateHUD()
+{
+    for (Entity e : _sceneEntities["hud"]) {
+        if (auto* text = _ecs.getComponent<Text_t>(e)) {
+            if (std::string(text->text).find("Score:") != std::string::npos) {
+                std::string scoreText = "Score: " + std::to_string(_score);
+                std::memset(text->text, 0, sizeof(text->text));
+                std::strncpy(text->text, scoreText.c_str(), sizeof(text->text) - 1);
+            }
+            else if (std::string(text->text).find("Vies:") != std::string::npos) {
+                std::string livesText = "Vies: " + std::to_string(_lives);
+                std::memset(text->text, 0, sizeof(text->text));
+                std::strncpy(text->text, livesText.c_str(), sizeof(text->text) - 1);
+            }
+        }
+    }
 }
 
 void Client::update()
@@ -277,30 +377,25 @@ void Client::update()
     _inputSystem.update(dt);
     _menuSystem.update(dt);
 
-    std::string activeSceneId = _sceneManager->getActiveSceneId();
+    const std::vector<std::string>& visibleScenes = _sceneManager->getVisibleScenes();
 
     for (auto& [sceneId, entities] : _sceneEntities) {
-        bool isActive = (sceneId == activeSceneId);
+        bool isVisible = std::find(visibleScenes.begin(), visibleScenes.end(), sceneId) != visibleScenes.end();
         for (Entity e : entities) {
             if (auto* text = _ecs.getComponent<Text_t>(e)) {
-                text->visible = isActive;
+                text->visible = isVisible;
             }
             if (auto* drawable = _ecs.getComponent<Drawable_t>(e)) {
-                drawable->visible = isActive;
+                drawable->visible = isVisible;
             }
         }
     }
 
-    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" ||
-        activeSceneId == "pause_menu" || activeSceneId == "victory_menu" || activeSceneId == "game_over_menu") {
-        _soundSystem.update(dt);
-        return;
-    }
+    bool isGameActive = _sceneManager->getSceneState("game") == SceneState::Active;
 
-    if (activeSceneId == "game") {
+    if (isGameActive) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
-            _sceneManager->setActiveScene("pause_menu");
-            _menuSystem.setEnabled(true);
+            onTogglePauseMenu();
             return;
         }
 
@@ -362,6 +457,7 @@ void Client::update()
                 }
             }
         }
+        updateHUD();
         _soundSystem.update(dt);
     }
 }
@@ -449,6 +545,10 @@ void Client::render()
 
 void Client::processInput()
 {
+    if (_sceneManager->getSceneState("options_menu") == SceneState::Active || _sceneManager->getSceneState("pause_menu") == SceneState::Active) {
+        return;
+    }
+
     InputState inputs = {0, 0, 0, 0, 0, 0};
     inputs.tick = _timer.getCurrentFrame();
     _inputSystem.update(0);

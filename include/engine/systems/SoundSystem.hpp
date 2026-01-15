@@ -26,6 +26,7 @@ public:
 
     // Charge une musique (streaming, pour les gros fichiers)
     bool loadMusic(const std::string& musicId, const std::string& filename);
+    void setCurrentMusic(const std::string& musicId, bool looping = true, float volume = 50.f);
 
 private:
     void processPlaySoundTriggers();
@@ -113,6 +114,37 @@ bool SoundSystem::loadMusic(const std::string& musicId, const std::string& filen
     _musicPaths[musicId] = filename;
     return true;  // On vérifie l'existence du fichier plus tard
 }
+
+void SoundSystem::setCurrentMusic(const std::string& musicId, bool looping, float volume)
+{
+    // Si la musique demandée est différente de celle en cours
+    if (_currentMusicId != musicId) {
+        // Arrête la musique actuelle
+        _currentMusic.stop();
+
+        // Charge et joue la nouvelle musique
+        auto it = _musicPaths.find(musicId);
+        if (it == _musicPaths.end()) {
+            std::cerr << "Music not loaded: " << musicId << std::endl;
+            return;
+        }
+
+        if (!_currentMusic.openFromFile(it->second)) {
+            std::cerr << "Failed to open music: " << it->second << std::endl;
+            return;
+        }
+
+        _currentMusic.setVolume(volume);
+        _currentMusic.setLoop(looping);
+        _currentMusic.play();
+        _currentMusicId = musicId;
+    } else {
+        // Si c'est la même musique, on met juste à jour le volume et le loop
+        _currentMusic.setVolume(volume);
+        _currentMusic.setLoop(looping);
+    }
+}
+
 
 void SoundSystem::processBackgroundMusic() {
     auto entities = _ecs.getEntitiesByComponents<BackgroundMusic_t>();

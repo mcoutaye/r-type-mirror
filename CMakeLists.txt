@@ -65,19 +65,19 @@ find_package(Lua 5.4 QUIET)
 if(LUA_FOUND)
     message(STATUS "Lua trouvée sur le système (version ${LUA_VERSION_STRING}). Utilisation de cette version.")
 else()
-    message(STATUS "Lua non trouvée sur le système. Téléchargement et compilation via FetchContent...")
+    message(STATUS "Lua non trouvée. Téléchargement via URL tar.gz...")
     include(FetchContent)
     FetchContent_Declare(
         lua
-        GIT_REPOSITORY https://github.com/marovira/lua.git
-        GIT_TAG v5.4.0
+        URL https://www.lua.org/ftp/lua-5.4.0.tar.gz
+        URL_HASH MD5=164c78496543d09e4b42c3c5b8bec896  # Hash officiel pour vérif
     )
-    FetchContent_Populate(lua)  # Extract seulement, pas MakeAvailable car pas de CMakeLists in repo
+    FetchContent_Populate(lua)  # Download et extract tar.gz
 
-    # Build Lua manuellement (makefile)
+    # Build Lua manuel (makefile in source)
     message(STATUS "Building Lua...")
     if (WIN32)
-        execute_process(COMMAND nmake -f makefile.vc
+        execute_process(COMMAND nmake /f makefile.vc
                         WORKING_DIRECTORY ${lua_SOURCE_DIR}
                         RESULT_VARIABLE LUA_BUILD_RESULT
         )
@@ -88,13 +88,14 @@ else()
         )
     endif()
     if (NOT LUA_BUILD_RESULT EQUAL 0)
-        message(FATAL_ERROR "Lua build failed!")
+        message(FATAL_ERROR "Lua build failed! Code: ${LUA_BUILD_RESULT}")
     endif()
 
+    # Set vars pour link/include (adapté platform)
     if (WIN32)
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/lua.lib)
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/lua.lib)  # Lib on Windows
     else()
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/liblua.a)
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/liblua.a)  # Lib on Unix
     endif()
     set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR})
 endif()

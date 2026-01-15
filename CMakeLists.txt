@@ -72,7 +72,7 @@ else()
     FetchContent_Declare(
         lua
         URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
-        URL_HASH MD5=7d5ea1d9cb6aa1b59ca3c08f09cef0e8  # Hash officiel pour 5.4.6
+        URL_HASH MD5=25a429319dff20dfbfb9956c2b5be911  # Hash officiel pour 5.4.6
         DOWNLOAD_EXTRACT_TIMESTAMP TRUE  # Fix warning
     )
     FetchContent_Populate(lua)  # Download et extract

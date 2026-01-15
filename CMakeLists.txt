@@ -36,7 +36,7 @@ if(UNIX AND NOT APPLE)
             RESULT_VARIABLE APT_RESULT
         )
         if(NOT APT_RESULT EQUAL 0)
-            message(FATAL_ERROR "Impossible d'installer les dépendances SFML automatiquement. Lance manuellement 'sudo apt-get update && sudo apt-get install libxcursor-dev ...' (liste complète ci-dessus).")
+            message(FATAL_ERROR "Impossible d'installer les dépendances SFML automatiquement.")
         endif()
         execute_process(COMMAND ${CMAKE_COMMAND} ${CMAKE_SOURCE_DIR}
                         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -50,78 +50,56 @@ if(SFML_FOUND)
     message(STATUS "SFML trouvée sur le système (version ${SFML_VERSION}). Utilisation de cette version.")
 else()
     message(STATUS "SFML non trouvée sur le système. Téléchargement et compilation via FetchContent...")
-
     include(FetchContent)
     FetchContent_Declare(
         SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
-        GIT_TAG        2.6.1
+        GIT_TAG 2.6.1
     )
     FetchContent_MakeAvailable(SFML)
 endif()
 
-# Gestion de Lua
 # Gestion de Lua
 find_package(Lua 5.4 QUIET)
 
 if(LUA_FOUND)
     message(STATUS "Lua trouvée sur le système (version ${LUA_VERSION_STRING}). Utilisation de cette version.")
 else()
-    message(STATUS "Lua non trouvée sur le système. Téléchargement et compilation via FetchContent avec tar.gz...")
+    message(STATUS "Lua non trouvée sur le système. Téléchargement et compilation via FetchContent...")
     include(FetchContent)
     FetchContent_Declare(
         lua
-        URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
-        URL_HASH MD5=25a429319dff20dfbfb9956c2b5be911  # Correct MD5 hash from official source
+        GIT_REPOSITORY https://github.com/marovira/lua.git
+        GIT_TAG v5.4.0
     )
-    FetchContent_Populate(lua)  # Extract tar.gz
+    FetchContent_Populate(lua)  # Extract seulement, pas MakeAvailable car pas de CMakeLists in repo
 
+    # Build Lua manuellement (makefile)
+    message(STATUS "Building Lua...")
     if (WIN32)
-        # Build static lib and executables with MSVC cl
-        execute_process(
-            COMMAND cl /MD /O2 /c /DLUA_BUILD_AS_DLL *.c
-            WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
-            RESULT_VARIABLE LUA_BUILD_RESULT
+        execute_process(COMMAND nmake -f makefile.vc
+                        WORKING_DIRECTORY ${lua_SOURCE_DIR}
+                        RESULT_VARIABLE LUA_BUILD_RESULT
         )
-        if (NOT LUA_BUILD_RESULT EQUAL 0)
-            message(FATAL_ERROR "Lua compilation of sources failed!")
-        endif()
-
-        execute_process(
-            COMMAND lib /OUT:lua54.lib *.obj
-            WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
-            RESULT_VARIABLE LUA_BUILD_RESULT
-        )
-        if (NOT LUA_BUILD_RESULT EQUAL 0)
-            message(FATAL_ERROR "Lua static lib creation failed!")
-        endif()
-
-        # Optional: Build lua.exe if needed, but not required for linking
-        # execute_process(COMMAND cl /MD /O2 /c lua.c
-        #                 WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
-        #                 RESULT_VARIABLE LUA_BUILD_RESULT)
-        # execute_process(COMMAND link lua.obj lua54.lib /OUT:lua.exe
-        #                 WORKING_DIRECTORY ${lua_SOURCE_DIR}/src
-        #                 RESULT_VARIABLE LUA_BUILD_RESULT)
-
-        # Set vars pour link/include
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/src/lua54.lib)
-        set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)
     else()
         execute_process(COMMAND make
                         WORKING_DIRECTORY ${lua_SOURCE_DIR}
                         RESULT_VARIABLE LUA_BUILD_RESULT
         )
-        if (NOT LUA_BUILD_RESULT EQUAL 0)
-            message(FATAL_ERROR "Lua build failed!")
-        endif()
-
-        # On Unix, make builds liblua.a (static)
-        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/src/liblua.a)
-        set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR}/src)
+    endif()
+    if (NOT LUA_BUILD_RESULT EQUAL 0)
+        message(FATAL_ERROR "Lua build failed!")
     endif()
 
-# sol2 est header-only, donc on l'intègre toujours via FetchContent
+    if (WIN32)
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/lua.lib)
+    else()
+        set(LUA_LIBRARIES ${lua_SOURCE_DIR}/liblua.a)
+    endif()
+    set(LUA_INCLUDE_DIR ${lua_SOURCE_DIR})
+endif()
+
+# sol2
 include(FetchContent)
 FetchContent_Declare(
     sol2
@@ -133,6 +111,7 @@ FetchContent_MakeAvailable(sol2)
 add_subdirectory(src/server)
 add_subdirectory(src/client)
 
+# Customs targets (inchangés)
 add_custom_target(myclean
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target server_clean
     COMMENT "Nettoie les fichiers objets"

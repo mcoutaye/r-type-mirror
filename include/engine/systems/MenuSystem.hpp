@@ -115,7 +115,7 @@ void MenuSystem::update(double dt)
         }
     }
 
-    _actionTriggered = false;  // Reset au début du cycle
+    // NE PAS réinitialiser _actionTriggered ici car il peut avoir été mis à true par handleMouseInput()
     
     handleInput();
     handleSliders();
@@ -125,7 +125,7 @@ void MenuSystem::update(double dt)
     
     if (_actionTriggered) {
         executeSelectedAction();
-        _actionTriggered = false;
+        _actionTriggered = false;  // Reset après exécution
     }
 }
 
@@ -133,6 +133,9 @@ void MenuSystem::handleInput()
 {
     // Ne gère les inputs que si MenuSystem est activé
     if (!_enabled) return;
+
+    // Si on attend une touche pour un keybind, ne traite AUCUN input normal
+    if (_waitingForKeyEntity != static_cast<Entity>(-1)) return;
 
     // Ne traite les inputs que si le cooldown est écoulé
     if (_inputCooldown > 0.0f) return;
@@ -274,6 +277,51 @@ void MenuSystem::handleMouseInput(const sf::Event& event)
 {
     if (!_enabled || !_window) return;
     
+    // Gestion de l'entrée de touche pour les keybinds (PRIORITAIRE)
+    if (_waitingForKeyEntity != static_cast<Entity>(-1)) {
+        auto* keybind = _ecs.getComponent<KeybindButton_t>(_waitingForKeyEntity);
+        if (!keybind) {
+            _waitingForKeyEntity = static_cast<Entity>(-1);
+            _waitingForKeyRelease = false;
+            return;
+        }
+        
+        // Attend que les touches d'activation soient relâchées d'abord
+        if (_waitingForKeyRelease) {
+            if (event.type == sf::Event::KeyReleased) {
+                if (event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Return) {
+                    _waitingForKeyRelease = false;  // OK, on peut capturer maintenant
+                }
+            }
+            return;  // Ne capture rien tant que pas relâché
+        }
+        
+        // Maintenant on peut capturer une nouvelle touche
+        if (event.type == sf::Event::KeyPressed) {
+            // Escape pour annuler
+            if (event.key.code == sf::Keyboard::Escape) {
+                keybind->isWaitingForInput = false;
+                _waitingForKeyEntity = static_cast<Entity>(-1);
+                _waitingForKeyRelease = false;
+                _inputCooldown = _inputDelay;
+                return;
+            }
+            
+            // Sauvegarde la nouvelle touche
+            keybind->currentKey = event.key.code;
+            keybind->isWaitingForInput = false;
+            
+            // Met à jour le mapping
+            _inputSystem.setKeyMapping(event.key.code, keybind->action);
+            
+            _waitingForKeyEntity = static_cast<Entity>(-1);
+            _waitingForKeyRelease = false;
+            _inputCooldown = _inputDelay * 2.0f;
+        }
+        return;
+    }
+    
+    // Gestion des clics souris (seulement si on n'attend pas de touche)
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(*_window);
         
@@ -298,25 +346,13 @@ void MenuSystem::handleMouseInput(const sf::Event& event)
                 if (keybind) {
                     keybind->isWaitingForInput = true;
                     _waitingForKeyEntity = entity;
+                    _waitingForKeyRelease = false;  // Clic souris = pas besoin d'attendre
                 } else {
                     // Sinon exécute l'action
                     _actionTriggered = true;
                 }
                 return;
             }
-        }
-    }
-    
-    // Gestion de l'entrée de touche pour les keybinds
-    if (_waitingForKeyEntity != static_cast<Entity>(-1)) {
-        if (event.type == sf::Event::KeyPressed) {
-            auto* keybind = _ecs.getComponent<KeybindButton_t>(_waitingForKeyEntity);
-            if (keybind) {
-                keybind->currentKey = event.key.code;
-                keybind->isWaitingForInput = false;
-                _inputSystem.setKeyMapping(event.key.code, keybind->action);
-            }
-            _waitingForKeyEntity = static_cast<Entity>(-1);
         }
     }
 }
@@ -362,70 +398,23 @@ void MenuSystem::handleSliders()
 
 void MenuSystem::handleKeybindButtons()
 {
-    // Si on attend une touche
-    if (_waitingForKeyEntity != static_cast<Entity>(-1)) {
-        auto* keybind = _ecs.getComponent<KeybindButton_t>(_waitingForKeyEntity);
-        if (!keybind) {
-            _waitingForKeyEntity = static_cast<Entity>(-1);
-            _waitingForKeyRelease = false;
-            return;
-        }
-        
-        // Si on attend que la touche d'activation soit relâchée
-        if (_waitingForKeyRelease) {
-            // Vérifie si Espace et Entrée sont relâchés
-            bool spacePressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
-            bool enterPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Return);
-            
-            if (!spacePressed && !enterPressed) {
-                _waitingForKeyRelease = false;  // Touche relâchée, on peut capturer maintenant
-            }
-            return;  // Ne capture pas encore de touche
-        }
-        
-        // En mode attente, on capture directement les touches sans passer par InputSystem
-        // pour éviter que les actions (comme Quit) se déclenchent
-        
-        // Vérifie toutes les touches directement
-        for (int k = sf::Keyboard::A; k < sf::Keyboard::KeyCount; ++k) {
-            sf::Keyboard::Key key = static_cast<sf::Keyboard::Key>(k);
-            if (sf::Keyboard::isKeyPressed(key)) {
-                // Sauvegarde la touche
-                keybind->currentKey = key;
-                keybind->isWaitingForInput = false;
-                
-                // Met à jour le mapping APRÈS avoir capturé la touche
-                // pour éviter que l'action se déclenche immédiatement
-                _inputSystem.setKeyMapping(key, keybind->action);
-                
-                _waitingForKeyEntity = static_cast<Entity>(-1);
-                _inputCooldown = _inputDelay * 2.0f; // Double cooldown pour éviter activation immédiate
-                return;
-            }
-        }
-        
-        // Escape pour annuler (en vérifiant directement la touche, pas l'action)
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            keybind->isWaitingForInput = false;
-            _waitingForKeyEntity = static_cast<Entity>(-1);
-            _inputCooldown = _inputDelay;
-        }
-        return;
-    }
+    // Cette fonction gère uniquement l'activation du mode keybind par clavier (Enter/Space)
+    // La capture de touche elle-même est gérée par handleMouseInput via les événements
+    
+    // Si on attend déjà une touche, ne rien faire (géré par handleMouseInput)
+    if (_waitingForKeyEntity != static_cast<Entity>(-1)) return;
     
     // Si l'élément sélectionné est un keybind et qu'on appuie sur Enter/Space
     if (_currentSelection >= 0 && _currentSelection < static_cast<int>(_menuItems.size())) {
         Entity selectedEntity = _menuItems[_currentSelection];
         auto* keybind = _ecs.getComponent<KeybindButton_t>(selectedEntity);
         
-        // Note: On ne vérifie PAS le cooldown ici car handleInput() l'a déjà mis
-        // et on veut quand même activer le mode remapping
         if (keybind && _actionTriggered) {
             keybind->isWaitingForInput = true;
             _waitingForKeyEntity = selectedEntity;
             _waitingForKeyRelease = true;  // Attend que Space/Enter soit relâché
             _inputCooldown = _inputDelay;
-            _actionTriggered = false; // Consomme l'action pour éviter d'exécuter autre chose
+            _actionTriggered = false; // Consomme l'action
         }
     }
 }

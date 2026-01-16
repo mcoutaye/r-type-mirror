@@ -29,6 +29,7 @@ struct MenuItem {
     float scale;
     bool centered;
     bool visible = true;
+    bool isSelectable = true;  // Peut être navigué et sélectionné
 };
 
 struct Menu {

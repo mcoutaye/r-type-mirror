@@ -14,15 +14,9 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Joystick.hpp>
 #include <map>
+#include <set>
 
-enum class GameAction {
-    MoveUp,
-    MoveDown,
-    MoveLeft,
-    MoveRight,
-    Shoot,
-    Quit
-};
+// GameAction est maintenant défini dans Components.hpp
 
 class InputSystem : public ISystem {
 public:
@@ -34,9 +28,22 @@ public:
     bool isActionActive(GameAction action) const;
     bool wasActionPressed(GameAction action) const;
     bool wasActionReleased(GameAction action) const;
+    
+    // Key remapping methods
     void setKeyMapping(sf::Keyboard::Key key, GameAction action);
+    void removeKeyMapping(sf::Keyboard::Key key);
+    void clearKeyMappings();
+    sf::Keyboard::Key getKeyForAction(GameAction action) const;
+    
+    // Joystick remapping methods
     void setJoystickButtonMapping(unsigned int button, GameAction action);
+    void removeJoystickButtonMapping(unsigned int button);
+    void clearJoystickButtonMappings();
+    unsigned int getJoystickButtonForAction(GameAction action) const;
+    
+    // Settings
     void setDeadzone(float deadzone);
+    void resetToDefaultMappings();
 
 private:
     void setDefaultMappings();
@@ -55,7 +62,7 @@ private:
 
 InputSystem::InputSystem(ECS& ecs) : ISystem(ecs)
 {
-    for (int i = static_cast<int>(GameAction::MoveUp); i <= static_cast<int>(GameAction::Quit); ++i)
+    for (int i = static_cast<int>(GameAction::MoveUp); i <= static_cast<int>(GameAction::MenuSelect); ++i)
     {
         GameAction action = static_cast<GameAction>(i);
         m_currentActionStates[action] = false;
@@ -72,26 +79,114 @@ void InputSystem::setDefaultMappings()
     m_keyMappings[sf::Keyboard::Left] = GameAction::MoveLeft;
     m_keyMappings[sf::Keyboard::Right] = GameAction::MoveRight;
     m_keyMappings[sf::Keyboard::Space] = GameAction::Shoot;
-    m_keyMappings[sf::Keyboard::Escape] = GameAction::Quit;
+    m_keyMappings[sf::Keyboard::Escape] = GameAction::Pause;  // Escape = Pause en jeu
     m_keyMappings[sf::Keyboard::Z] = GameAction::MoveUp;
     m_keyMappings[sf::Keyboard::S] = GameAction::MoveDown;
     m_keyMappings[sf::Keyboard::Q] = GameAction::MoveLeft;
     m_keyMappings[sf::Keyboard::D] = GameAction::MoveRight;
+    m_keyMappings[sf::Keyboard::Enter] = GameAction::MenuSelect;
+    m_keyMappings[sf::Keyboard::P] = GameAction::Pause;  // P aussi pour Pause
 
     m_joystickButtonMappings[0] = GameAction::Shoot;
     m_joystickButtonMappings[1] = GameAction::Shoot;
-    m_joystickButtonMappings[6] = GameAction::Quit;
-    m_joystickButtonMappings[7] = GameAction::Quit;
+    m_joystickButtonMappings[6] = GameAction::Pause;  // Start/Options = Pause
+    m_joystickButtonMappings[7] = GameAction::Pause;
 }
 
 void InputSystem::setKeyMapping(sf::Keyboard::Key key, GameAction action)
 {
+    // Touches protégées qui ne peuvent jamais être supprimées (flèches, Enter)
+    static const std::set<sf::Keyboard::Key> protectedKeys = {
+        sf::Keyboard::Up,
+        sf::Keyboard::Down,
+        sf::Keyboard::Left,
+        sf::Keyboard::Right,
+        sf::Keyboard::Return
+    };
+    
+    // 1. Retire cette touche de toute autre action où elle pourrait être
+    //    (pour qu'une touche ne puisse pas faire deux choses)
+    for (auto it = m_keyMappings.begin(); it != m_keyMappings.end();) {
+        if (it->first == key && it->second != action) {
+            it = m_keyMappings.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    
+    // 2. Retire les anciennes touches NON-PROTÉGÉES de cette action
+    //    (pour remplacer la touche remappable précédente)
+    for (auto it = m_keyMappings.begin(); it != m_keyMappings.end();) {
+        if (it->second == action && it->first != key && 
+            protectedKeys.find(it->first) == protectedKeys.end()) {
+            it = m_keyMappings.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    
+    // 3. Ajoute le nouveau mapping
     m_keyMappings[key] = action;
+}
+
+void InputSystem::removeKeyMapping(sf::Keyboard::Key key)
+{
+    m_keyMappings.erase(key);
+}
+
+void InputSystem::clearKeyMappings()
+{
+    m_keyMappings.clear();
+}
+
+sf::Keyboard::Key InputSystem::getKeyForAction(GameAction action) const
+{
+    for (const auto& [key, act] : m_keyMappings) {
+        if (act == action) {
+            return key;
+        }
+    }
+    return sf::Keyboard::Unknown;
 }
 
 void InputSystem::setJoystickButtonMapping(unsigned int button, GameAction action)
 {
+    // Remove this button from other actions first
+    for (auto it = m_joystickButtonMappings.begin(); it != m_joystickButtonMappings.end();) {
+        if (it->second == action && it->first != button) {
+            it = m_joystickButtonMappings.erase(it);
+        } else {
+            ++it;
+        }
+    }
     m_joystickButtonMappings[button] = action;
+}
+
+void InputSystem::removeJoystickButtonMapping(unsigned int button)
+{
+    m_joystickButtonMappings.erase(button);
+}
+
+void InputSystem::clearJoystickButtonMappings()
+{
+    m_joystickButtonMappings.clear();
+}
+
+unsigned int InputSystem::getJoystickButtonForAction(GameAction action) const
+{
+    for (const auto& [button, act] : m_joystickButtonMappings) {
+        if (act == action) {
+            return button;
+        }
+    }
+    return static_cast<unsigned int>(-1);
+}
+
+void InputSystem::resetToDefaultMappings()
+{
+    clearKeyMappings();
+    clearJoystickButtonMappings();
+    setDefaultMappings();
 }
 
 void InputSystem::setDeadzone(float deadzone)

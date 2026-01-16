@@ -17,8 +17,8 @@ int main(int ac, char **av)
 
     while (client._running) {
         client._timer.updateClock();
-        client.processInput();
-        client.update();
+        client.update();       // Met à jour les inputs et la logique du jeu
+        client.processInput(); // Traite les events SFML et envoie les inputs au serveur
         client.render();
     }
 }

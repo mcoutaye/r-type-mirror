@@ -17,6 +17,7 @@
 #include "engine/systems/SoundSystem.hpp"
 #include "engine/systems/MenuSystem.hpp"
 #include "engine/systems/SceneManager.hpp"
+#include "engine/systems/ParticleSystem.hpp"
 #include <memory>
 
 class Client {
@@ -36,6 +37,9 @@ private:
     void onQuit();
     void onStartGame();
     void onOpenOptions();
+    void onOpenAudio();
+    void onOpenKeybindings();
+    void onBackToOptions();
     void onResumeGame();
     void onBackToMainMenu();
     void applyUpdate(EntityUpdate &update);
@@ -54,7 +58,8 @@ private:
     RenderSystem _renderSystem{_ecs, _window, _resourceManager};
     MoveSystem _moveSystem{_ecs};
     SoundSystem _soundSystem{_ecs};
-    MenuSystem _menuSystem{_ecs};
+    MenuSystem _menuSystem{_ecs, _inputSystem};
+    ParticleSystem _particleSystem{_ecs, 3000};
 
     enum class GameState { Menu, InGame };
     GameState _gameState = GameState::Menu;
@@ -77,6 +82,8 @@ Client::Client(sf::IpAddress serverIp)
     _sceneManager = std::make_unique<SceneManager>();
     _sceneManager->addScene("main_menu");
     _sceneManager->addScene("options_menu");
+    _sceneManager->addScene("audio_menu");
+    _sceneManager->addScene("keybindings_menu");
     _sceneManager->addScene("game");
     _menuSystem.setSceneManager(std::make_unique<SceneManager>(*_sceneManager));
 
@@ -96,8 +103,15 @@ Client::Client(sf::IpAddress serverIp)
     _menuSystem.registerAction("quit", [this]() { onQuit(); });
     _menuSystem.registerAction("start_game", [this]() { onStartGame(); });
     _menuSystem.registerAction("open_options", [this]() { onOpenOptions(); });
+    _menuSystem.registerAction("open_audio", [this]() { onOpenAudio(); });
+    _menuSystem.registerAction("open_keybindings", [this]() { onOpenKeybindings(); });
     _menuSystem.registerAction("resume_game", [this]() { onResumeGame(); });
     _menuSystem.registerAction("back_to_main_menu", [this]() { onBackToMainMenu(); });
+    _menuSystem.registerAction("back_to_options", [this]() { onBackToOptions(); });
+    _menuSystem.registerAction("reset_keybinds", [this]() { _inputSystem.resetToDefaultMappings(); });
+    
+    _menuSystem.setSoundSystem(&_soundSystem);
+    _menuSystem.setWindow(&_window);
 
     initializeMenus();
     _sceneManager->setActiveScene("main_menu");
@@ -136,6 +150,20 @@ void Client::onOpenOptions()
     _menuSystem.setEnabled(true);
 }
 
+void Client::onOpenAudio()
+{
+    _sceneManager->setActiveScene("audio_menu");
+}
+
+void Client::onOpenKeybindings()
+{
+    _sceneManager->setActiveScene("keybindings_menu");
+}
+
+void Client::onBackToOptions()
+{
+    _sceneManager->setActiveScene("options_menu");
+}
 
 void Client::initializeMenus()
 {
@@ -158,8 +186,9 @@ void Client::initializeMenus()
     Menu optionsMenu = {
         "options",
         {
-            {"Audio", {""}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false},
-            {"Back", {"back_to_main_menu"}, 960.f, 500.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, false}
+            {"Audio", {"open_audio"}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, true},
+            {"Controls", {"open_keybindings"}, 960.f, 500.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, true},
+            {"Back", {"back_to_main_menu"}, 960.f, 600.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, true}
         },
         "SETTINGS",
         960.f, 200.f,
@@ -179,6 +208,41 @@ void Client::initializeMenus()
         "PAUSE",
         960.f, 300.f,
         "title", 100, sf::Color::Yellow,
+        true,
+        ""
+    };
+
+    // Menu audio
+    Menu audioMenu = {
+        "audio_menu",
+        {
+            {"Music Volume: 100%", {}, 960.f, 350.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"SFX Volume: 100%", {}, 960.f, 450.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Back", {"back_to_options"}, 960.f, 600.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, true}
+        },
+        "AUDIO SETTINGS",
+        960.f, 200.f,
+        "title", 100, sf::Color::Blue,
+        true,
+        ""
+    };
+
+    // Menu keybindings
+    Menu keybindingsMenu = {
+        "keybindings_menu",
+        {
+            {"Move Up: Up", {}, 960.f, 300.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Move Down: Down", {}, 960.f, 370.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Move Left: Left", {}, 960.f, 440.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Move Right: Right", {}, 960.f, 510.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Shoot: Space", {}, 960.f, 580.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Quit: Escape", {}, 960.f, 650.f, "default", 40, sf::Color::White, sf::Color::Green, 1.0f, true, true},
+            {"Reset to Defaults", {"reset_keybinds"}, 960.f, 750.f, "default", 40, sf::Color::Cyan, sf::Color::Red, 1.1f, true, true},
+            {"Back", {"back_to_options"}, 960.f, 820.f, "default", 50, sf::Color::White, sf::Color::Green, 1.1f, true, true}
+        },
+        "KEYBINDINGS",
+        960.f, 180.f,
+        "title", 100, sf::Color::Blue,
         true,
         ""
     };
@@ -206,6 +270,126 @@ void Client::initializeMenus()
         pauseMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
     }
     _sceneEntities["pause_menu"] = pauseMenuEntities;
+
+    // Création des entités pour le menu audio
+    std::vector<Entity> audioMenuEntities;
+    audioMenuEntities.push_back(Factory::createMenuTitle(_ecs, audioMenu));
+    
+    // Music volume slider
+    Entity musicSlider = Factory::createMenuItem(_ecs, audioMenu.items[0]);
+    Slider_t musicSliderComp;
+    musicSliderComp.minValue = 0.0f;
+    musicSliderComp.maxValue = 100.0f;
+    musicSliderComp.currentValue = _soundSystem.getMusicVolume();
+    musicSliderComp.step = 5.0f;  // 5% par appui
+    musicSliderComp.linkedSetting = "music_volume";
+    _ecs.addComponent<Slider_t>(musicSlider, musicSliderComp);
+    
+    DynamicText_t musicDynText;
+    musicDynText.prefix = "Music Volume: ";
+    _ecs.addComponent<DynamicText_t>(musicSlider, musicDynText);
+    audioMenuEntities.push_back(musicSlider);
+    
+    // SFX volume slider
+    Entity sfxSlider = Factory::createMenuItem(_ecs, audioMenu.items[1]);
+    Slider_t sfxSliderComp;
+    sfxSliderComp.minValue = 0.0f;
+    sfxSliderComp.maxValue = 100.0f;
+    sfxSliderComp.currentValue = _soundSystem.getSoundVolume();
+    sfxSliderComp.step = 5.0f;  // 5% par appui
+    sfxSliderComp.linkedSetting = "sfx_volume";
+    _ecs.addComponent<Slider_t>(sfxSlider, sfxSliderComp);
+    
+    DynamicText_t sfxDynText;
+    sfxDynText.prefix = "SFX Volume: ";
+    _ecs.addComponent<DynamicText_t>(sfxSlider, sfxDynText);
+    audioMenuEntities.push_back(sfxSlider);
+    
+    // Back button
+    audioMenuEntities.push_back(Factory::createMenuItem(_ecs, audioMenu.items[2]));
+    _sceneEntities["audio_menu"] = audioMenuEntities;
+
+    // Création des entités pour le menu keybindings
+    std::vector<Entity> keybindingsMenuEntities;
+    keybindingsMenuEntities.push_back(Factory::createMenuTitle(_ecs, keybindingsMenu));
+    
+    // Keybind buttons for each action
+    Entity moveUpBtn = Factory::createMenuItem(_ecs, keybindingsMenu.items[0]);
+    KeybindButton_t moveUpKeybind;
+    moveUpKeybind.action = GameAction::MoveUp;
+    moveUpKeybind.isWaitingForInput = false;
+    moveUpKeybind.currentKey = _inputSystem.getKeyForAction(GameAction::MoveUp);
+    _ecs.addComponent<KeybindButton_t>(moveUpBtn, moveUpKeybind);
+    
+    DynamicText_t moveUpDynText;
+    moveUpDynText.prefix = "Move Up: ";
+    _ecs.addComponent<DynamicText_t>(moveUpBtn, moveUpDynText);
+    keybindingsMenuEntities.push_back(moveUpBtn);
+    
+    Entity moveDownBtn = Factory::createMenuItem(_ecs, keybindingsMenu.items[1]);
+    KeybindButton_t moveDownKeybind;
+    moveDownKeybind.action = GameAction::MoveDown;
+    moveDownKeybind.isWaitingForInput = false;
+    moveDownKeybind.currentKey = _inputSystem.getKeyForAction(GameAction::MoveDown);
+    _ecs.addComponent<KeybindButton_t>(moveDownBtn, moveDownKeybind);
+    
+    DynamicText_t moveDownDynText;
+    moveDownDynText.prefix = "Move Down: ";
+    _ecs.addComponent<DynamicText_t>(moveDownBtn, moveDownDynText);
+    keybindingsMenuEntities.push_back(moveDownBtn);
+    
+    Entity moveLeftBtn = Factory::createMenuItem(_ecs, keybindingsMenu.items[2]);
+    KeybindButton_t moveLeftKeybind;
+    moveLeftKeybind.action = GameAction::MoveLeft;
+    moveLeftKeybind.isWaitingForInput = false;
+    moveLeftKeybind.currentKey = _inputSystem.getKeyForAction(GameAction::MoveLeft);
+    _ecs.addComponent<KeybindButton_t>(moveLeftBtn, moveLeftKeybind);
+    
+    DynamicText_t moveLeftDynText;
+    moveLeftDynText.prefix = "Move Left: ";
+    _ecs.addComponent<DynamicText_t>(moveLeftBtn, moveLeftDynText);
+    keybindingsMenuEntities.push_back(moveLeftBtn);
+    
+    Entity moveRightBtn = Factory::createMenuItem(_ecs, keybindingsMenu.items[3]);
+    KeybindButton_t moveRightKeybind;
+    moveRightKeybind.action = GameAction::MoveRight;
+    moveRightKeybind.isWaitingForInput = false;
+    moveRightKeybind.currentKey = _inputSystem.getKeyForAction(GameAction::MoveRight);
+    _ecs.addComponent<KeybindButton_t>(moveRightBtn, moveRightKeybind);
+    
+    DynamicText_t moveRightDynText;
+    moveRightDynText.prefix = "Move Right: ";
+    _ecs.addComponent<DynamicText_t>(moveRightBtn, moveRightDynText);
+    keybindingsMenuEntities.push_back(moveRightBtn);
+    
+    Entity shootBtn = Factory::createMenuItem(_ecs, keybindingsMenu.items[4]);
+    KeybindButton_t shootKeybind;
+    shootKeybind.action = GameAction::Shoot;
+    shootKeybind.isWaitingForInput = false;
+    shootKeybind.currentKey = _inputSystem.getKeyForAction(GameAction::Shoot);
+    _ecs.addComponent<KeybindButton_t>(shootBtn, shootKeybind);
+    
+    DynamicText_t shootDynText;
+    shootDynText.prefix = "Shoot: ";
+    _ecs.addComponent<DynamicText_t>(shootBtn, shootDynText);
+    keybindingsMenuEntities.push_back(shootBtn);
+    
+    Entity quitBtn = Factory::createMenuItem(_ecs, keybindingsMenu.items[5]);
+    KeybindButton_t quitKeybind;
+    quitKeybind.action = GameAction::Quit;
+    quitKeybind.isWaitingForInput = false;
+    quitKeybind.currentKey = _inputSystem.getKeyForAction(GameAction::Quit);
+    _ecs.addComponent<KeybindButton_t>(quitBtn, quitKeybind);
+    
+    DynamicText_t quitDynText;
+    quitDynText.prefix = "Quit: ";
+    _ecs.addComponent<DynamicText_t>(quitBtn, quitDynText);
+    keybindingsMenuEntities.push_back(quitBtn);
+    
+    // Reset and Back buttons (no special components)
+    keybindingsMenuEntities.push_back(Factory::createMenuItem(_ecs, keybindingsMenu.items[6]));
+    keybindingsMenuEntities.push_back(Factory::createMenuItem(_ecs, keybindingsMenu.items[7]));
+    _sceneEntities["keybindings_menu"] = keybindingsMenuEntities;
 }
 
 
@@ -230,6 +414,21 @@ void Client::update()
 
     std::string activeSceneId = _sceneManager->getActiveSceneId();
 
+    // === TOGGLE PAUSE (fonctionne en jeu et dans le menu pause) ===
+    if (_inputSystem.wasActionPressed(GameAction::Pause)) {
+        if (activeSceneId == "game") {
+            // En jeu → ouvre le menu pause
+            _sceneManager->setActiveScene("pause_menu");
+            _menuSystem.setEnabled(true);  // Active la navigation menu
+            activeSceneId = "pause_menu";
+        } else if (activeSceneId == "pause_menu") {
+            // Dans le menu pause → retourne au jeu
+            _sceneManager->setActiveScene("game");
+            _menuSystem.setEnabled(false);  // Désactive la navigation menu
+            activeSceneId = "game";
+        }
+    }
+
     for (auto& [sceneId, entities] : _sceneEntities) {
         bool isActive = (sceneId == activeSceneId);
         for (Entity e : entities) {
@@ -243,7 +442,9 @@ void Client::update()
     }
 
     // === GESTION DU MENU ===
-    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" || activeSceneId == "pause_menu") {
+    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" || 
+        activeSceneId == "pause_menu" || activeSceneId == "audio_menu" || 
+        activeSceneId == "keybindings_menu") {
         _soundSystem.update(dt);
         return;
     }
@@ -322,6 +523,9 @@ void Client::update()
 
         // 5. Mise à jour des sons (toujours en dernier, car ils peuvent être déclenchés par applyUpdate ou collisions)
         _soundSystem.update(dt);
+        
+        // 6. Mise à jour des particules
+        _particleSystem.update(dt);
     }
 }
 
@@ -372,16 +576,23 @@ void Client::applyUpdate(EntityUpdate &update)
         _localPlayerEntity = entity;
     } else if (update.tick == MAGIC_TICK_DEATH_OTHER || update.tick == MAGIC_TICK_DEATH_PLAYER) {
         // Entity died
+        auto* deathPos = _ecs.getComponent<Position_t>(entity);
+        float deathX = deathPos ? deathPos->x + 32.f : 0.f;
+        float deathY = deathPos ? deathPos->y + 32.f : 0.f;
+        
         _ecs.killEntity(entity);
         // Jouer un son d'explosion selon le type (approximation simple)
         if (_ecs.hasComponent<Projectile_t>(entity)) {
-            // C'était un projectile → petit hit
+            // C'était un projectile → petit hit + sparks
             Entity hitSound = _ecs.createEntity();
             _ecs.addComponent(hitSound, Factory::createSound("hit.ogg", 70.f));
+            _particleSystem.emitSparks(deathX, deathY, 10);
         } else {
             // Ennemi ou joueur → explosion
             Entity explosionSound = _ecs.createEntity();
             _ecs.addComponent(explosionSound, Factory::createSound("enemy_death.ogg", 90.f));
+            _particleSystem.emitExplosion(deathX, deathY, 40);
+            _particleSystem.emitDebris(deathX, deathY, 8);
         }
 
         if (serverToClientEntityRelation.find(update.entityId) != serverToClientEntityRelation.end()) {
@@ -398,11 +609,18 @@ void Client::applyUpdate(EntityUpdate &update)
                     update.position.x + 64.f, update.position.y + 20.f,
                     800.f, 0.f, 1, 25, "",
                     -1, "shoot.ogg");
+                // Particules de tir joueur
+                _particleSystem.emitTrail(update.position.x + 64.f, update.position.y + 20.f, 0.f, 5);
             } else {
                 Factory::createProjectile(_ecs,
                     update.position.x - 20.f, update.position.y + 20.f,
                     -800.f, 0.f, 2, 25, "",
                     -1, "shoot.ogg");
+                // Particules de tir ennemi (rouge)
+                _particleSystem.emitCustom(update.position.x - 20.f, update.position.y + 20.f, 
+                    5, 80.f, 30.f, 0.2f, 
+                    sf::Color::Red, sf::Color(255, 100, 0, 0), 
+                    4.f, 0.f, 0.f);
             }
         }
     }
@@ -411,13 +629,32 @@ void Client::applyUpdate(EntityUpdate &update)
 void Client::render()
 {
     _renderSystem.update(0); // dt is not used in render system
+    _particleSystem.render(_window);  // Rendu des particules par-dessus
+    _window.display();  // Affiche tout
 }
 
 void Client::processInput()
 {
+    // IMPORTANT: Traite les événements SFML pour que l'OS ne considère pas l'app comme "ne répond pas"
+    sf::Event event;
+    while (_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            _running = false;
+            return;
+        }
+        // Transmet les événements souris au MenuSystem
+        _menuSystem.handleMouseInput(event);
+    }
+
+    // Ne traite les inputs de jeu que si on est en jeu (pas en pause/menu)
+    std::string activeSceneId = _sceneManager->getActiveSceneId();
+    if (activeSceneId != "game") {
+        return;  // En pause ou dans un menu, pas d'inputs de jeu
+    }
+
     InputState inputs = {0, 0, 0, 0, 0, 0};
     inputs.tick = _timer.getCurrentFrame();
-    _inputSystem.update(0);
+    // Ne pas appeler _inputSystem.update(0) ici ! Déjà fait dans Client::update()
     if (_inputSystem.isActionActive(GameAction::MoveUp))
         inputs.up = 1;
     if (_inputSystem.isActionActive(GameAction::MoveDown))
@@ -439,6 +676,9 @@ void Client::processInput()
                         1, 25, "",
                         -1, "shoot.ogg");  // <-- le son est ajouté via la factory
 
+                    // Particules de tir
+                    _particleSystem.emitTrail(pos->x + 64.f, pos->y + 20.f, 0.f, 5);
+
                     _shootCooldown = SHOOT_DELAY;
                 }
             }
@@ -446,10 +686,5 @@ void Client::processInput()
     }
     if (_shootCooldown > 0.f)
         _shootCooldown -= 1.0f / 60.f;
-
-    if (_inputSystem.isActionActive(GameAction::Quit)) {
-        inputs.tick = MAGIC_TICK_CLIENT_QUIT;
-        _running = false;
-    }
     _UDP.inputsToSend.push(inputs);
 }

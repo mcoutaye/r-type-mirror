@@ -27,6 +27,12 @@ public:
     // Charge une musique (streaming, pour les gros fichiers)
     bool loadMusic(const std::string& musicId, const std::string& filename);
 
+    // Contrôle du volume
+    void setMusicVolume(float volume);   // 0.0f à 100.0f
+    void setSoundVolume(float volume);   // 0.0f à 100.0f
+    float getMusicVolume() const;
+    float getSoundVolume() const;
+
 private:
     void processPlaySoundTriggers();
     void processBackgroundMusic();
@@ -43,6 +49,9 @@ private:
     std::unordered_map<std::string, std::string> _musicPaths;
     sf::Music _currentMusic;
     std::string _currentMusicId;
+    
+    float _musicVolume = 100.0f;
+    float _soundVolume = 100.0f;
 };
 
 SoundSystem::SoundSystem(ECS& ecs) : ISystem(ecs)
@@ -89,7 +98,7 @@ void SoundSystem::processPlaySoundTriggers()
         _activeSounds.emplace_back();
         sf::Sound& sound = _activeSounds.back();
         sound.setBuffer(it->second);
-        sound.setVolume(play->volume);
+        sound.setVolume(play->volume * (_soundVolume / 100.0f));  // Applique le volume global
         sound.setPitch(play->pitch);
         sound.play();
 
@@ -149,11 +158,41 @@ void SoundSystem::processBackgroundMusic() {
             return;
         }
 
-        _currentMusic.setVolume(musicComp->volume);
+        _currentMusic.setVolume(musicComp->volume * (_musicVolume / 100.0f));  // Applique le volume global
         _currentMusic.setLoop(musicComp->looping);
         _currentMusic.play();
         _currentMusicId = musicId;
     }
+}
+
+void SoundSystem::setMusicVolume(float volume)
+{
+    _musicVolume = std::clamp(volume, 0.0f, 100.0f);
+    if (_currentMusic.getStatus() != sf::Music::Stopped) {
+        // Met à jour le volume de la musique en cours
+        auto entities = _ecs.getEntitiesByComponents<BackgroundMusic_t>();
+        if (!entities.empty()) {
+            auto* musicComp = _ecs.getComponent<BackgroundMusic_t>(entities[0]);
+            if (musicComp) {
+                _currentMusic.setVolume(musicComp->volume * (_musicVolume / 100.0f));
+            }
+        }
+    }
+}
+
+void SoundSystem::setSoundVolume(float volume)
+{
+    _soundVolume = std::clamp(volume, 0.0f, 100.0f);
+}
+
+float SoundSystem::getMusicVolume() const
+{
+    return _musicVolume;
+}
+
+float SoundSystem::getSoundVolume() const
+{
+    return _soundVolume;
 }
 
 void SoundSystem::update(double dt)

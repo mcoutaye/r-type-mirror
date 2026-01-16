@@ -139,7 +139,7 @@ Entity createMenuItem(ECS& ecs, const MenuItem& item) {
         menuItem,
         Position_t{item.xPosition, item.yPosition},
         createText(item.text, item.fontSize, item.color, item.centered, item.fontId, item.visible),
-        MenuItem_t{item.action, false},
+        MenuItem_t{item.action, false, item.isSelectable},
         Highlight_t{item.selectedColor, item.scale}
     );
     return menuItem;

@@ -110,6 +110,5 @@ void RenderSystem::update(double dt)
         _window.draw(text);
     }
 
-    // === Fin du rendu ===
-    _window.display();
+    // === Fin du rendu (display appelé par le client après les particules) ===
 }

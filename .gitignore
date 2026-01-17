@@ -39,3 +39,7 @@ compile_commands.json
 *.swp
 *.swo
 *.tmp
+
+#Test game
+/new_game
+new_game.zip

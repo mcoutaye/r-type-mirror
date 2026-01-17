@@ -188,4 +188,195 @@ void clearMenu(ECS& ecs)
     }
 }
 
+// ============= PLATFORMER ENTITIES =============
+
+// Crée un personnage de plateforme avec physique complète
+// NOTE: PAS de PlayerController_t car ça active l'InputSystem de R-Type qui écrase la gravité !
+inline Entity createPlatformerPlayer(ECS& ecs, float x, float y, const std::string& textureId = "player")
+{
+    Entity player = ecs.createEntity();
+    // IMPORTANT: On utilise PlatformerController_t au lieu de PlayerController_t
+    // pour éviter que l'InputSystem écrase les vélocités (MoveUp/MoveDown = vol libre)
+    ecs.addComponents<Position_t, Velocity_t, RigidBody_t, Jumper_t, BoxCollider_t, Drawable_t>(
+        player,
+        Position_t{x, y},
+        Velocity_t{0.f, 0.f},
+        RigidBody_t{1.f, 1.f, 0.2f, 0.f, true, false, false, 5.f},  // masse, gravité, drag (↑ pour moins glisser), bounce, useGravity, kinematic, grounded, groundCheck
+        Jumper_t{650.f, 2, 0, true, 0.15f, 0.f, 0.1f, 0.f},  // jumpForce (↑ pour sauter plus haut), maxJumps, currentJumps, canJump, coyoteTime, coyoteCounter, jumpBuffer, bufferCounter
+        BoxCollider_t{48.f, 64.f, 8.f, 0.f, false, 0, 0xFFFFFFFF},  // width, height, offsetX, offsetY, trigger, layer, mask
+        createDrawable(textureId, {0, 0, 64, 64}, 10, true, 1.f, 0.f)
+        // PAS de PlayerController_t ici ! Le platformer gère ses inputs manuellement.
+    );
+    return player;
+}
+
+// Crée une plateforme statique
+inline Entity createPlatform(ECS& ecs, float x, float y, float width, float height, 
+                             bool oneWay = false, const std::string& textureId = "platform")
+{
+    Entity platform = ecs.createEntity();
+    ecs.addComponents<Position_t, Platform_t, BoxCollider_t, Drawable_t, RigidBody_t>(
+        platform,
+        Position_t{x, y},
+        Platform_t{oneWay, false, 1.f, {0.f, 0.f}},
+        BoxCollider_t{width, height, 0.f, 0.f, false, 1, 0xFFFFFFFF},
+        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
+        RigidBody_t{100.f, 0.f, 0.f, 0.f, false, true, false, 0.f}  // Kinematic = ne bouge pas
+    );
+    return platform;
+}
+
+// Crée une plateforme mouvante
+inline Entity createMovingPlatform(ECS& ecs, float x, float y, float width, float height,
+                                   float velX, float velY, const std::string& textureId = "platform")
+{
+    Entity platform = ecs.createEntity();
+    ecs.addComponents<Position_t, Velocity_t, Platform_t, BoxCollider_t, Drawable_t, RigidBody_t>(
+        platform,
+        Position_t{x, y},
+        Velocity_t{velX, velY},
+        Platform_t{false, false, 1.f, {velX, velY}},
+        BoxCollider_t{width, height, 0.f, 0.f, false, 1, 0xFFFFFFFF},
+        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
+        RigidBody_t{100.f, 0.f, 0.f, 0.f, false, true, false, 0.f}
+    );
+    return platform;
+}
+
+// Crée un mur/obstacle
+inline Entity createWall(ECS& ecs, float x, float y, float width, float height, 
+                         const std::string& textureId = "wall")
+{
+    Entity wall = ecs.createEntity();
+    ecs.addComponents<Position_t, BoxCollider_t, Drawable_t, RigidBody_t>(
+        wall,
+        Position_t{x, y},
+        BoxCollider_t{width, height, 0.f, 0.f, false, 1, 0xFFFFFFFF},
+        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
+        RigidBody_t{1000.f, 0.f, 0.f, 0.f, false, true, false, 0.f}
+    );
+    return wall;
+}
+
+// Crée une échelle
+inline Entity createLadder(ECS& ecs, float x, float y, float width, float height, 
+                           float climbSpeed = 150.f, const std::string& textureId = "ladder")
+{
+    Entity ladder = ecs.createEntity();
+    ecs.addComponents<Position_t, Ladder_t, BoxCollider_t, Drawable_t>(
+        ladder,
+        Position_t{x, y},
+        Ladder_t{climbSpeed},
+        BoxCollider_t{width, height, 0.f, 0.f, true, 2, 0xFFFFFFFF},  // Trigger
+        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 4, true, 1.f, 0.f)
+    );
+    return ladder;
+}
+
+// Crée une zone de téléportation
+inline Entity createTeleporter(ECS& ecs, float x, float y, float width, float height,
+                               sf::Vector2f targetPos, const std::string& textureId = "teleporter")
+{
+    Entity teleporter = ecs.createEntity();
+    
+    ecs.addComponents<Position_t, BoxCollider_t, Drawable_t>(
+        teleporter,
+        Position_t{x, y},
+        BoxCollider_t{width, height, 0.f, 0.f, true, 3, 0xFFFFFFFF},
+        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 3, true, 1.f, 0.f)
+    );
+    
+    // Ajoute le TriggerZone après car il contient une lambda
+    TriggerZone_t trigger;
+    trigger.type = TriggerZone_t::Type::Teleporter;
+    trigger.teleportPos = targetPos;
+    trigger.triggered = false;
+    trigger.resetOnExit = true;
+    trigger.onTrigger = [targetPos, &ecs](Entity entity) {
+        auto* pos = ecs.getComponent<Position_t>(entity);
+        if (pos) {
+            pos->x = targetPos.x;
+            pos->y = targetPos.y;
+        }
+    };
+    ecs.addComponent(teleporter, trigger);
+    
+    return teleporter;
+}
+
+// Crée une zone de mort (kill zone)
+inline Entity createDeathZone(ECS& ecs, float x, float y, float width, float height)
+{
+    Entity deathZone = ecs.createEntity();
+    
+    ecs.addComponents<Position_t, BoxCollider_t>(
+        deathZone,
+        Position_t{x, y},
+        BoxCollider_t{width, height, 0.f, 0.f, true, 4, 0xFFFFFFFF}
+    );
+    
+    TriggerZone_t trigger;
+    trigger.type = TriggerZone_t::Type::Death;
+    trigger.triggered = false;
+    trigger.resetOnExit = false;
+    trigger.onTrigger = [&ecs](Entity entity) {
+        // Tue l'entité qui entre dans la zone
+        auto* health = ecs.getComponent<Health_t>(entity);
+        if (health) {
+            health->current = 0;
+        }
+    };
+    ecs.addComponent(deathZone, trigger);
+    
+    return deathZone;
+}
+
+// Crée un checkpoint
+inline Entity createCheckpoint(ECS& ecs, float x, float y, const std::string& textureId = "checkpoint")
+{
+    Entity checkpoint = ecs.createEntity();
+    
+    ecs.addComponents<Position_t, BoxCollider_t, Drawable_t>(
+        checkpoint,
+        Position_t{x, y},
+        BoxCollider_t{64.f, 64.f, 0.f, 0.f, true, 5, 0xFFFFFFFF},
+        createDrawable(textureId, {0, 0, 64, 64}, 3, true, 1.f, 0.f)
+    );
+    
+    TriggerZone_t trigger;
+    trigger.type = TriggerZone_t::Type::Checkpoint;
+    trigger.triggered = false;
+    trigger.resetOnExit = false;
+    trigger.teleportPos = sf::Vector2f(x, y);
+    ecs.addComponent(checkpoint, trigger);
+    
+    return checkpoint;
+}
+
+// Crée un objet ramassable (collectible)
+inline Entity createCollectible(ECS& ecs, float x, float y, const std::string& textureId = "coin")
+{
+    Entity collectible = ecs.createEntity();
+    
+    ecs.addComponents<Position_t, BoxCollider_t, Drawable_t>(
+        collectible,
+        Position_t{x, y},
+        BoxCollider_t{32.f, 32.f, 0.f, 0.f, true, 6, 0xFFFFFFFF},
+        createDrawable(textureId, {0, 0, 32, 32}, 8, true, 1.f, 0.f)
+    );
+    
+    TriggerZone_t trigger;
+    trigger.type = TriggerZone_t::Type::Custom;
+    trigger.triggered = false;
+    trigger.resetOnExit = false;
+    trigger.onTrigger = [&ecs, collectible](Entity entity) {
+        // Détruit le collectible quand il est ramassé
+        ecs.killEntity(collectible);
+        // Ici, tu peux ajouter du code pour incrémenter un score, jouer un son, etc.
+    };
+    ecs.addComponent(collectible, trigger);
+    
+    return collectible;
+}
+
 } // namespace Factory

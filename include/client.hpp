@@ -18,6 +18,7 @@
 #include "engine/systems/MenuSystem.hpp"
 #include "engine/systems/SceneManager.hpp"
 #include "engine/systems/ParticleSystem.hpp"
+#include "engine/systems/CameraSystem.hpp"
 #include <memory>
 
 class Client {
@@ -53,6 +54,7 @@ private:
     ResourceManager& _resourceManager;
     ECS _ecs;
     sf::RenderWindow _window;
+    sf::View _defaultView;  // Vue par défaut pour les menus
 
     InputSystem _inputSystem{_ecs};
     RenderSystem _renderSystem{_ecs, _window, _resourceManager};
@@ -60,9 +62,11 @@ private:
     SoundSystem _soundSystem{_ecs};
     MenuSystem _menuSystem{_ecs, _inputSystem};
     ParticleSystem _particleSystem{_ecs, 3000};
+    CameraSystem _cameraSystem{_ecs, _window};
 
     enum class GameState { Menu, InGame };
     GameState _gameState = GameState::Menu;
+    bool _gameRunningInBackground = false;  // true si le jeu tourne en arrière-plan (pause)
 
     UdpClient _UDP;
 };
@@ -75,6 +79,7 @@ Client::Client(sf::IpAddress serverIp)
 {
     _window.create(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Fullscreen);
     _window.setFramerateLimit(60);
+    _defaultView = _window.getDefaultView();  // Sauvegarde la vue par défaut
     _UDP.start();
     _timer = Timer();
     _running = true;
@@ -113,6 +118,21 @@ Client::Client(sf::IpAddress serverIp)
     _menuSystem.setSoundSystem(&_soundSystem);
     _menuSystem.setWindow(&_window);
 
+    // Crée la caméra dès le début (pour qu'elle soit toujours disponible)
+    Entity cameraEntity = _ecs.createEntity();
+    Camera_t camera;
+    camera.x = 960.f;
+    camera.y = 540.f;
+    camera.targetX = 960.f;
+    camera.targetY = 540.f;
+    camera.smoothSpeed = 3.f;
+    camera.zoom = 1.f;
+    camera.targetZoom = 1.f;
+    camera.viewWidth = 1920.f;
+    camera.viewHeight = 1080.f;
+    camera.useBounds = false;
+    _ecs.addComponent(cameraEntity, camera);
+
     initializeMenus();
     _sceneManager->setActiveScene("main_menu");
     Entity gameMusic = _ecs.createEntity();
@@ -127,6 +147,7 @@ void Client::onQuit()
 void Client::onStartGame()
 {
     _gameState = GameState::InGame;
+    _gameRunningInBackground = false;
     _sceneManager->setActiveScene("game");
     _menuSystem.setEnabled(false);
     initializeGame();
@@ -134,14 +155,24 @@ void Client::onStartGame()
 
 void Client::onResumeGame()
 {
+    _gameRunningInBackground = false;
     _sceneManager->setActiveScene("game");
     _menuSystem.setEnabled(false);
 }
 
 void Client::onBackToMainMenu()
 {
-    _sceneManager->setActiveScene("main_menu");
-    _menuSystem.setEnabled(true);
+    // Si on est en jeu pausé, retourne au menu pause
+    if (_gameRunningInBackground) {
+        _sceneManager->setActiveScene("pause_menu");
+        _menuSystem.setEnabled(true);
+    } else {
+        // Sinon, retourne vraiment au menu principal
+        _gameState = GameState::Menu;
+        _gameRunningInBackground = false;
+        _sceneManager->setActiveScene("main_menu");
+        _menuSystem.setEnabled(true);
+    }
 }
 
 void Client::onOpenOptions()
@@ -287,6 +318,13 @@ void Client::initializeMenus()
     
     DynamicText_t musicDynText;
     musicDynText.prefix = "Music Volume: ";
+    // Provide a value getter so the UI text reflects the slider's currentValue
+    musicDynText.suffix = "%";
+    musicDynText.valueGetter = [this, musicSlider]() {
+        auto* s = _ecs.getComponent<Slider_t>(musicSlider);
+        int val = s ? static_cast<int>(s->currentValue) : 0;
+        return std::to_string(val);
+    };
     _ecs.addComponent<DynamicText_t>(musicSlider, musicDynText);
     audioMenuEntities.push_back(musicSlider);
     
@@ -302,6 +340,13 @@ void Client::initializeMenus()
     
     DynamicText_t sfxDynText;
     sfxDynText.prefix = "SFX Volume: ";
+    // Provide a value getter so the UI text reflects the slider's currentValue
+    sfxDynText.suffix = "%";
+    sfxDynText.valueGetter = [this, sfxSlider]() {
+        auto* s = _ecs.getComponent<Slider_t>(sfxSlider);
+        int val = s ? static_cast<int>(s->currentValue) : 0;
+        return std::to_string(val);
+    };
     _ecs.addComponent<DynamicText_t>(sfxSlider, sfxDynText);
     audioMenuEntities.push_back(sfxSlider);
     
@@ -418,11 +463,13 @@ void Client::update()
     if (_inputSystem.wasActionPressed(GameAction::Pause)) {
         if (activeSceneId == "game") {
             // En jeu → ouvre le menu pause
+            _gameRunningInBackground = true;
             _sceneManager->setActiveScene("pause_menu");
             _menuSystem.setEnabled(true);  // Active la navigation menu
             activeSceneId = "pause_menu";
         } else if (activeSceneId == "pause_menu") {
             // Dans le menu pause → retourne au jeu
+            _gameRunningInBackground = false;
             _sceneManager->setActiveScene("game");
             _menuSystem.setEnabled(false);  // Désactive la navigation menu
             activeSceneId = "game";
@@ -441,16 +488,15 @@ void Client::update()
         }
     }
 
-    // === GESTION DU MENU ===
-    if (activeSceneId == "main_menu" || activeSceneId == "options_menu" || 
-        activeSceneId == "pause_menu" || activeSceneId == "audio_menu" || 
-        activeSceneId == "keybindings_menu") {
+    // === GESTION DU MENU (seulement si pas en jeu pausé) ===
+    if (!_gameRunningInBackground && (activeSceneId == "main_menu" || activeSceneId == "options_menu" || 
+        activeSceneId == "audio_menu" || activeSceneId == "keybindings_menu")) {
         _soundSystem.update(dt);
         return;
     }
 
-    // === MODE IN-GAME : tout ton code original, intact ===
-    if (activeSceneId == "game") {
+    // === MODE IN-GAME : le jeu continue de tourner (même si on est dans les menus de pause) ===
+    if (activeSceneId == "game" || _gameRunningInBackground) {
         // 1. Réception et application des updates du serveur
         auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
         for (Entity e : stars) {
@@ -473,6 +519,9 @@ void Client::update()
                 this->applyUpdate(update);
             }
         }
+        
+        // Mise à jour de la caméra (même avant le début du jeu, pour qu'elle suive le joueur)
+        _cameraSystem.update(dt);
 
         // 2. Mise à jour des systèmes physiques
         _moveSystem.update(dt);
@@ -533,16 +582,6 @@ void Client::applyUpdate(EntityUpdate &update)
 {
     Entity entity = 0;
 
-    _timer.updateClock();
-    std::vector<EntityUpdate> updates;
-    while (_UDP.receivedUpdates.tryPop(updates)) {
-        for (auto &update : updates)
-            this->applyUpdate(update);
-    }
-
-    _moveSystem.update(1.0f / 60.f);
-    _soundSystem.update(1.0f / 60.f);
-
     if (serverToClientEntityRelation.find(update.entityId) == serverToClientEntityRelation.end()) {
         // Entity does not exist for client, create it
         entity = _ecs.createEntity();
@@ -574,6 +613,13 @@ void Client::applyUpdate(EntityUpdate &update)
 
     if (update.tick == MAGIC_TICK_LOCAL_PLAYER) {
         _localPlayerEntity = entity;
+        // Ajoute le tag CameraTarget au joueur local pour que la caméra le suive
+        if (!_ecs.hasComponent<CameraTarget_t>(entity)) {
+            CameraTarget_t cameraTarget;
+            cameraTarget.offsetX = 32.f;  // Centre sur le joueur (si sprite 64x64)
+            cameraTarget.offsetY = 32.f;
+            _ecs.addComponent(entity, cameraTarget);
+        }
     } else if (update.tick == MAGIC_TICK_DEATH_OTHER || update.tick == MAGIC_TICK_DEATH_PLAYER) {
         // Entity died
         auto* deathPos = _ecs.getComponent<Position_t>(entity);
@@ -593,6 +639,9 @@ void Client::applyUpdate(EntityUpdate &update)
             _ecs.addComponent(explosionSound, Factory::createSound("enemy_death.ogg", 90.f));
             _particleSystem.emitExplosion(deathX, deathY, 40);
             _particleSystem.emitDebris(deathX, deathY, 8);
+            
+            // Camera shake lors de l'explosion
+            _cameraSystem.shake(15.f, 0.3f);  // intensity=15, duration=0.3s
         }
 
         if (serverToClientEntityRelation.find(update.entityId) != serverToClientEntityRelation.end()) {
@@ -628,9 +677,23 @@ void Client::applyUpdate(EntityUpdate &update)
 
 void Client::render()
 {
-    _renderSystem.update(0); // dt is not used in render system
-    _particleSystem.render(_window);  // Rendu des particules par-dessus
-    _window.display();  // Affiche tout
+    std::string activeSceneId = _sceneManager->getActiveSceneId();
+    
+    // Clear en premier
+    _window.clear(sf::Color::Black);
+    
+    // Applique la vue appropriée
+    if (activeSceneId == "game") {
+        // En jeu actif → vue caméra
+        _cameraSystem.applyView();
+    } else {
+        // En pause ou dans un menu → vue par défaut (centrée sur l'écran)
+        _window.setView(_defaultView);
+    }
+    
+    _renderSystem.update(0);
+    _particleSystem.render(_window);
+    _window.display();
 }
 
 void Client::processInput()

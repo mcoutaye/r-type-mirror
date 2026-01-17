@@ -1,7 +1,12 @@
 /*
 ** EPITECH PROJECT, 2025
-** R-type
-** File description:
+** void RenderSystem::update(double dt)
+{
+    (void)dt;  // dt non utilisé ici
+
+    // NOTE: clear() et setView() sont gérés par le client avant d'appeler update()
+
+    // === 1. Dessin des étoiles (parallaxe starfield) === File description:
 ** Render System
 */
 
@@ -34,6 +39,8 @@ void RenderSystem::update(double dt)
     (void)dt;  // dt non utilisé ici
 
     _window.clear(sf::Color::Black);
+    
+    // NOTE: La vue doit être appliquée par le client APRÈS clear() et AVANT le rendu;
 
     // === 1. Dessin des étoiles (parallaxe starfield) ===
     std::vector<Entity> stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();

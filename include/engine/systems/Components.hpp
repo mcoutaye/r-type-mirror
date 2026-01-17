@@ -11,8 +11,12 @@
 #include "engine/Menu.hpp"
 #include <string>
 #include <functional>
+#include <cstdint>
 
 #define SHOOT_DELAY 0.5f
+
+// Forward declare Entity type
+using Entity = std::uint32_t;
 
 // Forward declaration / enum pour les actions de jeu
 enum class GameAction {
@@ -238,3 +242,107 @@ typedef struct ParticleEmitter_s {
     bool active = true;
     bool burst = false;            // true = émet tout d'un coup, false = continu
 } ParticleEmitter_t;
+
+// ============= CAMERA SYSTEM =============
+
+// Caméra 2D avec smooth follow, zoom et shake
+typedef struct Camera_s {
+    float x = 960.f;              // Position actuelle X
+    float y = 540.f;              // Position actuelle Y
+    float targetX = 960.f;        // Position cible X
+    float targetY = 540.f;        // Position cible Y
+    float smoothSpeed = 5.f;      // Vitesse de suivi (plus élevé = plus réactif)
+    
+    float zoom = 1.f;             // Zoom actuel
+    float targetZoom = 1.f;       // Zoom cible
+    float zoomSpeed = 3.f;        // Vitesse de transition du zoom
+    
+    float shakeIntensity = 0.f;   // Intensité du shake
+    float shakeDuration = 0.f;    // Durée restante du shake
+    float shakeOffsetX = 0.f;     // Offset X du shake
+    float shakeOffsetY = 0.f;     // Offset Y du shake
+    
+    float viewWidth = 1920.f;     // Largeur de la vue
+    float viewHeight = 1080.f;    // Hauteur de la vue
+    
+    bool useBounds = false;       // Utilise des limites de monde
+    float minX = 0.f;             // Limite gauche
+    float minY = 0.f;             // Limite haut
+    float maxX = 1920.f;          // Limite droite
+    float maxY = 1080.f;          // Limite bas
+} Camera_t;
+
+// Tag pour marquer une entité comme cible de la caméra
+typedef struct CameraTarget_s {
+    float offsetX = 0.f;          // Décalage X par rapport à la position de l'entité
+    float offsetY = 0.f;          // Décalage Y par rapport à la position de l'entité
+} CameraTarget_t;
+
+// ============= PHYSICS SYSTEM =============
+
+// Rigidbody pour la physique (gravité, forces, etc.)
+typedef struct RigidBody_s {
+    float mass = 1.f;             // Masse de l'objet
+    float gravityScale = 1.f;     // Multiplicateur de gravité (0 = pas de gravité)
+    float drag = 0.f;             // Résistance de l'air (0-1, 0 = pas de résistance)
+    float bounciness = 0.f;       // Rebond lors des collisions (0-1)
+    bool useGravity = true;       // Applique la gravité ou non
+    bool isKinematic = false;     // Si true, pas affecté par les forces mais peut affecter les autres
+    bool isGrounded = false;      // Est au sol (détecté par les collisions)
+    float groundCheckDistance = 2.f;  // Distance pour vérifier le sol
+} RigidBody_t;
+
+// Composant pour les entités qui peuvent sauter
+typedef struct Jumper_s {
+    float jumpForce = 500.f;      // Force du saut
+    int maxJumps = 1;             // Nombre de sauts autorisés (1 = simple saut, 2 = double saut)
+    int currentJumps = 0;         // Nombre de sauts effectués
+    bool canJump = true;          // Peut sauter maintenant
+    float coyoteTime = 0.1f;      // Temps pendant lequel on peut sauter après avoir quitté une plateforme
+    float coyoteCounter = 0.f;    // Compteur pour le coyote time
+    float jumpBufferTime = 0.1f;  // Temps pendant lequel un input de saut est mémorisé
+    float jumpBufferCounter = 0.f; // Compteur pour le jump buffer
+} Jumper_t;
+
+// Plateforme (surface sur laquelle on peut marcher)
+typedef struct Platform_s {
+    bool oneWay = false;          // Plateforme traversable par le bas
+    bool canMoveThrough = false;  // Peut être traversée avec bas + saut
+    float friction = 1.f;         // Friction de la surface (0 = glissant, 1 = normal)
+    sf::Vector2f velocity = {0.f, 0.f};  // Vitesse de la plateforme (pour plateformes mouvantes)
+} Platform_t;
+
+// Collision avancée pour les plateformes
+typedef struct BoxCollider_s {
+    float width = 64.f;
+    float height = 64.f;
+    float offsetX = 0.f;          // Décalage du collider par rapport à la position
+    float offsetY = 0.f;
+    bool isTrigger = false;       // Si true, détecte les collisions mais ne bloque pas
+    uint8_t layer = 0;            // Layer de collision (0 = default)
+    uint32_t collisionMask = 0xFFFFFFFF;  // Masque des layers avec lesquels il collisionne
+} BoxCollider_t;
+
+// Informations sur une collision détectée
+typedef struct CollisionInfo_s {
+    Entity other;                 // L'autre entité dans la collision
+    sf::Vector2f normal;          // Vecteur normal de la collision
+    float penetration;            // Profondeur de pénétration
+    bool isGroundCollision;       // Est-ce une collision avec le sol
+} CollisionInfo_t;
+
+// Échelle/escalier
+typedef struct Ladder_s {
+    float climbSpeed = 150.f;     // Vitesse de montée/descente
+} Ladder_t;
+
+// Zone de trigger (pour téléporteurs, checkpoints, etc.)
+typedef struct TriggerZone_s {
+    enum class Type { Teleporter, Checkpoint, Death, Win, Custom };
+    Type type = Type::Custom;
+    std::string targetScene;      // Pour les téléporteurs
+    sf::Vector2f teleportPos;     // Position de téléportation
+    std::function<void(Entity)> onTrigger;  // Callback custom
+    bool triggered = false;       // Déjà déclenché
+    bool resetOnExit = true;      // Se réinitialise quand on sort
+} TriggerZone_t;

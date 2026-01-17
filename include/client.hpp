@@ -90,6 +90,8 @@ Client::Client(sf::IpAddress serverIp)
     _sceneManager->addScene("audio_menu");
     _sceneManager->addScene("keybindings_menu");
     _sceneManager->addScene("game");
+    _sceneManager->addScene("victory_menu");
+    _sceneManager->addScene("defeat_menu");
     _menuSystem.setSceneManager(std::make_unique<SceneManager>(*_sceneManager));
 
     _resourceManager.loadFont("default", "assets/font/Vipnagorgialla-Rg.ttf");
@@ -232,9 +234,9 @@ void Client::initializeMenus()
     Menu pauseMenu = {
         "pause",
         {
-            {"Resume", {"resume_game"}, 960.f, 400.f, "default", 50, sf::Color::Green, sf::Color::Yellow, 1.1f, true, false},
+            {"Resume", {"resume_game"}, 960.f, 400.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
             {"Settings", {"open_options"}, 960.f, 480.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false},
-            {"Quit", {"quit"}, 960.f, 560.f, "default", 50, sf::Color::Red, sf::Color::Yellow, 1.1f, true, false}
+            {"Quit", {"quit"}, 960.f, 560.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, false}
         },
         "PAUSE",
         960.f, 300.f,
@@ -277,6 +279,31 @@ void Client::initializeMenus()
         true,
         ""
     };
+
+    Menu victoryMenu = {
+        "victory",
+        {
+            {"Quit", {"quit"}, 960.f, 600.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, true}
+        },
+        "VICTORY",
+        960.f, 200.f,
+        "title", 100, sf::Color::Green,
+        true,
+        ""
+    };
+
+    Menu defeatMenu = {
+        "game_over",
+        {
+            {"Quit", {"quit"}, 960.f, 600.f, "default", 50, sf::Color::White, sf::Color::Yellow, 1.1f, true, true}
+        },
+        "GAME OVER",
+        960.f, 200.f,
+        "title", 100, sf::Color::Red,
+        true,
+        ""
+    };
+
 
     // Création des entités pour le menu principal
     std::vector<Entity> mainMenuEntities;
@@ -435,6 +462,20 @@ void Client::initializeMenus()
     keybindingsMenuEntities.push_back(Factory::createMenuItem(_ecs, keybindingsMenu.items[6]));
     keybindingsMenuEntities.push_back(Factory::createMenuItem(_ecs, keybindingsMenu.items[7]));
     _sceneEntities["keybindings_menu"] = keybindingsMenuEntities;
+
+    std::vector<Entity> victoryMenuEntities;
+    victoryMenuEntities.push_back(Factory::createMenuTitle(_ecs, victoryMenu));
+    for (const auto& item : victoryMenu.items) {
+        victoryMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["victory_menu"] = victoryMenuEntities;
+
+    std::vector<Entity> defeatMenuEntities;
+    defeatMenuEntities.push_back(Factory::createMenuTitle(_ecs, defeatMenu));
+    for (const auto& item : defeatMenu.items) {
+        defeatMenuEntities.push_back(Factory::createMenuItem(_ecs, item));
+    }
+    _sceneEntities["defeat_menu"] = defeatMenuEntities;
 }
 
 
@@ -672,6 +713,17 @@ void Client::applyUpdate(EntityUpdate &update)
                     4.f, 0.f, 0.f);
             }
         }
+    }
+    if (update.tick == MAGIC_TICK_VICTORY) {
+        std::cout << "Victoire !" << std::endl;
+        _sceneManager->setActiveScene("victory_menu");
+        _menuSystem.setEnabled(true);
+        _gameState = GameState::Menu;
+    } else if (update.tick == MAGIC_TICK_DEFEAT) {
+        std::cout << "Défaite..." << std::endl;
+        _sceneManager->setActiveScene("defeat_menu");
+        _menuSystem.setEnabled(true);
+        _gameState = GameState::Menu;
     }
 }
 

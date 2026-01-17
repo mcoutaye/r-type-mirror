@@ -39,10 +39,14 @@ class Server {
 
         uint16_t _nbPlayer;
         std::unordered_map<std::size_t, std::size_t> clientToPlayerRelation;
+        std::vector<uint16_t> _pendingSpecialTicks;
 
         WaveSystem _waveSystem{_ecs};
         MoveSystem _movSys{_ecs};
         MovementSystem _movementSystem{_ecs};
+
+        enum class GameState { Waiting, InProgress, Finished };
+        GameState _gameState = GameState::Waiting;
 
         UdpServer _UDP;
         ECS _ecs;
@@ -59,9 +63,9 @@ Server::Server(unsigned short port)
     Factory::createScreenBorders(_ecs, 1920.f, 1080.f, 5.f);
 
     std::vector<WaveData_t> level = {
-        {3.0f,  "enemy", 6,  2000.f, 200.f},
-        {8.0f,  "enemy", 10, 2000.f, 400.f},
-        {15.0f, "enemy", 15, 2000.f, 600.f}
+        {3.0f,  "enemy", MovementPattern_t::Type::Linear, 6,  2000.f, 200.f},
+        {8.0f,  "enemy", MovementPattern_t::Type::Sinus, 10, 2000.f, 400.f},
+        {15.0f, "enemy", MovementPattern_t::Type::Zigzag, 15, 2000.f, 600.f}
     };
     _waveSystem.loadLevel(level);
 
@@ -180,6 +184,70 @@ void Server::update()
         ctrl->shootCooldown -= 1.0f / 60.f;
     }
 
+    for (Entity e : _ecs.getEntitiesByComponents<Enemy_t, Position_t>()) {
+        auto* enemy = _ecs.getComponent<Enemy_t>(e);
+        auto* pos = _ecs.getComponent<Position_t>(e);
+
+        // Mise à jour du cooldown de tir
+        if (enemy->canShoot && enemy->shootCooldown > 0.f) {
+            enemy->shootCooldown -= 1.0f / 60.f;
+        }
+
+        // Si le cooldown est terminé, tirer
+        if (enemy->canShoot && enemy->shootCooldown <= 0.f) {
+            // Créer un projectile
+            Factory::createProjectile(_ecs, pos->x - 20.f, pos->y + 20.f, -600.f, 0.f, 2, 25, "", e);
+            enemy->shootCooldown = 2.0f; // Réinitialiser le cooldown
+            _ecs.addComponent<JustShot_t>(e, {true}); // Marquer comme ayant tiré
+        }
+    }
+
+    // Dans Server::update()
+    _timer.updateClock();
+    sf::Int64 lastTickMicroseconds = _timer.getLastTick();
+    float dt = lastTickMicroseconds / 1000000.0f; // Conversion en secondes
+
+    for (Entity e : _ecs.getEntitiesByComponents<MovementPattern_t, Position_t, Velocity_t>()) {
+        auto* movement = _ecs.getComponent<MovementPattern_t>(e);
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        auto* vel = _ecs.getComponent<Velocity_t>(e);
+
+        // Réinitialiser la vitesse
+        vel->x = 0.f;
+        vel->y = 0.f;
+
+        // Appliquer le mouvement en fonction du type
+        switch (movement->type) {
+            case MovementPattern_t::Type::Linear:
+                vel->x = -movement->speed; // Mouvement vers la gauche
+                break;
+            case MovementPattern_t::Type::Sinus: {
+                static float time = 0.0f;
+                time += dt;
+                vel->x = -movement->speed;
+                vel->y = movement->amplitude * sin(time * movement->frequency);
+                break;
+            }
+            case MovementPattern_t::Type::Zigzag: {
+                static float time = 0.0f;
+                time += dt;
+                vel->x = -movement->speed;
+                vel->y = movement->amplitude * sin(time * movement->frequency);
+                break;
+            }
+            case MovementPattern_t::Type::Spiral: {
+                static float time = 0.0f;
+                time += dt;
+                vel->x = -movement->speed;
+                vel->y = movement->radius * sin(time * 0.5f);
+                break;
+            }
+            default:
+                vel->x = -movement->speed; // Mouvement linéaire par défaut
+                break;
+        }
+    }
+
     // Collision detection
     auto projectiles = _ecs.getEntitiesByComponents<Projectile_t, Collider_t, Position_t>();
     auto targets = _ecs.getEntitiesByComponents<Health_t, Collider_t, Position_t>();
@@ -213,10 +281,48 @@ void Server::update()
             }
         }
     }
+
     for (Entity e : _ecs.getEntitiesByComponents<Projectile_t, Position_t>()) {
         auto* pos = _ecs.getComponent<Position_t>(e);
         if (pos->x > 2000.f || pos->x < -100.f || pos->y > 1200.f || pos->y < -100.f)
             _ecs.killEntity(e);
+    }
+
+    if (_gameState != GameState::InProgress) {
+        return; // Ne pas détecter la victoire/défaite si le jeu n'a pas commencé
+    }
+
+    // Logique de détection de victoire/défaite
+    bool allEnemiesDead = true;
+    auto enemies = _ecs.getEntitiesByComponents<Collider_t, Health_t>();
+    for (Entity e : enemies) {
+        auto* collider = _ecs.getComponent<Collider_t>(e);
+        auto* health = _ecs.getComponent<Health_t>(e);
+        if (collider && collider->team == 2 && health->current > 0) {
+            allEnemiesDead = false;
+            break;
+        }
+    }
+
+    if (allEnemiesDead && _gameState == GameState::InProgress) {
+        _pendingSpecialTicks.push_back(MAGIC_TICK_VICTORY);
+        _gameState = GameState::Finished; // Optionnel : Marquer le jeu comme terminé
+    }
+
+    // Logique de détection de défaite
+    bool allPlayersDead = true;
+    for (const auto& pair : clientToPlayerRelation) {
+        Entity playerEntity = pair.second;
+        auto* health = _ecs.getComponent<Health_t>(playerEntity);
+        if (health && health->current > 0) {
+            allPlayersDead = false;
+            break;
+        }
+    }
+
+    if (allPlayersDead && _gameState == GameState::InProgress) {
+        _pendingSpecialTicks.push_back(MAGIC_TICK_DEFEAT);
+        _gameState = GameState::Finished; // Optionnel : Marquer le jeu comme terminé
     }
 }
 
@@ -301,6 +407,36 @@ void Server::broadcast()
         }
     }
 
+    // --- NOUVEAU : Envoi des ticks de victoire/défaite ---
+    // Si une victoire ou une défaite a été détectée, envoyer le tick correspondant
+    if (!_pendingSpecialTicks.empty() && (_gameState == GameState::InProgress || _gameState == GameState::Finished)) {
+        for (uint16_t specialTick : _pendingSpecialTicks) {
+            for (const auto& client : clients) {
+                Entity fakeEntityId = -1;
+                Position_t fakePos = {0.f, 0.f};
+                int fakeCurrentHealth = 0;
+                int fakeMaxHealth = 0;
+
+                size_t totalSize = sizeof(Entity) + sizeof(uint16_t) + sizeof(Position_t) + (2 * sizeof(int));
+                std::vector<uint8_t> packetData(totalSize);
+                size_t offset = 0;
+
+                std::memcpy(packetData.data() + offset, &fakeEntityId, sizeof(Entity));
+                offset += sizeof(Entity);
+                std::memcpy(packetData.data() + offset, &specialTick, sizeof(uint16_t));
+                offset += sizeof(uint16_t);
+                std::memcpy(packetData.data() + offset, &fakePos, sizeof(Position_t));
+                offset += sizeof(Position_t);
+                std::memcpy(packetData.data() + offset, &fakeCurrentHealth, sizeof(int));
+                offset += sizeof(int);
+                std::memcpy(packetData.data() + offset, &fakeMaxHealth, sizeof(int));
+
+                _UDP.packetsToSend.push({client.address, client.port, packetData});
+            }
+        }
+        _pendingSpecialTicks.clear();
+    }
+
     // Cleanup dead entities after broadcast
     for (Entity e : entities) {
         auto pv = _ecs.getConstComponent<Health_t>(e);
@@ -330,10 +466,13 @@ void Server::broadcast()
 void Server::entityForClients()
 {
     std::size_t clientCount = _UDP.getClientCount();
-
-    if (clientCount == this->_nbPlayer)
+    if (clientCount == 0) {
         return;
+    }
 
+    if (_gameState == GameState::Waiting && clientCount > 0) {
+        _gameState = GameState::InProgress;
+    }
     std::vector<ClientInfo> Clients = _UDP.getClients();
 
     for (const auto &client : Clients) {

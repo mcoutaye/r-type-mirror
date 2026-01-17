@@ -87,13 +87,6 @@ typedef struct WaveSpawner_s {
     int currentWave = 0;
 } WaveSpawner_t;
 
-typedef struct WaveData_s {
-    float delay;
-    char enemyType[16];
-    int count;
-    float x, y;
-} WaveData_t;
-
 typedef struct MovementPattern_s {
     enum class Type { Linear, Sinus, Cosinus, Circle, Zigzag, Spiral };
     Type type;
@@ -102,6 +95,14 @@ typedef struct MovementPattern_s {
     float radius;     // Pour le cercle/spirale
     float speed;      // Pour le zigzag/spirale
 } MovementPattern_t;
+
+typedef struct WaveData_s {
+    float delay;
+    char enemyType[16];
+    MovementPattern_t::Type movementType;
+    int count;
+    float x, y;
+} WaveData_t;
 
 typedef struct Projectile_s {
     float speed;  // Vitesse du projectile
@@ -346,3 +347,10 @@ typedef struct TriggerZone_s {
     bool triggered = false;       // Déjà déclenché
     bool resetOnExit = true;      // Se réinitialise quand on sort
 } TriggerZone_t;
+
+// Composant pour marquer une entité comme ennemi
+typedef struct Enemy_s {
+    float shootCooldown = 0.f;  // Délai entre les tirs
+    float shootRange = 600.f;   // Portée de tir
+    bool canShoot = true;       // Type d'ennemi (ex: "basic", "boss")
+} Enemy_t;

@@ -70,26 +70,52 @@ Entity createProjectile(ECS& ecs, float x, float y, float velocityX, float veloc
     return bullet;
 }
 
-Entity createEnemy(ECS& ecs, float x, float y, int health,
-                   MovementPattern_t::Type pattern, const std::string& textureId,
-                   const std::string& deathSound = "enemy_death.ogg")
-{
+Entity createEnemy(ECS& ecs, float x, float y, MovementPattern_t::Type movementType) {
     Entity enemy = ecs.createEntity();
-    ecs.addComponents<Position_t, Velocity_t, Drawable_t, Collider_t, Health_t, MovementPattern_t, SendUpdate_t>
-        (enemy,
-         Position_t{x, y},
-         Velocity_t{-100.f, 0.f},
-         createDrawable(textureId, {0, 0, 64, 64}, 10, true, 1.f, 0.f),
-         Collider_t{64.f, 64.f, true, 2, 30},
-         Health_t{health, health},
-         MovementPattern_t{pattern, 50.f, 2.f, 0.f, 100.f},
-         SendUpdate_t{true});
 
-    // Tu pourras plus tard ajouter un composant "DeathSound_t" si tu veux jouer un son à la mort
-    // Pour l'instant, on le gère dans un système de mort (ex: DamageSystem)
+    // Configurer le mouvement
+    MovementPattern_t movement;
+    movement.type = movementType;
+
+    switch (movementType) {
+        case MovementPattern_t::Type::Linear:
+            movement.speed = 200.f;
+            break;
+        case MovementPattern_t::Type::Sinus:
+            movement.speed = 200.f;
+            movement.amplitude = 50.f;
+            movement.frequency = 1.f;
+            break;
+        case MovementPattern_t::Type::Zigzag:
+            movement.speed = 200.f;
+            movement.amplitude = 50.f;
+            movement.frequency = 1.f;
+            break;
+        case MovementPattern_t::Type::Spiral:
+            movement.speed = 150.f;
+            movement.radius = 100.f;
+            break;
+        default:
+            movement.speed = 200.f;
+            break;
+    }
+
+    // Créer l'ennemi avec tous les composants nécessaires
+    ecs.addComponents<Position_t, Velocity_t, Health_t, Collider_t, Drawable_t, Enemy_t, MovementPattern_t, SendUpdate_t>(
+        enemy,
+        Position_t{x, y},  // Position
+        Velocity_t{0.f, 0.f},  // Vitesse initiale
+        Health_t{100, 100},  // Santé (current, max)
+        Collider_t{64.f, 64.f, true, 2},  // Collider (largeur, hauteur, solide, team=2)
+        Drawable_t{"enemy.png", sf::IntRect(0, 0, 64, 64), 10, true, 1.f, 0.f},  // Drawable
+        Enemy_t{},  // Enemy_t
+        std::move(movement),  // MovementPattern_t
+        SendUpdate_t{}  // SendUpdate_t
+    );
 
     return enemy;
 }
+
 
 // Optionnel : fonction pour jouer un son d'explosion sur une entité existante (ex: mort)
 void playDeathSound(ECS& ecs, Entity entity, const std::string& soundId = "enemy_explosion.wav", float volume = 90.f)

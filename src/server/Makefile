@@ -65,26 +65,6 @@ CMAKE_BINARY_DIR = /home/Leukos/delivery/CCP/R-Type/r-type-mirror
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && /usr/bin/cpack --config ./CPackConfig.cmake
-.PHONY : package
-
-# Special rule for the target package
-package/fast: package
-.PHONY : package/fast
-
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/Leukos/delivery/CCP/R-Type/r-type-mirror/CPackSourceConfig.cmake
-.PHONY : package_source
-
-# Special rule for the target package_source
-package_source/fast: package_source
-.PHONY : package_source/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -104,51 +84,6 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -182,18 +117,18 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/server/CMakeFiles/r-type_server.dir/rule:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/CMakeFiles/r-type_server.dir/rule
-.PHONY : src/server/CMakeFiles/r-type_server.dir/rule
+src/server/CMakeFiles/rtype_server.dir/rule:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/CMakeFiles/rtype_server.dir/rule
+.PHONY : src/server/CMakeFiles/rtype_server.dir/rule
 
 # Convenience name for target.
-r-type_server: src/server/CMakeFiles/r-type_server.dir/rule
-.PHONY : r-type_server
+rtype_server: src/server/CMakeFiles/rtype_server.dir/rule
+.PHONY : rtype_server
 
 # fast build rule for target.
-r-type_server/fast:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/build
-.PHONY : r-type_server/fast
+rtype_server/fast:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/build
+.PHONY : rtype_server/fast
 
 # Convenience name for target.
 src/server/CMakeFiles/server_clean.dir/rule:
@@ -223,156 +158,36 @@ server_fclean/fast:
 	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server_fclean.dir/build.make src/server/CMakeFiles/server_fclean.dir/build
 .PHONY : server_fclean/fast
 
-Args.o: Args.cpp.o
-.PHONY : Args.o
+UdpServer.o: UdpServer.cpp.o
+.PHONY : UdpServer.o
 
 # target to build an object file
-Args.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/Args.cpp.o
-.PHONY : Args.cpp.o
+UdpServer.cpp.o:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/UdpServer.cpp.o
+.PHONY : UdpServer.cpp.o
 
-Args.i: Args.cpp.i
-.PHONY : Args.i
-
-# target to preprocess a source file
-Args.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/Args.cpp.i
-.PHONY : Args.cpp.i
-
-Args.s: Args.cpp.s
-.PHONY : Args.s
-
-# target to generate assembly for a file
-Args.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/Args.cpp.s
-.PHONY : Args.cpp.s
-
-GameLoop.o: GameLoop.cpp.o
-.PHONY : GameLoop.o
-
-# target to build an object file
-GameLoop.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/GameLoop.cpp.o
-.PHONY : GameLoop.cpp.o
-
-GameLoop.i: GameLoop.cpp.i
-.PHONY : GameLoop.i
+UdpServer.i: UdpServer.cpp.i
+.PHONY : UdpServer.i
 
 # target to preprocess a source file
-GameLoop.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/GameLoop.cpp.i
-.PHONY : GameLoop.cpp.i
+UdpServer.cpp.i:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/UdpServer.cpp.i
+.PHONY : UdpServer.cpp.i
 
-GameLoop.s: GameLoop.cpp.s
-.PHONY : GameLoop.s
-
-# target to generate assembly for a file
-GameLoop.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/GameLoop.cpp.s
-.PHONY : GameLoop.cpp.s
-
-NetworkManager.o: NetworkManager.cpp.o
-.PHONY : NetworkManager.o
-
-# target to build an object file
-NetworkManager.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/NetworkManager.cpp.o
-.PHONY : NetworkManager.cpp.o
-
-NetworkManager.i: NetworkManager.cpp.i
-.PHONY : NetworkManager.i
-
-# target to preprocess a source file
-NetworkManager.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/NetworkManager.cpp.i
-.PHONY : NetworkManager.cpp.i
-
-NetworkManager.s: NetworkManager.cpp.s
-.PHONY : NetworkManager.s
+UdpServer.s: UdpServer.cpp.s
+.PHONY : UdpServer.s
 
 # target to generate assembly for a file
-NetworkManager.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/NetworkManager.cpp.s
-.PHONY : NetworkManager.cpp.s
-
-PacketInterpreter.o: PacketInterpreter.cpp.o
-.PHONY : PacketInterpreter.o
-
-# target to build an object file
-PacketInterpreter.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/PacketInterpreter.cpp.o
-.PHONY : PacketInterpreter.cpp.o
-
-PacketInterpreter.i: PacketInterpreter.cpp.i
-.PHONY : PacketInterpreter.i
-
-# target to preprocess a source file
-PacketInterpreter.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/PacketInterpreter.cpp.i
-.PHONY : PacketInterpreter.cpp.i
-
-PacketInterpreter.s: PacketInterpreter.cpp.s
-.PHONY : PacketInterpreter.s
-
-# target to generate assembly for a file
-PacketInterpreter.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/PacketInterpreter.cpp.s
-.PHONY : PacketInterpreter.cpp.s
-
-UdpReceiver.o: UdpReceiver.cpp.o
-.PHONY : UdpReceiver.o
-
-# target to build an object file
-UdpReceiver.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/UdpReceiver.cpp.o
-.PHONY : UdpReceiver.cpp.o
-
-UdpReceiver.i: UdpReceiver.cpp.i
-.PHONY : UdpReceiver.i
-
-# target to preprocess a source file
-UdpReceiver.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/UdpReceiver.cpp.i
-.PHONY : UdpReceiver.cpp.i
-
-UdpReceiver.s: UdpReceiver.cpp.s
-.PHONY : UdpReceiver.s
-
-# target to generate assembly for a file
-UdpReceiver.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/UdpReceiver.cpp.s
-.PHONY : UdpReceiver.cpp.s
-
-UdpSender.o: UdpSender.cpp.o
-.PHONY : UdpSender.o
-
-# target to build an object file
-UdpSender.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/UdpSender.cpp.o
-.PHONY : UdpSender.cpp.o
-
-UdpSender.i: UdpSender.cpp.i
-.PHONY : UdpSender.i
-
-# target to preprocess a source file
-UdpSender.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/UdpSender.cpp.i
-.PHONY : UdpSender.cpp.i
-
-UdpSender.s: UdpSender.cpp.s
-.PHONY : UdpSender.s
-
-# target to generate assembly for a file
-UdpSender.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/UdpSender.cpp.s
-.PHONY : UdpSender.cpp.s
+UdpServer.cpp.s:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/UdpServer.cpp.s
+.PHONY : UdpServer.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/main.cpp.o
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -380,7 +195,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/main.cpp.i
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -388,7 +203,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/r-type_server.dir/build.make src/server/CMakeFiles/r-type_server.dir/main.cpp.s
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/rtype_server.dir/build.make src/server/CMakeFiles/rtype_server.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -398,34 +213,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
-	@echo "... package"
-	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... server_clean"
 	@echo "... server_fclean"
-	@echo "... r-type_server"
-	@echo "... Args.o"
-	@echo "... Args.i"
-	@echo "... Args.s"
-	@echo "... GameLoop.o"
-	@echo "... GameLoop.i"
-	@echo "... GameLoop.s"
-	@echo "... NetworkManager.o"
-	@echo "... NetworkManager.i"
-	@echo "... NetworkManager.s"
-	@echo "... PacketInterpreter.o"
-	@echo "... PacketInterpreter.i"
-	@echo "... PacketInterpreter.s"
-	@echo "... UdpReceiver.o"
-	@echo "... UdpReceiver.i"
-	@echo "... UdpReceiver.s"
-	@echo "... UdpSender.o"
-	@echo "... UdpSender.i"
-	@echo "... UdpSender.s"
+	@echo "... rtype_server"
+	@echo "... UdpServer.o"
+	@echo "... UdpServer.i"
+	@echo "... UdpServer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

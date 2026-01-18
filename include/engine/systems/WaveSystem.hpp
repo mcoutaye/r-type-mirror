@@ -8,6 +8,7 @@
 #pragma once
 #include "ecs.hpp"
 #include "engine/systems/Components.hpp"
+#include "engine/EntityFactory.hpp"
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -85,9 +86,14 @@ void WaveSystem::update(double dt)
             pattern.speed = 2.f;        // Vitesse pour Circle/Zigzag/Spiral
             _ecs.addComponent(enemy, pattern);
 
-            // Autres composants
-            _ecs.addComponent(enemy, Drawable_t{"enemy.png", {0, 0, 64, 64}, 10, true});
-            _ecs.addComponent(enemy, Collider_t{50.f, 50.f, true, 2, 15});
+            // Autres composants - use default rect on server (client will override with proper sprite rect)
+            Drawable_t drawable;
+            drawable.textureName = "enemy";
+            drawable.frames.push_back({0, 0, 64, 64});
+            drawable.layer = 10;
+            drawable.visible = true;
+            _ecs.addComponent(enemy, drawable);
+            _ecs.addComponent(enemy, Factory::createEnemyCollider());
             _ecs.addComponent(enemy, Health_t{40, 40});
             _ecs.addComponent(enemy, SendUpdate_t{true});
         }

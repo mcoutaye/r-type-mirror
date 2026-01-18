@@ -46,6 +46,7 @@ inline bool IsTickNewer(uint16_t newTick, uint16_t oldTick) {
 struct PACKED EntityUpdate {
     uint32_t entityId;  // 4 bytes
     uint16_t tick;      // 2 bytes
+    uint8_t entityType; // 1 byte: 0=player, 1=enemy, 2=projectile, etc.
 
     struct PACKED { // position_t
         float x;
@@ -58,7 +59,7 @@ struct PACKED EntityUpdate {
     } health;           // 8 bytes
 
 };
-static_assert(sizeof(EntityUpdate) == 22, "EntityUpdate must be 22 bytes");
+static_assert(sizeof(EntityUpdate) == 23, "EntityUpdate must be 23 bytes");
 
 #pragma pack(pop)
 #undef PACKED

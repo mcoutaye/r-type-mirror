@@ -21,7 +21,8 @@ enum class GameAction {
     MoveLeft,
     MoveRight,
     Shoot,
-    Quit
+    Quit,
+    ToggleDebug
 };
 
 class InputSystem : public ISystem {
@@ -55,7 +56,7 @@ private:
 
 InputSystem::InputSystem(ECS& ecs) : ISystem(ecs)
 {
-    for (int i = static_cast<int>(GameAction::MoveUp); i <= static_cast<int>(GameAction::Quit); ++i)
+    for (int i = static_cast<int>(GameAction::MoveUp); i <= static_cast<int>(GameAction::ToggleDebug); ++i)
     {
         GameAction action = static_cast<GameAction>(i);
         m_currentActionStates[action] = false;
@@ -77,6 +78,7 @@ void InputSystem::setDefaultMappings()
     m_keyMappings[sf::Keyboard::S] = GameAction::MoveDown;
     m_keyMappings[sf::Keyboard::Q] = GameAction::MoveLeft;
     m_keyMappings[sf::Keyboard::D] = GameAction::MoveRight;
+    m_keyMappings[sf::Keyboard::F1] = GameAction::ToggleDebug;
 
     m_joystickButtonMappings[0] = GameAction::Shoot;
     m_joystickButtonMappings[1] = GameAction::Shoot;

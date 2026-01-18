@@ -6,6 +6,8 @@
 */
 
 #include "client.hpp"
+#include "texturePacker.hpp"
+
 
 int main(int ac, char **av)
 {
@@ -14,6 +16,8 @@ int main(int ac, char **av)
         ip = sf::IpAddress(av[1]);
 
     Client client(ip);
+
+    client._resourceManager.initialize();
 
     while (client._running) {
         client._timer.updateClock();

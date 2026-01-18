@@ -56,6 +56,47 @@ add_custom_command(TARGET r-type_client POST_BUILD
 # Note: WIN32_EXECUTABLE TRUE nécessiterait WinMain() au lieu de main()
 if(WIN32)
     target_link_libraries(r-type_client PRIVATE sfml-main)
+    
+    # Sur Windows, copie les DLLs SFML à côté de l'exécutable
+    # Cela inclut openal32.dll et autres dépendances SFML
+    add_custom_command(TARGET r-type_client POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-system>
+            $<TARGET_FILE_DIR:r-type_client>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-window>
+            $<TARGET_FILE_DIR:r-type_client>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-graphics>
+            $<TARGET_FILE_DIR:r-type_client>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-network>
+            $<TARGET_FILE_DIR:r-type_client>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-audio>
+            $<TARGET_FILE_DIR:r-type_client>
+        COMMENT "Copie des DLLs SFML à côté de l'exécutable (Windows)"
+    )
+    
+    # Copie aussi les DLLs à la racine du build/
+    add_custom_command(TARGET r-type_client POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-system>
+            ${CMAKE_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-window>
+            ${CMAKE_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-graphics>
+            ${CMAKE_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-network>
+            ${CMAKE_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:sfml-audio>
+            ${CMAKE_BINARY_DIR}
+        COMMENT "Copie des DLLs SFML à build/ (Windows)"
+    )
 endif()
 
 add_custom_target(client_clean

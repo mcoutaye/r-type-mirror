@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21) # Version 3.21 requise pour $<TARGET_RUNTIME_DLLS>
+cmake_minimum_required(VERSION 3.21)
 
 # On définit le dossier de sortie pour l'exécutable et les DLL
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -10,7 +10,8 @@ set(SRC_FILES
 
 add_executable(r-type_client ${SRC_FILES})
 
-# Sur Windows avec MinGW/MSYS2, liaison statique des bibliothèques système pour éviter les DLL manquantes
+# Sur Windows avec MinGW/MSYS2, liaison statique des bibliothèques système
+# Cela permet d'éviter d'avoir besoin de libgcc_s_seh-1.dll, libstdc++-6.dll, etc.
 if(WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     target_link_options(r-type_client PRIVATE -static-libgcc -static-libstdc++ -static)
 endif()
@@ -23,6 +24,10 @@ target_include_directories(r-type_client
 )
 
 # Liaison avec SFML
+# Note: Puisque vous utilisez SFML en statique, assurez-vous que SFML_STATIC est défini
+# si vous incluez les headers SFML, bien que CMake le gère souvent seul.
+target_compile_definitions(r-type_client PRIVATE SFML_STATIC)
+
 target_link_libraries(r-type_client
     PRIVATE
         sfml-network
@@ -37,29 +42,15 @@ if(WIN32)
     # sfml-main est nécessaire pour le point d'entrée main() standard sur Windows
     target_link_libraries(r-type_client PRIVATE sfml-main)
 
-    # COPIE CONDITIONNELLE DES DLL
-    # On utilise un script wrapper pour éviter l'erreur si la liste de DLL est vide (cas du static link)
-    add_custom_command(TARGET r-type_client POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E env "DLL_LIST=$<TARGET_RUNTIME_DLLS:r-type_client>" 
-            ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/copy_dlls.cmake" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
-        COMMAND_EXPAND_LISTS
-        COMMENT "Vérification et copie des DLL dépendantes"
-        # Si vous ne voulez pas de script externe, on peut ruser avec une commande qui accepte le vide :
-        COMMAND ${CMAKE_COMMAND} -E echo "Checking for DLLs to copy..."
-    )
-
-    # Note : Puisque vos logs montrent que vous liez SFML en STATIQUE (_deps/sfml-build/lib/libsfml-network.a)
-    # la commande copy_if_different échouait car $<TARGET_RUNTIME_DLLS> était vide.
-    # Voici une version simplifiée qui ne crash pas si vide :
-    add_custom_command(TARGET r-type_client POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "Build finished. DLLs are only copied if dynamic linking is used."
-    )
-
-    # Téléchargement d'OpenAL (nécessaire même en statique pour certains drivers audio)
+    # Téléchargement d'OpenAL (Souvent la seule dépendance manquante en statique)
     set(OPENAL_URL "https://www.openal.org/downloads/OpenAL32.dll")
     set(OPENAL_DLL_DEST "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/openal32.dll")
+    
+    # On télécharge OpenAL uniquement s'il n'est pas déjà là
     if(NOT EXISTS "${OPENAL_DLL_DEST}")
-        message(STATUS "Téléchargement de OpenAL32.dll...")
+        # Création du dossier bin s'il n'existe pas encore
+        file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+        message(STATUS "Téléchargement de OpenAL32.dll vers ${OPENAL_DLL_DEST}...")
         file(DOWNLOAD "${OPENAL_URL}" "${OPENAL_DLL_DEST}" SHOW_PROGRESS)
     endif()
 endif()

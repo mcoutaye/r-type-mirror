@@ -56,7 +56,7 @@ add_custom_command(TARGET r-type_client POST_BUILD
 # Note: WIN32_EXECUTABLE TRUE nécessiterait WinMain() au lieu de main()
 if(WIN32)
     target_link_libraries(r-type_client PRIVATE sfml-main)
-    
+
     # Sur Windows, copie les DLLs SFML à côté de l'exécutable
     # Cela inclut openal32.dll et autres dépendances SFML
     add_custom_command(TARGET r-type_client POST_BUILD
@@ -75,9 +75,13 @@ if(WIN32)
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             $<TARGET_FILE:sfml-audio>
             $<TARGET_FILE_DIR:r-type_client>
-        COMMENT "Copie des DLLs SFML à côté de l'exécutable (Windows)"
+        # Copie openal32.dll à côté de l'exécutable (chemin à adapter selon l'installation)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "C:/msys64/mingw64/bin/openal32.dll"
+            $<TARGET_FILE_DIR:r-type_client>
+        COMMENT "Copie des DLLs SFML et openal32.dll à côté de l'exécutable (Windows)"
     )
-    
+
     # Copie aussi les DLLs à la racine du build/
     add_custom_command(TARGET r-type_client POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -95,7 +99,11 @@ if(WIN32)
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             $<TARGET_FILE:sfml-audio>
             ${CMAKE_BINARY_DIR}
-        COMMENT "Copie des DLLs SFML à build/ (Windows)"
+        # Copie openal32.dll à la racine du build/
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "C:/msys64/mingw64/bin/openal32.dll"
+            ${CMAKE_BINARY_DIR}
+        COMMENT "Copie des DLLs SFML et openal32.dll à build/ (Windows)"
     )
 endif()
 

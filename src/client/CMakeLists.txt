@@ -77,16 +77,12 @@ if(WIN32)
         COMMENT "Copie des DLLs SFML à côté de l'exécutable (Windows)"
     )
 
-    # Définit le chemin cible pour openal32.dll dans le dossier build
-    set(OPENAL_DLL_TARGET "${CMAKE_BINARY_DIR}/openal32.dll")
-
-    # Installe openal32.dll dans build/ si elle existe dans le projet
-    add_custom_command(TARGET r-type_client POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${CMAKE_SOURCE_DIR}/openal32.dll"
-            "${OPENAL_DLL_TARGET}"
-        COMMENT "Installe openal32.dll dans build/ si présente dans le projet (Windows)"
-    )
+    # Télécharge openal32.dll automatiquement si elle n'est pas présente
+    set(OPENAL_URL "https://www.openal.org/downloads/OpenAL32.dll")
+    set(OPENAL_DLL_PATH "${CMAKE_BINARY_DIR}/openal32.dll")
+    if(NOT EXISTS "${OPENAL_DLL_PATH}")
+        file(DOWNLOAD "${OPENAL_URL}" "${OPENAL_DLL_PATH}" SHOW_PROGRESS)
+    endif()
 endif()
 
 add_custom_target(client_clean

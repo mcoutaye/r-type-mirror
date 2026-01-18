@@ -77,13 +77,39 @@ Client::Client(sf::IpAddress serverIp)
       _resourceManager(ResourceManager::getInstance()),
       _ecs(ECS())
 {
-    _window.create(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Fullscreen);
+    std::cout << "[Client] Création de la fenêtre..." << std::endl;
+    
+    // Sur certains environnements Windows, le fullscreen peut échouer
+    // On essaie d'abord en fenêtré si le fullscreen ne fonctionne pas
+    try {
+        _window.create(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Fullscreen);
+        if (!_window.isOpen()) {
+            std::cerr << "[Client] ATTENTION: Fullscreen a échoué, passage en fenêtré..." << std::endl;
+            _window.create(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Default);
+        }
+    } catch (...) {
+        std::cerr << "[Client] ERREUR: Impossible de créer la fenêtre en fullscreen, tentative en fenêtré..." << std::endl;
+        _window.create(sf::VideoMode(1920, 1080), "R-TYPE - CLIENT", sf::Style::Default);
+    }
+    
+    if (!_window.isOpen()) {
+        std::cerr << "[Client] ERREUR FATALE: Impossible de créer la fenêtre SFML!" << std::endl;
+        _running = false;
+        throw std::runtime_error("Impossible de créer la fenêtre SFML");
+    }
+    
+    std::cout << "[Client] Fenêtre créée avec succès (" 
+              << _window.getSize().x << "x" << _window.getSize().y << ")" << std::endl;
+    
     _window.setFramerateLimit(60);
     _defaultView = _window.getDefaultView();  // Sauvegarde la vue par défaut
+    
+    std::cout << "[Client] Démarrage du client UDP..." << std::endl;
     _UDP.start();
     _timer = Timer();
     _running = true;
 
+    std::cout << "[Client] Initialisation du SceneManager..." << std::endl;
     _sceneManager = std::make_unique<SceneManager>();
     _sceneManager->addScene("main_menu");
     _sceneManager->addScene("options_menu");
@@ -94,9 +120,15 @@ Client::Client(sf::IpAddress serverIp)
     _sceneManager->addScene("defeat_menu");
     _menuSystem.setSceneManager(std::make_unique<SceneManager>(*_sceneManager));
 
-    _resourceManager.loadFont("default", "assets/font/Vipnagorgialla-Rg.ttf");
-    _resourceManager.loadFont("title", "assets/font/Rostex-Outline.ttf");
+    std::cout << "[Client] Chargement des ressources..." << std::endl;
+    bool fontOk1 = _resourceManager.loadFont("default", "assets/font/Vipnagorgialla-Rg.ttf");
+    bool fontOk2 = _resourceManager.loadFont("title", "assets/font/Rostex-Outline.ttf");
+    
+    if (!fontOk1 || !fontOk2) {
+        std::cerr << "[Client] ATTENTION: Certaines polices n'ont pas pu être chargées!" << std::endl;
+    }
 
+    std::cout << "[Client] Chargement des sons..." << std::endl;
     // === CHARGEMENT DES SONS ===
     _soundSystem.loadSound("shoot.ogg", "assets/sound/shoot.ogg");
     _soundSystem.loadSound("enemy_death.ogg", "assets/sound/enemy_death.ogg");
@@ -120,6 +152,7 @@ Client::Client(sf::IpAddress serverIp)
     _menuSystem.setSoundSystem(&_soundSystem);
     _menuSystem.setWindow(&_window);
 
+    std::cout << "[Client] Création de la caméra..." << std::endl;
     // Crée la caméra dès le début (pour qu'elle soit toujours disponible)
     Entity cameraEntity = _ecs.createEntity();
     Camera_t camera;
@@ -135,10 +168,15 @@ Client::Client(sf::IpAddress serverIp)
     camera.useBounds = false;
     _ecs.addComponent(cameraEntity, camera);
 
+    std::cout << "[Client] Initialisation des menus..." << std::endl;
     initializeMenus();
     _sceneManager->setActiveScene("main_menu");
+    
+    std::cout << "[Client] Démarrage de la musique de menu..." << std::endl;
     Entity gameMusic = _ecs.createEntity();
     _ecs.addComponent(gameMusic, BackgroundMusic_t{"menu_theme", true, 40.f});
+    
+    std::cout << "[Client] Initialisation terminée avec succès!" << std::endl;
 }
 
 void Client::onQuit()

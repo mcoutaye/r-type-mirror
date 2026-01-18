@@ -58,7 +58,6 @@ if(WIN32)
     target_link_libraries(r-type_client PRIVATE sfml-main)
 
     # Sur Windows, copie les DLLs SFML à côté de l'exécutable
-    # Cela inclut openal32.dll et autres dépendances SFML
     add_custom_command(TARGET r-type_client POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             $<TARGET_FILE:sfml-system>
@@ -75,35 +74,18 @@ if(WIN32)
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             $<TARGET_FILE:sfml-audio>
             $<TARGET_FILE_DIR:r-type_client>
-        # Copie openal32.dll à côté de l'exécutable (chemin à adapter selon l'installation)
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "C:/msys64/mingw64/bin/openal32.dll"
-            $<TARGET_FILE_DIR:r-type_client>
-        COMMENT "Copie des DLLs SFML et openal32.dll à côté de l'exécutable (Windows)"
+        COMMENT "Copie des DLLs SFML à côté de l'exécutable (Windows)"
     )
 
-    # Copie aussi les DLLs à la racine du build/
+    # Définit le chemin cible pour openal32.dll dans le dossier build
+    set(OPENAL_DLL_TARGET "${CMAKE_BINARY_DIR}/openal32.dll")
+
+    # Installe openal32.dll dans build/ si elle existe dans le projet
     add_custom_command(TARGET r-type_client POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:sfml-system>
-            ${CMAKE_BINARY_DIR}
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:sfml-window>
-            ${CMAKE_BINARY_DIR}
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:sfml-graphics>
-            ${CMAKE_BINARY_DIR}
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:sfml-network>
-            ${CMAKE_BINARY_DIR}
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:sfml-audio>
-            ${CMAKE_BINARY_DIR}
-        # Copie openal32.dll à la racine du build/
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "C:/msys64/mingw64/bin/openal32.dll"
-            ${CMAKE_BINARY_DIR}
-        COMMENT "Copie des DLLs SFML et openal32.dll à build/ (Windows)"
+            "${CMAKE_SOURCE_DIR}/openal32.dll"
+            "${OPENAL_DLL_TARGET}"
+        COMMENT "Installe openal32.dll dans build/ si présente dans le projet (Windows)"
     )
 endif()
 

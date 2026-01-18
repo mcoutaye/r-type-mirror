@@ -20,6 +20,8 @@
 #include "engine/systems/ParticleSystem.hpp"
 #include "engine/systems/CameraSystem.hpp"
 #include <memory>
+#include <iostream>
+#include <stdexcept>
 
 class Client {
 public:

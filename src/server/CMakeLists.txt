@@ -5,6 +5,12 @@ set(SRC_FILES
 
 add_executable(r-type_server ${SRC_FILES})
 
+# Sur Windows avec MinGW/MSYS2, on peut lier statiquement la libstdc++
+# pour éviter les problèmes de DLL manquantes
+if(WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    target_link_options(r-type_server PRIVATE -static-libgcc -static-libstdc++)
+endif()
+
 target_link_libraries(r-type_server
     PRIVATE
         sfml-network

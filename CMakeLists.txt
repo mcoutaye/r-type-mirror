@@ -37,7 +37,7 @@ if(UNIX AND NOT APPLE)
     endif()
 endif()
 
-find_package(SFML 2.6 COMPONENTS graphics window system network QUIET)
+find_package(SFML 2.6 COMPONENTS graphics window system network audio QUIET)
 
 if(SFML_FOUND)
     message(STATUS "SFML trouvée sur le système (version ${SFML_VERSION}). Utilisation de cette version.")

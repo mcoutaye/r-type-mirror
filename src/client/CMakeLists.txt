@@ -5,6 +5,12 @@ set(SRC_FILES
 
 add_executable(r-type_client ${SRC_FILES})
 
+# Sur Windows avec MinGW/MSYS2, on peut lier statiquement la libstdc++
+# pour éviter les problèmes de DLL manquantes
+if(WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    target_link_options(r-type_client PRIVATE -static-libgcc -static-libstdc++)
+endif()
+
 target_link_libraries(r-type_client
     PRIVATE
         sfml-network
@@ -46,11 +52,10 @@ add_custom_command(TARGET r-type_client POST_BUILD
     COMMENT "Copie des assets à build/assets/"
 )
 
-# Sur Windows, désactive la console pour une application graphique
+# Sur Windows, on garde main() mais on linke sfml-main pour masquer la console
+# Note: WIN32_EXECUTABLE TRUE nécessiterait WinMain() au lieu de main()
 if(WIN32)
-    set_target_properties(r-type_client PROPERTIES
-        WIN32_EXECUTABLE TRUE  # Pas de console cmd.exe au lancement
-    )
+    target_link_libraries(r-type_client PRIVATE sfml-main)
 endif()
 
 add_custom_target(client_clean

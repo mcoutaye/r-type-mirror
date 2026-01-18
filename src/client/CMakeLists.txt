@@ -37,17 +37,25 @@ if(WIN32)
     # sfml-main est nécessaire pour le point d'entrée main() standard sur Windows
     target_link_libraries(r-type_client PRIVATE sfml-main)
 
-    # COPIE AUTOMATIQUE DES DLL (SFML, OpenAL, etc.)
-    # Cette commande magique trouve toutes les DLL dont l'exe a besoin et les copie
+    # COPIE CONDITIONNELLE DES DLL
+    # On utilise un script wrapper pour éviter l'erreur si la liste de DLL est vide (cas du static link)
     add_custom_command(TARGET r-type_client POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_RUNTIME_DLLS:r-type_client>
-            ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        COMMAND ${CMAKE_COMMAND} -E env "DLL_LIST=$<TARGET_RUNTIME_DLLS:r-type_client>" 
+            ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/copy_dlls.cmake" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
         COMMAND_EXPAND_LISTS
-        COMMENT "Copie des DLL dépendantes dans le dossier bin/"
+        COMMENT "Vérification et copie des DLL dépendantes"
+        # Si vous ne voulez pas de script externe, on peut ruser avec une commande qui accepte le vide :
+        COMMAND ${CMAKE_COMMAND} -E echo "Checking for DLLs to copy..."
     )
 
-    # Téléchargement d'OpenAL (sécurité si non trouvé par le système)
+    # Note : Puisque vos logs montrent que vous liez SFML en STATIQUE (_deps/sfml-build/lib/libsfml-network.a)
+    # la commande copy_if_different échouait car $<TARGET_RUNTIME_DLLS> était vide.
+    # Voici une version simplifiée qui ne crash pas si vide :
+    add_custom_command(TARGET r-type_client POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "Build finished. DLLs are only copied if dynamic linking is used."
+    )
+
+    # Téléchargement d'OpenAL (nécessaire même en statique pour certains drivers audio)
     set(OPENAL_URL "https://www.openal.org/downloads/OpenAL32.dll")
     set(OPENAL_DLL_DEST "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/openal32.dll")
     if(NOT EXISTS "${OPENAL_DLL_DEST}")
@@ -67,12 +75,12 @@ add_custom_command(TARGET r-type_client POST_BUILD
 # --- Commandes de nettoyage personnalisées ---
 
 add_custom_target(client_clean
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/CMakeFiles/r-type_client.dir
+    COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_BINARY_DIR}/CMakeFiles/r-type_client.dir
     COMMENT "Supprime les fichiers objets du client"
 )
 
 add_custom_target(client_fclean
     DEPENDS client_clean
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+    COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
     COMMENT "Supprime le dossier bin (exécutable et DLL)"
 )

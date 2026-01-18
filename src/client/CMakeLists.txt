@@ -11,7 +11,6 @@ set(SRC_FILES
 add_executable(r-type_client ${SRC_FILES})
 
 # Sur Windows avec MinGW/MSYS2, liaison statique des bibliothèques système
-# Cela permet d'éviter d'avoir besoin de libgcc_s_seh-1.dll, libstdc++-6.dll, etc.
 if(WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     target_link_options(r-type_client PRIVATE -static-libgcc -static-libstdc++ -static)
 endif()
@@ -24,10 +23,7 @@ target_include_directories(r-type_client
 )
 
 # Liaison avec SFML
-# Note: Puisque vous utilisez SFML en statique, assurez-vous que SFML_STATIC est défini
-# si vous incluez les headers SFML, bien que CMake le gère souvent seul.
 target_compile_definitions(r-type_client PRIVATE SFML_STATIC)
-
 target_link_libraries(r-type_client
     PRIVATE
         sfml-network
@@ -37,34 +33,42 @@ target_link_libraries(r-type_client
         sfml-audio
 )
 
-# Spécificités Windows
 if(WIN32)
-    # sfml-main est nécessaire pour le point d'entrée main() standard sur Windows
     target_link_libraries(r-type_client PRIVATE sfml-main)
 
-    # Téléchargement d'OpenAL (Souvent la seule dépendance manquante en statique)
-    set(OPENAL_URL "https://www.openal.org/downloads/OpenAL32.dll")
-    set(OPENAL_DLL_DEST "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/openal32.dll")
+    # === CORRECTION CRITIQUE ===
+    # Au lieu de télécharger une version potentiellement 32-bits incompatible,
+    # on récupère la DLL OpenAL fournie dans les sources de la SFML (FetchContent)
+    # qui correspond à l'architecture (x86 ou x64) compilée.
     
-    # On télécharge OpenAL uniquement s'il n'est pas déjà là
-    if(NOT EXISTS "${OPENAL_DLL_DEST}")
-        # Création du dossier bin s'il n'existe pas encore
-        file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-        message(STATUS "Téléchargement de OpenAL32.dll vers ${OPENAL_DLL_DEST}...")
-        file(DOWNLOAD "${OPENAL_URL}" "${OPENAL_DLL_DEST}" SHOW_PROGRESS)
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(SFML_ARCH "x64")
+    else()
+        set(SFML_ARCH "x86")
     endif()
+
+    # Chemin probable dans le dossier de build (basé sur vos logs _deps/sfml-src/...)
+    set(SFML_OPENAL_PATH "${CMAKE_BINARY_DIR}/_deps/sfml-src/extlibs/bin/${SFML_ARCH}/openal32.dll")
+
+    add_custom_command(TARGET r-type_client POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "Tentative de copie de OpenAL pour ${SFML_ARCH}..."
+        # On essaie de copier depuis les sources SFML
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${SFML_OPENAL_PATH}"
+            "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/openal32.dll"
+        COMMENT "Copie de openal32.dll (version compatible ${SFML_ARCH})"
+    )
 endif()
 
-# Copie du dossier assets dans le dossier de l'exécutable
+# Copie du dossier assets
 add_custom_command(TARGET r-type_client POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/assets
         ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets
-    COMMENT "Synchronisation du dossier assets dans bin/"
+    COMMENT "Synchronisation du dossier assets"
 )
 
-# --- Commandes de nettoyage personnalisées ---
-
+# Nettoyage
 add_custom_target(client_clean
     COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_BINARY_DIR}/CMakeFiles/r-type_client.dir
     COMMENT "Supprime les fichiers objets du client"
@@ -73,5 +77,5 @@ add_custom_target(client_clean
 add_custom_target(client_fclean
     DEPENDS client_clean
     COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-    COMMENT "Supprime le dossier bin (exécutable et DLL)"
+    COMMENT "Supprime le dossier bin"
 )

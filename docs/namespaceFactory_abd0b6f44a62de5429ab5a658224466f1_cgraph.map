@@ -1,0 +1,9 @@
+<map id="Factory::createMenuItem" name="Factory::createMenuItem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,188,80"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="236,5,397,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,52,245,31,246,36,155,57"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="249,55,384,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,65,235,65,235,70,188,70"/>
+<area shape="rect" id="Node000004" href="$namespaceFactory.html#aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b" title=" " alt="" coords="245,104,389,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,77,246,98,245,104,153,83"/>
+</map>

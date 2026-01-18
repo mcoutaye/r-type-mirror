@@ -1,15 +1,21 @@
 \doxysection{include/engine/systems/\+Components.hpp File Reference}
 \hypertarget{Components_8hpp}{}\label{Components_8hpp}\index{include/engine/systems/Components.hpp@{include/engine/systems/Components.hpp}}
 {\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$SFML/\+Window/\+Keyboard.\+hpp$>$}\newline
+{\ttfamily \#include "{}engine/\+Menu.\+hpp"{}}\newline
 {\ttfamily \#include $<$string$>$}\newline
-Include dependency graph for Components.\+hpp\+:\nopagebreak
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+Include dependency graph for Components.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=252pt]{Components_8hpp__incl}
+\includegraphics[width=350pt]{Components_8hpp__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -19,6 +25,8 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+struct \mbox{\hyperlink{structComponents_1_1Position}{Components\+::\+Position}}
+\begin{DoxyCompactList}\small\item\em Represents the position of an entity in 2D space. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1Velocity}{Components\+::\+Velocity}}
 \begin{DoxyCompactList}\small\item\em Represents the velocity of an entity in 2D space. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1Drawable}{Components\+::\+Drawable}}
@@ -31,10 +39,10 @@ struct \mbox{\hyperlink{structComponents_1_1Health}{Components\+::\+Health}}
 \begin{DoxyCompactList}\small\item\em Component for tracking health points. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1WaveSpawner}{Components\+::\+Wave\+Spawner}}
 \begin{DoxyCompactList}\small\item\em Component for spawning waves of enemies. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+Wave\+Data}}
-\begin{DoxyCompactList}\small\item\em Data for a specific wave. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1MovementPattern}{Components\+::\+Movement\+Pattern}}
 \begin{DoxyCompactList}\small\item\em Defines movement behavior for entities. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+Wave\+Data}}
+\begin{DoxyCompactList}\small\item\em Data for a specific wave. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1Projectile}{Components\+::\+Projectile}}
 \begin{DoxyCompactList}\small\item\em Component for projectile entities. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1Shootable}{Components\+::\+Shootable}}
@@ -46,9 +54,161 @@ struct \mbox{\hyperlink{structComponents_1_1Obstacle}{Components\+::\+Obstacle}}
 struct \mbox{\hyperlink{structComponents_1_1DestructibleTile}{Components\+::\+Destructible\+Tile}}
 \begin{DoxyCompactList}\small\item\em Component for destructible tiles. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structComponents_1_1Star}{Components\+::\+Star}}
-\begin{DoxyCompactList}\small\item\em Component for background stars in a starfield. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Component for background stars in a starfield. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1JustShot}{Components\+::\+Just\+Shot}}
+\begin{DoxyCompactList}\small\item\em Component to indicate a recent shot. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1PlaySound}{Components\+::\+Play\+Sound}}
+\begin{DoxyCompactList}\small\item\em Trigger to play a sound effect once. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1BackgroundMusic}{Components\+::\+Background\+Music}}
+\begin{DoxyCompactList}\small\item\em Component for background music. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Text}{Components\+::\+Text}}
+\begin{DoxyCompactList}\small\item\em Simple text for menu items (title, buttons...). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1MenuItem}{Components\+::\+Menu\+Item}}
+\begin{DoxyCompactList}\small\item\em Indicates a selectable menu item. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Highlight}{Components\+::\+Highlight}}
+\begin{DoxyCompactList}\small\item\em Optional visual highlight (e.\+g., change color or scale when selected). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Slider}{Components\+::\+Slider}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structComponents_1_1Slider}{Slider} for controlling values (volume, sensitivity, etc.). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1KeybindButton}{Components\+::\+Keybind\+Button}}
+\begin{DoxyCompactList}\small\item\em Button for remapping a key or joystick button. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1DynamicText}{Components\+::\+Dynamic\+Text}}
+\begin{DoxyCompactList}\small\item\em Dynamic text that displays a value (for sliders or keybinds). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Particle}{Components\+::\+Particle}}
+\begin{DoxyCompactList}\small\item\em Individual particle. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1ParticleEmitter}{Components\+::\+Particle\+Emitter}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structComponents_1_1Particle}{Particle} emitter attached to an entity. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Camera}{Components\+::\+Camera}}
+\begin{DoxyCompactList}\small\item\em 2D camera with smooth follow, zoom, and shake. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1CameraTarget}{Components\+::\+Camera\+Target}}
+\begin{DoxyCompactList}\small\item\em Tag to mark an entity as camera target. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1RigidBody}{Components\+::\+Rigid\+Body}}
+\begin{DoxyCompactList}\small\item\em Rigidbody for physics (gravity, forces, etc.). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Jumper}{Components\+::\+Jumper}}
+\begin{DoxyCompactList}\small\item\em Component for entities that can jump. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Platform}{Components\+::\+Platform}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structComponents_1_1Platform}{Platform} (surface to walk on). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1BoxCollider}{Components\+::\+Box\+Collider}}
+\begin{DoxyCompactList}\small\item\em Advanced collision for platforms. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1CollisionInfo}{Components\+::\+Collision\+Info}}
+\begin{DoxyCompactList}\small\item\em Information about a detected collision. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Ladder}{Components\+::\+Ladder}}
+\begin{DoxyCompactList}\small\item\em Ladder/climbable area. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1TriggerZone}{Components\+::\+Trigger\+Zone}}
+\begin{DoxyCompactList}\small\item\em Trigger zone (for teleporters, checkpoints, etc.). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structComponents_1_1Enemy}{Components\+::\+Enemy}}
+\begin{DoxyCompactList}\small\item\em Component to mark an entity as enemy. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespaceComponents}{Components}}
 \begin{DoxyCompactList}\small\item\em Espace dédié pour tous les composants \doxylink{classECS}{ECS}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Components_8hpp_abbfe3c71949470fc9650dc4f945c7319}{SHOOT\+\_\+\+DELAY}}~0.\+5f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{Components_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} = std\+::uint32\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \{ \newline
+\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c}{Move\+Up}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5}{Move\+Down}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca}{Move\+Left}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b}{Move\+Right}}
+, \newline
+\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c}{Shoot}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6}{Quit}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f}{Pause}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296}{Menu\+Up}}
+, \newline
+\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42}{Menu\+Down}}
+, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756}{Menu\+Select}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471}{Components\+::\+Input\+Type}} \{ \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e}{Components\+::\+Keyboard}}
+, \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a1162b85b7b993e2edf7da29dd8abf7e2}{Components\+::\+Joystick}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type of input for remapping. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15c}{Components\+::\+Particle\+Type}} \{ \newline
+\mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca8a36c0d6cc2e31990ea4fb2d597db968}{Components\+::\+Explosion}}
+, \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15cad518a06262ac68f1f006a4f802588130}{Components\+::\+Trail}}
+, \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15cabc93fd0fa19ed26b6adf8293ada55404}{Components\+::\+Smoke}}
+, \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca1708884aa9c2dcfa5f1df31b6c30270d}{Components\+::\+Sparks}}
+, \newline
+\mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca7e4a693bfe182987626f234139a8dc83}{Components\+::\+Debris}}
+ \}
+\begin{DoxyCompactList}\small\item\em Predefined particle types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{Components_8hpp_abbfe3c71949470fc9650dc4f945c7319}\label{Components_8hpp_abbfe3c71949470fc9650dc4f945c7319} 
+\index{Components.hpp@{Components.hpp}!SHOOT\_DELAY@{SHOOT\_DELAY}}
+\index{SHOOT\_DELAY@{SHOOT\_DELAY}!Components.hpp@{Components.hpp}}
+\doxysubsubsection{\texorpdfstring{SHOOT\_DELAY}{SHOOT\_DELAY}}
+{\footnotesize\ttfamily \#define SHOOT\+\_\+\+DELAY~0.\+5f}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{Components_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}\label{Components_8hpp_a9a522438c9f5d73ebe6349edc3313d5e} 
+\index{Components.hpp@{Components.hpp}!Entity@{Entity}}
+\index{Entity@{Entity}!Components.hpp@{Components.hpp}}
+\doxysubsubsection{\texorpdfstring{Entity}{Entity}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} =  std\+::uint32\+\_\+t}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc} 
+\index{Components.hpp@{Components.hpp}!GameAction@{GameAction}}
+\index{GameAction@{GameAction}!Components.hpp@{Components.hpp}}
+\doxysubsubsection{\texorpdfstring{GameAction}{GameAction}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveUp@{MoveUp}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MoveUp@{MoveUp}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c} 
+Move\+Up&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveDown@{MoveDown}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MoveDown@{MoveDown}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5} 
+Move\+Down&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveLeft@{MoveLeft}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MoveLeft@{MoveLeft}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca} 
+Move\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveRight@{MoveRight}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MoveRight@{MoveRight}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b} 
+Move\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Shoot@{Shoot}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!Shoot@{Shoot}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c} 
+Shoot&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Quit@{Quit}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!Quit@{Quit}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6} 
+Quit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pause@{Pause}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!Pause@{Pause}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f} 
+Pause&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MenuUp@{MenuUp}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MenuUp@{MenuUp}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296} 
+Menu\+Up&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MenuDown@{MenuDown}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MenuDown@{MenuDown}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42} 
+Menu\+Down&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MenuSelect@{MenuSelect}!Components.hpp@{Components.hpp}}\index{Components.hpp@{Components.hpp}!MenuSelect@{MenuSelect}}}\Hypertarget{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756}\label{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756} 
+Menu\+Select&\\
+\hline
+
+\end{DoxyEnumFields}

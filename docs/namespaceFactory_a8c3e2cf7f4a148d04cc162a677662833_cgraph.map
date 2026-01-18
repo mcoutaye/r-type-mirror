@@ -1,0 +1,7 @@
+<map id="Factory::createDestructibleTile" name="Factory::createDestructibleTile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,225,56"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="273,5,435,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,29,259,25,260,31,226,34"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="287,55,421,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,52,273,57,272,62,225,57"/>
+</map>

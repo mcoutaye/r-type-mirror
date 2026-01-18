@@ -107,11 +107,11 @@ Collaboration diagram for Serializer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8a16d22eb8292ced21de7bef62576ccf" id="r_a8a16d22eb8292ced21de7bef62576ccf"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">typename</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> &gt; </td></tr>
-<tr class="memitem:a8a16d22eb8292ced21de7bef62576ccf"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">static</a> std::vector&lt; std::uint8_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classSerializer.html#a8a16d22eb8292ced21de7bef62576ccf">serialize</a> (<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> &amp;data)</td></tr>
+<tr class="memitem:a8a16d22eb8292ced21de7bef62576ccf" id="r_a8a16d22eb8292ced21de7bef62576ccf"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8a16d22eb8292ced21de7bef62576ccf"><td class="memTemplItemLeft" align="right" valign="top">static std::vector&lt; std::uint8_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classSerializer.html#a8a16d22eb8292ced21de7bef62576ccf">serialize</a> (const T &amp;data)</td></tr>
 <tr class="separator:a8a16d22eb8292ced21de7bef62576ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecc21abd02f735d072a7f5ac997e6d4e" id="r_aecc21abd02f735d072a7f5ac997e6d4e"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">typename</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> &gt; </td></tr>
-<tr class="memitem:aecc21abd02f735d072a7f5ac997e6d4e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">static</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classSerializer.html#aecc21abd02f735d072a7f5ac997e6d4e">deserialize</a> (<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> std::vector&lt; std::uint8_t &gt; &amp;data)</td></tr>
+<tr class="memitem:aecc21abd02f735d072a7f5ac997e6d4e" id="r_aecc21abd02f735d072a7f5ac997e6d4e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aecc21abd02f735d072a7f5ac997e6d4e"><td class="memTemplItemLeft" align="right" valign="top">static T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classSerializer.html#aecc21abd02f735d072a7f5ac997e6d4e">deserialize</a> (const std::vector&lt; std::uint8_t &gt; &amp;data)</td></tr>
 <tr class="separator:aecc21abd02f735d072a7f5ac997e6d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -121,15 +121,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">typename</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">static</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> Serializer::deserialize </td>
+          <td class="memname">static T Serializer::deserialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> std::vector&lt; std::uint8_t &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::uint8_t &gt; &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
@@ -140,11 +140,6 @@ template&lt;<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSerializer_aecc21abd02f735d072a7f5ac997e6d4e_cgraph.svg" width="570" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -154,15 +149,15 @@ Here is the call graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">typename</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">static</a> std::vector&lt; std::uint8_t &gt; Serializer::serialize </td>
+          <td class="memname">static std::vector&lt; std::uint8_t &gt; Serializer::serialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">const</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">T</a> &amp;&#160;</td>
+          <td class="paramtype">const T &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
@@ -173,11 +168,6 @@ template&lt;<a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSerializer_a8a16d22eb8292ced21de7bef62576ccf_cgraph.svg" width="554" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>

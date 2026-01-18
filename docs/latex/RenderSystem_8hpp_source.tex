@@ -4,25 +4,124 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{/*}}
 \DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
-\DoxyCodeLine{00003\ \textcolor{comment}{**\ R-\/type}}
-\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
-\DoxyCodeLine{00005\ \textcolor{comment}{**\ Render\ System}}
-\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp}{engine/ecs/ecs.hpp}}"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRenderSystem}{RenderSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
-\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classRenderSystem_a4f06abf224e6e5ca1504e46eae2cd5a6}{RenderSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ sf::RenderWindow\&\ window);}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00021\ \ \ \ \ sf::RenderWindow\&\ \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\_window}};}
-\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ void\ RenderSystem::update(double\ dt)}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ \ (void)dt;\ \ //\ dt\ non\ utilisé\ ici}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ \ //\ NOTE:\ clear()\ et\ setView()\ sont\ gérés\ par\ le\ client\ avant\ d'appeler\ update()}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ //\ ===\ 1.\ Dessin\ des\ étoiles\ (parallaxe\ starfield)\ ===\ File\ description:}}
+\DoxyCodeLine{00010\ \textcolor{comment}{**\ Render\ System}}
+\DoxyCodeLine{00011\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{RessourceManager_8hpp}{engine/systems/RessourceManager.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRenderSystem}{RenderSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classRenderSystem}{RenderSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ sf::RenderWindow\&\ window,\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ resourceManager);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ sf::RenderWindow\&\ \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\_window}};}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\ \&\mbox{\hyperlink{classRenderSystem_a0e66178457086c030d4efb946dac283c}{\_resourceManager}}\ =\ \mbox{\hyperlink{classResourceManager_a37d0e97686c031cef9b22725ba4a6005}{ResourceManager::getInstance}}();}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \mbox{\hyperlink{classRenderSystem_ae9f1fe6a28277fdb68c83a8a1b090625}{RenderSystem::RenderSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ sf::RenderWindow\&\ window,\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ resourceManager)}
+\DoxyCodeLine{00033\ \ \ \ \ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs),\ \_window(window),\ \_resourceManager(resourceManager)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRenderSystem_aa28deb21383fccc8d4667f35b02e2369}{RenderSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ (void)dt;\ \ \textcolor{comment}{//\ dt\ non\ utilisé\ ici}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\_window}}.clear(sf::Color::Black);}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ La\ vue\ doit\ être\ appliquée\ par\ le\ client\ APRÈS\ clear()\ et\ AVANT\ le\ rendu;}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ ===\ 1.\ Dessin\ des\ étoiles\ (parallaxe\ starfield)\ ===}}
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<Entity>\ stars\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Star\_t,\ Position\_t>();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ stars)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(e);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ star\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Star\_t>(e);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pos\ ||\ !star)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Réapparition\ à\ droite\ quand\ l'étoile\ sort\ à\ gauche}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos-\/>x\ <\ -\/10.f)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>x\ =\ 1930.f;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>y\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(rand()\ \%\ 1080);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ sf::RectangleShape\ shape(sf::Vector2f(star-\/>size,\ star-\/>size));}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ shape.setPosition(pos-\/>x,\ pos-\/>y);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ shape.setFillColor(sf::Color(255,\ 255,\ 255,\ star-\/>brightness));}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\_window}}.draw(shape);}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ ===\ 2.\ Dessin\ des\ sprites\ (triés\ par\ layer)\ ===}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{auto}\ spriteEntities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ Drawable\_t>();}
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<std::pair<int,\ Entity>>\ sortedSprites;}
+\DoxyCodeLine{00067\ \ \ \ \ sortedSprites.reserve(spriteEntities.size());}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ spriteEntities)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}*\ d\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Drawable\_t>(e))\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ sortedSprites.emplace\_back(d-\/>layer,\ e);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ std::sort(sortedSprites.begin(),\ sortedSprites.end(),\ [](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a,\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ return\ a.first\ <\ b.first;\ \ \textcolor{comment}{//\ Tri\ croissant\ par\ layer}}
+\DoxyCodeLine{00077\ \ \ \ \ \});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [layer,\ e]\ :\ sortedSprites)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(e);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ draw\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Drawable\_t>(e);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pos\ ||\ !draw\ ||\ !draw-\/>visible)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Récupération\ de\ la\ texture\ (gérée\ par\ ResourceManager)}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ sf::Sprite\ sprite(\mbox{\hyperlink{classRenderSystem_a0e66178457086c030d4efb946dac283c}{\_resourceManager}}.\mbox{\hyperlink{classResourceManager_a78632647a9a86d0b477de5055a5a2fcc}{getTexture}}(draw-\/>textureId));}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ sprite.setTextureRect(draw-\/>rect);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ sprite.setPosition(pos-\/>x,\ pos-\/>y);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ sprite.setScale(draw-\/>scale,\ draw-\/>scale);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ sprite.setRotation(draw-\/>rotation);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\_window}}.draw(sprite);}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ ===\ 3.\ Dessin\ du\ texte\ (menu,\ UI,\ etc.)\ ===}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{auto}\ textEntities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ Text\_t>();}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ textEntities)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(e);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ textComp\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Text\_t>(e);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pos\ ||\ !textComp\ ||\ !textComp-\/>visible)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utilise\ la\ police\ spécifiée\ dans\ textComp-\/>fontId}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Font\&\ font\ =\ \mbox{\hyperlink{classRenderSystem_a0e66178457086c030d4efb946dac283c}{\_resourceManager}}.\mbox{\hyperlink{classResourceManager_a29758789d4a198a3e7d8a11ed69d9cad}{getFont}}(textComp-\/>fontId);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ sf::Text\ text;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ text.setFont(font);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ text.setString(textComp-\/>text);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ text.setCharacterSize(textComp-\/>fontSize);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ text.setFillColor(textComp-\/>color);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Centrage\ horizontal\ si\ demandé}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ sf::FloatRect\ bounds\ =\ text.getLocalBounds();}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ pos-\/>x;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textComp-\/>centered)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ x\ -\/=\ (bounds.width\ /\ 2.f)\ +\ bounds.left;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\ =\ pos-\/>y\ -\/\ (bounds.height\ /\ 2.f)\ -\/\ bounds.top;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ text.setPosition(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRenderSystem_adb763824d4393af00a5769f92c84d635}{\_window}}.draw(text);}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ ===\ Fin\ du\ rendu\ (display\ appelé\ par\ le\ client\ après\ les\ particules)\ ===}}
+\DoxyCodeLine{00121\ \}}
 
 \end{DoxyCode}

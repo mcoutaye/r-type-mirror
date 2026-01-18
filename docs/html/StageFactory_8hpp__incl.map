@@ -1,0 +1,19 @@
+<map id="include/engine/factory/StageFactory.hpp" name="include/engine/factory/StageFactory.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="361,5,527,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="319,93,391,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="424,48,380,86,376,82,421,44"/>
+<area shape="rect" id="Node000003" href="$Components_8hpp.html" title=" " alt="" coords="415,93,654,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="468,44,513,82,509,86,464,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,167,152,192"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="462,121,166,167,165,162,461,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="177,167,383,192"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="494,121,335,166,333,160,493,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="407,167,542,192"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="527,121,495,158,491,154,523,117"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="567,167,625,192"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="547,117,579,154,575,158,543,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="650,167,737,192"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="561,116,656,159,654,163,559,121"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="761,167,828,192"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="577,116,749,163,748,168,576,121"/>
+</map>

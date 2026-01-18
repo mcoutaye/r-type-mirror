@@ -128,16 +128,16 @@ $(document).ready(function(){initNavTree('Timer_8hpp_source.html',''); initResiz
 </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classTimer.html#a8748fdae906f806c6071d2a985cdb359">   24</a></span>        <a class="code hl_function" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">uint16_t</a> <a class="code hl_function" href="classTimer.html#a8748fdae906f806c6071d2a985cdb359">getCurrentFrame</a>() {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classTimer.html#a8748fdae906f806c6071d2a985cdb359">   24</a></span>        uint16_t <a class="code hl_function" href="classTimer.html#a8748fdae906f806c6071d2a985cdb359">getCurrentFrame</a>() {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">_frameNumber</a>;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
 </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classTimer.html#a5dfc60401871aa32cfe0ca0a775f31fa">   28</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classTimer.html#a5dfc60401871aa32cfe0ca0a775f31fa">updateClock</a>() {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">auto</span> <a class="code hl_function" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">elapsedTime</a> = <a class="code hl_variable" href="classTimer.html#a6146149d2bf9233823a4ce392fb0768b">_clock</a>.getElapsedTime();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">elapsedTime</a>.asMicroseconds() &gt; 60000) {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                <a class="code hl_variable" href="classTimer.html#af11a98cd3020860d759b7bb78f6ecc9b">_lastTick</a> = <a class="code hl_function" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">elapsedTime</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">auto</span> elapsedTime = <a class="code hl_variable" href="classTimer.html#a6146149d2bf9233823a4ce392fb0768b">_clock</a>.getElapsedTime();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keywordflow">if</span> (elapsedTime.asMicroseconds() &gt; 60000) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                <a class="code hl_variable" href="classTimer.html#af11a98cd3020860d759b7bb78f6ecc9b">_lastTick</a> = elapsedTime;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                <a class="code hl_variable" href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">_frameNumber</a>++;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                <a class="code hl_variable" href="classTimer.html#a6146149d2bf9233823a4ce392fb0768b">_clock</a>.restart();</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            }</div>
@@ -146,7 +146,7 @@ $(document).ready(function(){initNavTree('Timer_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classTimer.html#a6146149d2bf9233823a4ce392fb0768b">   37</a></span>        sf::Clock <a class="code hl_variable" href="classTimer.html#a6146149d2bf9233823a4ce392fb0768b">_clock</a>;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classTimer.html#af11a98cd3020860d759b7bb78f6ecc9b">   38</a></span>        sf::Time <a class="code hl_variable" href="classTimer.html#af11a98cd3020860d759b7bb78f6ecc9b">_lastTick</a>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">   39</a></span>        <a class="code hl_function" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">uint16_t</a> <a class="code hl_variable" href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">_frameNumber</a> = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">   39</a></span>        uint16_t <a class="code hl_variable" href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">_frameNumber</a> = 0;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
@@ -160,7 +160,6 @@ $(document).ready(function(){initNavTree('Timer_8hpp_source.html',''); initResiz
 <div class="ttc" id="aclassTimer_html_af11a98cd3020860d759b7bb78f6ecc9b"><div class="ttname"><a href="classTimer.html#af11a98cd3020860d759b7bb78f6ecc9b">Timer::_lastTick</a></div><div class="ttdeci">sf::Time _lastTick</div><div class="ttdef"><b>Definition</b> Timer.hpp:38</div></div>
 <div class="ttc" id="aclassTimer_html_af3badf7c5cfdecd86d051b5ed955f986"><div class="ttname"><a href="classTimer.html#af3badf7c5cfdecd86d051b5ed955f986">Timer::getLastTick</a></div><div class="ttdeci">sf::Int64 getLastTick()</div><div class="ttdef"><b>Definition</b> Timer.hpp:20</div></div>
 <div class="ttc" id="aclassTimer_html_afa3ae060701ee7db5ac30821755fadb6"><div class="ttname"><a href="classTimer.html#afa3ae060701ee7db5ac30821755fadb6">Timer::_frameNumber</a></div><div class="ttdeci">uint16_t _frameNumber</div><div class="ttdef"><b>Definition</b> Timer.hpp:39</div></div>
-<div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a5a868f82168f3b251aa7ca758686125c"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">getComponentID</a></div><div class="ttdeci">ComponentTypeID getComponentID()</div><div class="ttdoc">Retrieves the unique ID for a given component type.</div><div class="ttdef"><b>Definition</b> ecs.hpp:71</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

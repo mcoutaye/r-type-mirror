@@ -1,0 +1,7 @@
+<map id="ParticleSystem::emitExplosion" name="ParticleSystem::emitExplosion">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,225,56"/>
+<area shape="rect" id="Node000002" href="$classParticleSystem.html#aa2d3bb4cc29a2fcf5bc52103ac651a6b" title=" " alt="" coords="281,5,477,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,30,267,26,267,31,226,35"/>
+<area shape="rect" id="Node000003" href="$classParticleSystem.html#a4ce2f9bb985b09ee51ce0f5022ca73eb" title=" " alt="" coords="273,55,484,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,51,260,54,260,59,225,56"/>
+</map>

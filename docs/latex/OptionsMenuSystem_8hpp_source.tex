@@ -1,0 +1,290 @@
+\doxysection{Options\+Menu\+System.\+hpp}
+\hypertarget{OptionsMenuSystem_8hpp_source}{}\label{OptionsMenuSystem_8hpp_source}\index{include/engine/systems/OptionsMenuSystem.hpp@{include/engine/systems/OptionsMenuSystem.hpp}}
+\mbox{\hyperlink{OptionsMenuSystem_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ OptionsMenuSystem\ -\/\ Gère\ les\ sliders\ et\ le\ remapping\ de\ touches}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{InputSystem_8hpp}{engine/systems/InputSystem.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SoundSystem_8hpp}{engine/systems/SoundSystem.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOptionsMenuSystem}{OptionsMenuSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classOptionsMenuSystem}{OptionsMenuSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \mbox{\hyperlink{classInputSystem}{InputSystem}}\&\ inputSystem,\ \mbox{\hyperlink{classSoundSystem}{SoundSystem}}\&\ soundSystem);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_a89fa209e9c4e2b5824c9b371c874e450}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_ac1bce222290626143b4b1734ec883fdb}{setEnabled}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707}{handleSliders}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a}{handleKeybindButtons}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e}{updateDynamicTexts}}();}
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classInputSystem}{InputSystem}}\&\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}};}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classSoundSystem}{SoundSystem}}\&\ \mbox{\hyperlink{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}{\_soundSystem}};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classOptionsMenuSystem_a7d03e35b82d01eb6339e71c18472ebf2}{\_enabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ 0.0f;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classOptionsMenuSystem_ac32cf20ac941f19987c18718a6c01697}{\_cooldownDuration}}\ =\ 0.15f;}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1);\ \ \textcolor{comment}{//\ Entity\ en\ attente\ d'une\ nouvelle\ touche}}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \mbox{\hyperlink{classOptionsMenuSystem_a2d701c755fee5dd05ab6abc321c5b052}{OptionsMenuSystem::OptionsMenuSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \mbox{\hyperlink{classInputSystem}{InputSystem}}\&\ inputSystem,\ \mbox{\hyperlink{classSoundSystem}{SoundSystem}}\&\ soundSystem)\ }
+\DoxyCodeLine{00036\ \ \ \ \ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs),\ \_inputSystem(inputSystem),\ \_soundSystem(soundSystem)\ \{\}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_ac1bce222290626143b4b1734ec883fdb}{OptionsMenuSystem::setEnabled}}(\textcolor{keywordtype}{bool}\ enabled)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a7d03e35b82d01eb6339e71c18472ebf2}{\_enabled}}\ =\ enabled;}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_a89fa209e9c4e2b5824c9b371c874e450}{OptionsMenuSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classOptionsMenuSystem_a7d03e35b82d01eb6339e71c18472ebf2}{\_enabled}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ >\ 0.0f)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ -\/=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(dt);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707}{handleSliders}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a}{handleKeybindButtons}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e}{updateDynamicTexts}}();}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707}{OptionsMenuSystem::handleSliders}}()}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{auto}\ sliders\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Slider\_t,\ Position\_t,\ Text\_t>();}
+\DoxyCodeLine{00059\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ sliders)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ slider\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Slider\_t>(e);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ text\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Text\_t>(e);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!slider\ ||\ !text\ ||\ !text-\/>visible)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ >\ 0.0f)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ leftPressed\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca}{GameAction::MoveLeft}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ rightPressed\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b}{GameAction::MoveRight}});}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (leftPressed)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ slider-\/>currentValue\ =\ std::max(slider-\/>minValue,\ slider-\/>currentValue\ -\/\ slider-\/>step);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ \mbox{\hyperlink{classOptionsMenuSystem_ac32cf20ac941f19987c18718a6c01697}{\_cooldownDuration}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ le\ changement\ selon\ le\ setting}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (slider-\/>linkedSetting\ ==\ \textcolor{stringliteral}{"{}music\_volume"{}})\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}{\_soundSystem}}.\mbox{\hyperlink{classSoundSystem_ae96d98d929381ca3dcda39156296b629}{setMusicVolume}}(slider-\/>currentValue);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (slider-\/>linkedSetting\ ==\ \textcolor{stringliteral}{"{}sfx\_volume"{}})\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}{\_soundSystem}}.\mbox{\hyperlink{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26}{setSoundVolume}}(slider-\/>currentValue);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rightPressed)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ slider-\/>currentValue\ =\ std::min(slider-\/>maxValue,\ slider-\/>currentValue\ +\ slider-\/>step);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ \mbox{\hyperlink{classOptionsMenuSystem_ac32cf20ac941f19987c18718a6c01697}{\_cooldownDuration}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ le\ changement\ selon\ le\ setting}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (slider-\/>linkedSetting\ ==\ \textcolor{stringliteral}{"{}music\_volume"{}})\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}{\_soundSystem}}.\mbox{\hyperlink{classSoundSystem_ae96d98d929381ca3dcda39156296b629}{setMusicVolume}}(slider-\/>currentValue);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (slider-\/>linkedSetting\ ==\ \textcolor{stringliteral}{"{}sfx\_volume"{}})\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}{\_soundSystem}}.\mbox{\hyperlink{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26}{setSoundVolume}}(slider-\/>currentValue);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a}{OptionsMenuSystem::handleKeybindButtons}}()}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{auto}\ buttons\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<KeybindButton\_t,\ Text\_t>();}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Si\ on\ attend\ une\ touche/bouton\ pour\ un\ bouton\ spécifique}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}}\ !=\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1))\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ button\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<KeybindButton\_t>(\mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (button\ \&\&\ button-\/>isWaitingForInput)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (button-\/>inputType\ ==\ InputType::Keyboard)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Écoute\ toutes\ les\ touches\ clavier}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ sf::Keyboard::A;\ k\ <\ sf::Keyboard::KeyCount;\ k++)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Keyboard::Key\ key\ =\ \textcolor{keyword}{static\_cast<}sf::Keyboard::Key\textcolor{keyword}{>}(k);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sf::Keyboard::isKeyPressed(key)\ \&\&\ key\ !=\ sf::Keyboard::Escape)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assigne\ la\ nouvelle\ touche}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_afe7f4a0668c0185a26a235acfc302e23}{setKeyMapping}}(key,\ button-\/>action);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>currentKey\ =\ key;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>isWaitingForInput\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ 0.3f;\ \ \textcolor{comment}{//\ Cooldown\ plus\ long\ après\ remapping}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (button-\/>inputType\ ==\ InputType::Joystick)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Écoute\ tous\ les\ boutons\ de\ manette}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Joystick::update();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sf::Joystick::isConnected(0))\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ btn\ =\ 0;\ btn\ <\ sf::Joystick::ButtonCount;\ btn++)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sf::Joystick::isButtonPressed(0,\ btn))\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assigne\ le\ nouveau\ bouton}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8}{setJoystickButtonMapping}}(btn,\ button-\/>action);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>currentJoystickButton\ =\ btn;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>isWaitingForInput\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ 0.3f;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Échap\ pour\ annuler}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>isWaitingForInput\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ 0.3f;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \ \textcolor{comment}{//\ Ne\ traite\ pas\ d'autres\ inputs\ pendant\ le\ remapping}}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ Mode\ normal\ :\ clic\ sur\ un\ bouton\ pour\ commencer\ le\ remapping}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ buttons)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ button\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<KeybindButton\_t>(e);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ text\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Text\_t>(e);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ menuItem\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<MenuItem\_t>(e);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!button\ ||\ !text\ ||\ !menuItem)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!text-\/>visible\ ||\ !menuItem-\/>isSelected)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ >\ 0.0f)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ confirmPressed\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{isActionActive}}(\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c}{GameAction::Shoot}});}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (confirmPressed)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>isWaitingForInput\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (button-\/>inputType\ ==\ InputType::Keyboard)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>currentKey\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7}{getKeyForAction}}(button-\/>action);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button-\/>currentJoystickButton\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a2d1a767437e5d8a810431db455051f13}{getJoystickButtonForAction}}(button-\/>action);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\_waitingForKeyEntity}}\ =\ e;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\_inputCooldown}}\ =\ 0.3f;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e}{OptionsMenuSystem::updateDynamicTexts}}()}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{auto}\ dynamicTexts\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<DynamicText\_t,\ Text\_t>();}
+\DoxyCodeLine{00174\ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ dynamicTexts)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ dynText\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<DynamicText\_t>(e);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ text\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Text\_t>(e);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!dynText\ ||\ !text)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ le\ texte\ avec\ la\ valeur\ dynamique}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dynText-\/>valueGetter)\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ newText\ =\ dynText-\/>prefix\ +\ dynText-\/>valueGetter()\ +\ dynText-\/>suffix;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ std::snprintf(text-\/>text,\ \textcolor{keyword}{sizeof}(text-\/>text),\ \textcolor{stringliteral}{"{}\%s"{}},\ newText.c\_str());}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ les\ textes\ des\ boutons\ de\ keybinding}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{auto}\ keybindButtons\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<KeybindButton\_t,\ Text\_t>();}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ keybindButtons)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ button\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<KeybindButton\_t>(e);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ text\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Text\_t>(e);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!button\ ||\ !text)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (button-\/>isWaitingForInput)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (button-\/>inputType\ ==\ InputType::Keyboard)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::snprintf(text-\/>text,\ \textcolor{keyword}{sizeof}(text-\/>text),\ \textcolor{stringliteral}{"{}Press\ a\ key..."{}});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::snprintf(text-\/>text,\ \textcolor{keyword}{sizeof}(text-\/>text),\ \textcolor{stringliteral}{"{}Press\ a\ button..."{}});}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ text-\/>color\ =\ sf::Color::Yellow;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ inputName;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (button-\/>inputType\ ==\ InputType::Keyboard)\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Keyboard::Key\ key\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7}{getKeyForAction}}(button-\/>action);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inputName\ =\ \mbox{\hyperlink{OptionsMenuSystem_8hpp_adedebd343afa10365ba3cf936537c4b3}{getKeyName}}(key);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ btn\ =\ \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\_inputSystem}}.\mbox{\hyperlink{classInputSystem_a2d1a767437e5d8a810431db455051f13}{getJoystickButtonForAction}}(button-\/>action);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inputName\ =\ \mbox{\hyperlink{OptionsMenuSystem_8hpp_a6c78a689778bdce5ef7b17003b792747}{getJoystickButtonName}}(btn);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ std::snprintf(text-\/>text,\ \textcolor{keyword}{sizeof}(text-\/>text),\ \textcolor{stringliteral}{"{}\%s"{}},\ inputName.c\_str());}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ text-\/>color\ =\ text-\/>originalColor;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ Fonction\ utilitaire\ pour\ obtenir\ le\ nom\ d'une\ touche}}
+\DoxyCodeLine{00219\ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{OptionsMenuSystem_8hpp_adedebd343afa10365ba3cf936537c4b3}{getKeyName}}(sf::Keyboard::Key\ key)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{switch}\ (key)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::A:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}A"{}};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::B:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}B"{}};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::C:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}C"{}};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::D:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}D"{}};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::E:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}E"{}};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::F:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}F"{}};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::G:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}G"{}};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::H:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}H"{}};}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::I:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}I"{}};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::J:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}J"{}};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::K:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}K"{}};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::L:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}L"{}};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::M:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}M"{}};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::N:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}N"{}};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::O:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}O"{}};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::P:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}P"{}};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Q:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Q"{}};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::R:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}R"{}};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::S:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}S"{}};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::T:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}T"{}};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::U:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}U"{}};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::V:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}V"{}};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::W:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}W"{}};}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::X:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}X"{}};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Y:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Y"{}};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Z:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Z"{}};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Up:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Up\ Arrow"{}};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Down:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Down\ Arrow"{}};}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Left:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Left\ Arrow"{}};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Right:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Right\ Arrow"{}};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Space:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Space"{}};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Enter:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Enter"{}};}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::Escape:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Escape"{}};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::LControl:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Left\ Ctrl"{}};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::LShift:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Left\ Shift"{}};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::LAlt:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Left\ Alt"{}};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::RControl:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Right\ Ctrl"{}};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::RShift:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Right\ Shift"{}};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ sf::Keyboard::RAlt:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Right\ Alt"{}};}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Unknown"{}};}
+\DoxyCodeLine{00261\ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{comment}{//\ Fonction\ utilitaire\ pour\ obtenir\ le\ nom\ d'un\ bouton\ de\ manette}}
+\DoxyCodeLine{00265\ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{OptionsMenuSystem_8hpp_a6c78a689778bdce5ef7b17003b792747}{getJoystickButtonName}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ button)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (button\ ==\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\textcolor{keyword}{>}(-\/1))\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}None"{}};}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ Noms\ standards\ pour\ les\ manettes\ (type\ Xbox/PlayStation)}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{switch}\ (button)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Button\ A/X"{}};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Button\ B/Circle"{}};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Button\ X/Square"{}};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Button\ Y/Triangle"{}};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}LB/L1"{}};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}RB/R1"{}};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Back/Select"{}};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Start"{}};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 8:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}L3"{}};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}R3"{}};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Button\ "{}}\ +\ std::to\_string(button);}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \}}
+
+\end{DoxyCode}

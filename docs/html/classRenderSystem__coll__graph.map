@@ -1,7 +1,9 @@
 <map id="RenderSystem" name="RenderSystem">
-<area shape="rect" id="Node000001" title=" " alt="" coords="19,967,237,1096"/>
-<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="51,693,205,917"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,931,131,966,125,966,125,931"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="93,1236,374,1380"/>
+<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="51,821,205,1045"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,1058,216,1235,211,1237,161,1060"/>
 <area shape="rect" id="Node000003" href="$classECS.html" title="Entity Component System manager." alt="" coords="5,5,251,631"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,631,131,677,125,677,125,631"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,631,131,805,125,805,125,631"/>
+<area shape="rect" id="Node000004" href="$classResourceManager.html" title=" " alt="" coords="229,693,451,1173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="274,1174,261,1221,256,1220,269,1173"/>
 </map>

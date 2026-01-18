@@ -101,36 +101,149 @@ $(document).ready(function(){initNavTree('RenderSystem_8hpp_source.html',''); in
 <div class="contents">
 <a href="RenderSystem_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">** EPITECH PROJECT, 2025</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">** R-type</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">** File description:</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">** Render System</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="engine_2ecs_2ecs_8hpp.html">engine/ecs/ecs.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="Components_8hpp.html">engine/systems/Components.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classRenderSystem.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classRenderSystem.html">RenderSystem</a> : <span class="keyword">public</span> <a class="code hl_class" href="classISystem.html">ISystem</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classRenderSystem.html#a4f06abf224e6e5ca1504e46eae2cd5a6">   17</a></span>    <a class="code hl_function" href="classRenderSystem.html#a4f06abf224e6e5ca1504e46eae2cd5a6">RenderSystem</a>(<a class="code hl_class" href="classECS.html">ECS</a>&amp; ecs, sf::RenderWindow&amp; window);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">   18</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">update</a>(<span class="keywordtype">double</span> dt) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">   21</a></span>    sf::RenderWindow&amp; <a class="code hl_variable" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">_window</a>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">** void RenderSystem::update(double dt)</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">{</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">    (void)dt;  // dt non utilisé ici</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"></span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">    // NOTE: clear() et setView() sont gérés par le client avant d&#39;appeler update()</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"></span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">    // === 1. Dessin des étoiles (parallaxe starfield) === File description:</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">** Render System</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;ecs.hpp&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="Components_8hpp.html">engine/systems/Components.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="RessourceManager_8hpp.html">engine/systems/RessourceManager.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classRenderSystem.html">   22</a></span><span class="keyword">class </span><a class="code hl_class" href="classRenderSystem.html">RenderSystem</a> : <span class="keyword">public</span> <a class="code hl_class" href="classISystem.html">ISystem</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="classRenderSystem.html">RenderSystem</a>(<a class="code hl_class" href="classECS.html">ECS</a>&amp; ecs, sf::RenderWindow&amp; window, <a class="code hl_class" href="classResourceManager.html">ResourceManager</a>&amp; resourceManager);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">update</a>(<span class="keywordtype">double</span> dt) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">   28</a></span>    sf::RenderWindow&amp; <a class="code hl_variable" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">_window</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classRenderSystem.html#a0e66178457086c030d4efb946dac283c">   29</a></span>    <a class="code hl_class" href="classResourceManager.html">ResourceManager</a> &amp;<a class="code hl_variable" href="classRenderSystem.html#a0e66178457086c030d4efb946dac283c">_resourceManager</a> = <a class="code hl_function" href="classResourceManager.html#a37d0e97686c031cef9b22725ba4a6005">ResourceManager::getInstance</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classRenderSystem.html#ae9f1fe6a28277fdb68c83a8a1b090625">   32</a></span><a class="code hl_function" href="classRenderSystem.html#ae9f1fe6a28277fdb68c83a8a1b090625">RenderSystem::RenderSystem</a>(<a class="code hl_class" href="classECS.html">ECS</a>&amp; ecs, sf::RenderWindow&amp; window, <a class="code hl_class" href="classResourceManager.html">ResourceManager</a>&amp; resourceManager)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    : <a class="code hl_class" href="classISystem.html">ISystem</a>(ecs), _window(window), _resourceManager(resourceManager)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">   37</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">RenderSystem::update</a>(<span class="keywordtype">double</span> dt)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    (void)dt;  <span class="comment">// dt non utilisé ici</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_variable" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">_window</a>.clear(sf::Color::Black);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// NOTE: La vue doit être appliquée par le client APRÈS clear() et AVANT le rendu;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// === 1. Dessin des étoiles (parallaxe starfield) ===</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::vector&lt;Entity&gt; stars = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#a8d931ce389d47888768e1a5092bde26b">getEntitiesByComponents</a>&lt;Star_t, Position_t&gt;();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> e : stars) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">auto</span>* pos = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Position_t&gt;(e);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">auto</span>* star = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Star_t&gt;(e);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">if</span> (!pos || !star) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="comment">// Réapparition à droite quand l&#39;étoile sort à gauche</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (pos-&gt;x &lt; -10.f) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            pos-&gt;x = 1930.f;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            pos-&gt;y = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(rand() % 1080);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        sf::RectangleShape shape(sf::Vector2f(star-&gt;size, star-&gt;size));</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        shape.setPosition(pos-&gt;x, pos-&gt;y);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        shape.setFillColor(sf::Color(255, 255, 255, star-&gt;brightness));</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_variable" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">_window</a>.draw(shape);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// === 2. Dessin des sprites (triés par layer) ===</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">auto</span> spriteEntities = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#a8d931ce389d47888768e1a5092bde26b">getEntitiesByComponents</a>&lt;Position_t, Drawable_t&gt;();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    std::vector&lt;std::pair&lt;int, Entity&gt;&gt; sortedSprites;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    sortedSprites.reserve(spriteEntities.size());</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> e : spriteEntities) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span>* d = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Drawable_t&gt;(e)) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            sortedSprites.emplace_back(d-&gt;layer, e);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::sort(sortedSprites.begin(), sortedSprites.end(), [](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; a, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; b) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        return a.first &lt; b.first;  <span class="comment">// Tri croissant par layer</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    });</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [layer, e] : sortedSprites) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keyword">auto</span>* pos = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Position_t&gt;(e);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keyword">auto</span>* draw = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Drawable_t&gt;(e);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">if</span> (!pos || !draw || !draw-&gt;visible) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="comment">// Récupération de la texture (gérée par ResourceManager)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        sf::Sprite sprite(<a class="code hl_variable" href="classRenderSystem.html#a0e66178457086c030d4efb946dac283c">_resourceManager</a>.<a class="code hl_function" href="classResourceManager.html#a78632647a9a86d0b477de5055a5a2fcc">getTexture</a>(draw-&gt;textureId));</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        sprite.setTextureRect(draw-&gt;rect);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        sprite.setPosition(pos-&gt;x, pos-&gt;y);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        sprite.setScale(draw-&gt;scale, draw-&gt;scale);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        sprite.setRotation(draw-&gt;rotation);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_variable" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">_window</a>.draw(sprite);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// === 3. Dessin du texte (menu, UI, etc.) ===</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">auto</span> textEntities = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#a8d931ce389d47888768e1a5092bde26b">getEntitiesByComponents</a>&lt;Position_t, Text_t&gt;();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> e : textEntities) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keyword">auto</span>* pos = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Position_t&gt;(e);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">auto</span>* textComp = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Text_t&gt;(e);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">if</span> (!pos || !textComp || !textComp-&gt;visible) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="comment">// Utilise la police spécifiée dans textComp-&gt;fontId</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keyword">const</span> sf::Font&amp; font = <a class="code hl_variable" href="classRenderSystem.html#a0e66178457086c030d4efb946dac283c">_resourceManager</a>.<a class="code hl_function" href="classResourceManager.html#a29758789d4a198a3e7d8a11ed69d9cad">getFont</a>(textComp-&gt;fontId);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        sf::Text text;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        text.setFont(font);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        text.setString(textComp-&gt;text);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        text.setCharacterSize(textComp-&gt;fontSize);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        text.setFillColor(textComp-&gt;color);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="comment">// Centrage horizontal si demandé</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        sf::FloatRect bounds = text.getLocalBounds();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordtype">float</span> x = pos-&gt;x;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">if</span> (textComp-&gt;centered) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            x -= (bounds.width / 2.f) + bounds.left;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a> = pos-&gt;y - (bounds.height / 2.f) - bounds.top;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        text.setPosition(x, <a class="code hl_variable" href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <a class="code hl_variable" href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">_window</a>.draw(text);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// === Fin du rendu (display appelé par le client après les particules) ===</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
 </div>
 <div class="ttc" id="aComponents_8hpp_html"><div class="ttname"><a href="Components_8hpp.html">Components.hpp</a></div></div>
+<div class="ttc" id="aRessourceManager_8hpp_html"><div class="ttname"><a href="RessourceManager_8hpp.html">RessourceManager.hpp</a></div></div>
 <div class="ttc" id="aclassECS_html"><div class="ttname"><a href="classECS.html">ECS</a></div><div class="ttdoc">Entity Component System manager.</div><div class="ttdef"><b>Definition</b> ecs.hpp:190</div></div>
+<div class="ttc" id="aclassECS_html_a8d931ce389d47888768e1a5092bde26b"><div class="ttname"><a href="classECS.html#a8d931ce389d47888768e1a5092bde26b">ECS::getEntitiesByComponents</a></div><div class="ttdeci">std::vector&lt; Entity &gt; getEntitiesByComponents()</div><div class="ttdoc">Retrieves entities that have all specified components.</div><div class="ttdef"><b>Definition</b> ecs.hpp:374</div></div>
+<div class="ttc" id="aclassECS_html_aaae60c88af59dd7af9d86200eb522bbc"><div class="ttname"><a href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">ECS::getComponent</a></div><div class="ttdeci">ComponentType * getComponent(Entity e)</div><div class="ttdoc">Retrieves a mutable pointer to a component.</div><div class="ttdef"><b>Definition</b> ecs.hpp:349</div></div>
 <div class="ttc" id="aclassISystem_html"><div class="ttname"><a href="classISystem.html">ISystem</a></div><div class="ttdoc">Interface for systems in the ECS.</div><div class="ttdef"><b>Definition</b> ecs.hpp:470</div></div>
-<div class="ttc" id="aclassRenderSystem_html"><div class="ttname"><a href="classRenderSystem.html">RenderSystem</a></div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:15</div></div>
-<div class="ttc" id="aclassRenderSystem_html_a4f06abf224e6e5ca1504e46eae2cd5a6"><div class="ttname"><a href="classRenderSystem.html#a4f06abf224e6e5ca1504e46eae2cd5a6">RenderSystem::RenderSystem</a></div><div class="ttdeci">RenderSystem(ECS &amp;ecs, sf::RenderWindow &amp;window)</div></div>
-<div class="ttc" id="aclassRenderSystem_html_aa28deb21383fccc8d4667f35b02e2369"><div class="ttname"><a href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">RenderSystem::update</a></div><div class="ttdeci">void update(double dt) override</div><div class="ttdoc">Pure virtual function to update the system.</div></div>
-<div class="ttc" id="aclassRenderSystem_html_adb763824d4393af00a5769f92c84d635"><div class="ttname"><a href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">RenderSystem::_window</a></div><div class="ttdeci">sf::RenderWindow &amp; _window</div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:21</div></div>
-<div class="ttc" id="aengine_2ecs_2ecs_8hpp_html"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html">ecs.hpp</a></div></div>
+<div class="ttc" id="aclassISystem_html_add78dbb839ae61fe69929cce0e666664"><div class="ttname"><a href="classISystem.html#add78dbb839ae61fe69929cce0e666664">ISystem::_ecs</a></div><div class="ttdeci">ECS &amp; _ecs</div><div class="ttdef"><b>Definition</b> ecs.hpp:493</div></div>
+<div class="ttc" id="aclassRenderSystem_html"><div class="ttname"><a href="classRenderSystem.html">RenderSystem</a></div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:22</div></div>
+<div class="ttc" id="aclassRenderSystem_html_a0e66178457086c030d4efb946dac283c"><div class="ttname"><a href="classRenderSystem.html#a0e66178457086c030d4efb946dac283c">RenderSystem::_resourceManager</a></div><div class="ttdeci">ResourceManager &amp; _resourceManager</div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:29</div></div>
+<div class="ttc" id="aclassRenderSystem_html_aa28deb21383fccc8d4667f35b02e2369"><div class="ttname"><a href="classRenderSystem.html#aa28deb21383fccc8d4667f35b02e2369">RenderSystem::update</a></div><div class="ttdeci">void update(double dt) override</div><div class="ttdoc">Pure virtual function to update the system.</div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:37</div></div>
+<div class="ttc" id="aclassRenderSystem_html_adb763824d4393af00a5769f92c84d635"><div class="ttname"><a href="classRenderSystem.html#adb763824d4393af00a5769f92c84d635">RenderSystem::_window</a></div><div class="ttdeci">sf::RenderWindow &amp; _window</div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:28</div></div>
+<div class="ttc" id="aclassRenderSystem_html_ae9f1fe6a28277fdb68c83a8a1b090625"><div class="ttname"><a href="classRenderSystem.html#ae9f1fe6a28277fdb68c83a8a1b090625">RenderSystem::RenderSystem</a></div><div class="ttdeci">RenderSystem(ECS &amp;ecs, sf::RenderWindow &amp;window, ResourceManager &amp;resourceManager)</div><div class="ttdef"><b>Definition</b> RenderSystem.hpp:32</div></div>
+<div class="ttc" id="aclassResourceManager_html"><div class="ttname"><a href="classResourceManager.html">ResourceManager</a></div><div class="ttdef"><b>Definition</b> RessourceManager.hpp:15</div></div>
+<div class="ttc" id="aclassResourceManager_html_a29758789d4a198a3e7d8a11ed69d9cad"><div class="ttname"><a href="classResourceManager.html#a29758789d4a198a3e7d8a11ed69d9cad">ResourceManager::getFont</a></div><div class="ttdeci">const sf::Font &amp; getFont(const std::string &amp;id) const</div><div class="ttdef"><b>Definition</b> RessourceManager.hpp:87</div></div>
+<div class="ttc" id="aclassResourceManager_html_a37d0e97686c031cef9b22725ba4a6005"><div class="ttname"><a href="classResourceManager.html#a37d0e97686c031cef9b22725ba4a6005">ResourceManager::getInstance</a></div><div class="ttdeci">static ResourceManager &amp; getInstance()</div><div class="ttdef"><b>Definition</b> RessourceManager.hpp:37</div></div>
+<div class="ttc" id="aclassResourceManager_html_a78632647a9a86d0b477de5055a5a2fcc"><div class="ttname"><a href="classResourceManager.html#a78632647a9a86d0b477de5055a5a2fcc">ResourceManager::getTexture</a></div><div class="ttdeci">sf::Texture &amp; getTexture(const std::string &amp;id)</div><div class="ttdef"><b>Definition</b> RessourceManager.hpp:55</div></div>
+<div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a9a522438c9f5d73ebe6349edc3313d5e"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a></div><div class="ttdeci">std::uint32_t Entity</div><div class="ttdoc">Type alias for Entity, which is simply an ID.</div><div class="ttdef"><b>Definition</b> ecs.hpp:35</div></div>
+<div class="ttc" id="arfcprotocol_8txt_html_a4d1f9e0693d1ec21db0aea048a1e09a9"><div class="ttname"><a href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a></div><div class="ttdeci">reliability for connection management is handled via the parallel TCP channel Default UDP y</div><div class="ttdef"><b>Definition</b> rfcprotocol.txt:109</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

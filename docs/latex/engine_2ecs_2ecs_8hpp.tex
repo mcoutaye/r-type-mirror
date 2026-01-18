@@ -7,18 +7,12 @@
 {\ttfamily \#include $<$limits$>$}\newline
 {\ttfamily \#include $<$bitset$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
-Include dependency graph for ecs.\+hpp\+:\nopagebreak
+Include dependency graph for ecs.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{engine_2ecs_2ecs_8hpp__incl}
-\end{center}
-\end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{engine_2ecs_2ecs_8hpp__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Classes}
@@ -33,11 +27,11 @@ class \mbox{\hyperlink{classISystem}{ISystem}}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::uint32\+\_\+t}}
+using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} = std\+::uint32\+\_\+t
 \begin{DoxyCompactList}\small\item\em Type alias for Entity, which is simply an ID. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::bitset}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}} $>$
+using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} = std\+::bitset$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}} $>$
 \begin{DoxyCompactList}\small\item\em Type alias for Signature, a bitset to check if an entity has certain components. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::size\+\_\+t}}
+using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} = std\+::size\+\_\+t
 \begin{DoxyCompactList}\small\item\em Type alias for Component\+Type\+ID, used to identify component types. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -49,9 +43,9 @@ class \mbox{\hyperlink{classISystem}{ISystem}}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} = 1 $<$$<$ 11
+static constexpr size\+\_\+t \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} = 1 $<$$<$ 11
 \begin{DoxyCompactList}\small\item\em Maximum number of entities allowed in the \doxylink{classECS}{ECS} system. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{static}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}} = 1 $<$$<$ 7
+static constexpr size\+\_\+t \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}} = 1 $<$$<$ 7
 \begin{DoxyCompactList}\small\item\em Maximum number of components per entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -60,7 +54,7 @@ class \mbox{\hyperlink{classISystem}{ISystem}}
 \index{ecs.hpp@{ecs.hpp}!ComponentTypeID@{ComponentTypeID}}
 \index{ComponentTypeID@{ComponentTypeID}!ecs.hpp@{ecs.hpp}}
 \doxysubsubsection{\texorpdfstring{ComponentTypeID}{ComponentTypeID}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::size\+\_\+t}}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} =  std\+::size\+\_\+t}
 
 
 
@@ -70,7 +64,7 @@ Type alias for Component\+Type\+ID, used to identify component types.
 \index{ecs.hpp@{ecs.hpp}!Entity@{Entity}}
 \index{Entity@{Entity}!ecs.hpp@{ecs.hpp}}
 \doxysubsubsection{\texorpdfstring{Entity}{Entity}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::uint32\+\_\+t}}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} =  std\+::uint32\+\_\+t}
 
 
 
@@ -80,7 +74,7 @@ Type alias for Entity, which is simply an ID.
 \index{ecs.hpp@{ecs.hpp}!Signature@{Signature}}
 \index{Signature@{Signature}!ecs.hpp@{ecs.hpp}}
 \doxysubsubsection{\texorpdfstring{Signature}{Signature}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{std\+::bitset}}$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}}$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} =  std\+::bitset$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_abd1f5035faf61f333c46f3dee8286672}{MAX\+\_\+\+COMPONENT}}$>$}
 
 
 
@@ -110,18 +104,12 @@ This template function ensures each component type has a unique static ID.
 \begin{DoxyReturn}{Returns}
 The Component\+Type\+ID for type T. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=341pt]{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{engine_2ecs_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06}\label{engine_2ecs_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06} 
@@ -139,11 +127,12 @@ This function increments and returns a static counter to provide unique IDs for 
 \begin{DoxyReturn}{Returns}
 A new Component\+Type\+ID. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{engine_2ecs_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06_icgraph}
+\includegraphics[width=341pt]{engine_2ecs_2ecs_8hpp_afdb02fc115de82c93e814ac1d3a64c06_icgraph}
 \end{center}
 \end{figure}
 
@@ -153,7 +142,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{ecs.hpp@{ecs.hpp}!MAX\_COMPONENT@{MAX\_COMPONENT}}
 \index{MAX\_COMPONENT@{MAX\_COMPONENT}!ecs.hpp@{ecs.hpp}}
 \doxysubsubsection{\texorpdfstring{MAX\_COMPONENT}{MAX\_COMPONENT}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} MAX\+\_\+\+COMPONENT = 1 $<$$<$ 7\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily constexpr size\+\_\+t MAX\+\_\+\+COMPONENT = 1 $<$$<$ 7\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 
@@ -163,7 +152,7 @@ This constant limits the number of component types to 128. \Hypertarget{engine_2
 \index{ecs.hpp@{ecs.hpp}!MAX\_ENTITIES@{MAX\_ENTITIES}}
 \index{MAX\_ENTITIES@{MAX\_ENTITIES}!ecs.hpp@{ecs.hpp}}
 \doxysubsubsection{\texorpdfstring{MAX\_ENTITIES}{MAX\_ENTITIES}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} MAX\+\_\+\+ENTITIES = 1 $<$$<$ 11\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily constexpr size\+\_\+t MAX\+\_\+\+ENTITIES = 1 $<$$<$ 11\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 

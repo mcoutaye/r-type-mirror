@@ -1,0 +1,9 @@
+<map id="MenuSystem::handleKeybindButtons" name="MenuSystem::handleKeybindButtons">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,216,45"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="264,13,415,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,23,250,23,250,28,216,28"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="463,13,639,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,23,449,23,449,28,415,28"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="687,13,865,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="639,23,673,23,673,28,639,28"/>
+</map>

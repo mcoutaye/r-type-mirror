@@ -1,0 +1,10 @@
+<map id="Factory::createDestructibleTile" name="Factory::createDestructibleTile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="427,31,647,56"/>
+<area shape="rect" id="Node000002" href="$namespaceFactory.html#a9a5b5adbf7c42e08d4c3d732f87cdc5f" title=" " alt="" coords="168,5,379,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,34,378,31,379,25,413,29"/>
+<area shape="rect" id="Node000004" href="$namespaceFactory.html#a2f225b4b8db0d932004499169074ef26" title=" " alt="" coords="189,55,357,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="413,57,358,62,357,57,412,52"/>
+<area shape="rect" id="Node000003" href="$classServer.html#afdc204b21eae699fb44042665c44bbd0" title=" " alt="" coords="5,31,120,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="155,35,121,39,120,34,154,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="175,59,120,52,121,47,176,54"/>
+</map>

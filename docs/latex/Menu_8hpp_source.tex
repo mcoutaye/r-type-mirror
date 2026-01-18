@@ -1,0 +1,52 @@
+\doxysection{Menu.\+hpp}
+\hypertarget{Menu_8hpp_source}{}\label{Menu_8hpp_source}\index{include/engine/core/Menu.hpp@{include/engine/core/Menu.hpp}}
+\mbox{\hyperlink{Menu_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Menu}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMenuAction}{MenuAction}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenuAction_a58f089a0bbe4eb0575386b7a1a0789f8}{id}};\ \ \textcolor{comment}{//\ Identifiant\ de\ l'action\ sous\ forme\ de\ chaîne\ de\ caractères}}
+\DoxyCodeLine{00017\ \ \ \ \ std::function<void()>\ \mbox{\hyperlink{structMenuAction_a1d5af68aad307510a986df289f4239ec}{callback}};\ \ \textcolor{comment}{//\ Fonction\ à\ appeler\ quand\ l'action\ est\ déclenchée}}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMenuItem}{MenuItem}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenuItem_a15b15cd60a242a5ee5ea8284f831f53b}{text}};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{structMenuAction}{MenuAction}}\ \mbox{\hyperlink{structMenuItem_a6553cd043418dcfae2a1ae849ced292e}{action}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structMenuItem_ad052cfe2832e555dab42c8b05541994a}{xPosition}};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structMenuItem_ad024dd0974951f1d91ef766e10253123}{yPosition}};}
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenuItem_a7677369f11a5f2b084ed3d145ef864e0}{fontId}};}
+\DoxyCodeLine{00026\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structMenuItem_a708b5ec5478e39ca71c271d551b51204}{fontSize}};}
+\DoxyCodeLine{00027\ \ \ \ \ sf::Color\ \mbox{\hyperlink{structMenuItem_a70fcf52e39992b5c21cbafb4c513ea51}{color}};}
+\DoxyCodeLine{00028\ \ \ \ \ sf::Color\ \mbox{\hyperlink{structMenuItem_a88fa868ef60a41228ecab3a604183a40}{selectedColor}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structMenuItem_a594a96b5a3223eedd6785e78099a530b}{scale}};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structMenuItem_a00837f274e38bc8240cf66b38dfaeb4b}{centered}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structMenuItem_a37d162843f59ac64e9f48f12ea3ec450}{visible}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structMenuItem_ab8868aa1bd6a6cfdcb7df293a8ec186a}{isSelectable}}\ =\ \textcolor{keyword}{true};\ \ \textcolor{comment}{//\ Peut\ être\ navigué\ et\ sélectionné}}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMenu}{Menu}}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenu_a6cf31ab51dc33c43d63cf409ef6d3447}{id}};}
+\DoxyCodeLine{00037\ \ \ \ \ std::vector<MenuItem>\ \mbox{\hyperlink{structMenu_a4bb5753cd49d4431549ce96bd056a047}{items}};}
+\DoxyCodeLine{00038\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{title}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structMenu_a5766db25e0204ceffb44903101da9533}{titleXPosition}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structMenu_a24f105d9ed1482bdcaaa832c6bead84c}{titleYPosition}};}
+\DoxyCodeLine{00041\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenu_a137de0af728c02613a80d9f71ebe7544}{titleFontId}};}
+\DoxyCodeLine{00042\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structMenu_a52a5644ec2128ccad352f40b908f6b4c}{titleFontSize}};}
+\DoxyCodeLine{00043\ \ \ \ \ sf::Color\ \mbox{\hyperlink{structMenu_a17faa10af95b7889fd6327a129ac2e82}{titleColor}};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structMenu_ac8978c0caf3ac6d55d3e8f38a1103903}{titleCentered}};}
+\DoxyCodeLine{00045\ \ \ \ \ std::string\ \mbox{\hyperlink{structMenu_a437510d3d17fd8a3b7c90956f6a093b9}{backgroundMusicId}};}
+\DoxyCodeLine{00046\ \};}
+
+\end{DoxyCode}

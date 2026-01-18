@@ -1,0 +1,17 @@
+<map id="InputSystem::update" name="InputSystem::update">
+<area shape="rect" id="Node000001" title="Pure virtual function to update the system." alt="" coords="5,87,163,112"/>
+<area shape="rect" id="Node000002" href="$classInputSystem.html#af162c4e6c2b6f9ea270a0856b160a9b4" title=" " alt="" coords="217,47,412,87"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,86,203,80,204,85,164,91"/>
+<area shape="rect" id="Node000008" href="$classInputSystem.html#a7941bac0e62f7265d14894162c1e766e" title=" " alt="" coords="211,111,419,151"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="164,108,197,112,197,118,163,113"/>
+<area shape="rect" id="Node000003" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="503,5,654,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="412,47,496,31,497,36,413,52"/>
+<area shape="rect" id="Node000006" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="467,55,691,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="412,65,453,65,453,70,412,70"/>
+<area shape="rect" id="Node000007" href="$classInputSystem.html#a853a52f3d59165b69bc7303913369395" title=" " alt="" coords="476,104,681,129"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="413,83,497,99,496,104,412,88"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="739,5,915,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="654,15,725,15,725,21,654,21"/>
+<area shape="rect" id="Node000005" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="963,5,1141,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="915,15,949,15,949,21,915,21"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="InputSystem::setKeyMapping" name="InputSystem::setKeyMapping">
+<area shape="rect" id="Node000001" title=" " alt="" coords="501,42,713,67"/>
+<area shape="rect" id="Node000002" href="$classOptionsMenuSystem.html#ad95f2bc7d503b22f40ed5cc3cf78c24a" title=" " alt="" coords="252,5,420,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="487,44,420,37,421,32,488,39"/>
+<area shape="rect" id="Node000004" href="$classMenuSystem.html#ac21fe4ff7f41c02d9d1e1d0a6bc05904" title=" " alt="" coords="219,70,453,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="488,70,454,73,453,68,487,64"/>
+<area shape="rect" id="Node000003" href="$classOptionsMenuSystem.html#a89fa209e9c4e2b5824c9b371c874e450" title="Pure virtual function to update the system." alt="" coords="5,5,171,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="238,28,171,28,171,23,238,23"/>
+</map>

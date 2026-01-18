@@ -1,0 +1,19 @@
+<map id="OptionsMenuSystem::handleSliders" name="OptionsMenuSystem::handleSliders">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,171,120"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="531,13,682,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,78,160,47,188,33,218,23,296,8,376,3,452,5,518,10,518,15,451,10,376,8,297,14,219,28,190,38,163,52,116,82"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="495,87,719,113"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="171,116,219,123,333,129,446,123,527,112,528,118,447,128,333,135,218,128,170,121"/>
+<area shape="rect" id="Node000006" href="$classInputSystem.html#a853a52f3d59165b69bc7303913369395" title=" " alt="" coords="230,87,435,113"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="171,97,216,97,216,103,171,103"/>
+<area shape="rect" id="Node000007" href="$classSoundSystem.html#ae96d98d929381ca3dcda39156296b629" title=" " alt="" coords="219,38,446,63"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="170,81,255,64,256,69,171,86"/>
+<area shape="rect" id="Node000008" href="$classSoundSystem.html#a9df3448985a9b36c69f54b3180a5ba26" title=" " alt="" coords="219,189,447,214"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="124,118,169,143,220,167,265,183,264,188,218,172,166,148,121,123"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="767,13,943,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="682,23,753,23,753,28,682,28"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="991,13,1169,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="943,23,977,23,977,28,943,28"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="446,38,517,31,517,36,447,43"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="404,61,522,82,521,87,403,66"/>
+</map>

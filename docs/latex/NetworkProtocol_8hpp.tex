@@ -3,14 +3,16 @@
 {\ttfamily \#include $<$cstdint$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include "{}engine/systems/\+Components.\+hpp"{}}\newline
-Include dependency graph for Network\+Protocol.\+hpp\+:\nopagebreak
+Include dependency graph for Network\+Protocol.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{NetworkProtocol_8hpp__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,12 +33,12 @@ struct \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{NetworkProtocol_8hpp_a36d525cf4d116b2fe4ecc00222b256f1}{PACKED}}~\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{packed}}))
+\#define \mbox{\hyperlink{NetworkProtocol_8hpp_a36d525cf4d116b2fe4ecc00222b256f1}{PACKED}}~\+\_\+\+\_\+attribute\+\_\+\+\_\+((packed))
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{NetworkProtocol_8hpp_a31decf49dac3ae6a95dd28cb3607e37e}{Is\+Tick\+Newer}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{new\+Tick}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{old\+Tick}})
+bool \mbox{\hyperlink{NetworkProtocol_8hpp_a31decf49dac3ae6a95dd28cb3607e37e}{Is\+Tick\+Newer}} (uint16\+\_\+t new\+Tick, uint16\+\_\+t old\+Tick)
 \end{DoxyCompactItemize}
 
 
@@ -45,7 +47,7 @@ struct \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}}
 \index{NetworkProtocol.hpp@{NetworkProtocol.hpp}!PACKED@{PACKED}}
 \index{PACKED@{PACKED}!NetworkProtocol.hpp@{NetworkProtocol.hpp}}
 \doxysubsubsection{\texorpdfstring{PACKED}{PACKED}}
-{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} PACKED~\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{packed}}))}
+{\footnotesize\ttfamily \#define PACKED~\+\_\+\+\_\+attribute\+\_\+\+\_\+((packed))}
 
 
 
@@ -54,12 +56,5 @@ struct \mbox{\hyperlink{structPacketToSend}{Packet\+To\+Send}}
 \index{NetworkProtocol.hpp@{NetworkProtocol.hpp}!IsTickNewer@{IsTickNewer}}
 \index{IsTickNewer@{IsTickNewer}!NetworkProtocol.hpp@{NetworkProtocol.hpp}}
 \doxysubsubsection{\texorpdfstring{IsTickNewer()}{IsTickNewer()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Is\+Tick\+Newer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}}}]{new\+Tick,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\+\_\+t}}}]{old\+Tick }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Is\+Tick\+Newer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{new\+Tick,  }\item[{uint16\+\_\+t}]{old\+Tick }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{NetworkProtocol_8hpp_a31decf49dac3ae6a95dd28cb3607e37e_cgraph}
-\end{center}
-\end{figure}

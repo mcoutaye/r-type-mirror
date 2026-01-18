@@ -1,0 +1,95 @@
+\doxysection{Components\+::Keybind\+Button Struct Reference}
+\hypertarget{structComponents_1_1KeybindButton}{}\label{structComponents_1_1KeybindButton}\index{Components::KeybindButton@{Components::KeybindButton}}
+
+
+Button for remapping a key or joystick button.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Keybind\+Button\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{structComponents_1_1KeybindButton__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \mbox{\hyperlink{structComponents_1_1KeybindButton_ae9e3d109da59632a9cf91689df9934aa}{action}}
+\begin{DoxyCompactList}\small\item\em Action to remap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471}{Input\+Type}} \mbox{\hyperlink{structComponents_1_1KeybindButton_a0840189a67a0d9d7ace1f3b619ac80b1}{input\+Type}} = \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e}{Input\+Type\+::\+Keyboard}}
+\begin{DoxyCompactList}\small\item\em Type of input (keyboard or joystick). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1KeybindButton_a6d7e69416fa90df6cb7baf6460225eab}{is\+Waiting\+For\+Input}} = false
+\begin{DoxyCompactList}\small\item\em Flag indicating if waiting for new input. \end{DoxyCompactList}\item 
+sf\+::\+Keyboard\+::\+Key \mbox{\hyperlink{structComponents_1_1KeybindButton_ae11680134499a18fa893b27688a2fb9d}{current\+Key}} = sf\+::\+Keyboard\+::\+Unknown
+\begin{DoxyCompactList}\small\item\em Current keyboard key. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structComponents_1_1KeybindButton_ad272835f83a25849a961d732d72f1451}{current\+Joystick\+Button}} = static\+\_\+cast$<$unsigned int$>$(-\/1)
+\begin{DoxyCompactList}\small\item\em Current joystick button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Button for remapping a key or joystick button. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1KeybindButton_ae9e3d109da59632a9cf91689df9934aa}\label{structComponents_1_1KeybindButton_ae9e3d109da59632a9cf91689df9934aa} 
+\index{Components::KeybindButton@{Components::KeybindButton}!action@{action}}
+\index{action@{action}!Components::KeybindButton@{Components::KeybindButton}}
+\doxysubsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} Components\+::\+Keybind\+Button\+::action}
+
+
+
+Action to remap. 
+
+\Hypertarget{structComponents_1_1KeybindButton_ad272835f83a25849a961d732d72f1451}\label{structComponents_1_1KeybindButton_ad272835f83a25849a961d732d72f1451} 
+\index{Components::KeybindButton@{Components::KeybindButton}!currentJoystickButton@{currentJoystickButton}}
+\index{currentJoystickButton@{currentJoystickButton}!Components::KeybindButton@{Components::KeybindButton}}
+\doxysubsubsection{\texorpdfstring{currentJoystickButton}{currentJoystickButton}}
+{\footnotesize\ttfamily unsigned int Components\+::\+Keybind\+Button\+::current\+Joystick\+Button = static\+\_\+cast$<$unsigned int$>$(-\/1)}
+
+
+
+Current joystick button. 
+
+\Hypertarget{structComponents_1_1KeybindButton_ae11680134499a18fa893b27688a2fb9d}\label{structComponents_1_1KeybindButton_ae11680134499a18fa893b27688a2fb9d} 
+\index{Components::KeybindButton@{Components::KeybindButton}!currentKey@{currentKey}}
+\index{currentKey@{currentKey}!Components::KeybindButton@{Components::KeybindButton}}
+\doxysubsubsection{\texorpdfstring{currentKey}{currentKey}}
+{\footnotesize\ttfamily sf\+::\+Keyboard\+::\+Key Components\+::\+Keybind\+Button\+::current\+Key = sf\+::\+Keyboard\+::\+Unknown}
+
+
+
+Current keyboard key. 
+
+\Hypertarget{structComponents_1_1KeybindButton_a0840189a67a0d9d7ace1f3b619ac80b1}\label{structComponents_1_1KeybindButton_a0840189a67a0d9d7ace1f3b619ac80b1} 
+\index{Components::KeybindButton@{Components::KeybindButton}!inputType@{inputType}}
+\index{inputType@{inputType}!Components::KeybindButton@{Components::KeybindButton}}
+\doxysubsubsection{\texorpdfstring{inputType}{inputType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471}{Input\+Type}} Components\+::\+Keybind\+Button\+::input\+Type = \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e}{Input\+Type\+::\+Keyboard}}}
+
+
+
+Type of input (keyboard or joystick). 
+
+\Hypertarget{structComponents_1_1KeybindButton_a6d7e69416fa90df6cb7baf6460225eab}\label{structComponents_1_1KeybindButton_a6d7e69416fa90df6cb7baf6460225eab} 
+\index{Components::KeybindButton@{Components::KeybindButton}!isWaitingForInput@{isWaitingForInput}}
+\index{isWaitingForInput@{isWaitingForInput}!Components::KeybindButton@{Components::KeybindButton}}
+\doxysubsubsection{\texorpdfstring{isWaitingForInput}{isWaitingForInput}}
+{\footnotesize\ttfamily bool Components\+::\+Keybind\+Button\+::is\+Waiting\+For\+Input = false}
+
+
+
+Flag indicating if waiting for new input. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

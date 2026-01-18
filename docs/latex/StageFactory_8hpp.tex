@@ -1,0 +1,30 @@
+\doxysection{include/engine/factory/\+Stage\+Factory.hpp File Reference}
+\hypertarget{StageFactory_8hpp}{}\label{StageFactory_8hpp}\index{include/engine/factory/StageFactory.hpp@{include/engine/factory/StageFactory.hpp}}
+{\ttfamily \#include "{}ecs.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/systems/\+Components.\+hpp"{}}\newline
+Include dependency graph for Stage\+Factory.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{StageFactory_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceFactory}{Factory}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc}{Factory\+::create\+Starfield}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, int star\+Count, float screen\+Width, float screen\+Height, float max\+Speed)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a}{Factory\+::create\+Obstacle}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}{Factory\+::create\+Destructible\+Tile}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, int health)
+\item 
+void \mbox{\hyperlink{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f}{Factory\+::create\+Screen\+Borders}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float screen\+Width, float screen\+Height, float wall\+Thickness)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{namespaceFactory_a2f225b4b8db0d932004499169074ef26}{Factory\+::create\+Tile\+Grid}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float startX, float startY, int cols, int rows, float tile\+Width, float tile\+Height, int health)
+\end{DoxyCompactItemize}

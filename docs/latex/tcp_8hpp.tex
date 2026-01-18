@@ -11,7 +11,8 @@
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$thread$>$}\newline
 {\ttfamily \#include $<$atomic$>$}\newline
-Include dependency graph for tcp.\+hpp\+:\nopagebreak
+Include dependency graph for tcp.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,21 +27,21 @@ class \mbox{\hyperlink{classServer}{Server}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{tcp_8hpp_a26769957ec1a2beaf223f33b66ee64ab}{INVALID\+\_\+\+SOCKET}}~-\/1
+\#define \mbox{\hyperlink{tcp_8hpp_a26769957ec1a2beaf223f33b66ee64ab}{INVALID\+\_\+\+SOCKET}}~-\/1
 \item 
-\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{tcp_8hpp_a633b0396ff93d336a088412a190a5072}{SOCKET\+\_\+\+ERROR}}~-\/1
+\#define \mbox{\hyperlink{tcp_8hpp_a633b0396ff93d336a088412a190a5072}{SOCKET\+\_\+\+ERROR}}~-\/1
 \item 
-\#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} \mbox{\hyperlink{tcp_8hpp_afdbb9d84bd17efd2ae7290e664992c48}{closesocket}}~\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{close}}
+\#define \mbox{\hyperlink{tcp_8hpp_afdbb9d84bd17efd2ae7290e664992c48}{closesocket}}~close
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}
+using \mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}} = int
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} \mbox{\hyperlink{tcp_8hpp_a01b7de3bc62ea6ebb29d8b1162eb2785}{MAX\+\_\+\+USERS}} = 2
+constexpr size\+\_\+t \mbox{\hyperlink{tcp_8hpp_a01b7de3bc62ea6ebb29d8b1162eb2785}{MAX\+\_\+\+USERS}} = 2
 \end{DoxyCompactItemize}
 
 
@@ -49,19 +50,19 @@ class \mbox{\hyperlink{classServer}{Server}}
 \index{tcp.hpp@{tcp.hpp}!closesocket@{closesocket}}
 \index{closesocket@{closesocket}!tcp.hpp@{tcp.hpp}}
 \doxysubsubsection{\texorpdfstring{closesocket}{closesocket}}
-{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} closesocket~\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{close}}}
+{\footnotesize\ttfamily \#define closesocket~close}
 
 \Hypertarget{tcp_8hpp_a26769957ec1a2beaf223f33b66ee64ab}\label{tcp_8hpp_a26769957ec1a2beaf223f33b66ee64ab} 
 \index{tcp.hpp@{tcp.hpp}!INVALID\_SOCKET@{INVALID\_SOCKET}}
 \index{INVALID\_SOCKET@{INVALID\_SOCKET}!tcp.hpp@{tcp.hpp}}
 \doxysubsubsection{\texorpdfstring{INVALID\_SOCKET}{INVALID\_SOCKET}}
-{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} INVALID\+\_\+\+SOCKET~-\/1}
+{\footnotesize\ttfamily \#define INVALID\+\_\+\+SOCKET~-\/1}
 
 \Hypertarget{tcp_8hpp_a633b0396ff93d336a088412a190a5072}\label{tcp_8hpp_a633b0396ff93d336a088412a190a5072} 
 \index{tcp.hpp@{tcp.hpp}!SOCKET\_ERROR@{SOCKET\_ERROR}}
 \index{SOCKET\_ERROR@{SOCKET\_ERROR}!tcp.hpp@{tcp.hpp}}
 \doxysubsubsection{\texorpdfstring{SOCKET\_ERROR}{SOCKET\_ERROR}}
-{\footnotesize\ttfamily \#\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{define}} SOCKET\+\_\+\+ERROR~-\/1}
+{\footnotesize\ttfamily \#define SOCKET\+\_\+\+ERROR~-\/1}
 
 
 
@@ -70,7 +71,7 @@ class \mbox{\hyperlink{classServer}{Server}}
 \index{tcp.hpp@{tcp.hpp}!SOCKET@{SOCKET}}
 \index{SOCKET@{SOCKET}!tcp.hpp@{tcp.hpp}}
 \doxysubsubsection{\texorpdfstring{SOCKET}{SOCKET}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{using}} \mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}} =  \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{tcp_8hpp_a4f4066db33fd7d429e2cbec86b1c512f}{SOCKET}} =  int}
 
 
 
@@ -79,5 +80,5 @@ class \mbox{\hyperlink{classServer}{Server}}
 \index{tcp.hpp@{tcp.hpp}!MAX\_USERS@{MAX\_USERS}}
 \index{MAX\_USERS@{MAX\_USERS}!tcp.hpp@{tcp.hpp}}
 \doxysubsubsection{\texorpdfstring{MAX\_USERS}{MAX\_USERS}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{constexpr}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} MAX\+\_\+\+USERS = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+{\footnotesize\ttfamily constexpr size\+\_\+t MAX\+\_\+\+USERS = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
 

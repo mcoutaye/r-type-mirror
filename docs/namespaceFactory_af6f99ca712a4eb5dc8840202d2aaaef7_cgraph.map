@@ -1,0 +1,11 @@
+<map id="Factory::createProjectile" name="Factory::createProjectile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,184,105"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="241,5,402,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,77,231,39,256,32,258,37,233,45,129,82"/>
+<area shape="rect" id="Node000003" href="$namespaceFactory.html#a72717673325d8183f30a820fc78f728e" title=" " alt="" coords="232,55,411,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,80,218,76,218,82,185,85"/>
+<area shape="rect" id="Node000004" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="254,104,389,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,100,241,105,240,111,184,105"/>
+<area shape="rect" id="Node000005" href="$namespaceFactory.html#af5e7bee90929fcaabc2b89eff8219cbe" title=" " alt="" coords="243,153,400,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="131,103,233,138,262,147,260,152,231,143,130,108"/>
+</map>

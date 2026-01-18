@@ -1,0 +1,154 @@
+\doxysection{Components\+::Trigger\+Zone Struct Reference}
+\hypertarget{structComponents_1_1TriggerZone}{}\label{structComponents_1_1TriggerZone}\index{Components::TriggerZone@{Components::TriggerZone}}
+
+
+Trigger zone (for teleporters, checkpoints, etc.).  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Trigger\+Zone\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{structComponents_1_1TriggerZone__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}{Type}} \{ \newline
+\mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1ad0888defea7cf0dea03c15fa2d396a9a}{Teleporter}}
+, \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1aef41311079c448d0beb06ec07db0bf8c}{Checkpoint}}
+, \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a6097f89e3092d4ccd249c9d479785c1f}{Death}}
+, \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a119eac47719cc9be7b99124712e229da}{Win}}
+, \newline
+\mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af}{Custom}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of trigger types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}{Type}} \mbox{\hyperlink{structComponents_1_1TriggerZone_aecb50228df98fd1720a823fc12de81d3}{type}} = \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af}{Type\+::\+Custom}}
+\begin{DoxyCompactList}\small\item\em Type of trigger. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structComponents_1_1TriggerZone_a25c706aee9095a7f65b36849ffc1f533}{target\+Scene}}
+\begin{DoxyCompactList}\small\item\em Target scene for teleporters. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{structComponents_1_1TriggerZone_aebd07ba075e803ad2cda0aa65a1a33a6}{teleport\+Pos}}
+\begin{DoxyCompactList}\small\item\em Teleport position. \end{DoxyCompactList}\item 
+std\+::function$<$ void(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}})$>$ \mbox{\hyperlink{structComponents_1_1TriggerZone_a65c307c5d9c40751ecb68ad6edc2b40f}{on\+Trigger}}
+\begin{DoxyCompactList}\small\item\em Custom callback on trigger. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1TriggerZone_a7b4894420fdee43e82402395f043672f}{triggered}} = false
+\begin{DoxyCompactList}\small\item\em Flag if already triggered. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1TriggerZone_a48678290333d5bb6e57a9181bd1be297}{reset\+On\+Exit}} = true
+\begin{DoxyCompactList}\small\item\em Flag to reset on exit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Trigger zone (for teleporters, checkpoints, etc.). 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}\label{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1} 
+\index{Components::TriggerZone@{Components::TriggerZone}!Type@{Type}}
+\index{Type@{Type}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}{Components\+::\+Trigger\+Zone\+::\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Enumeration of trigger types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Teleporter@{Teleporter}!Components::TriggerZone@{Components::TriggerZone}}\index{Components::TriggerZone@{Components::TriggerZone}!Teleporter@{Teleporter}}}\Hypertarget{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1ad0888defea7cf0dea03c15fa2d396a9a}\label{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1ad0888defea7cf0dea03c15fa2d396a9a} 
+Teleporter&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Checkpoint@{Checkpoint}!Components::TriggerZone@{Components::TriggerZone}}\index{Components::TriggerZone@{Components::TriggerZone}!Checkpoint@{Checkpoint}}}\Hypertarget{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1aef41311079c448d0beb06ec07db0bf8c}\label{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1aef41311079c448d0beb06ec07db0bf8c} 
+Checkpoint&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Death@{Death}!Components::TriggerZone@{Components::TriggerZone}}\index{Components::TriggerZone@{Components::TriggerZone}!Death@{Death}}}\Hypertarget{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a6097f89e3092d4ccd249c9d479785c1f}\label{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a6097f89e3092d4ccd249c9d479785c1f} 
+Death&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Win@{Win}!Components::TriggerZone@{Components::TriggerZone}}\index{Components::TriggerZone@{Components::TriggerZone}!Win@{Win}}}\Hypertarget{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a119eac47719cc9be7b99124712e229da}\label{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a119eac47719cc9be7b99124712e229da} 
+Win&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Custom@{Custom}!Components::TriggerZone@{Components::TriggerZone}}\index{Components::TriggerZone@{Components::TriggerZone}!Custom@{Custom}}}\Hypertarget{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af}\label{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af} 
+Custom&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1TriggerZone_a65c307c5d9c40751ecb68ad6edc2b40f}\label{structComponents_1_1TriggerZone_a65c307c5d9c40751ecb68ad6edc2b40f} 
+\index{Components::TriggerZone@{Components::TriggerZone}!onTrigger@{onTrigger}}
+\index{onTrigger@{onTrigger}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{onTrigger}{onTrigger}}
+{\footnotesize\ttfamily std\+::function$<$void(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}})$>$ Components\+::\+Trigger\+Zone\+::on\+Trigger}
+
+
+
+Custom callback on trigger. 
+
+\Hypertarget{structComponents_1_1TriggerZone_a48678290333d5bb6e57a9181bd1be297}\label{structComponents_1_1TriggerZone_a48678290333d5bb6e57a9181bd1be297} 
+\index{Components::TriggerZone@{Components::TriggerZone}!resetOnExit@{resetOnExit}}
+\index{resetOnExit@{resetOnExit}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{resetOnExit}{resetOnExit}}
+{\footnotesize\ttfamily bool Components\+::\+Trigger\+Zone\+::reset\+On\+Exit = true}
+
+
+
+Flag to reset on exit. 
+
+\Hypertarget{structComponents_1_1TriggerZone_a25c706aee9095a7f65b36849ffc1f533}\label{structComponents_1_1TriggerZone_a25c706aee9095a7f65b36849ffc1f533} 
+\index{Components::TriggerZone@{Components::TriggerZone}!targetScene@{targetScene}}
+\index{targetScene@{targetScene}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{targetScene}{targetScene}}
+{\footnotesize\ttfamily std\+::string Components\+::\+Trigger\+Zone\+::target\+Scene}
+
+
+
+Target scene for teleporters. 
+
+\Hypertarget{structComponents_1_1TriggerZone_aebd07ba075e803ad2cda0aa65a1a33a6}\label{structComponents_1_1TriggerZone_aebd07ba075e803ad2cda0aa65a1a33a6} 
+\index{Components::TriggerZone@{Components::TriggerZone}!teleportPos@{teleportPos}}
+\index{teleportPos@{teleportPos}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{teleportPos}{teleportPos}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Components\+::\+Trigger\+Zone\+::teleport\+Pos}
+
+
+
+Teleport position. 
+
+\Hypertarget{structComponents_1_1TriggerZone_a7b4894420fdee43e82402395f043672f}\label{structComponents_1_1TriggerZone_a7b4894420fdee43e82402395f043672f} 
+\index{Components::TriggerZone@{Components::TriggerZone}!triggered@{triggered}}
+\index{triggered@{triggered}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{triggered}{triggered}}
+{\footnotesize\ttfamily bool Components\+::\+Trigger\+Zone\+::triggered = false}
+
+
+
+Flag if already triggered. 
+
+\Hypertarget{structComponents_1_1TriggerZone_aecb50228df98fd1720a823fc12de81d3}\label{structComponents_1_1TriggerZone_aecb50228df98fd1720a823fc12de81d3} 
+\index{Components::TriggerZone@{Components::TriggerZone}!type@{type}}
+\index{type@{type}!Components::TriggerZone@{Components::TriggerZone}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}{Type}} Components\+::\+Trigger\+Zone\+::type = \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af}{Type\+::\+Custom}}}
+
+
+
+Type of trigger. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,14 @@
+<map id="MoveSystem::update" name="MoveSystem::update">
+<area shape="rect" id="Node000001" title="Pure virtual function to update the system." alt="" coords="5,55,165,80"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="250,5,401,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,52,249,31,250,36,148,57"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="213,55,437,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="166,65,200,65,200,70,166,70"/>
+<area shape="rect" id="Node000006" href="$classECS.html#a33c16853296e9784dfb558f35dffbd72" title="Checks if an entity has a specific component." alt="" coords="497,80,650,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="139,77,214,90,355,97,483,95,483,100,355,102,213,95,138,83"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="485,19,661,44"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,19,471,23,471,29,401,25"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="709,56,888,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="651,41,708,51,708,56,650,47"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="650,82,695,77,696,82,650,87"/>
+</map>

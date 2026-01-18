@@ -1,0 +1,7 @@
+<map id="Factory::createEnemy" name="Factory::createEnemy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="379,5,541,31"/>
+<area shape="rect" id="Node000002" href="$classWaveSystem.html#a9a5c16c210763a371d4b535e76b2208c" title="Pure virtual function to update the system." alt="" coords="171,5,331,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="365,21,331,21,331,15,365,15"/>
+<area shape="rect" id="Node000003" href="$classServer.html#af7b0a4370ac2c1e573f292870adfa81c" title=" " alt="" coords="5,5,123,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="157,21,123,21,123,15,157,15"/>
+</map>

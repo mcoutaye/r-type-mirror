@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+Inheritance diagram for Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ Inheritance diagram for Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$
 \end{figure}
 
 
-Collaboration diagram for Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+Collaboration diagram for Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,16 +27,16 @@ Collaboration diagram for Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classSafeQueue_a802bf49b2bb2b5ac296bbaa5955d5020}{Safe\+Queue}} ()=\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{classSafeQueue_a802bf49b2bb2b5ac296bbaa5955d5020}{Safe\+Queue}} ()=default
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classSafeQueue_ae51181f65378234bf3a0f66a86d4b33a}{push}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}})
+void \mbox{\hyperlink{classSafeQueue_ae51181f65378234bf3a0f66a86d4b33a}{push}} (const T \&value)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classSafeQueue_ab2f40bad1a39f332c1a8c7b4e858b190}{try\+Pop}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{value}})
+bool \mbox{\hyperlink{classSafeQueue_ab2f40bad1a39f332c1a8c7b4e858b190}{try\+Pop}} (T \&value)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::queue$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \mbox{\hyperlink{classSafeQueue_a7583ea5873df6295bd8964a0457cf9e6}{queue\+\_\+}}
+std\+::queue$<$ T $>$ \mbox{\hyperlink{classSafeQueue_a7583ea5873df6295bd8964a0457cf9e6}{queue\+\_\+}}
 \item 
 std\+::mutex \mbox{\hyperlink{classSafeQueue_ac071c03c61bd64afcd585a96d06a1ffd}{mutex\+\_\+}}
 \end{DoxyCompactItemize}
@@ -45,8 +47,8 @@ std\+::mutex \mbox{\hyperlink{classSafeQueue_ac071c03c61bd64afcd585a96d06a1ffd}{
 \index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!SafeQueue@{SafeQueue}}
 \index{SafeQueue@{SafeQueue}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{SafeQueue()}{SafeQueue()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
-\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\mbox{\hyperlink{classSafeQueue}{\+::\+Safe\+Queue}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\mbox{\hyperlink{classSafeQueue}{\+::\+Safe\+Queue}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
@@ -55,17 +57,11 @@ std\+::mutex \mbox{\hyperlink{classSafeQueue_ac071c03c61bd64afcd585a96d06a1ffd}{
 \index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!push@{push}}
 \index{push@{push}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{push()}{push()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::push (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classSafeQueue_ae51181f65378234bf3a0f66a86d4b33a_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -76,17 +72,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!tryPop@{tryPop}}
 \index{tryPop@{tryPop}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{tryPop()}{tryPop()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::try\+Pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::try\+Pop (\begin{DoxyParamCaption}\item[{T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classSafeQueue_ab2f40bad1a39f332c1a8c7b4e858b190_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -100,15 +90,15 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!mutex\_@{mutex\_}}
 \index{mutex\_@{mutex\_}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{mutex\_}{mutex\_}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
-std\+::mutex \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::mutex\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::mutex \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::mutex\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classSafeQueue_a7583ea5873df6295bd8964a0457cf9e6}\label{classSafeQueue_a7583ea5873df6295bd8964a0457cf9e6} 
 \index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!queue\_@{queue\_}}
 \index{queue\_@{queue\_}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{queue\_}{queue\_}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$ \\
-std\+::queue$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}}$>$ \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{T}} $>$\+::queue\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::queue$<$T$>$ \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::queue\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

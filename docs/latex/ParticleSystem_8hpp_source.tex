@@ -1,0 +1,411 @@
+\doxysection{Particle\+System.\+hpp}
+\hypertarget{ParticleSystem_8hpp_source}{}\label{ParticleSystem_8hpp_source}\index{include/engine/systems/ParticleSystem.hpp@{include/engine/systems/ParticleSystem.hpp}}
+\mbox{\hyperlink{ParticleSystem_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ ParticleSystem\ -\/\ Système\ de\ particules\ avec\ pool}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/Graphics/RenderWindow.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <SFML/Graphics/CircleShape.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <SFML/Graphics/RectangleShape.hpp>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classParticleSystem}{ParticleSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classParticleSystem}{ParticleSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{size\_t}\ poolSize\ =\ 2000);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a4f95471d8c64a7195d560f2c0c1faf63}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_abe33b51ab04720074de064406a3f20df}{render}}(sf::RenderWindow\&\ window);}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Émet\ un\ burst\ de\ particules\ à\ une\ position}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a181e1a7e3331dae1c6982d500ced9103}{emit}}(ParticleType\ type,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count\ =\ 20);}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Émet\ des\ particules\ avec\ des\ paramètres\ personnalisés}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a6b4a54da61185b513441f8a708af6c98}{emitCustom}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ spread,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ lifetime,\ sf::Color\ startColor,\ sf::Color\ endColor,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ startSize,\ \textcolor{keywordtype}{float}\ endSize,\ \textcolor{keywordtype}{float}\ gravity\ =\ 0.f);}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Presets}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a}{emitExplosion}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count\ =\ 30);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb}{emitSparks}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count\ =\ 15);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aeda54552addce007ffabcdf0870c9eab}{emitSmoke}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count\ =\ 10);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d}{emitDebris}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count\ =\ 8);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db}{emitTrail}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ directionDeg,\ \textcolor{keywordtype}{int}\ count\ =\ 3);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ Particle\_t*\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();\ \ \textcolor{comment}{//\ Récupère\ une\ particule\ libre\ du\ pool}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae}{updateParticle}}(Particle\_t\&\ p,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946}{spawnParticle}}(Particle\_t\&\ p,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keyword}{const}\ ParticleEmitter\_t\&\ emitter);}
+\DoxyCodeLine{00043\ \ \ \ \ sf::Color\ \mbox{\hyperlink{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a}{lerpColor}}(\textcolor{keyword}{const}\ sf::Color\&\ a,\ \textcolor{keyword}{const}\ sf::Color\&\ b,\ \textcolor{keywordtype}{float}\ t);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(\textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max);}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<Particle\_t>\ \mbox{\hyperlink{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}{\_pool}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classParticleSystem_aa6f7acde14545707b09a7974978c2267}{\_poolSize}};}
+\DoxyCodeLine{00048\ \ \ \ \ sf::CircleShape\ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}};}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ std::mt19937\ \mbox{\hyperlink{classParticleSystem_a37c68f74c0e6866bddbce649738d142e}{\_rng}};}
+\DoxyCodeLine{00051\ \ \ \ \ std::uniform\_real\_distribution<float>\ \mbox{\hyperlink{classParticleSystem_a422862c4f9c18c483573b4dc9005ee19}{\_dist}}\{0.f,\ 1.f\};}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ =============\ IMPLEMENTATION\ =============}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \mbox{\hyperlink{classParticleSystem_ac4c85546321d0963cff77c6dc5ba2d07}{ParticleSystem::ParticleSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{size\_t}\ poolSize)}
+\DoxyCodeLine{00057\ \ \ \ \ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs),\ \_poolSize(poolSize),\ \_rng(std::random\_device\{\}())}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}{\_pool}}.resize(poolSize);}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}}.setPointCount(8);\ \ \textcolor{comment}{//\ Octogone\ pour\ perf}}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a4f95471d8c64a7195d560f2c0c1faf63}{ParticleSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ fdt\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(dt);}
+\DoxyCodeLine{00066\ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ les\ particules\ actives}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}{\_pool}})\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p.active)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae}{updateParticle}}(p,\ fdt);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Gère\ les\ émetteurs\ attachés\ aux\ entités}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{auto}\ emitters\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<ParticleEmitter\_t,\ Position\_t>();}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ emitters)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ emitter\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<ParticleEmitter\_t>(e);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(e);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!emitter\ ||\ !pos\ ||\ !emitter-\/>active)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gère\ la\ durée\ de\ vie\ de\ l'émetteur}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (emitter-\/>emitterLifetime\ >\ 0.f)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ emitter-\/>emitterLifetime\ -\/=\ fdt;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (emitter-\/>emitterLifetime\ <=\ 0.f)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emitter-\/>active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (emitter-\/>burst)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mode\ burst\ :\ émet\ tout\ d'un\ coup}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ emitter-\/>particlesPerBurst;\ ++i)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p)\ \mbox{\hyperlink{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946}{spawnParticle}}(*p,\ pos-\/>x,\ pos-\/>y,\ *emitter);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ emitter-\/>burst\ =\ \textcolor{keyword}{false};\ \ \textcolor{comment}{//\ Désactive\ après\ le\ burst}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mode\ continu\ :\ accumule\ et\ spawn\ selon\ spawnRate}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ emitter-\/>spawnAccumulator\ +=\ emitter-\/>spawnRate\ *\ fdt;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (emitter-\/>spawnAccumulator\ >=\ 1.f)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p)\ \mbox{\hyperlink{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946}{spawnParticle}}(*p,\ pos-\/>x,\ pos-\/>y,\ *emitter);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emitter-\/>spawnAccumulator\ -\/=\ 1.f;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_abe33b51ab04720074de064406a3f20df}{ParticleSystem::render}}(sf::RenderWindow\&\ window)}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}{\_pool}})\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p.active)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Interpole\ la\ couleur\ selon\ le\ temps\ de\ vie}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\ =\ 1.f\ -\/\ (p.lifetime\ /\ p.maxLifetime);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ sf::Color\ color\ =\ \mbox{\hyperlink{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a}{lerpColor}}(p.startColor,\ p.endColor,\ t);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Interpole\ la\ taille}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ size\ =\ p.startSize\ +\ (p.endSize\ -\/\ p.startSize)\ *\ t;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}}.setRadius(size\ /\ 2.f);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}}.setOrigin(size\ /\ 2.f,\ size\ /\ 2.f);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}}.setPosition(p.x,\ p.y);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}}.setFillColor(color);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}}.setRotation(p.rotation);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ window.draw(\mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\_circleShape}});}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ Particle\_t*\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{ParticleSystem::getParticle}}()}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}{\_pool}})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p.active)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&p;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};\ \ \textcolor{comment}{//\ Pool\ plein}}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae}{ParticleSystem::updateParticle}}(Particle\_t\&\ p,\ \textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ p.lifetime\ -\/=\ dt;}
+\DoxyCodeLine{00147\ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (p.lifetime\ <=\ 0.f)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ p.active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ Applique\ l'accélération}}
+\DoxyCodeLine{00154\ \ \ \ \ p.vx\ +=\ p.ax\ *\ dt;}
+\DoxyCodeLine{00155\ \ \ \ \ p.vy\ +=\ p.ay\ *\ dt;}
+\DoxyCodeLine{00156\ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ vélocité}}
+\DoxyCodeLine{00158\ \ \ \ \ p.x\ +=\ p.vx\ *\ dt;}
+\DoxyCodeLine{00159\ \ \ \ \ p.y\ +=\ p.vy\ *\ dt;}
+\DoxyCodeLine{00160\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ rotation}}
+\DoxyCodeLine{00162\ \ \ \ \ p.rotation\ +=\ p.rotationSpeed\ *\ dt;}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946}{ParticleSystem::spawnParticle}}(Particle\_t\&\ p,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keyword}{const}\ ParticleEmitter\_t\&\ emitter)}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ p.active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00168\ \ \ \ \ p.x\ =\ x;}
+\DoxyCodeLine{00169\ \ \ \ \ p.y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}};}
+\DoxyCodeLine{00170\ \ \ \ \ p.lifetime\ =\ emitter.particleLifetime\ *\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.8f,\ 1.2f);}
+\DoxyCodeLine{00171\ \ \ \ \ p.maxLifetime\ =\ p.lifetime;}
+\DoxyCodeLine{00172\ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ Direction\ aléatoire\ dans\ le\ spread}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ emitter.direction\ +\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/emitter.spread\ /\ 2.f,\ emitter.spread\ /\ 2.f);}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{float}\ rad\ =\ angle\ *\ 3.14159f\ /\ 180.f;}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ emitter.speed\ *\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.7f,\ 1.3f);}
+\DoxyCodeLine{00177\ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ p.vx\ =\ std::cos(rad)\ *\ speed;}
+\DoxyCodeLine{00179\ \ \ \ \ p.vy\ =\ std::sin(rad)\ *\ speed;}
+\DoxyCodeLine{00180\ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ p.ax\ =\ 0.f;}
+\DoxyCodeLine{00182\ \ \ \ \ p.ay\ =\ emitter.gravity;}
+\DoxyCodeLine{00183\ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ p.startSize\ =\ emitter.startSize\ *\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.8f,\ 1.2f);}
+\DoxyCodeLine{00185\ \ \ \ \ p.endSize\ =\ emitter.endSize;}
+\DoxyCodeLine{00186\ \ \ \ \ p.size\ =\ p.startSize;}
+\DoxyCodeLine{00187\ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ p.startColor\ =\ emitter.startColor;}
+\DoxyCodeLine{00189\ \ \ \ \ p.endColor\ =\ emitter.endColor;}
+\DoxyCodeLine{00190\ \ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ p.rotation\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.f,\ 360.f);}
+\DoxyCodeLine{00192\ \ \ \ \ p.rotationSpeed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/180.f,\ 180.f);}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ sf::Color\ \mbox{\hyperlink{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a}{ParticleSystem::lerpColor}}(\textcolor{keyword}{const}\ sf::Color\&\ a,\ \textcolor{keyword}{const}\ sf::Color\&\ b,\ \textcolor{keywordtype}{float}\ t)}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ sf::Color(}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}sf::Uint8\textcolor{keyword}{>}(a.r\ +\ (b.r\ -\/\ a.r)\ *\ t),}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}sf::Uint8\textcolor{keyword}{>}(a.g\ +\ (b.g\ -\/\ a.g)\ *\ t),}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}sf::Uint8\textcolor{keyword}{>}(a.b\ +\ (b.b\ -\/\ a.b)\ *\ t),}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}sf::Uint8\textcolor{keyword}{>}(a.a\ +\ (b.a\ -\/\ a.a)\ *\ t)}
+\DoxyCodeLine{00202\ \ \ \ \ );}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{ParticleSystem::randomFloat}}(\textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max)}
+\DoxyCodeLine{00206\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ min\ +\ \mbox{\hyperlink{classParticleSystem_a422862c4f9c18c483573b4dc9005ee19}{\_dist}}(\mbox{\hyperlink{classParticleSystem_a37c68f74c0e6866bddbce649738d142e}{\_rng}})\ *\ (max\ -\/\ min);}
+\DoxyCodeLine{00208\ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{comment}{//\ =============\ EMIT\ FUNCTIONS\ =============}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a181e1a7e3331dae1c6982d500ced9103}{ParticleSystem::emit}}(ParticleType\ type,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count)}
+\DoxyCodeLine{00213\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ParticleType::Explosion:\ \mbox{\hyperlink{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a}{emitExplosion}}(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ count);\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ParticleType::Sparks:\ \ \ \ \mbox{\hyperlink{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb}{emitSparks}}(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ count);\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ParticleType::Smoke:\ \ \ \ \ \mbox{\hyperlink{classParticleSystem_aeda54552addce007ffabcdf0870c9eab}{emitSmoke}}(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ count);\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ParticleType::Debris:\ \ \ \ \mbox{\hyperlink{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d}{emitDebris}}(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ count);\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ParticleType::Trail:\ \ \ \ \ \mbox{\hyperlink{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db}{emitTrail}}(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ 0.f,\ count);\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a6b4a54da61185b513441f8a708af6c98}{ParticleSystem::emitCustom}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ spread,}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ lifetime,\ sf::Color\ startColor,\ sf::Color\ endColor,}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ startSize,\ \textcolor{keywordtype}{float}\ endSize,\ \textcolor{keywordtype}{float}\ gravity)}
+\DoxyCodeLine{00226\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ p-\/>active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ p-\/>x\ =\ x;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ p-\/>y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ p-\/>lifetime\ =\ lifetime\ *\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.8f,\ 1.2f);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ p-\/>maxLifetime\ =\ p-\/>lifetime;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/spread\ /\ 2.f,\ spread\ /\ 2.f);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ rad\ =\ angle\ *\ 3.14159f\ /\ 180.f;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ spd\ =\ speed\ *\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.7f,\ 1.3f);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ p-\/>vx\ =\ std::cos(rad)\ *\ spd;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ p-\/>vy\ =\ std::sin(rad)\ *\ spd;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ p-\/>ax\ =\ 0.f;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ p-\/>ay\ =\ gravity;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ p-\/>startSize\ =\ startSize\ *\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.8f,\ 1.2f);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ p-\/>endSize\ =\ endSize;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ p-\/>startColor\ =\ startColor;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ p-\/>endColor\ =\ endColor;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ p-\/>rotation\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.f,\ 360.f);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ p-\/>rotationSpeed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/180.f,\ 180.f);}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a}{ParticleSystem::emitExplosion}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count)}
+\DoxyCodeLine{00257\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ p-\/>active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ p-\/>x\ =\ x;}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ p-\/>y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}};}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ p-\/>lifetime\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.3f,\ 0.8f);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ p-\/>maxLifetime\ =\ p-\/>lifetime;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Direction\ aléatoire\ (360°)}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.f,\ 360.f)\ *\ 3.14159f\ /\ 180.f;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(100.f,\ 300.f);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ p-\/>vx\ =\ std::cos(angle)\ *\ speed;}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ p-\/>vy\ =\ std::sin(angle)\ *\ speed;}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ p-\/>ax\ =\ 0.f;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ p-\/>ay\ =\ 50.f;\ \ \textcolor{comment}{//\ Légère\ gravité}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ p-\/>startSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(4.f,\ 10.f);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ p-\/>endSize\ =\ 0.f;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ p-\/>startColor\ =\ sf::Color(255,\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(100,\ 200),\ 0);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ p-\/>endColor\ =\ sf::Color(100,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ p-\/>rotation\ =\ 0.f;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ p-\/>rotationSpeed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/200.f,\ 200.f);}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb}{ParticleSystem::emitSparks}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count)}
+\DoxyCodeLine{00288\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ p-\/>active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ p-\/>x\ =\ x;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ p-\/>y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}};}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ p-\/>lifetime\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.2f,\ 0.5f);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ p-\/>maxLifetime\ =\ p-\/>lifetime;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.f,\ 360.f)\ *\ 3.14159f\ /\ 180.f;}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(200.f,\ 400.f);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ p-\/>vx\ =\ std::cos(angle)\ *\ speed;}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ p-\/>vy\ =\ std::sin(angle)\ *\ speed;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ p-\/>ax\ =\ 0.f;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ p-\/>ay\ =\ 300.f;\ \ \textcolor{comment}{//\ Forte\ gravité}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ p-\/>startSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(2.f,\ 4.f);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ p-\/>endSize\ =\ 0.f;}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ p-\/>startColor\ =\ sf::Color::Yellow;}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ p-\/>endColor\ =\ sf::Color(255,\ 100,\ 0,\ 0);}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ p-\/>rotation\ =\ 0.f;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ p-\/>rotationSpeed\ =\ 0.f;}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aeda54552addce007ffabcdf0870c9eab}{ParticleSystem::emitSmoke}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count)}
+\DoxyCodeLine{00318\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ p-\/>active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ p-\/>x\ =\ x\ +\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/10.f,\ 10.f);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ p-\/>y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}};}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ p-\/>lifetime\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(1.f,\ 2.f);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ p-\/>maxLifetime\ =\ p-\/>lifetime;}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Monte\ vers\ le\ haut\ avec\ léger\ mouvement\ horizontal}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ p-\/>vx\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/20.f,\ 20.f);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ p-\/>vy\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/80.f,\ -\/40.f);\ \ \textcolor{comment}{//\ Négatif\ =\ vers\ le\ haut}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ p-\/>ax\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/10.f,\ 10.f);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ p-\/>ay\ =\ -\/20.f;\ \ \textcolor{comment}{//\ Continue\ à\ monter}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ p-\/>startSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(8.f,\ 15.f);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ p-\/>endSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(20.f,\ 30.f);\ \ \textcolor{comment}{//\ Grossit}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ p-\/>startColor\ =\ sf::Color(100,\ 100,\ 100,\ 200);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ p-\/>endColor\ =\ sf::Color(50,\ 50,\ 50,\ 0);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ p-\/>rotation\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.f,\ 360.f);}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ p-\/>rotationSpeed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/30.f,\ 30.f);}
+\DoxyCodeLine{00342\ \ \ \ \ \}}
+\DoxyCodeLine{00343\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d}{ParticleSystem::emitDebris}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{int}\ count)}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ p-\/>active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ p-\/>x\ =\ x;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ p-\/>y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ p-\/>lifetime\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.8f,\ 1.5f);}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ p-\/>maxLifetime\ =\ p-\/>lifetime;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/60.f,\ 60.f)\ -\/\ 90.f;\ \ \textcolor{comment}{//\ Vers\ le\ haut\ principalement}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ rad\ =\ angle\ *\ 3.14159f\ /\ 180.f;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(150.f,\ 300.f);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ p-\/>vx\ =\ std::cos(rad)\ *\ speed;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ p-\/>vy\ =\ std::sin(rad)\ *\ speed;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ p-\/>ax\ =\ 0.f;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ p-\/>ay\ =\ 500.f;\ \ \textcolor{comment}{//\ Forte\ gravité}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ p-\/>startSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(6.f,\ 12.f);}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ p-\/>endSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(4.f,\ 8.f);}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ p-\/>startColor\ =\ sf::Color(80,\ 80,\ 80);}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ p-\/>endColor\ =\ sf::Color(40,\ 40,\ 40,\ 100);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ p-\/>rotation\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.f,\ 360.f);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ p-\/>rotationSpeed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/300.f,\ 300.f);}
+\DoxyCodeLine{00373\ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db}{ParticleSystem::emitTrail}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ directionDeg,\ \textcolor{keywordtype}{int}\ count)}
+\DoxyCodeLine{00377\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ Particle\_t*\ p\ =\ \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{getParticle}}();}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ p-\/>active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ p-\/>x\ =\ x\ +\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/5.f,\ 5.f);}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ p-\/>y\ =\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\ +\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/5.f,\ 5.f);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ p-\/>lifetime\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(0.1f,\ 0.3f);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ p-\/>maxLifetime\ =\ p-\/>lifetime;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opposé\ à\ la\ direction\ de\ déplacement}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\ =\ (directionDeg\ +\ 180.f\ +\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(-\/20.f,\ 20.f))\ *\ 3.14159f\ /\ 180.f;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(30.f,\ 80.f);}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ p-\/>vx\ =\ std::cos(angle)\ *\ speed;}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ p-\/>vy\ =\ std::sin(angle)\ *\ speed;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ p-\/>ax\ =\ 0.f;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ p-\/>ay\ =\ 0.f;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ p-\/>startSize\ =\ \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{randomFloat}}(3.f,\ 6.f);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ p-\/>endSize\ =\ 0.f;}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ p-\/>startColor\ =\ sf::Color(100,\ 150,\ 255,\ 200);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ p-\/>endColor\ =\ sf::Color(50,\ 100,\ 200,\ 0);}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ p-\/>rotation\ =\ 0.f;}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ p-\/>rotationSpeed\ =\ 0.f;}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \}}
+
+\end{DoxyCode}

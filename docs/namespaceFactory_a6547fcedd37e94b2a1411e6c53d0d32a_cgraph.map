@@ -1,0 +1,7 @@
+<map id="Factory::createObstacle" name="Factory::createObstacle">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,180,56"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="228,5,389,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,30,214,26,215,32,180,36"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="241,55,376,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,50,228,56,227,61,180,56"/>
+</map>

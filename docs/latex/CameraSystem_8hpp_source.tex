@@ -1,0 +1,252 @@
+\doxysection{Camera\+System.\+hpp}
+\hypertarget{CameraSystem_8hpp_source}{}\label{CameraSystem_8hpp_source}\index{include/engine/systems/CameraSystem.hpp@{include/engine/systems/CameraSystem.hpp}}
+\mbox{\hyperlink{CameraSystem_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ CameraSystem\ -\/\ Gère\ la\ caméra\ 2D\ avec\ smooth\ follow,\ zoom\ et\ shake}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/Graphics/View.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <SFML/Graphics/RenderWindow.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCameraSystem}{CameraSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classCameraSystem}{CameraSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ sf::RenderWindow\&\ window);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a5d11c3ddcea4310ee48c6c0788afb97c}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ vue\ de\ la\ caméra\ à\ la\ fenêtre}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_af3a5be20b8b49c38e672d1053d1f65bb}{applyView}}();}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Obtient\ la\ vue\ SFML\ de\ la\ caméra}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ sf::View\&\ \mbox{\hyperlink{classCameraSystem_ad2980afea36954d8a5ba38884f433d83}{getView}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}};\ \}}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Fonctions\ utilitaires}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a911789849a8e2fd4eafe97f48fdd50f3}{shake}}(\textcolor{keywordtype}{float}\ intensity,\ \textcolor{keywordtype}{float}\ duration);\ \ \ \ \ \textcolor{comment}{//\ Déclenche\ un\ shake}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_acb817120670bb1cb0bb0289390d02d4f}{setZoom}}(\textcolor{keywordtype}{float}\ zoom);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Change\ le\ zoom\ immédiatement}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_aec29367e967cd563fb12937aafc7a7b0}{setTargetZoom}}(\textcolor{keywordtype}{float}\ zoom);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Change\ le\ zoom\ progressivement}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a53839db5c11c89fb6dd3a11332941932}{setBounds}}(\textcolor{keywordtype}{float}\ minX,\ \textcolor{keywordtype}{float}\ minY,\ \textcolor{keywordtype}{float}\ maxX,\ \textcolor{keywordtype}{float}\ maxY);\ \ \textcolor{comment}{//\ Définit\ les\ limites}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a753b3deae97b161cf6f209df4a699d01}{removeBounds}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enlève\ les\ limites}}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Conversion\ coordonnées\ écran\ <-\/>\ monde}}
+\DoxyCodeLine{00036\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{classCameraSystem_a190599a92fbf4140e6f0d1bb6ec8eba6}{screenToWorld}}(\textcolor{keyword}{const}\ sf::Vector2i\&\ screenPos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ sf::Vector2i\ \mbox{\hyperlink{classCameraSystem_ad632610413d97285c21ca6d0821a2406}{worldToScreen}}(\textcolor{keyword}{const}\ sf::Vector2f\&\ worldPos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc}{updateCameraFollow}}(Camera\_t\&\ camera,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a461e17397bcf286483687d5954e3f4e9}{updateCameraShake}}(Camera\_t\&\ camera,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a}{updateCameraZoom}}(Camera\_t\&\ camera,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174}{applyBounds}}(Camera\_t\&\ camera);}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ sf::RenderWindow\&\ \mbox{\hyperlink{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b}{\_window}};}
+\DoxyCodeLine{00046\ \ \ \ \ sf::View\ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}};}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Pour\ le\ shake}}
+\DoxyCodeLine{00049\ \ \ \ \ std::mt19937\ \mbox{\hyperlink{classCameraSystem_a2c51dd51a5cfec034901f65a6d53f4ce}{\_rng}};}
+\DoxyCodeLine{00050\ \ \ \ \ std::uniform\_real\_distribution<float>\ \mbox{\hyperlink{classCameraSystem_a82c4f655ae6fc83a11b1707067dd134a}{\_dist}}\{-\/1.f,\ 1.f\};}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ =============\ IMPLEMENTATION\ =============}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \mbox{\hyperlink{classCameraSystem_affe9930ec3777cfca8e1a1382f28acd4}{CameraSystem::CameraSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ sf::RenderWindow\&\ window)}
+\DoxyCodeLine{00056\ \ \ \ \ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs),\ \_window(window),\ \_rng(std::random\_device\{\}())}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}}\ =\ window.getDefaultView();}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a5d11c3ddcea4310ee48c6c0788afb97c}{CameraSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ fdt\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(dt);}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Récupère\ la\ caméra\ (normalement\ il\ n'y\ en\ a\ qu'une)}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{auto}\ cameras\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Camera\_t>();}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (cameras.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ cameraEntity\ =\ cameras[0];}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameraEntity);}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ 1.\ Trouve\ la\ cible\ à\ suivre}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{auto}\ targets\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<CameraTarget\_t,\ Position\_t>();}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (!targets.empty())\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prend\ la\ première\ cible\ trouvée}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ targetEntity\ =\ targets[0];}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ targetPos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(targetEntity);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ targetTag\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<CameraTarget\_t>(targetEntity);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (targetPos\ \&\&\ targetTag)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ la\ position\ cible\ de\ la\ caméra}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ camera-\/>targetX\ =\ targetPos-\/>x\ +\ targetTag-\/>offsetX;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ camera-\/>targetY\ =\ targetPos-\/>y\ +\ targetTag-\/>offsetY;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ 2.\ Smooth\ follow}}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc}{updateCameraFollow}}(*camera,\ fdt);}
+\DoxyCodeLine{00093\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ 3.\ Zoom\ progressif}}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a}{updateCameraZoom}}(*camera,\ fdt);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ 4.\ Shake\ effect}}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_a461e17397bcf286483687d5954e3f4e9}{updateCameraShake}}(*camera,\ fdt);}
+\DoxyCodeLine{00099\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ 5.\ Applique\ les\ limites\ du\ monde}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (camera-\/>useBounds)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174}{applyBounds}}(*camera);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ 6.\ Met\ à\ jour\ la\ vue\ SFML}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{float}\ finalX\ =\ camera-\/>x\ +\ camera-\/>shakeOffsetX;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{float}\ finalY\ =\ camera-\/>y\ +\ camera-\/>shakeOffsetY;}
+\DoxyCodeLine{00108\ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}}.setCenter(finalX,\ finalY);}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}}.setSize(camera-\/>viewWidth\ /\ camera-\/>zoom,\ camera-\/>viewHeight\ /\ camera-\/>zoom);}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc}{CameraSystem::updateCameraFollow}}(Camera\_t\&\ camera,\ \textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ Interpolation\ linéaire\ (lerp)\ vers\ la\ cible}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ lerpFactor\ =\ 1.f\ -\/\ std::exp(-\/camera.smoothSpeed\ *\ dt);}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ camera.x\ +=\ (camera.targetX\ -\/\ camera.x)\ *\ lerpFactor;}
+\DoxyCodeLine{00119\ \ \ \ \ camera.y\ +=\ (camera.targetY\ -\/\ camera.y)\ *\ lerpFactor;}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a}{CameraSystem::updateCameraZoom}}(Camera\_t\&\ camera,\ \textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Interpolation\ vers\ le\ zoom\ cible}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{float}\ lerpFactor\ =\ 1.f\ -\/\ std::exp(-\/camera.zoomSpeed\ *\ dt);}
+\DoxyCodeLine{00126\ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ camera.zoom\ +=\ (camera.targetZoom\ -\/\ camera.zoom)\ *\ lerpFactor;}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ Clamp\ le\ zoom\ pour\ éviter\ des\ valeurs\ extrêmes}}
+\DoxyCodeLine{00130\ \ \ \ \ camera.zoom\ =\ std::clamp(camera.zoom,\ 0.1f,\ 10.f);}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a461e17397bcf286483687d5954e3f4e9}{CameraSystem::updateCameraShake}}(Camera\_t\&\ camera,\ \textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (camera.shakeDuration\ >\ 0.f)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ camera.shakeDuration\ -\/=\ dt;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Génère\ un\ offset\ aléatoire\ basé\ sur\ l'intensité}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ camera.shakeOffsetX\ =\ \mbox{\hyperlink{classCameraSystem_a82c4f655ae6fc83a11b1707067dd134a}{\_dist}}(\mbox{\hyperlink{classCameraSystem_a2c51dd51a5cfec034901f65a6d53f4ce}{\_rng}})\ *\ camera.shakeIntensity;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ camera.shakeOffsetY\ =\ \mbox{\hyperlink{classCameraSystem_a82c4f655ae6fc83a11b1707067dd134a}{\_dist}}(\mbox{\hyperlink{classCameraSystem_a2c51dd51a5cfec034901f65a6d53f4ce}{\_rng}})\ *\ camera.shakeIntensity;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Réduit\ progressivement\ l'intensité}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ camera.shakeIntensity\ *=\ std::exp(-\/5.f\ *\ dt);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (camera.shakeDuration\ <=\ 0.f)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ camera.shakeIntensity\ =\ 0.f;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ camera.shakeOffsetX\ =\ 0.f;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ camera.shakeOffsetY\ =\ 0.f;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174}{CameraSystem::applyBounds}}(Camera\_t\&\ camera)}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ Calcule\ les\ limites\ en\ tenant\ compte\ du\ zoom}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{float}\ halfWidth\ =\ (camera.viewWidth\ /\ camera.zoom)\ *\ 0.5f;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{float}\ halfHeight\ =\ (camera.viewHeight\ /\ camera.zoom)\ *\ 0.5f;}
+\DoxyCodeLine{00158\ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ Empêche\ la\ caméra\ de\ sortir\ des\ limites}}
+\DoxyCodeLine{00160\ \ \ \ \ camera.x\ =\ std::clamp(camera.x,\ camera.minX\ +\ halfWidth,\ camera.maxX\ -\/\ halfWidth);}
+\DoxyCodeLine{00161\ \ \ \ \ camera.y\ =\ std::clamp(camera.y,\ camera.minY\ +\ halfHeight,\ camera.maxY\ -\/\ halfHeight);}
+\DoxyCodeLine{00162\ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ Si\ les\ limites\ sont\ plus\ petites\ que\ la\ vue,\ centre\ la\ caméra}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (camera.maxX\ -\/\ camera.minX\ <\ camera.viewWidth\ /\ camera.zoom)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ camera.x\ =\ (camera.minX\ +\ camera.maxX)\ *\ 0.5f;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (camera.maxY\ -\/\ camera.minY\ <\ camera.viewHeight\ /\ camera.zoom)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ camera.y\ =\ (camera.minY\ +\ camera.maxY)\ *\ 0.5f;}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_af3a5be20b8b49c38e672d1053d1f65bb}{CameraSystem::applyView}}()}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b}{\_window}}.setView(\mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}});}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a911789849a8e2fd4eafe97f48fdd50f3}{CameraSystem::shake}}(\textcolor{keywordtype}{float}\ intensity,\ \textcolor{keywordtype}{float}\ duration)}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{auto}\ cameras\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Camera\_t>();}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (cameras.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00181\ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00184\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ camera-\/>shakeIntensity\ =\ intensity;}
+\DoxyCodeLine{00186\ \ \ \ \ camera-\/>shakeDuration\ =\ duration;}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_acb817120670bb1cb0bb0289390d02d4f}{CameraSystem::setZoom}}(\textcolor{keywordtype}{float}\ zoom)}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{auto}\ cameras\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Camera\_t>();}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{if}\ (cameras.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00196\ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ camera-\/>zoom\ =\ std::clamp(zoom,\ 0.1f,\ 10.f);}
+\DoxyCodeLine{00198\ \ \ \ \ camera-\/>targetZoom\ =\ camera-\/>zoom;}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_aec29367e967cd563fb12937aafc7a7b0}{CameraSystem::setTargetZoom}}(\textcolor{keywordtype}{float}\ zoom)}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{auto}\ cameras\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Camera\_t>();}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{if}\ (cameras.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00205\ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00208\ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ camera-\/>targetZoom\ =\ std::clamp(zoom,\ 0.1f,\ 10.f);}
+\DoxyCodeLine{00210\ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a53839db5c11c89fb6dd3a11332941932}{CameraSystem::setBounds}}(\textcolor{keywordtype}{float}\ minX,\ \textcolor{keywordtype}{float}\ minY,\ \textcolor{keywordtype}{float}\ maxX,\ \textcolor{keywordtype}{float}\ maxY)}
+\DoxyCodeLine{00213\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{auto}\ cameras\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Camera\_t>();}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{if}\ (cameras.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00216\ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00219\ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ camera-\/>useBounds\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00221\ \ \ \ \ camera-\/>minX\ =\ minX;}
+\DoxyCodeLine{00222\ \ \ \ \ camera-\/>minY\ =\ minY;}
+\DoxyCodeLine{00223\ \ \ \ \ camera-\/>maxX\ =\ maxX;}
+\DoxyCodeLine{00224\ \ \ \ \ camera-\/>maxY\ =\ maxY;}
+\DoxyCodeLine{00225\ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a753b3deae97b161cf6f209df4a699d01}{CameraSystem::removeBounds}}()}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{auto}\ cameras\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Camera\_t>();}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{if}\ (cameras.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00231\ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00234\ \ \ \ \ }
+\DoxyCodeLine{00235\ \ \ \ \ camera-\/>useBounds\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ sf::Vector2f\ \mbox{\hyperlink{classCameraSystem_a190599a92fbf4140e6f0d1bb6ec8eba6}{CameraSystem::screenToWorld}}(\textcolor{keyword}{const}\ sf::Vector2i\&\ screenPos)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b}{\_window}}.mapPixelToCoords(screenPos,\ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}});}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ sf::Vector2i\ \mbox{\hyperlink{classCameraSystem_ad632610413d97285c21ca6d0821a2406}{CameraSystem::worldToScreen}}(\textcolor{keyword}{const}\ sf::Vector2f\&\ worldPos)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b}{\_window}}.mapCoordsToPixel(worldPos,\ \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\_view}});}
+\DoxyCodeLine{00246\ \}}
+
+\end{DoxyCode}

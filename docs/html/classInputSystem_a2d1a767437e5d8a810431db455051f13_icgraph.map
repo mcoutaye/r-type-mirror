@@ -1,0 +1,10 @@
+<map id="InputSystem::getJoystickButtonForAction" name="InputSystem::getJoystickButtonForAction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="435,37,619,77"/>
+<area shape="rect" id="Node000002" href="$classOptionsMenuSystem.html#ad95f2bc7d503b22f40ed5cc3cf78c24a" title=" " alt="" coords="219,5,387,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="420,45,387,40,387,35,421,40"/>
+<area shape="rect" id="Node000004" href="$classOptionsMenuSystem.html#a2a3ee6b59492014106d0f5fe9f95ec9e" title=" " alt="" coords="220,69,385,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="421,75,386,80,385,75,420,70"/>
+<area shape="rect" id="Node000003" href="$classOptionsMenuSystem.html#a89fa209e9c4e2b5824c9b371c874e450" title="Pure virtual function to update the system." alt="" coords="5,37,171,77"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="205,43,171,48,170,42,205,37"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="206,78,170,72,171,67,207,72"/>
+</map>

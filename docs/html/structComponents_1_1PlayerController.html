@@ -105,17 +105,20 @@ $(document).ready(function(){initNavTree('structComponents_1_1PlayerController.h
 <div class="dynheader">
 Collaboration diagram for Components::PlayerController:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structComponents_1_1PlayerController__coll__graph.svg" width="220" height="96"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structComponents_1_1PlayerController__coll__graph.svg" width="220" height="116"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab626bbc7d999b6b1b51d0cb03cd68fd8" id="r_ab626bbc7d999b6b1b51d0cb03cd68fd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController.html#ab626bbc7d999b6b1b51d0cb03cd68fd8">playerId</a> = 0</td></tr>
+<tr class="memitem:ab626bbc7d999b6b1b51d0cb03cd68fd8" id="r_ab626bbc7d999b6b1b51d0cb03cd68fd8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController.html#ab626bbc7d999b6b1b51d0cb03cd68fd8">playerId</a> = 0</td></tr>
 <tr class="memdesc:ab626bbc7d999b6b1b51d0cb03cd68fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique player ID (0 for player 1, etc.).  <br /></td></tr>
 <tr class="separator:ab626bbc7d999b6b1b51d0cb03cd68fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dc2bdf1ca51df9b61cfc18fdcb06b03" id="r_a4dc2bdf1ca51df9b61cfc18fdcb06b03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController.html#a4dc2bdf1ca51df9b61cfc18fdcb06b03">isShooting</a> = <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">false</a></td></tr>
+<tr class="memitem:a4dc2bdf1ca51df9b61cfc18fdcb06b03" id="r_a4dc2bdf1ca51df9b61cfc18fdcb06b03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController.html#a4dc2bdf1ca51df9b61cfc18fdcb06b03">isShooting</a> = false</td></tr>
 <tr class="memdesc:a4dc2bdf1ca51df9b61cfc18fdcb06b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if the player is shooting.  <br /></td></tr>
 <tr class="separator:a4dc2bdf1ca51df9b61cfc18fdcb06b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a072fa13e0d5e790ddec996fcf49b4a44" id="r_a072fa13e0d5e790ddec996fcf49b4a44"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController.html#a072fa13e0d5e790ddec996fcf49b4a44">shootCooldown</a> = 0.f</td></tr>
+<tr class="memdesc:a072fa13e0d5e790ddec996fcf49b4a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cooldown time before next shot.  <br /></td></tr>
+<tr class="separator:a072fa13e0d5e790ddec996fcf49b4a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Component for player input control. </p>
@@ -127,7 +130,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">bool</a> Components::PlayerController::isShooting = <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">false</a></td>
+          <td class="memname">bool Components::PlayerController::isShooting = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -143,12 +146,28 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">uint8_t</a> Components::PlayerController::playerId = 0</td>
+          <td class="memname">uint8_t Components::PlayerController::playerId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique player ID (0 for player 1, etc.). </p>
+
+</div>
+</div>
+<a id="a072fa13e0d5e790ddec996fcf49b4a44" name="a072fa13e0d5e790ddec996fcf49b4a44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a072fa13e0d5e790ddec996fcf49b4a44">&#9670;&#160;</a></span>shootCooldown</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Components::PlayerController::shootCooldown = 0.f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cooldown time before next shot. </p>
 
 </div>
 </div>

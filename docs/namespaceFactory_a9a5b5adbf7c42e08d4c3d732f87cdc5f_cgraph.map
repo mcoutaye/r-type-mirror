@@ -1,0 +1,9 @@
+<map id="Factory::createScreenBorders" name="Factory::createScreenBorders">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,216,56"/>
+<area shape="rect" id="Node000002" href="$namespaceFactory.html#a8c3e2cf7f4a148d04cc162a677662833" title=" " alt="" coords="264,31,484,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,41,251,41,251,46,216,46"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="532,5,693,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="484,29,518,25,519,31,484,34"/>
+<area shape="rect" id="Node000004" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="545,55,680,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="484,52,532,57,531,62,484,57"/>
+</map>

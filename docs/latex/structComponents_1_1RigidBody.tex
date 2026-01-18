@@ -1,0 +1,131 @@
+\doxysection{Components\+::Rigid\+Body Struct Reference}
+\hypertarget{structComponents_1_1RigidBody}{}\label{structComponents_1_1RigidBody}\index{Components::RigidBody@{Components::RigidBody}}
+
+
+Rigidbody for physics (gravity, forces, etc.).  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Rigid\+Body\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{structComponents_1_1RigidBody__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody_ae8cec114022af52a2ede60e541f7bcf3}{mass}} = 1.f
+\begin{DoxyCompactList}\small\item\em Mass of the object. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody_ab8d20ed59bbdf4189cc21333c2678337}{gravity\+Scale}} = 1.f
+\begin{DoxyCompactList}\small\item\em Gravity multiplier. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody_ad66eacc6bf54fda4d089dc6fd2cc613a}{drag}} = 0.f
+\begin{DoxyCompactList}\small\item\em Air resistance (0-\/1). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody_a71785a22b1faa4781570413e709abb81}{bounciness}} = 0.f
+\begin{DoxyCompactList}\small\item\em Bounciness on collisions (0-\/1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1RigidBody_a9dd9218676e40efbcdf85567777e0269}{use\+Gravity}} = true
+\begin{DoxyCompactList}\small\item\em Flag to apply gravity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1RigidBody_af2c37d14bdf9c48f324906323ce2c7cf}{is\+Kinematic}} = false
+\begin{DoxyCompactList}\small\item\em Flag if kinematic (not affected by forces but can affect others). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1RigidBody_a4df503b2df472bef5ab83ac1764f7021}{is\+Grounded}} = false
+\begin{DoxyCompactList}\small\item\em Flag if grounded. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody_a6040d5f86665491df30f2568d37e27e9}{ground\+Check\+Distance}} = 2.f
+\begin{DoxyCompactList}\small\item\em Distance to check for ground. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rigidbody for physics (gravity, forces, etc.). 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1RigidBody_a71785a22b1faa4781570413e709abb81}\label{structComponents_1_1RigidBody_a71785a22b1faa4781570413e709abb81} 
+\index{Components::RigidBody@{Components::RigidBody}!bounciness@{bounciness}}
+\index{bounciness@{bounciness}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{bounciness}{bounciness}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+::bounciness = 0.f}
+
+
+
+Bounciness on collisions (0-\/1). 
+
+\Hypertarget{structComponents_1_1RigidBody_ad66eacc6bf54fda4d089dc6fd2cc613a}\label{structComponents_1_1RigidBody_ad66eacc6bf54fda4d089dc6fd2cc613a} 
+\index{Components::RigidBody@{Components::RigidBody}!drag@{drag}}
+\index{drag@{drag}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{drag}{drag}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+::drag = 0.f}
+
+
+
+Air resistance (0-\/1). 
+
+\Hypertarget{structComponents_1_1RigidBody_ab8d20ed59bbdf4189cc21333c2678337}\label{structComponents_1_1RigidBody_ab8d20ed59bbdf4189cc21333c2678337} 
+\index{Components::RigidBody@{Components::RigidBody}!gravityScale@{gravityScale}}
+\index{gravityScale@{gravityScale}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{gravityScale}{gravityScale}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+::gravity\+Scale = 1.f}
+
+
+
+Gravity multiplier. 
+
+\Hypertarget{structComponents_1_1RigidBody_a6040d5f86665491df30f2568d37e27e9}\label{structComponents_1_1RigidBody_a6040d5f86665491df30f2568d37e27e9} 
+\index{Components::RigidBody@{Components::RigidBody}!groundCheckDistance@{groundCheckDistance}}
+\index{groundCheckDistance@{groundCheckDistance}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{groundCheckDistance}{groundCheckDistance}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+::ground\+Check\+Distance = 2.f}
+
+
+
+Distance to check for ground. 
+
+\Hypertarget{structComponents_1_1RigidBody_a4df503b2df472bef5ab83ac1764f7021}\label{structComponents_1_1RigidBody_a4df503b2df472bef5ab83ac1764f7021} 
+\index{Components::RigidBody@{Components::RigidBody}!isGrounded@{isGrounded}}
+\index{isGrounded@{isGrounded}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{isGrounded}{isGrounded}}
+{\footnotesize\ttfamily bool Components\+::\+Rigid\+Body\+::is\+Grounded = false}
+
+
+
+Flag if grounded. 
+
+\Hypertarget{structComponents_1_1RigidBody_af2c37d14bdf9c48f324906323ce2c7cf}\label{structComponents_1_1RigidBody_af2c37d14bdf9c48f324906323ce2c7cf} 
+\index{Components::RigidBody@{Components::RigidBody}!isKinematic@{isKinematic}}
+\index{isKinematic@{isKinematic}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{isKinematic}{isKinematic}}
+{\footnotesize\ttfamily bool Components\+::\+Rigid\+Body\+::is\+Kinematic = false}
+
+
+
+Flag if kinematic (not affected by forces but can affect others). 
+
+\Hypertarget{structComponents_1_1RigidBody_ae8cec114022af52a2ede60e541f7bcf3}\label{structComponents_1_1RigidBody_ae8cec114022af52a2ede60e541f7bcf3} 
+\index{Components::RigidBody@{Components::RigidBody}!mass@{mass}}
+\index{mass@{mass}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{mass}{mass}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+::mass = 1.f}
+
+
+
+Mass of the object. 
+
+\Hypertarget{structComponents_1_1RigidBody_a9dd9218676e40efbcdf85567777e0269}\label{structComponents_1_1RigidBody_a9dd9218676e40efbcdf85567777e0269} 
+\index{Components::RigidBody@{Components::RigidBody}!useGravity@{useGravity}}
+\index{useGravity@{useGravity}!Components::RigidBody@{Components::RigidBody}}
+\doxysubsubsection{\texorpdfstring{useGravity}{useGravity}}
+{\footnotesize\ttfamily bool Components\+::\+Rigid\+Body\+::use\+Gravity = true}
+
+
+
+Flag to apply gravity. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

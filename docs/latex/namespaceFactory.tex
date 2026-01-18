@@ -3,105 +3,478 @@
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a676a86a062ce8ffcbe6f1fb3360f5948}{create\+Player}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} x, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} player\+Id=0, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&texture\+Id="{}player"{})
+Drawable\+\_\+t \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{create\+Drawable}} (const std\+::string \&texture\+Id, sf\+::\+Int\+Rect rect, int layer, bool visible=true, float scale=1.f, float rotation=0.f)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76}{create\+Projectile}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} x, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{velocityX}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{velocityY}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} team=1, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} damage=25, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&texture\+Id="{}bullet"{})
+Play\+Sound\+\_\+t \mbox{\hyperlink{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe}{create\+Sound}} (const std\+::string \&sound\+Id, float volume=100.f, float pitch=1.\+0f)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_af3c916a013934b36b7c0966dc273c95b}{create\+Enemy}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} x, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} health=100, \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Components\+::\+Movement\+Pattern\+::\+Type}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{pattern}}=\mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a32a843da6ea40ab3b17a3421ccdf671b}{Components\+::\+Movement\+Pattern\+::\+Type\+::\+Linear}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&texture\+Id="{}enemy"{})
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9}{create\+Player}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, uint8\+\_\+t player\+Id, const std\+::string \&texture\+Id)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{namespaceFactory_a28b6f5d53214fe164bee1ecf77706370}{create\+Starfield}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{num\+Stars}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{screen\+Width}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{screen\+Height}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{layers}}=3)
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7}{create\+Projectile}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float velocityX, float velocityY, uint8\+\_\+t team, int damage, const std\+::string \&texture\+Id, int owner\+Id=-\/1, const std\+::string \&shoot\+Sound="{}shoot.\+ogg"{})
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a}{create\+Obstacle}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} x, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} width, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} height)
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0}{create\+Enemy}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, Movement\+Pattern\+\_\+t\+::\+Type movement\+Type)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{namespaceFactory_a46cd969803b3a2d51624f7d1a880e90c}{create\+Screen\+Borders}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{screen\+Width}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{screen\+Height}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{wall\+Thickness}}=20.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}})
+void \mbox{\hyperlink{namespaceFactory_ae838e52ac84283a738f6b53b84199a00}{play\+Death\+Sound}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity, const std\+::string \&sound\+Id="{}enemy\+\_\+explosion.\+wav"{}, float volume=90.f)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a9ab62d2fe6de800da194934759b9845e}{create\+Destructible\+Tile}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} x, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} width=50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} height=50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} health=50)
+Text\+\_\+t \mbox{\hyperlink{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b}{create\+Text}} (const std\+::string \&text\+Str, uint32\+\_\+t font\+Size=48, sf\+::\+Color color=sf\+::\+Color\+::\+White, bool centered=true, const std\+::string \&font\+Id="{}default"{}, bool visible=true)
 \item 
-std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{namespaceFactory_a7e8cefb2f1094bf3a3b56575b315301b}{create\+Tile\+Grid}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{startX}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{startY}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{cols}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{rows}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{tile\+Width}}=50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{tile\+Height}}=50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} health=50)
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_aa56583e9c9566625de9000f121539cff}{create\+Menu\+Title}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, const \mbox{\hyperlink{structMenu}{Menu}} \&menu)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1}{create\+Menu\+Item}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, const \mbox{\hyperlink{structMenuItem}{Menu\+Item}} \&item)
+\item 
+void \mbox{\hyperlink{namespaceFactory_a1423ca81c8fb075aeee8f91dd2772a49}{create\+Menu}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, const \mbox{\hyperlink{structMenu}{Menu}} \&menu)
+\item 
+void \mbox{\hyperlink{namespaceFactory_ae3efdaaca24e7128d7e793d49e39fe72}{clear\+Menu}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_ab44fd5b3464c00df335f3c64ed3a9179}{create\+Platformer\+Player}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&texture\+Id="{}player"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_af024b3569d47fa562a804abd6c37ae0b}{create\+Platform}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, bool one\+Way=false, const std\+::string \&texture\+Id="{}platform"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a5a8855fb189fdd901209a94d75a6d451}{create\+Moving\+Platform}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, float velX, float velY, const std\+::string \&texture\+Id="{}platform"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a5cdda0e3e7aefd2d7c21f21036129f79}{create\+Wall}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, const std\+::string \&texture\+Id="{}wall"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_aabbcc1893c1ad6aa61b9be2c6618d192}{create\+Ladder}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, float climb\+Speed=150.f, const std\+::string \&texture\+Id="{}ladder"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a7178225e4b889c2808f1d1d0c6dd4f5c}{create\+Teleporter}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, sf\+::\+Vector2f target\+Pos, const std\+::string \&texture\+Id="{}teleporter"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a89692d0524d05eecd4ca9696bd89344c}{create\+Death\+Zone}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a9f08dec3ed1c6f9b0af551f25ed912c7}{create\+Checkpoint}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&texture\+Id="{}checkpoint"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_aaea545222d73758b12ff7313e20c878c}{create\+Collectible}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&texture\+Id="{}coin"{})
+\item 
+void \mbox{\hyperlink{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc}{create\+Starfield}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, int star\+Count, float screen\+Width, float screen\+Height, float max\+Speed)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a}{create\+Obstacle}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}{create\+Destructible\+Tile}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, int health)
+\item 
+void \mbox{\hyperlink{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f}{create\+Screen\+Borders}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float screen\+Width, float screen\+Height, float wall\+Thickness)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{namespaceFactory_a2f225b4b8db0d932004499169074ef26}{create\+Tile\+Grid}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float startX, float startY, int cols, int rows, float tile\+Width, float tile\+Height, int health)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{namespaceFactory_a9ab62d2fe6de800da194934759b9845e}\label{namespaceFactory_a9ab62d2fe6de800da194934759b9845e} 
+\Hypertarget{namespaceFactory_ae3efdaaca24e7128d7e793d49e39fe72}\label{namespaceFactory_ae3efdaaca24e7128d7e793d49e39fe72} 
+\index{Factory@{Factory}!clearMenu@{clearMenu}}
+\index{clearMenu@{clearMenu}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{clearMenu()}{clearMenu()}}
+{\footnotesize\ttfamily void Factory\+::clear\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_ae3efdaaca24e7128d7e793d49e39fe72_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a9f08dec3ed1c6f9b0af551f25ed912c7}\label{namespaceFactory_a9f08dec3ed1c6f9b0af551f25ed912c7} 
+\index{Factory@{Factory}!createCheckpoint@{createCheckpoint}}
+\index{createCheckpoint@{createCheckpoint}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createCheckpoint()}{createCheckpoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Checkpoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}checkpoint"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a9f08dec3ed1c6f9b0af551f25ed912c7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_aaea545222d73758b12ff7313e20c878c}\label{namespaceFactory_aaea545222d73758b12ff7313e20c878c} 
+\index{Factory@{Factory}!createCollectible@{createCollectible}}
+\index{createCollectible@{createCollectible}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createCollectible()}{createCollectible()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Collectible (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}coin"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_aaea545222d73758b12ff7313e20c878c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a89692d0524d05eecd4ca9696bd89344c}\label{namespaceFactory_a89692d0524d05eecd4ca9696bd89344c} 
+\index{Factory@{Factory}!createDeathZone@{createDeathZone}}
+\index{createDeathZone@{createDeathZone}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createDeathZone()}{createDeathZone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Death\+Zone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a89692d0524d05eecd4ca9696bd89344c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}\label{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833} 
 \index{Factory@{Factory}!createDestructibleTile@{createDestructibleTile}}
 \index{createDestructibleTile@{createDestructibleTile}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createDestructibleTile()}{createDestructibleTile()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Destructible\+Tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{x,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{y,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{width = {\ttfamily 50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{height = {\ttfamily 50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{health = {\ttfamily 50} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Destructible\+Tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{int}]{health }\end{DoxyParamCaption})}
 
-\Hypertarget{namespaceFactory_af3c916a013934b36b7c0966dc273c95b}\label{namespaceFactory_af3c916a013934b36b7c0966dc273c95b} 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a72717673325d8183f30a820fc78f728e}\label{namespaceFactory_a72717673325d8183f30a820fc78f728e} 
+\index{Factory@{Factory}!createDrawable@{createDrawable}}
+\index{createDrawable@{createDrawable}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createDrawable()}{createDrawable()}}
+{\footnotesize\ttfamily Drawable\+\_\+t Factory\+::create\+Drawable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{texture\+Id,  }\item[{sf\+::\+Int\+Rect}]{rect,  }\item[{int}]{layer,  }\item[{bool}]{visible = {\ttfamily true},  }\item[{float}]{scale = {\ttfamily 1.f},  }\item[{float}]{rotation = {\ttfamily 0.f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a72717673325d8183f30a820fc78f728e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0}\label{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0} 
 \index{Factory@{Factory}!createEnemy@{createEnemy}}
 \index{createEnemy@{createEnemy}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createEnemy()}{createEnemy()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{x,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{y,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{health = {\ttfamily 100},  }\item[{\mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Components\+::\+Movement\+Pattern\+::\+Type}}}]{pattern = {\ttfamily \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a32a843da6ea40ab3b17a3421ccdf671b}{Components\+::\+Movement\+Pattern\+::\+Type\+::\+Linear}}},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&}]{texture\+Id = {\ttfamily "{}enemy"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{Movement\+Pattern\+\_\+t\+::\+Type}]{movement\+Type }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_aabbcc1893c1ad6aa61b9be2c6618d192}\label{namespaceFactory_aabbcc1893c1ad6aa61b9be2c6618d192} 
+\index{Factory@{Factory}!createLadder@{createLadder}}
+\index{createLadder@{createLadder}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createLadder()}{createLadder()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Ladder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{float}]{climb\+Speed = {\ttfamily 150.f},  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}ladder"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_aabbcc1893c1ad6aa61b9be2c6618d192_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a1423ca81c8fb075aeee8f91dd2772a49}\label{namespaceFactory_a1423ca81c8fb075aeee8f91dd2772a49} 
+\index{Factory@{Factory}!createMenu@{createMenu}}
+\index{createMenu@{createMenu}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createMenu()}{createMenu()}}
+{\footnotesize\ttfamily void Factory\+::create\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{const \mbox{\hyperlink{structMenu}{Menu}} \&}]{menu }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a1423ca81c8fb075aeee8f91dd2772a49_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1}\label{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1} 
+\index{Factory@{Factory}!createMenuItem@{createMenuItem}}
+\index{createMenuItem@{createMenuItem}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createMenuItem()}{createMenuItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Menu\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{const \mbox{\hyperlink{structMenuItem}{Menu\+Item}} \&}]{item }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_aa56583e9c9566625de9000f121539cff}\label{namespaceFactory_aa56583e9c9566625de9000f121539cff} 
+\index{Factory@{Factory}!createMenuTitle@{createMenuTitle}}
+\index{createMenuTitle@{createMenuTitle}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createMenuTitle()}{createMenuTitle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Menu\+Title (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{const \mbox{\hyperlink{structMenu}{Menu}} \&}]{menu }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_aa56583e9c9566625de9000f121539cff_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_aa56583e9c9566625de9000f121539cff_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a5a8855fb189fdd901209a94d75a6d451}\label{namespaceFactory_a5a8855fb189fdd901209a94d75a6d451} 
+\index{Factory@{Factory}!createMovingPlatform@{createMovingPlatform}}
+\index{createMovingPlatform@{createMovingPlatform}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createMovingPlatform()}{createMovingPlatform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Moving\+Platform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{float}]{velX,  }\item[{float}]{velY,  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}platform"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a5a8855fb189fdd901209a94d75a6d451_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a}\label{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a} 
 \index{Factory@{Factory}!createObstacle@{createObstacle}}
 \index{createObstacle@{createObstacle}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createObstacle()}{createObstacle()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Obstacle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{x,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{y,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{width,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{height }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Obstacle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height }\end{DoxyParamCaption})}
 
-\Hypertarget{namespaceFactory_a676a86a062ce8ffcbe6f1fb3360f5948}\label{namespaceFactory_a676a86a062ce8ffcbe6f1fb3360f5948} 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_af024b3569d47fa562a804abd6c37ae0b}\label{namespaceFactory_af024b3569d47fa562a804abd6c37ae0b} 
+\index{Factory@{Factory}!createPlatform@{createPlatform}}
+\index{createPlatform@{createPlatform}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createPlatform()}{createPlatform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Platform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{bool}]{one\+Way = {\ttfamily false},  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}platform"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_af024b3569d47fa562a804abd6c37ae0b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_ab44fd5b3464c00df335f3c64ed3a9179}\label{namespaceFactory_ab44fd5b3464c00df335f3c64ed3a9179} 
+\index{Factory@{Factory}!createPlatformerPlayer@{createPlatformerPlayer}}
+\index{createPlatformerPlayer@{createPlatformerPlayer}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createPlatformerPlayer()}{createPlatformerPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Platformer\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}player"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_ab44fd5b3464c00df335f3c64ed3a9179_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9}\label{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9} 
 \index{Factory@{Factory}!createPlayer@{createPlayer}}
 \index{createPlayer@{createPlayer}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createPlayer()}{createPlayer()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{x,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{y,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}}}]{player\+Id = {\ttfamily 0},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&}]{texture\+Id = {\ttfamily "{}player"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{uint8\+\_\+t}]{player\+Id,  }\item[{const std\+::string \&}]{texture\+Id }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceFactory_a676a86a062ce8ffcbe6f1fb3360f5948_icgraph}
+\includegraphics[width=350pt]{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76}\label{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76} 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7}\label{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7} 
 \index{Factory@{Factory}!createProjectile@{createProjectile}}
 \index{createProjectile@{createProjectile}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createProjectile()}{createProjectile()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Projectile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{x,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{y,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{velocityX,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{velocityY,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}}}]{team = {\ttfamily 1},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{damage = {\ttfamily 25},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::string \&}]{texture\+Id = {\ttfamily "{}bullet"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Projectile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{velocityX,  }\item[{float}]{velocityY,  }\item[{uint8\+\_\+t}]{team,  }\item[{int}]{damage,  }\item[{const std\+::string \&}]{texture\+Id,  }\item[{int}]{owner\+Id = {\ttfamily -\/1},  }\item[{const std\+::string \&}]{shoot\+Sound = {\ttfamily "{}shoot.ogg"{}} }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceFactory_acb4f080b19f667e0bcc6fe95c0ab1b76_icgraph}
+\includegraphics[width=350pt]{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespaceFactory_a46cd969803b3a2d51624f7d1a880e90c}\label{namespaceFactory_a46cd969803b3a2d51624f7d1a880e90c} 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f}\label{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f} 
 \index{Factory@{Factory}!createScreenBorders@{createScreenBorders}}
 \index{createScreenBorders@{createScreenBorders}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createScreenBorders()}{createScreenBorders()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Factory\+::create\+Screen\+Borders (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{screen\+Width,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{screen\+Height,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{wall\+Thickness = {\ttfamily 20.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Factory\+::create\+Screen\+Borders (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{screen\+Width,  }\item[{float}]{screen\+Height,  }\item[{float}]{wall\+Thickness }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceFactory_a46cd969803b3a2d51624f7d1a880e90c_icgraph}
+\includegraphics[width=350pt]{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespaceFactory_a28b6f5d53214fe164bee1ecf77706370}\label{namespaceFactory_a28b6f5d53214fe164bee1ecf77706370} 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe}\label{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe} 
+\index{Factory@{Factory}!createSound@{createSound}}
+\index{createSound@{createSound}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createSound()}{createSound()}}
+{\footnotesize\ttfamily Play\+Sound\+\_\+t Factory\+::create\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sound\+Id,  }\item[{float}]{volume = {\ttfamily 100.f},  }\item[{float}]{pitch = {\ttfamily 1.0f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc}\label{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc} 
 \index{Factory@{Factory}!createStarfield@{createStarfield}}
 \index{createStarfield@{createStarfield}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createStarfield()}{createStarfield()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Factory\+::create\+Starfield (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{num\+Stars,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{screen\+Width,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{screen\+Height,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{layers = {\ttfamily 3} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Factory\+::create\+Starfield (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{int}]{star\+Count,  }\item[{float}]{screen\+Width,  }\item[{float}]{screen\+Height,  }\item[{float}]{max\+Speed }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=324pt]{namespaceFactory_a28b6f5d53214fe164bee1ecf77706370_icgraph}
+\includegraphics[width=350pt]{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespaceFactory_a7e8cefb2f1094bf3a3b56575b315301b}\label{namespaceFactory_a7e8cefb2f1094bf3a3b56575b315301b} 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a7178225e4b889c2808f1d1d0c6dd4f5c}\label{namespaceFactory_a7178225e4b889c2808f1d1d0c6dd4f5c} 
+\index{Factory@{Factory}!createTeleporter@{createTeleporter}}
+\index{createTeleporter@{createTeleporter}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createTeleporter()}{createTeleporter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Teleporter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{sf\+::\+Vector2f}]{target\+Pos,  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}teleporter"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a7178225e4b889c2808f1d1d0c6dd4f5c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b}\label{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b} 
+\index{Factory@{Factory}!createText@{createText}}
+\index{createText@{createText}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createText()}{createText()}}
+{\footnotesize\ttfamily Text\+\_\+t Factory\+::create\+Text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text\+Str,  }\item[{uint32\+\_\+t}]{font\+Size = {\ttfamily 48},  }\item[{sf\+::\+Color}]{color = {\ttfamily sf\+:\+:Color\+:\+:White},  }\item[{bool}]{centered = {\ttfamily true},  }\item[{const std\+::string \&}]{font\+Id = {\ttfamily "{}default"{}},  }\item[{bool}]{visible = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a2f225b4b8db0d932004499169074ef26}\label{namespaceFactory_a2f225b4b8db0d932004499169074ef26} 
 \index{Factory@{Factory}!createTileGrid@{createTileGrid}}
 \index{createTileGrid@{createTileGrid}!Factory@{Factory}}
 \doxysubsubsection{\texorpdfstring{createTileGrid()}{createTileGrid()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ Factory\+::create\+Tile\+Grid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{startX,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{startY,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{cols,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{rows,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{tile\+Width = {\ttfamily 50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{tile\+Height = {\ttfamily 50.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{health = {\ttfamily 50} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ Factory\+::create\+Tile\+Grid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{startX,  }\item[{float}]{startY,  }\item[{int}]{cols,  }\item[{int}]{rows,  }\item[{float}]{tile\+Width,  }\item[{float}]{tile\+Height,  }\item[{int}]{health }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=328pt]{namespaceFactory_a7e8cefb2f1094bf3a3b56575b315301b_icgraph}
+\includegraphics[width=350pt]{namespaceFactory_a2f225b4b8db0d932004499169074ef26_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{namespaceFactory_a2f225b4b8db0d932004499169074ef26_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_a5cdda0e3e7aefd2d7c21f21036129f79}\label{namespaceFactory_a5cdda0e3e7aefd2d7c21f21036129f79} 
+\index{Factory@{Factory}!createWall@{createWall}}
+\index{createWall@{createWall}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{createWall()}{createWall()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Factory\+::create\+Wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}wall"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_a5cdda0e3e7aefd2d7c21f21036129f79_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceFactory_ae838e52ac84283a738f6b53b84199a00}\label{namespaceFactory_ae838e52ac84283a738f6b53b84199a00} 
+\index{Factory@{Factory}!playDeathSound@{playDeathSound}}
+\index{playDeathSound@{playDeathSound}!Factory@{Factory}}
+\doxysubsubsection{\texorpdfstring{playDeathSound()}{playDeathSound()}}
+{\footnotesize\ttfamily void Factory\+::play\+Death\+Sound (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{entity,  }\item[{const std\+::string \&}]{sound\+Id = {\ttfamily "{}enemy\+\_\+explosion.wav"{}},  }\item[{float}]{volume = {\ttfamily 90.f} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFactory_ae838e52ac84283a738f6b53b84199a00_cgraph}
 \end{center}
 \end{figure}

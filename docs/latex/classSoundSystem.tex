@@ -1,0 +1,306 @@
+\doxysection{Sound\+System Class Reference}
+\hypertarget{classSoundSystem}{}\label{classSoundSystem}\index{SoundSystem@{SoundSystem}}
+
+
+{\ttfamily \#include $<$Sound\+System.\+hpp$>$}
+
+
+
+Inheritance diagram for Sound\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSoundSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sound\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSoundSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSoundSystem_a96a59fe7eaf6846940e68e6ad1623012}{Sound\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+\mbox{\hyperlink{classSoundSystem_ac735df6ec9359b777809d9b7851c751d}{\texorpdfstring{$\sim$}{\string~}\+Sound\+System}} () override=default
+\item 
+void \mbox{\hyperlink{classSoundSystem_ae91869f407c9f98c8b0a0a0d1beb4a4e}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSoundSystem_ac2c6d382b99fe8ff0963784a3c8ff222}{load\+Sound}} (const std\+::string \&sound\+Id, const std\+::string \&filename)
+\item 
+bool \mbox{\hyperlink{classSoundSystem_a762a363b7f41849491f1c53471f8eed1}{load\+Music}} (const std\+::string \&music\+Id, const std\+::string \&filename)
+\item 
+void \mbox{\hyperlink{classSoundSystem_ae96d98d929381ca3dcda39156296b629}{set\+Music\+Volume}} (float volume)
+\item 
+void \mbox{\hyperlink{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26}{set\+Sound\+Volume}} (float volume)
+\item 
+float \mbox{\hyperlink{classSoundSystem_ac5c8201b35d6329c360966624318bc4f}{get\+Music\+Volume}} () const
+\item 
+float \mbox{\hyperlink{classSoundSystem_a482e8822abcb6e19ff41cf3056c0c819}{get\+Sound\+Volume}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902}{process\+Play\+Sound\+Triggers}} ()
+\item 
+void \mbox{\hyperlink{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58}{process\+Background\+Music}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, sf\+::\+Sound\+Buffer $>$ \mbox{\hyperlink{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74}{\+\_\+sound\+Buffers}}
+\item 
+std\+::vector$<$ sf\+::\+Sound $>$ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\+\_\+active\+Sounds}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, float $>$ \mbox{\hyperlink{classSoundSystem_ac58c52b99b607daae50b7931aaf06224}{\+\_\+sound\+Cooldowns}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classSoundSystem_af0e315e9119de35232464d6e96cc626f}{\+\_\+music\+Paths}}
+\item 
+sf\+::\+Music \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\+\_\+current\+Music}}
+\item 
+std\+::string \mbox{\hyperlink{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb}{\+\_\+current\+Music\+Id}}
+\item 
+float \mbox{\hyperlink{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}{\+\_\+music\+Volume}} = 100.\+0f
+\item 
+float \mbox{\hyperlink{classSoundSystem_add47daef7197dffddd6a5d3ab179dade}{\+\_\+sound\+Volume}} = 100.\+0f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{classSoundSystem_a722f679b87333390ff2ad4c4344aaa41}{DEFAULT\+\_\+\+SOUND\+\_\+\+COOLDOWN}} = 0.\+05f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSoundSystem_a96a59fe7eaf6846940e68e6ad1623012}\label{classSoundSystem_a96a59fe7eaf6846940e68e6ad1623012} 
+\index{SoundSystem@{SoundSystem}!SoundSystem@{SoundSystem}}
+\index{SoundSystem@{SoundSystem}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{SoundSystem()}{SoundSystem()}}
+{\footnotesize\ttfamily Sound\+System\+::\+Sound\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classSoundSystem_ac735df6ec9359b777809d9b7851c751d}\label{classSoundSystem_ac735df6ec9359b777809d9b7851c751d} 
+\index{SoundSystem@{SoundSystem}!````~SoundSystem@{\texorpdfstring{$\sim$}{\string~}SoundSystem}}
+\index{````~SoundSystem@{\texorpdfstring{$\sim$}{\string~}SoundSystem}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SoundSystem()}{\string~SoundSystem()}}
+{\footnotesize\ttfamily Sound\+System\+::\texorpdfstring{$\sim$}{\string~}\+Sound\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSoundSystem_ac5c8201b35d6329c360966624318bc4f}\label{classSoundSystem_ac5c8201b35d6329c360966624318bc4f} 
+\index{SoundSystem@{SoundSystem}!getMusicVolume@{getMusicVolume}}
+\index{getMusicVolume@{getMusicVolume}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{getMusicVolume()}{getMusicVolume()}}
+{\footnotesize\ttfamily float Sound\+System\+::get\+Music\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSoundSystem_a482e8822abcb6e19ff41cf3056c0c819}\label{classSoundSystem_a482e8822abcb6e19ff41cf3056c0c819} 
+\index{SoundSystem@{SoundSystem}!getSoundVolume@{getSoundVolume}}
+\index{getSoundVolume@{getSoundVolume}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{getSoundVolume()}{getSoundVolume()}}
+{\footnotesize\ttfamily float Sound\+System\+::get\+Sound\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSoundSystem_a762a363b7f41849491f1c53471f8eed1}\label{classSoundSystem_a762a363b7f41849491f1c53471f8eed1} 
+\index{SoundSystem@{SoundSystem}!loadMusic@{loadMusic}}
+\index{loadMusic@{loadMusic}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{loadMusic()}{loadMusic()}}
+{\footnotesize\ttfamily bool Sound\+System\+::load\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{music\+Id,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+\Hypertarget{classSoundSystem_ac2c6d382b99fe8ff0963784a3c8ff222}\label{classSoundSystem_ac2c6d382b99fe8ff0963784a3c8ff222} 
+\index{SoundSystem@{SoundSystem}!loadSound@{loadSound}}
+\index{loadSound@{loadSound}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{loadSound()}{loadSound()}}
+{\footnotesize\ttfamily bool Sound\+System\+::load\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sound\+Id,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+\Hypertarget{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58}\label{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58} 
+\index{SoundSystem@{SoundSystem}!processBackgroundMusic@{processBackgroundMusic}}
+\index{processBackgroundMusic@{processBackgroundMusic}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{processBackgroundMusic()}{processBackgroundMusic()}}
+{\footnotesize\ttfamily void Sound\+System\+::process\+Background\+Music (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902}\label{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902} 
+\index{SoundSystem@{SoundSystem}!processPlaySoundTriggers@{processPlaySoundTriggers}}
+\index{processPlaySoundTriggers@{processPlaySoundTriggers}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{processPlaySoundTriggers()}{processPlaySoundTriggers()}}
+{\footnotesize\ttfamily void Sound\+System\+::process\+Play\+Sound\+Triggers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSoundSystem_ae96d98d929381ca3dcda39156296b629}\label{classSoundSystem_ae96d98d929381ca3dcda39156296b629} 
+\index{SoundSystem@{SoundSystem}!setMusicVolume@{setMusicVolume}}
+\index{setMusicVolume@{setMusicVolume}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{setMusicVolume()}{setMusicVolume()}}
+{\footnotesize\ttfamily void Sound\+System\+::set\+Music\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_ae96d98d929381ca3dcda39156296b629_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_ae96d98d929381ca3dcda39156296b629_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26}\label{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26} 
+\index{SoundSystem@{SoundSystem}!setSoundVolume@{setSoundVolume}}
+\index{setSoundVolume@{setSoundVolume}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{setSoundVolume()}{setSoundVolume()}}
+{\footnotesize\ttfamily void Sound\+System\+::set\+Sound\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSoundSystem_ae91869f407c9f98c8b0a0a0d1beb4a4e}\label{classSoundSystem_ae91869f407c9f98c8b0a0a0d1beb4a4e} 
+\index{SoundSystem@{SoundSystem}!update@{update}}
+\index{update@{update}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Sound\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSoundSystem_ae91869f407c9f98c8b0a0a0d1beb4a4e_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}\label{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09} 
+\index{SoundSystem@{SoundSystem}!\_activeSounds@{\_activeSounds}}
+\index{\_activeSounds@{\_activeSounds}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_activeSounds}{\_activeSounds}}
+{\footnotesize\ttfamily std\+::vector$<$sf\+::\+Sound$>$ Sound\+System\+::\+\_\+active\+Sounds\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_a8bafbb870d638987c9697986245cab68}\label{classSoundSystem_a8bafbb870d638987c9697986245cab68} 
+\index{SoundSystem@{SoundSystem}!\_currentMusic@{\_currentMusic}}
+\index{\_currentMusic@{\_currentMusic}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_currentMusic}{\_currentMusic}}
+{\footnotesize\ttfamily sf\+::\+Music Sound\+System\+::\+\_\+current\+Music\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb}\label{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb} 
+\index{SoundSystem@{SoundSystem}!\_currentMusicId@{\_currentMusicId}}
+\index{\_currentMusicId@{\_currentMusicId}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_currentMusicId}{\_currentMusicId}}
+{\footnotesize\ttfamily std\+::string Sound\+System\+::\+\_\+current\+Music\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_af0e315e9119de35232464d6e96cc626f}\label{classSoundSystem_af0e315e9119de35232464d6e96cc626f} 
+\index{SoundSystem@{SoundSystem}!\_musicPaths@{\_musicPaths}}
+\index{\_musicPaths@{\_musicPaths}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_musicPaths}{\_musicPaths}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Sound\+System\+::\+\_\+music\+Paths\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}\label{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c} 
+\index{SoundSystem@{SoundSystem}!\_musicVolume@{\_musicVolume}}
+\index{\_musicVolume@{\_musicVolume}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_musicVolume}{\_musicVolume}}
+{\footnotesize\ttfamily float Sound\+System\+::\+\_\+music\+Volume = 100.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74}\label{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74} 
+\index{SoundSystem@{SoundSystem}!\_soundBuffers@{\_soundBuffers}}
+\index{\_soundBuffers@{\_soundBuffers}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_soundBuffers}{\_soundBuffers}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, sf\+::\+Sound\+Buffer$>$ Sound\+System\+::\+\_\+sound\+Buffers\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_ac58c52b99b607daae50b7931aaf06224}\label{classSoundSystem_ac58c52b99b607daae50b7931aaf06224} 
+\index{SoundSystem@{SoundSystem}!\_soundCooldowns@{\_soundCooldowns}}
+\index{\_soundCooldowns@{\_soundCooldowns}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_soundCooldowns}{\_soundCooldowns}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, float$>$ Sound\+System\+::\+\_\+sound\+Cooldowns\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_add47daef7197dffddd6a5d3ab179dade}\label{classSoundSystem_add47daef7197dffddd6a5d3ab179dade} 
+\index{SoundSystem@{SoundSystem}!\_soundVolume@{\_soundVolume}}
+\index{\_soundVolume@{\_soundVolume}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{\_soundVolume}{\_soundVolume}}
+{\footnotesize\ttfamily float Sound\+System\+::\+\_\+sound\+Volume = 100.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSoundSystem_a722f679b87333390ff2ad4c4344aaa41}\label{classSoundSystem_a722f679b87333390ff2ad4c4344aaa41} 
+\index{SoundSystem@{SoundSystem}!DEFAULT\_SOUND\_COOLDOWN@{DEFAULT\_SOUND\_COOLDOWN}}
+\index{DEFAULT\_SOUND\_COOLDOWN@{DEFAULT\_SOUND\_COOLDOWN}!SoundSystem@{SoundSystem}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_SOUND\_COOLDOWN}{DEFAULT\_SOUND\_COOLDOWN}}
+{\footnotesize\ttfamily constexpr float Sound\+System\+::\+DEFAULT\+\_\+\+SOUND\+\_\+\+COOLDOWN = 0.\+05f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{SoundSystem_8hpp}{Sound\+System.\+hpp}}\end{DoxyCompactItemize}

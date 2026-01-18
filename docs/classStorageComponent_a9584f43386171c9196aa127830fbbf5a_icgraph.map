@@ -1,5 +1,9 @@
 <map id="StorageComponent::kill" name="StorageComponent::kill">
-<area shape="rect" id="Node000001" title="Removes the component from the entity." alt="" coords="204,5,379,31"/>
-<area shape="rect" id="Node000002" href="$classECS.html#aa790d7ea384b5aad8a2dbe0d2cee1661" title="Removes a specific component from an entity." alt="" coords="5,5,156,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,21,157,21,157,15,190,15"/>
+<area shape="rect" id="Node000001" title="Removes the component from the entity." alt="" coords="661,13,836,38"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aa790d7ea384b5aad8a2dbe0d2cee1661" title="Removes a specific component from an entity." alt="" coords="463,13,613,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="647,28,614,28,614,23,647,23"/>
+<area shape="rect" id="Node000003" href="$classSoundSystem.html#a73e2cba45c40d6097225b7d5dc1b7902" title=" " alt="" coords="217,5,415,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="449,28,415,28,415,23,449,23"/>
+<area shape="rect" id="Node000004" href="$classSoundSystem.html#ae91869f407c9f98c8b0a0a0d1beb4a4e" title="Pure virtual function to update the system." alt="" coords="5,13,169,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="204,28,170,28,170,23,204,23"/>
 </map>

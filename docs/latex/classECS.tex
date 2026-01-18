@@ -11,7 +11,8 @@ Entity Component System manager.
 
 
 
-Collaboration diagram for ECS\+:\nopagebreak
+Collaboration diagram for ECS\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,69 +24,69 @@ Collaboration diagram for ECS\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classECS_a7fba8bcfbb8d238085ab7302d96a332f}{ECS}} ()
 \begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classECS}{ECS}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\texorpdfstring{$\sim$}{\string~}\+ECS}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\texorpdfstring{$\sim$}{\string~}\+ECS}} ()=default
 \begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classECS}{ECS}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{create\+Entity}} ()
 \begin{DoxyCompactList}\small\item\em Creates a new entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{kill\+Entity}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+void \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{kill\+Entity}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \begin{DoxyCompactList}\small\item\em Destroys an entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{get\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{get\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \begin{DoxyCompactList}\small\item\em Retrieves the signature of an entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{set\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sig}})
+void \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{set\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} sig)
 \begin{DoxyCompactList}\small\item\em Sets the signature for an entity. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{add\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{add\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, const Component\+Type \&component)
 \begin{DoxyCompactList}\small\item\em Adds a component to an entity. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{has\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+{\footnotesize template$<$typename Component\+Type $>$ }\\bool \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{has\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \begin{DoxyCompactList}\small\item\em Checks if an entity has a specific component. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{get\+Const\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+{\footnotesize template$<$typename Component\+Type $>$ }\\const Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{get\+Const\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \begin{DoxyCompactList}\small\item\em Retrieves a read-\/only pointer to a component. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{get\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{get\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \begin{DoxyCompactList}\small\item\em Retrieves a mutable pointer to a component. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ }\\std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{get\+Entities\+By\+Components}} ()
+{\footnotesize template$<$typename ... Component\+Type$>$ }\\std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{get\+Entities\+By\+Components}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves entities that have all specified components. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{kill\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\void \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{kill\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \begin{DoxyCompactList}\small\item\em Removes a specific component from an entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{classECS_a5c0787ab975107fe402c5dc16dc945e5}{get\+Time}} () \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+double \mbox{\hyperlink{classECS_a5c0787ab975107fe402c5dc16dc945e5}{get\+Time}} () const
 \begin{DoxyCompactList}\small\item\em Gets the current time in the \doxylink{classECS}{ECS}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a9e8a8388bce60d993a5ef04fd42dc0f0}{add\+Time}} (\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}})
+void \mbox{\hyperlink{classECS_a9e8a8388bce60d993a5ef04fd42dc0f0}{add\+Time}} (double dt)
 \begin{DoxyCompactList}\small\item\em Adds delta time to the \doxylink{classECS}{ECS} time. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classECS_a7fba8bcfbb8d238085ab7302d96a332f}{ECS}} ()
 \item 
-\mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\texorpdfstring{$\sim$}{\string~}\+ECS}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}{\texorpdfstring{$\sim$}{\string~}\+ECS}} ()=default
 \item 
 \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{create\+Entity}} ()
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{kill\+Entity}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+void \mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{kill\+Entity}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{get\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}{get\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{set\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{sig}})
+void \mbox{\hyperlink{classECS_a2d9a9caa600c1982410d33ce3a88eeef}{set\+Signature}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} sig)
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{add\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{add\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, const Component\+Type \&component)
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{add\+Components}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\&... Components)
+{\footnotesize template$<$typename ... Component\+Type$>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{add\+Components}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, Component\+Type \&\&... Components)
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{has\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+{\footnotesize template$<$typename Component\+Type $>$ }\\bool \mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{has\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{get\+Const\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+{\footnotesize template$<$typename Component\+Type $>$ }\\const Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_a358206e15202fccfa73017c47af07079}{get\+Const\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{get\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{get\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ }\\std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{get\+Entities\+By\+Components}} ()
+{\footnotesize template$<$typename ... Component\+Type$>$ }\\std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ \mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{get\+Entities\+By\+Components}} ()
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{kill\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\void \mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{kill\+Component}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verify\+Component\+Storage}} (\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Type\+ID}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\void \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verify\+Component\+Storage}} (\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} Type\+ID)
 \begin{DoxyCompactList}\small\item\em Verifies and initializes storage for a component type if needed. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ }\\\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verify\+Component\+Storage}} (\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Type\+ID}})
+{\footnotesize template$<$typename Component\+Type $>$ }\\void \mbox{\hyperlink{classECS_a0d360a43bc140d37953297708afb8b86}{verify\+Component\+Storage}} (\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}} Type\+ID)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{classECS_a620302f938f8646f1348dcfdb5f6cddb}{\+\_\+time}}
+double \mbox{\hyperlink{classECS_a620302f938f8646f1348dcfdb5f6cddb}{\+\_\+time}}
 \item 
 std\+::size\+\_\+t \mbox{\hyperlink{classECS_a07c2ca3008559fa7e2382abdcfab95be}{\+\_\+\+\_\+living\+Entities}} = 0
 \item 
@@ -93,9 +94,9 @@ std\+::queue$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313
 \item 
 std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}, \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} $>$ \mbox{\hyperlink{classECS_a9976c300174ff77f8ed352a430c4b84f}{\+\_\+\+\_\+signatures}}
 \item 
-std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classECS_ac685d0056ab87feb1c2be13b49a1a98c}{\+\_\+component\+Storages}}
+std\+::vector$<$ void \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classECS_ac685d0056ab87feb1c2be13b49a1a98c}{\+\_\+component\+Storages}}
 \item 
-std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\+\_\+\+\_\+component\+Storage}}
+std\+::vector$<$ void \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classECS_af286a6b20b26839c7e96603ab2df7718}{\+\_\+\+\_\+component\+Storage}}
 \end{DoxyCompactItemize}
 
 
@@ -131,13 +132,6 @@ Destructor for \doxylink{classECS}{ECS}.
 \doxysubsubsection{\texorpdfstring{ECS()}{ECS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily ECS\+::\+ECS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a7fba8bcfbb8d238085ab7302d96a332f_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1}\label{classECS_a897e7c31f36192d60a3f6b9de4fdf8c1} 
 \index{ECS@{ECS}!````~ECS@{\texorpdfstring{$\sim$}{\string~}ECS}}
 \index{````~ECS@{\texorpdfstring{$\sim$}{\string~}ECS}!ECS@{ECS}}
@@ -151,8 +145,8 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!addComponent@{addComponent}}
 \index{addComponent@{addComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{const Component\+Type \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -181,14 +175,23 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{classECS_ab25f63dc0523958d986069505b703c12_cgraph}
 \end{center}
 \end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classECS_ab25f63dc0523958d986069505b703c12_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classECS_ab25f63dc0523958d986069505b703c12}\label{classECS_ab25f63dc0523958d986069505b703c12} 
 \index{ECS@{ECS}!addComponent@{addComponent}}
 \index{addComponent@{addComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{const Component\+Type \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -199,17 +202,11 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!addComponents@{addComponents}}
 \index{addComponents@{addComponents}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{addComponents()}{addComponents()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\&...}]{Components }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename ... Component\+Type$>$ \\
+\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::add\+Components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{Component\+Type \&\&...}]{Components }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a729237fc4138af4f48df163dec088efb_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -220,7 +217,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!addTime@{addTime}}
 \index{addTime@{addTime}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{addTime()}{addTime()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::add\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void ECS\+::add\+Time (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -231,13 +228,6 @@ Adds delta time to the \doxylink{classECS}{ECS} time.
 {\em dt} & The delta time to add. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a9e8a8388bce60d993a5ef04fd42dc0f0_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a41b876f3725cbb04aac3f2edd95522c6}\label{classECS_a41b876f3725cbb04aac3f2edd95522c6} 
 \index{ECS@{ECS}!createEntity@{createEntity}}
 \index{createEntity@{createEntity}!ECS@{ECS}}
@@ -251,7 +241,8 @@ Creates a new entity.
 \begin{DoxyReturn}{Returns}
 The ID of the newly created entity. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -264,19 +255,12 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{createEntity()}{createEntity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} ECS\+::create\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a41b876f3725cbb04aac3f2edd95522c6_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_aaae60c88af59dd7af9d86200eb522bbc}\label{classECS_aaae60c88af59dd7af9d86200eb522bbc} 
 \index{ECS@{ECS}!getComponent@{getComponent}}
 \index{getComponent@{getComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+Component\+Type \texorpdfstring{$\ast$}{*} ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -303,21 +287,23 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{classECS_aaae60c88af59dd7af9d86200eb522bbc_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classECS_aaae60c88af59dd7af9d86200eb522bbc_icgraph}
+\includegraphics[height=550pt]{classECS_aaae60c88af59dd7af9d86200eb522bbc_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classECS_aaae60c88af59dd7af9d86200eb522bbc}\label{classECS_aaae60c88af59dd7af9d86200eb522bbc} 
 \index{ECS@{ECS}!getComponent@{getComponent}}
 \index{getComponent@{getComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+Component\+Type \texorpdfstring{$\ast$}{*} ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -328,8 +314,8 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!getConstComponent@{getConstComponent}}
 \index{getConstComponent@{getConstComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getConstComponent()}{getConstComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Const\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+const Component\+Type \texorpdfstring{$\ast$}{*} ECS\+::get\+Const\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -356,7 +342,8 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{classECS_a358206e15202fccfa73017c47af07079_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -367,10 +354,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!getConstComponent@{getConstComponent}}
 \index{getConstComponent@{getConstComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getConstComponent()}{getConstComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} ECS\+::get\+Const\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+const Component\+Type \texorpdfstring{$\ast$}{*} ECS\+::get\+Const\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -381,7 +369,7 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!getEntitiesByComponents@{getEntitiesByComponents}}
 \index{getEntitiesByComponents@{getEntitiesByComponents}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getEntitiesByComponents()}{getEntitiesByComponents()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ \\
+{\footnotesize\ttfamily template$<$typename ... Component\+Type$>$ \\
 std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ ECS\+::get\+Entities\+By\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -396,15 +384,8 @@ Retrieves entities that have all specified components.
 \begin{DoxyReturn}{Returns}
 Vector of entities matching the components. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:
+Here is the caller graph for this function\+:
 \nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a8d931ce389d47888768e1a5092bde26b_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -415,16 +396,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!getEntitiesByComponents@{getEntitiesByComponents}}
 \index{getEntitiesByComponents@{getEntitiesByComponents}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getEntitiesByComponents()}{getEntitiesByComponents()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} ... Component\+Type$>$ \\
+{\footnotesize\ttfamily template$<$typename ... Component\+Type$>$ \\
 std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} $>$ ECS\+::get\+Entities\+By\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a8d931ce389d47888768e1a5092bde26b_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a11aacce5459a5ce429ea8d181bb4ddc3}\label{classECS_a11aacce5459a5ce429ea8d181bb4ddc3} 
 \index{ECS@{ECS}!getSignature@{getSignature}}
 \index{getSignature@{getSignature}!ECS@{ECS}}
@@ -449,18 +423,11 @@ The signature bitset.
 \doxysubsubsection{\texorpdfstring{getSignature()}{getSignature()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}} ECS\+::get\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a11aacce5459a5ce429ea8d181bb4ddc3_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a5c0787ab975107fe402c5dc16dc945e5}\label{classECS_a5c0787ab975107fe402c5dc16dc945e5} 
 \index{ECS@{ECS}!getTime@{getTime}}
 \index{getTime@{getTime}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} ECS\+::get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily double ECS\+::get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -473,8 +440,8 @@ The current time.
 \index{ECS@{ECS}!hasComponent@{hasComponent}}
 \index{hasComponent@{hasComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{hasComponent()}{hasComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+bool ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -501,7 +468,8 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{classECS_a33c16853296e9784dfb558f35dffbd72_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -512,10 +480,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!hasComponent@{hasComponent}}
 \index{hasComponent@{hasComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{hasComponent()}{hasComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+bool ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -526,8 +495,8 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!killComponent@{killComponent}}
 \index{killComponent@{killComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{killComponent()}{killComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void ECS\+::kill\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -551,14 +520,23 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661_cgraph}
 \end{center}
 \end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}\label{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661} 
 \index{ECS@{ECS}!killComponent@{killComponent}}
 \index{killComponent@{killComponent}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{killComponent()}{killComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void ECS\+::kill\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -569,7 +547,7 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!killEntity@{killEntity}}
 \index{killEntity@{killEntity}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{killEntity()}{killEntity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void ECS\+::kill\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -580,7 +558,8 @@ Destroys an entity.
 {\em e} & The entity to destroy. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -591,20 +570,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!killEntity@{killEntity}}
 \index{killEntity@{killEntity}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{killEntity()}{killEntity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::kill\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void ECS\+::kill\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a77bab58f7b7d5e53443078f60957b2d2_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a2d9a9caa600c1982410d33ce3a88eeef}\label{classECS_a2d9a9caa600c1982410d33ce3a88eeef} 
 \index{ECS@{ECS}!setSignature@{setSignature}}
 \index{setSignature@{setSignature}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{setSignature()}{setSignature()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::set\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void ECS\+::set\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -621,21 +593,14 @@ Sets the signature for an entity.
 \index{ECS@{ECS}!setSignature@{setSignature}}
 \index{setSignature@{setSignature}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{setSignature()}{setSignature()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::set\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void ECS\+::set\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a64b07d1264149682ef03e999b0e6c31e}{Signature}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a2d9a9caa600c1982410d33ce3a88eeef_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a0d360a43bc140d37953297708afb8b86}\label{classECS_a0d360a43bc140d37953297708afb8b86} 
 \index{ECS@{ECS}!verifyComponentStorage@{verifyComponentStorage}}
 \index{verifyComponentStorage@{verifyComponentStorage}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{verifyComponentStorage()}{verifyComponentStorage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::verify\+Component\+Storage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}}}]{Type\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void ECS\+::verify\+Component\+Storage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}}}]{Type\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
 
 
@@ -651,28 +616,13 @@ Verifies and initializes storage for a component type if needed.
 {\em Type\+ID} & The ID of the component type. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a0d360a43bc140d37953297708afb8b86_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classECS_a0d360a43bc140d37953297708afb8b86}\label{classECS_a0d360a43bc140d37953297708afb8b86} 
 \index{ECS@{ECS}!verifyComponentStorage@{verifyComponentStorage}}
 \index{verifyComponentStorage@{verifyComponentStorage}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{verifyComponentStorage()}{verifyComponentStorage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} ECS\+::verify\+Component\+Storage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}}}]{Type\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void ECS\+::verify\+Component\+Storage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_ae64e049cea77fb2446938fa486df1f53}{Component\+Type\+ID}}}]{Type\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classECS_a0d360a43bc140d37953297708afb8b86_cgraph}
-\end{center}
-\end{figure}
 
 
 \doxysubsection{Member Data Documentation}
@@ -680,7 +630,7 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!\_\_componentStorage@{\_\_componentStorage}}
 \index{\_\_componentStorage@{\_\_componentStorage}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{\_\_componentStorage}{\_\_componentStorage}}
-{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*}$>$ ECS\+::\+\_\+\+\_\+component\+Storage\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::vector$<$void \texorpdfstring{$\ast$}{*}$>$ ECS\+::\+\_\+\+\_\+component\+Storage\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classECS_aa59da53f3c944c96c513f5a3c6b4f918}\label{classECS_aa59da53f3c944c96c513f5a3c6b4f918} 
 \index{ECS@{ECS}!\_\_freeEntities@{\_\_freeEntities}}
@@ -704,13 +654,13 @@ Here is the call graph for this function\+:\nopagebreak
 \index{ECS@{ECS}!\_componentStorages@{\_componentStorages}}
 \index{\_componentStorages@{\_componentStorages}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{\_componentStorages}{\_componentStorages}}
-{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \texorpdfstring{$\ast$}{*}$>$ ECS\+::\+\_\+component\+Storages\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::vector$<$void \texorpdfstring{$\ast$}{*}$>$ ECS\+::\+\_\+component\+Storages\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classECS_a620302f938f8646f1348dcfdb5f6cddb}\label{classECS_a620302f938f8646f1348dcfdb5f6cddb} 
 \index{ECS@{ECS}!\_time@{\_time}}
 \index{\_time@{\_time}!ECS@{ECS}}
 \doxysubsubsection{\texorpdfstring{\_time}{\_time}}
-{\footnotesize\ttfamily \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} ECS\+::\+\_\+time\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily double ECS\+::\+\_\+time\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

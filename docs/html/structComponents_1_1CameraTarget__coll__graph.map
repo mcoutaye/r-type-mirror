@@ -1,0 +1,3 @@
+<map id="Components::CameraTarget" name="Components::CameraTarget">
+<area shape="rect" id="Node000001" title="Tag to mark an entity as camera target." alt="" coords="5,5,200,91"/>
+</map>

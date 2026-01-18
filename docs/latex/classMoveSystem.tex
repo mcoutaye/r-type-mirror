@@ -1,0 +1,110 @@
+\doxysection{Move\+System Class Reference}
+\hypertarget{classMoveSystem}{}\label{classMoveSystem}\index{MoveSystem@{MoveSystem}}
+
+
+{\ttfamily \#include $<$Move\+System.\+hpp$>$}
+
+
+
+Inheritance diagram for Move\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classMoveSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Move\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classMoveSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMoveSystem_ae6b885cb350e5f765c67902cf92393da}{Move\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+\mbox{\hyperlink{classMoveSystem_a274e04224e25ffad3d4a29701052967d}{\texorpdfstring{$\sim$}{\string~}\+Move\+System}} () override=default
+\item 
+void \mbox{\hyperlink{classMoveSystem_ab6cbe4ec1efbe1f89ca22c7796d488cf}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMoveSystem_ae6b885cb350e5f765c67902cf92393da}\label{classMoveSystem_ae6b885cb350e5f765c67902cf92393da} 
+\index{MoveSystem@{MoveSystem}!MoveSystem@{MoveSystem}}
+\index{MoveSystem@{MoveSystem}!MoveSystem@{MoveSystem}}
+\doxysubsubsection{\texorpdfstring{MoveSystem()}{MoveSystem()}}
+{\footnotesize\ttfamily Move\+System\+::\+Move\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMoveSystem_a274e04224e25ffad3d4a29701052967d}\label{classMoveSystem_a274e04224e25ffad3d4a29701052967d} 
+\index{MoveSystem@{MoveSystem}!````~MoveSystem@{\texorpdfstring{$\sim$}{\string~}MoveSystem}}
+\index{````~MoveSystem@{\texorpdfstring{$\sim$}{\string~}MoveSystem}!MoveSystem@{MoveSystem}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MoveSystem()}{\string~MoveSystem()}}
+{\footnotesize\ttfamily Move\+System\+::\texorpdfstring{$\sim$}{\string~}\+Move\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMoveSystem_ab6cbe4ec1efbe1f89ca22c7796d488cf}\label{classMoveSystem_ab6cbe4ec1efbe1f89ca22c7796d488cf} 
+\index{MoveSystem@{MoveSystem}!update@{update}}
+\index{update@{update}!MoveSystem@{MoveSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Move\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMoveSystem_ab6cbe4ec1efbe1f89ca22c7796d488cf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMoveSystem_ab6cbe4ec1efbe1f89ca22c7796d488cf_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{MoveSystem_8hpp}{Move\+System.\+hpp}}\end{DoxyCompactItemize}

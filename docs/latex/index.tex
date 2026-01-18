@@ -1,7 +1,7 @@
 \chapter{R-\/\+Type Mirror — Global Technical Documentation}
 \hypertarget{index}{}\label{index}\index{R-\/Type Mirror — Global Technical Documentation@{R-\/Type Mirror — Global Technical Documentation}}
 \hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{R-\/\+Type Mirror}{R-Type Mirror}}\label{index_autotoc_md0}
-{\bfseries{R-\/\+Type Mirror}} is a multiplayer shoot’em up inspired by {\itshape R-\/\+Type}, developed as an {\bfseries{Epitech 2025}} project. It features a custom {\bfseries{Entity Component System (\doxylink{classECS}{ECS})}} game engine on the client side and a {\bfseries{\doxylink{classUDP}{UDP}}} networking architecture for real-\/time multiplayer gameplay.
+{\bfseries{R-\/\+Type Mirror}} is a multiplayer shoot’em up inspired by {\itshape R-\/\+Type}, developed as an {\bfseries{Epitech 2026}} project. It features a custom {\bfseries{Entity Component System (\doxylink{classECS}{ECS})}} game engine on the client side with advanced systems for physics, particles, menus, and audio, alongside a {\bfseries{\doxylink{classUDP}{UDP}}} networking architecture for real-\/time multiplayer gameplay.
 
 This documentation is the {\bfseries{single entry point}} for the whole project\+: game engine, client systems, network module, and protocol specification.
 
@@ -23,18 +23,21 @@ We chose an {\bfseries{Entity Component System (\doxylink{classECS}{ECS})}} over
 
 \DoxyHorRuler{0}
 \hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{2. Game Engine (\+ECS)}{2. Game Engine (ECS)}}\label{index_autotoc_md6}
-The game engine is a custom lightweight \doxylink{classECS}{ECS} implementation.\hypertarget{index_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Core Concepts}{Core Concepts}}\label{index_autotoc_md7}
+The game engine is a custom lightweight \doxylink{classECS}{ECS} implementation, enhanced with advanced features like physics simulation, particle effects, menu systems, and audio management.\hypertarget{index_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Core Concepts}{Core Concepts}}\label{index_autotoc_md7}
 
 \begin{DoxyItemize}
 \item {\bfseries{Entity\+:}} A simple unique ID ({\ttfamily uint32\+\_\+t}).
-\item {\bfseries{Component\+:}} Pure data structs (POD) with no logic (e.\+g., {\ttfamily Position}, {\ttfamily Velocity}, {\ttfamily Health}).
-\item {\bfseries{System\+:}} Pure logic that iterates over entities with specific component signatures (e.\+g., {\ttfamily \doxylink{classMovementSystem}{Movement\+System}}, {\ttfamily \doxylink{classRenderSystem}{Render\+System}}).
+\item {\bfseries{Component\+:}} Pure data structs (POD) with no logic (e.\+g., {\ttfamily Position\+\_\+t}, {\ttfamily Velocity\+\_\+t}, {\ttfamily Drawable\+\_\+t}, {\ttfamily Rigid\+Body\+\_\+t}).
+\item {\bfseries{System\+:}} Pure logic that iterates over entities with specific component signatures (e.\+g., {\ttfamily \doxylink{classPhysicsSystem}{Physics\+System}}, {\ttfamily \doxylink{classRenderSystem}{Render\+System}}).
 \end{DoxyItemize}\hypertarget{index_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Key Characteristics}{Key Characteristics}}\label{index_autotoc_md8}
 
 \begin{DoxyItemize}
 \item {\bfseries{Max Entities\+:}} 2048
 \item {\bfseries{Max Component Types\+:}} 128
 \item {\bfseries{Signatures\+:}} {\ttfamily std\+::bitset} used for \$\+O(1)\$ component checks.
+\item {\bfseries{Resource Management\+:}} Singleton {\ttfamily \doxylink{classResourceManager}{Resource\+Manager}} for textures, fonts, and sounds.
+\item {\bfseries{\doxylink{structScene}{Scene} Management\+:}} {\ttfamily \doxylink{classSceneManager}{Scene\+Manager}} for handling multiple scenes (e.\+g., menus, gameplay).
+\item {\bfseries{Factories\+:}} Utility classes like {\ttfamily Entity\+Factory} and {\ttfamily Stage\+Factory} for creating entities and levels.
 \end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Systems Overview}{Systems Overview}}\label{index_autotoc_md9}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
@@ -46,11 +49,18 @@ The game engine is a custom lightweight \doxylink{classECS}{ECS} implementation.
 \hline
 \cellcolor{\tableheadbgcolor}\textbf{ System   }&\cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
 \endhead
-{\ttfamily \doxylink{classInputSystem}{Input\+System}}   &Captures player inputs and sends them to the server.    \\\cline{1-2}
-{\ttfamily \doxylink{classMovementSystem}{Movement\+System}}   &Updates positions based on velocity and patterns.    \\\cline{1-2}
-{\ttfamily \doxylink{classCollisionSystem}{Collision\+System}}   &Handles AABB collisions between projectiles, enemies, and players.    \\\cline{1-2}
-{\ttfamily \doxylink{classWaveSystem}{Wave\+System}}   &Manages enemy spawning patterns.    \\\cline{1-2}
-{\ttfamily \doxylink{classRenderSystem}{Render\+System}}   &Draws entities using SFML.   \\\cline{1-2}
+{\ttfamily \doxylink{classCameraSystem}{Camera\+System}}   &Manages 2D camera with smooth follow, zoom, shake, and bounds.    \\\cline{1-2}
+{\ttfamily \doxylink{classCollisionSystem}{Collision\+System}}   &Handles AABB collisions and resolves entity interactions.    \\\cline{1-2}
+{\ttfamily \doxylink{classInputSystem}{Input\+System}}   &Captures keyboard/joystick inputs and maps to game actions.    \\\cline{1-2}
+{\ttfamily \doxylink{classMenuSystem}{Menu\+System}}   &Handles menu navigation, item selection, and actions.    \\\cline{1-2}
+{\ttfamily \doxylink{classMovementSystem}{Movement\+System}}   &Applies movement patterns (e.\+g., sinus, zigzag) to entities.    \\\cline{1-2}
+{\ttfamily \doxylink{classMoveSystem}{Move\+System}}   &Basic position updates based on velocity, with collision resolution.    \\\cline{1-2}
+{\ttfamily \doxylink{classOptionsMenuSystem}{Options\+Menu\+System}}   &Manages sliders, keybinds, and dynamic texts in options menus.    \\\cline{1-2}
+{\ttfamily \doxylink{classParticleSystem}{Particle\+System}}   &Manages particle pools and emitters for effects like explosions and trails.    \\\cline{1-2}
+{\ttfamily \doxylink{classPhysicsSystem}{Physics\+System}}   &Simulates gravity, forces, jumps, and resolves collisions.    \\\cline{1-2}
+{\ttfamily \doxylink{classRenderSystem}{Render\+System}}   &Draws sprites, texts, and starfields using SFML.    \\\cline{1-2}
+{\ttfamily \doxylink{classSoundSystem}{Sound\+System}}   &Plays sounds and background music, manages volumes.    \\\cline{1-2}
+{\ttfamily \doxylink{classWaveSystem}{Wave\+System}}   &Spawns enemy waves based on level data.   \\\cline{1-2}
 \end{longtabu}
 
 
@@ -104,15 +114,31 @@ Broadcasted to all clients to synchronize the game state.
 \hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{5. Project Structure}{5. Project Structure}}\label{index_autotoc_md19}
 
 \begin{DoxyItemize}
-\item {\ttfamily include/} -\/ Header files (\doxylink{classECS}{ECS}, Systems, Network).
-\item {\ttfamily src/client/} -\/ Client-\/specific logic (Main loop, Input handling).
-\item {\ttfamily src/server/} -\/ Server-\/specific logic (Game loop, Broadcast).
-\item {\ttfamily src/engine/} -\/ Core \doxylink{classECS}{ECS} implementation.
+\item {\ttfamily class\+\_\+graph.\+png} -\/ Class hierarchy graph.
+\item {\ttfamily \doxylink{CMakeLists_8txt}{CMake\+Lists.\+txt}} -\/ Build configuration.
+\item {\ttfamily Doxyfile} -\/ Doxygen configuration.
+\item {\ttfamily doxygen-\/awesome.\+css} -\/ Custom Doxygen styling.
+\item {\ttfamily include/} -\/ Header files.
+\begin{DoxyItemize}
+\item {\ttfamily engine/} -\/ Game engine components.
+\begin{DoxyItemize}
+\item {\ttfamily core/} -\/ Core engine files (e.\+g., {\ttfamily \doxylink{GameEngine_8hpp}{Game\+Engine.\+hpp}}, {\ttfamily \doxylink{Menu_8hpp}{Menu.\+hpp}}).
+\item {\ttfamily ecs/} -\/ \doxylink{classECS}{ECS} core ({\ttfamily ecs.\+hpp}).
+\item {\ttfamily factory/} -\/ Factories ({\ttfamily \doxylink{EntityFactory_8hpp}{Entity\+Factory.\+hpp}}, {\ttfamily \doxylink{StageFactory_8hpp}{Stage\+Factory.\+hpp}}).
+\item {\ttfamily systems/} -\/ System headers (e.\+g., {\ttfamily \doxylink{PhysicsSystem_8hpp}{Physics\+System.\+hpp}}, {\ttfamily \doxylink{RenderSystem_8hpp}{Render\+System.\+hpp}}).
+\end{DoxyItemize}
+\item {\ttfamily server/} -\/ Server-\/side networking (e.\+g., {\ttfamily \doxylink{server_8hpp}{server.\+hpp}}, {\ttfamily \doxylink{UdpServer_8hpp}{Udp\+Server.\+hpp}}).
+\end{DoxyItemize}
+\item {\ttfamily \doxylink{mainpage_8md}{mainpage.\+md}} -\/ This documentation entry point.
+\item {\ttfamily Makefile} -\/ Build automation.
+\item {\ttfamily network\+\_\+graph.\+png} -\/ Network architecture graph.
+\item {\ttfamily \doxylink{poc_8md}{poc.\+md}} -\/ Proof of Concept document.
+\item {\ttfamily \doxylink{rfcprotocol_8txt}{rfcprotocol.\+txt}} -\/ Network protocol specification.
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
 \hypertarget{index_autotoc_md21}{}\doxysubsection{\texorpdfstring{Authors}{Authors}}\label{index_autotoc_md21}
-{\bfseries{Epitech 2025 – R-\/\+Type Mirror}}
+{\bfseries{Epitech 2026 – R-\/\+Type Mirror}}
 \begin{DoxyItemize}
 \item Gabriel Villemonte
 \item Clément Chellier

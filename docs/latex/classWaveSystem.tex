@@ -6,16 +6,18 @@
 
 
 
-Inheritance diagram for Wave\+System\+:\nopagebreak
+Inheritance diagram for Wave\+System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=229pt]{classWaveSystem__inherit__graph}
+\includegraphics[width=219pt]{classWaveSystem__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Wave\+System\+:\nopagebreak
+Collaboration diagram for Wave\+System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,31 +27,31 @@ Collaboration diagram for Wave\+System\+:\nopagebreak
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classWaveSystem_a53bc3c7754a0cb45c159f094df8be70f}{Wave\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classWaveSystem_a53bc3c7754a0cb45c159f094df8be70f}{Wave\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960}{load\+Level}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::vector$<$ \mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+Wave\+Data}} $>$ \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{waves}})
+void \mbox{\hyperlink{classWaveSystem_a58dd852920595d0e4172b1318583b5b5}{load\+Level}} (const std\+::vector$<$ Wave\+Data\+\_\+t $>$ \&waves)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{update}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}}) \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{override}}
+void \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{update}} (double dt) override
 \begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
 \begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
 \begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ \mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+Wave\+Data}} $>$ \mbox{\hyperlink{classWaveSystem_ad0601488c3a2f897bb7dc3f59a965525}{\+\_\+waves}}
+std\+::vector$<$ Wave\+Data\+\_\+t $>$ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\+\_\+waves}}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} \mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\+\_\+current\+Wave}} = 0
+size\+\_\+t \mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\+\_\+current\+Wave}} = 0
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\+\_\+timer}} = 0.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}
+float \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\+\_\+timer}} = 0.f
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
@@ -69,24 +71,25 @@ std\+::vector$<$ \mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960}\label{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960} 
+\Hypertarget{classWaveSystem_a58dd852920595d0e4172b1318583b5b5}\label{classWaveSystem_a58dd852920595d0e4172b1318583b5b5} 
 \index{WaveSystem@{WaveSystem}!loadLevel@{loadLevel}}
 \index{loadLevel@{loadLevel}!WaveSystem@{WaveSystem}}
 \doxysubsubsection{\texorpdfstring{loadLevel()}{loadLevel()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Wave\+System\+::load\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} std\+::vector$<$ \mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+Wave\+Data}} $>$ \&}]{waves }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Wave\+System\+::load\+Level (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Wave\+Data\+\_\+t $>$ \&}]{waves }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=336pt]{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960_icgraph}
+\includegraphics[width=336pt]{classWaveSystem_a58dd852920595d0e4172b1318583b5b5_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}\label{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c} 
 \index{WaveSystem@{WaveSystem}!update@{update}}
 \index{update@{update}!WaveSystem@{WaveSystem}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Wave\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Wave\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -101,7 +104,16 @@ Pure virtual function to update the system.
 
 Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -115,19 +127,19 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{WaveSystem@{WaveSystem}!\_currentWave@{\_currentWave}}
 \index{\_currentWave@{\_currentWave}!WaveSystem@{WaveSystem}}
 \doxysubsubsection{\texorpdfstring{\_currentWave}{\_currentWave}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{size\+\_\+t}} Wave\+System\+::\+\_\+current\+Wave = 0\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily size\+\_\+t Wave\+System\+::\+\_\+current\+Wave = 0\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}\label{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0} 
 \index{WaveSystem@{WaveSystem}!\_timer@{\_timer}}
 \index{\_timer@{\_timer}!WaveSystem@{WaveSystem}}
 \doxysubsubsection{\texorpdfstring{\_timer}{\_timer}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Wave\+System\+::\+\_\+timer = 0.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily float Wave\+System\+::\+\_\+timer = 0.f\hspace{0.3cm}{\ttfamily [private]}}
 
-\Hypertarget{classWaveSystem_ad0601488c3a2f897bb7dc3f59a965525}\label{classWaveSystem_ad0601488c3a2f897bb7dc3f59a965525} 
+\Hypertarget{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}\label{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e} 
 \index{WaveSystem@{WaveSystem}!\_waves@{\_waves}}
 \index{\_waves@{\_waves}!WaveSystem@{WaveSystem}}
 \doxysubsubsection{\texorpdfstring{\_waves}{\_waves}}
-{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structComponents_1_1WaveData}{Components\+::\+Wave\+Data}}$>$ Wave\+System\+::\+\_\+waves\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::vector$<$Wave\+Data\+\_\+t$>$ Wave\+System\+::\+\_\+waves\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

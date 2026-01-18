@@ -8,7 +8,9 @@ var searchData=
   ['wavesystem_2ehpp_5',['WaveSystem.hpp',['../WaveSystem_8hpp.html',1,'']]],
   ['why_20sfml_6',['Why SFML?',['../index.html#autotoc_md3',1,'']]],
   ['why_20sfml_20is_20the_20superior_20choice_20for_20r_20type_7',['3. Why SFML is the Superior Choice for R-Type',['../md_poc.html#autotoc_md28',1,'']]],
-  ['width_8',['width',['../structComponents_1_1Collider.html#a3cff820f690f7a47a76a23f9047526fa',1,'Components::Collider']]],
-  ['window_9',['window',['../classGameEngine.html#ac91a68b9e136eda3dc8cabcb46a5dbaa',1,'GameEngine']]],
-  ['with_20alternatives_10',['2. Comparison with Alternatives',['../md_poc.html#autotoc_md24',1,'']]]
+  ['width_8',['width',['../structComponents_1_1Collider.html#a3cff820f690f7a47a76a23f9047526fa',1,'Components::Collider::width'],['../structComponents_1_1BoxCollider.html#a89d99045c39eb731a93e41bf4fa42f14',1,'Components::BoxCollider::width']]],
+  ['win_9',['Win',['../structComponents_1_1TriggerZone.html#a87ea994631e9f975e9c001b2d1fb63f1a119eac47719cc9be7b99124712e229da',1,'Components::TriggerZone']]],
+  ['window_10',['window',['../classGameEngine.html#ac91a68b9e136eda3dc8cabcb46a5dbaa',1,'GameEngine']]],
+  ['with_20alternatives_11',['2. Comparison with Alternatives',['../md_poc.html#autotoc_md24',1,'']]],
+  ['worldtoscreen_12',['worldToScreen',['../classCameraSystem.html#ad632610413d97285c21ca6d0821a2406',1,'CameraSystem']]]
 ];

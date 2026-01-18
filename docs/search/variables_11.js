@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['team_0',['team',['../structComponents_1_1Collider.html#adede3f35531bde5e8283a1757af4420b',1,'Components::Collider::team'],['../structComponents_1_1Shootable.html#aed95d7e3b42c6c7ab6a7afae78e8fa98',1,'Components::Shootable::team']]],
-  ['textureid_1',['textureid',['../structComponents_1_1Drawable.html#a8ed79e4903e4cfa13344d0be17f6b2b5',1,'Components::Drawable::textureId'],['../structComponents_1_1Shootable.html#afca36194207417f616af8fd1eb6dfbae',1,'Components::Shootable::textureId']]],
-  ['tick_2',['tick',['../structInputState.html#a6a2fa0953feca6b01b1fd5f9917bdf7e',1,'InputState::tick'],['../structEntityUpdate.html#aebbf8795478ce1383c95db794154c34f',1,'EntityUpdate::tick']]],
-  ['tracking_3',['tracking',['../rfcprotocol_8txt.html#a87a7e2d5f42cf0bb21fc6b4d0d86fa86',1,'rfcprotocol.txt']]],
-  ['tripleshot_4',['tripleShot',['../structComponents_1_1Shootable.html#a3ae314c57d1bad5cdfbcaa931245c2bf',1,'Components::Shootable']]],
-  ['type_5',['type',['../structComponents_1_1MovementPattern.html#a6e71a27920ec592bfec9e63b6970e4fe',1,'Components::MovementPattern::type'],['../structComponents_1_1PowerUp.html#ad9288964cc913cac6d5ed4e173343ee6',1,'Components::PowerUp::type']]]
+  ['radius_0',['radius',['../structComponents_1_1MovementPattern.html#a76d3abc1ecccce1f81b052dfde5f9b77',1,'Components::MovementPattern']]],
+  ['receivedinputs_1',['receivedInputs',['../classUdpServer.html#a335a6b7cc1ac0e490efb7d560abfbcde',1,'UdpServer']]],
+  ['receivedupdates_2',['receivedUpdates',['../classUdpClient.html#a90f532a0d9eee82faa9b89a41343efcf',1,'UdpClient']]],
+  ['rect_3',['rect',['../structComponents_1_1Drawable.html#a872276338aa1dd0b6d8e4fe41c31db3f',1,'Components::Drawable']]],
+  ['resetonexit_4',['resetOnExit',['../structComponents_1_1TriggerZone.html#a48678290333d5bb6e57a9181bd1be297',1,'Components::TriggerZone']]],
+  ['right_5',['right',['../structInputState.html#aafef50dcb9ea9f31df195a75767d5d1d',1,'InputState::right'],['../structinput__s.html#ac5bfe34905faf550ec7f33580dfacac1',1,'input_s::right']]],
+  ['rotation_6',['rotation',['../structComponents_1_1Drawable.html#a4d0444dc3ba0bd21e1f3fbcf9603001e',1,'Components::Drawable::rotation'],['../structComponents_1_1Particle.html#a4a23e47e835c77fd51427c166f4e4f9c',1,'Components::Particle::rotation']]],
+  ['rotationspeed_7',['rotationSpeed',['../structComponents_1_1Particle.html#a1398a17f7c6286b30d17de3e41f857e8',1,'Components::Particle']]]
 ];

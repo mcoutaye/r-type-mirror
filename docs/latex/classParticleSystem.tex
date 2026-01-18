@@ -1,0 +1,399 @@
+\doxysection{Particle\+System Class Reference}
+\hypertarget{classParticleSystem}{}\label{classParticleSystem}\index{ParticleSystem@{ParticleSystem}}
+
+
+{\ttfamily \#include $<$Particle\+System.\+hpp$>$}
+
+
+
+Inheritance diagram for Particle\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classParticleSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Particle\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classParticleSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classParticleSystem_ac4c85546321d0963cff77c6dc5ba2d07}{Particle\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, size\+\_\+t pool\+Size=2000)
+\item 
+void \mbox{\hyperlink{classParticleSystem_a4f95471d8c64a7195d560f2c0c1faf63}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParticleSystem_abe33b51ab04720074de064406a3f20df}{render}} (sf\+::\+Render\+Window \&window)
+\item 
+void \mbox{\hyperlink{classParticleSystem_a181e1a7e3331dae1c6982d500ced9103}{emit}} (Particle\+Type type, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, int count=20)
+\item 
+void \mbox{\hyperlink{classParticleSystem_a6b4a54da61185b513441f8a708af6c98}{emit\+Custom}} (float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, int count, float speed, float spread, float lifetime, sf\+::\+Color start\+Color, sf\+::\+Color end\+Color, float start\+Size, float end\+Size, float gravity=0.f)
+\item 
+void \mbox{\hyperlink{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a}{emit\+Explosion}} (float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, int count=30)
+\item 
+void \mbox{\hyperlink{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb}{emit\+Sparks}} (float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, int count=15)
+\item 
+void \mbox{\hyperlink{classParticleSystem_aeda54552addce007ffabcdf0870c9eab}{emit\+Smoke}} (float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, int count=10)
+\item 
+void \mbox{\hyperlink{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d}{emit\+Debris}} (float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, int count=8)
+\item 
+void \mbox{\hyperlink{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db}{emit\+Trail}} (float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float direction\+Deg, int count=3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Particle\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}{get\+Particle}} ()
+\item 
+void \mbox{\hyperlink{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae}{update\+Particle}} (Particle\+\_\+t \&p, float dt)
+\item 
+void \mbox{\hyperlink{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946}{spawn\+Particle}} (Particle\+\_\+t \&p, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const Particle\+Emitter\+\_\+t \&emitter)
+\item 
+sf\+::\+Color \mbox{\hyperlink{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a}{lerp\+Color}} (const sf\+::\+Color \&a, const sf\+::\+Color \&b, float t)
+\item 
+float \mbox{\hyperlink{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}{random\+Float}} (float min, float max)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Particle\+\_\+t $>$ \mbox{\hyperlink{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}{\+\_\+pool}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classParticleSystem_aa6f7acde14545707b09a7974978c2267}{\+\_\+pool\+Size}}
+\item 
+sf\+::\+Circle\+Shape \mbox{\hyperlink{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}{\+\_\+circle\+Shape}}
+\item 
+std\+::mt19937 \mbox{\hyperlink{classParticleSystem_a37c68f74c0e6866bddbce649738d142e}{\+\_\+rng}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ float $>$ \mbox{\hyperlink{classParticleSystem_a422862c4f9c18c483573b4dc9005ee19}{\+\_\+dist}} \{0.f, 1.f\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classParticleSystem_ac4c85546321d0963cff77c6dc5ba2d07}\label{classParticleSystem_ac4c85546321d0963cff77c6dc5ba2d07} 
+\index{ParticleSystem@{ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\index{ParticleSystem@{ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{ParticleSystem()}{ParticleSystem()}}
+{\footnotesize\ttfamily Particle\+System\+::\+Particle\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{size\+\_\+t}]{pool\+Size = {\ttfamily 2000} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classParticleSystem_a181e1a7e3331dae1c6982d500ced9103}\label{classParticleSystem_a181e1a7e3331dae1c6982d500ced9103} 
+\index{ParticleSystem@{ParticleSystem}!emit@{emit}}
+\index{emit@{emit}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emit()}{emit()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit (\begin{DoxyParamCaption}\item[{Particle\+Type}]{type,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{count = {\ttfamily 20} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a181e1a7e3331dae1c6982d500ced9103_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a6b4a54da61185b513441f8a708af6c98}\label{classParticleSystem_a6b4a54da61185b513441f8a708af6c98} 
+\index{ParticleSystem@{ParticleSystem}!emitCustom@{emitCustom}}
+\index{emitCustom@{emitCustom}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emitCustom()}{emitCustom()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit\+Custom (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{count,  }\item[{float}]{speed,  }\item[{float}]{spread,  }\item[{float}]{lifetime,  }\item[{sf\+::\+Color}]{start\+Color,  }\item[{sf\+::\+Color}]{end\+Color,  }\item[{float}]{start\+Size,  }\item[{float}]{end\+Size,  }\item[{float}]{gravity = {\ttfamily 0.f} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a6b4a54da61185b513441f8a708af6c98_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d}\label{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d} 
+\index{ParticleSystem@{ParticleSystem}!emitDebris@{emitDebris}}
+\index{emitDebris@{emitDebris}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emitDebris()}{emitDebris()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit\+Debris (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{count = {\ttfamily 8} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_afe6093b12a5990fe22f27fd8938a673d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a}\label{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a} 
+\index{ParticleSystem@{ParticleSystem}!emitExplosion@{emitExplosion}}
+\index{emitExplosion@{emitExplosion}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emitExplosion()}{emitExplosion()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit\+Explosion (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{count = {\ttfamily 30} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a9c11f21c8ac02c9b2c6886430286fa0a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_aeda54552addce007ffabcdf0870c9eab}\label{classParticleSystem_aeda54552addce007ffabcdf0870c9eab} 
+\index{ParticleSystem@{ParticleSystem}!emitSmoke@{emitSmoke}}
+\index{emitSmoke@{emitSmoke}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emitSmoke()}{emitSmoke()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit\+Smoke (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{count = {\ttfamily 10} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aeda54552addce007ffabcdf0870c9eab_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aeda54552addce007ffabcdf0870c9eab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb}\label{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb} 
+\index{ParticleSystem@{ParticleSystem}!emitSparks@{emitSparks}}
+\index{emitSparks@{emitSparks}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emitSparks()}{emitSparks()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit\+Sparks (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{count = {\ttfamily 15} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aa54403e75b6ab75139867bdee36af3fb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db}\label{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db} 
+\index{ParticleSystem@{ParticleSystem}!emitTrail@{emitTrail}}
+\index{emitTrail@{emitTrail}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{emitTrail()}{emitTrail()}}
+{\footnotesize\ttfamily void Particle\+System\+::emit\+Trail (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{direction\+Deg,  }\item[{int}]{count = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aeb8574295168efddb13c3c1b720eb5db_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b}\label{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b} 
+\index{ParticleSystem@{ParticleSystem}!getParticle@{getParticle}}
+\index{getParticle@{getParticle}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{getParticle()}{getParticle()}}
+{\footnotesize\ttfamily Particle\+\_\+t \texorpdfstring{$\ast$}{*} Particle\+System\+::get\+Particle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_aa2d3bb4cc29a2fcf5bc52103ac651a6b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a}\label{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a} 
+\index{ParticleSystem@{ParticleSystem}!lerpColor@{lerpColor}}
+\index{lerpColor@{lerpColor}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{lerpColor()}{lerpColor()}}
+{\footnotesize\ttfamily sf\+::\+Color Particle\+System\+::lerp\+Color (\begin{DoxyParamCaption}\item[{const sf\+::\+Color \&}]{a,  }\item[{const sf\+::\+Color \&}]{b,  }\item[{float}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a5063d40dc5e08000d483da8c1db5d51a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb}\label{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb} 
+\index{ParticleSystem@{ParticleSystem}!randomFloat@{randomFloat}}
+\index{randomFloat@{randomFloat}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{randomFloat()}{randomFloat()}}
+{\footnotesize\ttfamily float Particle\+System\+::random\+Float (\begin{DoxyParamCaption}\item[{float}]{min,  }\item[{float}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a4ce2f9bb985b09ee51ce0f5022ca73eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_abe33b51ab04720074de064406a3f20df}\label{classParticleSystem_abe33b51ab04720074de064406a3f20df} 
+\index{ParticleSystem@{ParticleSystem}!render@{render}}
+\index{render@{render}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Particle\+System\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_abe33b51ab04720074de064406a3f20df_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946}\label{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946} 
+\index{ParticleSystem@{ParticleSystem}!spawnParticle@{spawnParticle}}
+\index{spawnParticle@{spawnParticle}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{spawnParticle()}{spawnParticle()}}
+{\footnotesize\ttfamily void Particle\+System\+::spawn\+Particle (\begin{DoxyParamCaption}\item[{Particle\+\_\+t \&}]{p,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const Particle\+Emitter\+\_\+t \&}]{emitter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a6daf3bf2e934a10553a381416fc5f946_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a4f95471d8c64a7195d560f2c0c1faf63}\label{classParticleSystem_a4f95471d8c64a7195d560f2c0c1faf63} 
+\index{ParticleSystem@{ParticleSystem}!update@{update}}
+\index{update@{update}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Particle\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a4f95471d8c64a7195d560f2c0c1faf63_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae}\label{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae} 
+\index{ParticleSystem@{ParticleSystem}!updateParticle@{updateParticle}}
+\index{updateParticle@{updateParticle}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{updateParticle()}{updateParticle()}}
+{\footnotesize\ttfamily void Particle\+System\+::update\+Particle (\begin{DoxyParamCaption}\item[{Particle\+\_\+t \&}]{p,  }\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParticleSystem_a0adcbcec82cc55283fe5d43ddb6d34ae_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classParticleSystem_a90aaaade777af3947ec8ced59785ffef}\label{classParticleSystem_a90aaaade777af3947ec8ced59785ffef} 
+\index{ParticleSystem@{ParticleSystem}!\_circleShape@{\_circleShape}}
+\index{\_circleShape@{\_circleShape}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{\_circleShape}{\_circleShape}}
+{\footnotesize\ttfamily sf\+::\+Circle\+Shape Particle\+System\+::\+\_\+circle\+Shape\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classParticleSystem_a422862c4f9c18c483573b4dc9005ee19}\label{classParticleSystem_a422862c4f9c18c483573b4dc9005ee19} 
+\index{ParticleSystem@{ParticleSystem}!\_dist@{\_dist}}
+\index{\_dist@{\_dist}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{\_dist}{\_dist}}
+{\footnotesize\ttfamily std\+::uniform\+\_\+real\+\_\+distribution$<$float$>$ Particle\+System\+::\+\_\+dist \{0.f, 1.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a}\label{classParticleSystem_a63bf7b96f6bba49c04532b411ff3b38a} 
+\index{ParticleSystem@{ParticleSystem}!\_pool@{\_pool}}
+\index{\_pool@{\_pool}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{\_pool}{\_pool}}
+{\footnotesize\ttfamily std\+::vector$<$Particle\+\_\+t$>$ Particle\+System\+::\+\_\+pool\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classParticleSystem_aa6f7acde14545707b09a7974978c2267}\label{classParticleSystem_aa6f7acde14545707b09a7974978c2267} 
+\index{ParticleSystem@{ParticleSystem}!\_poolSize@{\_poolSize}}
+\index{\_poolSize@{\_poolSize}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{\_poolSize}{\_poolSize}}
+{\footnotesize\ttfamily size\+\_\+t Particle\+System\+::\+\_\+pool\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classParticleSystem_a37c68f74c0e6866bddbce649738d142e}\label{classParticleSystem_a37c68f74c0e6866bddbce649738d142e} 
+\index{ParticleSystem@{ParticleSystem}!\_rng@{\_rng}}
+\index{\_rng@{\_rng}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{\_rng}{\_rng}}
+{\footnotesize\ttfamily std\+::mt19937 Particle\+System\+::\+\_\+rng\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{ParticleSystem_8hpp}{Particle\+System.\+hpp}}\end{DoxyCompactItemize}

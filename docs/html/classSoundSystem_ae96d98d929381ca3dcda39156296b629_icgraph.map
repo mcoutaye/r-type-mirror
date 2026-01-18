@@ -1,0 +1,11 @@
+<map id="SoundSystem::setMusicVolume" name="SoundSystem::setMusicVolume">
+<area shape="rect" id="Node000001" title=" " alt="" coords="469,35,696,60"/>
+<area shape="rect" id="Node000002" href="$classMenuSystem.html#a80803681c45ccfa8c7b4c84724938c33" title=" " alt="" coords="219,5,421,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="455,36,421,32,422,27,456,31"/>
+<area shape="rect" id="Node000004" href="$classOptionsMenuSystem.html#a995ba9ca1cd9657d9db9bd7ff1a6e707" title=" " alt="" coords="237,55,403,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="456,64,403,69,403,64,455,58"/>
+<area shape="rect" id="Node000003" href="$classMenuSystem.html#aef5e84eb6a2736cc9377f4c16c634f63" title="Pure virtual function to update the system." alt="" coords="8,5,168,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="205,21,168,21,168,15,205,15"/>
+<area shape="rect" id="Node000005" href="$classOptionsMenuSystem.html#a89fa209e9c4e2b5824c9b371c874e450" title="Pure virtual function to update the system." alt="" coords="5,55,171,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="223,78,171,78,171,73,223,73"/>
+</map>

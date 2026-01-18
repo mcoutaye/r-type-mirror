@@ -1,0 +1,131 @@
+\doxysection{Components\+::Jumper Struct Reference}
+\hypertarget{structComponents_1_1Jumper}{}\label{structComponents_1_1Jumper}\index{Components::Jumper@{Components::Jumper}}
+
+
+Component for entities that can jump.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Jumper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{structComponents_1_1Jumper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structComponents_1_1Jumper_a304e5e69f0fce774e6ed26fec2d689bb}{jump\+Force}} = 500.f
+\begin{DoxyCompactList}\small\item\em Jump force. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structComponents_1_1Jumper_a1aa84369f569a5636b2cf2949b643172}{max\+Jumps}} = 1
+\begin{DoxyCompactList}\small\item\em Maximum jumps allowed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structComponents_1_1Jumper_a8a2d919c79911da6ac2b21238e785942}{current\+Jumps}} = 0
+\begin{DoxyCompactList}\small\item\em Current jumps performed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1Jumper_a2af9790611b2bce30f5333a07d15bcf7}{can\+Jump}} = true
+\begin{DoxyCompactList}\small\item\em Flag if can jump now. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Jumper_a2ffcb3a28dfe60fa06ab6a2991dcfdfd}{coyote\+Time}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Coyote time (time to jump after leaving platform). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Jumper_a67cb299da13f6193d33a59a4df440efe}{coyote\+Counter}} = 0.f
+\begin{DoxyCompactList}\small\item\em Coyote time counter. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Jumper_ac8e0348c186f573847e7b75ceb13ede1}{jump\+Buffer\+Time}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Jump buffer time (memorize jump input). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Jumper_a7475747411508077a85fb3e488f48961}{jump\+Buffer\+Counter}} = 0.f
+\begin{DoxyCompactList}\small\item\em Jump buffer counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component for entities that can jump. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1Jumper_a2af9790611b2bce30f5333a07d15bcf7}\label{structComponents_1_1Jumper_a2af9790611b2bce30f5333a07d15bcf7} 
+\index{Components::Jumper@{Components::Jumper}!canJump@{canJump}}
+\index{canJump@{canJump}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{canJump}{canJump}}
+{\footnotesize\ttfamily bool Components\+::\+Jumper\+::can\+Jump = true}
+
+
+
+Flag if can jump now. 
+
+\Hypertarget{structComponents_1_1Jumper_a67cb299da13f6193d33a59a4df440efe}\label{structComponents_1_1Jumper_a67cb299da13f6193d33a59a4df440efe} 
+\index{Components::Jumper@{Components::Jumper}!coyoteCounter@{coyoteCounter}}
+\index{coyoteCounter@{coyoteCounter}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{coyoteCounter}{coyoteCounter}}
+{\footnotesize\ttfamily float Components\+::\+Jumper\+::coyote\+Counter = 0.f}
+
+
+
+Coyote time counter. 
+
+\Hypertarget{structComponents_1_1Jumper_a2ffcb3a28dfe60fa06ab6a2991dcfdfd}\label{structComponents_1_1Jumper_a2ffcb3a28dfe60fa06ab6a2991dcfdfd} 
+\index{Components::Jumper@{Components::Jumper}!coyoteTime@{coyoteTime}}
+\index{coyoteTime@{coyoteTime}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{coyoteTime}{coyoteTime}}
+{\footnotesize\ttfamily float Components\+::\+Jumper\+::coyote\+Time = 0.\+1f}
+
+
+
+Coyote time (time to jump after leaving platform). 
+
+\Hypertarget{structComponents_1_1Jumper_a8a2d919c79911da6ac2b21238e785942}\label{structComponents_1_1Jumper_a8a2d919c79911da6ac2b21238e785942} 
+\index{Components::Jumper@{Components::Jumper}!currentJumps@{currentJumps}}
+\index{currentJumps@{currentJumps}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{currentJumps}{currentJumps}}
+{\footnotesize\ttfamily int Components\+::\+Jumper\+::current\+Jumps = 0}
+
+
+
+Current jumps performed. 
+
+\Hypertarget{structComponents_1_1Jumper_a7475747411508077a85fb3e488f48961}\label{structComponents_1_1Jumper_a7475747411508077a85fb3e488f48961} 
+\index{Components::Jumper@{Components::Jumper}!jumpBufferCounter@{jumpBufferCounter}}
+\index{jumpBufferCounter@{jumpBufferCounter}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{jumpBufferCounter}{jumpBufferCounter}}
+{\footnotesize\ttfamily float Components\+::\+Jumper\+::jump\+Buffer\+Counter = 0.f}
+
+
+
+Jump buffer counter. 
+
+\Hypertarget{structComponents_1_1Jumper_ac8e0348c186f573847e7b75ceb13ede1}\label{structComponents_1_1Jumper_ac8e0348c186f573847e7b75ceb13ede1} 
+\index{Components::Jumper@{Components::Jumper}!jumpBufferTime@{jumpBufferTime}}
+\index{jumpBufferTime@{jumpBufferTime}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{jumpBufferTime}{jumpBufferTime}}
+{\footnotesize\ttfamily float Components\+::\+Jumper\+::jump\+Buffer\+Time = 0.\+1f}
+
+
+
+Jump buffer time (memorize jump input). 
+
+\Hypertarget{structComponents_1_1Jumper_a304e5e69f0fce774e6ed26fec2d689bb}\label{structComponents_1_1Jumper_a304e5e69f0fce774e6ed26fec2d689bb} 
+\index{Components::Jumper@{Components::Jumper}!jumpForce@{jumpForce}}
+\index{jumpForce@{jumpForce}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{jumpForce}{jumpForce}}
+{\footnotesize\ttfamily float Components\+::\+Jumper\+::jump\+Force = 500.f}
+
+
+
+Jump force. 
+
+\Hypertarget{structComponents_1_1Jumper_a1aa84369f569a5636b2cf2949b643172}\label{structComponents_1_1Jumper_a1aa84369f569a5636b2cf2949b643172} 
+\index{Components::Jumper@{Components::Jumper}!maxJumps@{maxJumps}}
+\index{maxJumps@{maxJumps}!Components::Jumper@{Components::Jumper}}
+\doxysubsubsection{\texorpdfstring{maxJumps}{maxJumps}}
+{\footnotesize\ttfamily int Components\+::\+Jumper\+::max\+Jumps = 1}
+
+
+
+Maximum jumps allowed. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

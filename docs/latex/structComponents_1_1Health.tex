@@ -11,7 +11,8 @@ Component for tracking health points.
 
 
 
-Collaboration diagram for Components\+::Health\+:\nopagebreak
+Collaboration diagram for Components\+::Health\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,10 +22,12 @@ Collaboration diagram for Components\+::Health\+:\nopagebreak
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{structComponents_1_1Health_ac152194e42b52db5b5c3550d3d5f9036}{max}} = 100
+int \mbox{\hyperlink{structComponents_1_1Health_ac152194e42b52db5b5c3550d3d5f9036}{max}} = 100
 \begin{DoxyCompactList}\small\item\em Maximum health value. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{structComponents_1_1Health_ab2c65b1a4738dcc5cb43aedf1323714d}{current}} = 100
-\begin{DoxyCompactList}\small\item\em Current health value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{structComponents_1_1Health_ab2c65b1a4738dcc5cb43aedf1323714d}{current}} = 100
+\begin{DoxyCompactList}\small\item\em Current health value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structComponents_1_1Health_a189ca887cf9235f2efdff1de592dc45a}{last\+Attacker\+Id}} = -\/1
+\begin{DoxyCompactList}\small\item\em ID of the last attacker. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -35,17 +38,27 @@ Component for tracking health points.
 \index{Components::Health@{Components::Health}!current@{current}}
 \index{current@{current}!Components::Health@{Components::Health}}
 \doxysubsubsection{\texorpdfstring{current}{current}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Components\+::\+Health\+::current = 100}
+{\footnotesize\ttfamily int Components\+::\+Health\+::current = 100}
 
 
 
 Current health value. 
 
+\Hypertarget{structComponents_1_1Health_a189ca887cf9235f2efdff1de592dc45a}\label{structComponents_1_1Health_a189ca887cf9235f2efdff1de592dc45a} 
+\index{Components::Health@{Components::Health}!lastAttackerId@{lastAttackerId}}
+\index{lastAttackerId@{lastAttackerId}!Components::Health@{Components::Health}}
+\doxysubsubsection{\texorpdfstring{lastAttackerId}{lastAttackerId}}
+{\footnotesize\ttfamily int Components\+::\+Health\+::last\+Attacker\+Id = -\/1}
+
+
+
+ID of the last attacker. 
+
 \Hypertarget{structComponents_1_1Health_ac152194e42b52db5b5c3550d3d5f9036}\label{structComponents_1_1Health_ac152194e42b52db5b5c3550d3d5f9036} 
 \index{Components::Health@{Components::Health}!max@{max}}
 \index{max@{max}!Components::Health@{Components::Health}}
 \doxysubsubsection{\texorpdfstring{max}{max}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Components\+::\+Health\+::max = 100}
+{\footnotesize\ttfamily int Components\+::\+Health\+::max = 100}
 
 
 

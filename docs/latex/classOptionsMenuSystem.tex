@@ -1,0 +1,231 @@
+\doxysection{Options\+Menu\+System Class Reference}
+\hypertarget{classOptionsMenuSystem}{}\label{classOptionsMenuSystem}\index{OptionsMenuSystem@{OptionsMenuSystem}}
+
+
+{\ttfamily \#include $<$Options\+Menu\+System.\+hpp$>$}
+
+
+
+Inheritance diagram for Options\+Menu\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classOptionsMenuSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Options\+Menu\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classOptionsMenuSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOptionsMenuSystem_a2d701c755fee5dd05ab6abc321c5b052}{Options\+Menu\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, \mbox{\hyperlink{classInputSystem}{Input\+System}} \&input\+System, \mbox{\hyperlink{classSoundSystem}{Sound\+System}} \&sound\+System)
+\item 
+void \mbox{\hyperlink{classOptionsMenuSystem_a89fa209e9c4e2b5824c9b371c874e450}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOptionsMenuSystem_ac1bce222290626143b4b1734ec883fdb}{set\+Enabled}} (bool enabled)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707}{handle\+Sliders}} ()
+\item 
+void \mbox{\hyperlink{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a}{handle\+Keybind\+Buttons}} ()
+\item 
+void \mbox{\hyperlink{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e}{update\+Dynamic\+Texts}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInputSystem}{Input\+System}} \& \mbox{\hyperlink{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}{\+\_\+input\+System}}
+\item 
+\mbox{\hyperlink{classSoundSystem}{Sound\+System}} \& \mbox{\hyperlink{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}{\+\_\+sound\+System}}
+\item 
+bool \mbox{\hyperlink{classOptionsMenuSystem_a7d03e35b82d01eb6339e71c18472ebf2}{\+\_\+enabled}} = true
+\item 
+float \mbox{\hyperlink{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}{\+\_\+input\+Cooldown}} = 0.\+0f
+\item 
+const float \mbox{\hyperlink{classOptionsMenuSystem_ac32cf20ac941f19987c18718a6c01697}{\+\_\+cooldown\+Duration}} = 0.\+15f
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}{\+\_\+waiting\+For\+Key\+Entity}} = static\+\_\+cast$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}$>$(-\/1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOptionsMenuSystem_a2d701c755fee5dd05ab6abc321c5b052}\label{classOptionsMenuSystem_a2d701c755fee5dd05ab6abc321c5b052} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!OptionsMenuSystem@{OptionsMenuSystem}}
+\index{OptionsMenuSystem@{OptionsMenuSystem}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{OptionsMenuSystem()}{OptionsMenuSystem()}}
+{\footnotesize\ttfamily Options\+Menu\+System\+::\+Options\+Menu\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{\mbox{\hyperlink{classInputSystem}{Input\+System}} \&}]{input\+System,  }\item[{\mbox{\hyperlink{classSoundSystem}{Sound\+System}} \&}]{sound\+System }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a}\label{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!handleKeybindButtons@{handleKeybindButtons}}
+\index{handleKeybindButtons@{handleKeybindButtons}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{handleKeybindButtons()}{handleKeybindButtons()}}
+{\footnotesize\ttfamily void Options\+Menu\+System\+::handle\+Keybind\+Buttons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_ad95f2bc7d503b22f40ed5cc3cf78c24a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707}\label{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!handleSliders@{handleSliders}}
+\index{handleSliders@{handleSliders}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{handleSliders()}{handleSliders()}}
+{\footnotesize\ttfamily void Options\+Menu\+System\+::handle\+Sliders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_a995ba9ca1cd9657d9db9bd7ff1a6e707_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classOptionsMenuSystem_ac1bce222290626143b4b1734ec883fdb}\label{classOptionsMenuSystem_ac1bce222290626143b4b1734ec883fdb} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!setEnabled@{setEnabled}}
+\index{setEnabled@{setEnabled}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{setEnabled()}{setEnabled()}}
+{\footnotesize\ttfamily void Options\+Menu\+System\+::set\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+\Hypertarget{classOptionsMenuSystem_a89fa209e9c4e2b5824c9b371c874e450}\label{classOptionsMenuSystem_a89fa209e9c4e2b5824c9b371c874e450} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!update@{update}}
+\index{update@{update}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Options\+Menu\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_a89fa209e9c4e2b5824c9b371c874e450_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e}\label{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!updateDynamicTexts@{updateDynamicTexts}}
+\index{updateDynamicTexts@{updateDynamicTexts}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{updateDynamicTexts()}{updateDynamicTexts()}}
+{\footnotesize\ttfamily void Options\+Menu\+System\+::update\+Dynamic\+Texts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuSystem_a2a3ee6b59492014106d0f5fe9f95ec9e_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classOptionsMenuSystem_ac32cf20ac941f19987c18718a6c01697}\label{classOptionsMenuSystem_ac32cf20ac941f19987c18718a6c01697} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!\_cooldownDuration@{\_cooldownDuration}}
+\index{\_cooldownDuration@{\_cooldownDuration}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{\_cooldownDuration}{\_cooldownDuration}}
+{\footnotesize\ttfamily const float Options\+Menu\+System\+::\+\_\+cooldown\+Duration = 0.\+15f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classOptionsMenuSystem_a7d03e35b82d01eb6339e71c18472ebf2}\label{classOptionsMenuSystem_a7d03e35b82d01eb6339e71c18472ebf2} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!\_enabled@{\_enabled}}
+\index{\_enabled@{\_enabled}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{\_enabled}{\_enabled}}
+{\footnotesize\ttfamily bool Options\+Menu\+System\+::\+\_\+enabled = true\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c}\label{classOptionsMenuSystem_abfc3747e80ebbd241ab377f48ec9b76c} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!\_inputCooldown@{\_inputCooldown}}
+\index{\_inputCooldown@{\_inputCooldown}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{\_inputCooldown}{\_inputCooldown}}
+{\footnotesize\ttfamily float Options\+Menu\+System\+::\+\_\+input\+Cooldown = 0.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c}\label{classOptionsMenuSystem_a741ddb9244a61ac319c3c3da0d44544c} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!\_inputSystem@{\_inputSystem}}
+\index{\_inputSystem@{\_inputSystem}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{\_inputSystem}{\_inputSystem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInputSystem}{Input\+System}}\& Options\+Menu\+System\+::\+\_\+input\+System\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73}\label{classOptionsMenuSystem_a2190ed1bb8306d7454280ac475011f73} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!\_soundSystem@{\_soundSystem}}
+\index{\_soundSystem@{\_soundSystem}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{\_soundSystem}{\_soundSystem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSoundSystem}{Sound\+System}}\& Options\+Menu\+System\+::\+\_\+sound\+System\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5}\label{classOptionsMenuSystem_abe3d90aa154fa8a931995f7321264be5} 
+\index{OptionsMenuSystem@{OptionsMenuSystem}!\_waitingForKeyEntity@{\_waitingForKeyEntity}}
+\index{\_waitingForKeyEntity@{\_waitingForKeyEntity}!OptionsMenuSystem@{OptionsMenuSystem}}
+\doxysubsubsection{\texorpdfstring{\_waitingForKeyEntity}{\_waitingForKeyEntity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Options\+Menu\+System\+::\+\_\+waiting\+For\+Key\+Entity = static\+\_\+cast$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}$>$(-\/1)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{OptionsMenuSystem_8hpp}{Options\+Menu\+System.\+hpp}}\end{DoxyCompactItemize}

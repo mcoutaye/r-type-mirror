@@ -1,0 +1,7 @@
+<map id="Factory::clearMenu" name="Factory::clearMenu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,149,56"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="197,5,421,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,33,183,29,184,34,150,38"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a77bab58f7b7d5e53443078f60957b2d2" title="Destroys an entity." alt="" coords="253,55,366,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,48,239,57,239,63,149,53"/>
+</map>

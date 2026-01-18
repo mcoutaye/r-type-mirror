@@ -1,0 +1,94 @@
+\doxysection{Options\+Menu\+Factory Class Reference}
+\hypertarget{classOptionsMenuFactory}{}\label{classOptionsMenuFactory}\index{OptionsMenuFactory@{OptionsMenuFactory}}
+
+
+{\ttfamily \#include $<$Options\+Menu\+Factory.\+hpp$>$}
+
+
+
+Collaboration diagram for Options\+Menu\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{classOptionsMenuFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classOptionsMenuFactory_a55478810f29369aa5518741069f737b8}{create\+Slider}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&label, float min\+Value, float max\+Value, float current\+Value, const std\+::string \&linked\+Setting, const std\+::string \&font\+Id="{}default"{})
+\item 
+static \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classOptionsMenuFactory_a6c0344ff5a2d3d304f383b1be85eea5e}{create\+Keybind\+Button}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&label, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action, \mbox{\hyperlink{classInputSystem}{Input\+System}} \&input\+System, const std\+::string \&font\+Id="{}default"{})
+\item 
+static \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classOptionsMenuFactory_ac8a143291ea42ee9bb5517555601c7f6}{create\+Section\+Title}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&title, const std\+::string \&font\+Id="{}title"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classOptionsMenuFactory_a49bca18c69bf9879a149fa8bc3c34d28}{get\+Key\+Name}} (sf\+::\+Keyboard\+::\+Key key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOptionsMenuFactory_a6c0344ff5a2d3d304f383b1be85eea5e}\label{classOptionsMenuFactory_a6c0344ff5a2d3d304f383b1be85eea5e} 
+\index{OptionsMenuFactory@{OptionsMenuFactory}!createKeybindButton@{createKeybindButton}}
+\index{createKeybindButton@{createKeybindButton}!OptionsMenuFactory@{OptionsMenuFactory}}
+\doxysubsubsection{\texorpdfstring{createKeybindButton()}{createKeybindButton()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Options\+Menu\+Factory\+::create\+Keybind\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const std\+::string \&}]{label,  }\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action,  }\item[{\mbox{\hyperlink{classInputSystem}{Input\+System}} \&}]{input\+System,  }\item[{const std\+::string \&}]{font\+Id = {\ttfamily "{}default"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuFactory_a6c0344ff5a2d3d304f383b1be85eea5e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classOptionsMenuFactory_ac8a143291ea42ee9bb5517555601c7f6}\label{classOptionsMenuFactory_ac8a143291ea42ee9bb5517555601c7f6} 
+\index{OptionsMenuFactory@{OptionsMenuFactory}!createSectionTitle@{createSectionTitle}}
+\index{createSectionTitle@{createSectionTitle}!OptionsMenuFactory@{OptionsMenuFactory}}
+\doxysubsubsection{\texorpdfstring{createSectionTitle()}{createSectionTitle()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Options\+Menu\+Factory\+::create\+Section\+Title (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const std\+::string \&}]{title,  }\item[{const std\+::string \&}]{font\+Id = {\ttfamily "{}title"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuFactory_ac8a143291ea42ee9bb5517555601c7f6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classOptionsMenuFactory_a55478810f29369aa5518741069f737b8}\label{classOptionsMenuFactory_a55478810f29369aa5518741069f737b8} 
+\index{OptionsMenuFactory@{OptionsMenuFactory}!createSlider@{createSlider}}
+\index{createSlider@{createSlider}!OptionsMenuFactory@{OptionsMenuFactory}}
+\doxysubsubsection{\texorpdfstring{createSlider()}{createSlider()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Options\+Menu\+Factory\+::create\+Slider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{const std\+::string \&}]{label,  }\item[{float}]{min\+Value,  }\item[{float}]{max\+Value,  }\item[{float}]{current\+Value,  }\item[{const std\+::string \&}]{linked\+Setting,  }\item[{const std\+::string \&}]{font\+Id = {\ttfamily "{}default"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuFactory_a55478810f29369aa5518741069f737b8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classOptionsMenuFactory_a49bca18c69bf9879a149fa8bc3c34d28}\label{classOptionsMenuFactory_a49bca18c69bf9879a149fa8bc3c34d28} 
+\index{OptionsMenuFactory@{OptionsMenuFactory}!getKeyName@{getKeyName}}
+\index{getKeyName@{getKeyName}!OptionsMenuFactory@{OptionsMenuFactory}}
+\doxysubsubsection{\texorpdfstring{getKeyName()}{getKeyName()}}
+{\footnotesize\ttfamily static std\+::string Options\+Menu\+Factory\+::get\+Key\+Name (\begin{DoxyParamCaption}\item[{sf\+::\+Keyboard\+::\+Key}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classOptionsMenuFactory_a49bca18c69bf9879a149fa8bc3c34d28_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{OptionsMenuFactory_8hpp}{Options\+Menu\+Factory.\+hpp}}\end{DoxyCompactItemize}

@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('InputSystem_8hpp.html',''); initResiza
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle"><div class="title">InputSystem.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="engine_2ecs_2ecs_8hpp_source.html">engine/ecs/ecs.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;ecs.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="Components_8hpp_source.html">engine/systems/Components.hpp</a>&quot;</code><br />
 <code>#include &lt;SFML/Window/Event.hpp&gt;</code><br />
 <code>#include &lt;SFML/Window/Window.hpp&gt;</code><br />
 <code>#include &lt;SFML/Window/Keyboard.hpp&gt;</code><br />
 <code>#include &lt;SFML/Window/Joystick.hpp&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
+<code>#include &lt;set&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for InputSystem.hpp:</div>
 <div class="dyncontent">
@@ -112,7 +112,7 @@ Include dependency graph for InputSystem.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="InputSystem_8hpp__dep__incl.svg" width="368" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="InputSystem_8hpp__dep__incl.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="InputSystem_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -121,52 +121,7 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html">InputSystem</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a5827805c542ab9cccf700dc3697cbafc" id="r_a5827805c542ab9cccf700dc3697cbafc"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> { <br />
-&#160;&#160;<a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c">MoveUp</a>
-, <a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5">MoveDown</a>
-, <a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca">MoveLeft</a>
-, <a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b">MoveRight</a>
-, <br />
-&#160;&#160;<a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c">Shoot</a>
-, <a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6">Quit</a>
-<br />
- }</td></tr>
-<tr class="separator:a5827805c542ab9cccf700dc3697cbafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a5827805c542ab9cccf700dc3697cbafc" name="a5827805c542ab9cccf700dc3697cbafc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5827805c542ab9cccf700dc3697cbafc">&#9670;&#160;</a></span>GameAction</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">enum</a> <a class="el" href="engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c">class</a> <a class="el" href="InputSystem_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c" name="a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c"></a>MoveUp&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5" name="a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5"></a>MoveDown&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca" name="a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca"></a>MoveLeft&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b" name="a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b"></a>MoveRight&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c" name="a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c"></a>Shoot&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6" name="a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6"></a>Quit&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,0 +1,19 @@
+<map id="CameraSystem::update" name="CameraSystem::update">
+<area shape="rect" id="Node000001" title="Pure virtual function to update the system." alt="" coords="5,133,180,159"/>
+<area shape="rect" id="Node000002" href="$classCameraSystem.html#a42f4d5be1dd0e5d26f23433ab075b174" title=" " alt="" coords="253,5,467,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,131,155,86,189,60,227,40,246,32,248,37,229,44,192,65,158,90,108,135"/>
+<area shape="rect" id="Node000003" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="285,55,435,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,131,169,109,227,89,271,78,272,83,229,94,171,114,122,136"/>
+<area shape="rect" id="Node000006" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="248,104,472,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="180,134,234,128,235,133,181,139"/>
+<area shape="rect" id="Node000007" href="$classCameraSystem.html#a8b505d18a80a94c4a717e28dafd44acc" title=" " alt="" coords="247,154,473,194"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="181,152,233,158,233,163,180,158"/>
+<area shape="rect" id="Node000008" href="$classCameraSystem.html#a461e17397bcf286483687d5954e3f4e9" title=" " alt="" coords="247,218,473,258"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="120,156,170,180,229,203,255,212,254,217,227,209,168,185,118,161"/>
+<area shape="rect" id="Node000009" href="$classCameraSystem.html#acc71a45d50c31b490972adc7a907fe1a" title=" " alt="" coords="228,283,492,308"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="106,157,155,212,190,242,229,268,249,276,246,281,227,272,187,247,151,216,102,161"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="540,55,716,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="436,65,526,65,526,70,436,70"/>
+<area shape="rect" id="Node000005" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="764,55,943,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="716,65,750,65,750,70,716,70"/>
+</map>

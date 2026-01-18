@@ -2,8 +2,8 @@
 
 # R-Type Mirror
 
-**R-Type Mirror** is a multiplayer shoot’em up inspired by *R-Type*, developed as an **Epitech 2025** project.
-It features a custom **Entity Component System (ECS)** game engine on the client side and a **UDP** networking architecture for real-time multiplayer gameplay.
+**R-Type Mirror** is a multiplayer shoot’em up inspired by *R-Type*, developed as an **Epitech 2026** project.
+It features a custom **Entity Component System (ECS)** game engine on the client side with advanced systems for physics, particles, menus, and audio, alongside a **UDP** networking architecture for real-time multiplayer gameplay.
 
 This documentation is the **single entry point** for the whole project: game engine, client systems, network module, and protocol specification.
 
@@ -30,26 +30,36 @@ We chose an **Entity Component System (ECS)** over traditional Object-Oriented P
 
 ## 2. Game Engine (ECS)
 
-The game engine is a custom lightweight ECS implementation.
+The game engine is a custom lightweight ECS implementation, enhanced with advanced features like physics simulation, particle effects, menu systems, and audio management.
 
 ### Core Concepts
 *   **Entity:** A simple unique ID (`uint32_t`).
-*   **Component:** Pure data structs (POD) with no logic (e.g., `Position`, `Velocity`, `Health`).
-*   **System:** Pure logic that iterates over entities with specific component signatures (e.g., `MovementSystem`, `RenderSystem`).
+*   **Component:** Pure data structs (POD) with no logic (e.g., `Position_t`, `Velocity_t`, `Drawable_t`, `RigidBody_t`).
+*   **System:** Pure logic that iterates over entities with specific component signatures (e.g., `PhysicsSystem`, `RenderSystem`).
 
 ### Key Characteristics
 *   **Max Entities:** 2048
 *   **Max Component Types:** 128
 *   **Signatures:** `std::bitset` used for $O(1)$ component checks.
+*   **Resource Management:** Singleton `ResourceManager` for textures, fonts, and sounds.
+*   **Scene Management:** `SceneManager` for handling multiple scenes (e.g., menus, gameplay).
+*   **Factories:** Utility classes like `EntityFactory` and `StageFactory` for creating entities and levels.
 
 ### Systems Overview
 | System | Responsibility |
 | :--- | :--- |
-| `InputSystem` | Captures player inputs and sends them to the server. |
-| `MovementSystem` | Updates positions based on velocity and patterns. |
-| `CollisionSystem` | Handles AABB collisions between projectiles, enemies, and players. |
-| `WaveSystem` | Manages enemy spawning patterns. |
-| `RenderSystem` | Draws entities using SFML. |
+| `CameraSystem` | Manages 2D camera with smooth follow, zoom, shake, and bounds. |
+| `CollisionSystem` | Handles AABB collisions and resolves entity interactions. |
+| `InputSystem` | Captures keyboard/joystick inputs and maps to game actions. |
+| `MenuSystem` | Handles menu navigation, item selection, and actions. |
+| `MovementSystem` | Applies movement patterns (e.g., sinus, zigzag) to entities. |
+| `MoveSystem` | Basic position updates based on velocity, with collision resolution. |
+| `OptionsMenuSystem` | Manages sliders, keybinds, and dynamic texts in options menus. |
+| `ParticleSystem` | Manages particle pools and emitters for effects like explosions and trails. |
+| `PhysicsSystem` | Simulates gravity, forces, jumps, and resolves collisions. |
+| `RenderSystem` | Draws sprites, texts, and starfields using SFML. |
+| `SoundSystem` | Plays sounds and background music, manages volumes. |
+| `WaveSystem` | Spawns enemy waves based on level data. |
 
 ![Hiérarchie des classes - Graphe détaillé](class_graph.png)
 
@@ -92,16 +102,28 @@ Broadcasted to all clients to synchronize the game state.
 
 ## 5. Project Structure
 
-*   `include/` - Header files (ECS, Systems, Network).
-*   `src/client/` - Client-specific logic (Main loop, Input handling).
-*   `src/server/` - Server-specific logic (Game loop, Broadcast).
-*   `src/engine/` - Core ECS implementation.
+*   `class_graph.png` - Class hierarchy graph.
+*   `CMakeLists.txt` - Build configuration.
+*   `Doxyfile` - Doxygen configuration.
+*   `doxygen-awesome.css` - Custom Doxygen styling.
+*   `include/` - Header files.
+  *   `engine/` - Game engine components.
+    *   `core/` - Core engine files (e.g., `GameEngine.hpp`, `Menu.hpp`).
+    *   `ecs/` - ECS core (`ecs.hpp`).
+    *   `factory/` - Factories (`EntityFactory.hpp`, `StageFactory.hpp`).
+    *   `systems/` - System headers (e.g., `PhysicsSystem.hpp`, `RenderSystem.hpp`).
+  *   `server/` - Server-side networking (e.g., `server.hpp`, `UdpServer.hpp`).
+*   `mainpage.md` - This documentation entry point.
+*   `Makefile` - Build automation.
+*   `network_graph.png` - Network architecture graph.
+*   `poc.md` - Proof of Concept document.
+*   `rfcprotocol.txt` - Network protocol specification.
 
 ---
 
 ## Authors
 
-**Epitech 2025 – R-Type Mirror**
+**Epitech 2026 – R-Type Mirror**
 *   Gabriel Villemonte
 *   Clément Chellier
 *   Mathis Coutaye

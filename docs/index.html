@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
 R-Type Mirror</h1>
-<p><b>R-Type Mirror</b> is a multiplayer shoot’em up inspired by <em>R-Type</em>, developed as an <b>Epitech 2025</b> project. It features a custom <b>Entity Component System (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>)</b> game engine on the client side and a <b><a class="el" href="classUDP.html">UDP</a></b> networking architecture for real-time multiplayer gameplay.</p>
+<p><b>R-Type Mirror</b> is a multiplayer shoot’em up inspired by <em>R-Type</em>, developed as an <b>Epitech 2026</b> project. It features a custom <b>Entity Component System (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>)</b> game engine on the client side with advanced systems for physics, particles, menus, and audio, alongside a <b><a class="el" href="classUDP.html">UDP</a></b> networking architecture for real-time multiplayer gameplay.</p>
 <p>This documentation is the <b>single entry point</b> for the whole project: game engine, client systems, network module, and protocol specification.</p>
 <hr  />
 <h2><a class="anchor" id="autotoc_md2"></a>
@@ -119,13 +119,13 @@ ECS vs. OOP</h3>
 <hr  />
 <h2><a class="anchor" id="autotoc_md6"></a>
 2. Game Engine (ECS)</h2>
-<p>The game engine is a custom lightweight <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> implementation.</p>
+<p>The game engine is a custom lightweight <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> implementation, enhanced with advanced features like physics simulation, particle effects, menu systems, and audio management.</p>
 <h3><a class="anchor" id="autotoc_md7"></a>
 Core Concepts</h3>
 <ul>
 <li><b>Entity:</b> A simple unique ID (<code>uint32_t</code>).</li>
-<li><b>Component:</b> Pure data structs (POD) with no logic (e.g., <code>Position</code>, <code>Velocity</code>, <code>Health</code>).</li>
-<li><b>System:</b> Pure logic that iterates over entities with specific component signatures (e.g., <code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>, <code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>).</li>
+<li><b>Component:</b> Pure data structs (POD) with no logic (e.g., <code>Position_t</code>, <code>Velocity_t</code>, <code>Drawable_t</code>, <code>RigidBody_t</code>).</li>
+<li><b>System:</b> Pure logic that iterates over entities with specific component signatures (e.g., <code><a class="el" href="classPhysicsSystem.html">PhysicsSystem</a></code>, <code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>).</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md8"></a>
 Key Characteristics</h3>
@@ -133,6 +133,9 @@ Key Characteristics</h3>
 <li><b>Max Entities:</b> 2048</li>
 <li><b>Max Component Types:</b> 128</li>
 <li><b>Signatures:</b> <code>std::bitset</code> used for $O(1)$ component checks.</li>
+<li><b>Resource Management:</b> Singleton <code><a class="el" href="classResourceManager.html">ResourceManager</a></code> for textures, fonts, and sounds.</li>
+<li><b><a class="el" href="structScene.html">Scene</a> Management:</b> <code><a class="el" href="classSceneManager.html">SceneManager</a></code> for handling multiple scenes (e.g., menus, gameplay).</li>
+<li><b>Factories:</b> Utility classes like <code>EntityFactory</code> and <code>StageFactory</code> for creating entities and levels.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md9"></a>
 Systems Overview</h3>
@@ -140,15 +143,29 @@ Systems Overview</h3>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">System   </th><th class="markdownTableHeadLeft">Responsibility    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classInputSystem.html">InputSystem</a></code>   </td><td class="markdownTableBodyLeft">Captures player inputs and sends them to the server.    </td></tr>
+<td class="markdownTableBodyLeft"><code><a class="el" href="classCameraSystem.html">CameraSystem</a></code>   </td><td class="markdownTableBodyLeft">Manages 2D camera with smooth follow, zoom, shake, and bounds.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>   </td><td class="markdownTableBodyLeft">Updates positions based on velocity and patterns.    </td></tr>
+<td class="markdownTableBodyLeft"><code><a class="el" href="classCollisionSystem.html">CollisionSystem</a></code>   </td><td class="markdownTableBodyLeft">Handles AABB collisions and resolves entity interactions.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classCollisionSystem.html">CollisionSystem</a></code>   </td><td class="markdownTableBodyLeft">Handles AABB collisions between projectiles, enemies, and players.    </td></tr>
+<td class="markdownTableBodyLeft"><code><a class="el" href="classInputSystem.html">InputSystem</a></code>   </td><td class="markdownTableBodyLeft">Captures keyboard/joystick inputs and maps to game actions.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classWaveSystem.html">WaveSystem</a></code>   </td><td class="markdownTableBodyLeft">Manages enemy spawning patterns.    </td></tr>
+<td class="markdownTableBodyLeft"><code><a class="el" href="classMenuSystem.html">MenuSystem</a></code>   </td><td class="markdownTableBodyLeft">Handles menu navigation, item selection, and actions.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>   </td><td class="markdownTableBodyLeft">Draws entities using SFML.   </td></tr>
+<td class="markdownTableBodyLeft"><code><a class="el" href="classMovementSystem.html">MovementSystem</a></code>   </td><td class="markdownTableBodyLeft">Applies movement patterns (e.g., sinus, zigzag) to entities.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classMoveSystem.html">MoveSystem</a></code>   </td><td class="markdownTableBodyLeft">Basic position updates based on velocity, with collision resolution.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classOptionsMenuSystem.html">OptionsMenuSystem</a></code>   </td><td class="markdownTableBodyLeft">Manages sliders, keybinds, and dynamic texts in options menus.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classParticleSystem.html">ParticleSystem</a></code>   </td><td class="markdownTableBodyLeft">Manages particle pools and emitters for effects like explosions and trails.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classPhysicsSystem.html">PhysicsSystem</a></code>   </td><td class="markdownTableBodyLeft">Simulates gravity, forces, jumps, and resolves collisions.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classRenderSystem.html">RenderSystem</a></code>   </td><td class="markdownTableBodyLeft">Draws sprites, texts, and starfields using SFML.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classSoundSystem.html">SoundSystem</a></code>   </td><td class="markdownTableBodyLeft">Plays sounds and background music, manages volumes.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classWaveSystem.html">WaveSystem</a></code>   </td><td class="markdownTableBodyLeft">Spawns enemy waves based on level data.   </td></tr>
 </table>
 <div class="image">
 <img src="class_graph.png" alt=""/>
@@ -198,15 +215,31 @@ Security &amp; Integrity</h3>
 <h2><a class="anchor" id="autotoc_md19"></a>
 5. Project Structure</h2>
 <ul>
-<li><code>include/</code> - Header files (<a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>, Systems, Network).</li>
-<li><code>src/client/</code> - Client-specific logic (Main loop, Input handling).</li>
-<li><code>src/server/</code> - Server-specific logic (Game loop, Broadcast).</li>
-<li><code>src/engine/</code> - Core <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> implementation.</li>
+<li><code>class_graph.png</code> - Class hierarchy graph.</li>
+<li><code><a class="el" href="CMakeLists_8txt.html">CMakeLists.txt</a></code> - Build configuration.</li>
+<li><code>Doxyfile</code> - Doxygen configuration.</li>
+<li><code>doxygen-awesome.css</code> - Custom Doxygen styling.</li>
+<li><code>include/</code> - Header files.<ul>
+<li><code>engine/</code> - Game engine components.<ul>
+<li><code>core/</code> - Core engine files (e.g., <code><a class="el" href="GameEngine_8hpp.html">GameEngine.hpp</a></code>, <code><a class="el" href="Menu_8hpp.html">Menu.hpp</a></code>).</li>
+<li><code>ecs/</code> - <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a> core (<code>ecs.hpp</code>).</li>
+<li><code>factory/</code> - Factories (<code><a class="el" href="EntityFactory_8hpp.html">EntityFactory.hpp</a></code>, <code><a class="el" href="StageFactory_8hpp.html">StageFactory.hpp</a></code>).</li>
+<li><code>systems/</code> - System headers (e.g., <code><a class="el" href="PhysicsSystem_8hpp.html">PhysicsSystem.hpp</a></code>, <code><a class="el" href="RenderSystem_8hpp.html">RenderSystem.hpp</a></code>).</li>
+</ul>
+</li>
+<li><code>server/</code> - Server-side networking (e.g., <code><a class="el" href="server_8hpp.html">server.hpp</a></code>, <code><a class="el" href="UdpServer_8hpp.html">UdpServer.hpp</a></code>).</li>
+</ul>
+</li>
+<li><code><a class="el" href="mainpage_8md.html">mainpage.md</a></code> - This documentation entry point.</li>
+<li><code>Makefile</code> - Build automation.</li>
+<li><code>network_graph.png</code> - Network architecture graph.</li>
+<li><code><a class="el" href="poc_8md.html">poc.md</a></code> - Proof of Concept document.</li>
+<li><code><a class="el" href="rfcprotocol_8txt.html">rfcprotocol.txt</a></code> - Network protocol specification.</li>
 </ul>
 <hr  />
 <h2><a class="anchor" id="autotoc_md21"></a>
 Authors</h2>
-<p><b>Epitech 2025 – R-Type Mirror</b></p><ul>
+<p><b>Epitech 2026 – R-Type Mirror</b></p><ul>
 <li>Gabriel Villemonte</li>
 <li>Clément Chellier</li>
 <li>Mathis Coutaye</li>

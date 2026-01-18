@@ -10,24 +10,62 @@
 \DoxyCodeLine{00006\ \textcolor{comment}{*/}}
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp}{engine/ecs/ecs.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sstream>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWaveSystem}{WaveSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
-\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a53bc3c7754a0cb45c159f094df8be70f}{WaveSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs)\ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs)\ \{\}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaveSystem_afe7beb27d93fec01da74e11f0ca91960}{loadLevel}}(\textcolor{keyword}{const}\ std::vector<Components::WaveData>\&\ waves);}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00024\ \ \ \ \ std::vector<Components::WaveData>\ \mbox{\hyperlink{classWaveSystem_ad0601488c3a2f897bb7dc3f59a965525}{\_waves}};}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}\ =\ 0;}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ =\ 0.f;}
-\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}engine/EntityFactory.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWaveSystem}{WaveSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a53bc3c7754a0cb45c159f094df8be70f}{WaveSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs)\ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs)\ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaveSystem_a58dd852920595d0e4172b1318583b5b5}{loadLevel}}(\textcolor{keyword}{const}\ std::vector<WaveData\_t>\&\ waves);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<WaveData\_t>\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ =\ 0.f;}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaveSystem_a58dd852920595d0e4172b1318583b5b5}{WaveSystem::loadLevel}}(\textcolor{keyword}{const}\ std::vector<WaveData\_t>\&\ waves)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}\ =\ waves;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ =\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}.empty()\ ?\ 0.f\ :\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}[0].delay;\ \textcolor{comment}{//\ ←\ "{}delay"{}\ pas\ "{}time"{}\ (cohérent\ avec\ Components.hpp)}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}.empty())}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[WaveSystem]\ Level\ loaded\ -\/\ "{}}\ <<\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}.size()\ <<\ \textcolor{stringliteral}{"{}\ waves\ planned\(\backslash\)n"{}};}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaveSystem_a9a5c16c210763a371d4b535e76b2208c}{WaveSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}\ >=\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}.size())}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ -\/=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(dt);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ <=\ 0.f)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ WaveData\_t\&\ wave\ =\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}[\mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}];}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[WaveSystem]\ Spawning\ wave\ "{}}\ <<\ \mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}\ +\ 1}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ -\/\ "{}}\ <<\ wave.count\ <<\ \textcolor{stringliteral}{"{}\ enemies\(\backslash\)n"{}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ wave.count;\ ++i)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ wave.x\ +\ (i\ *\ 100.f);\ \textcolor{comment}{//\ Espacement\ des\ ennemis}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0}{Factory::createEnemy}}(\mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}},\ x,\ wave.y,\ wave.movementType);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prochaine\ vague}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}\ <\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}.size())}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ =\ \mbox{\hyperlink{classWaveSystem_a3ff37030b192e225d7f8eee835ecaa8e}{\_waves}}[\mbox{\hyperlink{classWaveSystem_af70802f3f51fab5cf34c82da616ab5c1}{\_currentWave}}].delay;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaveSystem_a6bd06d6b01e99de7277229d7f3a59bb0}{\_timer}}\ =\ 10.f;\ \textcolor{comment}{//\ plus\ de\ vagues}}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \}}
 
 \end{DoxyCode}

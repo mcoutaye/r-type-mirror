@@ -6,5 +6,6 @@ var searchData=
   ['networking_20graphics_3',['A. Unified Networking &amp; Graphics',['../md_poc.html#autotoc_md29',1,'']]],
   ['networkprotocol_2ehpp_4',['NetworkProtocol.hpp',['../NetworkProtocol_8hpp.html',1,'']]],
   ['newcomponenttypeid_5',['newcomponenttypeid',['../engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06',1,'newComponentTypeID():&#160;ecs.hpp'],['../server_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06',1,'newComponentTypeID():&#160;ecs.hpp']]],
-  ['nextspawntime_6',['nextSpawnTime',['../structComponents_1_1WaveSpawner.html#a96f2ce36ade99140d9e992f9aa57d86c',1,'Components::WaveSpawner']]]
+  ['nextspawntime_6',['nextSpawnTime',['../structComponents_1_1WaveSpawner.html#a96f2ce36ade99140d9e992f9aa57d86c',1,'Components::WaveSpawner']]],
+  ['normal_7',['normal',['../structComponents_1_1CollisionInfo.html#a5274e3a7c456dda64bf2f2615cd6fb56',1,'Components::CollisionInfo']]]
 ];

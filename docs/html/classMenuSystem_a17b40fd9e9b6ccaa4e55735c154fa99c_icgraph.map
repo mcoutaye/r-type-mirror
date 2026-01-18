@@ -1,0 +1,5 @@
+<map id="MenuSystem::handleKeybindButtons" name="MenuSystem::handleKeybindButtons">
+<area shape="rect" id="Node000001" title=" " alt="" coords="213,5,424,45"/>
+<area shape="rect" id="Node000002" href="$classMenuSystem.html#aef5e84eb6a2736cc9377f4c16c634f63" title="Pure virtual function to update the system." alt="" coords="5,13,165,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,28,166,28,166,23,200,23"/>
+</map>

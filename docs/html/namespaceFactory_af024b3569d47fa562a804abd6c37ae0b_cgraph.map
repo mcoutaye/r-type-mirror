@@ -1,0 +1,9 @@
+<map id="Factory::createPlatform" name="Factory::createPlatform">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,179,80"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="235,5,397,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,52,244,31,245,36,151,57"/>
+<area shape="rect" id="Node000003" href="$namespaceFactory.html#a72717673325d8183f30a820fc78f728e" title=" " alt="" coords="227,55,405,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,65,213,65,213,70,179,70"/>
+<area shape="rect" id="Node000004" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="249,104,383,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,77,245,98,244,104,150,83"/>
+</map>

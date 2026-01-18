@@ -62,7 +62,8 @@ var NAVTREE =
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -71,8 +72,8 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
@@ -92,9 +93,12 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"CollisionSystem_8hpp.html",
-"classUDP.html#ae94f4f5c790cc0913de9ff26821e8842",
-"structComponents_1_1Obstacle.html"
+"CameraSystem_8hpp.html",
+"classMenuSystem.html#a65417900536c6e18e208c55b58b717fd",
+"classUdpServer.html#a7dd72b9b9f6a74a9067148b13333a7b3",
+"structComponents_1_1Camera.html#a2e916aa2c429567260d653931ca30305",
+"structComponents_1_1ParticleEmitter.html#ad185677bcf43f714fc0466485f9ecfb4",
+"udp_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

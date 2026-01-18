@@ -1,0 +1,209 @@
+\doxysection{Sound\+System.\+hpp}
+\hypertarget{SoundSystem_8hpp_source}{}\label{SoundSystem_8hpp_source}\index{include/engine/systems/SoundSystem.hpp@{include/engine/systems/SoundSystem.hpp}}
+\mbox{\hyperlink{SoundSystem_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ R-\/Type}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Sound\ System}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <SFML/Audio.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoundSystem}{SoundSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classSoundSystem}{SoundSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs);}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_ac735df6ec9359b777809d9b7851c751d}{\string~SoundSystem}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_ae91869f407c9f98c8b0a0a0d1beb4a4e}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Charge\ un\ son\ en\ mémoire\ (à\ appeler\ au\ démarrage\ du\ jeu\ ou\ au\ chargement\ de\ niveau)}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSoundSystem_ac2c6d382b99fe8ff0963784a3c8ff222}{loadSound}}(\textcolor{keyword}{const}\ std::string\&\ soundId,\ \textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Charge\ une\ musique\ (streaming,\ pour\ les\ gros\ fichiers)}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSoundSystem_a762a363b7f41849491f1c53471f8eed1}{loadMusic}}(\textcolor{keyword}{const}\ std::string\&\ musicId,\ \textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Contrôle\ du\ volume}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_ae96d98d929381ca3dcda39156296b629}{setMusicVolume}}(\textcolor{keywordtype}{float}\ volume);\ \ \ \textcolor{comment}{//\ 0.0f\ à\ 100.0f}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26}{setSoundVolume}}(\textcolor{keywordtype}{float}\ volume);\ \ \ \textcolor{comment}{//\ 0.0f\ à\ 100.0f}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_ac5c8201b35d6329c360966624318bc4f}{getMusicVolume}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_a482e8822abcb6e19ff41cf3056c0c819}{getSoundVolume}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902}{processPlaySoundTriggers}}();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58}{processBackgroundMusic}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Stockage\ des\ buffers\ SFX\ (petits\ sons)}}
+\DoxyCodeLine{00041\ \ \ \ \ std::unordered\_map<std::string,\ sf::SoundBuffer>\ \mbox{\hyperlink{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74}{\_soundBuffers}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Sons\ en\ cours\ de\ lecture\ (pour\ pouvoir\ limiter\ le\ nombre\ simultané\ si\ besoin)}}
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<sf::Sound>\ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Pour\ éviter\ le\ spam\ de\ sons\ identiques\ trop\ rapprochés}}
+\DoxyCodeLine{00047\ \ \ \ \ std::unordered\_map<std::string,\ float>\ \mbox{\hyperlink{classSoundSystem_ac58c52b99b607daae50b7931aaf06224}{\_soundCooldowns}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_a722f679b87333390ff2ad4c4344aaa41}{DEFAULT\_SOUND\_COOLDOWN}}\ =\ 0.05f;\ \textcolor{comment}{//\ 50ms\ minimum\ entre\ deux\ mêmes\ sons}}
+\DoxyCodeLine{00049\ \ \ \ \ std::unordered\_map<std::string,\ std::string>\ \mbox{\hyperlink{classSoundSystem_af0e315e9119de35232464d6e96cc626f}{\_musicPaths}};}
+\DoxyCodeLine{00050\ \ \ \ \ sf::Music\ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}};}
+\DoxyCodeLine{00051\ \ \ \ \ std::string\ \mbox{\hyperlink{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb}{\_currentMusicId}};}
+\DoxyCodeLine{00052\ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}{\_musicVolume}}\ =\ 100.0f;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_add47daef7197dffddd6a5d3ab179dade}{\_soundVolume}}\ =\ 100.0f;}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \mbox{\hyperlink{classSoundSystem_a96a59fe7eaf6846940e68e6ad1623012}{SoundSystem::SoundSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs)\ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs)}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Tu\ peux\ précharger\ les\ sons\ ici\ ou\ les\ charger\ dans\ ton\ Game/Scene\ init}}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSoundSystem_ac2c6d382b99fe8ff0963784a3c8ff222}{SoundSystem::loadSound}}(\textcolor{keyword}{const}\ std::string\&\ soundId,\ \textcolor{keyword}{const}\ std::string\&\ filename)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ sf::SoundBuffer\ buffer;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (!buffer.loadFromFile(filename))\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ load\ sound:\ "{}}\ <<\ filename\ <<\ std::endl;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74}{\_soundBuffers}}[soundId]\ =\ std::move(buffer);}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902}{SoundSystem::processPlaySoundTriggers}}()}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<PlaySound\_t>();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ entities)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ play\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<PlaySound\_t>(e);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!play)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ soundId(play-\/>soundId);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gestion\ simple\ du\ cooldown}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\&\ cooldown\ =\ \mbox{\hyperlink{classSoundSystem_ac58c52b99b607daae50b7931aaf06224}{\_soundCooldowns}}[soundId];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cooldown\ >\ 0.f)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ cooldown\ -\/=\ 0.016f;\ \textcolor{comment}{//\ approx\ 60\ FPS\ delta}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ on\ attend\ encore}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74}{\_soundBuffers}}.find(soundId);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ \mbox{\hyperlink{classSoundSystem_a24d069ca33f05c569b7ba717d9680b74}{\_soundBuffers}}.end())\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Sound\ not\ loaded:\ "{}}\ <<\ soundId\ <<\ std::endl;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{killComponent}}<PlaySound\_t>(e);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Créer\ et\ jouer\ le\ son}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}}.emplace\_back();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ sf::Sound\&\ sound\ =\ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}}.back();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ sound.setBuffer(it-\/>second);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ sound.setVolume(play-\/>volume\ *\ (\mbox{\hyperlink{classSoundSystem_add47daef7197dffddd6a5d3ab179dade}{\_soundVolume}}\ /\ 100.0f));\ \ \textcolor{comment}{//\ Applique\ le\ volume\ global}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ sound.setPitch(play-\/>pitch);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ sound.play();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ cooldown}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ cooldown\ =\ \mbox{\hyperlink{classSoundSystem_a722f679b87333390ff2ad4c4344aaa41}{DEFAULT\_SOUND\_COOLDOWN}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ On\ retire\ le\ composant\ trigger\ car\ le\ son\ est\ joué}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aa790d7ea384b5aad8a2dbe0d2cee1661}{killComponent}}<PlaySound\_t>(e);}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Nettoyage\ des\ sons\ terminés}}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}}.erase(}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ std::remove\_if(\mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}}.begin(),\ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}}.end(),}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ sf::Sound\&\ s)\ \{\ \textcolor{keywordflow}{return}\ s.getStatus()\ ==\ sf::Sound::Stopped;\ \}),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8aaff9c9425cd2c0a8707bba1756ef09}{\_activeSounds}}.end()}
+\DoxyCodeLine{00117\ \ \ \ \ );}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSoundSystem_a762a363b7f41849491f1c53471f8eed1}{SoundSystem::loadMusic}}(\textcolor{keyword}{const}\ std::string\&\ musicId,\ \textcolor{keyword}{const}\ std::string\&\ filename)}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_af0e315e9119de35232464d6e96cc626f}{\_musicPaths}}[musicId]\ =\ filename;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \ \textcolor{comment}{//\ On\ vérifie\ l'existence\ du\ fichier\ plus\ tard}}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58}{SoundSystem::processBackgroundMusic}}()\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<BackgroundMusic\_t>();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (entities.empty())\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.getStatus()\ ==\ sf::Music::Playing)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.stop();\ \ \textcolor{comment}{//\ Arrête\ la\ musique\ actuelle\ s'il\ n'y\ a\ plus\ d'entité}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb}{\_currentMusicId}}.clear();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ On\ ne\ gère\ qu'une\ seule\ musique\ à\ la\ fois\ (la\ première\ trouvée)}}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ musicEntity\ =\ entities[0];}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{auto}*\ musicComp\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BackgroundMusic\_t>(musicEntity);}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (!musicComp)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ std::string\ musicId(musicComp-\/>musicId);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Si\ la\ musique\ demandée\ est\ différente\ de\ celle\ en\ cours}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb}{\_currentMusicId}}\ !=\ musicId)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Arrête\ la\ musique\ actuelle}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.stop();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Charge\ et\ joue\ la\ nouvelle\ musique}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{classSoundSystem_af0e315e9119de35232464d6e96cc626f}{\_musicPaths}}.find(musicId);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ \mbox{\hyperlink{classSoundSystem_af0e315e9119de35232464d6e96cc626f}{\_musicPaths}}.end())\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Music\ not\ loaded:\ "{}}\ <<\ musicId\ <<\ std::endl;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.openFromFile(it-\/>second))\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ open\ music:\ "{}}\ <<\ it-\/>second\ <<\ std::endl;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.setVolume(musicComp-\/>volume\ *\ (\mbox{\hyperlink{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}{\_musicVolume}}\ /\ 100.0f));\ \ \textcolor{comment}{//\ Applique\ le\ volume\ global}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.setLoop(musicComp-\/>looping);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.play();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_aa0a4e2a5baa92e760049e00de5e4d9eb}{\_currentMusicId}}\ =\ musicId;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_ae96d98d929381ca3dcda39156296b629}{SoundSystem::setMusicVolume}}(\textcolor{keywordtype}{float}\ volume)}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}{\_musicVolume}}\ =\ std::clamp(volume,\ 0.0f,\ 100.0f);}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.getStatus()\ !=\ sf::Music::Stopped)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ le\ volume\ de\ la\ musique\ en\ cours}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<BackgroundMusic\_t>();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!entities.empty())\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ musicComp\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BackgroundMusic\_t>(entities[0]);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (musicComp)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a8bafbb870d638987c9697986245cab68}{\_currentMusic}}.setVolume(musicComp-\/>volume\ *\ (\mbox{\hyperlink{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}{\_musicVolume}}\ /\ 100.0f));}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a9df3448985a9b36c69f54b3180a5ba26}{SoundSystem::setSoundVolume}}(\textcolor{keywordtype}{float}\ volume)}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_add47daef7197dffddd6a5d3ab179dade}{\_soundVolume}}\ =\ std::clamp(volume,\ 0.0f,\ 100.0f);}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_ac5c8201b35d6329c360966624318bc4f}{SoundSystem::getMusicVolume}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00189\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classSoundSystem_af2c290a4bc99ae61961e0db58c87580c}{\_musicVolume}};}
+\DoxyCodeLine{00191\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSoundSystem_a482e8822abcb6e19ff41cf3056c0c819}{SoundSystem::getSoundVolume}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00194\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classSoundSystem_add47daef7197dffddd6a5d3ab179dade}{\_soundVolume}};}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_ae91869f407c9f98c8b0a0a0d1beb4a4e}{SoundSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00199\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ (void)dt;}
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a73e2cba45c40d6097225b7d5dc1b7902}{processPlaySoundTriggers}}();}
+\DoxyCodeLine{00202\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_aa8d62ef5718e9567da7ba37a5610ec58}{processBackgroundMusic}}();}
+\DoxyCodeLine{00203\ \}}
+
+\end{DoxyCode}

@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['radius_0',['radius',['../structComponents_1_1MovementPattern.html#a76d3abc1ecccce1f81b052dfde5f9b77',1,'Components::MovementPattern']]],
-  ['receivedinputs_1',['receivedInputs',['../classUdpServer.html#a335a6b7cc1ac0e490efb7d560abfbcde',1,'UdpServer']]],
-  ['receivedupdates_2',['receivedUpdates',['../classUdpClient.html#a90f532a0d9eee82faa9b89a41343efcf',1,'UdpClient']]],
-  ['rect_3',['rect',['../structComponents_1_1Drawable.html#a872276338aa1dd0b6d8e4fe41c31db3f',1,'Components::Drawable']]],
-  ['right_4',['right',['../structInputState.html#aafef50dcb9ea9f31df195a75767d5d1d',1,'InputState::right'],['../structinput__s.html#ac5bfe34905faf550ec7f33580dfacac1',1,'input_s::right']]],
-  ['rotation_5',['rotation',['../structComponents_1_1Drawable.html#a4d0444dc3ba0bd21e1f3fbcf9603001e',1,'Components::Drawable']]]
+  ['packetstosend_0',['packetsToSend',['../classUdpServer.html#a7dd72b9b9f6a74a9067148b13333a7b3',1,'UdpServer']]],
+  ['particlelifetime_1',['particleLifetime',['../structComponents_1_1ParticleEmitter.html#ad11e1b48e10a58b49dc57dfc16a46a32',1,'Components::ParticleEmitter']]],
+  ['particlesperburst_2',['particlesPerBurst',['../structComponents_1_1ParticleEmitter.html#a9979ecedf8e3057e4126c0465290102e',1,'Components::ParticleEmitter']]],
+  ['penetration_3',['penetration',['../structComponents_1_1CollisionInfo.html#ab80bb7b7c87088d457fa7f5611cdd4c4',1,'Components::CollisionInfo']]],
+  ['pitch_4',['pitch',['../structComponents_1_1PlaySound.html#a1d27315dc41d201eb3c8bb137128ad62',1,'Components::PlaySound']]],
+  ['playerid_5',['playerid',['../structComponents_1_1PlayerController.html#ab626bbc7d999b6b1b51d0cb03cd68fd8',1,'Components::PlayerController::playerId'],['../classClientInfo.html#acb7f8ad1009ad6fcd1ee30f4d9ad1f46',1,'ClientInfo::playerId']]],
+  ['port_6',['port',['../classClientInfo.html#a32cb3d7ed1111c5570b1888aa001fdb9',1,'ClientInfo::port'],['../rfcprotocol_8txt.html#a866ebc4aa5f69e7038e0dc25b69529ab',1,'port:&#160;rfcprotocol.txt']]],
+  ['position_7',['position',['../structEntityUpdate.html#aace106ce208e6bf003cf20dad31789e7',1,'EntityUpdate']]],
+  ['prefix_8',['prefix',['../structComponents_1_1DynamicText.html#a34ec4cdbfc1ae2631ace8df3be375bed',1,'Components::DynamicText']]]
 ];

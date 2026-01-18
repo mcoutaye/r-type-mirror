@@ -1,0 +1,414 @@
+\doxysection{Entity\+Factory.\+hpp}
+\hypertarget{EntityFactory_8hpp_source}{}\label{EntityFactory_8hpp_source}\index{include/engine/factory/EntityFactory.hpp@{include/engine/factory/EntityFactory.hpp}}
+\mbox{\hyperlink{EntityFactory_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ R-\/type}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Entity\ Factory}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}engine/Menu.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceFactory}{Factory}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ Drawable\_t\ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(\textcolor{keyword}{const}\ std::string\&\ textureId,\ sf::IntRect\ rect,\ \textcolor{keywordtype}{int}\ layer,\ \textcolor{keywordtype}{bool}\ visible\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{float}\ scale\ =\ 1.f,\ \textcolor{keywordtype}{float}\ rotation\ =\ 0.f)}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ Drawable\_t\ d;}
+\DoxyCodeLine{00019\ \ \ \ \ std::memset(d.textureId,\ 0,\ \textcolor{keyword}{sizeof}(d.textureId));}
+\DoxyCodeLine{00020\ \ \ \ \ std::strncpy(d.textureId,\ textureId.c\_str(),\ \textcolor{keyword}{sizeof}(d.textureId)\ -\/\ 1);}
+\DoxyCodeLine{00021\ \ \ \ \ d.rect\ =\ rect;}
+\DoxyCodeLine{00022\ \ \ \ \ d.layer\ =\ layer;}
+\DoxyCodeLine{00023\ \ \ \ \ d.visible\ =\ visible;}
+\DoxyCodeLine{00024\ \ \ \ \ d.scale\ =\ scale;}
+\DoxyCodeLine{00025\ \ \ \ \ d.rotation\ =\ rotation;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{inline}\ PlaySound\_t\ \mbox{\hyperlink{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe}{createSound}}(\textcolor{keyword}{const}\ std::string\&\ soundId,\ \textcolor{keywordtype}{float}\ volume\ =\ 100.f,\ \textcolor{keywordtype}{float}\ pitch\ =\ 1.0f)}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ PlaySound\_t\ s;}
+\DoxyCodeLine{00032\ \ \ \ \ std::memset(s.soundId,\ 0,\ \textcolor{keyword}{sizeof}(s.soundId));}
+\DoxyCodeLine{00033\ \ \ \ \ std::strncpy(s.soundId,\ soundId.c\_str(),\ \textcolor{keyword}{sizeof}(s.soundId)\ -\/\ 1);}
+\DoxyCodeLine{00034\ \ \ \ \ s.volume\ =\ volume;}
+\DoxyCodeLine{00035\ \ \ \ \ s.pitch\ =\ pitch;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9}{createPlayer}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ uint8\_t\ playerId,\ \textcolor{keyword}{const}\ std::string\&\ textureId)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ player\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00042\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ <Position\_t,\ Velocity\_t,\ PlayerController\_t,\ Drawable\_t,\ Collider\_t,\ Health\_t,\ SendUpdate\_t>}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ (player,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ Velocity\_t\{0.f,\ 0.f\},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ PlayerController\_t\{playerId,\ \textcolor{keyword}{false}\},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ 64,\ 64\},\ 10,\ \textcolor{keyword}{true},\ 1,\ 0.f),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ Collider\_t\{64.f,\ 64.f,\ \textcolor{keyword}{true},\ 1,\ 50\},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ Health\_t\{200,\ 200\},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ SendUpdate\_t\{\textcolor{keyword}{true}\});}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ player;}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7}{createProjectile}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ velocityX,\ \textcolor{keywordtype}{float}\ velocityY,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ team,\ \textcolor{keywordtype}{int}\ damage,\ \textcolor{keyword}{const}\ std::string\&\ textureId,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ownerId\ =\ -\/1,\ \textcolor{keyword}{const}\ std::string\&\ shootSound\ =\ \textcolor{stringliteral}{"{}shoot.ogg"{}})}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ bullet\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00060\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ <Position\_t,\ Velocity\_t,\ Drawable\_t,\ Collider\_t,\ Projectile\_t,\ PlaySound\_t>}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ (bullet,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ Velocity\_t\{velocityX,\ velocityY\},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ 16,\ 8\},\ 20,\ \textcolor{keyword}{true},\ 1.f,\ 0.f),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ Collider\_t\{16.f,\ 8.f,\ \textcolor{keyword}{false},\ team,\ damage\},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ Projectile\_t\{std::abs(velocityX),\ damage,\ ownerId\},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe}{createSound}}(shootSound,\ 80.f,\ 1.0f));\ \textcolor{comment}{//\ Son\ de\ tir\ joué\ immédiatement}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ bullet;}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0}{createEnemy}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ MovementPattern\_t::Type\ movementType)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ enemy\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Configurer\ le\ mouvement}}
+\DoxyCodeLine{00077\ \ \ \ \ MovementPattern\_t\ movement;}
+\DoxyCodeLine{00078\ \ \ \ \ movement.type\ =\ movementType;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{switch}\ (movementType)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MovementPattern\_t::Type::Linear:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ movement.speed\ =\ 200.f;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MovementPattern\_t::Type::Sinus:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ movement.speed\ =\ 200.f;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ movement.amplitude\ =\ 50.f;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ movement.frequency\ =\ 1.f;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MovementPattern\_t::Type::Zigzag:}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ movement.speed\ =\ 200.f;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ movement.amplitude\ =\ 50.f;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ movement.frequency\ =\ 1.f;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MovementPattern\_t::Type::Spiral:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ movement.speed\ =\ 150.f;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ movement.radius\ =\ 100.f;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ movement.speed\ =\ 200.f;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ Créer\ l'ennemi\ avec\ tous\ les\ composants\ nécessaires}}
+\DoxyCodeLine{00104\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Velocity\_t,\ Health\_t,\ Collider\_t,\ Drawable\_t,\ Enemy\_t,\ MovementPattern\_t,\ SendUpdate\_t>(}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ enemy,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},\ \ \textcolor{comment}{//\ Position}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ Velocity\_t\{0.f,\ 0.f\},\ \ \textcolor{comment}{//\ Vitesse\ initiale}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Health\_t\{100,\ 100\},\ \ \textcolor{comment}{//\ Santé\ (current,\ max)}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Collider\_t\{64.f,\ 64.f,\ \textcolor{keyword}{true},\ 2\},\ \ \textcolor{comment}{//\ Collider\ (largeur,\ hauteur,\ solide,\ team=2)}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ Drawable\_t\{\textcolor{stringliteral}{"{}enemy.png"{}},\ sf::IntRect(0,\ 0,\ 64,\ 64),\ 10,\ \textcolor{keyword}{true},\ 1.f,\ 0.f\},\ \ \textcolor{comment}{//\ Drawable}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ Enemy\_t\{\},\ \ \textcolor{comment}{//\ Enemy\_t}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ std::move(movement),\ \ \textcolor{comment}{//\ MovementPattern\_t}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ SendUpdate\_t\{\}\ \ \textcolor{comment}{//\ SendUpdate\_t}}
+\DoxyCodeLine{00114\ \ \ \ \ );}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ enemy;}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ Optionnel\ :\ fonction\ pour\ jouer\ un\ son\ d'explosion\ sur\ une\ entité\ existante\ (ex:\ mort)}}
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceFactory_ae838e52ac84283a738f6b53b84199a00}{playDeathSound}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ \textcolor{keyword}{const}\ std::string\&\ soundId\ =\ \textcolor{stringliteral}{"{}enemy\_explosion.wav"{}},\ \textcolor{keywordtype}{float}\ volume\ =\ 90.f)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{if}\ (ecs.\mbox{\hyperlink{classECS_a33c16853296e9784dfb558f35dffbd72}{hasComponent}}<PlaySound\_t>(entity))\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Évite\ le\ double\ son}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(entity,\ \mbox{\hyperlink{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe}{createSound}}(soundId,\ volume));}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}\ Text\_t\ \mbox{\hyperlink{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b}{createText}}(}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ textStr,}
+\DoxyCodeLine{00132\ \ \ \ \ uint32\_t\ fontSize\ =\ 48,}
+\DoxyCodeLine{00133\ \ \ \ \ sf::Color\ color\ =\ sf::Color::White,}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{bool}\ centered\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ fontId\ =\ \textcolor{stringliteral}{"{}default"{}},}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{bool}\ visible\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00137\ )\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ Text\_t\ t;}
+\DoxyCodeLine{00139\ \ \ \ \ std::memset(t.text,\ 0,\ \textcolor{keyword}{sizeof}(t.text));}
+\DoxyCodeLine{00140\ \ \ \ \ std::strncpy(t.text,\ textStr.c\_str(),\ \textcolor{keyword}{sizeof}(t.text)\ -\/\ 1);}
+\DoxyCodeLine{00141\ \ \ \ \ t.text[\textcolor{keyword}{sizeof}(t.text)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00142\ \ \ \ \ t.fontSize\ =\ fontSize;}
+\DoxyCodeLine{00143\ \ \ \ \ t.color\ =\ color;}
+\DoxyCodeLine{00144\ \ \ \ \ t.originalColor\ =\ color;\ \ \textcolor{comment}{//\ Sauvegarde\ la\ couleur\ originale}}
+\DoxyCodeLine{00145\ \ \ \ \ t.centered\ =\ centered;}
+\DoxyCodeLine{00146\ \ \ \ \ std::strncpy(t.fontId,\ fontId.c\_str(),\ \textcolor{keyword}{sizeof}(t.fontId)\ -\/\ 1);}
+\DoxyCodeLine{00147\ \ \ \ \ t.visible\ =\ visible;}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_aa56583e9c9566625de9000f121539cff}{createMenuTitle}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structMenu}{Menu}}\&\ menu)}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ titleEntity\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00154\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Text\_t>(}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ titleEntity,}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ Position\_t\{menu.\mbox{\hyperlink{structMenu_a5766db25e0204ceffb44903101da9533}{titleXPosition}},\ menu.\mbox{\hyperlink{structMenu_a24f105d9ed1482bdcaaa832c6bead84c}{titleYPosition}}\},}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b}{createText}}(menu.\mbox{\hyperlink{structMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{title}},\ menu.\mbox{\hyperlink{structMenu_a52a5644ec2128ccad352f40b908f6b4c}{titleFontSize}},\ menu.\mbox{\hyperlink{structMenu_a17faa10af95b7889fd6327a129ac2e82}{titleColor}},\ menu.\mbox{\hyperlink{structMenu_ac8978c0caf3ac6d55d3e8f38a1103903}{titleCentered}},\ menu.\mbox{\hyperlink{structMenu_a137de0af728c02613a80d9f71ebe7544}{titleFontId}},\ \textcolor{keyword}{true})}
+\DoxyCodeLine{00158\ \ \ \ \ );}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ titleEntity;}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1}{createMenuItem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structMenuItem}{MenuItem}}\&\ item)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ menuItem\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00164\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Text\_t,\ MenuItem\_t,\ Highlight\_t>(}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ menuItem,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ Position\_t\{item.\mbox{\hyperlink{structMenuItem_ad052cfe2832e555dab42c8b05541994a}{xPosition}},\ item.\mbox{\hyperlink{structMenuItem_ad024dd0974951f1d91ef766e10253123}{yPosition}}\},}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b}{createText}}(item.\mbox{\hyperlink{structMenuItem_a15b15cd60a242a5ee5ea8284f831f53b}{text}},\ item.\mbox{\hyperlink{structMenuItem_a708b5ec5478e39ca71c271d551b51204}{fontSize}},\ item.\mbox{\hyperlink{structMenuItem_a70fcf52e39992b5c21cbafb4c513ea51}{color}},\ item.\mbox{\hyperlink{structMenuItem_a00837f274e38bc8240cf66b38dfaeb4b}{centered}},\ item.\mbox{\hyperlink{structMenuItem_a7677369f11a5f2b084ed3d145ef864e0}{fontId}},\ item.\mbox{\hyperlink{structMenuItem_a37d162843f59ac64e9f48f12ea3ec450}{visible}}),}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ MenuItem\_t\{item.\mbox{\hyperlink{structMenuItem_a6553cd043418dcfae2a1ae849ced292e}{action}},\ \textcolor{keyword}{false},\ item.\mbox{\hyperlink{structMenuItem_ab8868aa1bd6a6cfdcb7df293a8ec186a}{isSelectable}}\},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ Highlight\_t\{item.\mbox{\hyperlink{structMenuItem_a88fa868ef60a41228ecab3a604183a40}{selectedColor}},\ item.\mbox{\hyperlink{structMenuItem_a594a96b5a3223eedd6785e78099a530b}{scale}}\}}
+\DoxyCodeLine{00170\ \ \ \ \ );}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ menuItem;}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ Crée\ un\ menu\ complet\ à\ partir\ d'une\ structure\ Menu}}
+\DoxyCodeLine{00175\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceFactory_a1423ca81c8fb075aeee8f91dd2772a49}{createMenu}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structMenu}{Menu}}\&\ menu)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ Crée\ le\ titre\ si\ défini}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{if}\ (!menu.\mbox{\hyperlink{structMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{title}}.empty())\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_aa56583e9c9566625de9000f121539cff}{createMenuTitle}}(ecs,\ menu);}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ Crée\ les\ éléments\ du\ menu}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ item\ :\ menu.\mbox{\hyperlink{structMenu_a4bb5753cd49d4431549ce96bd056a047}{items}})\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1}{createMenuItem}}(ecs,\ item);}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ Joue\ la\ musique\ de\ fond\ si\ définie}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{if}\ (!menu.\mbox{\hyperlink{structMenu_a437510d3d17fd8a3b7c90956f6a093b9}{backgroundMusicId}}.empty())\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ musicEntity\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ BackgroundMusic\_t\ musicComp;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ std::strncpy(musicComp.musicId,\ menu.\mbox{\hyperlink{structMenu_a437510d3d17fd8a3b7c90956f6a093b9}{backgroundMusicId}}.c\_str(),\ \textcolor{keyword}{sizeof}(musicComp.musicId)\ -\/\ 1);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ musicComp.musicId[\textcolor{keyword}{sizeof}(musicComp.musicId)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \ \textcolor{comment}{//\ Assure\ le\ terminateur\ nul}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ musicComp.looping\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ musicComp.volume\ =\ 40.f;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(musicEntity,\ musicComp);}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{comment}{//\ Supprime\ un\ menu\ existant}}
+\DoxyCodeLine{00200\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceFactory_ae3efdaaca24e7128d7e793d49e39fe72}{clearMenu}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs)}
+\DoxyCodeLine{00201\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{auto}\ menuItems\ =\ ecs.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ Text\_t,\ MenuItem\_t>();}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ menuItems)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(e);}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{auto}\ titles\ =\ ecs.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ Text\_t>();}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ titles)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vérifie\ que\ c'est\ bien\ un\ titre\ de\ menu\ (simplification)}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(e);}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{auto}\ musics\ =\ ecs.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<BackgroundMusic\_t>();}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ musics)\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(e);}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ =============\ PLATFORMER\ ENTITIES\ =============}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ Crée\ un\ personnage\ de\ plateforme\ avec\ physique\ complète}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ NOTE:\ PAS\ de\ PlayerController\_t\ car\ ça\ active\ l'InputSystem\ de\ R-\/Type\ qui\ écrase\ la\ gravité\ !}}
+\DoxyCodeLine{00221\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_ab44fd5b3464c00df335f3c64ed3a9179}{createPlatformerPlayer}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}player"{}})}
+\DoxyCodeLine{00222\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ player\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//\ IMPORTANT:\ On\ utilise\ PlatformerController\_t\ au\ lieu\ de\ PlayerController\_t}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//\ pour\ éviter\ que\ l'InputSystem\ écrase\ les\ vélocités\ (MoveUp/MoveDown\ =\ vol\ libre)}}
+\DoxyCodeLine{00226\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Velocity\_t,\ RigidBody\_t,\ Jumper\_t,\ BoxCollider\_t,\ Drawable\_t>(}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ player,}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ Velocity\_t\{0.f,\ 0.f\},}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ RigidBody\_t\{1.f,\ 1.f,\ 0.2f,\ 0.f,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ \textcolor{keyword}{false},\ 5.f\},\ \ \textcolor{comment}{//\ masse,\ gravité,\ drag\ (↑\ pour\ moins\ glisser),\ bounce,\ useGravity,\ kinematic,\ grounded,\ groundCheck}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ Jumper\_t\{650.f,\ 2,\ 0,\ \textcolor{keyword}{true},\ 0.15f,\ 0.f,\ 0.1f,\ 0.f\},\ \ \textcolor{comment}{//\ jumpForce\ (↑\ pour\ sauter\ plus\ haut),\ maxJumps,\ currentJumps,\ canJump,\ coyoteTime,\ coyoteCounter,\ jumpBuffer,\ bufferCounter}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ BoxCollider\_t\{48.f,\ 64.f,\ 8.f,\ 0.f,\ \textcolor{keyword}{false},\ 0,\ 0xFFFFFFFF\},\ \ \textcolor{comment}{//\ width,\ height,\ offsetX,\ offsetY,\ trigger,\ layer,\ mask}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ 64,\ 64\},\ 10,\ \textcolor{keyword}{true},\ 1.f,\ 0.f)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PAS\ de\ PlayerController\_t\ ici\ !\ Le\ platformer\ gère\ ses\ inputs\ manuellement.}}
+\DoxyCodeLine{00235\ \ \ \ \ );}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ player;}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{comment}{//\ Crée\ une\ plateforme\ statique}}
+\DoxyCodeLine{00240\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_af024b3569d47fa562a804abd6c37ae0b}{createPlatform}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ oneWay\ =\ \textcolor{keyword}{false},\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}platform"{}})}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ platform\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00244\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Platform\_t,\ BoxCollider\_t,\ Drawable\_t,\ RigidBody\_t>(}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ platform,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ Platform\_t\{oneWay,\ \textcolor{keyword}{false},\ 1.f,\ \{0.f,\ 0.f\}\},}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ BoxCollider\_t\{width,\ height,\ 0.f,\ 0.f,\ \textcolor{keyword}{false},\ 1,\ 0xFFFFFFFF\},}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(width),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(height)\},\ 5,\ \textcolor{keyword}{true},\ 1.f,\ 0.f),}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ RigidBody\_t\{100.f,\ 0.f,\ 0.f,\ 0.f,\ \textcolor{keyword}{false},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ 0.f\}\ \ \textcolor{comment}{//\ Kinematic\ =\ ne\ bouge\ pas}}
+\DoxyCodeLine{00251\ \ \ \ \ );}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{return}\ platform;}
+\DoxyCodeLine{00253\ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{comment}{//\ Crée\ une\ plateforme\ mouvante}}
+\DoxyCodeLine{00256\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a5a8855fb189fdd901209a94d75a6d451}{createMovingPlatform}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ velX,\ \textcolor{keywordtype}{float}\ velY,\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}platform"{}})}
+\DoxyCodeLine{00258\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ platform\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00260\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Velocity\_t,\ Platform\_t,\ BoxCollider\_t,\ Drawable\_t,\ RigidBody\_t>(}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ platform,}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ Velocity\_t\{velX,\ velY\},}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ Platform\_t\{\textcolor{keyword}{false},\ \textcolor{keyword}{false},\ 1.f,\ \{velX,\ velY\}\},}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ BoxCollider\_t\{width,\ height,\ 0.f,\ 0.f,\ \textcolor{keyword}{false},\ 1,\ 0xFFFFFFFF\},}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(width),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(height)\},\ 5,\ \textcolor{keyword}{true},\ 1.f,\ 0.f),}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ RigidBody\_t\{100.f,\ 0.f,\ 0.f,\ 0.f,\ \textcolor{keyword}{false},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ 0.f\}}
+\DoxyCodeLine{00268\ \ \ \ \ );}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{return}\ platform;}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{comment}{//\ Crée\ un\ mur/obstacle}}
+\DoxyCodeLine{00273\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a5cdda0e3e7aefd2d7c21f21036129f79}{createWall}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,\ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}wall"{}})}
+\DoxyCodeLine{00275\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ wall\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00277\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ BoxCollider\_t,\ Drawable\_t,\ RigidBody\_t>(}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ wall,}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ BoxCollider\_t\{width,\ height,\ 0.f,\ 0.f,\ \textcolor{keyword}{false},\ 1,\ 0xFFFFFFFF\},}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(width),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(height)\},\ 5,\ \textcolor{keyword}{true},\ 1.f,\ 0.f),}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ RigidBody\_t\{1000.f,\ 0.f,\ 0.f,\ 0.f,\ \textcolor{keyword}{false},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ 0.f\}}
+\DoxyCodeLine{00283\ \ \ \ \ );}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{return}\ wall;}
+\DoxyCodeLine{00285\ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{comment}{//\ Crée\ une\ échelle}}
+\DoxyCodeLine{00288\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_aabbcc1893c1ad6aa61b9be2c6618d192}{createLadder}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ climbSpeed\ =\ 150.f,\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}ladder"{}})}
+\DoxyCodeLine{00290\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ ladder\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00292\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Ladder\_t,\ BoxCollider\_t,\ Drawable\_t>(}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ ladder,}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ Ladder\_t\{climbSpeed\},}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ BoxCollider\_t\{width,\ height,\ 0.f,\ 0.f,\ \textcolor{keyword}{true},\ 2,\ 0xFFFFFFFF\},\ \ \textcolor{comment}{//\ Trigger}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(width),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(height)\},\ 4,\ \textcolor{keyword}{true},\ 1.f,\ 0.f)}
+\DoxyCodeLine{00298\ \ \ \ \ );}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{return}\ ladder;}
+\DoxyCodeLine{00300\ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{comment}{//\ Crée\ une\ zone\ de\ téléportation}}
+\DoxyCodeLine{00303\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a7178225e4b889c2808f1d1d0c6dd4f5c}{createTeleporter}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ targetPos,\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}teleporter"{}})}
+\DoxyCodeLine{00305\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ teleporter\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00307\ \ \ \ \ }
+\DoxyCodeLine{00308\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ BoxCollider\_t,\ Drawable\_t>(}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ teleporter,}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ BoxCollider\_t\{width,\ height,\ 0.f,\ 0.f,\ \textcolor{keyword}{true},\ 3,\ 0xFFFFFFFF\},}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(width),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(height)\},\ 3,\ \textcolor{keyword}{true},\ 1.f,\ 0.f)}
+\DoxyCodeLine{00313\ \ \ \ \ );}
+\DoxyCodeLine{00314\ \ \ \ \ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{comment}{//\ Ajoute\ le\ TriggerZone\ après\ car\ il\ contient\ une\ lambda}}
+\DoxyCodeLine{00316\ \ \ \ \ TriggerZone\_t\ trigger;}
+\DoxyCodeLine{00317\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Teleporter;}
+\DoxyCodeLine{00318\ \ \ \ \ trigger.teleportPos\ =\ targetPos;}
+\DoxyCodeLine{00319\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00320\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00321\ \ \ \ \ trigger.onTrigger\ =\ [targetPos,\ \&ecs](\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ ecs.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(entity);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>x\ =\ targetPos.x;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>y\ =\ targetPos.y;}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \ \ \};}
+\DoxyCodeLine{00328\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(teleporter,\ trigger);}
+\DoxyCodeLine{00329\ \ \ \ \ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{return}\ teleporter;}
+\DoxyCodeLine{00331\ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{comment}{//\ Crée\ une\ zone\ de\ mort\ (kill\ zone)}}
+\DoxyCodeLine{00334\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a89692d0524d05eecd4ca9696bd89344c}{createDeathZone}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height)}
+\DoxyCodeLine{00335\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ deathZone\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00337\ \ \ \ \ }
+\DoxyCodeLine{00338\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ BoxCollider\_t>(}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ deathZone,}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ BoxCollider\_t\{width,\ height,\ 0.f,\ 0.f,\ \textcolor{keyword}{true},\ 4,\ 0xFFFFFFFF\}}
+\DoxyCodeLine{00342\ \ \ \ \ );}
+\DoxyCodeLine{00343\ \ \ \ \ }
+\DoxyCodeLine{00344\ \ \ \ \ TriggerZone\_t\ trigger;}
+\DoxyCodeLine{00345\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Death;}
+\DoxyCodeLine{00346\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00347\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00348\ \ \ \ \ trigger.onTrigger\ =\ [\&ecs](\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tue\ l'entité\ qui\ entre\ dans\ la\ zone}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ health\ =\ ecs.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(entity);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health)\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ health-\/>current\ =\ 0;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \};}
+\DoxyCodeLine{00355\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(deathZone,\ trigger);}
+\DoxyCodeLine{00356\ \ \ \ \ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordflow}{return}\ deathZone;}
+\DoxyCodeLine{00358\ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \textcolor{comment}{//\ Crée\ un\ checkpoint}}
+\DoxyCodeLine{00361\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a9f08dec3ed1c6f9b0af551f25ed912c7}{createCheckpoint}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}checkpoint"{}})}
+\DoxyCodeLine{00362\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ checkpoint\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00364\ \ \ \ \ }
+\DoxyCodeLine{00365\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ BoxCollider\_t,\ Drawable\_t>(}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ checkpoint,}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ BoxCollider\_t\{64.f,\ 64.f,\ 0.f,\ 0.f,\ \textcolor{keyword}{true},\ 5,\ 0xFFFFFFFF\},}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ 64,\ 64\},\ 3,\ \textcolor{keyword}{true},\ 1.f,\ 0.f)}
+\DoxyCodeLine{00370\ \ \ \ \ );}
+\DoxyCodeLine{00371\ \ \ \ \ }
+\DoxyCodeLine{00372\ \ \ \ \ TriggerZone\_t\ trigger;}
+\DoxyCodeLine{00373\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Checkpoint;}
+\DoxyCodeLine{00374\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00375\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00376\ \ \ \ \ trigger.teleportPos\ =\ sf::Vector2f(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}});}
+\DoxyCodeLine{00377\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(checkpoint,\ trigger);}
+\DoxyCodeLine{00378\ \ \ \ \ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordflow}{return}\ checkpoint;}
+\DoxyCodeLine{00380\ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{comment}{//\ Crée\ un\ objet\ ramassable\ (collectible)}}
+\DoxyCodeLine{00383\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_aaea545222d73758b12ff7313e20c878c}{createCollectible}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keyword}{const}\ std::string\&\ textureId\ =\ \textcolor{stringliteral}{"{}coin"{}})}
+\DoxyCodeLine{00384\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ collectible\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00386\ \ \ \ \ }
+\DoxyCodeLine{00387\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ BoxCollider\_t,\ Drawable\_t>(}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ collectible,}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ BoxCollider\_t\{32.f,\ 32.f,\ 0.f,\ 0.f,\ \textcolor{keyword}{true},\ 6,\ 0xFFFFFFFF\},}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{createDrawable}}(textureId,\ \{0,\ 0,\ 32,\ 32\},\ 8,\ \textcolor{keyword}{true},\ 1.f,\ 0.f)}
+\DoxyCodeLine{00392\ \ \ \ \ );}
+\DoxyCodeLine{00393\ \ \ \ \ }
+\DoxyCodeLine{00394\ \ \ \ \ TriggerZone\_t\ trigger;}
+\DoxyCodeLine{00395\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Custom;}
+\DoxyCodeLine{00396\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00397\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00398\ \ \ \ \ trigger.onTrigger\ =\ [\&ecs,\ collectible](\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Détruit\ le\ collectible\ quand\ il\ est\ ramassé}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(collectible);}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ici,\ tu\ peux\ ajouter\ du\ code\ pour\ incrémenter\ un\ score,\ jouer\ un\ son,\ etc.}}
+\DoxyCodeLine{00402\ \ \ \ \ \};}
+\DoxyCodeLine{00403\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(collectible,\ trigger);}
+\DoxyCodeLine{00404\ \ \ \ \ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{return}\ collectible;}
+\DoxyCodeLine{00406\ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \}\ \textcolor{comment}{//\ namespace\ Factory}}
+
+\end{DoxyCode}

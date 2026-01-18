@@ -1,0 +1,389 @@
+\doxysection{Physics\+System.\+hpp}
+\hypertarget{PhysicsSystem_8hpp_source}{}\label{PhysicsSystem_8hpp_source}\index{include/engine/systems/PhysicsSystem.hpp@{include/engine/systems/PhysicsSystem.hpp}}
+\mbox{\hyperlink{PhysicsSystem_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ PhysicsSystem\ -\/\ Gère\ la\ physique\ (gravité,\ forces,\ collisions)}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/System/Vector2.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classISystem}{ISystem}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ gravity\ =\ 980.f);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_aa7875b96712f96732212d3949d8bbebf}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Configuration\ de\ la\ physique}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a511ae1a17b3193135bb3fe84535f0e59}{setGravity}}(\textcolor{keywordtype}{float}\ gravity)\ \{\ \mbox{\hyperlink{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}{\_gravity}}\ =\ gravity;\ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPhysicsSystem_a26de654e9cc8e9fd3e925675024eb59e}{getGravity}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}{\_gravity}};\ \}}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ gravité\ à\ une\ entité\ spécifique}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a66966eb4b5f7e1f0a12548022f321755}{applyGravity}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Applique\ une\ force\ à\ une\ entité}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_ace64575a51704850daa2f7127b0a7a29}{applyForce}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ sf::Vector2f\ force);}
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Applique\ une\ impulsion\ (force\ instantanée)}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_aa0702ce94e3f1488f4fb470682a50dc6}{applyImpulse}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ sf::Vector2f\ impulse);}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Vérifie\ si\ une\ entité\ est\ au\ sol}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPhysicsSystem_adeee0d1e48d6cb3cb6b6e2bf074a3cf1}{isGrounded}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity);}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Effectue\ un\ raycast\ (pour\ vérifier\ le\ sol,\ par\ exemple)}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPhysicsSystem_aa968f10b042784fe94b7c716f740ad22}{raycast}}(sf::Vector2f\ start,\ sf::Vector2f\ direction,\ \textcolor{keywordtype}{float}\ distance,\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\&\ hitEntity);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37}{updateRigidBodies}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7}{updateJumpers}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206}{updateVelocities}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043}{resolveCollisions}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Obtient\ le\ rectangle\ de\ collision\ d'une\ entité}}
+\DoxyCodeLine{00047\ \ \ \ \ sf::FloatRect\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity);}
+\DoxyCodeLine{00048\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}{\_gravity}};\ \ \textcolor{comment}{//\ Gravité\ en\ pixels/s²}}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ =============\ IMPLEMENTATION\ =============}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \mbox{\hyperlink{classPhysicsSystem_a2b1e608f807a27680d4c4e19ef4d90f6}{PhysicsSystem::PhysicsSystem}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ gravity)}
+\DoxyCodeLine{00055\ \ \ \ \ :\ \mbox{\hyperlink{classISystem}{ISystem}}(ecs),\ \_gravity(gravity)}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_aa7875b96712f96732212d3949d8bbebf}{PhysicsSystem::update}}(\textcolor{keywordtype}{double}\ dt)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ fdt\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(dt);}
+\DoxyCodeLine{00062\ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ 1.\ Applique\ la\ gravité\ et\ les\ forces}}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37}{updateRigidBodies}}(fdt);}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ 2.\ Met\ à\ jour\ les\ vélocités\ (drag,\ friction)}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206}{updateVelocities}}(fdt);}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ 3.\ Résout\ les\ mouvements\ et\ collisions\ PAR\ AXE\ (X\ puis\ Y)}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043}{resolveCollisions}}(fdt);}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ 4.\ Met\ à\ jour\ les\ jumpers\ (coyote\ time,\ jump\ buffer)}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7}{updateJumpers}}(fdt);}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37}{PhysicsSystem::updateRigidBodies}}(\textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<RigidBody\_t,\ Velocity\_t>();}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ entities)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(e);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ vel\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(e);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rb\ ||\ !vel\ ||\ rb-\/>isKinematic)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ gravité}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb-\/>useGravity)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>y\ +=\ \mbox{\hyperlink{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}{\_gravity}}\ *\ rb-\/>gravityScale\ *\ dt;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ le\ drag\ (résistance\ de\ l'air)}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb-\/>drag\ >\ 0.f)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dragFactor\ =\ 1.f\ -\/\ std::min(rb-\/>drag\ *\ dt,\ 1.f);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>x\ *=\ dragFactor;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>y\ *=\ dragFactor;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206}{PhysicsSystem::updateVelocities}}(\textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Velocity\_t>();}
+\DoxyCodeLine{00103\ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ entities)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ vel\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(e);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!vel)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ friction\ si\ l'entité\ est\ au\ sol}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(e);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb\ \&\&\ rb-\/>isGrounded)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Trouve\ la\ plateforme\ sous\ l'entité}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ platforms\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Platform\_t>();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ p\ :\ platforms)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ platform\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Platform\_t>(p);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!platform)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ la\ friction\ de\ la\ plateforme}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>x\ *=\ (1.f\ -\/\ platform-\/>friction\ *\ dt\ *\ 5.f);\ \ \textcolor{comment}{//\ Facteur\ de\ friction}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ la\ plateforme\ bouge,\ transfère\ sa\ vélocité}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (platform-\/>velocity.x\ !=\ 0.f\ ||\ platform-\/>velocity.y\ !=\ 0.f)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>x\ +=\ platform-\/>velocity.x\ *\ dt;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>y\ +=\ platform-\/>velocity.y\ *\ dt;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ \textcolor{comment}{//\ Une\ seule\ plateforme\ à\ la\ fois}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7}{PhysicsSystem::updateJumpers}}(\textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Jumper\_t,\ RigidBody\_t>();}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ entities)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ jumper\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Jumper\_t>(e);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(e);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!jumper\ ||\ !rb)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ le\ coyote\ time}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb-\/>isGrounded)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ jumper-\/>coyoteCounter\ =\ jumper-\/>coyoteTime;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ jumper-\/>currentJumps\ =\ 0;\ \ \textcolor{comment}{//\ Réinitialise\ les\ sauts}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ jumper-\/>coyoteCounter\ -\/=\ dt;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Met\ à\ jour\ le\ jump\ buffer}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (jumper-\/>jumpBufferCounter\ >\ 0.f)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ jumper-\/>jumpBufferCounter\ -\/=\ dt;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Détermine\ si\ on\ peut\ sauter}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ jumper-\/>canJump\ =\ (jumper-\/>coyoteCounter\ >\ 0.f\ ||\ jumper-\/>currentJumps\ <\ jumper-\/>maxJumps);}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043}{PhysicsSystem::resolveCollisions}}(\textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ Réinitialise\ l'état\ au\ sol\ pour\ toutes\ les\ entités}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{auto}\ rigidBodies\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<RigidBody\_t>();}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ rigidBodies)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(e);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb)\ rb-\/>isGrounded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ Récupère\ toutes\ les\ entités\ dynamiques\ (qui\ bougent)}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{auto}\ dynamicEntities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ Velocity\_t,\ BoxCollider\_t,\ RigidBody\_t>();}
+\DoxyCodeLine{00170\ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ Récupère\ toutes\ les\ entités\ avec\ des\ colliders\ (plateformes\ incluses)}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{auto}\ staticEntities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ BoxCollider\_t>();}
+\DoxyCodeLine{00173\ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ Pour\ chaque\ entité\ dynamique}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity\ :\ dynamicEntities)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(entity);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ vel\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(entity);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ col\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BoxCollider\_t>(entity);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(entity);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pos\ ||\ !vel\ ||\ !col\ ||\ !rb\ ||\ rb-\/>isKinematic)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcule\ le\ déplacement\ souhaité\ (utilise\ le\ dt\ réel,\ pas\ hardcodé!)}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ moveX\ =\ vel-\/>x\ *\ dt;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ moveY\ =\ vel-\/>y\ *\ dt;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ===\ MOUVEMENT\ EN\ X\ (horizontal)\ ===}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (moveX\ !=\ 0.f)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>x\ +=\ moveX;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vérifie\ les\ collisions\ après\ le\ mouvement\ en\ X}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ sf::FloatRect\ entityRect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(entity);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ obstacle\ :\ staticEntities)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle\ ==\ entity)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ obsCol\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BoxCollider\_t>(obstacle);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!obsCol\ ||\ obsCol-\/>isTrigger)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vérifie\ les\ layers\ de\ collision}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((col-\/>collisionMask\ \&\ (1\ <<\ obsCol-\/>layer))\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::FloatRect\ obstacleRect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(obstacle);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ de\ collision\ AABB}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entityRect.intersects(obstacleRect))\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Collision\ détectée\ !\ Résout\ sur\ l'axe\ X}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (moveX\ >\ 0.f)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bouge\ vers\ la\ droite\ →\ snap\ à\ gauche\ de\ l'obstacle}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>x\ =\ obstacleRect.left\ -\/\ col-\/>width\ -\/\ col-\/>offsetX;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bouge\ vers\ la\ gauche\ →\ snap\ à\ droite\ de\ l'obstacle}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>x\ =\ obstacleRect.left\ +\ obstacleRect.width\ -\/\ col-\/>offsetX;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Annule\ la\ vélocité\ horizontale}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>x\ =\ 0.f;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ \textcolor{comment}{//\ Une\ seule\ collision\ par\ axe}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ===\ MOUVEMENT\ EN\ Y\ (vertical)\ ===}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (moveY\ !=\ 0.f)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>y\ +=\ moveY;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vérifie\ les\ collisions\ après\ le\ mouvement\ en\ Y}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ sf::FloatRect\ entityRect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(entity);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ obstacle\ :\ staticEntities)\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle\ ==\ entity)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ obsCol\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BoxCollider\_t>(obstacle);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!obsCol\ ||\ obsCol-\/>isTrigger)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vérifie\ les\ layers\ de\ collision}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((col-\/>collisionMask\ \&\ (1\ <<\ obsCol-\/>layer))\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::FloatRect\ obstacleRect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(obstacle);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ de\ collision\ AABB}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entityRect.intersects(obstacleRect))\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Collision\ détectée\ !\ Résout\ sur\ l'axe\ Y}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (moveY\ >\ 0.f)\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tombe\ vers\ le\ bas\ →\ snap\ au-\/dessus\ de\ l'obstacle\ (atterrissage)}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>y\ =\ obstacleRect.top\ -\/\ col-\/>height\ -\/\ col-\/>offsetY;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rb-\/>isGrounded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Applique\ le\ rebond\ ou\ annule\ la\ vélocité}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb-\/>bounciness\ >\ 0.f)\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>y\ =\ -\/vel-\/>y\ *\ rb-\/>bounciness;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>y\ =\ 0.f;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Monte\ vers\ le\ haut\ →\ snap\ en-\/dessous\ de\ l'obstacle\ (frappe\ le\ plafond)}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>y\ =\ obstacleRect.top\ +\ obstacleRect.height\ -\/\ col-\/>offsetY;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vel-\/>y\ =\ 0.f;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ \textcolor{comment}{//\ Une\ seule\ collision\ par\ axe}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ===\ VÉRIFICATION\ SUPPLÉMENTAIRE\ DU\ SOL\ (pour\ éviter\ les\ faux\ positifs)\ ===}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vérifie\ si\ l'entité\ est\ juste\ au-\/dessus\ d'une\ plateforme\ (distance\ <\ 2\ pixels)}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rb-\/>isGrounded\ \&\&\ vel-\/>y\ >=\ 0.f)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ sf::FloatRect\ entityRect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(entity);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ entityRect.top\ +=\ 2.f;\ \ \textcolor{comment}{//\ Étend\ légèrement\ vers\ le\ bas}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ obstacle\ :\ staticEntities)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (obstacle\ ==\ entity)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ obsCol\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BoxCollider\_t>(obstacle);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!obsCol\ ||\ obsCol-\/>isTrigger)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((col-\/>collisionMask\ \&\ (1\ <<\ obsCol-\/>layer))\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::FloatRect\ obstacleRect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(obstacle);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entityRect.intersects(obstacleRect))\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rb-\/>isGrounded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ sf::FloatRect\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{PhysicsSystem::getColliderRect}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)}
+\DoxyCodeLine{00291\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(entity);}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{auto}*\ col\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<BoxCollider\_t>(entity);}
+\DoxyCodeLine{00294\ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pos\ ||\ !col)\ \textcolor{keywordflow}{return}\ sf::FloatRect();}
+\DoxyCodeLine{00296\ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{return}\ sf::FloatRect(}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ pos-\/>x\ +\ col-\/>offsetX,}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ pos-\/>y\ +\ col-\/>offsetY,}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ col-\/>width,}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ col-\/>height}
+\DoxyCodeLine{00302\ \ \ \ \ );}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_a66966eb4b5f7e1f0a12548022f321755}{PhysicsSystem::applyGravity}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ \textcolor{keywordtype}{float}\ dt)}
+\DoxyCodeLine{00306\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(entity);}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{auto}*\ vel\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(entity);}
+\DoxyCodeLine{00309\ \ \ \ \ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{if}\ (rb\ \&\&\ vel\ \&\&\ rb-\/>useGravity\ \&\&\ !rb-\/>isKinematic)\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ vel-\/>y\ +=\ \mbox{\hyperlink{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}{\_gravity}}\ *\ rb-\/>gravityScale\ *\ dt;}
+\DoxyCodeLine{00312\ \ \ \ \ \}}
+\DoxyCodeLine{00313\ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_ace64575a51704850daa2f7127b0a7a29}{PhysicsSystem::applyForce}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ sf::Vector2f\ force)}
+\DoxyCodeLine{00316\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(entity);}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{auto}*\ vel\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(entity);}
+\DoxyCodeLine{00319\ \ \ \ \ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{if}\ (rb\ \&\&\ vel\ \&\&\ !rb-\/>isKinematic)\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ F\ =\ ma\ =>\ a\ =\ F/m\ =>\ v\ +=\ a*dt\ (intégré\ dans\ le\ prochain\ update)}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ vel-\/>x\ +=\ force.x\ /\ rb-\/>mass;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ vel-\/>y\ +=\ force.y\ /\ rb-\/>mass;}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPhysicsSystem_aa0702ce94e3f1488f4fb470682a50dc6}{PhysicsSystem::applyImpulse}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity,\ sf::Vector2f\ impulse)}
+\DoxyCodeLine{00328\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(entity);}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{auto}*\ vel\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(entity);}
+\DoxyCodeLine{00331\ \ \ \ \ }
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordflow}{if}\ (rb\ \&\&\ vel\ \&\&\ !rb-\/>isKinematic)\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Impulsion\ =\ changement\ instantané\ de\ vélocité}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ vel-\/>x\ +=\ impulse.x\ /\ rb-\/>mass;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ vel-\/>y\ +=\ impulse.y\ /\ rb-\/>mass;}
+\DoxyCodeLine{00336\ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPhysicsSystem_adeee0d1e48d6cb3cb6b6e2bf074a3cf1}{PhysicsSystem::isGrounded}}(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)}
+\DoxyCodeLine{00340\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{auto}*\ rb\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<RigidBody\_t>(entity);}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{return}\ rb\ \&\&\ rb-\/>isGrounded;}
+\DoxyCodeLine{00343\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPhysicsSystem_aa968f10b042784fe94b7c716f740ad22}{PhysicsSystem::raycast}}(sf::Vector2f\ start,\ sf::Vector2f\ direction,\ \textcolor{keywordtype}{float}\ distance,\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\&\ hitEntity)}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{comment}{//\ Normalise\ la\ direction}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ std::sqrt(direction.x\ *\ direction.x\ +\ direction.y\ *\ direction.y);}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.f)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00350\ \ \ \ \ }
+\DoxyCodeLine{00351\ \ \ \ \ direction.x\ /=\ length;}
+\DoxyCodeLine{00352\ \ \ \ \ direction.y\ /=\ length;}
+\DoxyCodeLine{00353\ \ \ \ \ }
+\DoxyCodeLine{00354\ \ \ \ \ sf::Vector2f\ end\ =\ start\ +\ direction\ *\ distance;}
+\DoxyCodeLine{00355\ \ \ \ \ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{comment}{//\ Vérifie\ l'intersection\ avec\ tous\ les\ colliders}}
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_a8d931ce389d47888768e1a5092bde26b}{getEntitiesByComponents}}<Position\_t,\ BoxCollider\_t>();}
+\DoxyCodeLine{00358\ \ \ \ \ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordtype}{float}\ closestDist\ =\ distance;}
+\DoxyCodeLine{00360\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ closest\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00361\ \ \ \ \ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ e\ :\ entities)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ sf::FloatRect\ rect\ =\ \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{getColliderRect}}(e);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ d'intersection\ rayon-\/rectangle\ simplifié}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (pour\ une\ vraie\ implémentation,\ utiliser\ un\ algo\ plus\ robuste)}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rect.contains(end))\ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\ =\ std::sqrt((end.x\ -\/\ start.x)\ *\ (end.x\ -\/\ start.x)\ +\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (end.y\ -\/\ start.y)\ *\ (end.y\ -\/\ start.y));}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\ <\ closestDist)\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closestDist\ =\ dist;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\ =\ e;}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordflow}{if}\ (closest\ !=\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1))\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ hitEntity\ =\ closest;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ }
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00383\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,11 @@
+<map id="CameraSystem::setZoom" name="CameraSystem::setZoom">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,193,56"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="278,5,429,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,31,264,24,265,29,194,37"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="241,55,465,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="194,50,228,53,227,58,193,55"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="513,5,689,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="429,15,499,15,499,21,429,21"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="737,5,916,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="689,15,724,15,724,21,689,21"/>
+</map>

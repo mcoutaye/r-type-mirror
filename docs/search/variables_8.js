@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['inputstosend_0',['inputsToSend',['../classUdpClient.html#af0fa766b3f0e9ec64df4ba6eabafbba4',1,'UdpClient']]],
-  ['inputsystem_1',['inputSystem',['../classGameEngine.html#ab06a890abf6f2855c390325aca8ceca1',1,'GameEngine']]],
-  ['isrunning_2',['isRunning',['../classGameEngine.html#aa90b3c33473ae75f83ab28f822e13ab7',1,'GameEngine']]],
-  ['isshooting_3',['isshooting',['../structComponents_1_1PlayerController.html#a4dc2bdf1ca51df9b61cfc18fdcb06b03',1,'Components::PlayerController::isShooting'],['../structComponents_1_1Shootable.html#ac8520820f5125d6a56139a11d4316486',1,'Components::Shootable::isShooting']]]
+  ['health_0',['health',['../structComponents_1_1DestructibleTile.html#a8d0d689563c6bca55859fa66ed833652',1,'Components::DestructibleTile::health'],['../structEntityUpdate.html#a3a683819581da8fc9cf1922c523f8d94',1,'EntityUpdate::health']]],
+  ['height_1',['height',['../structComponents_1_1Collider.html#ae3919b40a8818971bdfe1b9e617b65fe',1,'Components::Collider::height'],['../structComponents_1_1BoxCollider.html#a1dc25d9a33d7f4916e6afac090620d7d',1,'Components::BoxCollider::height']]]
 ];

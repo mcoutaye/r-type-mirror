@@ -10,20 +10,105 @@
 \DoxyCodeLine{00006\ \textcolor{comment}{*/}}
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \#include\ <unordered\_map>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <iostream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <sstream>}}
 \DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classResourceManager}{ResourceManager}}\ \{}
 \DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ \mbox{\hyperlink{classResourceManager_ad4dd8ab7ad458929de4a60128079af98}{getInstance}}();}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResourceManager_a6c41093464fab6eeb09cd6eb1f79f4e9}{loadTexture}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ filepath);}
-\DoxyCodeLine{00019\ \ \ \ \ sf::Texture\&\ \mbox{\hyperlink{classResourceManager_a78632647a9a86d0b477de5055a5a2fcc}{getTexture}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id});}
-\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classResourceManager_a2d9db4c26c604834c60702ded80947d8}{ResourceManager}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00022\ \ \ \ \ std::unordered\_map<std::string,\ sf::Texture>\ \mbox{\hyperlink{classResourceManager_af6cde2e01afb32306a8b7afc98927aa3}{\_textures}};}
-\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ \mbox{\hyperlink{classResourceManager_a37d0e97686c031cef9b22725ba4a6005}{getInstance}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ ===\ TEXTURES\ ===}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResourceManager_a6c41093464fab6eeb09cd6eb1f79f4e9}{loadTexture}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ filepath);}
+\DoxyCodeLine{00021\ \ \ \ \ sf::Texture\&\ \mbox{\hyperlink{classResourceManager_a78632647a9a86d0b477de5055a5a2fcc}{getTexture}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ ===\ FONTS\ ===}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResourceManager_ae5703de608dfd5d915addb8ed4086b23}{loadFont}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ filepath);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ sf::Font\&\ \mbox{\hyperlink{classResourceManager_a29758789d4a198a3e7d8a11ed69d9cad}{getFont}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classResourceManager_a2d9db4c26c604834c60702ded80947d8}{ResourceManager}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classResourceManager_a611e031031ad668b7c462a463577b65c}{\string~ResourceManager}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classResourceManager_ab69f63d44bed2b736ac816d9a2bf84c1}{ResourceManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ \mbox{\hyperlink{classResourceManager_ac213fb8bed90e40d1ba8018563f9e4b0}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::unordered\_map<std::string,\ sf::Texture>\ \mbox{\hyperlink{classResourceManager_af6cde2e01afb32306a8b7afc98927aa3}{\_textures}};}
+\DoxyCodeLine{00034\ \ \ \ \ std::unordered\_map<std::string,\ sf::Font>\ \mbox{\hyperlink{classResourceManager_a96d005a3795d5ac0d03dce4999eee12e}{\_fonts}};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\&\ \mbox{\hyperlink{classResourceManager_a37d0e97686c031cef9b22725ba4a6005}{ResourceManager::getInstance}}()}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classResourceManager}{ResourceManager}}\ instance;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ instance;}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ ===\ TEXTURES\ ===}}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResourceManager_a6c41093464fab6eeb09cd6eb1f79f4e9}{ResourceManager::loadTexture}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ filepath)}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ sf::Texture\ texture;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (!texture.loadFromFile(filepath))\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[Resource]\ Erreur\ chargement\ texture\ :\ "{}}\ <<\ filepath\ <<\ std::endl;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classResourceManager_af6cde2e01afb32306a8b7afc98927aa3}{\_textures}}[id]\ =\ std::move(texture);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ sf::Texture\&\ \mbox{\hyperlink{classResourceManager_a78632647a9a86d0b477de5055a5a2fcc}{ResourceManager::getTexture}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{classResourceManager_af6cde2e01afb32306a8b7afc98927aa3}{\_textures}}.find(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ \mbox{\hyperlink{classResourceManager_af6cde2e01afb32306a8b7afc98927aa3}{\_textures}}.end())\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second;}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Fallback\ :\ texture\ rouge}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ sf::Texture\ fallback;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ initialized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (!initialized)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ sf::Image\ img;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ img.create(64,\ 64,\ sf::Color::Red);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ fallback.loadFromImage(img);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ initialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[Resource]\ Texture\ manquante\ :\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ \textcolor{stringliteral}{"{}\ →\ fallback\ rouge"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ fallback;}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ ===\ FONTS\ ===}}
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResourceManager_ae5703de608dfd5d915addb8ed4086b23}{ResourceManager::loadFont}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ filepath)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(filepath))\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[Resource]\ Erreur\ chargement\ police\ :\ "{}}\ <<\ filepath\ <<\ std::endl;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classResourceManager_a96d005a3795d5ac0d03dce4999eee12e}{\_fonts}}[id]\ =\ std::move(font);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{const}\ sf::Font\&\ \mbox{\hyperlink{classResourceManager_a29758789d4a198a3e7d8a11ed69d9cad}{ResourceManager::getFont}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{classResourceManager_a96d005a3795d5ac0d03dce4999eee12e}{\_fonts}}.find(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ \mbox{\hyperlink{classResourceManager_a96d005a3795d5ac0d03dce4999eee12e}{\_fonts}}.end())\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Fallback\ :\ police\ système\ basique\ ou\ intégrée}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ sf::Font\ fallback;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ initialized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (!initialized)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Essaie\ de\ charger\ une\ police\ par\ défaut\ du\ système}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!fallback.loadFromFile(\textcolor{stringliteral}{"{}assets/fonts/arial.ttf"{}})\ \&\&}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ !fallback.loadFromFile(\textcolor{stringliteral}{"{}/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"{}})\ \&\&}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ !fallback.loadFromFile(\textcolor{stringliteral}{"{}C:/Windows/Fonts/arial.ttf"{}}))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[Resource]\ Aucune\ police\ fallback\ disponible\ !"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ initialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[Resource]\ Police\ manquante\ :\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ \textcolor{stringliteral}{"{}\ →\ fallback"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ fallback;}
+\DoxyCodeLine{00108\ \}}
 
 \end{DoxyCode}

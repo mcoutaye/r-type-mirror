@@ -1,0 +1,97 @@
+\doxysection{Scene\+Manager Class Reference}
+\hypertarget{classSceneManager}{}\label{classSceneManager}\index{SceneManager@{SceneManager}}
+
+
+{\ttfamily \#include $<$Scene\+Manager.\+hpp$>$}
+
+
+
+Collaboration diagram for Scene\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classSceneManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSceneManager_a56b1ef27e865698a4fba3ed35cd313a4}{add\+Scene}} (const std\+::string \&id)
+\item 
+void \mbox{\hyperlink{classSceneManager_a66e7703c21f2dc1a8388825917e3f483}{set\+Active\+Scene}} (const std\+::string \&id)
+\item 
+void \mbox{\hyperlink{classSceneManager_a6884abc6c684d8169026a0aadf803872}{deactivate\+Scene}} (const std\+::string \&id)
+\item 
+\mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828}{Scene\+State}} \mbox{\hyperlink{classSceneManager_a4330fc4150aa2f091d5e288d3d5d83a9}{get\+Scene\+State}} (const std\+::string \&id) const
+\item 
+const std\+::string \& \mbox{\hyperlink{classSceneManager_a28abd7bc81065e90b4dfda3d426aa6df}{get\+Active\+Scene\+Id}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}{\+\_\+scene\+Stack}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structScene}{Scene}} $>$ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\+\_\+scenes}}
+\item 
+std\+::string \mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\+\_\+active\+Scene\+Id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSceneManager_a56b1ef27e865698a4fba3ed35cd313a4}\label{classSceneManager_a56b1ef27e865698a4fba3ed35cd313a4} 
+\index{SceneManager@{SceneManager}!addScene@{addScene}}
+\index{addScene@{addScene}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{addScene()}{addScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+::add\+Scene (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})}
+
+\Hypertarget{classSceneManager_a6884abc6c684d8169026a0aadf803872}\label{classSceneManager_a6884abc6c684d8169026a0aadf803872} 
+\index{SceneManager@{SceneManager}!deactivateScene@{deactivateScene}}
+\index{deactivateScene@{deactivateScene}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{deactivateScene()}{deactivateScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+::deactivate\+Scene (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})}
+
+\Hypertarget{classSceneManager_a28abd7bc81065e90b4dfda3d426aa6df}\label{classSceneManager_a28abd7bc81065e90b4dfda3d426aa6df} 
+\index{SceneManager@{SceneManager}!getActiveSceneId@{getActiveSceneId}}
+\index{getActiveSceneId@{getActiveSceneId}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{getActiveSceneId()}{getActiveSceneId()}}
+{\footnotesize\ttfamily const std\+::string \& Scene\+Manager\+::get\+Active\+Scene\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSceneManager_a4330fc4150aa2f091d5e288d3d5d83a9}\label{classSceneManager_a4330fc4150aa2f091d5e288d3d5d83a9} 
+\index{SceneManager@{SceneManager}!getSceneState@{getSceneState}}
+\index{getSceneState@{getSceneState}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{getSceneState()}{getSceneState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828}{Scene\+State}} Scene\+Manager\+::get\+Scene\+State (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSceneManager_a66e7703c21f2dc1a8388825917e3f483}\label{classSceneManager_a66e7703c21f2dc1a8388825917e3f483} 
+\index{SceneManager@{SceneManager}!setActiveScene@{setActiveScene}}
+\index{setActiveScene@{setActiveScene}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{setActiveScene()}{setActiveScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+::set\+Active\+Scene (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}\label{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed} 
+\index{SceneManager@{SceneManager}!\_activeSceneId@{\_activeSceneId}}
+\index{\_activeSceneId@{\_activeSceneId}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{\_activeSceneId}{\_activeSceneId}}
+{\footnotesize\ttfamily std\+::string Scene\+Manager\+::\+\_\+active\+Scene\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}\label{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a} 
+\index{SceneManager@{SceneManager}!\_scenes@{\_scenes}}
+\index{\_scenes@{\_scenes}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{\_scenes}{\_scenes}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{structScene}{Scene}}$>$ Scene\+Manager\+::\+\_\+scenes\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}\label{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97} 
+\index{SceneManager@{SceneManager}!\_sceneStack@{\_sceneStack}}
+\index{\_sceneStack@{\_sceneStack}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{\_sceneStack}{\_sceneStack}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Scene\+Manager\+::\+\_\+scene\+Stack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{SceneManager_8hpp}{Scene\+Manager.\+hpp}}\end{DoxyCompactItemize}

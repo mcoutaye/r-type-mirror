@@ -1,0 +1,7 @@
+<map id="ParticleSystem::emitDebris" name="ParticleSystem::emitDebris">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,204,56"/>
+<area shape="rect" id="Node000002" href="$classParticleSystem.html#aa2d3bb4cc29a2fcf5bc52103ac651a6b" title=" " alt="" coords="259,5,455,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,31,245,27,246,32,204,36"/>
+<area shape="rect" id="Node000003" href="$classParticleSystem.html#a4ce2f9bb985b09ee51ce0f5022ca73eb" title=" " alt="" coords="252,55,463,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,50,238,53,238,59,204,55"/>
+</map>

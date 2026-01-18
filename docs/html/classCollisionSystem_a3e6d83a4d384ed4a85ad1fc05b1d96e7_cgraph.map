@@ -1,0 +1,13 @@
+<map id="CollisionSystem::update" name="CollisionSystem::update">
+<area shape="rect" id="Node000001" title="Pure virtual function to update the system." alt="" coords="5,55,185,80"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="270,5,421,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,52,266,31,267,36,161,57"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="233,55,457,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="186,65,220,65,220,70,186,70"/>
+<area shape="rect" id="Node000006" href="$classECS.html#a77bab58f7b7d5e53443078f60957b2d2" title="Destroys an entity." alt="" coords="289,104,402,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="161,77,276,100,275,106,160,83"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="505,5,681,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="421,15,491,15,491,21,421,21"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="729,5,908,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="681,15,716,15,716,21,681,21"/>
+</map>

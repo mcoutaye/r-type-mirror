@@ -1,0 +1,9 @@
+<map id="InputSystem::resetToDefaultMappings" name="InputSystem::resetToDefaultMappings">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,212,103"/>
+<area shape="rect" id="Node000002" href="$classInputSystem.html#ad2d1de4ed51c5fd1e4c90d0f142e3429" title=" " alt="" coords="284,5,479,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,60,272,46,273,51,205,65"/>
+<area shape="rect" id="Node000003" href="$classInputSystem.html#a7dde0693f0eda3630be989b6dd98b78c" title=" " alt="" coords="266,70,497,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,80,252,80,252,85,212,85"/>
+<area shape="rect" id="Node000004" href="$classInputSystem.html#aedadc160e47234ac009775c0729f48f5" title=" " alt="" coords="260,119,503,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="213,99,298,114,297,119,212,104"/>
+</map>

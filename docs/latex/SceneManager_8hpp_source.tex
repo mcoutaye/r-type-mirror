@@ -1,0 +1,73 @@
+\doxysection{Scene\+Manager.\+hpp}
+\hypertarget{SceneManager_8hpp_source}{}\label{SceneManager_8hpp_source}\index{include/engine/systems/SceneManager.hpp@{include/engine/systems/SceneManager.hpp}}
+\mbox{\hyperlink{SceneManager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ SceneManager}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828}{SceneState}}\ \{\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a4d3d769b812b6faa6b76e1a8abaece2d}{Active}},\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a3cab03c00dbd11bc3569afa0748013f0}{Inactive}}\ \};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structScene}{Scene}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ std::string\ \mbox{\hyperlink{structScene_af74d1de4b1b66c7d2f8fe2aa8b29e306}{id}};}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828}{SceneState}}\ \mbox{\hyperlink{structScene_a17e7ecac955706d3a58ffb3d5d22a434}{state}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Autres\ données\ spécifiques\ à\ la\ scène\ (ex:\ entités,\ musique,\ etc.)}}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSceneManager}{SceneManager}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a56b1ef27e865698a4fba3ed35cd313a4}{addScene}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a66e7703c21f2dc1a8388825917e3f483}{setActiveScene}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a6884abc6c684d8169026a0aadf803872}{deactivateScene}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828}{SceneState}}\ \mbox{\hyperlink{classSceneManager_a4330fc4150aa2f091d5e288d3d5d83a9}{getSceneState}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classSceneManager_a28abd7bc81065e90b4dfda3d426aa6df}{getActiveSceneId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}{\_sceneStack}};\ \ \textcolor{comment}{//\ Ordre\ des\ scènes\ (pour\ la\ superposition)}}
+\DoxyCodeLine{00031\ \ \ \ \ std::unordered\_map<std::string,\ Scene>\ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}};\ \ \textcolor{comment}{//\ Scènes\ disponibles}}
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ \mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}};\ \ \textcolor{comment}{//\ Scène\ actuellement\ active}}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a56b1ef27e865698a4fba3ed35cd313a4}{SceneManager::addScene}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}}[id]\ =\ \mbox{\hyperlink{structScene}{Scene}}\{id,\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a3cab03c00dbd11bc3569afa0748013f0}{SceneState::Inactive}}\};}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a66e7703c21f2dc1a8388825917e3f483}{SceneManager::setActiveScene}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Désactive\ la\ scène\ active\ précédente}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}}.empty())\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}}[\mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}}].\mbox{\hyperlink{structScene_a17e7ecac955706d3a58ffb3d5d22a434}{state}}\ =\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a3cab03c00dbd11bc3569afa0748013f0}{SceneState::Inactive}};}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Active\ la\ nouvelle\ scène}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}}[id].state\ =\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a4d3d769b812b6faa6b76e1a8abaece2d}{SceneState::Active}};}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}}\ =\ id;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Ajoute\ à\ la\ pile\ si\ elle\ n'y\ est\ pas\ déjà}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::find(\mbox{\hyperlink{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}{\_sceneStack}}.begin(),\ \mbox{\hyperlink{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}{\_sceneStack}}.end(),\ \textcolor{keywordtype}{id})\ ==\ \mbox{\hyperlink{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}{\_sceneStack}}.end())\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSceneManager_ae0aa2684558f7b4795eef7b410c6bd97}{\_sceneStack}}.push\_back(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a6884abc6c684d8169026a0aadf803872}{SceneManager::deactivateScene}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}}[id].state\ =\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a3cab03c00dbd11bc3569afa0748013f0}{SceneState::Inactive}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}}\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}}.clear();}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828}{SceneState}}\ \mbox{\hyperlink{classSceneManager_a4330fc4150aa2f091d5e288d3d5d83a9}{SceneManager::getSceneState}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}}.find(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ (it\ !=\ \mbox{\hyperlink{classSceneManager_a3a1769ac7fd5695cca4141d68deb149a}{\_scenes}}.end())\ ?\ it-\/>second.state\ :\ \mbox{\hyperlink{SceneManager_8hpp_a35ae9f3faf23cd757d50ff4ed5ea9828a3cab03c00dbd11bc3569afa0748013f0}{SceneState::Inactive}};}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classSceneManager_a28abd7bc81065e90b4dfda3d426aa6df}{SceneManager::getActiveSceneId}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classSceneManager_ae5d154bcd109bc4c3f6b1cd46343abed}{\_activeSceneId}};}
+\DoxyCodeLine{00067\ \}}
+
+\end{DoxyCode}

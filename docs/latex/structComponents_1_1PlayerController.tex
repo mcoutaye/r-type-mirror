@@ -11,7 +11,8 @@ Component for player input control.
 
 
 
-Collaboration diagram for Components\+::Player\+Controller\+:\nopagebreak
+Collaboration diagram for Components\+::Player\+Controller\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,10 +22,12 @@ Collaboration diagram for Components\+::Player\+Controller\+:\nopagebreak
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} \mbox{\hyperlink{structComponents_1_1PlayerController_ab626bbc7d999b6b1b51d0cb03cd68fd8}{player\+Id}} = 0
+uint8\+\_\+t \mbox{\hyperlink{structComponents_1_1PlayerController_ab626bbc7d999b6b1b51d0cb03cd68fd8}{player\+Id}} = 0
 \begin{DoxyCompactList}\small\item\em Unique player ID (0 for player 1, etc.). \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{structComponents_1_1PlayerController_a4dc2bdf1ca51df9b61cfc18fdcb06b03}{is\+Shooting}} = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}
-\begin{DoxyCompactList}\small\item\em Flag indicating if the player is shooting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{structComponents_1_1PlayerController_a4dc2bdf1ca51df9b61cfc18fdcb06b03}{is\+Shooting}} = false
+\begin{DoxyCompactList}\small\item\em Flag indicating if the player is shooting. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1PlayerController_a072fa13e0d5e790ddec996fcf49b4a44}{shoot\+Cooldown}} = 0.f
+\begin{DoxyCompactList}\small\item\em Cooldown time before next shot. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -35,7 +38,7 @@ Component for player input control.
 \index{Components::PlayerController@{Components::PlayerController}!isShooting@{isShooting}}
 \index{isShooting@{isShooting}!Components::PlayerController@{Components::PlayerController}}
 \doxysubsubsection{\texorpdfstring{isShooting}{isShooting}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Components\+::\+Player\+Controller\+::is\+Shooting = \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}}
+{\footnotesize\ttfamily bool Components\+::\+Player\+Controller\+::is\+Shooting = false}
 
 
 
@@ -45,11 +48,21 @@ Flag indicating if the player is shooting.
 \index{Components::PlayerController@{Components::PlayerController}!playerId@{playerId}}
 \index{playerId@{playerId}!Components::PlayerController@{Components::PlayerController}}
 \doxysubsubsection{\texorpdfstring{playerId}{playerId}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint8\+\_\+t}} Components\+::\+Player\+Controller\+::player\+Id = 0}
+{\footnotesize\ttfamily uint8\+\_\+t Components\+::\+Player\+Controller\+::player\+Id = 0}
 
 
 
 Unique player ID (0 for player 1, etc.). 
+
+\Hypertarget{structComponents_1_1PlayerController_a072fa13e0d5e790ddec996fcf49b4a44}\label{structComponents_1_1PlayerController_a072fa13e0d5e790ddec996fcf49b4a44} 
+\index{Components::PlayerController@{Components::PlayerController}!shootCooldown@{shootCooldown}}
+\index{shootCooldown@{shootCooldown}!Components::PlayerController@{Components::PlayerController}}
+\doxysubsubsection{\texorpdfstring{shootCooldown}{shootCooldown}}
+{\footnotesize\ttfamily float Components\+::\+Player\+Controller\+::shoot\+Cooldown = 0.f}
+
+
+
+Cooldown time before next shot. 
 
 
 

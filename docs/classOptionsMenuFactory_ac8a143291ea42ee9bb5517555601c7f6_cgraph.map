@@ -1,0 +1,9 @@
+<map id="OptionsMenuFactory::createSectionTitle" name="OptionsMenuFactory::createSectionTitle">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,160,63"/>
+<area shape="rect" id="Node000002" href="$classECS.html#ab25f63dc0523958d986069505b703c12" title="Adds a component to an entity." alt="" coords="208,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,31,193,27,194,32,161,36"/>
+<area shape="rect" id="Node000004" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="218,55,353,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,50,204,55,204,60,160,55"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#aafb0684b10615747aab071b895d97d47" title="Adds a component to the specified entity." alt="" coords="411,5,589,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,15,397,15,397,21,363,21"/>
+</map>

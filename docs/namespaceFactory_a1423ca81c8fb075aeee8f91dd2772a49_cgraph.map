@@ -1,0 +1,21 @@
+<map id="Factory::createMenu" name="Factory::createMenu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,159,107"/>
+<area shape="rect" id="Node000002" href="$classECS.html#ab25f63dc0523958d986069505b703c12" title="Adds a component to an entity." alt="" coords="221,5,375,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,79,206,47,247,33,249,38,208,53,120,84"/>
+<area shape="rect" id="Node000004" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="459,57,594,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,87,445,72,446,77,159,93"/>
+<area shape="rect" id="Node000005" href="$namespaceFactory.html#abd0b6f44a62de5429ab5a658224466f1" title=" " alt="" coords="207,107,389,132"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="159,100,193,104,193,110,159,106"/>
+<area shape="rect" id="Node000008" href="$namespaceFactory.html#aa56583e9c9566625de9000f121539cff" title=" " alt="" coords="207,156,389,181"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="112,104,208,142,232,150,231,155,206,147,110,109"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#aafb0684b10615747aab071b895d97d47" title="Adds a component to the specified entity." alt="" coords="437,5,616,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,15,424,15,424,21,376,21"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="357,104,453,83,454,88,358,109"/>
+<area shape="rect" id="Node000006" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="446,107,607,132"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="390,117,433,117,433,122,390,122"/>
+<area shape="rect" id="Node000007" href="$namespaceFactory.html#aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b" title=" " alt="" coords="455,156,599,181"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="358,129,454,150,453,156,357,135"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="363,153,388,142,402,130,411,118,420,105,436,92,448,85,451,90,439,96,424,108,416,121,406,134,391,147,366,158"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="357,153,453,132,454,138,358,159"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="390,166,441,166,441,171,390,171"/>
+</map>

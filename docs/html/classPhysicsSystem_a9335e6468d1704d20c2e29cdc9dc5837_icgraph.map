@@ -1,0 +1,9 @@
+<map id="PhysicsSystem::getColliderRect" name="PhysicsSystem::getColliderRect">
+<area shape="rect" id="Node000001" title=" " alt="" coords="513,31,741,56"/>
+<area shape="rect" id="Node000002" href="$classPhysicsSystem.html#aa968f10b042784fe94b7c716f740ad22" title=" " alt="" coords="258,5,434,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="499,34,434,29,435,23,500,29"/>
+<area shape="rect" id="Node000003" href="$classPhysicsSystem.html#a8a6ff11c0f8bac83667a317c0665c043" title=" " alt="" coords="227,55,465,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="500,57,466,60,465,55,499,52"/>
+<area shape="rect" id="Node000004" href="$classPhysicsSystem.html#aa7875b96712f96732212d3949d8bbebf" title="Pure virtual function to update the system." alt="" coords="5,55,179,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="213,70,179,70,179,65,213,65"/>
+</map>

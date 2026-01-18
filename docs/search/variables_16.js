@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y_0',['y',['../structComponents_1_1Velocity.html#a1981a2a70a37532c827bb36a549a3b13',1,'Components::Velocity::y'],['../structComponents_1_1WaveData.html#aa2aecee2ec8d1b60118fb1e2f99d8b12',1,'Components::WaveData::y'],['../structEntityUpdate_1_1PACKED.html#a469ef56352239366cfb9332021480425',1,'EntityUpdate::PACKED::y'],['../rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9',1,'y:&#160;rfcprotocol.txt']]]
+  ['width_0',['width',['../structComponents_1_1Collider.html#a3cff820f690f7a47a76a23f9047526fa',1,'Components::Collider::width'],['../structComponents_1_1BoxCollider.html#a89d99045c39eb731a93e41bf4fa42f14',1,'Components::BoxCollider::width']]],
+  ['window_1',['window',['../classGameEngine.html#ac91a68b9e136eda3dc8cabcb46a5dbaa',1,'GameEngine']]]
 ];

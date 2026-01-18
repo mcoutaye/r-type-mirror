@@ -1,0 +1,311 @@
+\doxysection{Camera\+System Class Reference}
+\hypertarget{classCameraSystem}{}\label{classCameraSystem}\index{CameraSystem@{CameraSystem}}
+
+
+{\ttfamily \#include $<$Camera\+System.\+hpp$>$}
+
+
+
+Inheritance diagram for Camera\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classCameraSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Camera\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classCameraSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCameraSystem_affe9930ec3777cfca8e1a1382f28acd4}{Camera\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, sf\+::\+Render\+Window \&window)
+\item 
+void \mbox{\hyperlink{classCameraSystem_a5d11c3ddcea4310ee48c6c0788afb97c}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCameraSystem_af3a5be20b8b49c38e672d1053d1f65bb}{apply\+View}} ()
+\item 
+const sf\+::\+View \& \mbox{\hyperlink{classCameraSystem_ad2980afea36954d8a5ba38884f433d83}{get\+View}} () const
+\item 
+void \mbox{\hyperlink{classCameraSystem_a911789849a8e2fd4eafe97f48fdd50f3}{shake}} (float intensity, float duration)
+\item 
+void \mbox{\hyperlink{classCameraSystem_acb817120670bb1cb0bb0289390d02d4f}{set\+Zoom}} (float zoom)
+\item 
+void \mbox{\hyperlink{classCameraSystem_aec29367e967cd563fb12937aafc7a7b0}{set\+Target\+Zoom}} (float zoom)
+\item 
+void \mbox{\hyperlink{classCameraSystem_a53839db5c11c89fb6dd3a11332941932}{set\+Bounds}} (float minX, float minY, float maxX, float maxY)
+\item 
+void \mbox{\hyperlink{classCameraSystem_a753b3deae97b161cf6f209df4a699d01}{remove\+Bounds}} ()
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{classCameraSystem_a190599a92fbf4140e6f0d1bb6ec8eba6}{screen\+To\+World}} (const sf\+::\+Vector2i \&screen\+Pos) const
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{classCameraSystem_ad632610413d97285c21ca6d0821a2406}{world\+To\+Screen}} (const sf\+::\+Vector2f \&world\+Pos) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc}{update\+Camera\+Follow}} (Camera\+\_\+t \&camera, float dt)
+\item 
+void \mbox{\hyperlink{classCameraSystem_a461e17397bcf286483687d5954e3f4e9}{update\+Camera\+Shake}} (Camera\+\_\+t \&camera, float dt)
+\item 
+void \mbox{\hyperlink{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a}{update\+Camera\+Zoom}} (Camera\+\_\+t \&camera, float dt)
+\item 
+void \mbox{\hyperlink{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174}{apply\+Bounds}} (Camera\+\_\+t \&camera)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b}{\+\_\+window}}
+\item 
+sf\+::\+View \mbox{\hyperlink{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}{\+\_\+view}}
+\item 
+std\+::mt19937 \mbox{\hyperlink{classCameraSystem_a2c51dd51a5cfec034901f65a6d53f4ce}{\+\_\+rng}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ float $>$ \mbox{\hyperlink{classCameraSystem_a82c4f655ae6fc83a11b1707067dd134a}{\+\_\+dist}} \{-\/1.f, 1.f\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCameraSystem_affe9930ec3777cfca8e1a1382f28acd4}\label{classCameraSystem_affe9930ec3777cfca8e1a1382f28acd4} 
+\index{CameraSystem@{CameraSystem}!CameraSystem@{CameraSystem}}
+\index{CameraSystem@{CameraSystem}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{CameraSystem()}{CameraSystem()}}
+{\footnotesize\ttfamily Camera\+System\+::\+Camera\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174}\label{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174} 
+\index{CameraSystem@{CameraSystem}!applyBounds@{applyBounds}}
+\index{applyBounds@{applyBounds}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{applyBounds()}{applyBounds()}}
+{\footnotesize\ttfamily void Camera\+System\+::apply\+Bounds (\begin{DoxyParamCaption}\item[{Camera\+\_\+t \&}]{camera }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a42f4d5be1dd0e5d26f23433ab075b174_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_af3a5be20b8b49c38e672d1053d1f65bb}\label{classCameraSystem_af3a5be20b8b49c38e672d1053d1f65bb} 
+\index{CameraSystem@{CameraSystem}!applyView@{applyView}}
+\index{applyView@{applyView}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{applyView()}{applyView()}}
+{\footnotesize\ttfamily void Camera\+System\+::apply\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classCameraSystem_ad2980afea36954d8a5ba38884f433d83}\label{classCameraSystem_ad2980afea36954d8a5ba38884f433d83} 
+\index{CameraSystem@{CameraSystem}!getView@{getView}}
+\index{getView@{getView}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{getView()}{getView()}}
+{\footnotesize\ttfamily const sf\+::\+View \& Camera\+System\+::get\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classCameraSystem_a753b3deae97b161cf6f209df4a699d01}\label{classCameraSystem_a753b3deae97b161cf6f209df4a699d01} 
+\index{CameraSystem@{CameraSystem}!removeBounds@{removeBounds}}
+\index{removeBounds@{removeBounds}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{removeBounds()}{removeBounds()}}
+{\footnotesize\ttfamily void Camera\+System\+::remove\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a753b3deae97b161cf6f209df4a699d01_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_a190599a92fbf4140e6f0d1bb6ec8eba6}\label{classCameraSystem_a190599a92fbf4140e6f0d1bb6ec8eba6} 
+\index{CameraSystem@{CameraSystem}!screenToWorld@{screenToWorld}}
+\index{screenToWorld@{screenToWorld}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{screenToWorld()}{screenToWorld()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Camera\+System\+::screen\+To\+World (\begin{DoxyParamCaption}\item[{const sf\+::\+Vector2i \&}]{screen\+Pos }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classCameraSystem_a53839db5c11c89fb6dd3a11332941932}\label{classCameraSystem_a53839db5c11c89fb6dd3a11332941932} 
+\index{CameraSystem@{CameraSystem}!setBounds@{setBounds}}
+\index{setBounds@{setBounds}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{setBounds()}{setBounds()}}
+{\footnotesize\ttfamily void Camera\+System\+::set\+Bounds (\begin{DoxyParamCaption}\item[{float}]{minX,  }\item[{float}]{minY,  }\item[{float}]{maxX,  }\item[{float}]{maxY }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a53839db5c11c89fb6dd3a11332941932_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_aec29367e967cd563fb12937aafc7a7b0}\label{classCameraSystem_aec29367e967cd563fb12937aafc7a7b0} 
+\index{CameraSystem@{CameraSystem}!setTargetZoom@{setTargetZoom}}
+\index{setTargetZoom@{setTargetZoom}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{setTargetZoom()}{setTargetZoom()}}
+{\footnotesize\ttfamily void Camera\+System\+::set\+Target\+Zoom (\begin{DoxyParamCaption}\item[{float}]{zoom }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_aec29367e967cd563fb12937aafc7a7b0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_acb817120670bb1cb0bb0289390d02d4f}\label{classCameraSystem_acb817120670bb1cb0bb0289390d02d4f} 
+\index{CameraSystem@{CameraSystem}!setZoom@{setZoom}}
+\index{setZoom@{setZoom}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{setZoom()}{setZoom()}}
+{\footnotesize\ttfamily void Camera\+System\+::set\+Zoom (\begin{DoxyParamCaption}\item[{float}]{zoom }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_acb817120670bb1cb0bb0289390d02d4f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_a911789849a8e2fd4eafe97f48fdd50f3}\label{classCameraSystem_a911789849a8e2fd4eafe97f48fdd50f3} 
+\index{CameraSystem@{CameraSystem}!shake@{shake}}
+\index{shake@{shake}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{shake()}{shake()}}
+{\footnotesize\ttfamily void Camera\+System\+::shake (\begin{DoxyParamCaption}\item[{float}]{intensity,  }\item[{float}]{duration }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a911789849a8e2fd4eafe97f48fdd50f3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_a5d11c3ddcea4310ee48c6c0788afb97c}\label{classCameraSystem_a5d11c3ddcea4310ee48c6c0788afb97c} 
+\index{CameraSystem@{CameraSystem}!update@{update}}
+\index{update@{update}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Camera\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a5d11c3ddcea4310ee48c6c0788afb97c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc}\label{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc} 
+\index{CameraSystem@{CameraSystem}!updateCameraFollow@{updateCameraFollow}}
+\index{updateCameraFollow@{updateCameraFollow}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{updateCameraFollow()}{updateCameraFollow()}}
+{\footnotesize\ttfamily void Camera\+System\+::update\+Camera\+Follow (\begin{DoxyParamCaption}\item[{Camera\+\_\+t \&}]{camera,  }\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a8b505d18a80a94c4a717e28dafd44acc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_a461e17397bcf286483687d5954e3f4e9}\label{classCameraSystem_a461e17397bcf286483687d5954e3f4e9} 
+\index{CameraSystem@{CameraSystem}!updateCameraShake@{updateCameraShake}}
+\index{updateCameraShake@{updateCameraShake}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{updateCameraShake()}{updateCameraShake()}}
+{\footnotesize\ttfamily void Camera\+System\+::update\+Camera\+Shake (\begin{DoxyParamCaption}\item[{Camera\+\_\+t \&}]{camera,  }\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_a461e17397bcf286483687d5954e3f4e9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a}\label{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a} 
+\index{CameraSystem@{CameraSystem}!updateCameraZoom@{updateCameraZoom}}
+\index{updateCameraZoom@{updateCameraZoom}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{updateCameraZoom()}{updateCameraZoom()}}
+{\footnotesize\ttfamily void Camera\+System\+::update\+Camera\+Zoom (\begin{DoxyParamCaption}\item[{Camera\+\_\+t \&}]{camera,  }\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCameraSystem_acc71a45d50c31b490972adc7a907fe1a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCameraSystem_ad632610413d97285c21ca6d0821a2406}\label{classCameraSystem_ad632610413d97285c21ca6d0821a2406} 
+\index{CameraSystem@{CameraSystem}!worldToScreen@{worldToScreen}}
+\index{worldToScreen@{worldToScreen}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{worldToScreen()}{worldToScreen()}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Camera\+System\+::world\+To\+Screen (\begin{DoxyParamCaption}\item[{const sf\+::\+Vector2f \&}]{world\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCameraSystem_a82c4f655ae6fc83a11b1707067dd134a}\label{classCameraSystem_a82c4f655ae6fc83a11b1707067dd134a} 
+\index{CameraSystem@{CameraSystem}!\_dist@{\_dist}}
+\index{\_dist@{\_dist}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{\_dist}{\_dist}}
+{\footnotesize\ttfamily std\+::uniform\+\_\+real\+\_\+distribution$<$float$>$ Camera\+System\+::\+\_\+dist \{-\/1.f, 1.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classCameraSystem_a2c51dd51a5cfec034901f65a6d53f4ce}\label{classCameraSystem_a2c51dd51a5cfec034901f65a6d53f4ce} 
+\index{CameraSystem@{CameraSystem}!\_rng@{\_rng}}
+\index{\_rng@{\_rng}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{\_rng}{\_rng}}
+{\footnotesize\ttfamily std\+::mt19937 Camera\+System\+::\+\_\+rng\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed}\label{classCameraSystem_a2288c9af0917e3fd6659c9d6257ddaed} 
+\index{CameraSystem@{CameraSystem}!\_view@{\_view}}
+\index{\_view@{\_view}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{\_view}{\_view}}
+{\footnotesize\ttfamily sf\+::\+View Camera\+System\+::\+\_\+view\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b}\label{classCameraSystem_af247c762ef8b1b84ff5613d9688ce94b} 
+\index{CameraSystem@{CameraSystem}!\_window@{\_window}}
+\index{\_window@{\_window}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{\_window}{\_window}}
+{\footnotesize\ttfamily sf\+::\+Render\+Window\& Camera\+System\+::\+\_\+window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{CameraSystem_8hpp}{Camera\+System.\+hpp}}\end{DoxyCompactItemize}

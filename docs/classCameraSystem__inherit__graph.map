@@ -1,0 +1,5 @@
+<map id="CameraSystem" name="CameraSystem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,277,275,917"/>
+<area shape="rect" id="Node000002" href="$classISystem.html" title="Interface for systems in the ECS." alt="" coords="63,5,217,229"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,243,143,277,137,277,137,243"/>
+</map>

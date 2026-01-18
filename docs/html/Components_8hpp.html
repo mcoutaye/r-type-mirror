@@ -93,16 +93,23 @@ $(document).ready(function(){initNavTree('Components_8hpp.html',''); initResizab
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">Components.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;SFML/Graphics.hpp&gt;</code><br />
+<code>#include &lt;SFML/Window/Keyboard.hpp&gt;</code><br />
+<code>#include &quot;engine/Menu.hpp&quot;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Components.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Components_8hpp__incl.svg" width="240" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="Components_8hpp__incl.svg" width="100%" height="393"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -114,6 +121,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Position.html">Components::Position</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the position of an entity in 2D space.  <a href="structComponents_1_1Position.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Velocity.html">Components::Velocity</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the velocity of an entity in 2D space.  <a href="structComponents_1_1Velocity.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,11 +142,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1WaveSpawner.html">Components::WaveSpawner</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for spawning waves of enemies.  <a href="structComponents_1_1WaveSpawner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1WaveData.html">Components::WaveData</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data for a specific wave.  <a href="structComponents_1_1WaveData.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1MovementPattern.html">Components::MovementPattern</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines movement behavior for entities.  <a href="structComponents_1_1MovementPattern.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1WaveData.html">Components::WaveData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data for a specific wave.  <a href="structComponents_1_1WaveData.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Projectile.html">Components::Projectile</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for projectile entities.  <a href="structComponents_1_1Projectile.html#details">More...</a><br /></td></tr>
@@ -156,13 +166,186 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Star.html">Components::Star</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for background stars in a starfield.  <a href="structComponents_1_1Star.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1JustShot.html">Components::JustShot</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component to indicate a recent shot.  <a href="structComponents_1_1JustShot.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlaySound.html">Components::PlaySound</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger to play a sound effect once.  <a href="structComponents_1_1PlaySound.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1BackgroundMusic.html">Components::BackgroundMusic</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for background music.  <a href="structComponents_1_1BackgroundMusic.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Text.html">Components::Text</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple text for menu items (title, buttons...).  <a href="structComponents_1_1Text.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1MenuItem.html">Components::MenuItem</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a selectable menu item.  <a href="structComponents_1_1MenuItem.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Highlight.html">Components::Highlight</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional visual highlight (e.g., change color or scale when selected).  <a href="structComponents_1_1Highlight.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Slider.html">Components::Slider</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structComponents_1_1Slider.html" title="Slider for controlling values (volume, sensitivity, etc.).">Slider</a> for controlling values (volume, sensitivity, etc.).  <a href="structComponents_1_1Slider.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1KeybindButton.html">Components::KeybindButton</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button for remapping a key or joystick button.  <a href="structComponents_1_1KeybindButton.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1DynamicText.html">Components::DynamicText</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic text that displays a value (for sliders or keybinds).  <a href="structComponents_1_1DynamicText.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Particle.html">Components::Particle</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Individual particle.  <a href="structComponents_1_1Particle.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1ParticleEmitter.html">Components::ParticleEmitter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structComponents_1_1Particle.html" title="Individual particle.">Particle</a> emitter attached to an entity.  <a href="structComponents_1_1ParticleEmitter.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Camera.html">Components::Camera</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">2D camera with smooth follow, zoom, and shake.  <a href="structComponents_1_1Camera.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1CameraTarget.html">Components::CameraTarget</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag to mark an entity as camera target.  <a href="structComponents_1_1CameraTarget.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1RigidBody.html">Components::RigidBody</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rigidbody for physics (gravity, forces, etc.).  <a href="structComponents_1_1RigidBody.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Jumper.html">Components::Jumper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for entities that can jump.  <a href="structComponents_1_1Jumper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Platform.html">Components::Platform</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structComponents_1_1Platform.html" title="Platform (surface to walk on).">Platform</a> (surface to walk on).  <a href="structComponents_1_1Platform.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1BoxCollider.html">Components::BoxCollider</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advanced collision for platforms.  <a href="structComponents_1_1BoxCollider.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1CollisionInfo.html">Components::CollisionInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about a detected collision.  <a href="structComponents_1_1CollisionInfo.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Ladder.html">Components::Ladder</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ladder/climbable area.  <a href="structComponents_1_1Ladder.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1TriggerZone.html">Components::TriggerZone</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger zone (for teleporters, checkpoints, etc.).  <a href="structComponents_1_1TriggerZone.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Enemy.html">Components::Enemy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component to mark an entity as enemy.  <a href="structComponents_1_1Enemy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceComponents" id="r_namespaceComponents"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html">Components</a></td></tr>
 <tr class="memdesc:namespaceComponents"><td class="mdescLeft">&#160;</td><td class="mdescRight">Espace dédié pour tous les composants <a class="el" href="classECS.html" title="Entity Component System manager.">ECS</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:abbfe3c71949470fc9650dc4f945c7319" id="r_abbfe3c71949470fc9650dc4f945c7319"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Components_8hpp.html#abbfe3c71949470fc9650dc4f945c7319">SHOOT_DELAY</a>&#160;&#160;&#160;0.5f</td></tr>
+<tr class="separator:abbfe3c71949470fc9650dc4f945c7319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a9a522438c9f5d73ebe6349edc3313d5e" id="r_a9a522438c9f5d73ebe6349edc3313d5e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Components_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> = std::uint32_t</td></tr>
+<tr class="separator:a9a522438c9f5d73ebe6349edc3313d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a5827805c542ab9cccf700dc3697cbafc" id="r_a5827805c542ab9cccf700dc3697cbafc"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a> { <br />
+&#160;&#160;<a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c">MoveUp</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5">MoveDown</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca">MoveLeft</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b">MoveRight</a>
+, <br />
+&#160;&#160;<a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c">Shoot</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6">Quit</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f">Pause</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296">MenuUp</a>
+, <br />
+&#160;&#160;<a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42">MenuDown</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756">MenuSelect</a>
+<br />
+ }</td></tr>
+<tr class="separator:a5827805c542ab9cccf700dc3697cbafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8788fbf513fbcda9f4f596b8f6dc471" id="r_ae8788fbf513fbcda9f4f596b8f6dc471"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471">Components::InputType</a> { <a class="el" href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e">Components::Keyboard</a>
+, <a class="el" href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471a1162b85b7b993e2edf7da29dd8abf7e2">Components::Joystick</a>
+ }</td></tr>
+<tr class="memdesc:ae8788fbf513fbcda9f4f596b8f6dc471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of input for remapping.  <a href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471">More...</a><br /></td></tr>
+<tr class="separator:ae8788fbf513fbcda9f4f596b8f6dc471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeadf6d72138ecf1f31bd515ee2b8e15c" id="r_aeadf6d72138ecf1f31bd515ee2b8e15c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15c">Components::ParticleType</a> { <br />
+&#160;&#160;<a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15ca8a36c0d6cc2e31990ea4fb2d597db968">Components::Explosion</a>
+, <a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15cad518a06262ac68f1f006a4f802588130">Components::Trail</a>
+, <a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15cabc93fd0fa19ed26b6adf8293ada55404">Components::Smoke</a>
+, <a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15ca1708884aa9c2dcfa5f1df31b6c30270d">Components::Sparks</a>
+, <br />
+&#160;&#160;<a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15ca7e4a693bfe182987626f234139a8dc83">Components::Debris</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:aeadf6d72138ecf1f31bd515ee2b8e15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predefined particle types.  <a href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15c">More...</a><br /></td></tr>
+<tr class="separator:aeadf6d72138ecf1f31bd515ee2b8e15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="abbfe3c71949470fc9650dc4f945c7319" name="abbfe3c71949470fc9650dc4f945c7319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbfe3c71949470fc9650dc4f945c7319">&#9670;&#160;</a></span>SHOOT_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHOOT_DELAY&#160;&#160;&#160;0.5f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a9a522438c9f5d73ebe6349edc3313d5e" name="a9a522438c9f5d73ebe6349edc3313d5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a522438c9f5d73ebe6349edc3313d5e">&#9670;&#160;</a></span>Entity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> =  std::uint32_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a5827805c542ab9cccf700dc3697cbafc" name="a5827805c542ab9cccf700dc3697cbafc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5827805c542ab9cccf700dc3697cbafc">&#9670;&#160;</a></span>GameAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c" name="a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c"></a>MoveUp&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5" name="a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5"></a>MoveDown&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca" name="a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca"></a>MoveLeft&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b" name="a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b"></a>MoveRight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c" name="a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c"></a>Shoot&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6" name="a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6"></a>Quit&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f" name="a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f"></a>Pause&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296" name="a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296"></a>MenuUp&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42" name="a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42"></a>MenuDown&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756" name="a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756"></a>MenuSelect&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

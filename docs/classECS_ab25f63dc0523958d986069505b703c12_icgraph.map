@@ -1,0 +1,25 @@
+<map id="ECS::addComponent" name="ECS::addComponent">
+<area shape="rect" id="Node000001" title="Adds a component to an entity." alt="" coords="484,248,639,273"/>
+<area shape="rect" id="Node000002" href="$namespaceFactory.html#a9f08dec3ed1c6f9b0af551f25ed912c7" title=" " alt="" coords="229,5,420,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="550,236,536,193,512,141,478,88,458,64,434,44,415,33,417,28,438,40,462,61,483,85,517,138,541,191,555,234"/>
+<area shape="rect" id="Node000003" href="$namespaceFactory.html#aaea545222d73758b12ff7313e20c878c" title=" " alt="" coords="231,55,418,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="546,237,529,203,504,164,473,126,435,94,412,82,414,78,437,89,476,122,509,161,534,201,551,234"/>
+<area shape="rect" id="Node000004" href="$namespaceFactory.html#a89692d0524d05eecd4ca9696bd89344c" title=" " alt="" coords="230,104,419,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="540,239,496,190,467,165,435,144,404,132,406,127,437,140,470,161,499,186,544,235"/>
+<area shape="rect" id="Node000005" href="$classOptionsMenuFactory.html#a6c0344ff5a2d3d304f383b1be85eea5e" title=" " alt="" coords="241,154,408,194"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="520,244,435,208,399,197,401,191,437,204,522,240"/>
+<area shape="rect" id="Node000006" href="$namespaceFactory.html#a1423ca81c8fb075aeee8f91dd2772a49" title=" " alt="" coords="248,219,401,244"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="469,252,401,243,402,238,470,247"/>
+<area shape="rect" id="Node000007" href="$classOptionsMenuFactory.html#ac8a143291ea42ee9bb5517555601c7f6" title=" " alt="" coords="247,269,402,309"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="470,274,403,282,402,277,469,269"/>
+<area shape="rect" id="Node000008" href="$classOptionsMenuFactory.html#a55478810f29369aa5518741069f737b8" title=" " alt="" coords="247,333,402,373"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="526,282,437,323,402,335,400,330,435,318,524,277"/>
+<area shape="rect" id="Node000009" href="$namespaceFactory.html#a7178225e4b889c2808f1d1d0c6dd4f5c" title=" " alt="" coords="233,397,416,423"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="545,286,500,338,470,364,437,387,407,400,404,395,435,382,467,360,497,334,541,283"/>
+<area shape="rect" id="Node000010" href="$classMenuSystem.html#a98cc0c94c6596569ebec7371ed39d009" title=" " alt="" coords="213,447,436,487"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="551,287,533,321,508,361,476,402,438,436,414,449,411,445,434,432,472,398,504,358,529,318,546,285"/>
+<area shape="rect" id="Node000012" href="$namespaceFactory.html#ae838e52ac84283a738f6b53b84199a00" title=" " alt="" coords="233,512,416,537"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="557,288,543,334,519,392,485,451,463,478,438,501,415,514,413,510,434,497,459,475,481,448,515,390,538,332,552,286"/>
+<area shape="rect" id="Node000011" href="$classMenuSystem.html#aef5e84eb6a2736cc9377f4c16c634f63" title="Pure virtual function to update the system." alt="" coords="5,455,165,480"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="200,470,165,470,165,465,200,465"/>
+</map>

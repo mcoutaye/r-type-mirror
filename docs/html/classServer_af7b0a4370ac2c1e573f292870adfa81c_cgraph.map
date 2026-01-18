@@ -1,32 +1,41 @@
 <map id="Server::update" name="Server::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,179,123,204"/>
-<area shape="rect" id="Node000002" href="$namespaceFactory.html#acb4f080b19f667e0bcc6fe95c0ab1b76" title=" " alt="" coords="193,5,372,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,177,82,149,103,111,132,72,169,40,179,34,182,38,172,44,136,76,108,114,86,151,73,180"/>
-<area shape="rect" id="Node000003" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="207,55,358,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="73,177,111,133,139,109,169,89,193,79,195,84,172,94,142,113,115,137,77,180"/>
-<area shape="rect" id="Node000008" href="$engine_2ecs_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title="Retrieves the unique ID for a given component type." alt="" coords="465,204,597,229"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="123,192,451,210,451,215,123,197"/>
-<area shape="rect" id="Node000009" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="171,153,395,179"/>
-<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="123,182,160,178,160,183,124,187"/>
-<area shape="rect" id="Node000010" href="$classECS.html#a33c16853296e9784dfb558f35dffbd72" title="Checks if an entity has a specific component." alt="" coords="206,104,359,129"/>
-<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="87,176,125,157,170,138,196,130,198,135,172,143,127,162,89,181"/>
-<area shape="rect" id="Node000011" href="$classECS.html#a77bab58f7b7d5e53443078f60957b2d2" title="Destroys an entity." alt="" coords="226,255,339,280"/>
-<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="95,202,172,233,221,248,219,253,170,238,93,207"/>
-<area shape="rect" id="Node000012" href="$classMovementSystem.html#afd53a085ce047480cbd2a004cb557003" title="Pure virtual function to update the system." alt="" coords="185,304,380,329"/>
-<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="77,202,115,246,142,270,172,290,186,297,184,302,169,295,139,275,111,250,73,206"/>
-<area shape="rect" id="Node000013" href="$classWaveSystem.html#a9a5c16c210763a371d4b535e76b2208c" title="Pure virtual function to update the system." alt="" coords="203,353,363,379"/>
-<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="73,203,86,232,107,269,136,308,172,340,191,349,188,354,169,344,132,311,103,272,81,234,68,205"/>
-<area shape="rect" id="Node000004" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="443,29,619,55"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="358,57,428,50,429,55,359,62"/>
-<area shape="rect" id="Node000006" href="$server_2ecs_8hpp.html#a5a868f82168f3b251aa7ca758686125c" title=" " alt="" coords="465,155,597,180"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="358,77,396,89,453,116,501,145,498,149,450,121,394,94,357,83"/>
-<area shape="rect" id="Node000005" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="667,55,845,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="619,49,653,53,653,58,618,55"/>
-<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="494,156,486,146,490,136,506,130,531,128,562,132,574,141,571,145,560,137,531,133,507,135,494,140,491,146,498,153"/>
-<area shape="rect" id="Node000007" href="$engine_2ecs_2ecs_8hpp.html#afdb02fc115de82c93e814ac1d3a64c06" title="Generates a new unique ComponentTypeID." alt="" coords="672,179,840,204"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="597,172,659,178,658,184,597,177"/>
-<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="597,207,658,200,659,205,597,212"/>
-<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="395,164,451,164,451,170,395,169"/>
-<area shape="poly" id="edge14_Node000010_Node000005" title=" " alt="" coords="359,106,653,75,653,81,360,111"/>
-<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="346,127,455,149,454,154,345,132"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,217,123,243"/>
+<area shape="rect" id="Node000002" href="$namespaceFactory.html#af6f99ca712a4eb5dc8840202d2aaaef7" title=" " alt="" coords="436,91,615,116"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,215,117,183,142,166,170,153,233,132,299,118,422,103,422,108,300,123,235,137,172,158,145,171,120,187,81,219"/>
+<area shape="rect" id="Node000007" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="450,192,601,217"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="84,215,122,194,170,177,248,167,326,167,399,175,461,186,460,192,399,181,326,173,248,172,171,182,125,199,86,220"/>
+<area shape="rect" id="Node000010" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="413,241,637,267"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="87,241,125,261,171,277,248,287,326,286,398,278,459,267,460,272,399,283,326,291,248,292,170,282,123,265,85,245"/>
+<area shape="rect" id="Node000011" href="$classECS.html#a33c16853296e9784dfb558f35dffbd72" title="Checks if an entity has a specific component." alt="" coords="449,291,602,316"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="82,241,121,268,146,281,171,291,239,306,308,313,375,314,435,311,435,316,375,319,308,318,238,311,170,297,143,286,118,273,79,245"/>
+<area shape="rect" id="Node000012" href="$classECS.html#a77bab58f7b7d5e53443078f60957b2d2" title="Destroys an entity." alt="" coords="211,393,325,419"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="74,241,110,304,138,340,172,372,200,387,197,392,169,376,134,344,105,307,69,244"/>
+<area shape="rect" id="Node000013" href="$classMovementSystem.html#afd53a085ce047480cbd2a004cb557003" title="Pure virtual function to update the system." alt="" coords="171,192,365,217"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="123,220,157,216,158,221,123,225"/>
+<area shape="rect" id="Node000014" href="$classMoveSystem.html#ab6cbe4ec1efbe1f89ca22c7796d488cf" title="Pure virtual function to update the system." alt="" coords="188,241,348,267"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="123,234,175,240,174,246,123,240"/>
+<area shape="rect" id="Node000015" href="$classWaveSystem.html#a9a5c16c210763a371d4b535e76b2208c" title="Pure virtual function to update the system." alt="" coords="188,40,348,65"/>
+<area shape="poly" id="edge20_Node000001_Node000015" title=" " alt="" coords="69,216,105,153,134,115,169,83,195,68,198,73,172,87,138,119,109,156,74,218"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="694,5,855,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="597,88,636,74,660,57,684,40,701,33,703,37,687,44,663,62,639,79,599,93"/>
+<area shape="rect" id="Node000004" href="$namespaceFactory.html#a72717673325d8183f30a820fc78f728e" title=" " alt="" coords="685,104,864,129"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="615,105,672,108,671,114,615,111"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="707,55,842,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="613,88,693,76,694,82,614,93"/>
+<area shape="rect" id="Node000006" href="$namespaceFactory.html#af5e7bee90929fcaabc2b89eff8219cbe" title=" " alt="" coords="696,153,853,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="577,113,711,147,709,153,576,119"/>
+<area shape="rect" id="Node000008" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="687,216,863,241"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="601,209,673,216,673,222,600,215"/>
+<area shape="rect" id="Node000009" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="912,253,1091,279"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="853,239,911,248,910,254,852,244"/>
+<area shape="poly" id="edge11_Node000011_Node000009" title=" " alt="" coords="602,295,898,271,899,277,602,300"/>
+<area shape="poly" id="edge14_Node000013_Node000007" title=" " alt="" coords="366,202,436,202,436,207,366,207"/>
+<area shape="poly" id="edge15_Node000013_Node000010" title=" " alt="" coords="335,215,445,236,444,241,334,220"/>
+<area shape="poly" id="edge17_Node000014_Node000007" title=" " alt="" coords="334,239,444,217,445,223,335,244"/>
+<area shape="poly" id="edge18_Node000014_Node000010" title=" " alt="" coords="348,251,400,251,400,257,348,257"/>
+<area shape="poly" id="edge19_Node000014_Node000011" title=" " alt="" coords="335,264,445,285,444,291,334,269"/>
+<area shape="rect" id="Node000016" href="$namespaceFactory.html#a7ce35b4b946ea6fc2fe8fa6265dc88a0" title=" " alt="" coords="444,40,607,65"/>
+<area shape="poly" id="edge21_Node000015_Node000016" title=" " alt="" coords="348,50,430,50,430,55,348,55"/>
+<area shape="poly" id="edge22_Node000016_Node000003" title=" " alt="" coords="606,39,680,28,681,34,607,44"/>
+<area shape="poly" id="edge23_Node000016_Node000005" title=" " alt="" coords="607,55,694,60,694,65,607,60"/>
 </map>

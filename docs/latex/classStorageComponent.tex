@@ -11,7 +11,8 @@ Manages storage for a specific type of component.
 
 
 
-Collaboration diagram for Storage\+Component\texorpdfstring{$<$}{<} Component\+Type \texorpdfstring{$>$}{>}\+:\nopagebreak
+Collaboration diagram for Storage\+Component\texorpdfstring{$<$}{<} Component\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,43 +24,43 @@ Collaboration diagram for Storage\+Component\texorpdfstring{$<$}{<} Component\+T
 \item 
 \mbox{\hyperlink{classStorageComponent_a775ec7b9f2f8fefc08266f39dfa6fece}{Storage\+Component}} ()
 \begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classStorageComponent}{Storage\+Component}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}{\texorpdfstring{$\sim$}{\string~}\+Storage\+Component}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}{\texorpdfstring{$\sim$}{\string~}\+Storage\+Component}} ()=default
 \begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classStorageComponent}{Storage\+Component}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+void \mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, const Component\+Type \&component)
 \begin{DoxyCompactList}\small\item\em Adds a component to the specified entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+bool \mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \begin{DoxyCompactList}\small\item\em Checks if the entity has this component type. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+const Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \begin{DoxyCompactList}\small\item\em Retrieves a read-\/only pointer to the component for the entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \begin{DoxyCompactList}\small\item\em Retrieves a mutable pointer to the component for the entity. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+void \mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \begin{DoxyCompactList}\small\item\em Removes the component from the entity. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classStorageComponent_a775ec7b9f2f8fefc08266f39dfa6fece}{Storage\+Component}} ()
 \item 
-\mbox{\hyperlink{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}{\texorpdfstring{$\sim$}{\string~}\+Storage\+Component}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}{\texorpdfstring{$\sim$}{\string~}\+Storage\+Component}} ()=default
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}, \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{component}})
+void \mbox{\hyperlink{classStorageComponent_aafb0684b10615747aab071b895d97d47}{add}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e, const Component\+Type \&component)
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+bool \mbox{\hyperlink{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}{has}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}}) \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+const Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e) const
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}{get}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{e}})
+void \mbox{\hyperlink{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}{kill}} (\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} e)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \mbox{\hyperlink{classStorageComponent_af158edc6dfdb9ca0131e854e1a365ba3}{\+\_\+\+\_\+\+Storage}}
+std\+::vector$<$ Component\+Type $>$ \mbox{\hyperlink{classStorageComponent_af158edc6dfdb9ca0131e854e1a365ba3}{\+\_\+\+\_\+\+Storage}}
 \item 
 std\+::bitset$<$ \mbox{\hyperlink{server_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} $>$ \mbox{\hyperlink{classStorageComponent_aff751b001ec77bd1b8dc519fe874eeef}{\+\_\+\+\_\+checker}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}}$>$\newline
+\subsubsection*{template$<$typename Component\+Type$>$\newline
 class Storage\+Component$<$ Component\+Type $>$}
 Manages storage for a specific type of component. 
 
@@ -77,8 +78,8 @@ This class stores components of the same type for all entities and uses a bitset
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!StorageComponent@{StorageComponent}}
 \index{StorageComponent@{StorageComponent}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{StorageComponent()}{StorageComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\mbox{\hyperlink{classStorageComponent}{\+::\+Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\mbox{\hyperlink{classStorageComponent}{\+::\+Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -88,8 +89,8 @@ Initializes the storage vector and resets the checker bitset. \Hypertarget{class
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!````~StorageComponent@{\texorpdfstring{$\sim$}{\string~}StorageComponent}}
 \index{````~StorageComponent@{\texorpdfstring{$\sim$}{\string~}StorageComponent}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StorageComponent()}{\string~StorageComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classStorageComponent}{Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classStorageComponent}{Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
@@ -99,15 +100,15 @@ Destructor for \doxylink{classStorageComponent}{Storage\+Component}.
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!StorageComponent@{StorageComponent}}
 \index{StorageComponent@{StorageComponent}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{StorageComponent()}{StorageComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\mbox{\hyperlink{classStorageComponent}{\+::\+Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\mbox{\hyperlink{classStorageComponent}{\+::\+Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \Hypertarget{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c}\label{classStorageComponent_aeb53483b7c11f7091ee924541f5b3b6c} 
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!````~StorageComponent@{\texorpdfstring{$\sim$}{\string~}StorageComponent}}
 \index{````~StorageComponent@{\texorpdfstring{$\sim$}{\string~}StorageComponent}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StorageComponent()}{\string~StorageComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classStorageComponent}{Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+\mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classStorageComponent}{Storage\+Component}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
@@ -116,8 +117,8 @@ Destructor for \doxylink{classStorageComponent}{Storage\+Component}.
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!add@{add}}
 \index{add@{add}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{const Component\+Type \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -130,7 +131,8 @@ Adds a component to the specified entity.
 {\em component} & The component to add. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -141,22 +143,15 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!add@{add}}
 \index{add@{add}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e,  }\item[{const Component\+Type \&}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classStorageComponent_aafb0684b10615747aab071b895d97d47_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39}\label{classStorageComponent_a9ab952a02c2b870d2b4d8c183a404a39} 
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!get@{get}}
 \index{get@{get}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -182,10 +177,11 @@ Here is the call graph for this function\+:
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!get@{get}}
 \index{get@{get}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -196,8 +192,8 @@ Here is the call graph for this function\+:\nopagebreak
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!get@{get}}
 \index{get@{get}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+const Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -219,21 +215,23 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d_icgraph}
+\includegraphics[height=550pt]{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d}\label{classStorageComponent_a4e0239d1d216347282d49c0bcdf0079d} 
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!get@{get}}
 \index{get@{get}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+const Component\+Type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -244,8 +242,8 @@ Here is the call graph for this function\+:\nopagebreak
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!has@{has}}
 \index{has@{has}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{has()}{has()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::has (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+bool \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::has (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -259,33 +257,27 @@ Checks if the entity has this component type.
 \begin{DoxyReturn}{Returns}
 True if the entity has the component, false otherwise. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classStorageComponent_a6de145a1ea5570363f566ab9fce66578_icgraph}
+\includegraphics[height=550pt]{classStorageComponent_a6de145a1ea5570363f566ab9fce66578_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classStorageComponent_a6de145a1ea5570363f566ab9fce66578}\label{classStorageComponent_a6de145a1ea5570363f566ab9fce66578} 
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!has@{has}}
 \index{has@{has}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{has()}{has()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::has (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+bool \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::has (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classStorageComponent_a6de145a1ea5570363f566ab9fce66578_cgraph}
-\end{center}
-\end{figure}
 \Hypertarget{classStorageComponent_a9584f43386171c9196aa127830fbbf5a}\label{classStorageComponent_a9584f43386171c9196aa127830fbbf5a} 
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!kill@{kill}}
 \index{kill@{kill}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{kill()}{kill()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::kill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::kill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -296,7 +288,8 @@ Removes the component from the entity.
 {\em e} & The entity to remove the component from. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -307,16 +300,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!kill@{kill}}
 \index{kill@{kill}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{kill()}{kill()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::kill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+void \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::kill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{server_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classStorageComponent_a9584f43386171c9196aa127830fbbf5a_cgraph}
-\end{center}
-\end{figure}
 
 
 \doxysubsection{Member Data Documentation}
@@ -324,15 +310,15 @@ Here is the call graph for this function\+:\nopagebreak
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!\_\_checker@{\_\_checker}}
 \index{\_\_checker@{\_\_checker}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{\_\_checker}{\_\_checker}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-std\+::bitset$<$ \mbox{\hyperlink{server_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} $>$ \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\+\_\+\+\_\+checker\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+std\+::bitset$<$ \mbox{\hyperlink{server_2ecs_8hpp_a230fdbb8f1743186939c063f2414b180}{MAX\+\_\+\+ENTITIES}} $>$ \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::\+\_\+\+\_\+checker\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classStorageComponent_af158edc6dfdb9ca0131e854e1a365ba3}\label{classStorageComponent_af158edc6dfdb9ca0131e854e1a365ba3} 
 \index{StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}!\_\_Storage@{\_\_Storage}}
 \index{\_\_Storage@{\_\_Storage}!StorageComponent$<$ ComponentType $>$@{StorageComponent$<$ ComponentType $>$}}
 \doxysubsubsection{\texorpdfstring{\_\_Storage}{\_\_Storage}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{typename}} \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \\
-std\+::vector$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$ \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ \mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Component\+Type}} $>$\+::\+\_\+\+\_\+\+Storage\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+std\+::vector$<$ Component\+Type $>$ \mbox{\hyperlink{classStorageComponent}{Storage\+Component}}$<$ Component\+Type $>$\+::\+\_\+\+\_\+\+Storage\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

@@ -1,0 +1,15 @@
+<map id="OptionsMenuFactory::createSlider" name="OptionsMenuFactory::createSlider">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,160,87"/>
+<area shape="rect" id="Node000002" href="$classECS.html#ab25f63dc0523958d986069505b703c12" title="Adds a component to an entity." alt="" coords="208,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,46,218,31,220,37,161,51"/>
+<area shape="rect" id="Node000004" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="218,55,353,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,65,204,65,204,70,160,70"/>
+<area shape="rect" id="Node000005" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="210,104,361,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,84,220,98,218,103,160,89"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#aafb0684b10615747aab071b895d97d47" title="Adds a component to the specified entity." alt="" coords="411,5,589,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,15,397,15,397,21,363,21"/>
+<area shape="rect" id="Node000006" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="412,104,588,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="361,114,398,114,398,119,361,119"/>
+<area shape="rect" id="Node000007" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="637,104,816,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="589,114,624,114,624,119,589,119"/>
+</map>

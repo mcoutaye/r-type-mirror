@@ -1,0 +1,327 @@
+\doxysection{Physics\+System Class Reference}
+\hypertarget{classPhysicsSystem}{}\label{classPhysicsSystem}\index{PhysicsSystem@{PhysicsSystem}}
+
+
+{\ttfamily \#include $<$Physics\+System.\+hpp$>$}
+
+
+
+Inheritance diagram for Physics\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classPhysicsSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Physics\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classPhysicsSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPhysicsSystem_a2b1e608f807a27680d4c4e19ef4d90f6}{Physics\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float gravity=980.f)
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_aa7875b96712f96732212d3949d8bbebf}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPhysicsSystem_a511ae1a17b3193135bb3fe84535f0e59}{set\+Gravity}} (float gravity)
+\item 
+float \mbox{\hyperlink{classPhysicsSystem_a26de654e9cc8e9fd3e925675024eb59e}{get\+Gravity}} () const
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_a66966eb4b5f7e1f0a12548022f321755}{apply\+Gravity}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity, float dt)
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_ace64575a51704850daa2f7127b0a7a29}{apply\+Force}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity, sf\+::\+Vector2f force)
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_aa0702ce94e3f1488f4fb470682a50dc6}{apply\+Impulse}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity, sf\+::\+Vector2f impulse)
+\item 
+bool \mbox{\hyperlink{classPhysicsSystem_adeee0d1e48d6cb3cb6b6e2bf074a3cf1}{is\+Grounded}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity)
+\item 
+bool \mbox{\hyperlink{classPhysicsSystem_aa968f10b042784fe94b7c716f740ad22}{raycast}} (sf\+::\+Vector2f start, sf\+::\+Vector2f direction, float distance, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \&hit\+Entity)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37}{update\+Rigid\+Bodies}} (float dt)
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7}{update\+Jumpers}} (float dt)
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206}{update\+Velocities}} (float dt)
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043}{resolve\+Collisions}} (float dt)
+\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}{get\+Collider\+Rect}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}{\+\_\+gravity}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classECS}{ECS}} \& \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\+\_\+ecs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPhysicsSystem_a2b1e608f807a27680d4c4e19ef4d90f6}\label{classPhysicsSystem_a2b1e608f807a27680d4c4e19ef4d90f6} 
+\index{PhysicsSystem@{PhysicsSystem}!PhysicsSystem@{PhysicsSystem}}
+\index{PhysicsSystem@{PhysicsSystem}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{PhysicsSystem()}{PhysicsSystem()}}
+{\footnotesize\ttfamily Physics\+System\+::\+Physics\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs,  }\item[{float}]{gravity = {\ttfamily 980.f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPhysicsSystem_ace64575a51704850daa2f7127b0a7a29}\label{classPhysicsSystem_ace64575a51704850daa2f7127b0a7a29} 
+\index{PhysicsSystem@{PhysicsSystem}!applyForce@{applyForce}}
+\index{applyForce@{applyForce}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{applyForce()}{applyForce()}}
+{\footnotesize\ttfamily void Physics\+System\+::apply\+Force (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{entity,  }\item[{sf\+::\+Vector2f}]{force }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_ace64575a51704850daa2f7127b0a7a29_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a66966eb4b5f7e1f0a12548022f321755}\label{classPhysicsSystem_a66966eb4b5f7e1f0a12548022f321755} 
+\index{PhysicsSystem@{PhysicsSystem}!applyGravity@{applyGravity}}
+\index{applyGravity@{applyGravity}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{applyGravity()}{applyGravity()}}
+{\footnotesize\ttfamily void Physics\+System\+::apply\+Gravity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{entity,  }\item[{float}]{dt }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a66966eb4b5f7e1f0a12548022f321755_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_aa0702ce94e3f1488f4fb470682a50dc6}\label{classPhysicsSystem_aa0702ce94e3f1488f4fb470682a50dc6} 
+\index{PhysicsSystem@{PhysicsSystem}!applyImpulse@{applyImpulse}}
+\index{applyImpulse@{applyImpulse}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{applyImpulse()}{applyImpulse()}}
+{\footnotesize\ttfamily void Physics\+System\+::apply\+Impulse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{entity,  }\item[{sf\+::\+Vector2f}]{impulse }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_aa0702ce94e3f1488f4fb470682a50dc6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837}\label{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837} 
+\index{PhysicsSystem@{PhysicsSystem}!getColliderRect@{getColliderRect}}
+\index{getColliderRect@{getColliderRect}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{getColliderRect()}{getColliderRect()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Physics\+System\+::get\+Collider\+Rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a9335e6468d1704d20c2e29cdc9dc5837_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a26de654e9cc8e9fd3e925675024eb59e}\label{classPhysicsSystem_a26de654e9cc8e9fd3e925675024eb59e} 
+\index{PhysicsSystem@{PhysicsSystem}!getGravity@{getGravity}}
+\index{getGravity@{getGravity}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{getGravity()}{getGravity()}}
+{\footnotesize\ttfamily float Physics\+System\+::get\+Gravity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classPhysicsSystem_adeee0d1e48d6cb3cb6b6e2bf074a3cf1}\label{classPhysicsSystem_adeee0d1e48d6cb3cb6b6e2bf074a3cf1} 
+\index{PhysicsSystem@{PhysicsSystem}!isGrounded@{isGrounded}}
+\index{isGrounded@{isGrounded}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{isGrounded()}{isGrounded()}}
+{\footnotesize\ttfamily bool Physics\+System\+::is\+Grounded (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}}]{entity }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_adeee0d1e48d6cb3cb6b6e2bf074a3cf1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_aa968f10b042784fe94b7c716f740ad22}\label{classPhysicsSystem_aa968f10b042784fe94b7c716f740ad22} 
+\index{PhysicsSystem@{PhysicsSystem}!raycast@{raycast}}
+\index{raycast@{raycast}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{raycast()}{raycast()}}
+{\footnotesize\ttfamily bool Physics\+System\+::raycast (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{start,  }\item[{sf\+::\+Vector2f}]{direction,  }\item[{float}]{distance,  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \&}]{hit\+Entity }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_aa968f10b042784fe94b7c716f740ad22_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043}\label{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043} 
+\index{PhysicsSystem@{PhysicsSystem}!resolveCollisions@{resolveCollisions}}
+\index{resolveCollisions@{resolveCollisions}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{resolveCollisions()}{resolveCollisions()}}
+{\footnotesize\ttfamily void Physics\+System\+::resolve\+Collisions (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a8a6ff11c0f8bac83667a317c0665c043_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a511ae1a17b3193135bb3fe84535f0e59}\label{classPhysicsSystem_a511ae1a17b3193135bb3fe84535f0e59} 
+\index{PhysicsSystem@{PhysicsSystem}!setGravity@{setGravity}}
+\index{setGravity@{setGravity}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{setGravity()}{setGravity()}}
+{\footnotesize\ttfamily void Physics\+System\+::set\+Gravity (\begin{DoxyParamCaption}\item[{float}]{gravity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classPhysicsSystem_aa7875b96712f96732212d3949d8bbebf}\label{classPhysicsSystem_aa7875b96712f96732212d3949d8bbebf} 
+\index{PhysicsSystem@{PhysicsSystem}!update@{update}}
+\index{update@{update}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Physics\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pure virtual function to update the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time for the update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_aa7875b96712f96732212d3949d8bbebf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7}\label{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7} 
+\index{PhysicsSystem@{PhysicsSystem}!updateJumpers@{updateJumpers}}
+\index{updateJumpers@{updateJumpers}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{updateJumpers()}{updateJumpers()}}
+{\footnotesize\ttfamily void Physics\+System\+::update\+Jumpers (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a4d9851854f7d7d4ef97e233b1608f9d7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37}\label{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37} 
+\index{PhysicsSystem@{PhysicsSystem}!updateRigidBodies@{updateRigidBodies}}
+\index{updateRigidBodies@{updateRigidBodies}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{updateRigidBodies()}{updateRigidBodies()}}
+{\footnotesize\ttfamily void Physics\+System\+::update\+Rigid\+Bodies (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_aa5bbeee549788e514c6edde5be7e5e37_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206}\label{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206} 
+\index{PhysicsSystem@{PhysicsSystem}!updateVelocities@{updateVelocities}}
+\index{updateVelocities@{updateVelocities}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{updateVelocities()}{updateVelocities()}}
+{\footnotesize\ttfamily void Physics\+System\+::update\+Velocities (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPhysicsSystem_a4d39e6fe01b815469c08e62a54874206_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402}\label{classPhysicsSystem_a36b09e41d4b4fe87f329698a5eea0402} 
+\index{PhysicsSystem@{PhysicsSystem}!\_gravity@{\_gravity}}
+\index{\_gravity@{\_gravity}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{\_gravity}{\_gravity}}
+{\footnotesize\ttfamily float Physics\+System\+::\+\_\+gravity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{PhysicsSystem_8hpp}{Physics\+System.\+hpp}}\end{DoxyCompactItemize}

@@ -1,8 +1,22 @@
 var searchData=
 [
-  ['clienttoplayerrelation_0',['clientToPlayerRelation',['../classServer.html#ac4ba75378e7da5ff808670e5a9f99777',1,'Server']]],
-  ['cooldown_1',['cooldown',['../structComponents_1_1Shootable.html#a401f18981b844971fc63b540ba973db9',1,'Components::Shootable']]],
-  ['count_2',['count',['../structComponents_1_1WaveData.html#afc266e01fcae2fa0a7e3980c19bddf89',1,'Components::WaveData']]],
-  ['current_3',['current',['../structComponents_1_1Health.html#ab2c65b1a4738dcc5cb43aedf1323714d',1,'Components::Health::current'],['../structEntityUpdate_1_1PACKED.html#ad8119cfec34c19612b40e56ab3d79e25',1,'EntityUpdate::PACKED::current']]],
-  ['currentwave_4',['currentWave',['../structComponents_1_1WaveSpawner.html#aa8e7b69e73eab1ffb996acf0539ee404',1,'Components::WaveSpawner']]]
+  ['callback_0',['callback',['../structMenuAction.html#a1d5af68aad307510a986df289f4239ec',1,'MenuAction']]],
+  ['canjump_1',['canJump',['../structComponents_1_1Jumper.html#a2af9790611b2bce30f5333a07d15bcf7',1,'Components::Jumper']]],
+  ['canmovethrough_2',['canMoveThrough',['../structComponents_1_1Platform.html#a7bfefc9d2859242836689dd1ee70ddde',1,'Components::Platform']]],
+  ['canshoot_3',['canShoot',['../structComponents_1_1Enemy.html#a16d4e424909063d9e18553c3f7d1815f',1,'Components::Enemy']]],
+  ['centered_4',['centered',['../structMenuItem.html#a00837f274e38bc8240cf66b38dfaeb4b',1,'MenuItem::centered'],['../structComponents_1_1Text.html#a73db625c9d8a60dbf6e90e92e6b548d0',1,'Components::Text::centered']]],
+  ['clienttoplayerrelation_5',['clientToPlayerRelation',['../classServer.html#ac4ba75378e7da5ff808670e5a9f99777',1,'Server']]],
+  ['climbspeed_6',['climbSpeed',['../structComponents_1_1Ladder.html#a0447c83b2529730b53651b9fb4887353',1,'Components::Ladder']]],
+  ['collisionmask_7',['collisionMask',['../structComponents_1_1BoxCollider.html#a46bde79ee1459516ea607868d67b863e',1,'Components::BoxCollider']]],
+  ['color_8',['color',['../structMenuItem.html#a70fcf52e39992b5c21cbafb4c513ea51',1,'MenuItem::color'],['../structComponents_1_1Text.html#a79484f3dd5fda3a57ac9afc5505739dc',1,'Components::Text::color']]],
+  ['cooldown_9',['cooldown',['../structComponents_1_1Shootable.html#a401f18981b844971fc63b540ba973db9',1,'Components::Shootable']]],
+  ['count_10',['count',['../structComponents_1_1WaveData.html#afc266e01fcae2fa0a7e3980c19bddf89',1,'Components::WaveData']]],
+  ['coyotecounter_11',['coyoteCounter',['../structComponents_1_1Jumper.html#a67cb299da13f6193d33a59a4df440efe',1,'Components::Jumper']]],
+  ['coyotetime_12',['coyoteTime',['../structComponents_1_1Jumper.html#a2ffcb3a28dfe60fa06ab6a2991dcfdfd',1,'Components::Jumper']]],
+  ['current_13',['current',['../structComponents_1_1Health.html#ab2c65b1a4738dcc5cb43aedf1323714d',1,'Components::Health::current'],['../structEntityUpdate_1_1PACKED.html#ad8119cfec34c19612b40e56ab3d79e25',1,'EntityUpdate::PACKED::current']]],
+  ['currentjoystickbutton_14',['currentJoystickButton',['../structComponents_1_1KeybindButton.html#ad272835f83a25849a961d732d72f1451',1,'Components::KeybindButton']]],
+  ['currentjumps_15',['currentJumps',['../structComponents_1_1Jumper.html#a8a2d919c79911da6ac2b21238e785942',1,'Components::Jumper']]],
+  ['currentkey_16',['currentKey',['../structComponents_1_1KeybindButton.html#ae11680134499a18fa893b27688a2fb9d',1,'Components::KeybindButton']]],
+  ['currentvalue_17',['currentValue',['../structComponents_1_1Slider.html#aab37c6647b1d10af2b09c71853e70146',1,'Components::Slider']]],
+  ['currentwave_18',['currentWave',['../structComponents_1_1WaveSpawner.html#aa8e7b69e73eab1ffb996acf0539ee404',1,'Components::WaveSpawner']]]
 ];

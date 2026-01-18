@@ -1,0 +1,3 @@
+<map id="Components::DynamicText" name="Components::DynamicText">
+<area shape="rect" id="Node000001" title="Dynamic text that displays a value (for sliders or keybinds)." alt="" coords="5,5,195,125"/>
+</map>

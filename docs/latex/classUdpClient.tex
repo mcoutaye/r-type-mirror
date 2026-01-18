@@ -6,7 +6,8 @@
 
 
 
-Collaboration diagram for Udp\+Client\+:\nopagebreak
+Collaboration diagram for Udp\+Client\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,15 +17,15 @@ Collaboration diagram for Udp\+Client\+:\nopagebreak
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classUdpClient_ac0a8179d32c5dff8bc91be2cc826c2c3}{Udp\+Client}} (sf\+::\+Ip\+Address \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{server\+Ip}}="{}127.\+0.\+0.\+1"{}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{server\+Port}}=\mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\+\_\+\+PORT}})
+\mbox{\hyperlink{classUdpClient_ac0a8179d32c5dff8bc91be2cc826c2c3}{Udp\+Client}} (sf\+::\+Ip\+Address server\+Ip="{}127.\+0.\+0.\+1"{}, unsigned short server\+Port=\mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\+\_\+\+PORT}})
 \item 
 \mbox{\hyperlink{classUdpClient_a9e69046802da8ea9e0bf3da874c49e47}{\texorpdfstring{$\sim$}{\string~}\+Udp\+Client}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classUdpClient_af1dcc0f4f1ce5194bd4be556ad453353}{start}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{local\+Port}}=0)
+bool \mbox{\hyperlink{classUdpClient_af1dcc0f4f1ce5194bd4be556ad453353}{start}} (unsigned short local\+Port=0)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpClient_ae150da03aa0deacc53d7d580b3bace2c}{stop}} ()
+void \mbox{\hyperlink{classUdpClient_ae150da03aa0deacc53d7d580b3bace2c}{stop}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpClient_a92023ed9187161c26c5a6619681ed23c}{join}} ()
+void \mbox{\hyperlink{classUdpClient_a92023ed9187161c26c5a6619681ed23c}{join}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -38,9 +39,9 @@ Collaboration diagram for Udp\+Client\+:\nopagebreak
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpClient_a0e1d9095836496585b301de4c3e03721}{send\+Thread}} ()
+void \mbox{\hyperlink{classUdpClient_a0e1d9095836496585b301de4c3e03721}{send\+Thread}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classUdpClient_a1d67075da68e0c477b7d018313893000}{receive\+Thread}} ()
+void \mbox{\hyperlink{classUdpClient_a1d67075da68e0c477b7d018313893000}{receive\+Thread}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -49,9 +50,9 @@ sf\+::\+Udp\+Socket \mbox{\hyperlink{classUdpClient_ab9f047eab8a98c1d2770d152ef6
 \item 
 sf\+::\+Ip\+Address \mbox{\hyperlink{classUdpClient_a77da676087f9b772dcc40623518c5955}{m\+\_\+server\+Ip}}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} \mbox{\hyperlink{classUdpClient_ad9e0703521e8d62029d294abcbe20fb3}{m\+\_\+server\+Port}}
+unsigned short \mbox{\hyperlink{classUdpClient_ad9e0703521e8d62029d294abcbe20fb3}{m\+\_\+server\+Port}}
 \item 
-std\+::atomic$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classUdpClient_a35e7d74115feb49cb64c65a70fb68757}{m\+\_\+running}} \{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{classUdpClient_a35e7d74115feb49cb64c65a70fb68757}{m\+\_\+running}} \{false\}
 \item 
 std\+::thread \mbox{\hyperlink{classUdpClient_a5a3531555a7d868a675ea494e5533dfc}{m\+\_\+send\+Thread}}
 \item 
@@ -64,7 +65,7 @@ std\+::thread \mbox{\hyperlink{classUdpClient_a390303d343e58753bb596caac94e2997}
 \index{UdpClient@{UdpClient}!UdpClient@{UdpClient}}
 \index{UdpClient@{UdpClient}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{UdpClient()}{UdpClient()}}
-{\footnotesize\ttfamily Udp\+Client\+::\+Udp\+Client (\begin{DoxyParamCaption}\item[{sf\+::\+Ip\+Address}]{server\+Ip = {\ttfamily "{}127.0.0.1"{}},  }\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{server\+Port = {\ttfamily \mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\+\_\+\+PORT}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily Udp\+Client\+::\+Udp\+Client (\begin{DoxyParamCaption}\item[{sf\+::\+Ip\+Address}]{server\+Ip = {\ttfamily "{}127.0.0.1"{}},  }\item[{unsigned short}]{server\+Port = {\ttfamily \mbox{\hyperlink{UdpClient_8hpp_ac42367fe5c999ec6650de83e9d72fe8c}{SERVER\+\_\+\+PORT}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
 \Hypertarget{classUdpClient_a9e69046802da8ea9e0bf3da874c49e47}\label{classUdpClient_a9e69046802da8ea9e0bf3da874c49e47} 
 \index{UdpClient@{UdpClient}!````~UdpClient@{\texorpdfstring{$\sim$}{\string~}UdpClient}}
@@ -79,27 +80,28 @@ std\+::thread \mbox{\hyperlink{classUdpClient_a390303d343e58753bb596caac94e2997}
 \index{UdpClient@{UdpClient}!join@{join}}
 \index{join@{join}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{join()}{join()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Client\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Udp\+Client\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \Hypertarget{classUdpClient_a1d67075da68e0c477b7d018313893000}\label{classUdpClient_a1d67075da68e0c477b7d018313893000} 
 \index{UdpClient@{UdpClient}!receiveThread@{receiveThread}}
 \index{receiveThread@{receiveThread}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{receiveThread()}{receiveThread()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Client\+::receive\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Udp\+Client\+::receive\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classUdpClient_a0e1d9095836496585b301de4c3e03721}\label{classUdpClient_a0e1d9095836496585b301de4c3e03721} 
 \index{UdpClient@{UdpClient}!sendThread@{sendThread}}
 \index{sendThread@{sendThread}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{sendThread()}{sendThread()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Client\+::send\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Udp\+Client\+::send\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classUdpClient_af1dcc0f4f1ce5194bd4be556ad453353}\label{classUdpClient_af1dcc0f4f1ce5194bd4be556ad453353} 
 \index{UdpClient@{UdpClient}!start@{start}}
 \index{start@{start}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{start()}{start()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Udp\+Client\+::start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}}}]{local\+Port = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Udp\+Client\+::start (\begin{DoxyParamCaption}\item[{unsigned short}]{local\+Port = {\ttfamily 0} }\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -110,7 +112,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{UdpClient@{UdpClient}!stop@{stop}}
 \index{stop@{stop}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{stop()}{stop()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Udp\+Client\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Udp\+Client\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -137,7 +139,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{UdpClient@{UdpClient}!m\_running@{m\_running}}
 \index{m\_running@{m\_running}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{m\_running}{m\_running}}
-{\footnotesize\ttfamily std\+::atomic$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Udp\+Client\+::m\+\_\+running \{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{false}}\}\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ Udp\+Client\+::m\+\_\+running \{false\}\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classUdpClient_a5a3531555a7d868a675ea494e5533dfc}\label{classUdpClient_a5a3531555a7d868a675ea494e5533dfc} 
 \index{UdpClient@{UdpClient}!m\_sendThread@{m\_sendThread}}
@@ -155,7 +157,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{UdpClient@{UdpClient}!m\_serverPort@{m\_serverPort}}
 \index{m\_serverPort@{m\_serverPort}!UdpClient@{UdpClient}}
 \doxysubsubsection{\texorpdfstring{m\_serverPort}{m\_serverPort}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{short}} Udp\+Client\+::m\+\_\+server\+Port\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily unsigned short Udp\+Client\+::m\+\_\+server\+Port\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classUdpClient_ab9f047eab8a98c1d2770d152ef6e248c}\label{classUdpClient_ab9f047eab8a98c1d2770d152ef6e248c} 
 \index{UdpClient@{UdpClient}!m\_socket@{m\_socket}}

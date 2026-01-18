@@ -1,0 +1,7 @@
+<map id="InputSystem::updateJoystickInput" name="InputSystem::updateJoystickInput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="409,5,617,45"/>
+<area shape="rect" id="Node000002" href="$classInputSystem.html#ad0abae812dfe6bf0e58c48e5d0382f51" title="Pure virtual function to update the system." alt="" coords="204,13,361,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="395,28,361,28,361,23,395,23"/>
+<area shape="rect" id="Node000003" href="$classClient.html#a643ed09341f07f8c81696741f2d2ca07" title=" " alt="" coords="5,13,156,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>

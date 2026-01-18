@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tripleshot_0',['TripleShot',['../structComponents_1_1PowerUp.html#a9ece4055070003617d50e6ee7a207889a2a2f418aeda3454fb82f74aff782bb8f',1,'Components::PowerUp']]]
+  ['joystick_0',['Joystick',['../namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471a1162b85b7b993e2edf7da29dd8abf7e2',1,'Components']]]
 ];

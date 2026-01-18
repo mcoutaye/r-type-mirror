@@ -1,0 +1,5 @@
+<map id="CameraSystem::updateCameraFollow" name="CameraSystem::updateCameraFollow">
+<area shape="rect" id="Node000001" title=" " alt="" coords="228,5,455,45"/>
+<area shape="rect" id="Node000002" href="$classCameraSystem.html#a5d11c3ddcea4310ee48c6c0788afb97c" title="Pure virtual function to update the system." alt="" coords="5,13,180,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,28,180,28,180,23,214,23"/>
+</map>

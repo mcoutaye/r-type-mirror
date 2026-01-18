@@ -1,0 +1,19 @@
+<map id="ParticleSystem::update" name="ParticleSystem::update">
+<area shape="rect" id="Node000001" title="Pure virtual function to update the system." alt="" coords="5,104,177,129"/>
+<area shape="rect" id="Node000002" href="$classECS.html#aaae60c88af59dd7af9d86200eb522bbc" title="Retrieves a mutable pointer to a component." alt="" coords="262,5,413,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,102,160,71,224,40,249,32,250,37,226,44,163,75,113,106"/>
+<area shape="rect" id="Node000005" href="$classECS.html#a8d931ce389d47888768e1a5092bde26b" title="Retrieves entities that have all specified components." alt="" coords="225,55,449,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="155,101,260,80,261,85,156,107"/>
+<area shape="rect" id="Node000006" href="$classParticleSystem.html#aa2d3bb4cc29a2fcf5bc52103ac651a6b" title=" " alt="" coords="239,104,435,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="177,114,226,114,226,119,177,119"/>
+<area shape="rect" id="Node000007" href="$classParticleSystem.html#a6daf3bf2e934a10553a381416fc5f946" title=" " alt="" coords="229,153,446,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="156,127,261,148,260,153,155,132"/>
+<area shape="rect" id="Node000009" href="$classParticleSystem.html#a0adcbcec82cc55283fe5d43ddb6d34ae" title=" " alt="" coords="227,203,447,228"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="113,127,163,158,226,189,250,197,249,202,224,194,160,163,110,132"/>
+<area shape="rect" id="Node000003" href="$classStorageComponent.html#a4e0239d1d216347282d49c0bcdf0079d" title="Retrieves a read&#45;only pointer to the component for the entity." alt="" coords="515,5,691,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="413,15,501,15,501,21,413,21"/>
+<area shape="rect" id="Node000004" href="$classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578" title="Checks if the entity has this component type." alt="" coords="756,5,935,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="691,15,742,15,742,21,691,21"/>
+<area shape="rect" id="Node000008" href="$classParticleSystem.html#a4ce2f9bb985b09ee51ce0f5022ca73eb" title=" " alt="" coords="497,153,708,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="446,163,484,163,484,169,446,169"/>
+</map>

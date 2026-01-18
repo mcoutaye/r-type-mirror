@@ -1,0 +1,7 @@
+<map id="Factory::createEnemy" name="Factory::createEnemy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,168,56"/>
+<area shape="rect" id="Node000002" href="$classECS.html#a729237fc4138af4f48df163dec088efb" title=" " alt="" coords="216,5,377,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,31,202,27,203,32,168,36"/>
+<area shape="rect" id="Node000003" href="$classECS.html#a41b876f3725cbb04aac3f2edd95522c6" title="Creates a new entity." alt="" coords="229,55,364,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="168,50,216,55,215,61,168,55"/>
+</map>

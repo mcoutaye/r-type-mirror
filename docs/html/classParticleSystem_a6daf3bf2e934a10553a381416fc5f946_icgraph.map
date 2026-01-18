@@ -1,0 +1,5 @@
+<map id="ParticleSystem::spawnParticle" name="ParticleSystem::spawnParticle">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,443,31"/>
+<area shape="rect" id="Node000002" href="$classParticleSystem.html#a4f95471d8c64a7195d560f2c0c1faf63" title="Pure virtual function to update the system." alt="" coords="5,5,177,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,21,178,21,178,15,212,15"/>
+</map>

@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for Input\+System\+:\nopagebreak
+Inheritance diagram for Input\+System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ Inheritance diagram for Input\+System\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Input\+System\+:\nopagebreak
+Collaboration diagram for Input\+System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,60 +27,74 @@ Collaboration diagram for Input\+System\+:\nopagebreak
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classInputSystem_a26e9713157209f6f41225360f49ee90f}{Input\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classInputSystem_a26e9713157209f6f41225360f49ee90f}{Input\+System}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
 \item 
-\mbox{\hyperlink{classInputSystem_a0d4dcf75be69044e88b17653925d35b7}{\texorpdfstring{$\sim$}{\string~}\+Input\+System}} ()=\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+\mbox{\hyperlink{classInputSystem_a0d4dcf75be69044e88b17653925d35b7}{\texorpdfstring{$\sim$}{\string~}\+Input\+System}} ()=default
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{update}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{dt}}) \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{override}}
+void \mbox{\hyperlink{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}{update}} (double dt) override
 \begin{DoxyCompactList}\small\item\em Pure virtual function to update the system. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{is\+Action\+Active}} (\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}}) \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+bool \mbox{\hyperlink{classInputSystem_a853a52f3d59165b69bc7303913369395}{is\+Action\+Active}} (\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action) const
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classInputSystem_ad6713488aefbde5a440da4014e374e9e}{was\+Action\+Pressed}} (\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}}) \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+bool \mbox{\hyperlink{classInputSystem_ad6713488aefbde5a440da4014e374e9e}{was\+Action\+Pressed}} (\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action) const
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classInputSystem_abc82ada36a00374dac556647e6e968c1}{was\+Action\+Released}} (\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}}) \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{const}}
+bool \mbox{\hyperlink{classInputSystem_abc82ada36a00374dac556647e6e968c1}{was\+Action\+Released}} (\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action) const
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_afe7f4a0668c0185a26a235acfc302e23}{set\+Key\+Mapping}} (sf\+::\+Keyboard\+::\+Key \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{key}}, \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}})
+void \mbox{\hyperlink{classInputSystem_afe7f4a0668c0185a26a235acfc302e23}{set\+Key\+Mapping}} (sf\+::\+Keyboard\+::\+Key key, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8}{set\+Joystick\+Button\+Mapping}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{button}}, \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{action}})
+void \mbox{\hyperlink{classInputSystem_ab2d36129a1b0012cffb5c9d03ab27e15}{remove\+Key\+Mapping}} (sf\+::\+Keyboard\+::\+Key key)
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_aa38c761ee2f3f77d71df26469963ae65}{set\+Deadzone}} (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{deadzone}})
+void \mbox{\hyperlink{classInputSystem_a7dde0693f0eda3630be989b6dd98b78c}{clear\+Key\+Mappings}} ()
+\item 
+sf\+::\+Keyboard\+::\+Key \mbox{\hyperlink{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7}{get\+Key\+For\+Action}} (\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action) const
+\item 
+void \mbox{\hyperlink{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8}{set\+Joystick\+Button\+Mapping}} (unsigned int button, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action)
+\item 
+void \mbox{\hyperlink{classInputSystem_a73554cac5f373523161de4a17db5faae}{remove\+Joystick\+Button\+Mapping}} (unsigned int button)
+\item 
+void \mbox{\hyperlink{classInputSystem_ad2d1de4ed51c5fd1e4c90d0f142e3429}{clear\+Joystick\+Button\+Mappings}} ()
+\item 
+unsigned int \mbox{\hyperlink{classInputSystem_a2d1a767437e5d8a810431db455051f13}{get\+Joystick\+Button\+For\+Action}} (\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} action) const
+\item 
+void \mbox{\hyperlink{classInputSystem_aa38c761ee2f3f77d71df26469963ae65}{set\+Deadzone}} (float deadzone)
+\item 
+void \mbox{\hyperlink{classInputSystem_a6b54ef35c60d8733264ed87a57176a5c}{reset\+To\+Default\+Mappings}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
 \begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
 \begin{DoxyCompactList}\small\item\em Virtual destructor for \doxylink{classISystem}{ISystem}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{ecs}})
+\mbox{\hyperlink{classISystem_a0cb213e9200b0463a803d4c4a37efe75}{ISystem}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
 \item 
-\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{virtual}} \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=\mbox{\hyperlink{server_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{default}}
+virtual \mbox{\hyperlink{classISystem_a42d100a53483da2de2d3f7b0e6c61b3a}{\texorpdfstring{$\sim$}{\string~}\+ISystem}} ()=default
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_aedadc160e47234ac009775c0729f48f5}{set\+Default\+Mappings}} ()
+void \mbox{\hyperlink{classInputSystem_aedadc160e47234ac009775c0729f48f5}{set\+Default\+Mappings}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_a7941bac0e62f7265d14894162c1e766e}{update\+Joystick\+Input}} ()
+void \mbox{\hyperlink{classInputSystem_a7941bac0e62f7265d14894162c1e766e}{update\+Joystick\+Input}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classInputSystem_af162c4e6c2b6f9ea270a0856b160a9b4}{apply\+Input\+To\+Players}} ()
+void \mbox{\hyperlink{classInputSystem_af162c4e6c2b6f9ea270a0856b160a9b4}{apply\+Input\+To\+Players}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::map$<$ sf\+::\+Keyboard\+::\+Key, \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} $>$ \mbox{\hyperlink{classInputSystem_ab6163e904770a96feef3bfcdff7031f4}{m\+\_\+key\+Mappings}}
+std\+::map$<$ sf\+::\+Keyboard\+::\+Key, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} $>$ \mbox{\hyperlink{classInputSystem_ab6163e904770a96feef3bfcdff7031f4}{m\+\_\+key\+Mappings}}
 \item 
-std\+::map$<$ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}, \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} $>$ \mbox{\hyperlink{classInputSystem_a8e70fb0d2039e173daecd79012b59e43}{m\+\_\+joystick\+Button\+Mappings}}
+std\+::map$<$ unsigned int, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}} $>$ \mbox{\hyperlink{classInputSystem_a8e70fb0d2039e173daecd79012b59e43}{m\+\_\+joystick\+Button\+Mappings}}
 \item 
-std\+::map$<$ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classInputSystem_a8265793e5953c68b55bef7d12846fbe6}{m\+\_\+current\+Action\+States}}
+std\+::map$<$ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, bool $>$ \mbox{\hyperlink{classInputSystem_a8265793e5953c68b55bef7d12846fbe6}{m\+\_\+current\+Action\+States}}
 \item 
-std\+::map$<$ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} $>$ \mbox{\hyperlink{classInputSystem_ab3735380f9b9ed3631e67bfafdd5e349}{m\+\_\+previous\+Action\+States}}
+std\+::map$<$ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, bool $>$ \mbox{\hyperlink{classInputSystem_ab3735380f9b9ed3631e67bfafdd5e349}{m\+\_\+previous\+Action\+States}}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{classInputSystem_a36c35517ee827a9ba3b1d620c25eb630}{m\+\_\+joystick\+Id}} = 0
+unsigned int \mbox{\hyperlink{classInputSystem_a36c35517ee827a9ba3b1d620c25eb630}{m\+\_\+joystick\+Id}} = 0
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{classInputSystem_ac6eec646599585afa6e2ff4cbc82c219}{m\+\_\+deadzone}} = 20.\+0f
+float \mbox{\hyperlink{classInputSystem_ac6eec646599585afa6e2ff4cbc82c219}{m\+\_\+deadzone}} = 20.\+0f
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{classInputSystem_a58b955ac05d2f0b1979fd0368295d3c3}{m\+\_\+player\+Speed}} = 400.\+0f
+float \mbox{\hyperlink{classInputSystem_a58b955ac05d2f0b1979fd0368295d3c3}{m\+\_\+player\+Speed}} = 400.\+0f
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classISystem}{ISystem}}}
@@ -95,6 +111,14 @@ std\+::map$<$ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbaf
 \doxysubsubsection{\texorpdfstring{InputSystem()}{InputSystem()}}
 {\footnotesize\ttfamily Input\+System\+::\+Input\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classECS}{ECS}} \&}]{ecs }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a26e9713157209f6f41225360f49ee90f_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_a0d4dcf75be69044e88b17653925d35b7}\label{classInputSystem_a0d4dcf75be69044e88b17653925d35b7} 
 \index{InputSystem@{InputSystem}!````~InputSystem@{\texorpdfstring{$\sim$}{\string~}InputSystem}}
 \index{````~InputSystem@{\texorpdfstring{$\sim$}{\string~}InputSystem}!InputSystem@{InputSystem}}
@@ -108,50 +132,173 @@ std\+::map$<$ \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbaf
 \index{InputSystem@{InputSystem}!applyInputToPlayers@{applyInputToPlayers}}
 \index{applyInputToPlayers@{applyInputToPlayers}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{applyInputToPlayers()}{applyInputToPlayers()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::apply\+Input\+To\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Input\+System\+::apply\+Input\+To\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_af162c4e6c2b6f9ea270a0856b160a9b4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_af162c4e6c2b6f9ea270a0856b160a9b4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classInputSystem_ad2d1de4ed51c5fd1e4c90d0f142e3429}\label{classInputSystem_ad2d1de4ed51c5fd1e4c90d0f142e3429} 
+\index{InputSystem@{InputSystem}!clearJoystickButtonMappings@{clearJoystickButtonMappings}}
+\index{clearJoystickButtonMappings@{clearJoystickButtonMappings}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{clearJoystickButtonMappings()}{clearJoystickButtonMappings()}}
+{\footnotesize\ttfamily void Input\+System\+::clear\+Joystick\+Button\+Mappings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_ad2d1de4ed51c5fd1e4c90d0f142e3429_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classInputSystem_a7dde0693f0eda3630be989b6dd98b78c}\label{classInputSystem_a7dde0693f0eda3630be989b6dd98b78c} 
+\index{InputSystem@{InputSystem}!clearKeyMappings@{clearKeyMappings}}
+\index{clearKeyMappings@{clearKeyMappings}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{clearKeyMappings()}{clearKeyMappings()}}
+{\footnotesize\ttfamily void Input\+System\+::clear\+Key\+Mappings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a7dde0693f0eda3630be989b6dd98b78c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classInputSystem_a2d1a767437e5d8a810431db455051f13}\label{classInputSystem_a2d1a767437e5d8a810431db455051f13} 
+\index{InputSystem@{InputSystem}!getJoystickButtonForAction@{getJoystickButtonForAction}}
+\index{getJoystickButtonForAction@{getJoystickButtonForAction}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{getJoystickButtonForAction()}{getJoystickButtonForAction()}}
+{\footnotesize\ttfamily unsigned int Input\+System\+::get\+Joystick\+Button\+For\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a2d1a767437e5d8a810431db455051f13_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7}\label{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7} 
+\index{InputSystem@{InputSystem}!getKeyForAction@{getKeyForAction}}
+\index{getKeyForAction@{getKeyForAction}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{getKeyForAction()}{getKeyForAction()}}
+{\footnotesize\ttfamily sf\+::\+Keyboard\+::\+Key Input\+System\+::get\+Key\+For\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_a853a52f3d59165b69bc7303913369395}\label{classInputSystem_a853a52f3d59165b69bc7303913369395} 
 \index{InputSystem@{InputSystem}!isActionActive@{isActionActive}}
 \index{isActionActive@{isActionActive}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{isActionActive()}{isActionActive()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Input\+System\+::is\+Action\+Active (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool Input\+System\+::is\+Action\+Active (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classInputSystem_a853a52f3d59165b69bc7303913369395_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{classInputSystem_a73554cac5f373523161de4a17db5faae}\label{classInputSystem_a73554cac5f373523161de4a17db5faae} 
+\index{InputSystem@{InputSystem}!removeJoystickButtonMapping@{removeJoystickButtonMapping}}
+\index{removeJoystickButtonMapping@{removeJoystickButtonMapping}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{removeJoystickButtonMapping()}{removeJoystickButtonMapping()}}
+{\footnotesize\ttfamily void Input\+System\+::remove\+Joystick\+Button\+Mapping (\begin{DoxyParamCaption}\item[{unsigned int}]{button }\end{DoxyParamCaption})}
+
+\Hypertarget{classInputSystem_ab2d36129a1b0012cffb5c9d03ab27e15}\label{classInputSystem_ab2d36129a1b0012cffb5c9d03ab27e15} 
+\index{InputSystem@{InputSystem}!removeKeyMapping@{removeKeyMapping}}
+\index{removeKeyMapping@{removeKeyMapping}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{removeKeyMapping()}{removeKeyMapping()}}
+{\footnotesize\ttfamily void Input\+System\+::remove\+Key\+Mapping (\begin{DoxyParamCaption}\item[{sf\+::\+Keyboard\+::\+Key}]{key }\end{DoxyParamCaption})}
+
+\Hypertarget{classInputSystem_a6b54ef35c60d8733264ed87a57176a5c}\label{classInputSystem_a6b54ef35c60d8733264ed87a57176a5c} 
+\index{InputSystem@{InputSystem}!resetToDefaultMappings@{resetToDefaultMappings}}
+\index{resetToDefaultMappings@{resetToDefaultMappings}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{resetToDefaultMappings()}{resetToDefaultMappings()}}
+{\footnotesize\ttfamily void Input\+System\+::reset\+To\+Default\+Mappings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a6b54ef35c60d8733264ed87a57176a5c_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_aa38c761ee2f3f77d71df26469963ae65}\label{classInputSystem_aa38c761ee2f3f77d71df26469963ae65} 
 \index{InputSystem@{InputSystem}!setDeadzone@{setDeadzone}}
 \index{setDeadzone@{setDeadzone}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{setDeadzone()}{setDeadzone()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::set\+Deadzone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}}}]{deadzone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Input\+System\+::set\+Deadzone (\begin{DoxyParamCaption}\item[{float}]{deadzone }\end{DoxyParamCaption})}
 
 \Hypertarget{classInputSystem_aedadc160e47234ac009775c0729f48f5}\label{classInputSystem_aedadc160e47234ac009775c0729f48f5} 
 \index{InputSystem@{InputSystem}!setDefaultMappings@{setDefaultMappings}}
 \index{setDefaultMappings@{setDefaultMappings}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{setDefaultMappings()}{setDefaultMappings()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::set\+Default\+Mappings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Input\+System\+::set\+Default\+Mappings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_aedadc160e47234ac009775c0729f48f5_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8}\label{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8} 
 \index{InputSystem@{InputSystem}!setJoystickButtonMapping@{setJoystickButtonMapping}}
 \index{setJoystickButtonMapping@{setJoystickButtonMapping}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{setJoystickButtonMapping()}{setJoystickButtonMapping()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::set\+Joystick\+Button\+Mapping (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}}]{button,  }\item[{\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Input\+System\+::set\+Joystick\+Button\+Mapping (\begin{DoxyParamCaption}\item[{unsigned int}]{button,  }\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption})}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a60cf5b4e159cd0c2eeb40982564b00a8_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_afe7f4a0668c0185a26a235acfc302e23}\label{classInputSystem_afe7f4a0668c0185a26a235acfc302e23} 
 \index{InputSystem@{InputSystem}!setKeyMapping@{setKeyMapping}}
 \index{setKeyMapping@{setKeyMapping}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{setKeyMapping()}{setKeyMapping()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::set\+Key\+Mapping (\begin{DoxyParamCaption}\item[{sf\+::\+Keyboard\+::\+Key}]{key,  }\item[{\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Input\+System\+::set\+Key\+Mapping (\begin{DoxyParamCaption}\item[{sf\+::\+Keyboard\+::\+Key}]{key,  }\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption})}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_afe7f4a0668c0185a26a235acfc302e23_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51}\label{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51} 
 \index{InputSystem@{InputSystem}!update@{update}}
 \index{update@{update}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{double}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Input\+System\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -166,7 +313,16 @@ Pure virtual function to update the system.
 
 Implements \mbox{\hyperlink{classISystem_a739106b9af90852f4a2ce03f68248c00}{ISystem}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_ad0abae812dfe6bf0e58c48e5d0382f51_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -177,19 +333,27 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{InputSystem@{InputSystem}!updateJoystickInput@{updateJoystickInput}}
 \index{updateJoystickInput@{updateJoystickInput}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{updateJoystickInput()}{updateJoystickInput()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Input\+System\+::update\+Joystick\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Input\+System\+::update\+Joystick\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInputSystem_a7941bac0e62f7265d14894162c1e766e_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classInputSystem_ad6713488aefbde5a440da4014e374e9e}\label{classInputSystem_ad6713488aefbde5a440da4014e374e9e} 
 \index{InputSystem@{InputSystem}!wasActionPressed@{wasActionPressed}}
 \index{wasActionPressed@{wasActionPressed}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{wasActionPressed()}{wasActionPressed()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Input\+System\+::was\+Action\+Pressed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool Input\+System\+::was\+Action\+Pressed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
 
 \Hypertarget{classInputSystem_abc82ada36a00374dac556647e6e968c1}\label{classInputSystem_abc82ada36a00374dac556647e6e968c1} 
 \index{InputSystem@{InputSystem}!wasActionReleased@{wasActionReleased}}
 \index{wasActionReleased@{wasActionReleased}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{wasActionReleased()}{wasActionReleased()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Input\+System\+::was\+Action\+Released (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool Input\+System\+::was\+Action\+Released (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}}]{action }\end{DoxyParamCaption}) const}
 
 
 
@@ -198,43 +362,43 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{InputSystem@{InputSystem}!m\_currentActionStates@{m\_currentActionStates}}
 \index{m\_currentActionStates@{m\_currentActionStates}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_currentActionStates}{m\_currentActionStates}}
-{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Input\+System\+::m\+\_\+current\+Action\+States\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, bool$>$ Input\+System\+::m\+\_\+current\+Action\+States\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classInputSystem_ac6eec646599585afa6e2ff4cbc82c219}\label{classInputSystem_ac6eec646599585afa6e2ff4cbc82c219} 
 \index{InputSystem@{InputSystem}!m\_deadzone@{m\_deadzone}}
 \index{m\_deadzone@{m\_deadzone}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_deadzone}{m\_deadzone}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Input\+System\+::m\+\_\+deadzone = 20.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily float Input\+System\+::m\+\_\+deadzone = 20.\+0f\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classInputSystem_a8e70fb0d2039e173daecd79012b59e43}\label{classInputSystem_a8e70fb0d2039e173daecd79012b59e43} 
 \index{InputSystem@{InputSystem}!m\_joystickButtonMappings@{m\_joystickButtonMappings}}
 \index{m\_joystickButtonMappings@{m\_joystickButtonMappings}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_joystickButtonMappings}{m\_joystickButtonMappings}}
-{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}}, \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}$>$ Input\+System\+::m\+\_\+joystick\+Button\+Mappings\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::map$<$unsigned int, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}$>$ Input\+System\+::m\+\_\+joystick\+Button\+Mappings\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classInputSystem_a36c35517ee827a9ba3b1d620c25eb630}\label{classInputSystem_a36c35517ee827a9ba3b1d620c25eb630} 
 \index{InputSystem@{InputSystem}!m\_joystickId@{m\_joystickId}}
 \index{m\_joystickId@{m\_joystickId}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_joystickId}{m\_joystickId}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{unsigned}} \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Input\+System\+::m\+\_\+joystick\+Id = 0\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily unsigned int Input\+System\+::m\+\_\+joystick\+Id = 0\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classInputSystem_ab6163e904770a96feef3bfcdff7031f4}\label{classInputSystem_ab6163e904770a96feef3bfcdff7031f4} 
 \index{InputSystem@{InputSystem}!m\_keyMappings@{m\_keyMappings}}
 \index{m\_keyMappings@{m\_keyMappings}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_keyMappings}{m\_keyMappings}}
-{\footnotesize\ttfamily std\+::map$<$sf\+::\+Keyboard\+::\+Key, \mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}$>$ Input\+System\+::m\+\_\+key\+Mappings\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::map$<$sf\+::\+Keyboard\+::\+Key, \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}$>$ Input\+System\+::m\+\_\+key\+Mappings\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classInputSystem_a58b955ac05d2f0b1979fd0368295d3c3}\label{classInputSystem_a58b955ac05d2f0b1979fd0368295d3c3} 
 \index{InputSystem@{InputSystem}!m\_playerSpeed@{m\_playerSpeed}}
 \index{m\_playerSpeed@{m\_playerSpeed}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_playerSpeed}{m\_playerSpeed}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Input\+System\+::m\+\_\+player\+Speed = 400.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily float Input\+System\+::m\+\_\+player\+Speed = 400.\+0f\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classInputSystem_ab3735380f9b9ed3631e67bfafdd5e349}\label{classInputSystem_ab3735380f9b9ed3631e67bfafdd5e349} 
 \index{InputSystem@{InputSystem}!m\_previousActionStates@{m\_previousActionStates}}
 \index{m\_previousActionStates@{m\_previousActionStates}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{m\_previousActionStates}{m\_previousActionStates}}
-{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{InputSystem_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}}$>$ Input\+System\+::m\+\_\+previous\+Action\+States\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{Game\+Action}}, bool$>$ Input\+System\+::m\+\_\+previous\+Action\+States\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

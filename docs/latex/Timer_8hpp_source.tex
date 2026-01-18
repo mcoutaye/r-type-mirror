@@ -25,14 +25,14 @@
 \DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classTimer_af11a98cd3020860d759b7bb78f6ecc9b}{\_lastTick}}.asMicroseconds();}
 \DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}}\ \mbox{\hyperlink{classTimer_a8748fdae906f806c6071d2a985cdb359}{getCurrentFrame}}()\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classTimer_a8748fdae906f806c6071d2a985cdb359}{getCurrentFrame}}()\ \{}
 \DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classTimer_afa3ae060701ee7db5ac30821755fadb6}{\_frameNumber}};}
 \DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00027\ }
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTimer_a5dfc60401871aa32cfe0ca0a775f31fa}{updateClock}}()\ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{elapsedTime}}\ =\ \mbox{\hyperlink{classTimer_a6146149d2bf9233823a4ce392fb0768b}{\_clock}}.getElapsedTime();}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{elapsedTime}}.asMicroseconds()\ >\ 60000)\ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTimer_af11a98cd3020860d759b7bb78f6ecc9b}{\_lastTick}}\ =\ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{elapsedTime}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ elapsedTime\ =\ \mbox{\hyperlink{classTimer_a6146149d2bf9233823a4ce392fb0768b}{\_clock}}.getElapsedTime();}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (elapsedTime.asMicroseconds()\ >\ 60000)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTimer_af11a98cd3020860d759b7bb78f6ecc9b}{\_lastTick}}\ =\ elapsedTime;}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTimer_afa3ae060701ee7db5ac30821755fadb6}{\_frameNumber}}++;}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTimer_a6146149d2bf9233823a4ce392fb0768b}{\_clock}}.restart();}
 \DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
@@ -40,7 +40,7 @@
 \DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ sf::Clock\ \mbox{\hyperlink{classTimer_a6146149d2bf9233823a4ce392fb0768b}{\_clock}};}
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ sf::Time\ \mbox{\hyperlink{classTimer_af11a98cd3020860d759b7bb78f6ecc9b}{\_lastTick}};}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{uint16\_t}}\ \mbox{\hyperlink{classTimer_afa3ae060701ee7db5ac30821755fadb6}{\_frameNumber}}\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classTimer_afa3ae060701ee7db5ac30821755fadb6}{\_frameNumber}}\ =\ 0;}
 \DoxyCodeLine{00040\ \};}
 \DoxyCodeLine{00041\ }
 \DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !TIMER\_HPP\_\ */}\textcolor{preprocessor}{}}

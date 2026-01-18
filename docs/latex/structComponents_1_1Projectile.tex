@@ -11,7 +11,8 @@ Component for projectile entities.
 
 
 
-Collaboration diagram for Components\+::Projectile\+:\nopagebreak
+Collaboration diagram for Components\+::Projectile\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,10 +22,12 @@ Collaboration diagram for Components\+::Projectile\+:\nopagebreak
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{structComponents_1_1Projectile_ad448be528153937c3d0c53732fbc9c6f}{speed}}
+float \mbox{\hyperlink{structComponents_1_1Projectile_ad448be528153937c3d0c53732fbc9c6f}{speed}}
 \begin{DoxyCompactList}\small\item\em Speed of the projectile. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} \mbox{\hyperlink{structComponents_1_1Projectile_ad7ad006f2928ab0aa51a2f7364c75cc1}{damage}}
-\begin{DoxyCompactList}\small\item\em Damage inflicted by the projectile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{structComponents_1_1Projectile_ad7ad006f2928ab0aa51a2f7364c75cc1}{damage}}
+\begin{DoxyCompactList}\small\item\em Damage inflicted by the projectile. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structComponents_1_1Projectile_ab9b4757d1aa643a06d4ba52271422523}{owner\+Id}} = -\/1
+\begin{DoxyCompactList}\small\item\em ID of the owner. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -35,17 +38,27 @@ Component for projectile entities.
 \index{Components::Projectile@{Components::Projectile}!damage@{damage}}
 \index{damage@{damage}!Components::Projectile@{Components::Projectile}}
 \doxysubsubsection{\texorpdfstring{damage}{damage}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{int}} Components\+::\+Projectile\+::damage}
+{\footnotesize\ttfamily int Components\+::\+Projectile\+::damage}
 
 
 
 Damage inflicted by the projectile. 
 
+\Hypertarget{structComponents_1_1Projectile_ab9b4757d1aa643a06d4ba52271422523}\label{structComponents_1_1Projectile_ab9b4757d1aa643a06d4ba52271422523} 
+\index{Components::Projectile@{Components::Projectile}!ownerId@{ownerId}}
+\index{ownerId@{ownerId}!Components::Projectile@{Components::Projectile}}
+\doxysubsubsection{\texorpdfstring{ownerId}{ownerId}}
+{\footnotesize\ttfamily int Components\+::\+Projectile\+::owner\+Id = -\/1}
+
+
+
+ID of the owner. 
+
 \Hypertarget{structComponents_1_1Projectile_ad448be528153937c3d0c53732fbc9c6f}\label{structComponents_1_1Projectile_ad448be528153937c3d0c53732fbc9c6f} 
 \index{Components::Projectile@{Components::Projectile}!speed@{speed}}
 \index{speed@{speed}!Components::Projectile@{Components::Projectile}}
 \doxysubsubsection{\texorpdfstring{speed}{speed}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Components\+::\+Projectile\+::speed}
+{\footnotesize\ttfamily float Components\+::\+Projectile\+::speed}
 
 
 

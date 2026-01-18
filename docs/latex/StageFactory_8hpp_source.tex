@@ -1,0 +1,88 @@
+\doxysection{Stage\+Factory.\+hpp}
+\hypertarget{StageFactory_8hpp_source}{}\label{StageFactory_8hpp_source}\index{include/engine/factory/StageFactory.hpp@{include/engine/factory/StageFactory.hpp}}
+\mbox{\hyperlink{StageFactory_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ R-\/type}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Stage\ Factory}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ecs.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Components_8hpp}{engine/systems/Components.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceFactory}{Factory}}\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceFactory_a8cc7c1b63f79cf7a16a486cd3acf04cc}{createStarfield}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{int}\ starCount,\ \textcolor{keywordtype}{float}\ screenWidth,\ \textcolor{keywordtype}{float}\ screenHeight,\ \textcolor{keywordtype}{float}\ maxSpeed)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ starCount;\ ++i)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ star\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(rand()\ \%\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(screenWidth));}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(rand()\ \%\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(screenHeight));}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Taille\ aléatoire\ (1-\/3)}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ size\ =\ 1\ +\ (rand()\ \%\ 5);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ La\ vitesse\ dépend\ de\ la\ taille\ (plus\ grosse\ =\ plus\ rapide)}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ (15\ -\/\ size)\ *\ 50.f;\ \textcolor{comment}{//\ Ex:\ taille\ 1\ →\ 150,\ taille\ 3\ →\ 50}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ brightness\ =\ 150\ +\ (rand()\ \%\ 105);\ \textcolor{comment}{//\ 150-\/255\ (plus\ visible)}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Star\_t>(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ star,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Star\_t\{speed,\ brightness,\ size\}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a6547fcedd37e94b2a1411e6c53d0d32a}{createObstacle}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ obstacle\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Collider\_t,\ Obstacle\_t,\ SendUpdate\_t>}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ (obstacle,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Collider\_t\{width,\ height,\ \textcolor{keyword}{true},\ 0,\ 0\},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Obstacle\_t\{\textcolor{keyword}{true}\},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SendUpdate\_t\{\textcolor{keyword}{true}\});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ obstacle;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}{createDestructibleTile}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keywordtype}{int}\ health)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ tile\ =\ ecs.\mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{createEntity}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_a729237fc4138af4f48df163dec088efb}{addComponents}}<Position\_t,\ Collider\_t,\ Health\_t,\ SendUpdate\_t>}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ (tile,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Collider\_t\{width,\ height,\ \textcolor{keyword}{true},\ 0,\ 0\},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Health\_t\{health,\ health\},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SendUpdate\_t\{\textcolor{keyword}{true}\});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tile;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceFactory_a9a5b5adbf7c42e08d4c3d732f87cdc5f}{createScreenBorders}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ screenWidth,\ \textcolor{keywordtype}{float}\ screenHeight,\ \textcolor{keywordtype}{float}\ wallThickness)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}{createDestructibleTile}}(ecs,\ 0.f,\ 0.f,\ screenWidth,\ wallThickness,\ 9999);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}{createDestructibleTile}}(ecs,\ 0.f,\ screenHeight\ -\/\ wallThickness,\ screenWidth,\ wallThickness,\ 9999);}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ std::vector<Entity>\ \mbox{\hyperlink{namespaceFactory_a2f225b4b8db0d932004499169074ef26}{createTileGrid}}(\mbox{\hyperlink{classECS}{ECS}}\&\ ecs,\ \textcolor{keywordtype}{float}\ startX,\ \textcolor{keywordtype}{float}\ startY,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cols,\ \textcolor{keywordtype}{int}\ rows,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tileWidth,\ \textcolor{keywordtype}{float}\ tileHeight,\ \textcolor{keywordtype}{int}\ health)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ std::vector<Entity>\ tiles;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ tiles.reserve(cols\ *\ rows);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ rows;\ ++row)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ cols;\ ++col)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ startX\ +\ col\ *\ tileWidth;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\ =\ startY\ +\ row\ *\ tileHeight;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tiles.push\_back(\mbox{\hyperlink{namespaceFactory_a8c3e2cf7f4a148d04cc162a677662833}{createDestructibleTile}}(ecs,\ x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}},\ tileWidth,\ tileHeight,\ health));}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tiles;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \}}
+
+\end{DoxyCode}

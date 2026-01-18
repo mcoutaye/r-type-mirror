@@ -1,0 +1,63 @@
+\doxysection{include/engine/factory/\+Entity\+Factory.hpp File Reference}
+\hypertarget{EntityFactory_8hpp}{}\label{EntityFactory_8hpp}\index{include/engine/factory/EntityFactory.hpp@{include/engine/factory/EntityFactory.hpp}}
+{\ttfamily \#include "{}ecs.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/systems/\+Components.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/\+Menu.\+hpp"{}}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Entity\+Factory.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{EntityFactory_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceFactory}{Factory}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Drawable\+\_\+t \mbox{\hyperlink{namespaceFactory_a72717673325d8183f30a820fc78f728e}{Factory\+::create\+Drawable}} (const std\+::string \&texture\+Id, sf\+::\+Int\+Rect rect, int layer, bool visible=true, float scale=1.f, float rotation=0.f)
+\item 
+Play\+Sound\+\_\+t \mbox{\hyperlink{namespaceFactory_af5e7bee90929fcaabc2b89eff8219cbe}{Factory\+::create\+Sound}} (const std\+::string \&sound\+Id, float volume=100.f, float pitch=1.\+0f)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a441510ad7baadbaba0db5a2b3ce212c9}{Factory\+::create\+Player}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, uint8\+\_\+t player\+Id, const std\+::string \&texture\+Id)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_af6f99ca712a4eb5dc8840202d2aaaef7}{Factory\+::create\+Projectile}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float velocityX, float velocityY, uint8\+\_\+t team, int damage, const std\+::string \&texture\+Id, int owner\+Id=-\/1, const std\+::string \&shoot\+Sound="{}shoot.\+ogg"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a7ce35b4b946ea6fc2fe8fa6265dc88a0}{Factory\+::create\+Enemy}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, Movement\+Pattern\+\_\+t\+::\+Type movement\+Type)
+\item 
+void \mbox{\hyperlink{namespaceFactory_ae838e52ac84283a738f6b53b84199a00}{Factory\+::play\+Death\+Sound}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} entity, const std\+::string \&sound\+Id="{}enemy\+\_\+explosion.\+wav"{}, float volume=90.f)
+\item 
+Text\+\_\+t \mbox{\hyperlink{namespaceFactory_aec3f8d7ef2d767b8cf4c3dd5d4fb6c6b}{Factory\+::create\+Text}} (const std\+::string \&text\+Str, uint32\+\_\+t font\+Size=48, sf\+::\+Color color=sf\+::\+Color\+::\+White, bool centered=true, const std\+::string \&font\+Id="{}default"{}, bool visible=true)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_aa56583e9c9566625de9000f121539cff}{Factory\+::create\+Menu\+Title}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, const \mbox{\hyperlink{structMenu}{Menu}} \&menu)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_abd0b6f44a62de5429ab5a658224466f1}{Factory\+::create\+Menu\+Item}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, const \mbox{\hyperlink{structMenuItem}{Menu\+Item}} \&item)
+\item 
+void \mbox{\hyperlink{namespaceFactory_a1423ca81c8fb075aeee8f91dd2772a49}{Factory\+::create\+Menu}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, const \mbox{\hyperlink{structMenu}{Menu}} \&menu)
+\item 
+void \mbox{\hyperlink{namespaceFactory_ae3efdaaca24e7128d7e793d49e39fe72}{Factory\+::clear\+Menu}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_ab44fd5b3464c00df335f3c64ed3a9179}{Factory\+::create\+Platformer\+Player}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&texture\+Id="{}player"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_af024b3569d47fa562a804abd6c37ae0b}{Factory\+::create\+Platform}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, bool one\+Way=false, const std\+::string \&texture\+Id="{}platform"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a5a8855fb189fdd901209a94d75a6d451}{Factory\+::create\+Moving\+Platform}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, float velX, float velY, const std\+::string \&texture\+Id="{}platform"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a5cdda0e3e7aefd2d7c21f21036129f79}{Factory\+::create\+Wall}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, const std\+::string \&texture\+Id="{}wall"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_aabbcc1893c1ad6aa61b9be2c6618d192}{Factory\+::create\+Ladder}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, float climb\+Speed=150.f, const std\+::string \&texture\+Id="{}ladder"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a7178225e4b889c2808f1d1d0c6dd4f5c}{Factory\+::create\+Teleporter}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height, sf\+::\+Vector2f target\+Pos, const std\+::string \&texture\+Id="{}teleporter"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a89692d0524d05eecd4ca9696bd89344c}{Factory\+::create\+Death\+Zone}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, float width, float height)
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_a9f08dec3ed1c6f9b0af551f25ed912c7}{Factory\+::create\+Checkpoint}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&texture\+Id="{}checkpoint"{})
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{namespaceFactory_aaea545222d73758b12ff7313e20c878c}{Factory\+::create\+Collectible}} (\mbox{\hyperlink{classECS}{ECS}} \&ecs, float x, float \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}, const std\+::string \&texture\+Id="{}coin"{})
+\end{DoxyCompactItemize}

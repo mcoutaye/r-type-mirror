@@ -6,44 +6,45 @@
 
 
 
-Collaboration diagram for Client\+:\nopagebreak
+Collaboration diagram for Client\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{classClient__coll__graph}
+\includegraphics[width=350pt]{classClient__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classClient_ac515414a687ecfdf701f9f31497a72f7}{Client}} (sf\+::\+Ip\+Address \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{server\+Ip}}="{}127.\+0.\+0.\+1"{})
+\mbox{\hyperlink{classClient_ac515414a687ecfdf701f9f31497a72f7}{Client}} (sf\+::\+Ip\+Address server\+Ip="{}127.\+0.\+0.\+1"{})
 \item 
 \mbox{\hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{\texorpdfstring{$\sim$}{\string~}\+Client}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}} ()
+void \mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classClient_aad66fa701396a4392c2b52f316b25987}{render}} ()
+void \mbox{\hyperlink{classClient_aad66fa701396a4392c2b52f316b25987}{render}} ()
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classClient_a643ed09341f07f8c81696741f2d2ca07}{process\+Input}} ()
+void \mbox{\hyperlink{classClient_a643ed09341f07f8c81696741f2d2ca07}{process\+Input}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classTimer}{Timer}} \mbox{\hyperlink{classClient_adcb6c04304d2dbd02474c2317d5c76b9}{\+\_\+timer}}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} \mbox{\hyperlink{classClient_af49251de2a995a0e491da25c1e72d33a}{\+\_\+running}}
+bool \mbox{\hyperlink{classClient_af49251de2a995a0e491da25c1e72d33a}{\+\_\+running}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} \mbox{\hyperlink{classClient_ad361032d607e05a51b215e1300029bbc}{apply\+Update}} (\mbox{\hyperlink{structEntityUpdate}{Entity\+Update}} \&\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}})
+void \mbox{\hyperlink{classClient_ad361032d607e05a51b215e1300029bbc}{apply\+Update}} (\mbox{\hyperlink{structEntityUpdate}{Entity\+Update}} \&\mbox{\hyperlink{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}{update}})
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::unordered\+\_\+map$<$ std\+::size\+\_\+t, std\+::size\+\_\+t $>$ \mbox{\hyperlink{classClient_a2c05ea17ccd565aa75308568fa4fb510}{server\+To\+Client\+Entity\+Relation}}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} \mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\+\_\+shoot\+Cooldown}} = 0.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}
+float \mbox{\hyperlink{classClient_ac539343998d24fbef1c5cc8302f8444c}{\+\_\+shoot\+Cooldown}} = 0.f
 \item 
 \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{classClient_a27b34e3ca515f787b540de33b2808dd9}{\+\_\+local\+Player\+Entity}} = -\/1
 \item 
@@ -57,7 +58,7 @@ sf\+::\+Render\+Window \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c1
 \item 
 \mbox{\hyperlink{classRenderSystem}{Render\+System}} \mbox{\hyperlink{classClient_a264bdbc71e1627d27dda4cbb8652d752}{\+\_\+render\+System}} \{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\+\_\+ecs}}, \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c17254a}{\+\_\+window}}, \mbox{\hyperlink{classClient_a6ce2c592384a952ffe7c05cf4fe94b19}{\+\_\+resource\+Manager}}\}
 \item 
-\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Move\+System}} \mbox{\hyperlink{classClient_a5e73c9ff310e577999469b19f0ee0030}{\+\_\+move\+System}} \{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\+\_\+ecs}}\}
+\mbox{\hyperlink{classMoveSystem}{Move\+System}} \mbox{\hyperlink{classClient_a5e73c9ff310e577999469b19f0ee0030}{\+\_\+move\+System}} \{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\+\_\+ecs}}\}
 \item 
 \mbox{\hyperlink{classUdpClient}{Udp\+Client}} \mbox{\hyperlink{classClient_ac918169c7b101892744c43434966f365}{\+\_\+\+UDP}}
 \end{DoxyCompactItemize}
@@ -70,11 +71,12 @@ sf\+::\+Render\+Window \mbox{\hyperlink{classClient_a43cbfd62312e2f57efdff7a33c1
 \doxysubsubsection{\texorpdfstring{Client()}{Client()}}
 {\footnotesize\ttfamily Client\+::\+Client (\begin{DoxyParamCaption}\item[{sf\+::\+Ip\+Address}]{server\+Ip = {\ttfamily "{}127.0.0.1"{}} }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=324pt]{classClient_ac515414a687ecfdf701f9f31497a72f7_cgraph}
+\includegraphics[width=350pt]{classClient_ac515414a687ecfdf701f9f31497a72f7_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classClient_a840e519ca781888cbd54181572ebe3a7}\label{classClient_a840e519ca781888cbd54181572ebe3a7} 
@@ -90,16 +92,18 @@ Here is the call graph for this function\+:\nopagebreak
 \index{Client@{Client}!applyUpdate@{applyUpdate}}
 \index{applyUpdate@{applyUpdate}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{applyUpdate()}{applyUpdate()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Client\+::apply\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEntityUpdate}{Entity\+Update}} \&}]{update }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Client\+::apply\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEntityUpdate}{Entity\+Update}} \&}]{update }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classClient_ad361032d607e05a51b215e1300029bbc_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -110,9 +114,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{Client@{Client}!processInput@{processInput}}
 \index{processInput@{processInput}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{processInput()}{processInput()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Client\+::process\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Client\+::process\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -123,29 +128,32 @@ Here is the call graph for this function\+:\nopagebreak
 \index{Client@{Client}!render@{render}}
 \index{render@{render}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{render()}{render()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Client\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Client\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=327pt]{classClient_aad66fa701396a4392c2b52f316b25987_cgraph}
+\includegraphics[width=350pt]{classClient_aad66fa701396a4392c2b52f316b25987_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471}\label{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471} 
 \index{Client@{Client}!update@{update}}
 \index{update@{update}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{void}} Client\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Client\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classClient_a6e7a5e19c40bef39ae1c0f5996b8c471_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -177,7 +185,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{Client@{Client}!\_moveSystem@{\_moveSystem}}
 \index{\_moveSystem@{\_moveSystem}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{\_moveSystem}{\_moveSystem}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{Move\+System}} Client\+::\+\_\+move\+System \{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\+\_\+ecs}}\}\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMoveSystem}{Move\+System}} Client\+::\+\_\+move\+System \{\mbox{\hyperlink{classClient_a54c864568b6615a965303032b1b5d98d}{\+\_\+ecs}}\}\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classClient_a264bdbc71e1627d27dda4cbb8652d752}\label{classClient_a264bdbc71e1627d27dda4cbb8652d752} 
 \index{Client@{Client}!\_renderSystem@{\_renderSystem}}
@@ -195,13 +203,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{Client@{Client}!\_running@{\_running}}
 \index{\_running@{\_running}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{\_running}{\_running}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{bool}} Client\+::\+\_\+running}
+{\footnotesize\ttfamily bool Client\+::\+\_\+running}
 
 \Hypertarget{classClient_ac539343998d24fbef1c5cc8302f8444c}\label{classClient_ac539343998d24fbef1c5cc8302f8444c} 
 \index{Client@{Client}!\_shootCooldown@{\_shootCooldown}}
 \index{\_shootCooldown@{\_shootCooldown}!Client@{Client}}
 \doxysubsubsection{\texorpdfstring{\_shootCooldown}{\_shootCooldown}}
-{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{float}} Client\+::\+\_\+shoot\+Cooldown = 0.\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a5a868f82168f3b251aa7ca758686125c}{f}}\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily float Client\+::\+\_\+shoot\+Cooldown = 0.f\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classClient_adcb6c04304d2dbd02474c2317d5c76b9}\label{classClient_adcb6c04304d2dbd02474c2317d5c76b9} 
 \index{Client@{Client}!\_timer@{\_timer}}

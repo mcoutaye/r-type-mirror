@@ -3,9 +3,15 @@ set(SRC_FILES
     UdpServer.cpp
 )
 
-add_executable(rtype_server ${SRC_FILES})
+add_executable(r-type_server ${SRC_FILES})
 
-target_link_libraries(rtype_server
+# Sur Windows avec MinGW/MSYS2, on peut lier statiquement la libstdc++
+# pour éviter les problèmes de DLL manquantes
+if(WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    target_link_options(r-type_server PRIVATE -static-libgcc -static-libstdc++)
+endif()
+
+target_link_libraries(r-type_server
     PRIVATE
         sfml-network
         sfml-system
@@ -13,18 +19,34 @@ target_link_libraries(rtype_server
         sfml-graphics
 )
 
-target_include_directories(rtype_server
+target_include_directories(r-type_server
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
+# === FIX WINDOWS: Copie les assets si nécessaire ===
+add_custom_command(TARGET r-type_server POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets
+        $<TARGET_FILE_DIR:r-type_server>/assets
+    COMMENT "Copie du dossier assets à côté de l'exécutable serveur (fix Windows)"
+)
+
+# Copie l'exécutable à la racine du build/
+add_custom_command(TARGET r-type_server POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        $<TARGET_FILE:r-type_server>
+        ${CMAKE_BINARY_DIR}/r-type_server$<TARGET_FILE_SUFFIX:r-type_server>
+    COMMENT "Copie de r-type_server à build/ (racine)"
+)
+
 add_custom_target(server_clean
-    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/rtype_server.dir/*.o
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/r-type_server.dir/*.o
     COMMENT "Supprime les fichiers objets du serveur"
 )
 
 add_custom_target(server_fclean
-    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/rtype_server.dir/*.o
-    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/rtype_server
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/CMakeFiles/r-type_server.dir/*.o
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/r-type_server
     COMMENT "Supprime les fichiers objets et l'exécutable du serveur"
 )

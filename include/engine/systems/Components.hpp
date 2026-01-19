@@ -7,10 +7,32 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include "engine/Menu.hpp"
 #include <string>
 #include <vector>
+#include <functional>
+#include <cstdint>
 
 #define SHOOT_DELAY 0.5f
+
+// Forward declare Entity type
+using Entity = std::uint32_t;
+
+// Forward declaration / enum pour les actions de jeu
+enum class GameAction {
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    Shoot,
+    Quit,
+    Pause,      // Toggle pause/resume en jeu
+    MenuUp,
+    MenuDown,
+    MenuSelect,
+    ToggleDebug
+};
 
 // Should send updates to clients or not
 typedef struct SendUpdate_s {
@@ -72,13 +94,6 @@ typedef struct WaveSpawner_s {
     int currentWave = 0;
 } WaveSpawner_t;
 
-typedef struct WaveData_s {
-    float delay;
-    char enemyType[16];
-    int count;
-    float x, y;
-} WaveData_t;
-
 typedef struct MovementPattern_s {
     enum class Type { Linear, Sinus, Cosinus, Circle, Zigzag, Spiral };
     Type type;
@@ -87,6 +102,14 @@ typedef struct MovementPattern_s {
     float radius;     // Pour le cercle/spirale
     float speed;      // Pour le zigzag/spirale
 } MovementPattern_t;
+
+typedef struct WaveData_s {
+    float delay;
+    char enemyType[16];
+    MovementPattern_t::Type movementType;
+    int count;
+    float x, y;
+} WaveData_t;
 
 typedef struct Projectile_s {
     float speed;  // Vitesse du projectile
@@ -109,3 +132,236 @@ typedef struct JustShot_s {
 typedef struct DestructibleTile_s {
     bool blocksMovement = true;  // Empêche les entités de passer
 } DestructibleTile_t;
+
+typedef struct Obstacle_s {
+    bool blocksMovement = true;
+} Obstacle_t;
+
+// Trigger pour jouer un effet sonore une seule fois
+typedef struct PlaySound_s {
+    char soundId[64];      // ex: "player_shoot.wav", "enemy_explosion.wav", "hit.wav"
+    float volume = 100.f;  // 0-100 (SFML utilise 0-100)
+    float pitch = 1.0f;     // variation de tonalité
+} PlaySound_t;
+
+// Musique de fond (une seule à la fois généralement)
+typedef struct BackgroundMusic_s {
+    char musicId[64];      // ex: "level1.ogg", "menu_theme.ogg"
+    bool looping = true;
+    float volume = 50.f;
+} BackgroundMusic_t;
+
+// Texte simple pour les items du menu (titre, boutons...)
+typedef struct Text_s {
+    char text[128];
+    char fontId[32] = "default";
+    uint32_t fontSize = 48;
+    sf::Color color;
+    sf::Color originalColor;  // Ajout du champ pour sauvegarder la couleur originale
+    bool centered = true;
+    bool visible = true;
+} Text_t;
+
+// Indique que c'est un item de menu sélectionnable
+typedef struct MenuItem_s {
+    MenuAction action;
+    bool isSelected = false;
+    bool isSelectable = true;  // Peut être sélectionné par la navigation clavier/souris
+} MenuItem_t;
+
+// Optionnel : pour highlight visuel (ex: changer couleur ou scale quand sélectionné)
+typedef struct Highlight_s {
+    sf::Color selectedColor = sf::Color::Yellow;
+    float selectedScale = 1.2f;
+} Highlight_t;
+
+// Slider pour contrôler des valeurs (volume, sensibilité, etc.)
+typedef struct Slider_s {
+    float minValue = 0.0f;
+    float maxValue = 100.0f;
+    float currentValue = 50.0f;
+    float step = 1.0f;
+    std::string linkedSetting;  // Ex: "music_volume", "sfx_volume"
+} Slider_t;
+
+// Type d'input pour le remapping
+enum class InputType {
+    Keyboard,
+    Joystick
+};
+
+// Bouton pour remapper une touche ou un bouton de manette
+typedef struct KeybindButton_s {
+    GameAction action;  // L'action à remapper
+    InputType inputType = InputType::Keyboard;  // Type d'input (clavier ou manette)
+    bool isWaitingForInput = false;  // En attente d'une nouvelle touche/bouton
+    sf::Keyboard::Key currentKey = sf::Keyboard::Unknown;
+    unsigned int currentJoystickButton = static_cast<unsigned int>(-1);
+} KeybindButton_t;
+
+// Texte dynamique qui affiche une valeur (pour les sliders ou keybinds)
+typedef struct DynamicText_s {
+    std::string prefix;  // Ex: "Volume: "
+    std::string suffix;  // Ex: "%"
+    std::function<std::string()> valueGetter;  // Fonction pour récupérer la valeur
+} DynamicText_t;
+
+// ============= PARTICLE SYSTEM =============
+
+// Types de particules prédéfinis
+enum class ParticleType {
+    Explosion,   // Éclate dans toutes les directions
+    Trail,       // Suit une entité (traînée)
+    Smoke,       // Monte lentement, s'estompe
+    Sparks,      // Petites, rapides, avec gravité
+    Debris       // Gros morceaux qui tombent
+};
+
+// Particule individuelle
+typedef struct Particle_s {
+    bool active = false;           // Utilisée dans le pool
+    float lifetime = 0.f;          // Temps restant
+    float maxLifetime = 1.f;       // Durée totale
+    float vx = 0.f, vy = 0.f;      // Vélocité
+    float ax = 0.f, ay = 0.f;      // Accélération (gravité, vent)
+    float x = 0.f, y = 0.f;        // Position
+    float size = 4.f;              // Taille actuelle
+    float startSize = 4.f;         // Taille initiale
+    float endSize = 0.f;           // Taille finale
+    float rotation = 0.f;          // Angle
+    float rotationSpeed = 0.f;     // Vitesse de rotation
+    sf::Color startColor = sf::Color::White;
+    sf::Color endColor = sf::Color(255, 255, 255, 0);
+} Particle_t;
+
+// Émetteur de particules (attaché à une entité)
+typedef struct ParticleEmitter_s {
+    ParticleType type = ParticleType::Explosion;
+    float spawnRate = 50.f;        // Particules par seconde
+    float spawnAccumulator = 0.f;  // Accumulateur pour le spawn
+    int maxParticles = 100;        // Max particules par émission
+    int particlesPerBurst = 20;    // Particules par burst (pour Explosion)
+    float emitterLifetime = -1.f;  // Durée de l'émetteur (-1 = infini)
+    float particleLifetime = 1.f;  // Durée de vie des particules
+    float speed = 200.f;           // Vitesse initiale des particules
+    float spread = 360.f;          // Angle de dispersion (degrés)
+    float direction = 0.f;         // Direction principale (degrés)
+    float gravity = 0.f;           // Gravité (+ = vers le bas)
+    float startSize = 4.f;
+    float endSize = 0.f;
+    sf::Color startColor = sf::Color::Yellow;
+    sf::Color endColor = sf::Color(255, 100, 0, 0);
+    bool active = true;
+    bool burst = false;            // true = émet tout d'un coup, false = continu
+} ParticleEmitter_t;
+
+// ============= CAMERA SYSTEM =============
+
+// Caméra 2D avec smooth follow, zoom et shake
+typedef struct Camera_s {
+    float x = 960.f;              // Position actuelle X
+    float y = 540.f;              // Position actuelle Y
+    float targetX = 960.f;        // Position cible X
+    float targetY = 540.f;        // Position cible Y
+    float smoothSpeed = 5.f;      // Vitesse de suivi (plus élevé = plus réactif)
+    
+    float zoom = 1.f;             // Zoom actuel
+    float targetZoom = 1.f;       // Zoom cible
+    float zoomSpeed = 3.f;        // Vitesse de transition du zoom
+    
+    float shakeIntensity = 0.f;   // Intensité du shake
+    float shakeDuration = 0.f;    // Durée restante du shake
+    float shakeOffsetX = 0.f;     // Offset X du shake
+    float shakeOffsetY = 0.f;     // Offset Y du shake
+    
+    float viewWidth = 1920.f;     // Largeur de la vue
+    float viewHeight = 1080.f;    // Hauteur de la vue
+    
+    bool useBounds = false;       // Utilise des limites de monde
+    float minX = 0.f;             // Limite gauche
+    float minY = 0.f;             // Limite haut
+    float maxX = 1920.f;          // Limite droite
+    float maxY = 1080.f;          // Limite bas
+} Camera_t;
+
+// Tag pour marquer une entité comme cible de la caméra
+typedef struct CameraTarget_s {
+    float offsetX = 0.f;          // Décalage X par rapport à la position de l'entité
+    float offsetY = 0.f;          // Décalage Y par rapport à la position de l'entité
+} CameraTarget_t;
+
+// ============= PHYSICS SYSTEM =============
+
+// Rigidbody pour la physique (gravité, forces, etc.)
+typedef struct RigidBody_s {
+    float mass = 1.f;             // Masse de l'objet
+    float gravityScale = 1.f;     // Multiplicateur de gravité (0 = pas de gravité)
+    float drag = 0.f;             // Résistance de l'air (0-1, 0 = pas de résistance)
+    float bounciness = 0.f;       // Rebond lors des collisions (0-1)
+    bool useGravity = true;       // Applique la gravité ou non
+    bool isKinematic = false;     // Si true, pas affecté par les forces mais peut affecter les autres
+    bool isGrounded = false;      // Est au sol (détecté par les collisions)
+    float groundCheckDistance = 2.f;  // Distance pour vérifier le sol
+} RigidBody_t;
+
+// Composant pour les entités qui peuvent sauter
+typedef struct Jumper_s {
+    float jumpForce = 500.f;      // Force du saut
+    int maxJumps = 1;             // Nombre de sauts autorisés (1 = simple saut, 2 = double saut)
+    int currentJumps = 0;         // Nombre de sauts effectués
+    bool canJump = true;          // Peut sauter maintenant
+    float coyoteTime = 0.1f;      // Temps pendant lequel on peut sauter après avoir quitté une plateforme
+    float coyoteCounter = 0.f;    // Compteur pour le coyote time
+    float jumpBufferTime = 0.1f;  // Temps pendant lequel un input de saut est mémorisé
+    float jumpBufferCounter = 0.f; // Compteur pour le jump buffer
+} Jumper_t;
+
+// Plateforme (surface sur laquelle on peut marcher)
+typedef struct Platform_s {
+    bool oneWay = false;          // Plateforme traversable par le bas
+    bool canMoveThrough = false;  // Peut être traversée avec bas + saut
+    float friction = 1.f;         // Friction de la surface (0 = glissant, 1 = normal)
+    sf::Vector2f velocity = {0.f, 0.f};  // Vitesse de la plateforme (pour plateformes mouvantes)
+} Platform_t;
+
+// Collision avancée pour les plateformes
+typedef struct BoxCollider_s {
+    float width = 64.f;
+    float height = 64.f;
+    float offsetX = 0.f;          // Décalage du collider par rapport à la position
+    float offsetY = 0.f;
+    bool isTrigger = false;       // Si true, détecte les collisions mais ne bloque pas
+    uint8_t layer = 0;            // Layer de collision (0 = default)
+    uint32_t collisionMask = 0xFFFFFFFF;  // Masque des layers avec lesquels il collisionne
+} BoxCollider_t;
+
+// Informations sur une collision détectée
+typedef struct CollisionInfo_s {
+    Entity other;                 // L'autre entité dans la collision
+    sf::Vector2f normal;          // Vecteur normal de la collision
+    float penetration;            // Profondeur de pénétration
+    bool isGroundCollision;       // Est-ce une collision avec le sol
+} CollisionInfo_t;
+
+// Échelle/escalier
+typedef struct Ladder_s {
+    float climbSpeed = 150.f;     // Vitesse de montée/descente
+} Ladder_t;
+
+// Zone de trigger (pour téléporteurs, checkpoints, etc.)
+typedef struct TriggerZone_s {
+    enum class Type { Teleporter, Checkpoint, Death, Win, Custom };
+    Type type = Type::Custom;
+    std::string targetScene;      // Pour les téléporteurs
+    sf::Vector2f teleportPos;     // Position de téléportation
+    std::function<void(Entity)> onTrigger;  // Callback custom
+    bool triggered = false;       // Déjà déclenché
+    bool resetOnExit = true;      // Se réinitialise quand on sort
+} TriggerZone_t;
+
+// Composant pour marquer une entité comme ennemi
+typedef struct Enemy_s {
+    float shootCooldown = 0.f;  // Délai entre les tirs
+    float shootRange = 600.f;   // Portée de tir
+    bool canShoot = true;       // Type d'ennemi (ex: "basic", "boss")
+} Enemy_t;

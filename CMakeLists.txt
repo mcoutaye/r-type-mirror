@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(SFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
 set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_AUDIO OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_AUDIO ON CACHE BOOL "" FORCE)
 set(SFML_BUILD_GRAPHICS ON CACHE BOOL "" FORCE)
 set(SFML_BUILD_WINDOW ON CACHE BOOL "" FORCE)
 set(SFML_BUILD_NETWORK ON CACHE BOOL "" FORCE)
@@ -37,7 +37,7 @@ if(UNIX AND NOT APPLE)
     endif()
 endif()
 
-find_package(SFML 2.6 COMPONENTS graphics window system network QUIET)
+find_package(SFML 2.6 COMPONENTS graphics window system network audio QUIET)
 
 if(SFML_FOUND)
     message(STATUS "SFML trouvée sur le système (version ${SFML_VERSION}). Utilisation de cette version.")

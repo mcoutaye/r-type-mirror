@@ -33,6 +33,8 @@ static_assert(sizeof(InputState) == 3, "InputState must be 3 bytes");
 #define MAGIC_TICK_DEATH_PLAYER 0xFFFD // You killed it
 #define MAGIC_TICK_DEATH_OTHER  0xFFFE // It died
 #define MAGIC_TICK_LOCAL_PLAYER 0xFFFF // This is you
+#define MAGIC_TICK_VICTORY      0xFFEF  // Victoire (ex: tous les ennemis vaincus)
+#define MAGIC_TICK_DEFEAT       0xFFDF  // Défaite (ex: tous les joueurs morts)
 
 // Helper to check if 'newTick' is more recent than 'oldTick' handling wrap-around
 inline bool IsTickNewer(uint16_t newTick, uint16_t oldTick) {

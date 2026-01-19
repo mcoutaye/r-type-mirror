@@ -1,7 +1,12 @@
 /*
 ** EPITECH PROJECT, 2025
-** R-type
-** File description:
+** void RenderSystem::update(double dt)
+{
+    (void)dt;  // dt non utilisé ici
+
+    // NOTE: clear() et setView() sont gérés par le client avant d'appeler update()
+
+    // === 1. Dessin des étoiles (parallaxe starfield) === File description:
 ** Render System
 */
 
@@ -16,7 +21,7 @@
 
 class RenderSystem : public ISystem {
     public:
-        RenderSystem(ECS& ecs, sf::RenderWindow& window, RessourceManager& resourceManager);
+        RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& resourceManager);
         void update(double dt) override;
         void debugON() { debugMode = true; }
         void debugOFF() { debugMode = false; }
@@ -25,25 +30,40 @@ class RenderSystem : public ISystem {
         void debugColliders();
         bool debugMode = false;
         sf::RenderWindow& _window;
-        RessourceManager &_resourceManager;
+        ResourceManager &_resourceManager;
 };
 
-RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window, RessourceManager& resourceManager)
-    : ISystem(ecs), _window(window), _resourceManager(resourceManager)  {}
+RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& resourceManager)
+    : ISystem(ecs), _window(window), _resourceManager(resourceManager)
+{
+}
 
 void RenderSystem::update(double dt)
 {
-    _window.clear(sf::Color::Black);   // OBLIGATOIRE EN PREMIER
 
     // ============================================================
     // BACKGROUND RENDERING
     // ============================================================
+    _window.clear(sf::Color::Black);
+
+    // NOTE: La vue doit être appliquée par le client APRÈS clear() et AVANT le rendu;
+
+    // === 1. Dessin des étoiles (parallaxe starfield) ===
     std::vector<Entity> stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
     for (Entity e : stars) {
         auto* pos = _ecs.getComponent<Position_t>(e);
         auto* star = _ecs.getComponent<Star_t>(e);
+
         // Don't recycle stars here - let Client::update() handle star creation/destruction
         // This prevents entity count from growing unbounded
+        if (!pos || !star) continue;
+
+        // Réapparition à droite quand l'étoile sort à gauche
+        // if (pos->x < -10.f) {
+        //     pos->x = 1930.f;
+        //     pos->y = static_cast<float>(rand() % 1080);
+        // }
+
         sf::RectangleShape shape(sf::Vector2f(star->size, star->size));
         shape.setPosition(pos->x, pos->y);
         shape.setFillColor(sf::Color(255, 255, 255, star->brightness));
@@ -74,7 +94,7 @@ void RenderSystem::update(double dt)
         if (drawable->frameTimer >= drawable->animationSpeed) {
             drawable->frameTimer = 0.0f;
             drawable->currentFrameIndex++;
-            
+
             if (drawable->currentFrameIndex >= drawable->frames.size()) {
                 if (drawable->loop) {
                     drawable->currentFrameIndex = 0;
@@ -97,10 +117,39 @@ void RenderSystem::update(double dt)
         _window.draw(sprite);
     }
 
-    if (debugMode)
-        debugColliders();
+    // === 3. Dessin du texte (menu, UI, etc.) ===
+    auto textEntities = _ecs.getEntitiesByComponents<Position_t, Text_t>();
+    for (Entity e : textEntities) {
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        auto* textComp = _ecs.getComponent<Text_t>(e);
+        if (!pos || !textComp || !textComp->visible) continue;
 
-    _window.display();   // EN DERNIER
+        // Utilise la police spécifiée dans textComp->fontId
+        const sf::Font& font = _resourceManager.getFont(textComp->fontId);
+
+        sf::Text text;
+        text.setFont(font);
+        text.setString(textComp->text);
+        text.setCharacterSize(textComp->fontSize);
+        text.setFillColor(textComp->color);
+
+        // Centrage horizontal si demandé
+        sf::FloatRect bounds = text.getLocalBounds();
+        float x = pos->x;
+        if (textComp->centered) {
+            x -= (bounds.width / 2.f) + bounds.left;
+        }
+        float y = pos->y - (bounds.height / 2.f) - bounds.top;
+        text.setPosition(x, y);
+        _window.draw(text);
+    }
+
+        if (debugMode)
+            debugColliders();
+
+    // _window.display();   // EN DERNIER
+    // === Fin du rendu (display appelé par le client après les particules) ===
+
 }
 
 void RenderSystem::debugColliders()

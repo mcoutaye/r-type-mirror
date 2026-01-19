@@ -14,22 +14,25 @@
     #include <fstream>
     #include "texturePacker.hpp"
 
-class RessourceManager {
+class ResourceManager {
     public:
-        RessourceManager() = default;
-        ~RessourceManager() = default;
+        ResourceManager() = default;
+        ~ResourceManager() = default;
 
-        static RessourceManager& getInstance();
+        static ResourceManager& getInstance();
 
-        void initialize(); // Load all assets at start
+        bool initialize(); // Load all assets at start
         void loadTextureFromAtlas(const std::string &atlas);
         sf::Texture& getTexture(std::size_t id);
         sf::Texture& getTexture(const std::string &name);
         sf::IntRect getSpriteRect(const std::string &name);
 
-        TexturePacker packer;
+        // === FONTS ===
+        bool loadFont(const std::string& id, const std::string& filepath);
+        const sf::Font& getFont(const std::string& id) const;
+
     private:
-        std::string getCanonicalName(const std::string &name) const;
+        TexturePacker packer;
 
         std::unordered_map<std::size_t, sf::Texture> _textures;
         std::unordered_map<std::string, std::size_t> _nameToId;
@@ -37,15 +40,17 @@ class RessourceManager {
         std::unordered_map<std::string, sf::IntRect> _spriteRects;
         std::unordered_map<std::string, sf::Image> _atlasImages;
         std::unordered_map<std::string, std::string> _atlasJsons;
+
+        std::unordered_map<std::string, sf::Font> _fonts;
 };
 
-inline RessourceManager& RessourceManager::getInstance()
+inline ResourceManager& ResourceManager::getInstance()
 {
-    static RessourceManager instance;
+    static ResourceManager instance;
     return instance;
 }
 
-inline void RessourceManager::initialize()
+inline bool ResourceManager::initialize()
 {
     packer.reset();
     packer.loadImageFromPath("player", "assets/sprites/entities/ship1.png");
@@ -63,24 +68,40 @@ inline void RessourceManager::initialize()
     _atlasJsons["entity"] = "assets/sprites/atlas.json";
     if (!_atlasImages["entity"].loadFromFile("assets/sprites/atlas.png")) {
         std::cerr << "Failed to load atlas image: assets/sprites/atlas.png" << std::endl;
-        return;
+        return false;
     }
     loadTextureFromAtlas("entity");
-
-    // Add aliases to ensure compatibility with all systems
-    if (_nameToId.count("player")) {
-        _nameToId["ship"] = _nameToId["player"];
-        _nameToId["ship.png"] = _nameToId["player"];
-        _canonicalNames["ship"] = "player";
-        _canonicalNames["ship.png"] = "player";
-    }
-    if (_nameToId.count("enemy")) {
-        _nameToId["enemy.png"] = _nameToId["enemy"];
-        _canonicalNames["enemy.png"] = "enemy";
-    }
+    return true;
 }
 
-inline void RessourceManager::loadTextureFromAtlas(const std::string &atlas)
+// === TEXTURES ===
+// bool ResourceManager::loadTexture(const std::string& id, const std::string& filepath)
+// {
+//     sf::Texture texture;
+//     if (!texture.loadFromFile(filepath)) {
+//         std::cerr << "[Resource] Erreur chargement texture : " << filepath << std::endl;
+//         return false;
+//     }
+//     auto it = _textures.find(id);
+//     if (it != _textures.end()) {
+//         return it->second;
+//     }
+
+//     // Fallback : texture rouge
+//     static sf::Texture fallback;
+//     static bool initialized = false;
+//     if (!initialized) {
+//         sf::Image img;
+//         img.create(64, 64, sf::Color::Red);
+//         fallback.loadFromImage(img);
+//         initialized = true;
+//     }
+//     std::cerr << "[Resource] Texture manquante : " << id << " → fallback rouge" << std::endl;
+//     return fallback;
+// }
+
+
+inline void ResourceManager::loadTextureFromAtlas(const std::string &atlas)
 {
     if (_atlasImages.find(atlas) == _atlasImages.end()) {
         std::cerr << "Atlas image not found for key: " << atlas << std::endl;
@@ -142,38 +163,89 @@ inline void RessourceManager::loadTextureFromAtlas(const std::string &atlas)
     file.close();
 }
 
-inline sf::Texture& RessourceManager::getTexture(std::size_t id)
+inline sf::Texture& ResourceManager::getTexture(std::size_t id)
 {
-    if (_textures.find(id) == _textures.end())
-        throw std::runtime_error("Texture ID not found: " + std::to_string(id));
+    auto it = _textures.find(id);
+    if (it != _textures.end()) {
+        return it->second;
+    }
 
-    return _textures[id];
+    // Fallback: red texture
+    static sf::Texture fallback;
+    static bool initialized = false;
+    if (!initialized) {
+        sf::Image img;
+        img.create(64, 64, sf::Color::Red);
+        fallback.loadFromImage(img);
+        initialized = true;
+    }
+    std::cerr << "[Resource] Texture ID not found: " << id << " → fallback red texture" << std::endl;
+    return fallback;
 }
 
-inline sf::Texture& RessourceManager::getTexture(const std::string &name)
+inline sf::Texture& ResourceManager::getTexture(const std::string &name)
 {
-    if (_nameToId.find(name) == _nameToId.end())
-        throw std::runtime_error("Texture name not found: " + name);
+    auto it = _nameToId.find(name);
+    if (it != _nameToId.end()) {
+        return _textures[it->second];
+    }
 
-    return _textures[_nameToId[name]];
+    // Fallback: red texture
+    static sf::Texture fallback;
+    static bool initialized = false;
+    if (!initialized) {
+        sf::Image img;
+        img.create(64, 64, sf::Color::Red);
+        fallback.loadFromImage(img);
+        initialized = true;
+    }
+    std::cerr << "[Resource] Texture name not found: " << name << " → fallback red texture" << std::endl;
+    return fallback;
 }
 
-inline sf::IntRect RessourceManager::getSpriteRect(const std::string &name)
+inline sf::IntRect ResourceManager::getSpriteRect(const std::string &name)
 {
     // Check if the exact name exists
     if (_spriteRects.find(name) != _spriteRects.end()) {
         return _spriteRects[name];
     }
 
-    // Check if it's an alias and get the canonical name
-    if (_canonicalNames.find(name) != _canonicalNames.end()) {
-        std::string canonical = _canonicalNames[name];
-        if (_spriteRects.find(canonical) != _spriteRects.end()) {
-            return _spriteRects[canonical];
-        }
-    }
-
     // Not found, return default
     std::cerr << "Sprite rect not found for: " << name << ", returning default 64x64" << std::endl;
     return sf::IntRect(0, 0, 64, 64);
+}
+
+// === FONTS ===
+inline bool ResourceManager::loadFont(const std::string& id, const std::string& filepath)
+{
+    sf::Font font;
+    if (!font.loadFromFile(filepath)) {
+        std::cerr << "[Resource] Erreur chargement police : " << filepath << std::endl;
+        return false;
+    }
+    _fonts[id] = std::move(font);
+    return true;
+}
+
+inline const sf::Font& ResourceManager::getFont(const std::string& id) const
+{
+    auto it = _fonts.find(id);
+    if (it != _fonts.end()) {
+        return it->second;
+    }
+
+    // Fallback : police système basique ou intégrée
+    static sf::Font fallback;
+    static bool initialized = false;
+    if (!initialized) {
+        // Essaie de charger une police par défaut du système
+        if (!fallback.loadFromFile("assets/font/arial.ttf") &&
+            !fallback.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf") &&
+            !fallback.loadFromFile("C:/Windows/Fonts/arial.ttf")) {
+            std::cerr << "[Resource] Aucune police fallback disponible !" << std::endl;
+        }
+        initialized = true;
+    }
+    std::cerr << "[Resource] Police manquante : " << id << " → fallback" << std::endl;
+    return fallback;
 }

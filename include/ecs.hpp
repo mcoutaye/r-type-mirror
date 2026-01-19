@@ -18,7 +18,7 @@
     #include <utility>
     #include <unordered_map>
 
-static constexpr size_t MAX_ENTITIES = 1 << 11; // 2048 Entities Max (Enough for our project)
+static constexpr size_t MAX_ENTITIES = 1 << 15; // 32768 Entities Max (Enough for our project)
 static constexpr size_t MAX_COMPONENT = 1 << 7; // 128 Components max par Entites
 
 using Entity = std::uint32_t; // Entity is just an ID

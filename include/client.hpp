@@ -591,18 +591,12 @@ void Client::update()
         }
     }
 
-    // Destroy stars that go off-screen to prevent accumulation and MAX_ENTITIES assertion failure
-    auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
-    for (Entity e : stars) {
-        auto* pos = _ecs.getComponent<Position_t>(e);
-        if (pos && pos->x < -50.f) {  // Star has left the screen
-            _ecs.killEntity(e);
-        }
-    }
+    // Stars are recycled in the movement update loop below (lines ~710-720)
+    // No need to kill them here - they will be repositioned when pos->x < -10.f
     
     // Recreate missing stars to maintain starfield count
     // This replaces old stars that went off-screen with new ones
-    stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
+    auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
     if (stars.size() < 150) {  // Target is 150 stars (from initializeGame)
         int starsToDeclare = 150 - stars.size();
         for (int i = 0; i < starsToDeclare; ++i) {

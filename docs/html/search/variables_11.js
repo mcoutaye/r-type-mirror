@@ -1,11 +1,25 @@
 var searchData=
 [
-  ['radius_0',['radius',['../structComponents_1_1MovementPattern.html#a76d3abc1ecccce1f81b052dfde5f9b77',1,'Components::MovementPattern']]],
-  ['receivedinputs_1',['receivedInputs',['../classUdpServer.html#a335a6b7cc1ac0e490efb7d560abfbcde',1,'UdpServer']]],
-  ['receivedupdates_2',['receivedUpdates',['../classUdpClient.html#a90f532a0d9eee82faa9b89a41343efcf',1,'UdpClient']]],
-  ['rect_3',['rect',['../structComponents_1_1Drawable.html#a872276338aa1dd0b6d8e4fe41c31db3f',1,'Components::Drawable']]],
-  ['resetonexit_4',['resetOnExit',['../structComponents_1_1TriggerZone.html#a48678290333d5bb6e57a9181bd1be297',1,'Components::TriggerZone']]],
-  ['right_5',['right',['../structInputState.html#aafef50dcb9ea9f31df195a75767d5d1d',1,'InputState::right'],['../structinput__s.html#ac5bfe34905faf550ec7f33580dfacac1',1,'input_s::right']]],
-  ['rotation_6',['rotation',['../structComponents_1_1Drawable.html#a4d0444dc3ba0bd21e1f3fbcf9603001e',1,'Components::Drawable::rotation'],['../structComponents_1_1Particle.html#a4a23e47e835c77fd51427c166f4e4f9c',1,'Components::Particle::rotation']]],
-  ['rotationspeed_7',['rotationSpeed',['../structComponents_1_1Particle.html#a1398a17f7c6286b30d17de3e41f857e8',1,'Components::Particle']]]
+  ['scale_0',['scale',['../structComponents_1_1Drawable__s.html#a79402b641fd962705249171ce5021807',1,'Components::Drawable_s::scale'],['../structMenuItem.html#a594a96b5a3223eedd6785e78099a530b',1,'MenuItem::scale']]],
+  ['selectedcolor_1',['selectedcolor',['../structMenuItem.html#a88fa868ef60a41228ecab3a604183a40',1,'MenuItem::selectedColor'],['../structComponents_1_1Highlight__s.html#a26e885c2e22f3d31da7be24bf1fbad50',1,'Components::Highlight_s::selectedColor']]],
+  ['selectedscale_2',['selectedScale',['../structComponents_1_1Highlight__s.html#a947854c4c811c798f0b6469c748c45c9',1,'Components::Highlight_s']]],
+  ['sequencing_3',['sequencing',['../rfcprotocol_8txt.html#adbbcf33d1b15eb0a4e133f5e8057ea91',1,'rfcprotocol.txt']]],
+  ['servertocliententityrelation_4',['serverToClientEntityRelation',['../classClient.html#a2c05ea17ccd565aa75308568fa4fb510',1,'Client']]],
+  ['shakeduration_5',['shakeDuration',['../structComponents_1_1Camera__s.html#a581a5ab1b2785a8d17f8d5066f8549fb',1,'Components::Camera_s']]],
+  ['shakeintensity_6',['shakeIntensity',['../structComponents_1_1Camera__s.html#a0d9bf82fa4ed8064b62e95a05c1b9d68',1,'Components::Camera_s']]],
+  ['shaketimer_7',['shakeTimer',['../structComponents_1_1Camera__s.html#aa47af506439fdc51483f16a375101cde',1,'Components::Camera_s']]],
+  ['shoot_8',['shoot',['../structInputState.html#a943e3e27da883be34b099ce334701b20',1,'InputState::shoot'],['../structinput__s.html#a0443e8421734cd44ae1feb7fa95930eb',1,'input_s::shoot']]],
+  ['shootcooldown_9',['shootcooldown',['../structComponents_1_1PlayerController__s.html#a745e6f2fd96a804ad399d5e6f1ed3b46',1,'Components::PlayerController_s::shootCooldown'],['../structComponents_1_1Enemy__s.html#a084e826fc620aa9e7d6c5c9359b7cd45',1,'Components::Enemy_s::shootCooldown']]],
+  ['shootrange_10',['shootRange',['../structComponents_1_1Enemy__s.html#a688037cc17146c204a60fa975ed6a4d8',1,'Components::Enemy_s']]],
+  ['simple_11',['simple',['../rfcprotocol_8txt.html#a97996a2549fbffdc41ffc3d59baea6aa',1,'rfcprotocol.txt']]],
+  ['size_12',['size',['../structComponents_1_1Star__s.html#a30cea659e0d3d79eb4d52d2e913a339b',1,'Components::Star_s']]],
+  ['solid_13',['solid',['../structComponents_1_1Collider__s.html#af08979bfba8255477232bf1de5e086c7',1,'Components::Collider_s']]],
+  ['soundid_14',['soundId',['../structComponents_1_1PlaySound__s.html#ac6b1aac1d3f04e5cedd9d17f6108c245',1,'Components::PlaySound_s']]],
+  ['speed_15',['speed',['../structComponents_1_1MovementPattern__s.html#a19180029c4821956912405db19d60549',1,'Components::MovementPattern_s::speed'],['../structComponents_1_1Star__s.html#a463c79822b0b66c33a17f3172c01894b',1,'Components::Star_s::speed']]],
+  ['startcolor_16',['startColor',['../structComponents_1_1Particle__s.html#a414e3da2d9c3c9746137a66b4c66df2e',1,'Components::Particle_s']]],
+  ['startsize_17',['startSize',['../structComponents_1_1Particle__s.html#afc0980fd46ce2678b6b2292095f8314a',1,'Components::Particle_s']]],
+  ['state_18',['state',['../structScene.html#a17e7ecac955706d3a58ffb3d5d22a434',1,'Scene']]],
+  ['status_19',['status',['../rfcprotocol_8txt.html#ae272ed3a87e63ee0426e3697a0adfeb7',1,'rfcprotocol.txt']]],
+  ['step_20',['step',['../structComponents_1_1Slider__s.html#ad4201f3fd2ccd847c36e7faf81c3fbb2',1,'Components::Slider_s']]],
+  ['suffix_21',['suffix',['../structComponents_1_1DynamicText__s.html#a52b54a8e8205cb3ac45c3a6a2fbad11f',1,'Components::DynamicText_s']]]
 ];

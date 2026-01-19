@@ -144,7 +144,7 @@ $(document).ready(function(){initNavTree('MovementSystem_8hpp_source.html',''); 
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keywordflow">case</span> MovementPattern_t::Type::Sinus:</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                <span class="comment">// Mouvement en onde sinusoïdale (haut/bas)</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                pos-&gt;y += sin(time * pattern-&gt;frequency) * pattern-&gt;amplitude * dt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                pos-&gt;y += sin(time * pattern-&gt;frequency) * pattern-&gt;<a class="code hl_variable" href="structComponents_1_1MovementPattern__s.html#a2d09c2207c3527be7c42ebea382e4b10">amplitude</a> * dt;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">case</span> MovementPattern_t::Type::Cosinus:</div>
@@ -193,6 +193,7 @@ $(document).ready(function(){initNavTree('MovementSystem_8hpp_source.html',''); 
 <div class="ttc" id="aclassMovementSystem_html_aa87adfc14ab11b652e5d8cb90c6fb9bb"><div class="ttname"><a href="classMovementSystem.html#aa87adfc14ab11b652e5d8cb90c6fb9bb">MovementSystem::MovementSystem</a></div><div class="ttdeci">MovementSystem(ECS &amp;ecs)</div><div class="ttdef"><b>Definition</b> MovementSystem.hpp:15</div></div>
 <div class="ttc" id="aclassMovementSystem_html_afd53a085ce047480cbd2a004cb557003"><div class="ttname"><a href="classMovementSystem.html#afd53a085ce047480cbd2a004cb557003">MovementSystem::update</a></div><div class="ttdeci">void update(double dt) override</div><div class="ttdoc">Pure virtual function to update the system.</div><div class="ttdef"><b>Definition</b> MovementSystem.hpp:21</div></div>
 <div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a9a522438c9f5d73ebe6349edc3313d5e"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a></div><div class="ttdeci">std::uint32_t Entity</div><div class="ttdoc">Type alias for Entity, which is simply an ID.</div><div class="ttdef"><b>Definition</b> ecs.hpp:35</div></div>
+<div class="ttc" id="astructComponents_1_1MovementPattern__s_html_a2d09c2207c3527be7c42ebea382e4b10"><div class="ttname"><a href="structComponents_1_1MovementPattern__s.html#a2d09c2207c3527be7c42ebea382e4b10">Components::MovementPattern_s::amplitude</a></div><div class="ttdeci">float amplitude</div><div class="ttdoc">Amplitude of the movement.</div><div class="ttdef"><b>Definition</b> Components.hpp:240</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,15 +1,16 @@
 /*
-** EPITECH PROJECT, 2025
-** R-type
+** EPITECH PROJECT, 2026
+** R-type-mirror
 ** File description:
 ** Components hpp
 */
-#pragma once
 
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include "engine/Menu.hpp"
+#include "engine/Core/Menu.hpp"
 #include <string>
+#include <vector>
 #include <functional>
 #include <cstdint>
 
@@ -29,7 +30,8 @@ enum class GameAction {
     Pause,      // Toggle pause/resume en jeu
     MenuUp,
     MenuDown,
-    MenuSelect
+    MenuSelect,
+    ToggleDebug
 };
 
 /**
@@ -56,1175 +58,786 @@ namespace Components {
 
     /**
      * @brief Should send updates to clients or not.
-     * @struct SendUpdate
+     * @struct SendUpdate_s
      */
-    struct SendUpdate {
+    typedef struct SendUpdate_s {
         /**
          * @brief Flag indicating if the entity needs an update.
          */
         bool needsUpdate = false;
-    };
+    } SendUpdate_t;
 
     /**
-     * @brief Represents the position of an entity in 2D space.
-     * @struct Position
+     * @brief Positions et mouvements (basiques)
+     * @struct Position_s
      */
-    struct Position {
+    typedef struct Position_s {
         /**
          * @brief X-coordinate of the position.
          */
         float x = 0.f;
-
         /**
          * @brief Y-coordinate of the position.
          */
         float y = 0.f;
-    };
+    } Position_t;
 
     /**
-     * @struct Velocity
-     * @brief Represents the velocity of an entity in 2D space.
+     * @brief Velocity of an entity in 2D space.
+     * @struct Velocity_s
      */
-    struct Velocity {
+    typedef struct Velocity_s {
         /**
          * @brief X-component of the velocity.
          */
         float x = 0.f;
-
         /**
          * @brief Y-component of the velocity.
          */
         float y = 0.f;
-    };
+    } Velocity_t;
 
     /**
-     * @struct Drawable
-     * @brief Component for rendering entities.
+     * @brief Render component for drawable entities.
+     * @struct Drawable_s
      */
-    struct Drawable {
+    typedef struct Drawable_s {
         /**
-         * @brief ID of the texture to use.
+         * @brief Name of the texture to use.
          */
-        std::string textureId; // "ship.png", "bullet.png"
-
+        std::string textureName;      // "ship1", "bullet", etc.
         /**
-         * @brief Rectangle defining the frame in the texture.
+         * @brief Array of rectangles for animation frames.
          */
-        sf::IntRect rect = {0, 0, 64, 64}; // frame actuelle
-
+        std::vector<sf::IntRect> frames;  // Array de rectangles pour l'animation
         /**
-         * @brief Rendering layer (lower values drawn first).
+         * @brief Index of the current frame.
          */
-        int layer = 0; // 0=background, 10=player, 20=bullets, 50=particles
-
+        size_t currentFrameIndex = 0;     // Index de la frame actuelle
+        /**
+         * @brief Time between each frame (in seconds).
+         */
+        float animationSpeed = 0.1f;      // Temps entre chaque frame (en secondes)
+        /**
+         * @brief Internal timer for animation.
+         */
+        float frameTimer = 0.0f;          // Timer interne pour l'animation
+        /**
+         * @brief If the animation should loop.
+         */
+        bool loop = true;                 // Si l'animation doit boucler
+        /**
+         * @brief Rendering layer (0=background, 10=player, etc.).
+         */
+        int layer = 0;                    // 0=background, 10=player, 20=bullets, 50=particles
         /**
          * @brief Visibility flag.
          */
         bool visible = true;
-
         /**
-         * @brief Scale factor for rendering.
+         * @brief Scale factor.
          */
         float scale = 1.f;
-
         /**
-         * @brief Rotation angle in degrees.
+         * @brief Rotation angle.
          */
         float rotation = 0.f;
-    };
+    } Drawable_t;
 
     /**
-     * @struct PlayerController
-     * @brief Component for player input control.
+     * @brief Input / Joueur controller.
+     * @struct PlayerController_s
      */
-    struct PlayerController {
+    typedef struct PlayerController_s {
         /**
-         * @brief Unique player ID (0 for player 1, etc.).
+         * @brief Player ID (0=player1, 1=player2...).
          */
-        uint8_t playerId = 0; // 0=joueur1, 1=joueur2...
-
+        uint8_t playerId = 0;       // 0=joueur1, 1=joueur2...
         /**
-         * @brief Flag indicating if the player is shooting.
+         * @brief Shooting state flag.
          */
         bool isShooting = false;
-
         /**
-         * @brief Cooldown time before next shot.
+         * @brief Cooldown timer for shooting.
          */
         float shootCooldown = 0.f;
-    };
+    } PlayerController_t;
 
     /**
-     * @struct Collider
-     * @brief Component for simple AABB collision detection.
+     * @brief Collision AABB simple.
+     * @struct Collider_s
      */
-    struct Collider {
+    typedef struct Collider_s {
         /**
-         * @brief Width of the collider box.
+         * @brief Width of the collider.
          */
         float width = 32.f;
-
         /**
-         * @brief Height of the collider box.
+         * @brief Height of the collider.
          */
         float height = 32.f;
-
         /**
-         * @brief Flag indicating if the collider is solid (blocking).
+         * @brief If the collider is solid (blocking).
          */
-        bool solid = true; // bloquant ou pas
-
+        bool solid = true;          // bloquant ou pas
         /**
-         * @brief Team ID for collision filtering (0=neutral, 1=player, 2=enemy).
+         * @brief Team ID for collision filtering.
          */
-        uint8_t team = 0; // 0=neutre, 1=player, 2=enemy
-
+        uint8_t team = 0;           // 0=neutre, 1=joueurs, 2=ennemis
         /**
-         * @brief Damage value on collision.
+         * @brief Damage on collision.
          */
-        int damage = 1;
-    };
+        int damage = 0;             // Dégâts sur collision
+    } Collider_t;
 
     /**
-     * @struct Health
-     * @brief Component for tracking health points.
+     * @brief Projectile component.
+     * @struct Projectile_s
      */
-    struct Health {
+    typedef struct Projectile_s {
         /**
-         * @brief Maximum health value.
+         * @brief Damage inflicted by the projectile.
          */
-        int max = 100;
+        int damage = 50;            // Dégâts
+        /**
+         * @brief Owner entity ID (-1 if none).
+         */
+        int ownerId = -1;           // ID du tireur
+        /**
+         * @brief Lifetime in seconds.
+         */
+        float lifetime = 5.f;       // Temps de vie (auto-destruction)
+    } Projectile_t;
 
+    /**
+     * @brief Health component.
+     * @struct Health_s
+     */
+    typedef struct Health_s {
         /**
          * @brief Current health value.
          */
         int current = 100;
-
         /**
-         * @brief ID of the last attacker.
+         * @brief Maximum health value.
          */
-        int lastAttackerId = -1;
-    };
+        int max = 100;
+    } Health_t;
 
     /**
-     * @struct WaveSpawner
-     * @brief Component for spawning waves of enemies.
+     * @brief Movement pattern for entities (e.g., enemies).
+     * @struct MovementPattern_s
      */
-    struct WaveSpawner {
+    typedef struct MovementPattern_s {
         /**
-         * @brief Time until the next spawn.
-         */
-        float nextSpawnTime = 2.f; // temps avant prochain spawn
-
-        /**
-         * @brief Current wave number.
-         */
-        int currentWave = 0;
-    };
-
-    /**
-     * @struct MovementPattern
-     * @brief Defines movement behavior for entities.
-     */
-    struct MovementPattern {
-        /**
-         * @brief Enumeration of movement types.
+         * @brief Type of movement pattern.
          */
         enum class Type { Linear, Sinus, Cosinus, Circle, Zigzag, Spiral };
-
+        Type type = Type::Linear;
         /**
-         * @brief The type of movement.
+         * @brief Amplitude of the movement.
          */
-        Type type;
-
+        float amplitude = 100.f;
         /**
-         * @brief Amplitude for oscillatory movements.
+         * @brief Frequency of the movement.
          */
-        float amplitude; // Pour les mouvements ondulatoires
-
+        float frequency = 2.f;
         /**
-         * @brief Frequency for oscillatory movements.
+         * @brief Speed of the movement.
          */
-        float frequency; // Pour les mouvements ondulatoires
-
+        float speed = 1.f;
         /**
          * @brief Radius for circular/spiral movements.
          */
-        float radius; // Pour le cercle/spirale
-
-        /**
-         * @brief Speed for zigzag/spiral movements.
-         */
-        float speed; // Pour le zigzag/spirale
-    };
+        float radius = 50.f;
+    } MovementPattern_t;
 
     /**
-     * @struct WaveData
-     * @brief Data for a specific wave.
+     * @brief Wave data for spawning.
+     * @struct WaveData_s
      */
-    struct WaveData {
+    typedef struct WaveData_s {
         /**
-         * @brief Delay between spawns in the wave.
+         * @brief Number of entities to spawn.
          */
-        float delay;
-
+        int count = 5;
         /**
-         * @brief Type of enemy to spawn.
+         * @brief Delay before spawning (in seconds).
          */
-        std::string enemyType;
-
+        float delay = 5.f;
         /**
-         * @brief Movement type for the wave.
+         * @brief X position for spawning.
          */
-        MovementPattern::Type movementType;
-
+        float x = 1920.f;
         /**
-         * @brief Number of enemies in the wave.
+         * @brief Y position for spawning.
          */
-        int count;
-
+        float y = 540.f;
         /**
-         * @brief X-position for spawning.
+         * @brief Movement pattern type.
          */
-        float x;
-
-        /**
-         * @brief Y-position for spawning.
-         */
-        float y;
-    };
+        MovementPattern_t::Type movementType = MovementPattern_t::Type::Linear;
+    } WaveData_t;
 
     /**
-     * @struct Projectile
-     * @brief Component for projectile entities.
+     * @brief Star for starfield effect.
+     * @struct Star_s
      */
-    struct Projectile {
+    typedef struct Star_s {
         /**
-         * @brief Speed of the projectile.
+         * @brief Speed of the star.
          */
-        float speed; // Vitesse du projectile
-
+        float speed = 50.f;
         /**
-         * @brief Damage inflicted by the projectile.
+         * @brief Brightness (0-255).
          */
-        int damage; // Dégâts infligés
-
-        /**
-         * @brief ID of the owner.
-         */
-        int ownerId = -1;
-    };
-
-    /**
-     * @struct Shootable
-     * @brief Component for entities that can shoot.
-     */
-    struct Shootable {
-        /**
-         * @brief Remaining cooldown time before next shot.
-         */
-        float cooldown; // Temps restant avant le prochain tir
-
-        /**
-         * @brief Delay between shots.
-         */
-        float shootDelay; // Délai entre deux tirs
-
-        /**
-         * @brief Speed of the missiles/projectiles.
-         */
-        float missileSpeed; // Vitesse des projectiles
-
-        /**
-         * @brief Damage inflicted by shots.
-         */
-        int damage; // Dégâts infligés
-
-        /**
-         * @brief Team ID of the shooter.
-         */
-        uint8_t team; // Équipe du tireur (pour éviter les tirs alliés)
-
-        /**
-         * @brief Texture ID for the projectile.
-         */
-        std::string textureId; // Texture du projectile
-
-        /**
-         * @brief X-offset for spawning the projectile.
-         */
-        float offsetX; // Offset X pour le spawn du projectile
-
-        /**
-         * @brief Y-offset for spawning the projectile.
-         */
-        float offsetY; // Offset Y pour le spawn du projectile
-
-        /**
-         * @brief Flag indicating if the entity is shooting.
-         */
-        bool isShooting; // Nouveau champ pour indiquer si le joueur tire
-
-        /**
-         * @brief Flag for triple shot ability.
-         */
-        bool tripleShot;
-    };
-
-    /**
-     * @struct PowerUp
-     * @brief Component for power-up effects.
-     */
-    struct PowerUp {
-        /**
-         * @brief Enumeration of power-up types.
-         */
-        enum class Type { TripleShot };
-
-        /**
-         * @brief The type of power-up.
-         */
-        Type type;
-
-        /**
-         * @brief Duration of the power-up effect in seconds.
-         */
-        float duration; // Durée de l'effet (en secondes)
-    };
-
-    /**
-     * @struct Obstacle
-     * @brief Component for obstacle entities.
-     */
-    struct Obstacle {
-        /**
-         * @brief Flag indicating if the obstacle blocks movement.
-         */
-        bool blocking = true; // Bloque le mouvement
-    };
-
-    /**
-     * @struct DestructibleTile
-     * @brief Component for destructible tiles.
-     */
-    struct DestructibleTile {
-        /**
-         * @brief Health points of the tile.
-         */
-        int health = 50; // Points de vie de la tuile
-    };
-
-    /**
-     * @struct Star
-     * @brief Component for background stars in a starfield.
-     */
-    struct Star {
-        /**
-         * @brief Scrolling speed of the star.
-         */
-        float speed = 100.f; // Vitesse de défilement
-
-        /**
-         * @brief Brightness level (0-255).
-         */
-        uint8_t brightness = 255; // Luminosité (pour effet de parallaxe)
-
+        uint8_t brightness = 255;
         /**
          * @brief Size of the star.
          */
-        uint8_t size = 2; // Taille de l'étoile
-    };
+        uint8_t size = 1;
+    } Star_t;
 
     /**
-     * @struct JustShot
-     * @brief Component to indicate a recent shot.
+     * @brief Text rendering component.
+     * @struct Text_s
      */
-    struct JustShot {
+    typedef struct Text_s {
         /**
-         * @brief Flag indicating if the shot is active.
+         * @brief Text content.
          */
-        bool active = true;
-    };
-
-    /**
-     * @struct PlaySound
-     * @brief Trigger to play a sound effect once.
-     */
-    struct PlaySound {
+        std::string content;
         /**
-         * @brief ID of the sound to play.
+         * @brief Font ID.
          */
-        std::string soundId; // ex: "player_shoot.wav", "enemy_explosion.wav", "hit.wav"
-
+        std::string font = "default";
         /**
-         * @brief Volume level (0-100).
+         * @brief Character size.
          */
-        float volume = 100.f; // 0-100 (SFML utilise 0-100)
-
-        /**
-         * @brief Pitch variation.
-         */
-        float pitch = 1.0f; // variation de tonalité
-    };
-
-    /**
-     * @struct BackgroundMusic
-     * @brief Component for background music.
-     */
-    struct BackgroundMusic {
-        /**
-         * @brief ID of the music to play.
-         */
-        std::string musicId; // ex: "level1.ogg", "menu_theme.ogg"
-
-        /**
-         * @brief Flag for looping the music.
-         */
-        bool looping = true;
-
-        /**
-         * @brief Volume level.
-         */
-        float volume = 50.f;
-    };
-
-    /**
-     * @struct Text
-     * @brief Simple text for menu items (title, buttons...).
-     */
-    struct Text {
-        /**
-         * @brief The text content.
-         */
-        std::string text;
-
-        /**
-         * @brief ID of the font to use.
-         */
-        std::string fontId = "default";
-
-        /**
-         * @brief Font size.
-         */
-        uint32_t fontSize = 48;
-
+        uint32_t characterSize = 40;
         /**
          * @brief Text color.
          */
-        sf::Color color;
-
+        sf::Color color = sf::Color::White;
         /**
-         * @brief Original color for reset.
+         * @brief Original color (for highlights).
          */
-        sf::Color originalColor; // Ajout du champ pour sauvegarder la couleur originale
-
-        /**
-         * @brief Flag for centering the text.
-         */
-        bool centered = true;
-
+        sf::Color originalColor = sf::Color::White;
         /**
          * @brief Visibility flag.
          */
         bool visible = true;
-    };
+    } Text_t;
 
     /**
-     * @struct MenuItem
-     * @brief Indicates a selectable menu item.
+     * @brief Highlight effect for menu items.
+     * @struct Highlight_s
      */
-    struct MenuItem {
-        /**
-         * @brief Action associated with the item.
-         */
-        MenuAction action;
-
-        /**
-         * @brief Flag indicating if the item is selected.
-         */
-        bool isSelected = false;
-
-        /**
-         * @brief Flag indicating if the item is selectable.
-         */
-        bool isSelectable = true; // Peut être sélectionné par la navigation clavier/souris
-    };
-
-    /**
-     * @struct Highlight
-     * @brief Optional visual highlight (e.g., change color or scale when selected).
-     */
-    struct Highlight {
+    typedef struct Highlight_s {
         /**
          * @brief Color when selected.
          */
         sf::Color selectedColor = sf::Color::Yellow;
-
         /**
          * @brief Scale when selected.
          */
         float selectedScale = 1.2f;
-    };
+    } Highlight_t;
 
     /**
-     * @struct Slider
-     * @brief Slider for controlling values (volume, sensitivity, etc.).
+     * @brief Menu item component.
+     * @struct MenuItem_s
      */
-    struct Slider {
+    typedef struct MenuItem_s {
+        /**
+         * @brief Associated menu action.
+         */
+        MenuAction action;
+        /**
+         * @brief If the item is currently selected.
+         */
+        bool isSelected = false;
+    } MenuItem_t;
+
+    /**
+     * @brief Slider component for options.
+     * @struct Slider_s
+     */
+    typedef struct Slider_s {
         /**
          * @brief Minimum value.
          */
-        float minValue = 0.0f;
-
+        float minValue = 0.f;
         /**
          * @brief Maximum value.
          */
-        float maxValue = 100.0f;
-
+        float maxValue = 100.f;
         /**
          * @brief Current value.
          */
-        float currentValue = 50.0f;
-
+        float currentValue = 50.f;
         /**
          * @brief Step increment.
          */
-        float step = 1.0f;
-
+        float step = 1.f;
         /**
-         * @brief Linked setting name.
+         * @brief Linked setting (e.g., "music_volume").
          */
-        std::string linkedSetting; // Ex: "music_volume", "sfx_volume"
-    };
+        std::string linkedSetting;
+    } Slider_t;
 
     /**
-     * @brief Type of input for remapping.
+     * @brief Dynamic text component.
+     * @struct DynamicText_s
      */
-    enum class InputType {
-        Keyboard,
-        Joystick
-    };
-
-    /**
-     * @struct KeybindButton
-     * @brief Button for remapping a key or joystick button.
-     */
-    struct KeybindButton {
-        /**
-         * @brief Action to remap.
-         */
-        GameAction action; // L'action à remapper
-
-        /**
-         * @brief Type of input (keyboard or joystick).
-         */
-        InputType inputType = InputType::Keyboard; // Type d'input (clavier ou manette)
-
-        /**
-         * @brief Flag indicating if waiting for new input.
-         */
-        bool isWaitingForInput = false; // En attente d'une nouvelle touche/bouton
-
-        /**
-         * @brief Current keyboard key.
-         */
-        sf::Keyboard::Key currentKey = sf::Keyboard::Unknown;
-
-        /**
-         * @brief Current joystick button.
-         */
-        unsigned int currentJoystickButton = static_cast<unsigned int>(-1);
-    };
-
-    /**
-     * @struct DynamicText
-     * @brief Dynamic text that displays a value (for sliders or keybinds).
-     */
-    struct DynamicText {
+    typedef struct DynamicText_s {
         /**
          * @brief Prefix text.
          */
-        std::string prefix; // Ex: "Volume: "
-
+        std::string prefix;
         /**
          * @brief Suffix text.
          */
-        std::string suffix; // Ex: "%"
-
+        std::string suffix;
         /**
-         * @brief Function to get the value.
+         * @brief Function to get dynamic value as string.
          */
-        std::function<std::string()> valueGetter; // Fonction pour récupérer la valeur
-    };
-
-    // ============= PARTICLE SYSTEM =============
+        std::function<std::string()> valueGetter;
+    } DynamicText_t;
 
     /**
-     * @brief Predefined particle types.
+     * @brief Keybind button for remapping.
+     * @struct KeybindButton_s
      */
-    enum class ParticleType {
-        Explosion,   // Éclate dans toutes les directions
-        Trail,       // Suit une entité (traînée)
-        Smoke,       // Monte lentement, s'estompe
-        Sparks,      // Petites, rapides, avec gravité
-        Debris       // Gros morceaux qui tombent
-    };
+    typedef struct KeybindButton_s {
+        /**
+         * @brief Associated game action.
+         */
+        GameAction action;
+        /**
+         * @brief If waiting for key input.
+         */
+        bool waitingForKey = false;
+    } KeybindButton_t;
 
     /**
-     * @struct Particle
-     * @brief Individual particle.
+     * @brief Play sound trigger.
+     * @struct PlaySound_s
      */
-    struct Particle {
+    typedef struct PlaySound_s {
         /**
-         * @brief Flag indicating if the particle is active.
+         * @brief Sound ID to play.
          */
-        bool active = false; // Utilisée dans le pool
-
+        std::string soundId;
         /**
-         * @brief Remaining lifetime.
+         * @brief Volume (0-100).
          */
-        float lifetime = 0.f; // Temps restant
-
+        float volume = 100.f;
         /**
-         * @brief Total lifetime.
+         * @brief Pitch modifier.
          */
-        float maxLifetime = 1.f; // Durée totale
-
+        float pitch = 1.0f;
         /**
-         * @brief X-velocity.
+         * @brief If the sound should loop.
          */
-        float vx = 0.f;
-
-        /**
-         * @brief Y-velocity.
-         */
-        float vy = 0.f; // Vélocité
-
-        /**
-         * @brief X-acceleration.
-         */
-        float ax = 0.f;
-
-        /**
-         * @brief Y-acceleration.
-         */
-        float ay = 0.f; // Accélération (gravité, vent)
-
-        /**
-         * @brief X-position.
-         */
-        float x = 0.f;
-
-        /**
-         * @brief Y-position.
-         */
-        float y = 0.f; // Position
-
-        /**
-         * @brief Current size.
-         */
-        float size = 4.f; // Taille actuelle
-
-        /**
-         * @brief Starting size.
-         */
-        float startSize = 4.f; // Taille initiale
-
-        /**
-         * @brief Ending size.
-         */
-        float endSize = 0.f; // Taille finale
-
-        /**
-         * @brief Rotation angle.
-         */
-        float rotation = 0.f; // Angle
-
-        /**
-         * @brief Rotation speed.
-         */
-        float rotationSpeed = 0.f; // Vitesse de rotation
-
-        /**
-         * @brief Starting color.
-         */
-        sf::Color startColor = sf::Color::White;
-
-        /**
-         * @brief Ending color.
-         */
-        sf::Color endColor = sf::Color(255, 255, 255, 0);
-    };
+        bool loop = false;
+    } PlaySound_t;
 
     /**
-     * @struct ParticleEmitter
-     * @brief Particle emitter attached to an entity.
+     * @brief Background music component.
+     * @struct BackgroundMusic_s
      */
-    struct ParticleEmitter {
+    typedef struct BackgroundMusic_s {
         /**
-         * @brief Type of particles.
+         * @brief Music ID to play.
          */
-        ParticleType type = ParticleType::Explosion;
-
+        std::string musicId;
         /**
-         * @brief Spawn rate (particles per second).
+         * @brief Volume (0-100).
          */
-        float spawnRate = 50.f; // Particules par seconde
-
+        float volume = 100.f;
         /**
-         * @brief Accumulator for spawning.
+         * @brief If the music should loop.
          */
-        float spawnAccumulator = 0.f; // Accumulateur pour le spawn
-
-        /**
-         * @brief Maximum particles per emission.
-         */
-        int maxParticles = 100; // Max particules par émission
-
-        /**
-         * @brief Particles per burst.
-         */
-        int particlesPerBurst = 20; // Particules par burst (pour Explosion)
-
-        /**
-         * @brief Emitter lifetime (-1 = infinite).
-         */
-        float emitterLifetime = -1.f; // Durée de l'émetteur (-1 = infini)
-
-        /**
-         * @brief Particle lifetime.
-         */
-        float particleLifetime = 1.f; // Durée de vie des particules
-
-        /**
-         * @brief Initial speed of particles.
-         */
-        float speed = 200.f; // Vitesse initiale des particules
-
-        /**
-         * @brief Spread angle (degrees).
-         */
-        float spread = 360.f; // Angle de dispersion (degrés)
-
-        /**
-         * @brief Main direction (degrees).
-         */
-        float direction = 0.f; // Direction principale (degrés)
-
-        /**
-         * @brief Gravity (+ = down).
-         */
-        float gravity = 0.f; // Gravité (+ = vers le bas)
-
-        /**
-         * @brief Starting size.
-         */
-        float startSize = 4.f;
-
-        /**
-         * @brief Ending size.
-         */
-        float endSize = 0.f;
-
-        /**
-         * @brief Starting color.
-         */
-        sf::Color startColor = sf::Color::Yellow;
-
-        /**
-         * @brief Ending color.
-         */
-        sf::Color endColor = sf::Color(255, 100, 0, 0);
-
-        /**
-         * @brief Flag indicating if active.
-         */
-        bool active = true;
-
-        /**
-         * @brief Flag for burst mode.
-         */
-        bool burst = false; // true = émet tout d'un coup, false = continu
-    };
-
-    // ============= CAMERA SYSTEM =============
+        bool looping = true;
+    } BackgroundMusic_t;
 
     /**
-     * @struct Camera
-     * @brief 2D camera with smooth follow, zoom, and shake.
+     * @brief Rigid body for physics.
+     * @struct RigidBody_s
      */
-    struct Camera {
+    typedef struct RigidBody_s {
         /**
-         * @brief Current X position.
+         * @brief Mass (kg).
          */
-        float x = 960.f; // Position actuelle X
-
+        float mass = 1.f;
         /**
-         * @brief Current Y position.
+         * @brief If kinematic (not affected by physics).
          */
-        float y = 540.f; // Position actuelle Y
-
+        bool isKinematic = false;
         /**
-         * @brief Target X position.
+         * @brief If affected by gravity.
          */
-        float targetX = 960.f; // Position cible X
-
+        bool useGravity = true;
         /**
-         * @brief Target Y position.
+         * @brief Air drag coefficient.
          */
-        float targetY = 540.f; // Position cible Y
-
+        float drag = 0.1f;
         /**
-         * @brief Smooth follow speed.
+         * @brief Ground friction coefficient.
          */
-        float smoothSpeed = 5.f; // Vitesse de suivi (plus élevé = plus réactif)
-
+        float friction = 0.5f;
         /**
-         * @brief Current zoom.
+         * @brief Bounciness (0-1).
          */
-        float zoom = 1.f; // Zoom actuel
-
+        float bounciness = 0.f;
         /**
-         * @brief Target zoom.
+         * @brief If currently grounded.
          */
-        float targetZoom = 1.f; // Zoom cible
-
+        bool isGrounded = false;
         /**
-         * @brief Zoom transition speed.
+         * @brief Accumulated force.
          */
-        float zoomSpeed = 3.f; // Vitesse de transition du zoom
-
-        /**
-         * @brief Shake intensity.
-         */
-        float shakeIntensity = 0.f; // Intensité du shake
-
-        /**
-         * @brief Remaining shake duration.
-         */
-        float shakeDuration = 0.f; // Durée restante du shake
-
-        /**
-         * @brief Shake X offset.
-         */
-        float shakeOffsetX = 0.f; // Offset X du shake
-
-        /**
-         * @brief Shake Y offset.
-         */
-        float shakeOffsetY = 0.f; // Offset Y du shake
-
-        /**
-         * @brief View width.
-         */
-        float viewWidth = 1920.f; // Largeur de la vue
-
-        /**
-         * @brief View height.
-         */
-        float viewHeight = 1080.f; // Hauteur de la vue
-
-        /**
-         * @brief Flag to use world bounds.
-         */
-        bool useBounds = false; // Utilise des limites de monde
-
-        /**
-         * @brief Minimum X bound.
-         */
-        float minX = 0.f; // Limite gauche
-
-        /**
-         * @brief Minimum Y bound.
-         */
-        float minY = 0.f; // Limite haut
-
-        /**
-         * @brief Maximum X bound.
-         */
-        float maxX = 1920.f; // Limite droite
-
-        /**
-         * @brief Maximum Y bound.
-         */
-        float maxY = 1080.f; // Limite bas
-    };
+        sf::Vector2f accumulatedForce = {0.f, 0.f};
+    } RigidBody_t;
 
     /**
-     * @struct CameraTarget
-     * @brief Tag to mark an entity as camera target.
+     * @brief Jump component.
+     * @struct Jump_s
      */
-    struct CameraTarget {
-        /**
-         * @brief X offset relative to entity position.
-         */
-        float offsetX = 0.f; // Décalage X par rapport à la position de l'entité
-
-        /**
-         * @brief Y offset relative to entity position.
-         */
-        float offsetY = 0.f; // Décalage Y par rapport à la position de l'entité
-    };
-
-    // ============= PHYSICS SYSTEM =============
-
-    /**
-     * @struct RigidBody
-     * @brief Rigidbody for physics (gravity, forces, etc.).
-     */
-    struct RigidBody {
-        /**
-         * @brief Mass of the object.
-         */
-        float mass = 1.f; // Masse de l'objet
-
-        /**
-         * @brief Gravity multiplier.
-         */
-        float gravityScale = 1.f; // Multiplicateur de gravité (0 = pas de gravité)
-
-        /**
-         * @brief Air resistance (0-1).
-         */
-        float drag = 0.f; // Résistance de l'air (0-1, 0 = pas de résistance)
-
-        /**
-         * @brief Bounciness on collisions (0-1).
-         */
-        float bounciness = 0.f; // Rebond lors des collisions (0-1)
-
-        /**
-         * @brief Flag to apply gravity.
-         */
-        bool useGravity = true; // Applique la gravité ou non
-
-        /**
-         * @brief Flag if kinematic (not affected by forces but can affect others).
-         */
-        bool isKinematic = false; // Si true, pas affecté par les forces mais peut affecter les autres
-
-        /**
-         * @brief Flag if grounded.
-         */
-        bool isGrounded = false; // Est au sol (détecté par les collisions)
-
-        /**
-         * @brief Distance to check for ground.
-         */
-        float groundCheckDistance = 2.f; // Distance pour vérifier le sol
-    };
-
-    /**
-     * @struct Jumper
-     * @brief Component for entities that can jump.
-     */
-    struct Jumper {
+    typedef struct Jump_s {
         /**
          * @brief Jump force.
          */
-        float jumpForce = 500.f; // Force du saut
-
+        float jumpForce = 500.f;
         /**
-         * @brief Maximum jumps allowed.
+         * @brief Coyote time (grace period after leaving ground).
          */
-        int maxJumps = 1; // Nombre de sauts autorisés (1 = simple saut, 2 = double saut)
-
+        float coyoteTime = 0.1f;
         /**
-         * @brief Current jumps performed.
+         * @brief Coyote timer.
          */
-        int currentJumps = 0; // Nombre de sauts effectués
-
+        float coyoteTimer = 0.f;
         /**
-         * @brief Flag if can jump now.
+         * @brief Jump buffer time (input grace period).
          */
-        bool canJump = true; // Peut sauter maintenant
-
+        float jumpBuffer = 0.1f;
         /**
-         * @brief Coyote time (time to jump after leaving platform).
+         * @brief Jump buffer timer.
          */
-        float coyoteTime = 0.1f; // Temps pendant lequel on peut sauter après avoir quitté une plateforme
-
+        float jumpBufferTimer = 0.f;
         /**
-         * @brief Coyote time counter.
+         * @brief Maximum air jumps.
          */
-        float coyoteCounter = 0.f; // Compteur pour le coyote time
-
+        int maxAirJumps = 0;
         /**
-         * @brief Jump buffer time (memorize jump input).
+         * @brief Remaining air jumps.
          */
-        float jumpBufferTime = 0.1f; // Temps pendant lequel un input de saut est mémorisé
-
-        /**
-         * @brief Jump buffer counter.
-         */
-        float jumpBufferCounter = 0.f; // Compteur pour le jump buffer
-    };
+        int airJumpsLeft = 0;
+    } Jump_t;
 
     /**
-     * @struct Platform
-     * @brief Platform (surface to walk on).
+     * @brief Particle emitter.
+     * @struct ParticleEmitter_s
      */
-    struct Platform {
+    typedef struct ParticleEmitter_s {
         /**
-         * @brief Flag for one-way platform.
+         * @brief Type of particles.
          */
-        bool oneWay = false; // Plateforme traversable par le bas
-
+        enum class ParticleType { Explosion, Sparks, Smoke, Debris, Trail };
+        ParticleType type = ParticleType::Explosion;
         /**
-         * @brief Flag if can move through with down + jump.
+         * @brief Emission rate (particles/second).
          */
-        bool canMoveThrough = false; // Peut être traversée avec bas + saut
-
+        float rate = 0.f;
         /**
-         * @brief Surface friction (0 = slippery, 1 = normal).
+         * @brief Timer for emission.
          */
-        float friction = 1.f; // Friction de la surface (0 = glissant, 1 = normal)
-
+        float timer = 0.f;
         /**
-         * @brief Platform velocity (for moving platforms).
+         * @brief If actively emitting.
          */
-        sf::Vector2f velocity = {0.f, 0.f}; // Vitesse de la plateforme (pour plateformes mouvantes)
-    };
+        bool emitting = false;
+    } ParticleEmitter_t;
 
     /**
-     * @struct BoxCollider
-     * @brief Advanced collision for platforms.
+     * @brief Individual particle.
+     * @struct Particle_s
      */
-    struct BoxCollider {
+    typedef struct Particle_s {
+        /**
+         * @brief If active.
+         */
+        bool active = false;
+        /**
+         * @brief Position X.
+         */
+        float x = 0.f;
+        /**
+         * @brief Position Y.
+         */
+        float y = 0.f;
+        /**
+         * @brief Velocity X.
+         */
+        float vx = 0.f;
+        /**
+         * @brief Velocity Y.
+         */
+        float vy = 0.f;
+        /**
+         * @brief Acceleration X.
+         */
+        float ax = 0.f;
+        /**
+         * @brief Acceleration Y.
+         */
+        float ay = 0.f;
+        /**
+         * @brief Remaining lifetime.
+         */
+        float lifetime = 0.f;
+        /**
+         * @brief Maximum lifetime.
+         */
+        float maxLifetime = 0.f;
+        /**
+         * @brief Start size.
+         */
+        float startSize = 5.f;
+        /**
+         * @brief End size.
+         */
+        float endSize = 0.f;
+        /**
+         * @brief Start color.
+         */
+        sf::Color startColor = sf::Color::White;
+        /**
+         * @brief End color.
+         */
+        sf::Color endColor = sf::Color::Transparent;
+        /**
+         * @brief Rotation angle.
+         */
+        float rotation = 0.f;
+        /**
+         * @brief Rotation speed.
+         */
+        float rotationSpeed = 0.f;
+    } Particle_t;
+
+    /**
+     * @brief Camera component.
+     * @struct Camera_s
+     */
+    typedef struct Camera_s {
+        /**
+         * @brief Entity to follow.
+         */
+        Entity target = static_cast<Entity>(-1);
+        /**
+         * @brief Follow smoothness (0-1).
+         */
+        float followSpeed = 0.1f;
+        /**
+         * @brief Current zoom level.
+         */
+        float zoom = 1.f;
+        /**
+         * @brief Target zoom level.
+         */
+        float targetZoom = 1.f;
+        /**
+         * @brief Zoom speed.
+         */
+        float zoomSpeed = 2.f;
+        /**
+         * @brief Shake intensity.
+         */
+        float shakeIntensity = 0.f;
+        /**
+         * @brief Shake duration.
+         */
+        float shakeDuration = 0.f;
+        /**
+         * @brief Shake timer.
+         */
+        float shakeTimer = 0.f;
+        /**
+         * @brief If using bounds.
+         */
+        bool useBounds = false;
+        /**
+         * @brief Minimum X bound.
+         */
+        float minX = 0.f;
+        /**
+         * @brief Minimum Y bound.
+         */
+        float minY = 0.f;
+        /**
+         * @brief Maximum X bound.
+         */
+        float maxX = 0.f;
+        /**
+         * @brief Maximum Y bound.
+         */
+        float maxY = 0.f;
+    } Camera_t;
+
+    /**
+     * @brief Obstacle component.
+     * @struct Obstacle_s
+     */
+    typedef struct Obstacle_s {
+        /**
+         * @brief If destructible.
+         */
+        bool destructible = false;
+    } Obstacle_t;
+
+    /**
+     * @brief Platform component.
+     * @struct Platform_s
+     */
+    typedef struct Platform_s {
+        /**
+         * @brief If one-way (can jump through from below).
+         */
+        bool oneWay = false;
+        /**
+         * @brief Friction of the surface (0=slippery, 1=normal).
+         */
+        float friction = 1.f;         // Friction de la surface (0 = glissant, 1 = normal)
+        /**
+         * @brief Velocity of the platform (for moving platforms).
+         */
+        sf::Vector2f velocity = {0.f, 0.f};  // Vitesse de la plateforme (pour plateformes mouvantes)
+    } Platform_t;
+
+    /**
+     * @brief Collision avancée pour les plateformes.
+     * @struct BoxCollider_s
+     */
+    typedef struct BoxCollider_s {
         /**
          * @brief Width of the collider.
          */
         float width = 64.f;
-
         /**
          * @brief Height of the collider.
          */
         float height = 64.f;
-
         /**
-         * @brief X offset relative to position.
+         * @brief X offset from position.
          */
-        float offsetX = 0.f; // Décalage du collider par rapport à la position
-
+        float offsetX = 0.f;          // Décalage du collider par rapport à la position
         /**
-         * @brief Y offset relative to position.
+         * @brief Y offset from position.
          */
         float offsetY = 0.f;
-
         /**
-         * @brief Flag if trigger (detects but doesn't block).
+         * @brief If it's a trigger (detects but doesn't block).
          */
-        bool isTrigger = false; // Si true, détecte les collisions mais ne bloque pas
-
+        bool isTrigger = false;       // Si true, détecte les collisions mais ne bloque pas
         /**
          * @brief Collision layer.
          */
-        uint8_t layer = 0; // Layer de collision (0 = default)
-
+        uint8_t layer = 0;            // Layer de collision (0 = default)
         /**
          * @brief Mask of layers to collide with.
          */
-        uint32_t collisionMask = 0xFFFFFFFF; // Masque des layers avec lesquels il collisionne
-    };
+        uint32_t collisionMask = 0xFFFFFFFF;  // Masque des layers avec lesquels il collisionne
+    } BoxCollider_t;
 
     /**
-     * @struct CollisionInfo
-     * @brief Information about a detected collision.
+     * @brief Informations sur une collision détectée.
+     * @struct CollisionInfo_s
      */
-    struct CollisionInfo {
+    typedef struct CollisionInfo_s {
         /**
          * @brief The other entity in the collision.
          */
-        Entity other; // L'autre entité dans la collision
-
+        Entity other;                 // L'autre entité dans la collision
         /**
          * @brief Collision normal vector.
          */
-        sf::Vector2f normal; // Vecteur normal de la collision
-
+        sf::Vector2f normal;          // Vecteur normal de la collision
         /**
          * @brief Penetration depth.
          */
-        float penetration; // Profondeur de pénétration
-
+        float penetration;            // Profondeur de pénétration
         /**
          * @brief Flag if ground collision.
          */
-        bool isGroundCollision; // Est-ce une collision avec le sol
-    };
+        bool isGroundCollision;       // Est-ce une collision avec le sol
+    } CollisionInfo_t;
 
     /**
-     * @struct Ladder
-     * @brief Ladder/climbable area.
+     * @brief Échelle/escalier.
+     * @struct Ladder_s
      */
-    struct Ladder {
+    typedef struct Ladder_s {
         /**
          * @brief Climb speed.
          */
-        float climbSpeed = 150.f; // Vitesse de montée/descente
-    };
+        float climbSpeed = 150.f;     // Vitesse de montée/descente
+    } Ladder_t;
 
     /**
-     * @struct TriggerZone
-     * @brief Trigger zone (for teleporters, checkpoints, etc.).
+     * @brief Zone de trigger (pour téléporteurs, checkpoints, etc.).
+     * @struct TriggerZone_s
      */
-    struct TriggerZone {
+    typedef struct TriggerZone_s {
         /**
          * @brief Enumeration of trigger types.
          */
         enum class Type { Teleporter, Checkpoint, Death, Win, Custom };
-
         /**
          * @brief Type of trigger.
          */
         Type type = Type::Custom;
-
         /**
          * @brief Target scene for teleporters.
          */
-        std::string targetScene; // Pour les téléporteurs
-
+        std::string targetScene;      // Pour les téléporteurs
         /**
          * @brief Teleport position.
          */
-        sf::Vector2f teleportPos; // Position de téléportation
-
+        sf::Vector2f teleportPos;     // Position de téléportation
         /**
          * @brief Custom callback on trigger.
          */
-        std::function<void(Entity)> onTrigger; // Callback custom
-
+        std::function<void(Entity)> onTrigger;  // Callback custom
         /**
          * @brief Flag if already triggered.
          */
-        bool triggered = false; // Déjà déclenché
-
+        bool triggered = false;       // Déjà déclenché
         /**
          * @brief Flag to reset on exit.
          */
-        bool resetOnExit = true; // Se réinitialise quand on sort
-    };
+        bool resetOnExit = true;      // Se réinitialise quand on sort
+    } TriggerZone_t;
 
     /**
-     * @struct Enemy
-     * @brief Component to mark an entity as enemy.
+     * @brief Composant pour marquer une entité comme ennemi.
+     * @struct Enemy_s
      */
-    struct Enemy {
+    typedef struct Enemy_s {
         /**
          * @brief Cooldown between shots.
          */
-        float shootCooldown = 0.f; // Délai entre les tirs
-
+        float shootCooldown = 0.f;  // Délai entre les tirs
         /**
          * @brief Shooting range.
          */
-        float shootRange = 600.f; // Portée de tir
-
+        float shootRange = 600.f;   // Portée de tir
         /**
          * @brief Flag if can shoot.
          */
-        bool canShoot = true; // Type d'ennemi (ex: "basic", "boss")
-    };
+        bool canShoot = true;       // Type d'ennemi (ex: "basic", "boss")
+    } Enemy_t;
 
 @}
-}
+} // namespace Components

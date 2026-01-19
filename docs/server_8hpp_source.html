@@ -195,7 +195,7 @@ $(document).ready(function(){initNavTree('server_8hpp_source.html',''); initResi
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">float</span> speed = 400.0f;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    velo-&gt;x = 0;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    velo-&gt;<a class="code hl_variable" href="structComponents_1_1Velocity__s.html#a2fa8690f394b1af37d8b6ce73c5da290">x</a> = 0;</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    velo-&gt;y = 0;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (currentItem.second.right)</div>
@@ -209,7 +209,7 @@ $(document).ready(function(){initNavTree('server_8hpp_source.html',''); initResi
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">auto</span> ctrl = <a class="code hl_variable" href="classServer.html#aa40cf916c43ac983d372376382b5340e">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;PlayerController_t&gt;(e);</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">if</span> (ctrl) {</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        ctrl-&gt;isShooting = currentItem.second.shoot;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        ctrl-&gt;<a class="code hl_variable" href="structComponents_1_1PlayerController__s.html#a25d5bbcb6e8c61f248c577c3e363552b">isShooting</a> = currentItem.second.shoot;</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
 </div>
@@ -221,7 +221,7 @@ $(document).ready(function(){initNavTree('server_8hpp_source.html',''); initResi
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pair : <a class="code hl_variable" href="classServer.html#ac4ba75378e7da5ff808670e5a9f99777">clientToPlayerRelation</a>) {</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keyword">auto</span> velo = <a class="code hl_variable" href="classServer.html#aa40cf916c43ac983d372376382b5340e">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Velocity_t&gt;(pair.second);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">if</span> (velo) {</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            velo-&gt;x = 0;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            velo-&gt;<a class="code hl_variable" href="structComponents_1_1Velocity__s.html#a2fa8690f394b1af37d8b6ce73c5da290">x</a> = 0;</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            velo-&gt;y = 0;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
@@ -302,7 +302,7 @@ $(document).ready(function(){initNavTree('server_8hpp_source.html',''); initResi
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                projPos-&gt;y + projCol-&gt;height &gt; targetPos-&gt;y) {</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                <span class="comment">// Hit!</span></div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                targetHealth-&gt;current -= proj-&gt;damage;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                targetHealth-&gt;<a class="code hl_variable" href="structComponents_1_1Health__s.html#afbbbbfc1235436129e820b841f7279e9">current</a> -= proj-&gt;damage;</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                targetHealth-&gt;lastAttackerId = proj-&gt;ownerId;</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                <a class="code hl_variable" href="classServer.html#aa40cf916c43ac983d372376382b5340e">_ecs</a>.<a class="code hl_function" href="classECS.html#a77bab58f7b7d5e53443078f60957b2d2">killEntity</a>(p); <span class="comment">// Destroy projectile</span></div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                <span class="keywordflow">break</span>; <span class="comment">// Projectile destroyed, move to next projectile</span></div>
@@ -443,7 +443,7 @@ $(document).ready(function(){initNavTree('server_8hpp_source.html',''); initResi
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#endif </span><span class="comment">/* !SERVER_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aCollisionSystem_8hpp_html"><div class="ttname"><a href="CollisionSystem_8hpp.html">CollisionSystem.hpp</a></div></div>
 <div class="ttc" id="aComponents_8hpp_html"><div class="ttname"><a href="Components_8hpp.html">Components.hpp</a></div></div>
-<div class="ttc" id="aComponents_8hpp_html_abbfe3c71949470fc9650dc4f945c7319"><div class="ttname"><a href="Components_8hpp.html#abbfe3c71949470fc9650dc4f945c7319">SHOOT_DELAY</a></div><div class="ttdeci">#define SHOOT_DELAY</div><div class="ttdef"><b>Definition</b> Components.hpp:16</div></div>
+<div class="ttc" id="aComponents_8hpp_html_abbfe3c71949470fc9650dc4f945c7319"><div class="ttname"><a href="Components_8hpp.html#abbfe3c71949470fc9650dc4f945c7319">SHOOT_DELAY</a></div><div class="ttdeci">#define SHOOT_DELAY</div><div class="ttdef"><b>Definition</b> Components.hpp:17</div></div>
 <div class="ttc" id="aMoveSystem_8hpp_html"><div class="ttname"><a href="MoveSystem_8hpp.html">MoveSystem.hpp</a></div></div>
 <div class="ttc" id="aMovementSystem_8hpp_html"><div class="ttname"><a href="MovementSystem_8hpp.html">MovementSystem.hpp</a></div></div>
 <div class="ttc" id="aTimer_8hpp_html"><div class="ttname"><a href="Timer_8hpp.html">Timer.hpp</a></div></div>
@@ -498,6 +498,9 @@ $(document).ready(function(){initNavTree('server_8hpp_source.html',''); initResi
 <div class="ttc" id="arfcprotocol_8txt_html_a866ebc4aa5f69e7038e0dc25b69529ab"><div class="ttname"><a href="rfcprotocol_8txt.html#a866ebc4aa5f69e7038e0dc25b69529ab">port</a></div><div class="ttdeci">reliability for connection management is handled via the parallel TCP channel Default UDP port</div><div class="ttdef"><b>Definition</b> rfcprotocol.txt:97</div></div>
 <div class="ttc" id="aserializer_8hpp_html"><div class="ttname"><a href="serializer_8hpp.html">serializer.hpp</a></div></div>
 <div class="ttc" id="aserver_2ecs_8hpp_html"><div class="ttname"><a href="server_2ecs_8hpp.html">ecs.hpp</a></div></div>
+<div class="ttc" id="astructComponents_1_1Health__s_html_afbbbbfc1235436129e820b841f7279e9"><div class="ttname"><a href="structComponents_1_1Health__s.html#afbbbbfc1235436129e820b841f7279e9">Components::Health_s::current</a></div><div class="ttdeci">int current</div><div class="ttdoc">Current health value.</div><div class="ttdef"><b>Definition</b> Components.hpp:220</div></div>
+<div class="ttc" id="astructComponents_1_1PlayerController__s_html_a25d5bbcb6e8c61f248c577c3e363552b"><div class="ttname"><a href="structComponents_1_1PlayerController__s.html#a25d5bbcb6e8c61f248c577c3e363552b">Components::PlayerController_s::isShooting</a></div><div class="ttdeci">bool isShooting</div><div class="ttdoc">Shooting state flag.</div><div class="ttdef"><b>Definition</b> Components.hpp:159</div></div>
+<div class="ttc" id="astructComponents_1_1Velocity__s_html_a2fa8690f394b1af37d8b6ce73c5da290"><div class="ttname"><a href="structComponents_1_1Velocity__s.html#a2fa8690f394b1af37d8b6ce73c5da290">Components::Velocity_s::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">X-component of the velocity.</div><div class="ttdef"><b>Definition</b> Components.hpp:93</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

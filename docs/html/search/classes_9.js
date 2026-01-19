@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ladder_0',['Ladder',['../structComponents_1_1Ladder.html',1,'Components']]]
+  ['ladder_5fs_0',['Ladder_s',['../structComponents_1_1Ladder__s.html',1,'Components']]]
 ];

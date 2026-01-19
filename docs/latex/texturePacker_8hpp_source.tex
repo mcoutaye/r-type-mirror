@@ -1,0 +1,186 @@
+\doxysection{texture\+Packer.\+hpp}
+\hypertarget{texturePacker_8hpp_source}{}\label{texturePacker_8hpp_source}\index{include/engine/core/texturePacker.hpp@{include/engine/core/texturePacker.hpp}}
+\mbox{\hyperlink{texturePacker_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ r-\/type-\/mirror}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ texturePacker}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ TEXTUREPACKER\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ TEXTUREPACKER\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <SFML/Graphics/Image.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ \ \ \#include\ <fstream>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{texturePacker_8hpp_a63b98ffaab5524dd69e183e7d2d42f45}{MAX\_ATLAS\_WIDTH}}\ =\ 1024;\ \textcolor{comment}{//\ Increased\ to\ accommodate\ larger\ assets}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structimageItem__s}{imageItem\_s}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ \mbox{\hyperlink{structimageItem__s_a7bbbd859034ad5efc2a2c9b16299fc36}{name}};}
+\DoxyCodeLine{00021\ \ \ \ \ sf::Image\ \mbox{\hyperlink{structimageItem__s_aa932550be87ade2ff0e522d3bed17389}{image}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structimageItem__s_ae6d7c06b0513858b56deb0be66b8f1f0}{width}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structimageItem__s_a7c079db7b896baf2c380f97aff6c2abf}{height}};}
+\DoxyCodeLine{00024\ \}\ \mbox{\hyperlink{texturePacker_8hpp_ac8b632361cf8c9bc4edfa86c22a5e5a2}{imageItem\_t}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplacedItem__s}{placedItem\_s}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{structimageItem__s}{imageItem\_t}}\ \mbox{\hyperlink{structplacedItem__s_af8cde15c28a623aa1e3c1e61fbc22a73}{item}};}
+\DoxyCodeLine{00028\ \ \ \ \ sf::IntRect\ \mbox{\hyperlink{structplacedItem__s_abde3d73bba09d0d22549d16d48266c2d}{rect}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplacedItem__s_acb0af06dbbd7e30eeabebce123efb8a4}{x}};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplacedItem__s_a7a220a15b923214e1b82af0ce73b6927}{y}};}
+\DoxyCodeLine{00031\ \}\ \mbox{\hyperlink{texturePacker_8hpp_ad66593502fe96d29ed2c0868d613e459}{placedItem\_t}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structshelf__s}{shelf\_s}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structshelf__s_a8c1206f94996652d14bdfef1d5129a18}{x}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structshelf__s_ade2edd8f27046323f85dac9d1b420fdd}{y}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structshelf__s_a477400b8c0941fb9e636f2899cc218e4}{height}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structshelf__s_a43f40175005865d015e14eca54c46f63}{remainingWidth}};\ \ \ \ \ \textcolor{comment}{//\ Max\ width\ -\/\ x}}
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{texturePacker_8hpp_a7a657cc3c8c1751cd1750fb10c3107f8}{shelf\_t}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTexturePacker}{TexturePacker}}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTexturePacker_a9291cb111b0b519663d8bf29c9514ff7}{TexturePacker}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTexturePacker_a98505b276b6760aa042ac118a5692cab}{\string~TexturePacker}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a088094d78c4661c7923cbb31f0a40b5f}{loadImageFromPath}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ std::string\ \&imagePath);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a0ad8470998d49ec808e00158fadb9d5b}{packTextures}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a9d2107e9e0f53513549a0007967ca411}{generateAtlas}}(\textcolor{keyword}{const}\ std::string\ \&outputPath);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_ad08a9f765994ca29cfdb0a26f67964bb}{saveJSON}}(\textcolor{keyword}{const}\ std::string\ \&outputPath);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2}{reset}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classTexturePacker_aa870942882df7a412d25516ed07ef824}{nbSprites}}\ =\ 0;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ std::vector<imageItem\_t>\ \mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::vector<shelf\_t>\ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ std::vector<placedItem\_t>\ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}};}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \mbox{\hyperlink{classTexturePacker_a9291cb111b0b519663d8bf29c9514ff7}{TexturePacker::TexturePacker}}()\ \{\}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \mbox{\hyperlink{classTexturePacker_a98505b276b6760aa042ac118a5692cab}{TexturePacker::\string~TexturePacker}}()\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2}{reset}}();}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a088094d78c4661c7923cbb31f0a40b5f}{TexturePacker::loadImageFromPath}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ std::string\ \&imagePath)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{structimageItem__s}{imageItem\_t}}\ newItem;}
+\DoxyCodeLine{00067\ \ \ \ \ newItem.\mbox{\hyperlink{structimageItem__s_a7bbbd859034ad5efc2a2c9b16299fc36}{name}}\ =\ name;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (!newItem.\mbox{\hyperlink{structimageItem__s_aa932550be87ade2ff0e522d3bed17389}{image}}.loadFromFile(imagePath))\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}TexturePacker:\ Failed\ to\ load\ image\ "{}}\ <<\ imagePath\ <<\ std::endl;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ newItem.\mbox{\hyperlink{structimageItem__s_ae6d7c06b0513858b56deb0be66b8f1f0}{width}}\ =\ newItem.\mbox{\hyperlink{structimageItem__s_aa932550be87ade2ff0e522d3bed17389}{image}}.getSize().x;}
+\DoxyCodeLine{00073\ \ \ \ \ newItem.\mbox{\hyperlink{structimageItem__s_a7c079db7b896baf2c380f97aff6c2abf}{height}}\ =\ newItem.\mbox{\hyperlink{structimageItem__s_aa932550be87ade2ff0e522d3bed17389}{image}}.getSize().y;}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}}.push\_back(newItem);}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a0ad8470998d49ec808e00158fadb9d5b}{TexturePacker::packTextures}}()\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}}.empty())}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::sort(\mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}}.begin(),\ \mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}}.end(),}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{structimageItem__s}{imageItem\_t}}\ \&a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structimageItem__s}{imageItem\_t}}\ \&b)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ return\ (a.height\ >\ b.height);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}.clear();}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}}.clear();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&img\ :\ \mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}})\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ placed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ placedX\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ placedY\ =\ 0;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&shelf\ :\ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}})\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (img.width\ <=\ shelf.remainingWidth\ \&\&\ img.height\ <=\ shelf.height)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ placedX\ =\ shelf.x;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ placedY\ =\ shelf.y;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shelf.x\ +=\ img.width;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shelf.remainingWidth\ -\/=\ img.width;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ placed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!placed)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (img.width\ >\ \mbox{\hyperlink{texturePacker_8hpp_a63b98ffaab5524dd69e183e7d2d42f45}{MAX\_ATLAS\_WIDTH}})}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ Image\ too\ wide\ to\ fit\ in\ atlas}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structshelf__s}{shelf\_t}}\ newShelf;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ newShelf.\mbox{\hyperlink{structshelf__s_a8c1206f94996652d14bdfef1d5129a18}{x}}\ =\ img.width;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ newShelf.\mbox{\hyperlink{structshelf__s_ade2edd8f27046323f85dac9d1b420fdd}{y}}\ =\ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}}.empty()\ ?\ 0\ :\ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}}.back().y\ +\ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}}.back().height;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ newShelf.\mbox{\hyperlink{structshelf__s_a477400b8c0941fb9e636f2899cc218e4}{height}}\ =\ img.height;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ newShelf.\mbox{\hyperlink{structshelf__s_a43f40175005865d015e14eca54c46f63}{remainingWidth}}\ =\ \mbox{\hyperlink{texturePacker_8hpp_a63b98ffaab5524dd69e183e7d2d42f45}{MAX\_ATLAS\_WIDTH}}\ -\/\ img.width;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ placedX\ =\ 0;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ placedY\ =\ newShelf.\mbox{\hyperlink{structshelf__s_ade2edd8f27046323f85dac9d1b420fdd}{y}};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}}.push\_back(newShelf);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structplacedItem__s}{placedItem\_t}}\ placedItem;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ placedItem.\mbox{\hyperlink{structplacedItem__s_af8cde15c28a623aa1e3c1e61fbc22a73}{item}}\ =\ img;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ placedItem.\mbox{\hyperlink{structplacedItem__s_abde3d73bba09d0d22549d16d48266c2d}{rect}}\ =\ sf::IntRect(placedX,\ placedY,\ img.width,\ img.height);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ placedItem.\mbox{\hyperlink{structplacedItem__s_acb0af06dbbd7e30eeabebce123efb8a4}{x}}\ =\ placedX;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ placedItem.\mbox{\hyperlink{structplacedItem__s_a7a220a15b923214e1b82af0ce73b6927}{y}}\ =\ placedY;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}.push\_back(placedItem);}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a9d2107e9e0f53513549a0007967ca411}{TexturePacker::generateAtlas}}(\textcolor{keyword}{const}\ std::string\ \&outputPath)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}.empty())}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ atlasHeight\ =\ 0;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&shelf\ :\ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}})\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ atlasHeight\ +=\ shelf.height;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ sf::Image\ atlasImage;}
+\DoxyCodeLine{00136\ \ \ \ \ atlasImage.create(\mbox{\hyperlink{texturePacker_8hpp_a63b98ffaab5524dd69e183e7d2d42f45}{MAX\_ATLAS\_WIDTH}},\ atlasHeight,\ sf::Color::Transparent);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&p\ :\ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}})\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ atlasImage.copy(p.item.image,\ p.x,\ p.y);}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ atlasImage.saveToFile(outputPath);}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_ad08a9f765994ca29cfdb0a26f67964bb}{TexturePacker::saveJSON}}(\textcolor{keyword}{const}\ std::string\ \&outputPath)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ std::ofstream\ file(outputPath);}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\{\(\backslash\)n"{}};}
+\DoxyCodeLine{00150\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\ \ \(\backslash\)"{}sprites\(\backslash\)"{}:\ \{\(\backslash\)n"{}};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ =\ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}[i];}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\ \ \ \(\backslash\)"{}"{}}\ <<\ p.item.name\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}:\ \{"{}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}id\(\backslash\)"{}:\ "{}}\ <<\ \mbox{\hyperlink{classTexturePacker_aa870942882df7a412d25516ed07ef824}{nbSprites}}\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}x\(\backslash\)"{}:\ "{}}\ <<\ p.rect.left\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}y\(\backslash\)"{}:\ "{}}\ <<\ p.rect.top\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}width\(\backslash\)"{}:\ "{}}\ <<\ p.rect.width\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}height\(\backslash\)"{}:\ "{}}\ <<\ p.rect.height\ <<\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\}"{}};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aa870942882df7a412d25516ed07ef824}{nbSprites}}\ ++;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\ \ \}\(\backslash\)n"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\}\(\backslash\)n"{}};}
+\DoxyCodeLine{00170\ \ \ \ \ file.close();}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2}{TexturePacker::reset}}()\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\_images}}.clear();}
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\_shelves}}.clear();}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\_placed}}.clear();}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classTexturePacker_aa870942882df7a412d25516ed07ef824}{nbSprites}}\ =\ 0;}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !TEXTUREPACKER\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

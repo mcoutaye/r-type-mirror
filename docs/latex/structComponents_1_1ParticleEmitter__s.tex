@@ -1,0 +1,126 @@
+\doxysection{Components\+::Particle\+Emitter\+\_\+s Struct Reference}
+\hypertarget{structComponents_1_1ParticleEmitter__s}{}\label{structComponents_1_1ParticleEmitter__s}\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}
+
+
+Particle emitter.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Particle\+Emitter\+\_\+s\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{structComponents_1_1ParticleEmitter__s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}{Particle\+Type}} \{ \newline
+\mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968}{Explosion}}
+, \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba1708884aa9c2dcfa5f1df31b6c30270d}{Sparks}}
+, \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913babc93fd0fa19ed26b6adf8293ada55404}{Smoke}}
+, \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba7e4a693bfe182987626f234139a8dc83}{Debris}}
+, \newline
+\mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913bad518a06262ac68f1f006a4f802588130}{Trail}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type of particles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}{Particle\+Type}} \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a81ad6e109ccb3073138e568c1a89e9c2}{type}} = \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968}{Particle\+Type\+::\+Explosion}}
+\item 
+float \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_adde89ee2fd6d71a372f40d99bb3d83ef}{rate}} = 0.f
+\begin{DoxyCompactList}\small\item\em Emission rate (particles/second). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a5097be244666904ac5cecaa717eee778}{timer}} = 0.f
+\begin{DoxyCompactList}\small\item\em \doxylink{classTimer}{Timer} for emission. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a3435753d0ec2d57307b2cf3fb9e75205}{emitting}} = false
+\begin{DoxyCompactList}\small\item\em If actively emitting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Particle emitter. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}\label{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b} 
+\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!ParticleType@{ParticleType}}
+\index{ParticleType@{ParticleType}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}
+\doxysubsubsection{\texorpdfstring{ParticleType}{ParticleType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}{Components\+::\+Particle\+Emitter\+\_\+s\+::\+Particle\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Type of particles. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Explosion@{Explosion}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!Explosion@{Explosion}}}\Hypertarget{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968}\label{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968} 
+Explosion&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sparks@{Sparks}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!Sparks@{Sparks}}}\Hypertarget{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba1708884aa9c2dcfa5f1df31b6c30270d}\label{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba1708884aa9c2dcfa5f1df31b6c30270d} 
+Sparks&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Smoke@{Smoke}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!Smoke@{Smoke}}}\Hypertarget{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913babc93fd0fa19ed26b6adf8293ada55404}\label{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913babc93fd0fa19ed26b6adf8293ada55404} 
+Smoke&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Debris@{Debris}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!Debris@{Debris}}}\Hypertarget{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba7e4a693bfe182987626f234139a8dc83}\label{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba7e4a693bfe182987626f234139a8dc83} 
+Debris&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Trail@{Trail}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!Trail@{Trail}}}\Hypertarget{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913bad518a06262ac68f1f006a4f802588130}\label{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913bad518a06262ac68f1f006a4f802588130} 
+Trail&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1ParticleEmitter__s_a3435753d0ec2d57307b2cf3fb9e75205}\label{structComponents_1_1ParticleEmitter__s_a3435753d0ec2d57307b2cf3fb9e75205} 
+\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!emitting@{emitting}}
+\index{emitting@{emitting}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}
+\doxysubsubsection{\texorpdfstring{emitting}{emitting}}
+{\footnotesize\ttfamily bool Components\+::\+Particle\+Emitter\+\_\+s\+::emitting = false}
+
+
+
+If actively emitting. 
+
+\Hypertarget{structComponents_1_1ParticleEmitter__s_adde89ee2fd6d71a372f40d99bb3d83ef}\label{structComponents_1_1ParticleEmitter__s_adde89ee2fd6d71a372f40d99bb3d83ef} 
+\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!rate@{rate}}
+\index{rate@{rate}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}
+\doxysubsubsection{\texorpdfstring{rate}{rate}}
+{\footnotesize\ttfamily float Components\+::\+Particle\+Emitter\+\_\+s\+::rate = 0.f}
+
+
+
+Emission rate (particles/second). 
+
+\Hypertarget{structComponents_1_1ParticleEmitter__s_a5097be244666904ac5cecaa717eee778}\label{structComponents_1_1ParticleEmitter__s_a5097be244666904ac5cecaa717eee778} 
+\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!timer@{timer}}
+\index{timer@{timer}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}
+\doxysubsubsection{\texorpdfstring{timer}{timer}}
+{\footnotesize\ttfamily float Components\+::\+Particle\+Emitter\+\_\+s\+::timer = 0.f}
+
+
+
+\doxylink{classTimer}{Timer} for emission. 
+
+\Hypertarget{structComponents_1_1ParticleEmitter__s_a81ad6e109ccb3073138e568c1a89e9c2}\label{structComponents_1_1ParticleEmitter__s_a81ad6e109ccb3073138e568c1a89e9c2} 
+\index{Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}!type@{type}}
+\index{type@{type}!Components::ParticleEmitter\_s@{Components::ParticleEmitter\_s}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}{Particle\+Type}} Components\+::\+Particle\+Emitter\+\_\+s\+::type = \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968}{Particle\+Type\+::\+Explosion}}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

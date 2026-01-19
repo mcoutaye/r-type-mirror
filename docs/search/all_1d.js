@@ -21,6 +21,6 @@ var searchData=
   ['updateparticle_18',['updateParticle',['../classParticleSystem.html#a0adcbcec82cc55283fe5d43ddb6d34ae',1,'ParticleSystem']]],
   ['updaterigidbodies_19',['updateRigidBodies',['../classPhysicsSystem.html#aa5bbeee549788e514c6edde5be7e5e37',1,'PhysicsSystem']]],
   ['updatevelocities_20',['updateVelocities',['../classPhysicsSystem.html#a4d39e6fe01b815469c08e62a54874206',1,'PhysicsSystem']]],
-  ['usebounds_21',['useBounds',['../structComponents_1_1Camera.html#ae670c6cd0c4ca872ef226cf1e0b8f53c',1,'Components::Camera']]],
-  ['usegravity_22',['useGravity',['../structComponents_1_1RigidBody.html#a9dd9218676e40efbcdf85567777e0269',1,'Components::RigidBody']]]
+  ['usebounds_21',['useBounds',['../structComponents_1_1Camera__s.html#a5aae7b219b1a2245f427828a7b3cb491',1,'Components::Camera_s']]],
+  ['usegravity_22',['useGravity',['../structComponents_1_1RigidBody__s.html#ae4351567a9d362f1aedb862c201bd90d',1,'Components::RigidBody_s']]]
 ];

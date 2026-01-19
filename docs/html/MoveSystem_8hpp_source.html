@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('MoveSystem_8hpp_source.html',''); init
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                            collisionX = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                            <span class="comment">// Resolve collision</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                            <span class="keywordflow">if</span> (velo-&gt;x &gt; 0) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                                pos-&gt;x = obsPos-&gt;x - collider-&gt;width;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                                pos-&gt;<a class="code hl_variable" href="structComponents_1_1Position__s.html#aced3946901e4e234926275e63be80463">x</a> = obsPos-&gt;x - collider-&gt;width;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (velo-&gt;x &lt; 0) {</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                pos-&gt;x = obsPos-&gt;x + obsCollider-&gt;width;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                            } <span class="keywordflow">else</span> {</div>
@@ -200,7 +200,7 @@ $(document).ready(function(){initNavTree('MoveSystem_8hpp_source.html',''); init
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                            collisionY = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                            <span class="comment">// Resolve collision</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                            <span class="keywordflow">if</span> (velo-&gt;y &gt; 0) {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                                pos-&gt;y = obsPos-&gt;y - collider-&gt;height;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                                pos-&gt;<a class="code hl_variable" href="structComponents_1_1Position__s.html#ab15e510c1d98d0bc4ace93b3b63e40d0">y</a> = obsPos-&gt;y - collider-&gt;height;</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (velo-&gt;y &lt; 0) {</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                                pos-&gt;y = obsPos-&gt;y + obsCollider-&gt;height;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                            } <span class="keywordflow">else</span> {</div>
@@ -249,6 +249,8 @@ $(document).ready(function(){initNavTree('MoveSystem_8hpp_source.html',''); init
 <div class="ttc" id="aclassMoveSystem_html_ae6b885cb350e5f765c67902cf92393da"><div class="ttname"><a href="classMoveSystem.html#ae6b885cb350e5f765c67902cf92393da">MoveSystem::MoveSystem</a></div><div class="ttdeci">MoveSystem(ECS &amp;ecs)</div><div class="ttdef"><b>Definition</b> MoveSystem.hpp:17</div></div>
 <div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a9a522438c9f5d73ebe6349edc3313d5e"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a></div><div class="ttdeci">std::uint32_t Entity</div><div class="ttdoc">Type alias for Entity, which is simply an ID.</div><div class="ttdef"><b>Definition</b> ecs.hpp:35</div></div>
 <div class="ttc" id="arfcprotocol_8txt_html_a4d1f9e0693d1ec21db0aea048a1e09a9"><div class="ttname"><a href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a></div><div class="ttdeci">reliability for connection management is handled via the parallel TCP channel Default UDP y</div><div class="ttdef"><b>Definition</b> rfcprotocol.txt:109</div></div>
+<div class="ttc" id="astructComponents_1_1Position__s_html_ab15e510c1d98d0bc4ace93b3b63e40d0"><div class="ttname"><a href="structComponents_1_1Position__s.html#ab15e510c1d98d0bc4ace93b3b63e40d0">Components::Position_s::y</a></div><div class="ttdeci">float y</div><div class="ttdoc">Y-coordinate of the position.</div><div class="ttdef"><b>Definition</b> Components.hpp:82</div></div>
+<div class="ttc" id="astructComponents_1_1Position__s_html_aced3946901e4e234926275e63be80463"><div class="ttname"><a href="structComponents_1_1Position__s.html#aced3946901e4e234926275e63be80463">Components::Position_s::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">X-coordinate of the position.</div><div class="ttdef"><b>Definition</b> Components.hpp:78</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,0 +1,143 @@
+\doxysection{Components\+::Movement\+Pattern\+\_\+s Struct Reference}
+\hypertarget{structComponents_1_1MovementPattern__s}{}\label{structComponents_1_1MovementPattern__s}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+
+
+Movement pattern for entities (e.\+g., enemies).  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Movement\+Pattern\+\_\+s\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{structComponents_1_1MovementPattern__s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{Type}} \{ \newline
+\mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}{Linear}}
+, \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfadd100b0529fbea266a73d2b764a5ff7a}{Sinus}}
+, \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa40d094cb3919d9f6fe5d2858e46486d4}{Cosinus}}
+, \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa30954d90085f6eaaf5817917fc5fecb3}{Circle}}
+, \newline
+\mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa4fae8be981bd327f1302f4b678afe734}{Zigzag}}
+, \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfac978545ade9f5ce21bfa0353c04feda9}{Spiral}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type of movement pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{Type}} \mbox{\hyperlink{structComponents_1_1MovementPattern__s_af1c5f4712669f805bd5f6e7fbd747b83}{type}} = \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}{Type\+::\+Linear}}
+\item 
+float \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a2d09c2207c3527be7c42ebea382e4b10}{amplitude}} = 100.f
+\begin{DoxyCompactList}\small\item\em Amplitude of the movement. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1MovementPattern__s_ab1fd4f02de22c90a23e531daca0cd7b7}{frequency}} = 2.f
+\begin{DoxyCompactList}\small\item\em Frequency of the movement. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a19180029c4821956912405db19d60549}{speed}} = 1.f
+\begin{DoxyCompactList}\small\item\em Speed of the movement. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1MovementPattern__s_ac33b698fbc1942689899746a67ca1b0e}{radius}} = 50.f
+\begin{DoxyCompactList}\small\item\em Radius for circular/spiral movements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Movement pattern for entities (e.\+g., enemies). 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf} 
+\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Type@{Type}}
+\index{Type@{Type}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{Components\+::\+Movement\+Pattern\+\_\+s\+::\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Type of movement pattern. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Linear@{Linear}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Linear@{Linear}}}\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b} 
+Linear&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sinus@{Sinus}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Sinus@{Sinus}}}\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfadd100b0529fbea266a73d2b764a5ff7a}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfadd100b0529fbea266a73d2b764a5ff7a} 
+Sinus&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Cosinus@{Cosinus}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Cosinus@{Cosinus}}}\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa40d094cb3919d9f6fe5d2858e46486d4}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa40d094cb3919d9f6fe5d2858e46486d4} 
+Cosinus&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Circle@{Circle}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Circle@{Circle}}}\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa30954d90085f6eaaf5817917fc5fecb3}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa30954d90085f6eaaf5817917fc5fecb3} 
+Circle&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zigzag@{Zigzag}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Zigzag@{Zigzag}}}\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa4fae8be981bd327f1302f4b678afe734}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa4fae8be981bd327f1302f4b678afe734} 
+Zigzag&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Spiral@{Spiral}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!Spiral@{Spiral}}}\Hypertarget{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfac978545ade9f5ce21bfa0353c04feda9}\label{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfac978545ade9f5ce21bfa0353c04feda9} 
+Spiral&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1MovementPattern__s_a2d09c2207c3527be7c42ebea382e4b10}\label{structComponents_1_1MovementPattern__s_a2d09c2207c3527be7c42ebea382e4b10} 
+\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!amplitude@{amplitude}}
+\index{amplitude@{amplitude}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+\doxysubsubsection{\texorpdfstring{amplitude}{amplitude}}
+{\footnotesize\ttfamily float Components\+::\+Movement\+Pattern\+\_\+s\+::amplitude = 100.f}
+
+
+
+Amplitude of the movement. 
+
+\Hypertarget{structComponents_1_1MovementPattern__s_ab1fd4f02de22c90a23e531daca0cd7b7}\label{structComponents_1_1MovementPattern__s_ab1fd4f02de22c90a23e531daca0cd7b7} 
+\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!frequency@{frequency}}
+\index{frequency@{frequency}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+\doxysubsubsection{\texorpdfstring{frequency}{frequency}}
+{\footnotesize\ttfamily float Components\+::\+Movement\+Pattern\+\_\+s\+::frequency = 2.f}
+
+
+
+Frequency of the movement. 
+
+\Hypertarget{structComponents_1_1MovementPattern__s_ac33b698fbc1942689899746a67ca1b0e}\label{structComponents_1_1MovementPattern__s_ac33b698fbc1942689899746a67ca1b0e} 
+\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!radius@{radius}}
+\index{radius@{radius}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+\doxysubsubsection{\texorpdfstring{radius}{radius}}
+{\footnotesize\ttfamily float Components\+::\+Movement\+Pattern\+\_\+s\+::radius = 50.f}
+
+
+
+Radius for circular/spiral movements. 
+
+\Hypertarget{structComponents_1_1MovementPattern__s_a19180029c4821956912405db19d60549}\label{structComponents_1_1MovementPattern__s_a19180029c4821956912405db19d60549} 
+\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!speed@{speed}}
+\index{speed@{speed}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily float Components\+::\+Movement\+Pattern\+\_\+s\+::speed = 1.f}
+
+
+
+Speed of the movement. 
+
+\Hypertarget{structComponents_1_1MovementPattern__s_af1c5f4712669f805bd5f6e7fbd747b83}\label{structComponents_1_1MovementPattern__s_af1c5f4712669f805bd5f6e7fbd747b83} 
+\index{Components::MovementPattern\_s@{Components::MovementPattern\_s}!type@{type}}
+\index{type@{type}!Components::MovementPattern\_s@{Components::MovementPattern\_s}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{Type}} Components\+::\+Movement\+Pattern\+\_\+s\+::type = \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}{Type\+::\+Linear}}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

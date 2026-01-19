@@ -300,7 +300,7 @@ $(document).ready(function(){initNavTree('CameraSystem_8hpp_source.html',''); in
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">auto</span>* camera = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Camera_t&gt;(cameras[0]);</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">if</span> (!camera) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    camera-&gt;shakeIntensity = intensity;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    camera-&gt;<a class="code hl_variable" href="structComponents_1_1Camera__s.html#a0d9bf82fa4ed8064b62e95a05c1b9d68">shakeIntensity</a> = intensity;</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    camera-&gt;shakeDuration = duration;</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
 </div>
@@ -314,7 +314,7 @@ $(document).ready(function(){initNavTree('CameraSystem_8hpp_source.html',''); in
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">auto</span>* camera = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Camera_t&gt;(cameras[0]);</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">if</span> (!camera) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    camera-&gt;zoom = std::clamp(zoom, 0.1f, 10.f);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    camera-&gt;<a class="code hl_variable" href="structComponents_1_1Camera__s.html#a292524f819f1862a1a36b05422f71f3c">zoom</a> = std::clamp(zoom, 0.1f, 10.f);</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    camera-&gt;targetZoom = camera-&gt;zoom;</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
 </div>
@@ -328,7 +328,7 @@ $(document).ready(function(){initNavTree('CameraSystem_8hpp_source.html',''); in
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keyword">auto</span>* camera = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Camera_t&gt;(cameras[0]);</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">if</span> (!camera) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    camera-&gt;targetZoom = std::clamp(zoom, 0.1f, 10.f);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    camera-&gt;<a class="code hl_variable" href="structComponents_1_1Camera__s.html#a71882e5f6c5c1efb01ae2cfed635c137">targetZoom</a> = std::clamp(zoom, 0.1f, 10.f);</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
 </div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
@@ -341,7 +341,7 @@ $(document).ready(function(){initNavTree('CameraSystem_8hpp_source.html',''); in
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">auto</span>* camera = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Camera_t&gt;(cameras[0]);</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordflow">if</span> (!camera) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    camera-&gt;useBounds = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    camera-&gt;<a class="code hl_variable" href="structComponents_1_1Camera__s.html#a5aae7b219b1a2245f427828a7b3cb491">useBounds</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    camera-&gt;minX = minX;</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    camera-&gt;minY = minY;</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    camera-&gt;maxX = maxX;</div>
@@ -358,7 +358,7 @@ $(document).ready(function(){initNavTree('CameraSystem_8hpp_source.html',''); in
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">auto</span>* camera = <a class="code hl_variable" href="classISystem.html#add78dbb839ae61fe69929cce0e666664">_ecs</a>.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Camera_t&gt;(cameras[0]);</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordflow">if</span> (!camera) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    camera-&gt;useBounds = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    camera-&gt;<a class="code hl_variable" href="structComponents_1_1Camera__s.html#a5aae7b219b1a2245f427828a7b3cb491">useBounds</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>}</div>
 </div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
@@ -402,6 +402,10 @@ $(document).ready(function(){initNavTree('CameraSystem_8hpp_source.html',''); in
 <div class="ttc" id="aclassISystem_html"><div class="ttname"><a href="classISystem.html">ISystem</a></div><div class="ttdoc">Interface for systems in the ECS.</div><div class="ttdef"><b>Definition</b> ecs.hpp:470</div></div>
 <div class="ttc" id="aclassISystem_html_add78dbb839ae61fe69929cce0e666664"><div class="ttname"><a href="classISystem.html#add78dbb839ae61fe69929cce0e666664">ISystem::_ecs</a></div><div class="ttdeci">ECS &amp; _ecs</div><div class="ttdef"><b>Definition</b> ecs.hpp:493</div></div>
 <div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a9a522438c9f5d73ebe6349edc3313d5e"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a></div><div class="ttdeci">std::uint32_t Entity</div><div class="ttdoc">Type alias for Entity, which is simply an ID.</div><div class="ttdef"><b>Definition</b> ecs.hpp:35</div></div>
+<div class="ttc" id="astructComponents_1_1Camera__s_html_a0d9bf82fa4ed8064b62e95a05c1b9d68"><div class="ttname"><a href="structComponents_1_1Camera__s.html#a0d9bf82fa4ed8064b62e95a05c1b9d68">Components::Camera_s::shakeIntensity</a></div><div class="ttdeci">float shakeIntensity</div><div class="ttdoc">Shake intensity.</div><div class="ttdef"><b>Definition</b> Components.hpp:658</div></div>
+<div class="ttc" id="astructComponents_1_1Camera__s_html_a292524f819f1862a1a36b05422f71f3c"><div class="ttname"><a href="structComponents_1_1Camera__s.html#a292524f819f1862a1a36b05422f71f3c">Components::Camera_s::zoom</a></div><div class="ttdeci">float zoom</div><div class="ttdoc">Current zoom level.</div><div class="ttdef"><b>Definition</b> Components.hpp:646</div></div>
+<div class="ttc" id="astructComponents_1_1Camera__s_html_a5aae7b219b1a2245f427828a7b3cb491"><div class="ttname"><a href="structComponents_1_1Camera__s.html#a5aae7b219b1a2245f427828a7b3cb491">Components::Camera_s::useBounds</a></div><div class="ttdeci">bool useBounds</div><div class="ttdoc">If using bounds.</div><div class="ttdef"><b>Definition</b> Components.hpp:670</div></div>
+<div class="ttc" id="astructComponents_1_1Camera__s_html_a71882e5f6c5c1efb01ae2cfed635c137"><div class="ttname"><a href="structComponents_1_1Camera__s.html#a71882e5f6c5c1efb01ae2cfed635c137">Components::Camera_s::targetZoom</a></div><div class="ttdeci">float targetZoom</div><div class="ttdoc">Target zoom level.</div><div class="ttdef"><b>Definition</b> Components.hpp:650</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -186,7 +186,7 @@
 \DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
 \DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00184\ \ \ \ \ }
-\DoxyCodeLine{00185\ \ \ \ \ camera-\/>shakeIntensity\ =\ intensity;}
+\DoxyCodeLine{00185\ \ \ \ \ camera-\/>\mbox{\hyperlink{structComponents_1_1Camera__s_a0d9bf82fa4ed8064b62e95a05c1b9d68}{shakeIntensity}}\ =\ intensity;}
 \DoxyCodeLine{00186\ \ \ \ \ camera-\/>shakeDuration\ =\ duration;}
 \DoxyCodeLine{00187\ \}}
 \DoxyCodeLine{00188\ }
@@ -198,7 +198,7 @@
 \DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
 \DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00196\ \ \ \ \ }
-\DoxyCodeLine{00197\ \ \ \ \ camera-\/>zoom\ =\ std::clamp(zoom,\ 0.1f,\ 10.f);}
+\DoxyCodeLine{00197\ \ \ \ \ camera-\/>\mbox{\hyperlink{structComponents_1_1Camera__s_a292524f819f1862a1a36b05422f71f3c}{zoom}}\ =\ std::clamp(zoom,\ 0.1f,\ 10.f);}
 \DoxyCodeLine{00198\ \ \ \ \ camera-\/>targetZoom\ =\ camera-\/>zoom;}
 \DoxyCodeLine{00199\ \}}
 \DoxyCodeLine{00200\ }
@@ -210,7 +210,7 @@
 \DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
 \DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00208\ \ \ \ \ }
-\DoxyCodeLine{00209\ \ \ \ \ camera-\/>targetZoom\ =\ std::clamp(zoom,\ 0.1f,\ 10.f);}
+\DoxyCodeLine{00209\ \ \ \ \ camera-\/>\mbox{\hyperlink{structComponents_1_1Camera__s_a71882e5f6c5c1efb01ae2cfed635c137}{targetZoom}}\ =\ std::clamp(zoom,\ 0.1f,\ 10.f);}
 \DoxyCodeLine{00210\ \}}
 \DoxyCodeLine{00211\ }
 \DoxyCodeLine{00212\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCameraSystem_a53839db5c11c89fb6dd3a11332941932}{CameraSystem::setBounds}}(\textcolor{keywordtype}{float}\ minX,\ \textcolor{keywordtype}{float}\ minY,\ \textcolor{keywordtype}{float}\ maxX,\ \textcolor{keywordtype}{float}\ maxY)}
@@ -221,7 +221,7 @@
 \DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
 \DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00219\ \ \ \ \ }
-\DoxyCodeLine{00220\ \ \ \ \ camera-\/>useBounds\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00220\ \ \ \ \ camera-\/>\mbox{\hyperlink{structComponents_1_1Camera__s_a5aae7b219b1a2245f427828a7b3cb491}{useBounds}}\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00221\ \ \ \ \ camera-\/>minX\ =\ minX;}
 \DoxyCodeLine{00222\ \ \ \ \ camera-\/>minY\ =\ minY;}
 \DoxyCodeLine{00223\ \ \ \ \ camera-\/>maxX\ =\ maxX;}
@@ -236,7 +236,7 @@
 \DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{auto}*\ camera\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Camera\_t>(cameras[0]);}
 \DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (!camera)\ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00234\ \ \ \ \ }
-\DoxyCodeLine{00235\ \ \ \ \ camera-\/>useBounds\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00235\ \ \ \ \ camera-\/>\mbox{\hyperlink{structComponents_1_1Camera__s_a5aae7b219b1a2245f427828a7b3cb491}{useBounds}}\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00236\ \}}
 \DoxyCodeLine{00237\ }
 \DoxyCodeLine{00238\ sf::Vector2f\ \mbox{\hyperlink{classCameraSystem_a190599a92fbf4140e6f0d1bb6ec8eba6}{CameraSystem::screenToWorld}}(\textcolor{keyword}{const}\ sf::Vector2i\&\ screenPos)\textcolor{keyword}{\ const}}

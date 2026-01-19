@@ -1,6 +1,6 @@
 var searchData=
 [
   ['ecs_0',['ECS',['../classECS.html',1,'']]],
-  ['enemy_1',['Enemy',['../structComponents_1_1Enemy.html',1,'Components']]],
+  ['enemy_5fs_1',['Enemy_s',['../structComponents_1_1Enemy__s.html',1,'Components']]],
   ['entityupdate_2',['EntityUpdate',['../structEntityUpdate.html',1,'']]]
 ];

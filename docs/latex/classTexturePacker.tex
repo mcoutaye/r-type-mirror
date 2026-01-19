@@ -1,0 +1,172 @@
+\doxysection{Texture\+Packer Class Reference}
+\hypertarget{classTexturePacker}{}\label{classTexturePacker}\index{TexturePacker@{TexturePacker}}
+
+
+{\ttfamily \#include $<$texture\+Packer.\+hpp$>$}
+
+
+
+Collaboration diagram for Texture\+Packer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{classTexturePacker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTexturePacker_a9291cb111b0b519663d8bf29c9514ff7}{Texture\+Packer}} ()
+\item 
+\mbox{\hyperlink{classTexturePacker_a98505b276b6760aa042ac118a5692cab}{\texorpdfstring{$\sim$}{\string~}\+Texture\+Packer}} ()
+\item 
+void \mbox{\hyperlink{classTexturePacker_a088094d78c4661c7923cbb31f0a40b5f}{load\+Image\+From\+Path}} (const std\+::string \&name, const std\+::string \&image\+Path)
+\item 
+void \mbox{\hyperlink{classTexturePacker_a0ad8470998d49ec808e00158fadb9d5b}{pack\+Textures}} ()
+\item 
+void \mbox{\hyperlink{classTexturePacker_a9d2107e9e0f53513549a0007967ca411}{generate\+Atlas}} (const std\+::string \&output\+Path)
+\item 
+void \mbox{\hyperlink{classTexturePacker_ad08a9f765994ca29cfdb0a26f67964bb}{save\+JSON}} (const std\+::string \&output\+Path)
+\item 
+void \mbox{\hyperlink{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2}{reset}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classTexturePacker_aa870942882df7a412d25516ed07ef824}{nb\+Sprites}} = 0
+\item 
+std\+::vector$<$ \mbox{\hyperlink{texturePacker_8hpp_ac8b632361cf8c9bc4edfa86c22a5e5a2}{image\+Item\+\_\+t}} $>$ \mbox{\hyperlink{classTexturePacker_a073d90006461da512c454e58aaa13f7d}{\+\_\+images}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{texturePacker_8hpp_a7a657cc3c8c1751cd1750fb10c3107f8}{shelf\+\_\+t}} $>$ \mbox{\hyperlink{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}{\+\_\+shelves}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{texturePacker_8hpp_ad66593502fe96d29ed2c0868d613e459}{placed\+Item\+\_\+t}} $>$ \mbox{\hyperlink{classTexturePacker_aee08077425bd3a557416111e95324618}{\+\_\+placed}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTexturePacker_a9291cb111b0b519663d8bf29c9514ff7}\label{classTexturePacker_a9291cb111b0b519663d8bf29c9514ff7} 
+\index{TexturePacker@{TexturePacker}!TexturePacker@{TexturePacker}}
+\index{TexturePacker@{TexturePacker}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{TexturePacker()}{TexturePacker()}}
+{\footnotesize\ttfamily Texture\+Packer\+::\+Texture\+Packer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classTexturePacker_a98505b276b6760aa042ac118a5692cab}\label{classTexturePacker_a98505b276b6760aa042ac118a5692cab} 
+\index{TexturePacker@{TexturePacker}!````~TexturePacker@{\texorpdfstring{$\sim$}{\string~}TexturePacker}}
+\index{````~TexturePacker@{\texorpdfstring{$\sim$}{\string~}TexturePacker}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}TexturePacker()}{\string~TexturePacker()}}
+{\footnotesize\ttfamily Texture\+Packer\+::\texorpdfstring{$\sim$}{\string~}\+Texture\+Packer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTexturePacker_a98505b276b6760aa042ac118a5692cab_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTexturePacker_a9d2107e9e0f53513549a0007967ca411}\label{classTexturePacker_a9d2107e9e0f53513549a0007967ca411} 
+\index{TexturePacker@{TexturePacker}!generateAtlas@{generateAtlas}}
+\index{generateAtlas@{generateAtlas}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{generateAtlas()}{generateAtlas()}}
+{\footnotesize\ttfamily void Texture\+Packer\+::generate\+Atlas (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{output\+Path }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTexturePacker_a9d2107e9e0f53513549a0007967ca411_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTexturePacker_a088094d78c4661c7923cbb31f0a40b5f}\label{classTexturePacker_a088094d78c4661c7923cbb31f0a40b5f} 
+\index{TexturePacker@{TexturePacker}!loadImageFromPath@{loadImageFromPath}}
+\index{loadImageFromPath@{loadImageFromPath}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{loadImageFromPath()}{loadImageFromPath()}}
+{\footnotesize\ttfamily void Texture\+Packer\+::load\+Image\+From\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{image\+Path }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTexturePacker_a088094d78c4661c7923cbb31f0a40b5f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTexturePacker_a0ad8470998d49ec808e00158fadb9d5b}\label{classTexturePacker_a0ad8470998d49ec808e00158fadb9d5b} 
+\index{TexturePacker@{TexturePacker}!packTextures@{packTextures}}
+\index{packTextures@{packTextures}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{packTextures()}{packTextures()}}
+{\footnotesize\ttfamily void Texture\+Packer\+::pack\+Textures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTexturePacker_a0ad8470998d49ec808e00158fadb9d5b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2}\label{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2} 
+\index{TexturePacker@{TexturePacker}!reset@{reset}}
+\index{reset@{reset}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Texture\+Packer\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTexturePacker_a974b5225719139e6e7b372b75ecfcfd2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTexturePacker_ad08a9f765994ca29cfdb0a26f67964bb}\label{classTexturePacker_ad08a9f765994ca29cfdb0a26f67964bb} 
+\index{TexturePacker@{TexturePacker}!saveJSON@{saveJSON}}
+\index{saveJSON@{saveJSON}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{saveJSON()}{saveJSON()}}
+{\footnotesize\ttfamily void Texture\+Packer\+::save\+JSON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{output\+Path }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTexturePacker_ad08a9f765994ca29cfdb0a26f67964bb_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classTexturePacker_a073d90006461da512c454e58aaa13f7d}\label{classTexturePacker_a073d90006461da512c454e58aaa13f7d} 
+\index{TexturePacker@{TexturePacker}!\_images@{\_images}}
+\index{\_images@{\_images}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{\_images}{\_images}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{texturePacker_8hpp_ac8b632361cf8c9bc4edfa86c22a5e5a2}{image\+Item\+\_\+t}}$>$ Texture\+Packer\+::\+\_\+images\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classTexturePacker_aee08077425bd3a557416111e95324618}\label{classTexturePacker_aee08077425bd3a557416111e95324618} 
+\index{TexturePacker@{TexturePacker}!\_placed@{\_placed}}
+\index{\_placed@{\_placed}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{\_placed}{\_placed}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{texturePacker_8hpp_ad66593502fe96d29ed2c0868d613e459}{placed\+Item\+\_\+t}}$>$ Texture\+Packer\+::\+\_\+placed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9}\label{classTexturePacker_aa86f45087afc4a6b7bcfa1f96f1297b9} 
+\index{TexturePacker@{TexturePacker}!\_shelves@{\_shelves}}
+\index{\_shelves@{\_shelves}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{\_shelves}{\_shelves}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{texturePacker_8hpp_a7a657cc3c8c1751cd1750fb10c3107f8}{shelf\+\_\+t}}$>$ Texture\+Packer\+::\+\_\+shelves\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classTexturePacker_aa870942882df7a412d25516ed07ef824}\label{classTexturePacker_aa870942882df7a412d25516ed07ef824} 
+\index{TexturePacker@{TexturePacker}!nbSprites@{nbSprites}}
+\index{nbSprites@{nbSprites}!TexturePacker@{TexturePacker}}
+\doxysubsubsection{\texorpdfstring{nbSprites}{nbSprites}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Texture\+Packer\+::nb\+Sprites = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/core/\mbox{\hyperlink{texturePacker_8hpp}{texture\+Packer.\+hpp}}\end{DoxyCompactItemize}

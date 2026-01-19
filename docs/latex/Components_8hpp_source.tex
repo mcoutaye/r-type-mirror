@@ -3,507 +3,282 @@
 \mbox{\hyperlink{Components_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2025}}
-\DoxyCodeLine{00003\ \textcolor{comment}{**\ R-\/type}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2026}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ R-\/type-\/mirror}}
 \DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
 \DoxyCodeLine{00005\ \textcolor{comment}{**\ Components\ hpp}}
 \DoxyCodeLine{00006\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SFML/Window/Keyboard.hpp>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}engine/Menu.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}engine/Core/Menu.hpp"{}}}
 \DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <functional>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cstdint>}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ SHOOT\_DELAY\ 0.5f}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \textcolor{comment}{//\ Forward\ declare\ Entity\ type}}
-\DoxyCodeLine{00019\ \textcolor{keyword}{using\ }\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ =\ std::uint32\_t;}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{comment}{//\ Forward\ declaration\ /\ enum\ pour\ les\ actions\ de\ jeu}}
-\DoxyCodeLine{00022\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c}{MoveUp}},}
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5}{MoveDown}},}
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca}{MoveLeft}},}
-\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b}{MoveRight}},}
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c}{Shoot}},}
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6}{Quit}},}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f}{Pause}},\ \ \ \ \ \ \textcolor{comment}{//\ Toggle\ pause/resume\ en\ jeu}}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296}{MenuUp}},}
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42}{MenuDown}},}
-\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756}{MenuSelect}}}
-\DoxyCodeLine{00033\ \};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceComponents}{Components}}\ \{}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00055\ @\{}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{struct\ }SendUpdate\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ needsUpdate\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00066\ \ \ \ \ \};}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Position}{Position}}\ \{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Position_a4bd3b3f258c40d3abd7e0ad06a9ea1c8}{x}}\ =\ 0.f;}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Position_a6a8c41d08f698e5b0e563c2d04f8a10b}{y}}\ =\ 0.f;}
-\DoxyCodeLine{00082\ \ \ \ \ \};}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Velocity}{Velocity}}\ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Velocity_a434830e2ddf77341b9312d3562542328}{x}}\ =\ 0.f;}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Velocity_a1981a2a70a37532c827bb36a549a3b13}{y}}\ =\ 0.f;}
-\DoxyCodeLine{00098\ \ \ \ \ \};}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SHOOT\_DELAY\ 0.5f}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Forward\ declare\ Entity\ type}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ }\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ =\ std::uint32\_t;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Forward\ declaration\ /\ enum\ pour\ les\ actions\ de\ jeu}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaa56a3ff692c679e34e0f52202fd9be5c}{MoveUp}},}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca8c95fa949833ae3c6a217f55dec17dd5}{MoveDown}},}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcae8a98c6fabdea857c20c91e9bfd318ca}{MoveLeft}},}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca78af9b7fcdf1574f729de1454e15257b}{MoveRight}},}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcacf4a0298c82a0d16c03788f8d0ce273c}{Shoot}},}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca0d82790b0612935992bd564a17ce37d6}{Quit}},}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca105b296a83f9c105355403f3332af50f}{Pause}},\ \ \ \ \ \ \textcolor{comment}{//\ Toggle\ pause/resume\ en\ jeu}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296}{MenuUp}},}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42}{MenuDown}},}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756}{MenuSelect}},}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafca588472ba41057400fd915a7d1a4d5983}{ToggleDebug}}}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceComponents}{Components}}\ \{}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00057\ @\{}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }SendUpdate\_s\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ needsUpdate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ \ \ \ \ \}\ SendUpdate\_t;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Position__s}{Position\_s}}\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Position__s_aced3946901e4e234926275e63be80463}{x}}\ =\ 0.f;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Position__s_ab15e510c1d98d0bc4ace93b3b63e40d0}{y}}\ =\ 0.f;}
+\DoxyCodeLine{00083\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_aad60e4c56c3b6926bbef04b5e6631a57}{Position\_t}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Velocity__s}{Velocity\_s}}\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Velocity__s_a2fa8690f394b1af37d8b6ce73c5da290}{x}}\ =\ 0.f;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Velocity__s_a9ea40c61c98ef6d829efbd3cd05083bf}{y}}\ =\ 0.f;}
+\DoxyCodeLine{00098\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a343ca9578ca7a4f3d8d03980e59290e1}{Velocity\_t}};}
 \DoxyCodeLine{00099\ }
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Drawable}{Drawable}}\ \{}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Drawable_a8ed79e4903e4cfa13344d0be17f6b2b5}{textureId}};\ \textcolor{comment}{//\ "{}ship.png"{},\ "{}bullet.png"{}}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ sf::IntRect\ \mbox{\hyperlink{structComponents_1_1Drawable_a872276338aa1dd0b6d8e4fe41c31db3f}{rect}}\ =\ \{0,\ 0,\ 64,\ 64\};\ \textcolor{comment}{//\ frame\ actuelle}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Drawable_a5aa1e3aa4ac18f9a8f8e39adc491dd79}{layer}}\ =\ 0;\ \textcolor{comment}{//\ 0=background,\ 10=player,\ 20=bullets,\ 50=particles}}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Drawable_aad3e7a7496e6ce972bfae04ae33be5cb}{visible}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable_aabcf151f2540eae3e61f165d0f06eb7c}{scale}}\ =\ 1.f;}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable_a4d0444dc3ba0bd21e1f3fbcf9603001e}{rotation}}\ =\ 0.f;}
-\DoxyCodeLine{00134\ \ \ \ \ \};}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PlayerController}{PlayerController}}\ \{}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1PlayerController_ab626bbc7d999b6b1b51d0cb03cd68fd8}{playerId}}\ =\ 0;\ \textcolor{comment}{//\ 0=joueur1,\ 1=joueur2...}}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1PlayerController_a4dc2bdf1ca51df9b61cfc18fdcb06b03}{isShooting}}\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PlayerController_a072fa13e0d5e790ddec996fcf49b4a44}{shootCooldown}}\ =\ 0.f;}
-\DoxyCodeLine{00155\ \ \ \ \ \};}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Collider}{Collider}}\ \{}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Collider_a3cff820f690f7a47a76a23f9047526fa}{width}}\ =\ 32.f;}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Collider_ae3919b40a8818971bdfe1b9e617b65fe}{height}}\ =\ 32.f;}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Collider_a71adb7d3c7f3efbf00100c8fa52bd438}{solid}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ bloquant\ ou\ pas}}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Collider_adede3f35531bde5e8283a1757af4420b}{team}}\ =\ 0;\ \textcolor{comment}{//\ 0=neutre,\ 1=player,\ 2=enemy}}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Collider_ae52e0d67741627f78dbed6a670189107}{damage}}\ =\ 1;}
-\DoxyCodeLine{00186\ \ \ \ \ \};}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Health}{Health}}\ \{}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health_ac152194e42b52db5b5c3550d3d5f9036}{max}}\ =\ 100;}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health_ab2c65b1a4738dcc5cb43aedf1323714d}{current}}\ =\ 100;}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health_a189ca887cf9235f2efdff1de592dc45a}{lastAttackerId}}\ =\ -\/1;}
-\DoxyCodeLine{00207\ \ \ \ \ \};}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1WaveSpawner}{WaveSpawner}}\ \{}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveSpawner_a96f2ce36ade99140d9e992f9aa57d86c}{nextSpawnTime}}\ =\ 2.f;\ \textcolor{comment}{//\ temps\ avant\ prochain\ spawn}}
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1WaveSpawner_aa8e7b69e73eab1ffb996acf0539ee404}{currentWave}}\ =\ 0;}
-\DoxyCodeLine{00223\ \ \ \ \ \};}
-\DoxyCodeLine{00224\ }
-\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1MovementPattern}{MovementPattern}}\ \{}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a32a843da6ea40ab3b17a3421ccdf671b}{Linear}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5add100b0529fbea266a73d2b764a5ff7a}{Sinus}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a40d094cb3919d9f6fe5d2858e46486d4}{Cosinus}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a30954d90085f6eaaf5817917fc5fecb3}{Circle}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5a4fae8be981bd327f1302f4b678afe734}{Zigzag}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5ac978545ade9f5ce21bfa0353c04feda9}{Spiral}}\ \};}
-\DoxyCodeLine{00234\ }
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{Type}}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a6e71a27920ec592bfec9e63b6970e4fe}{type}};}
-\DoxyCodeLine{00239\ }
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_acb33d69a05fbbdd5ce6fb6b43360c608}{amplitude}};\ \textcolor{comment}{//\ Pour\ les\ mouvements\ ondulatoires}}
-\DoxyCodeLine{00244\ }
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a13f0421f09618e5eaadcf893f4ea9b6f}{frequency}};\ \textcolor{comment}{//\ Pour\ les\ mouvements\ ondulatoires}}
-\DoxyCodeLine{00249\ }
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a76d3abc1ecccce1f81b052dfde5f9b77}{radius}};\ \textcolor{comment}{//\ Pour\ le\ cercle/spirale}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Drawable__s}{Drawable\_s}}\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a33d79ca377bcb2928ce2350833c51caf}{textureName}};\ \ \ \ \ \ \textcolor{comment}{//\ "{}ship1"{},\ "{}bullet"{},\ etc.}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ std::vector<sf::IntRect>\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a3b11e99a16d551a3441cb7edc177e9e4}{frames}};\ \ \textcolor{comment}{//\ Array\ de\ rectangles\ pour\ l'animation}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a4bbf8a3f5d2a866f64db1f4d5520680f}{currentFrameIndex}}\ =\ 0;\ \ \ \ \ \textcolor{comment}{//\ Index\ de\ la\ frame\ actuelle}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_adf2dda9e5f45b0b4d31d7ccc73de761e}{animationSpeed}}\ =\ 0.1f;\ \ \ \ \ \ \textcolor{comment}{//\ Temps\ entre\ chaque\ frame\ (en\ secondes)}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_ade331f34cc66c910e6077004323687c5}{frameTimer}}\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Timer\ interne\ pour\ l'animation}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a60556369a28507ca88bc300094ee6d77}{loop}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ l'animation\ doit\ boucler}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_aacb4ce16222a9f7430815da916642e20}{layer}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0=background,\ 10=player,\ 20=bullets,\ 50=particles}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a94b57e1bf4eedea344b7dc87a8ffd497}{visible}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a79402b641fd962705249171ce5021807}{scale}}\ =\ 1.f;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Drawable__s_a2307f21b57ad40a961c1e42e9061e117}{rotation}}\ =\ 0.f;}
+\DoxyCodeLine{00145\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a41390778e1c80fe4e71962a252e991de}{Drawable\_t}};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PlayerController__s}{PlayerController\_s}}\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1PlayerController__s_a867b0dcc79fcf36c7dde233990023812}{playerId}}\ =\ 0;\ \ \ \ \ \ \ \textcolor{comment}{//\ 0=joueur1,\ 1=joueur2...}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1PlayerController__s_a25d5bbcb6e8c61f248c577c3e363552b}{isShooting}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PlayerController__s_a745e6f2fd96a804ad399d5e6f1ed3b46}{shootCooldown}}\ =\ 0.f;}
+\DoxyCodeLine{00164\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_addc8833612442c50c1f268f8f56c39ac}{PlayerController\_t}};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Collider__s}{Collider\_s}}\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Collider__s_a94be7b0f58d2b2e80eea58193f0ec0dd}{width}}\ =\ 32.f;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Collider__s_ae9cd0a5982664472100d2f33ca464b96}{height}}\ =\ 32.f;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Collider__s_af08979bfba8255477232bf1de5e086c7}{solid}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bloquant\ ou\ pas}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Collider__s_a3f91d6e639f3d7207e945222ccf75674}{team}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0=neutre,\ 1=joueurs,\ 2=ennemis}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Collider__s_a8ecaf933911efd1bb859c8b2d3f88c6b}{damage}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dégâts\ sur\ collision}}
+\DoxyCodeLine{00191\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_ad05171322623f1e871a0f3858b08a2a3}{Collider\_t}};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Projectile__s}{Projectile\_s}}\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Projectile__s_ae00273da1662d182d9b23bb2db9ec799}{damage}}\ =\ 50;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dégâts}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Projectile__s_aad8f980801697047e816f2ad61d23491}{ownerId}}\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ID\ du\ tireur}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Projectile__s_a2795a28434627fac1ce72fd1490c1e1a}{lifetime}}\ =\ 5.f;\ \ \ \ \ \ \ \textcolor{comment}{//\ Temps\ de\ vie\ (auto-\/destruction)}}
+\DoxyCodeLine{00210\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a5cff96c6e09f034735ff7420877156df}{Projectile\_t}};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Health__s}{Health\_s}}\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health__s_afbbbbfc1235436129e820b841f7279e9}{current}}\ =\ 100;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Health__s_a2d6274092fff99b02c7ab98bf42c18f9}{max}}\ =\ 100;}
+\DoxyCodeLine{00225\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a4e1516b03441fd858e732ec8167fb861}{Health\_t}};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1MovementPattern__s}{MovementPattern\_s}}\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}{Linear}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfadd100b0529fbea266a73d2b764a5ff7a}{Sinus}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa40d094cb3919d9f6fe5d2858e46486d4}{Cosinus}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa30954d90085f6eaaf5817917fc5fecb3}{Circle}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa4fae8be981bd327f1302f4b678afe734}{Zigzag}},\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfac978545ade9f5ce21bfa0353c04feda9}{Spiral}}\ \};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{Type}}\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_af1c5f4712669f805bd5f6e7fbd747b83}{type}}\ =\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}{Type::Linear}};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a2d09c2207c3527be7c42ebea382e4b10}{amplitude}}\ =\ 100.f;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_ab1fd4f02de22c90a23e531daca0cd7b7}{frequency}}\ =\ 2.f;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a19180029c4821956912405db19d60549}{speed}}\ =\ 1.f;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_ac33b698fbc1942689899746a67ca1b0e}{radius}}\ =\ 50.f;}
+\DoxyCodeLine{00253\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_aaae6b0d773ddefc6d4bd3a686d2cc0bc}{MovementPattern\_t}};}
 \DoxyCodeLine{00254\ }
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1MovementPattern_a8ea734f6c29cfc6902ac6001bd8173ed}{speed}};\ \textcolor{comment}{//\ Pour\ le\ zigzag/spirale}}
-\DoxyCodeLine{00259\ \ \ \ \ \};}
-\DoxyCodeLine{00260\ }
-\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1WaveData}{WaveData}}\ \{}
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData_a52c58106f8e02f06a9d09365f01ad090}{delay}};}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1WaveData_a93a4fa0ab30cb15601e8984cf85b432a}{enemyType}};}
-\DoxyCodeLine{00275\ }
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern_a01c069b16d18333ec6bf3e5d254d80e5}{MovementPattern::Type}}\ \mbox{\hyperlink{structComponents_1_1WaveData_a69627fb80abdcd44a10276dc2d49f499}{movementType}};}
-\DoxyCodeLine{00280\ }
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1WaveData_afc266e01fcae2fa0a7e3980c19bddf89}{count}};}
-\DoxyCodeLine{00285\ }
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData_a73bd2fa49bf676f52249ab2ea0990e37}{x}};}
-\DoxyCodeLine{00290\ }
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData_aa2aecee2ec8d1b60118fb1e2f99d8b12}{y}};}
-\DoxyCodeLine{00295\ \ \ \ \ \};}
-\DoxyCodeLine{00296\ }
-\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Projectile}{Projectile}}\ \{}
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Projectile_ad448be528153937c3d0c53732fbc9c6f}{speed}};\ \textcolor{comment}{//\ Vitesse\ du\ projectile}}
-\DoxyCodeLine{00306\ }
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Projectile_ad7ad006f2928ab0aa51a2f7364c75cc1}{damage}};\ \textcolor{comment}{//\ Dégâts\ infligés}}
-\DoxyCodeLine{00311\ }
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Projectile_ab9b4757d1aa643a06d4ba52271422523}{ownerId}}\ =\ -\/1;}
-\DoxyCodeLine{00316\ \ \ \ \ \};}
-\DoxyCodeLine{00317\ }
-\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Shootable}{Shootable}}\ \{}
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a401f18981b844971fc63b540ba973db9}{cooldown}};\ \textcolor{comment}{//\ Temps\ restant\ avant\ le\ prochain\ tir}}
-\DoxyCodeLine{00327\ }
-\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a9944afebe4e72787e8c7eadf1138ac80}{shootDelay}};\ \textcolor{comment}{//\ Délai\ entre\ deux\ tirs}}
-\DoxyCodeLine{00332\ }
-\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a59284381db1aac115804c8135ef37872}{missileSpeed}};\ \textcolor{comment}{//\ Vitesse\ des\ projectiles}}
-\DoxyCodeLine{00337\ }
-\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Shootable_a91b2391c0f747fe99b3bfed011b37e01}{damage}};\ \textcolor{comment}{//\ Dégâts\ infligés}}
-\DoxyCodeLine{00342\ }
-\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Shootable_aed95d7e3b42c6c7ab6a7afae78e8fa98}{team}};\ \textcolor{comment}{//\ Équipe\ du\ tireur\ (pour\ éviter\ les\ tirs\ alliés)}}
-\DoxyCodeLine{00347\ }
-\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Shootable_afca36194207417f616af8fd1eb6dfbae}{textureId}};\ \textcolor{comment}{//\ Texture\ du\ projectile}}
-\DoxyCodeLine{00352\ }
-\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a18c37910e9636f9a5eac14fc46c8bcd3}{offsetX}};\ \textcolor{comment}{//\ Offset\ X\ pour\ le\ spawn\ du\ projectile}}
-\DoxyCodeLine{00357\ }
-\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Shootable_a22c18deb5458dc10a43534d6ee0655a3}{offsetY}};\ \textcolor{comment}{//\ Offset\ Y\ pour\ le\ spawn\ du\ projectile}}
-\DoxyCodeLine{00362\ }
-\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Shootable_ac8520820f5125d6a56139a11d4316486}{isShooting}};\ \textcolor{comment}{//\ Nouveau\ champ\ pour\ indiquer\ si\ le\ joueur\ tire}}
-\DoxyCodeLine{00367\ }
-\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Shootable_a3ae314c57d1bad5cdfbcaa931245c2bf}{tripleShot}};}
-\DoxyCodeLine{00372\ \ \ \ \ \};}
-\DoxyCodeLine{00373\ }
-\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PowerUp}{PowerUp}}\ \{}
-\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1PowerUp_a9ece4055070003617d50e6ee7a207889}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1PowerUp_a9ece4055070003617d50e6ee7a207889a2a2f418aeda3454fb82f74aff782bb8f}{TripleShot}}\ \};}
-\DoxyCodeLine{00383\ }
-\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1PowerUp_a9ece4055070003617d50e6ee7a207889}{Type}}\ \mbox{\hyperlink{structComponents_1_1PowerUp_ad9288964cc913cac6d5ed4e173343ee6}{type}};}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1WaveData__s}{WaveData\_s}}\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1WaveData__s_a78560577c70d0d8fe70bfa0a1b0e5cf8}{count}}\ =\ 5;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData__s_a02a0df50a1b8cfeb72c04d2038f3a557}{delay}}\ =\ 5.f;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData__s_a03a7c23bd57bb4141db56fd39ff6afcd}{x}}\ =\ 1920.f;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1WaveData__s_a380f0aaf5268897134f0963f7dcd9117}{y}}\ =\ 540.f;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bf}{MovementPattern\_t::Type}}\ \mbox{\hyperlink{structComponents_1_1WaveData__s_ad0872a263e5c0f7670e502beb2517c36}{movementType}}\ =\ \mbox{\hyperlink{structComponents_1_1MovementPattern__s_a69e60f37a821d23972f160f726b3a5bfa32a843da6ea40ab3b17a3421ccdf671b}{MovementPattern\_t::Type::Linear}};}
+\DoxyCodeLine{00280\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a4ffd984de158ef887e03466ffa491fb5}{WaveData\_t}};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Star__s}{Star\_s}}\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Star__s_a463c79822b0b66c33a17f3172c01894b}{speed}}\ =\ 50.f;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Star__s_a87d15fd3286be62b1a2a9d0684f3553c}{brightness}}\ =\ 255;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Star__s_a30cea659e0d3d79eb4d52d2e913a339b}{size}}\ =\ 1;}
+\DoxyCodeLine{00299\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a1efe501d48e482f5f564dc68d37faa9c}{Star\_t}};}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Text__s}{Text\_s}}\ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Text__s_abefaa5304414cd472896628518b3c7b8}{content}};}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Text__s_af2ed0fe2c209b75bf75f997a1679abf1}{font}}\ =\ \textcolor{stringliteral}{"{}default"{}};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structComponents_1_1Text__s_a6f9d86fe4a13de5afb0ef8bd21cbf0ff}{characterSize}}\ =\ 40;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Text__s_a3e9255e6444c95697eb7319daac089ed}{color}}\ =\ sf::Color::White;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Text__s_ae63a0ef8fe09aef6e8d768cb9a467edd}{originalColor}}\ =\ sf::Color::White;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Text__s_a5446ee3a0ba1719fe2dafbc04a3ea834}{visible}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00330\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a4d3c310f821c9b08fc69345ff4cf4a40}{Text\_t}};}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Highlight__s}{Highlight\_s}}\ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Highlight__s_a26e885c2e22f3d31da7be24bf1fbad50}{selectedColor}}\ =\ sf::Color::Yellow;}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Highlight__s_a947854c4c811c798f0b6469c748c45c9}{selectedScale}}\ =\ 1.2f;}
+\DoxyCodeLine{00345\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_ae2adf1718dee5cbdf8d7648ea7b1515f}{Highlight\_t}};}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1MenuItem__s}{MenuItem\_s}}\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structMenuAction}{MenuAction}}\ \mbox{\hyperlink{structComponents_1_1MenuItem__s_adce04f88e9098623fc20f791d87f394c}{action}};}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1MenuItem__s_a350001fa882c420952337713781f52ab}{isSelected}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00360\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a67779e4903abb1726544df5b4c442596}{MenuItem\_t}};}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Slider__s}{Slider\_s}}\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider__s_ac1053c16350eb1b8ca77021666d56c3e}{minValue}}\ =\ 0.f;}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider__s_a8146c1fc3c590e69b343a06aae716712}{maxValue}}\ =\ 100.f;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider__s_a7115ba54e2f728592a81de46a41aa7a5}{currentValue}}\ =\ 50.f;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider__s_ad4201f3fd2ccd847c36e7faf81c3fbb2}{step}}\ =\ 1.f;}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Slider__s_a4d303db9be48c79effd7ea428a764d3e}{linkedSetting}};}
+\DoxyCodeLine{00387\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a208070bc941eb51074bb190d9465e562}{Slider\_t}};}
 \DoxyCodeLine{00388\ }
-\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PowerUp_a2fc053404d329650832ecea0f1083422}{duration}};\ \textcolor{comment}{//\ Durée\ de\ l'effet\ (en\ secondes)}}
-\DoxyCodeLine{00393\ \ \ \ \ \};}
-\DoxyCodeLine{00394\ }
-\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Obstacle}{Obstacle}}\ \{}
-\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Obstacle_af5a4b89acf82054f3a7d5303349dd484}{blocking}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Bloque\ le\ mouvement}}
-\DoxyCodeLine{00404\ \ \ \ \ \};}
-\DoxyCodeLine{00405\ }
-\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1DestructibleTile}{DestructibleTile}}\ \{}
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1DestructibleTile_a8d0d689563c6bca55859fa66ed833652}{health}}\ =\ 50;\ \textcolor{comment}{//\ Points\ de\ vie\ de\ la\ tuile}}
-\DoxyCodeLine{00415\ \ \ \ \ \};}
-\DoxyCodeLine{00416\ }
-\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Star}{Star}}\ \{}
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Star_a458498047d5e2faaaa3b15f041b88c70}{speed}}\ =\ 100.f;\ \textcolor{comment}{//\ Vitesse\ de\ défilement}}
-\DoxyCodeLine{00426\ }
-\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Star_ae6bc365ac51f664135a65cd995313e67}{brightness}}\ =\ 255;\ \textcolor{comment}{//\ Luminosité\ (pour\ effet\ de\ parallaxe)}}
-\DoxyCodeLine{00431\ }
-\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1Star_a897e8173e8f0ab2a286f135b3a45ca54}{size}}\ =\ 2;\ \textcolor{comment}{//\ Taille\ de\ l'étoile}}
-\DoxyCodeLine{00436\ \ \ \ \ \};}
-\DoxyCodeLine{00437\ }
-\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1JustShot}{JustShot}}\ \{}
-\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1JustShot_a5880041289ba5e0f49792bce77e961eb}{active}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00447\ \ \ \ \ \};}
-\DoxyCodeLine{00448\ }
-\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PlaySound}{PlaySound}}\ \{}
-\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1PlaySound_a0e751d33b6e5cf1f8c7eb496bd5c8942}{soundId}};\ \textcolor{comment}{//\ ex:\ "{}player\_shoot.wav"{},\ "{}enemy\_explosion.wav"{},\ "{}hit.wav"{}}}
-\DoxyCodeLine{00458\ }
-\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PlaySound_a50f9305083617f7ff408d6a3e961a7d4}{volume}}\ =\ 100.f;\ \textcolor{comment}{//\ 0-\/100\ (SFML\ utilise\ 0-\/100)}}
-\DoxyCodeLine{00463\ }
-\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PlaySound_a1d27315dc41d201eb3c8bb137128ad62}{pitch}}\ =\ 1.0f;\ \textcolor{comment}{//\ variation\ de\ tonalité}}
-\DoxyCodeLine{00468\ \ \ \ \ \};}
-\DoxyCodeLine{00469\ }
-\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1BackgroundMusic}{BackgroundMusic}}\ \{}
-\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1BackgroundMusic_a4ea155f529686f0297f8b574aee4404d}{musicId}};\ \textcolor{comment}{//\ ex:\ "{}level1.ogg"{},\ "{}menu\_theme.ogg"{}}}
-\DoxyCodeLine{00479\ }
-\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1BackgroundMusic_a267a9f472848c96f2e9f0eebbb786aad}{looping}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00484\ }
-\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BackgroundMusic_a1d700150e58cb0c4691b3692db922583}{volume}}\ =\ 50.f;}
-\DoxyCodeLine{00489\ \ \ \ \ \};}
-\DoxyCodeLine{00490\ }
-\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Text}{Text}}\ \{}
-\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Text_a147eb599795bbb96529b6de38370ace6}{text}};}
-\DoxyCodeLine{00500\ }
-\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Text_a6b5689bff4a73ca1f674490bc8d07e19}{fontId}}\ =\ \textcolor{stringliteral}{"{}default"{}};}
-\DoxyCodeLine{00505\ }
-\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structComponents_1_1Text_a2319f47707c7cccbe8d73a65d3fe8772}{fontSize}}\ =\ 48;}
-\DoxyCodeLine{00510\ }
-\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Text_a79484f3dd5fda3a57ac9afc5505739dc}{color}};}
-\DoxyCodeLine{00515\ }
-\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Text_af1da48b03f4fb1be9f55326bddfb0acc}{originalColor}};\ \textcolor{comment}{//\ Ajout\ du\ champ\ pour\ sauvegarder\ la\ couleur\ originale}}
-\DoxyCodeLine{00520\ }
-\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Text_a73db625c9d8a60dbf6e90e92e6b548d0}{centered}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00525\ }
-\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Text_af468e0be2e937417d2af379bb9971300}{visible}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00530\ \ \ \ \ \};}
-\DoxyCodeLine{00531\ }
-\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1MenuItem}{MenuItem}}\ \{}
-\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structMenuAction}{MenuAction}}\ \mbox{\hyperlink{structComponents_1_1MenuItem_a8940fd8cedbaf86c555e70f51bc38291}{action}};}
-\DoxyCodeLine{00541\ }
-\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1MenuItem_ad7e7a775f97802303d9168a9b6fa7059}{isSelected}}\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00546\ }
-\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1MenuItem_ac68f6316f1b3a7d96a485aac4c937400}{isSelectable}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Peut\ être\ sélectionné\ par\ la\ navigation\ clavier/souris}}
-\DoxyCodeLine{00551\ \ \ \ \ \};}
-\DoxyCodeLine{00552\ }
-\DoxyCodeLine{00557\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Highlight}{Highlight}}\ \{}
-\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Highlight_aa0af1a3afa5eec33ade348640792927d}{selectedColor}}\ =\ sf::Color::Yellow;}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1DynamicText__s}{DynamicText\_s}}\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1DynamicText__s_a3fcfd2a36415651c067cb45dedc29dbf}{prefix}};}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1DynamicText__s_a52b54a8e8205cb3ac45c3a6a2fbad11f}{suffix}};}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ std::function<std::string()>\ \mbox{\hyperlink{structComponents_1_1DynamicText__s_a7147d0addd4033d0b9a2824df3e8333b}{valueGetter}};}
+\DoxyCodeLine{00406\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a99c1ee653b03b1a2b770df267fc4e913}{DynamicText\_t}};}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1KeybindButton__s}{KeybindButton\_s}}\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{structComponents_1_1KeybindButton__s_a1d0547ea19c79ee3d9dc2bb3c7a6e513}{action}};}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1KeybindButton__s_aca91f4abb54003670f11014c72f14f4e}{waitingForKey}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00421\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a49842ecff80ed408a4075b0d117b7eb0}{KeybindButton\_t}};}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1PlaySound__s}{PlaySound\_s}}\ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1PlaySound__s_ac6b1aac1d3f04e5cedd9d17f6108c245}{soundId}};}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PlaySound__s_a85e86e140e0fcb81ee3cbe8f7906353e}{volume}}\ =\ 100.f;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1PlaySound__s_a83496599146f5f7da13d30bc1fc00ca9}{pitch}}\ =\ 1.0f;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1PlaySound__s_acbadd7db27c7a9c68228f20a861fca3e}{loop}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00444\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a983a4ef7b50a1b759f8d91e9f71a8bd6}{PlaySound\_t}};}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1BackgroundMusic__s}{BackgroundMusic\_s}}\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1BackgroundMusic__s_a1d7102a19f80c76d762bb00f289caa58}{musicId}};}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BackgroundMusic__s_abb9059145eb64731d157c565bb865de4}{volume}}\ =\ 100.f;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1BackgroundMusic__s_ab5892d53e0bb0f3497b57e36df5c1691}{looping}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00463\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a8ba3b30b8ad2abb719d707ad4be06c2e}{BackgroundMusic\_t}};}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1RigidBody__s}{RigidBody\_s}}\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_a6401dc52b21a8533d0c96c1d682b847d}{mass}}\ =\ 1.f;}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_a37cf6e695fafcb76dec77f4309213eba}{isKinematic}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_ae4351567a9d362f1aedb862c201bd90d}{useGravity}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_a7415e775057e1f1aa157b8bd94fa5b29}{drag}}\ =\ 0.1f;}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_aebde79c6cde834a9b78496ab4817c1a2}{friction}}\ =\ 0.5f;}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_a90a7e5b2eeca22513b6ef06001eacda0}{bounciness}}\ =\ 0.f;}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_acf885be9e70190a44661a659e4a75de3}{isGrounded}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1RigidBody__s_a1e85217d1c9de9bf416e2f479db300e5}{accumulatedForce}}\ =\ \{0.f,\ 0.f\};}
+\DoxyCodeLine{00502\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a56be2cba2dfdf03de6250952e528cb23}{RigidBody\_t}};}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Jump__s}{Jump\_s}}\ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jump__s_affd11f90ff51884462dbe3025bcb00e6}{jumpForce}}\ =\ 500.f;}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jump__s_a0b63d5f9ed85ba7c7aa59bebfa3653d1}{coyoteTime}}\ =\ 0.1f;}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jump__s_af7b4c84e8f15d690483cdfe4bd1c4921}{coyoteTimer}}\ =\ 0.f;}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jump__s_ab288c67d48b6db6aac25b976e7917178}{jumpBuffer}}\ =\ 0.1f;}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jump__s_aa9d11d28e6ead0ade71339a5b7f75d6b}{jumpBufferTimer}}\ =\ 0.f;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Jump__s_aebc8ecc7731071f4e864a3360f12116f}{maxAirJumps}}\ =\ 0;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Jump__s_a06f74802641f300d89b396a16bf21f80}{airJumpsLeft}}\ =\ 0;}
+\DoxyCodeLine{00537\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a779c8325890338572f3ea70df7b713ee}{Jump\_t}};}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1ParticleEmitter__s}{ParticleEmitter\_s}}\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}{ParticleType}}\ \{\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968}{Explosion}},\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba1708884aa9c2dcfa5f1df31b6c30270d}{Sparks}},\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913babc93fd0fa19ed26b6adf8293ada55404}{Smoke}},\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba7e4a693bfe182987626f234139a8dc83}{Debris}},\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913bad518a06262ac68f1f006a4f802588130}{Trail}}\ \};}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913b}{ParticleType}}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a81ad6e109ccb3073138e568c1a89e9c2}{type}}\ =\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a0c7eb334e9dedc4dd3321a11caee913ba8a36c0d6cc2e31990ea4fb2d597db968}{ParticleType::Explosion}};}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_adde89ee2fd6d71a372f40d99bb3d83ef}{rate}}\ =\ 0.f;}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a5097be244666904ac5cecaa717eee778}{timer}}\ =\ 0.f;}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter__s_a3435753d0ec2d57307b2cf3fb9e75205}{emitting}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00561\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_ad2c77351b3eaa535c0e8e99109548f35}{ParticleEmitter\_t}};}
 \DoxyCodeLine{00562\ }
-\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Highlight_af677b13bce3ba9c211a9bbf258217334}{selectedScale}}\ =\ 1.2f;}
-\DoxyCodeLine{00567\ \ \ \ \ \};}
-\DoxyCodeLine{00568\ }
-\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Slider}{Slider}}\ \{}
-\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider_acfbccc8e9884261730883d482f2cbab5}{minValue}}\ =\ 0.0f;}
-\DoxyCodeLine{00578\ }
-\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider_aa283b3a869f9d7d5c38ae822e8a67da6}{maxValue}}\ =\ 100.0f;}
-\DoxyCodeLine{00583\ }
-\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider_aab37c6647b1d10af2b09c71853e70146}{currentValue}}\ =\ 50.0f;}
-\DoxyCodeLine{00588\ }
-\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Slider_a1e3e590babe108e49eecc0a3180bacd6}{step}}\ =\ 1.0f;}
-\DoxyCodeLine{00593\ }
-\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1Slider_abcbe061f4c17b272424cc52e7a9d1e17}{linkedSetting}};\ \textcolor{comment}{//\ Ex:\ "{}music\_volume"{},\ "{}sfx\_volume"{}}}
-\DoxyCodeLine{00598\ \ \ \ \ \};}
-\DoxyCodeLine{00599\ }
-\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471}{InputType}}\ \{}
-\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e}{Keyboard}},}
-\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a1162b85b7b993e2edf7da29dd8abf7e2}{Joystick}}}
-\DoxyCodeLine{00606\ \ \ \ \ \};}
-\DoxyCodeLine{00607\ }
-\DoxyCodeLine{00612\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1KeybindButton}{KeybindButton}}\ \{}
-\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Components_8hpp_a5827805c542ab9cccf700dc3697cbafc}{GameAction}}\ \mbox{\hyperlink{structComponents_1_1KeybindButton_ae9e3d109da59632a9cf91689df9934aa}{action}};\ \textcolor{comment}{//\ L'action\ à\ remapper}}
-\DoxyCodeLine{00617\ }
-\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471}{InputType}}\ \mbox{\hyperlink{structComponents_1_1KeybindButton_a0840189a67a0d9d7ace1f3b619ac80b1}{inputType}}\ =\ \mbox{\hyperlink{namespaceComponents_ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e}{InputType::Keyboard}};\ \textcolor{comment}{//\ Type\ d'input\ (clavier\ ou\ manette)}}
-\DoxyCodeLine{00622\ }
-\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1KeybindButton_a6d7e69416fa90df6cb7baf6460225eab}{isWaitingForInput}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ En\ attente\ d'une\ nouvelle\ touche/bouton}}
-\DoxyCodeLine{00627\ }
-\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ sf::Keyboard::Key\ \mbox{\hyperlink{structComponents_1_1KeybindButton_ae11680134499a18fa893b27688a2fb9d}{currentKey}}\ =\ sf::Keyboard::Unknown;}
-\DoxyCodeLine{00632\ }
-\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1KeybindButton_ad272835f83a25849a961d732d72f1451}{currentJoystickButton}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\textcolor{keyword}{>}(-\/1);}
-\DoxyCodeLine{00637\ \ \ \ \ \};}
-\DoxyCodeLine{00638\ }
-\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1DynamicText}{DynamicText}}\ \{}
-\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1DynamicText_a34ec4cdbfc1ae2631ace8df3be375bed}{prefix}};\ \textcolor{comment}{//\ Ex:\ "{}Volume:\ "{}}}
-\DoxyCodeLine{00648\ }
-\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1DynamicText_aa0afbbba13852e1c1c34bd2513f99a29}{suffix}};\ \textcolor{comment}{//\ Ex:\ "{}\%"{}}}
-\DoxyCodeLine{00653\ }
-\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ std::function<std::string()>\ \mbox{\hyperlink{structComponents_1_1DynamicText_a51737a37d348726ca5b94f5a27e6673f}{valueGetter}};\ \textcolor{comment}{//\ Fonction\ pour\ récupérer\ la\ valeur}}
-\DoxyCodeLine{00658\ \ \ \ \ \};}
-\DoxyCodeLine{00659\ }
-\DoxyCodeLine{00660\ \ \ \ \ \textcolor{comment}{//\ =============\ PARTICLE\ SYSTEM\ =============}}
-\DoxyCodeLine{00661\ }
-\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15c}{ParticleType}}\ \{}
-\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca8a36c0d6cc2e31990ea4fb2d597db968}{Explosion}},\ \ \ \textcolor{comment}{//\ Éclate\ dans\ toutes\ les\ directions}}
-\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15cad518a06262ac68f1f006a4f802588130}{Trail}},\ \ \ \ \ \ \ \textcolor{comment}{//\ Suit\ une\ entité\ (traînée)}}
-\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15cabc93fd0fa19ed26b6adf8293ada55404}{Smoke}},\ \ \ \ \ \ \ \textcolor{comment}{//\ Monte\ lentement,\ s'estompe}}
-\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca1708884aa9c2dcfa5f1df31b6c30270d}{Sparks}},\ \ \ \ \ \ \textcolor{comment}{//\ Petites,\ rapides,\ avec\ gravité}}
-\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca7e4a693bfe182987626f234139a8dc83}{Debris}}\ \ \ \ \ \ \ \textcolor{comment}{//\ Gros\ morceaux\ qui\ tombent}}
-\DoxyCodeLine{00671\ \ \ \ \ \};}
-\DoxyCodeLine{00672\ }
-\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Particle}{Particle}}\ \{}
-\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Particle_a73c5b42165c2764ee18d122644d1ecf6}{active}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Utilisée\ dans\ le\ pool}}
-\DoxyCodeLine{00682\ }
-\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a5c91c7cc8887aefb9349bcc0576e4f3b}{lifetime}}\ =\ 0.f;\ \textcolor{comment}{//\ Temps\ restant}}
-\DoxyCodeLine{00687\ }
-\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_ac1d94e165421ab4055d043c0d2024297}{maxLifetime}}\ =\ 1.f;\ \textcolor{comment}{//\ Durée\ totale}}
-\DoxyCodeLine{00692\ }
-\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a9bffdd84568abf1f4d0de7b213b10ef1}{vx}}\ =\ 0.f;}
-\DoxyCodeLine{00697\ }
-\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_ad0ebf8fe2a86260b06031249eeb410fa}{vy}}\ =\ 0.f;\ \textcolor{comment}{//\ Vélocité}}
-\DoxyCodeLine{00702\ }
-\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a20c2d9824cfb6476bca930c28d63fe56}{ax}}\ =\ 0.f;}
-\DoxyCodeLine{00707\ }
-\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a6aaaa22c9d463672e5584b519f48aff6}{ay}}\ =\ 0.f;\ \textcolor{comment}{//\ Accélération\ (gravité,\ vent)}}
-\DoxyCodeLine{00712\ }
-\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_ae1596d9b1ebb426fba1fa10567dfed8e}{x}}\ =\ 0.f;}
-\DoxyCodeLine{00717\ }
-\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_ace00c21eaba5bced03d33c2525ccc3a2}{y}}\ =\ 0.f;\ \textcolor{comment}{//\ Position}}
-\DoxyCodeLine{00722\ }
-\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_aeb44ee97f95226a920d866dd0945f3aa}{size}}\ =\ 4.f;\ \textcolor{comment}{//\ Taille\ actuelle}}
-\DoxyCodeLine{00727\ }
-\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_aa6e594d1f0bc7fa99ac6403145456574}{startSize}}\ =\ 4.f;\ \textcolor{comment}{//\ Taille\ initiale}}
-\DoxyCodeLine{00732\ }
-\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a7e3c368812bf82abfe657c82a45fe4c7}{endSize}}\ =\ 0.f;\ \textcolor{comment}{//\ Taille\ finale}}
-\DoxyCodeLine{00737\ }
-\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a4a23e47e835c77fd51427c166f4e4f9c}{rotation}}\ =\ 0.f;\ \textcolor{comment}{//\ Angle}}
-\DoxyCodeLine{00742\ }
-\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle_a1398a17f7c6286b30d17de3e41f857e8}{rotationSpeed}}\ =\ 0.f;\ \textcolor{comment}{//\ Vitesse\ de\ rotation}}
-\DoxyCodeLine{00747\ }
-\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Particle_a044d709be499e1fdb9035aa9ba160858}{startColor}}\ =\ sf::Color::White;}
-\DoxyCodeLine{00752\ }
-\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Particle_a92a88d641133a85c8819d444b5b4e55a}{endColor}}\ =\ sf::Color(255,\ 255,\ 255,\ 0);}
-\DoxyCodeLine{00757\ \ \ \ \ \};}
-\DoxyCodeLine{00758\ }
-\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1ParticleEmitter}{ParticleEmitter}}\ \{}
-\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15c}{ParticleType}}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a18b77d89491afbb90ee9cfd7b771363a}{type}}\ =\ \mbox{\hyperlink{namespaceComponents_aeadf6d72138ecf1f31bd515ee2b8e15ca8a36c0d6cc2e31990ea4fb2d597db968}{ParticleType::Explosion}};}
-\DoxyCodeLine{00768\ }
-\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_ad1c70287afc2d82a1af3a8b7e1de0ce4}{spawnRate}}\ =\ 50.f;\ \textcolor{comment}{//\ Particules\ par\ seconde}}
-\DoxyCodeLine{00773\ }
-\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_ab4f4ef2a66066f614d60a1a29f83cfe0}{spawnAccumulator}}\ =\ 0.f;\ \textcolor{comment}{//\ Accumulateur\ pour\ le\ spawn}}
-\DoxyCodeLine{00778\ }
-\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a15606e551c9e404c08ee3cbfa622569d}{maxParticles}}\ =\ 100;\ \textcolor{comment}{//\ Max\ particules\ par\ émission}}
-\DoxyCodeLine{00783\ }
-\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a9979ecedf8e3057e4126c0465290102e}{particlesPerBurst}}\ =\ 20;\ \textcolor{comment}{//\ Particules\ par\ burst\ (pour\ Explosion)}}
-\DoxyCodeLine{00788\ }
-\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a5a015e11000a0b471c443bd71b3b88aa}{emitterLifetime}}\ =\ -\/1.f;\ \textcolor{comment}{//\ Durée\ de\ l'émetteur\ (-\/1\ =\ infini)}}
-\DoxyCodeLine{00793\ }
-\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_ad11e1b48e10a58b49dc57dfc16a46a32}{particleLifetime}}\ =\ 1.f;\ \textcolor{comment}{//\ Durée\ de\ vie\ des\ particules}}
-\DoxyCodeLine{00798\ }
-\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a075d9d3d893ad4f47c66ae2b7f74df7e}{speed}}\ =\ 200.f;\ \textcolor{comment}{//\ Vitesse\ initiale\ des\ particules}}
-\DoxyCodeLine{00803\ }
-\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a3a7c1aeb307b755cb5935d60a708d4ca}{spread}}\ =\ 360.f;\ \textcolor{comment}{//\ Angle\ de\ dispersion\ (degrés)}}
-\DoxyCodeLine{00808\ }
-\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a663c22867af460a05a225906d1b51a26}{direction}}\ =\ 0.f;\ \textcolor{comment}{//\ Direction\ principale\ (degrés)}}
-\DoxyCodeLine{00813\ }
-\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a1e51369dc02b3f7fe23810dba16cc7a1}{gravity}}\ =\ 0.f;\ \textcolor{comment}{//\ Gravité\ (+\ =\ vers\ le\ bas)}}
-\DoxyCodeLine{00818\ }
-\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_ad185677bcf43f714fc0466485f9ecfb4}{startSize}}\ =\ 4.f;}
-\DoxyCodeLine{00823\ }
-\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a4838e6d0df06ea661ae2dd4bcbf0f5d6}{endSize}}\ =\ 0.f;}
-\DoxyCodeLine{00828\ }
-\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a7e6ab4f58b57a4f53d84fdbbfc7a3b9b}{startColor}}\ =\ sf::Color::Yellow;}
-\DoxyCodeLine{00833\ }
-\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a9f2e20d39a755d02d8d3078caf4b9275}{endColor}}\ =\ sf::Color(255,\ 100,\ 0,\ 0);}
-\DoxyCodeLine{00838\ }
-\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_a17e7b84f3f7d188059464011496ba86d}{active}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00843\ }
-\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1ParticleEmitter_ae91c6c045d7b7214ca79fe42b30e3460}{burst}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ true\ =\ émet\ tout\ d'un\ coup,\ false\ =\ continu}}
-\DoxyCodeLine{00848\ \ \ \ \ \};}
-\DoxyCodeLine{00849\ }
-\DoxyCodeLine{00850\ \ \ \ \ \textcolor{comment}{//\ =============\ CAMERA\ SYSTEM\ =============}}
-\DoxyCodeLine{00851\ }
-\DoxyCodeLine{00856\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Camera}{Camera}}\ \{}
-\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a6350478728f7c16bfc004d248f63c477}{x}}\ =\ 960.f;\ \textcolor{comment}{//\ Position\ actuelle\ X}}
-\DoxyCodeLine{00861\ }
-\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a610be3e4dfe99dc89d5b17b3bc778916}{y}}\ =\ 540.f;\ \textcolor{comment}{//\ Position\ actuelle\ Y}}
-\DoxyCodeLine{00866\ }
-\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a846ef9996ba7b25a06fcadbcdb45be8d}{targetX}}\ =\ 960.f;\ \textcolor{comment}{//\ Position\ cible\ X}}
-\DoxyCodeLine{00871\ }
-\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a905059f95194934b5ce68337e17d0b63}{targetY}}\ =\ 540.f;\ \textcolor{comment}{//\ Position\ cible\ Y}}
-\DoxyCodeLine{00876\ }
-\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_ae1ed5d194a357ba14785460d0b0e7eac}{smoothSpeed}}\ =\ 5.f;\ \textcolor{comment}{//\ Vitesse\ de\ suivi\ (plus\ élevé\ =\ plus\ réactif)}}
-\DoxyCodeLine{00881\ }
-\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a23b7f5b86e56fe230c344190959bc030}{zoom}}\ =\ 1.f;\ \textcolor{comment}{//\ Zoom\ actuel}}
-\DoxyCodeLine{00886\ }
-\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a2e916aa2c429567260d653931ca30305}{targetZoom}}\ =\ 1.f;\ \textcolor{comment}{//\ Zoom\ cible}}
-\DoxyCodeLine{00891\ }
-\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a0506aa3d36fae564c98457fd71af3fb1}{zoomSpeed}}\ =\ 3.f;\ \textcolor{comment}{//\ Vitesse\ de\ transition\ du\ zoom}}
-\DoxyCodeLine{00896\ }
-\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a5f330f2e130fbee02ef0cca5bc9fac65}{shakeIntensity}}\ =\ 0.f;\ \textcolor{comment}{//\ Intensité\ du\ shake}}
-\DoxyCodeLine{00901\ }
-\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_ad5e993ab61616b7cced19fa1adba92fc}{shakeDuration}}\ =\ 0.f;\ \textcolor{comment}{//\ Durée\ restante\ du\ shake}}
-\DoxyCodeLine{00906\ }
-\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a6aeac612b9334f3b3953e9d85efee84c}{shakeOffsetX}}\ =\ 0.f;\ \textcolor{comment}{//\ Offset\ X\ du\ shake}}
-\DoxyCodeLine{00911\ }
-\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a468806966bfdfd7283138cfb24950dee}{shakeOffsetY}}\ =\ 0.f;\ \textcolor{comment}{//\ Offset\ Y\ du\ shake}}
-\DoxyCodeLine{00916\ }
-\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_aa3b0a31ccbf14e9eaaf1f99f5bbdc17e}{viewWidth}}\ =\ 1920.f;\ \textcolor{comment}{//\ Largeur\ de\ la\ vue}}
-\DoxyCodeLine{00921\ }
-\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a747fe7b559ca79b0078925b03047ab42}{viewHeight}}\ =\ 1080.f;\ \textcolor{comment}{//\ Hauteur\ de\ la\ vue}}
-\DoxyCodeLine{00926\ }
-\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Camera_ae670c6cd0c4ca872ef226cf1e0b8f53c}{useBounds}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Utilise\ des\ limites\ de\ monde}}
-\DoxyCodeLine{00931\ }
-\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_ad47dd79ea0c1229158c06e975f198cc7}{minX}}\ =\ 0.f;\ \textcolor{comment}{//\ Limite\ gauche}}
-\DoxyCodeLine{00936\ }
-\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_ae865beed78ee05e98320788c75edee60}{minY}}\ =\ 0.f;\ \textcolor{comment}{//\ Limite\ haut}}
-\DoxyCodeLine{00941\ }
-\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_ab4725acf23e0412c96677526df312625}{maxX}}\ =\ 1920.f;\ \textcolor{comment}{//\ Limite\ droite}}
-\DoxyCodeLine{00946\ }
-\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera_a4d950f1b80c988189d2f882c0efa6be5}{maxY}}\ =\ 1080.f;\ \textcolor{comment}{//\ Limite\ bas}}
-\DoxyCodeLine{00951\ \ \ \ \ \};}
-\DoxyCodeLine{00952\ }
-\DoxyCodeLine{00957\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1CameraTarget}{CameraTarget}}\ \{}
-\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1CameraTarget_ad2d3b44edd416f5b55340fc4ae7034a1}{offsetX}}\ =\ 0.f;\ \textcolor{comment}{//\ Décalage\ X\ par\ rapport\ à\ la\ position\ de\ l'entité}}
-\DoxyCodeLine{00962\ }
-\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1CameraTarget_ad0f9b59972e31b3d04f827eba72accd4}{offsetY}}\ =\ 0.f;\ \textcolor{comment}{//\ Décalage\ Y\ par\ rapport\ à\ la\ position\ de\ l'entité}}
-\DoxyCodeLine{00967\ \ \ \ \ \};}
-\DoxyCodeLine{00968\ }
-\DoxyCodeLine{00969\ \ \ \ \ \textcolor{comment}{//\ =============\ PHYSICS\ SYSTEM\ =============}}
-\DoxyCodeLine{00970\ }
-\DoxyCodeLine{00975\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1RigidBody}{RigidBody}}\ \{}
-\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody_ae8cec114022af52a2ede60e541f7bcf3}{mass}}\ =\ 1.f;\ \textcolor{comment}{//\ Masse\ de\ l'objet}}
-\DoxyCodeLine{00980\ }
-\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody_ab8d20ed59bbdf4189cc21333c2678337}{gravityScale}}\ =\ 1.f;\ \textcolor{comment}{//\ Multiplicateur\ de\ gravité\ (0\ =\ pas\ de\ gravité)}}
-\DoxyCodeLine{00985\ }
-\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody_ad66eacc6bf54fda4d089dc6fd2cc613a}{drag}}\ =\ 0.f;\ \textcolor{comment}{//\ Résistance\ de\ l'air\ (0-\/1,\ 0\ =\ pas\ de\ résistance)}}
-\DoxyCodeLine{00990\ }
-\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody_a71785a22b1faa4781570413e709abb81}{bounciness}}\ =\ 0.f;\ \textcolor{comment}{//\ Rebond\ lors\ des\ collisions\ (0-\/1)}}
-\DoxyCodeLine{00995\ }
-\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1RigidBody_a9dd9218676e40efbcdf85567777e0269}{useGravity}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Applique\ la\ gravité\ ou\ non}}
-\DoxyCodeLine{01000\ }
-\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1RigidBody_af2c37d14bdf9c48f324906323ce2c7cf}{isKinematic}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Si\ true,\ pas\ affecté\ par\ les\ forces\ mais\ peut\ affecter\ les\ autres}}
-\DoxyCodeLine{01005\ }
-\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1RigidBody_a4df503b2df472bef5ab83ac1764f7021}{isGrounded}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Est\ au\ sol\ (détecté\ par\ les\ collisions)}}
-\DoxyCodeLine{01010\ }
-\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1RigidBody_a6040d5f86665491df30f2568d37e27e9}{groundCheckDistance}}\ =\ 2.f;\ \textcolor{comment}{//\ Distance\ pour\ vérifier\ le\ sol}}
-\DoxyCodeLine{01015\ \ \ \ \ \};}
-\DoxyCodeLine{01016\ }
-\DoxyCodeLine{01021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Jumper}{Jumper}}\ \{}
-\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jumper_a304e5e69f0fce774e6ed26fec2d689bb}{jumpForce}}\ =\ 500.f;\ \textcolor{comment}{//\ Force\ du\ saut}}
-\DoxyCodeLine{01026\ }
-\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Jumper_a1aa84369f569a5636b2cf2949b643172}{maxJumps}}\ =\ 1;\ \textcolor{comment}{//\ Nombre\ de\ sauts\ autorisés\ (1\ =\ simple\ saut,\ 2\ =\ double\ saut)}}
-\DoxyCodeLine{01031\ }
-\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structComponents_1_1Jumper_a8a2d919c79911da6ac2b21238e785942}{currentJumps}}\ =\ 0;\ \textcolor{comment}{//\ Nombre\ de\ sauts\ effectués}}
-\DoxyCodeLine{01036\ }
-\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Jumper_a2af9790611b2bce30f5333a07d15bcf7}{canJump}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Peut\ sauter\ maintenant}}
-\DoxyCodeLine{01041\ }
-\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jumper_a2ffcb3a28dfe60fa06ab6a2991dcfdfd}{coyoteTime}}\ =\ 0.1f;\ \textcolor{comment}{//\ Temps\ pendant\ lequel\ on\ peut\ sauter\ après\ avoir\ quitté\ une\ plateforme}}
-\DoxyCodeLine{01046\ }
-\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jumper_a67cb299da13f6193d33a59a4df440efe}{coyoteCounter}}\ =\ 0.f;\ \textcolor{comment}{//\ Compteur\ pour\ le\ coyote\ time}}
-\DoxyCodeLine{01051\ }
-\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jumper_ac8e0348c186f573847e7b75ceb13ede1}{jumpBufferTime}}\ =\ 0.1f;\ \textcolor{comment}{//\ Temps\ pendant\ lequel\ un\ input\ de\ saut\ est\ mémorisé}}
-\DoxyCodeLine{01056\ }
-\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Jumper_a7475747411508077a85fb3e488f48961}{jumpBufferCounter}}\ =\ 0.f;\ \textcolor{comment}{//\ Compteur\ pour\ le\ jump\ buffer}}
-\DoxyCodeLine{01061\ \ \ \ \ \};}
-\DoxyCodeLine{01062\ }
-\DoxyCodeLine{01067\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Platform}{Platform}}\ \{}
-\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Platform_a06b416a2b2178caa1914b4dca36b1da4}{oneWay}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Plateforme\ traversable\ par\ le\ bas}}
-\DoxyCodeLine{01072\ }
-\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Platform_a7bfefc9d2859242836689dd1ee70ddde}{canMoveThrough}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Peut\ être\ traversée\ avec\ bas\ +\ saut}}
-\DoxyCodeLine{01077\ }
-\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Platform_acadd8303ab6c4a00a1c632b35b6b7eee}{friction}}\ =\ 1.f;\ \textcolor{comment}{//\ Friction\ de\ la\ surface\ (0\ =\ glissant,\ 1\ =\ normal)}}
-\DoxyCodeLine{01082\ }
-\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1Platform_a21d721d7bf8b73d9ae3fb5bed18d7f1b}{velocity}}\ =\ \{0.f,\ 0.f\};\ \textcolor{comment}{//\ Vitesse\ de\ la\ plateforme\ (pour\ plateformes\ mouvantes)}}
-\DoxyCodeLine{01087\ \ \ \ \ \};}
-\DoxyCodeLine{01088\ }
-\DoxyCodeLine{01093\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1BoxCollider}{BoxCollider}}\ \{}
-\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider_a89d99045c39eb731a93e41bf4fa42f14}{width}}\ =\ 64.f;}
-\DoxyCodeLine{01098\ }
-\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider_a1dc25d9a33d7f4916e6afac090620d7d}{height}}\ =\ 64.f;}
-\DoxyCodeLine{01103\ }
-\DoxyCodeLine{01107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider_abb95ae76a2a94b2d60d9c91bed324339}{offsetX}}\ =\ 0.f;\ \textcolor{comment}{//\ Décalage\ du\ collider\ par\ rapport\ à\ la\ position}}
-\DoxyCodeLine{01108\ }
-\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider_a77bf82aaa22bc124af76558c7cadbdd6}{offsetY}}\ =\ 0.f;}
-\DoxyCodeLine{01113\ }
-\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1BoxCollider_a5b6ba8020b3cfb8c587e1f8534038727}{isTrigger}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Si\ true,\ détecte\ les\ collisions\ mais\ ne\ bloque\ pas}}
-\DoxyCodeLine{01118\ }
-\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1BoxCollider_a1026dcdbc72a131a64f0ab77e48c471b}{layer}}\ =\ 0;\ \textcolor{comment}{//\ Layer\ de\ collision\ (0\ =\ default)}}
-\DoxyCodeLine{01123\ }
-\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structComponents_1_1BoxCollider_a46bde79ee1459516ea607868d67b863e}{collisionMask}}\ =\ 0xFFFFFFFF;\ \textcolor{comment}{//\ Masque\ des\ layers\ avec\ lesquels\ il\ collisionne}}
-\DoxyCodeLine{01128\ \ \ \ \ \};}
-\DoxyCodeLine{01129\ }
-\DoxyCodeLine{01134\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1CollisionInfo}{CollisionInfo}}\ \{}
-\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{structComponents_1_1CollisionInfo_a184d52d0770bae60db12d96c11b22bd9}{other}};\ \textcolor{comment}{//\ L'autre\ entité\ dans\ la\ collision}}
-\DoxyCodeLine{01139\ }
-\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1CollisionInfo_a5274e3a7c456dda64bf2f2615cd6fb56}{normal}};\ \textcolor{comment}{//\ Vecteur\ normal\ de\ la\ collision}}
-\DoxyCodeLine{01144\ }
-\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1CollisionInfo_ab80bb7b7c87088d457fa7f5611cdd4c4}{penetration}};\ \textcolor{comment}{//\ Profondeur\ de\ pénétration}}
-\DoxyCodeLine{01149\ }
-\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1CollisionInfo_ad087c6e2d677ae909fe921642543f9b1}{isGroundCollision}};\ \textcolor{comment}{//\ Est-\/ce\ une\ collision\ avec\ le\ sol}}
-\DoxyCodeLine{01154\ \ \ \ \ \};}
-\DoxyCodeLine{01155\ }
-\DoxyCodeLine{01160\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Ladder}{Ladder}}\ \{}
-\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Ladder_a0447c83b2529730b53651b9fb4887353}{climbSpeed}}\ =\ 150.f;\ \textcolor{comment}{//\ Vitesse\ de\ montée/descente}}
-\DoxyCodeLine{01165\ \ \ \ \ \};}
-\DoxyCodeLine{01166\ }
-\DoxyCodeLine{01171\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1TriggerZone}{TriggerZone}}\ \{}
-\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1ad0888defea7cf0dea03c15fa2d396a9a}{Teleporter}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1aef41311079c448d0beb06ec07db0bf8c}{Checkpoint}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a6097f89e3092d4ccd249c9d479785c1f}{Death}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a119eac47719cc9be7b99124712e229da}{Win}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af}{Custom}}\ \};}
-\DoxyCodeLine{01176\ }
-\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1}{Type}}\ \mbox{\hyperlink{structComponents_1_1TriggerZone_aecb50228df98fd1720a823fc12de81d3}{type}}\ =\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a87ea994631e9f975e9c001b2d1fb63f1a90589c47f06eb971d548591f23c285af}{Type::Custom}};}
-\DoxyCodeLine{01181\ }
-\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a25c706aee9095a7f65b36849ffc1f533}{targetScene}};\ \textcolor{comment}{//\ Pour\ les\ téléporteurs}}
-\DoxyCodeLine{01186\ }
-\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1TriggerZone_aebd07ba075e803ad2cda0aa65a1a33a6}{teleportPos}};\ \textcolor{comment}{//\ Position\ de\ téléportation}}
-\DoxyCodeLine{01191\ }
-\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ std::function<void(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}})>\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a65c307c5d9c40751ecb68ad6edc2b40f}{onTrigger}};\ \textcolor{comment}{//\ Callback\ custom}}
-\DoxyCodeLine{01196\ }
-\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a7b4894420fdee43e82402395f043672f}{triggered}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Déjà\ déclenché}}
-\DoxyCodeLine{01201\ }
-\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1TriggerZone_a48678290333d5bb6e57a9181bd1be297}{resetOnExit}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Se\ réinitialise\ quand\ on\ sort}}
-\DoxyCodeLine{01206\ \ \ \ \ \};}
-\DoxyCodeLine{01207\ }
-\DoxyCodeLine{01212\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Enemy}{Enemy}}\ \{}
-\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Enemy_ad5397dd388e4a41c2e1806ed23d49689}{shootCooldown}}\ =\ 0.f;\ \textcolor{comment}{//\ Délai\ entre\ les\ tirs}}
-\DoxyCodeLine{01217\ }
-\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Enemy_ae899eaeb906a3a11ae592e03f3545d3a}{shootRange}}\ =\ 600.f;\ \textcolor{comment}{//\ Portée\ de\ tir}}
-\DoxyCodeLine{01222\ }
-\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Enemy_a16d4e424909063d9e18553c3f7d1815f}{canShoot}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Type\ d'ennemi\ (ex:\ "{}basic"{},\ "{}boss"{})}}
-\DoxyCodeLine{01227\ \ \ \ \ \};}
-\DoxyCodeLine{01228\ }
-\DoxyCodeLine{01229\ @\}}
-\DoxyCodeLine{01230\ \}}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Particle__s}{Particle\_s}}\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a9bf47703f142e951c86274765f5ebf44}{active}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a4b8cf2625bb066b58827a714066661c4}{x}}\ =\ 0.f;}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a312ba3a1f8761bb2be6a2a5ab5082a6a}{y}}\ =\ 0.f;}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a98a335d7f75aa551e36740a285c9e777}{vx}}\ =\ 0.f;}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a169cbff5325f56d13368c0953793f98a}{vy}}\ =\ 0.f;}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_aa1c061d60ec5039e234f14cf9b41eaef}{ax}}\ =\ 0.f;}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a01c2144d35affaa7cfc01a226de44874}{ay}}\ =\ 0.f;}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_ae76bad4a4083b7d7a4d8a7641c3534d7}{lifetime}}\ =\ 0.f;}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a217a38e3ac556773a848e256e34e5400}{maxLifetime}}\ =\ 0.f;}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_afc0980fd46ce2678b6b2292095f8314a}{startSize}}\ =\ 5.f;}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_ab327de05639e0db047e595cdeec8dad9}{endSize}}\ =\ 0.f;}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Particle__s_a414e3da2d9c3c9746137a66b4c66df2e}{startColor}}\ =\ sf::Color::White;}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ sf::Color\ \mbox{\hyperlink{structComponents_1_1Particle__s_abf75e2200e01dabbf214d50c2f15d30d}{endColor}}\ =\ sf::Color::Transparent;}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_a058f55858db60d3a8716e1f41a5a63c2}{rotation}}\ =\ 0.f;}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Particle__s_aef23c14a08258d1378827578a7920614}{rotationSpeed}}\ =\ 0.f;}
+\DoxyCodeLine{00628\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a2f5c4a7e43821c0f7f54828a23064466}{Particle\_t}};}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Camera__s}{Camera\_s}}\ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a407a322410aa5a97cede5a319d53219b}{target}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a7d938ec744c24797c7e25251f8239f76}{followSpeed}}\ =\ 0.1f;}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a292524f819f1862a1a36b05422f71f3c}{zoom}}\ =\ 1.f;}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a71882e5f6c5c1efb01ae2cfed635c137}{targetZoom}}\ =\ 1.f;}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a5a926c2ee4162555bf9af5fb98b249bb}{zoomSpeed}}\ =\ 2.f;}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a0d9bf82fa4ed8064b62e95a05c1b9d68}{shakeIntensity}}\ =\ 0.f;}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a581a5ab1b2785a8d17f8d5066f8549fb}{shakeDuration}}\ =\ 0.f;}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_aa47af506439fdc51483f16a375101cde}{shakeTimer}}\ =\ 0.f;}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a5aae7b219b1a2245f427828a7b3cb491}{useBounds}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a8a99005a26687a994a8789c75213e3b1}{minX}}\ =\ 0.f;}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_af0ce9a35dbba3c3b0be297d221eb9017}{minY}}\ =\ 0.f;}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a58177a5c47d0a24af7e53bdc22037fa0}{maxX}}\ =\ 0.f;}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Camera__s_a2e47e804b63c7c0180ac5a05063fa338}{maxY}}\ =\ 0.f;}
+\DoxyCodeLine{00687\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a1acfa5bcf9303002fad328aa179323da}{Camera\_t}};}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00693\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Obstacle__s}{Obstacle\_s}}\ \{}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Obstacle__s_a386ae0000c0b9299fc5c4fe6bb33a667}{destructible}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00698\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a3c81efedcbf91d47d2c35c7ee3bd2a33}{Obstacle\_t}};}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Platform__s}{Platform\_s}}\ \{}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Platform__s_a45f8a6885dfdb8abd6c9beda4e077f41}{oneWay}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Platform__s_a01ff3c6dbf0a1f3e83f7e503223ca92d}{friction}}\ =\ 1.f;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Friction\ de\ la\ surface\ (0\ =\ glissant,\ 1\ =\ normal)}}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1Platform__s_a328db5cc4a1ba94f97557a834a8205a9}{velocity}}\ =\ \{0.f,\ 0.f\};\ \ \textcolor{comment}{//\ Vitesse\ de\ la\ plateforme\ (pour\ plateformes\ mouvantes)}}
+\DoxyCodeLine{00717\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a1d3f97b1adcaa0add159d1b2746ebef9}{Platform\_t}};}
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00723\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1BoxCollider__s}{BoxCollider\_s}}\ \{}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_ad94952f496552e61886d860c01dd1e91}{width}}\ =\ 64.f;}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_aba564b0c412f08868b4b65c4f6dae874}{height}}\ =\ 64.f;}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_afa773a8b5d61087ce4aab7d0503f75d0}{offsetX}}\ =\ 0.f;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Décalage\ du\ collider\ par\ rapport\ à\ la\ position}}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_af9b9ce3738f25f9e8014634d501e23da}{offsetY}}\ =\ 0.f;}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_af13c943d571cc49f4430a09edd22a06f}{isTrigger}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ true,\ détecte\ les\ collisions\ mais\ ne\ bloque\ pas}}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_a54797513226768d03ebad67c8802b899}{layer}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Layer\ de\ collision\ (0\ =\ default)}}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structComponents_1_1BoxCollider__s_a1b76b055efa3c62a1d8044916779e918}{collisionMask}}\ =\ 0xFFFFFFFF;\ \ \textcolor{comment}{//\ Masque\ des\ layers\ avec\ lesquels\ il\ collisionne}}
+\DoxyCodeLine{00752\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a87f7224fa4e28c46b46ab9993a23887e}{BoxCollider\_t}};}
+\DoxyCodeLine{00753\ }
+\DoxyCodeLine{00758\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1CollisionInfo__s}{CollisionInfo\_s}}\ \{}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ \mbox{\hyperlink{structComponents_1_1CollisionInfo__s_a7f9d9e2d62cbcab96b555cb920dbf8f3}{other}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ L'autre\ entité\ dans\ la\ collision}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1CollisionInfo__s_af0d7e3afa7d64cea06d6834476b2c7a1}{normal}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vecteur\ normal\ de\ la\ collision}}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1CollisionInfo__s_ab283acc632ffd68464997ff25f249e38}{penetration}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Profondeur\ de\ pénétration}}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1CollisionInfo__s_a340c0b1835b89b11502ce481b0011c02}{isGroundCollision}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Est-\/ce\ une\ collision\ avec\ le\ sol}}
+\DoxyCodeLine{00775\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_af2ca55207f867c97a810674f2f3eb2c0}{CollisionInfo\_t}};}
+\DoxyCodeLine{00776\ }
+\DoxyCodeLine{00781\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Ladder__s}{Ladder\_s}}\ \{}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Ladder__s_af58aeeb9812522a5b266c301c0070593}{climbSpeed}}\ =\ 150.f;\ \ \ \ \ \textcolor{comment}{//\ Vitesse\ de\ montée/descente}}
+\DoxyCodeLine{00786\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a5d60beee0311b7492efce2f63bb800cb}{Ladder\_t}};}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00792\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1TriggerZone__s}{TriggerZone\_s}}\ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526ba}{Type}}\ \{\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526baad0888defea7cf0dea03c15fa2d396a9a}{Teleporter}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526baaef41311079c448d0beb06ec07db0bf8c}{Checkpoint}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526baa6097f89e3092d4ccd249c9d479785c1f}{Death}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526baa119eac47719cc9be7b99124712e229da}{Win}},\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526baa90589c47f06eb971d548591f23c285af}{Custom}}\ \};}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526ba}{Type}}\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_a6f67661bd58756a73059291fc03b03f8}{type}}\ =\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ac53c072d55503f7c7194da0dc4e526baa90589c47f06eb971d548591f23c285af}{Type::Custom}};}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_aeffcef1795aebdc4112baba5265224cf}{targetScene}};\ \ \ \ \ \ \textcolor{comment}{//\ Pour\ les\ téléporteurs}}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ae2231b7ea76f9906a40a256e14124752}{teleportPos}};\ \ \ \ \ \textcolor{comment}{//\ Position\ de\ téléportation}}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ std::function<void(\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}})>\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_a2037422f827fb58456f6a642dc0b9c07}{onTrigger}};\ \ \textcolor{comment}{//\ Callback\ custom}}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_ae0c76490e554ea27ada03de6af9549bf}{triggered}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \textcolor{comment}{//\ Déjà\ déclenché}}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1TriggerZone__s_af081b4e999280204fd5e1302e3e00d4a}{resetOnExit}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \textcolor{comment}{//\ Se\ réinitialise\ quand\ on\ sort}}
+\DoxyCodeLine{00821\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a3ac0c00bd16b48fdb76b236ee1356b1a}{TriggerZone\_t}};}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00827\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structComponents_1_1Enemy__s}{Enemy\_s}}\ \{}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Enemy__s_a084e826fc620aa9e7d6c5c9359b7cd45}{shootCooldown}}\ =\ 0.f;\ \ \textcolor{comment}{//\ Délai\ entre\ les\ tirs}}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structComponents_1_1Enemy__s_a688037cc17146c204a60fa975ed6a4d8}{shootRange}}\ =\ 600.f;\ \ \ \textcolor{comment}{//\ Portée\ de\ tir}}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structComponents_1_1Enemy__s_ac5182d00e5160e9cea362b0912f9ae17}{canShoot}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \textcolor{comment}{//\ Type\ d'ennemi\ (ex:\ "{}basic"{},\ "{}boss"{})}}
+\DoxyCodeLine{00840\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceComponents_a1aa47fcafd27dac8795f6ebde12bc832}{Enemy\_t}};}
+\DoxyCodeLine{00841\ }
+\DoxyCodeLine{00842\ @\}}
+\DoxyCodeLine{00843\ \}\ \textcolor{comment}{//\ namespace\ Components}}
 
 \end{DoxyCode}

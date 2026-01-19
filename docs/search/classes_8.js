@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keybindbutton_0',['KeybindButton',['../structComponents_1_1KeybindButton.html',1,'Components']]]
+  ['keybindbutton_5fs_0',['KeybindButton_s',['../structComponents_1_1KeybindButton__s.html',1,'Components']]]
 ];

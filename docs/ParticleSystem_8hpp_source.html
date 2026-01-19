@@ -255,7 +255,7 @@ $(document).ready(function(){initNavTree('ParticleSystem_8hpp_source.html',''); 
 <div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classParticleSystem.html#a0adcbcec82cc55283fe5d43ddb6d34ae">  144</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classParticleSystem.html#a0adcbcec82cc55283fe5d43ddb6d34ae">ParticleSystem::updateParticle</a>(Particle_t&amp; p, <span class="keywordtype">float</span> dt)</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>{</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    p.lifetime -= dt;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    p.<a class="code hl_variable" href="structComponents_1_1Particle__s.html#ae76bad4a4083b7d7a4d8a7641c3534d7">lifetime</a> -= dt;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    </div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">if</span> (p.lifetime &lt;= 0.f) {</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        p.active = <span class="keyword">false</span>;</div>
@@ -565,6 +565,7 @@ $(document).ready(function(){initNavTree('ParticleSystem_8hpp_source.html',''); 
 <div class="ttc" id="aclassParticleSystem_html_afe6093b12a5990fe22f27fd8938a673d"><div class="ttname"><a href="classParticleSystem.html#afe6093b12a5990fe22f27fd8938a673d">ParticleSystem::emitDebris</a></div><div class="ttdeci">void emitDebris(float x, float y, int count=8)</div><div class="ttdef"><b>Definition</b> ParticleSystem.hpp:345</div></div>
 <div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a9a522438c9f5d73ebe6349edc3313d5e"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a></div><div class="ttdeci">std::uint32_t Entity</div><div class="ttdoc">Type alias for Entity, which is simply an ID.</div><div class="ttdef"><b>Definition</b> ecs.hpp:35</div></div>
 <div class="ttc" id="arfcprotocol_8txt_html_a4d1f9e0693d1ec21db0aea048a1e09a9"><div class="ttname"><a href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a></div><div class="ttdeci">reliability for connection management is handled via the parallel TCP channel Default UDP y</div><div class="ttdef"><b>Definition</b> rfcprotocol.txt:109</div></div>
+<div class="ttc" id="astructComponents_1_1Particle__s_html_ae76bad4a4083b7d7a4d8a7641c3534d7"><div class="ttname"><a href="structComponents_1_1Particle__s.html#ae76bad4a4083b7d7a4d8a7641c3534d7">Components::Particle_s::lifetime</a></div><div class="ttdeci">float lifetime</div><div class="ttdoc">Remaining lifetime.</div><div class="ttdef"><b>Definition</b> Components.hpp:599</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -79,7 +79,7 @@
 \DoxyCodeLine{00075\ }
 \DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Configurer\ le\ mouvement}}
 \DoxyCodeLine{00077\ \ \ \ \ MovementPattern\_t\ movement;}
-\DoxyCodeLine{00078\ \ \ \ \ movement.type\ =\ movementType;}
+\DoxyCodeLine{00078\ \ \ \ \ movement.\mbox{\hyperlink{structComponents_1_1MovementPattern__s_af1c5f4712669f805bd5f6e7fbd747b83}{type}}\ =\ movementType;}
 \DoxyCodeLine{00079\ }
 \DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{switch}\ (movementType)\ \{}
 \DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MovementPattern\_t::Type::Linear:}
@@ -318,14 +318,14 @@
 \DoxyCodeLine{00314\ \ \ \ \ }
 \DoxyCodeLine{00315\ \ \ \ \ \textcolor{comment}{//\ Ajoute\ le\ TriggerZone\ après\ car\ il\ contient\ une\ lambda}}
 \DoxyCodeLine{00316\ \ \ \ \ TriggerZone\_t\ trigger;}
-\DoxyCodeLine{00317\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Teleporter;}
+\DoxyCodeLine{00317\ \ \ \ \ trigger.\mbox{\hyperlink{structComponents_1_1TriggerZone__s_a6f67661bd58756a73059291fc03b03f8}{type}}\ =\ TriggerZone\_t::Type::Teleporter;}
 \DoxyCodeLine{00318\ \ \ \ \ trigger.teleportPos\ =\ targetPos;}
 \DoxyCodeLine{00319\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00320\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00321\ \ \ \ \ trigger.onTrigger\ =\ [targetPos,\ \&ecs](\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)\ \{}
 \DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ pos\ =\ ecs.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Position\_t>(entity);}
 \DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos)\ \{}
-\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>x\ =\ targetPos.x;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>\mbox{\hyperlink{structComponents_1_1Position__s_aced3946901e4e234926275e63be80463}{x}}\ =\ targetPos.x;}
 \DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ pos-\/>y\ =\ targetPos.y;}
 \DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00327\ \ \ \ \ \};}
@@ -346,14 +346,14 @@
 \DoxyCodeLine{00342\ \ \ \ \ );}
 \DoxyCodeLine{00343\ \ \ \ \ }
 \DoxyCodeLine{00344\ \ \ \ \ TriggerZone\_t\ trigger;}
-\DoxyCodeLine{00345\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Death;}
+\DoxyCodeLine{00345\ \ \ \ \ trigger.\mbox{\hyperlink{structComponents_1_1TriggerZone__s_a6f67661bd58756a73059291fc03b03f8}{type}}\ =\ TriggerZone\_t::Type::Death;}
 \DoxyCodeLine{00346\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00347\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00348\ \ \ \ \ trigger.onTrigger\ =\ [\&ecs](\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)\ \{}
 \DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tue\ l'entité\ qui\ entre\ dans\ la\ zone}}
 \DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ health\ =\ ecs.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(entity);}
 \DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health)\ \{}
-\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ health-\/>current\ =\ 0;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ health-\/>\mbox{\hyperlink{structComponents_1_1Health__s_afbbbbfc1235436129e820b841f7279e9}{current}}\ =\ 0;}
 \DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00354\ \ \ \ \ \};}
 \DoxyCodeLine{00355\ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(deathZone,\ trigger);}
@@ -374,7 +374,7 @@
 \DoxyCodeLine{00370\ \ \ \ \ );}
 \DoxyCodeLine{00371\ \ \ \ \ }
 \DoxyCodeLine{00372\ \ \ \ \ TriggerZone\_t\ trigger;}
-\DoxyCodeLine{00373\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Checkpoint;}
+\DoxyCodeLine{00373\ \ \ \ \ trigger.\mbox{\hyperlink{structComponents_1_1TriggerZone__s_a6f67661bd58756a73059291fc03b03f8}{type}}\ =\ TriggerZone\_t::Type::Checkpoint;}
 \DoxyCodeLine{00374\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00375\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00376\ \ \ \ \ trigger.teleportPos\ =\ sf::Vector2f(x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}});}
@@ -396,7 +396,7 @@
 \DoxyCodeLine{00392\ \ \ \ \ );}
 \DoxyCodeLine{00393\ \ \ \ \ }
 \DoxyCodeLine{00394\ \ \ \ \ TriggerZone\_t\ trigger;}
-\DoxyCodeLine{00395\ \ \ \ \ trigger.type\ =\ TriggerZone\_t::Type::Custom;}
+\DoxyCodeLine{00395\ \ \ \ \ trigger.\mbox{\hyperlink{structComponents_1_1TriggerZone__s_a6f67661bd58756a73059291fc03b03f8}{type}}\ =\ TriggerZone\_t::Type::Custom;}
 \DoxyCodeLine{00396\ \ \ \ \ trigger.triggered\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00397\ \ \ \ \ trigger.resetOnExit\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00398\ \ \ \ \ trigger.onTrigger\ =\ [\&ecs,\ collectible](\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}\ entity)\ \{}

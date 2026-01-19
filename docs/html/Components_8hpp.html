@@ -102,8 +102,9 @@ $(document).ready(function(){initNavTree('Components_8hpp.html',''); initResizab
 <div class="contents">
 <div class="textblock"><code>#include &lt;SFML/Graphics.hpp&gt;</code><br />
 <code>#include &lt;SFML/Window/Keyboard.hpp&gt;</code><br />
-<code>#include &quot;engine/Menu.hpp&quot;</code><br />
+<code>#include &quot;engine/Core/Menu.hpp&quot;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -121,113 +122,95 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Position.html">Components::Position</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the position of an entity in 2D space.  <a href="structComponents_1_1Position.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Position__s.html">Components::Position_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions et mouvements (basiques)  <a href="structComponents_1_1Position__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Velocity.html">Components::Velocity</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the velocity of an entity in 2D space.  <a href="structComponents_1_1Velocity.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Velocity__s.html">Components::Velocity_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocity of an entity in 2D space.  <a href="structComponents_1_1Velocity__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Drawable.html">Components::Drawable</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for rendering entities.  <a href="structComponents_1_1Drawable.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Drawable__s.html">Components::Drawable_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render component for drawable entities.  <a href="structComponents_1_1Drawable__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController.html">Components::PlayerController</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for player input control.  <a href="structComponents_1_1PlayerController.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlayerController__s.html">Components::PlayerController_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input / Joueur controller.  <a href="structComponents_1_1PlayerController__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Collider.html">Components::Collider</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for simple AABB collision detection.  <a href="structComponents_1_1Collider.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Collider__s.html">Components::Collider_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collision AABB simple.  <a href="structComponents_1_1Collider__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Health.html">Components::Health</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for tracking health points.  <a href="structComponents_1_1Health.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Projectile__s.html">Components::Projectile_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Projectile component.  <a href="structComponents_1_1Projectile__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1WaveSpawner.html">Components::WaveSpawner</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for spawning waves of enemies.  <a href="structComponents_1_1WaveSpawner.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Health__s.html">Components::Health_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Health component.  <a href="structComponents_1_1Health__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1MovementPattern.html">Components::MovementPattern</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines movement behavior for entities.  <a href="structComponents_1_1MovementPattern.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1MovementPattern__s.html">Components::MovementPattern_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Movement pattern for entities (e.g., enemies).  <a href="structComponents_1_1MovementPattern__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1WaveData.html">Components::WaveData</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data for a specific wave.  <a href="structComponents_1_1WaveData.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1WaveData__s.html">Components::WaveData_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wave data for spawning.  <a href="structComponents_1_1WaveData__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Projectile.html">Components::Projectile</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for projectile entities.  <a href="structComponents_1_1Projectile.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Star__s.html">Components::Star_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Star for starfield effect.  <a href="structComponents_1_1Star__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Shootable.html">Components::Shootable</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for entities that can shoot.  <a href="structComponents_1_1Shootable.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Text__s.html">Components::Text_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text rendering component.  <a href="structComponents_1_1Text__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PowerUp.html">Components::PowerUp</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for power-up effects.  <a href="structComponents_1_1PowerUp.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Highlight__s.html">Components::Highlight_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Highlight effect for menu items.  <a href="structComponents_1_1Highlight__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Obstacle.html">Components::Obstacle</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for obstacle entities.  <a href="structComponents_1_1Obstacle.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1MenuItem__s.html">Components::MenuItem_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structMenu.html">Menu</a> item component.  <a href="structComponents_1_1MenuItem__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1DestructibleTile.html">Components::DestructibleTile</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for destructible tiles.  <a href="structComponents_1_1DestructibleTile.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Slider__s.html">Components::Slider_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slider component for options.  <a href="structComponents_1_1Slider__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Star.html">Components::Star</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for background stars in a starfield.  <a href="structComponents_1_1Star.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1DynamicText__s.html">Components::DynamicText_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic text component.  <a href="structComponents_1_1DynamicText__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1JustShot.html">Components::JustShot</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component to indicate a recent shot.  <a href="structComponents_1_1JustShot.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1KeybindButton__s.html">Components::KeybindButton_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keybind button for remapping.  <a href="structComponents_1_1KeybindButton__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlaySound.html">Components::PlaySound</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger to play a sound effect once.  <a href="structComponents_1_1PlaySound.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1PlaySound__s.html">Components::PlaySound_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play sound trigger.  <a href="structComponents_1_1PlaySound__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1BackgroundMusic.html">Components::BackgroundMusic</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for background music.  <a href="structComponents_1_1BackgroundMusic.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1BackgroundMusic__s.html">Components::BackgroundMusic_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Background music component.  <a href="structComponents_1_1BackgroundMusic__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Text.html">Components::Text</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple text for menu items (title, buttons...).  <a href="structComponents_1_1Text.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1RigidBody__s.html">Components::RigidBody_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rigid body for physics.  <a href="structComponents_1_1RigidBody__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1MenuItem.html">Components::MenuItem</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a selectable menu item.  <a href="structComponents_1_1MenuItem.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Jump__s.html">Components::Jump_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump component.  <a href="structComponents_1_1Jump__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Highlight.html">Components::Highlight</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional visual highlight (e.g., change color or scale when selected).  <a href="structComponents_1_1Highlight.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1ParticleEmitter__s.html">Components::ParticleEmitter_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Particle emitter.  <a href="structComponents_1_1ParticleEmitter__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Slider.html">Components::Slider</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structComponents_1_1Slider.html" title="Slider for controlling values (volume, sensitivity, etc.).">Slider</a> for controlling values (volume, sensitivity, etc.).  <a href="structComponents_1_1Slider.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Particle__s.html">Components::Particle_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Individual particle.  <a href="structComponents_1_1Particle__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1KeybindButton.html">Components::KeybindButton</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button for remapping a key or joystick button.  <a href="structComponents_1_1KeybindButton.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Camera__s.html">Components::Camera_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera component.  <a href="structComponents_1_1Camera__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1DynamicText.html">Components::DynamicText</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic text that displays a value (for sliders or keybinds).  <a href="structComponents_1_1DynamicText.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Obstacle__s.html">Components::Obstacle_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obstacle component.  <a href="structComponents_1_1Obstacle__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Particle.html">Components::Particle</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Individual particle.  <a href="structComponents_1_1Particle.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Platform__s.html">Components::Platform_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Platform component.  <a href="structComponents_1_1Platform__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1ParticleEmitter.html">Components::ParticleEmitter</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structComponents_1_1Particle.html" title="Individual particle.">Particle</a> emitter attached to an entity.  <a href="structComponents_1_1ParticleEmitter.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1BoxCollider__s.html">Components::BoxCollider_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collision avancée pour les plateformes.  <a href="structComponents_1_1BoxCollider__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Camera.html">Components::Camera</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">2D camera with smooth follow, zoom, and shake.  <a href="structComponents_1_1Camera.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1CollisionInfo__s.html">Components::CollisionInfo_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informations sur une collision détectée.  <a href="structComponents_1_1CollisionInfo__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1CameraTarget.html">Components::CameraTarget</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag to mark an entity as camera target.  <a href="structComponents_1_1CameraTarget.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Ladder__s.html">Components::Ladder_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Échelle/escalier.  <a href="structComponents_1_1Ladder__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1RigidBody.html">Components::RigidBody</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rigidbody for physics (gravity, forces, etc.).  <a href="structComponents_1_1RigidBody.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1TriggerZone__s.html">Components::TriggerZone_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zone de trigger (pour téléporteurs, checkpoints, etc.).  <a href="structComponents_1_1TriggerZone__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Jumper.html">Components::Jumper</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component for entities that can jump.  <a href="structComponents_1_1Jumper.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Platform.html">Components::Platform</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structComponents_1_1Platform.html" title="Platform (surface to walk on).">Platform</a> (surface to walk on).  <a href="structComponents_1_1Platform.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1BoxCollider.html">Components::BoxCollider</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advanced collision for platforms.  <a href="structComponents_1_1BoxCollider.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1CollisionInfo.html">Components::CollisionInfo</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about a detected collision.  <a href="structComponents_1_1CollisionInfo.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Ladder.html">Components::Ladder</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ladder/climbable area.  <a href="structComponents_1_1Ladder.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1TriggerZone.html">Components::TriggerZone</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger zone (for teleporters, checkpoints, etc.).  <a href="structComponents_1_1TriggerZone.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Enemy.html">Components::Enemy</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component to mark an entity as enemy.  <a href="structComponents_1_1Enemy.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structComponents_1_1Enemy__s.html">Components::Enemy_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Composant pour marquer une entité comme ennemi.  <a href="structComponents_1_1Enemy__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -245,6 +228,66 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a9a522438c9f5d73ebe6349edc3313d5e" id="r_a9a522438c9f5d73ebe6349edc3313d5e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Components_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> = std::uint32_t</td></tr>
 <tr class="separator:a9a522438c9f5d73ebe6349edc3313d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad60e4c56c3b6926bbef04b5e6631a57" id="r_aad60e4c56c3b6926bbef04b5e6631a57"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Position__s.html">Components::Position_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#aad60e4c56c3b6926bbef04b5e6631a57">Components::Position_t</a></td></tr>
+<tr class="separator:aad60e4c56c3b6926bbef04b5e6631a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a343ca9578ca7a4f3d8d03980e59290e1" id="r_a343ca9578ca7a4f3d8d03980e59290e1"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Velocity__s.html">Components::Velocity_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a343ca9578ca7a4f3d8d03980e59290e1">Components::Velocity_t</a></td></tr>
+<tr class="separator:a343ca9578ca7a4f3d8d03980e59290e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41390778e1c80fe4e71962a252e991de" id="r_a41390778e1c80fe4e71962a252e991de"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Drawable__s.html">Components::Drawable_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a41390778e1c80fe4e71962a252e991de">Components::Drawable_t</a></td></tr>
+<tr class="separator:a41390778e1c80fe4e71962a252e991de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addc8833612442c50c1f268f8f56c39ac" id="r_addc8833612442c50c1f268f8f56c39ac"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1PlayerController__s.html">Components::PlayerController_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#addc8833612442c50c1f268f8f56c39ac">Components::PlayerController_t</a></td></tr>
+<tr class="separator:addc8833612442c50c1f268f8f56c39ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05171322623f1e871a0f3858b08a2a3" id="r_ad05171322623f1e871a0f3858b08a2a3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Collider__s.html">Components::Collider_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#ad05171322623f1e871a0f3858b08a2a3">Components::Collider_t</a></td></tr>
+<tr class="separator:ad05171322623f1e871a0f3858b08a2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cff96c6e09f034735ff7420877156df" id="r_a5cff96c6e09f034735ff7420877156df"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Projectile__s.html">Components::Projectile_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a5cff96c6e09f034735ff7420877156df">Components::Projectile_t</a></td></tr>
+<tr class="separator:a5cff96c6e09f034735ff7420877156df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1516b03441fd858e732ec8167fb861" id="r_a4e1516b03441fd858e732ec8167fb861"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Health__s.html">Components::Health_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a4e1516b03441fd858e732ec8167fb861">Components::Health_t</a></td></tr>
+<tr class="separator:a4e1516b03441fd858e732ec8167fb861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaae6b0d773ddefc6d4bd3a686d2cc0bc" id="r_aaae6b0d773ddefc6d4bd3a686d2cc0bc"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1MovementPattern__s.html">Components::MovementPattern_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#aaae6b0d773ddefc6d4bd3a686d2cc0bc">Components::MovementPattern_t</a></td></tr>
+<tr class="separator:aaae6b0d773ddefc6d4bd3a686d2cc0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ffd984de158ef887e03466ffa491fb5" id="r_a4ffd984de158ef887e03466ffa491fb5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1WaveData__s.html">Components::WaveData_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a4ffd984de158ef887e03466ffa491fb5">Components::WaveData_t</a></td></tr>
+<tr class="separator:a4ffd984de158ef887e03466ffa491fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1efe501d48e482f5f564dc68d37faa9c" id="r_a1efe501d48e482f5f564dc68d37faa9c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Star__s.html">Components::Star_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a1efe501d48e482f5f564dc68d37faa9c">Components::Star_t</a></td></tr>
+<tr class="separator:a1efe501d48e482f5f564dc68d37faa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3c310f821c9b08fc69345ff4cf4a40" id="r_a4d3c310f821c9b08fc69345ff4cf4a40"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Text__s.html">Components::Text_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a4d3c310f821c9b08fc69345ff4cf4a40">Components::Text_t</a></td></tr>
+<tr class="separator:a4d3c310f821c9b08fc69345ff4cf4a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2adf1718dee5cbdf8d7648ea7b1515f" id="r_ae2adf1718dee5cbdf8d7648ea7b1515f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Highlight__s.html">Components::Highlight_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#ae2adf1718dee5cbdf8d7648ea7b1515f">Components::Highlight_t</a></td></tr>
+<tr class="separator:ae2adf1718dee5cbdf8d7648ea7b1515f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67779e4903abb1726544df5b4c442596" id="r_a67779e4903abb1726544df5b4c442596"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1MenuItem__s.html">Components::MenuItem_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a67779e4903abb1726544df5b4c442596">Components::MenuItem_t</a></td></tr>
+<tr class="separator:a67779e4903abb1726544df5b4c442596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a208070bc941eb51074bb190d9465e562" id="r_a208070bc941eb51074bb190d9465e562"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Slider__s.html">Components::Slider_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a208070bc941eb51074bb190d9465e562">Components::Slider_t</a></td></tr>
+<tr class="separator:a208070bc941eb51074bb190d9465e562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99c1ee653b03b1a2b770df267fc4e913" id="r_a99c1ee653b03b1a2b770df267fc4e913"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1DynamicText__s.html">Components::DynamicText_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a99c1ee653b03b1a2b770df267fc4e913">Components::DynamicText_t</a></td></tr>
+<tr class="separator:a99c1ee653b03b1a2b770df267fc4e913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49842ecff80ed408a4075b0d117b7eb0" id="r_a49842ecff80ed408a4075b0d117b7eb0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1KeybindButton__s.html">Components::KeybindButton_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a49842ecff80ed408a4075b0d117b7eb0">Components::KeybindButton_t</a></td></tr>
+<tr class="separator:a49842ecff80ed408a4075b0d117b7eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983a4ef7b50a1b759f8d91e9f71a8bd6" id="r_a983a4ef7b50a1b759f8d91e9f71a8bd6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1PlaySound__s.html">Components::PlaySound_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a983a4ef7b50a1b759f8d91e9f71a8bd6">Components::PlaySound_t</a></td></tr>
+<tr class="separator:a983a4ef7b50a1b759f8d91e9f71a8bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba3b30b8ad2abb719d707ad4be06c2e" id="r_a8ba3b30b8ad2abb719d707ad4be06c2e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1BackgroundMusic__s.html">Components::BackgroundMusic_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a8ba3b30b8ad2abb719d707ad4be06c2e">Components::BackgroundMusic_t</a></td></tr>
+<tr class="separator:a8ba3b30b8ad2abb719d707ad4be06c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56be2cba2dfdf03de6250952e528cb23" id="r_a56be2cba2dfdf03de6250952e528cb23"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1RigidBody__s.html">Components::RigidBody_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a56be2cba2dfdf03de6250952e528cb23">Components::RigidBody_t</a></td></tr>
+<tr class="separator:a56be2cba2dfdf03de6250952e528cb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a779c8325890338572f3ea70df7b713ee" id="r_a779c8325890338572f3ea70df7b713ee"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Jump__s.html">Components::Jump_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a779c8325890338572f3ea70df7b713ee">Components::Jump_t</a></td></tr>
+<tr class="separator:a779c8325890338572f3ea70df7b713ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2c77351b3eaa535c0e8e99109548f35" id="r_ad2c77351b3eaa535c0e8e99109548f35"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1ParticleEmitter__s.html">Components::ParticleEmitter_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#ad2c77351b3eaa535c0e8e99109548f35">Components::ParticleEmitter_t</a></td></tr>
+<tr class="separator:ad2c77351b3eaa535c0e8e99109548f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f5c4a7e43821c0f7f54828a23064466" id="r_a2f5c4a7e43821c0f7f54828a23064466"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Particle__s.html">Components::Particle_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a2f5c4a7e43821c0f7f54828a23064466">Components::Particle_t</a></td></tr>
+<tr class="separator:a2f5c4a7e43821c0f7f54828a23064466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acfa5bcf9303002fad328aa179323da" id="r_a1acfa5bcf9303002fad328aa179323da"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Camera__s.html">Components::Camera_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a1acfa5bcf9303002fad328aa179323da">Components::Camera_t</a></td></tr>
+<tr class="separator:a1acfa5bcf9303002fad328aa179323da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c81efedcbf91d47d2c35c7ee3bd2a33" id="r_a3c81efedcbf91d47d2c35c7ee3bd2a33"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Obstacle__s.html">Components::Obstacle_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a3c81efedcbf91d47d2c35c7ee3bd2a33">Components::Obstacle_t</a></td></tr>
+<tr class="separator:a3c81efedcbf91d47d2c35c7ee3bd2a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d3f97b1adcaa0add159d1b2746ebef9" id="r_a1d3f97b1adcaa0add159d1b2746ebef9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Platform__s.html">Components::Platform_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a1d3f97b1adcaa0add159d1b2746ebef9">Components::Platform_t</a></td></tr>
+<tr class="separator:a1d3f97b1adcaa0add159d1b2746ebef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f7224fa4e28c46b46ab9993a23887e" id="r_a87f7224fa4e28c46b46ab9993a23887e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1BoxCollider__s.html">Components::BoxCollider_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a87f7224fa4e28c46b46ab9993a23887e">Components::BoxCollider_t</a></td></tr>
+<tr class="separator:a87f7224fa4e28c46b46ab9993a23887e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ca55207f867c97a810674f2f3eb2c0" id="r_af2ca55207f867c97a810674f2f3eb2c0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1CollisionInfo__s.html">Components::CollisionInfo_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#af2ca55207f867c97a810674f2f3eb2c0">Components::CollisionInfo_t</a></td></tr>
+<tr class="separator:af2ca55207f867c97a810674f2f3eb2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d60beee0311b7492efce2f63bb800cb" id="r_a5d60beee0311b7492efce2f63bb800cb"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Ladder__s.html">Components::Ladder_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a5d60beee0311b7492efce2f63bb800cb">Components::Ladder_t</a></td></tr>
+<tr class="separator:a5d60beee0311b7492efce2f63bb800cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac0c00bd16b48fdb76b236ee1356b1a" id="r_a3ac0c00bd16b48fdb76b236ee1356b1a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1TriggerZone__s.html">Components::TriggerZone_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a3ac0c00bd16b48fdb76b236ee1356b1a">Components::TriggerZone_t</a></td></tr>
+<tr class="separator:a3ac0c00bd16b48fdb76b236ee1356b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aa47fcafd27dac8795f6ebde12bc832" id="r_a1aa47fcafd27dac8795f6ebde12bc832"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structComponents_1_1Enemy__s.html">Components::Enemy_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#a1aa47fcafd27dac8795f6ebde12bc832">Components::Enemy_t</a></td></tr>
+<tr class="separator:a1aa47fcafd27dac8795f6ebde12bc832"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -261,25 +304,10 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42">MenuDown</a>
 , <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756">MenuSelect</a>
+, <a class="el" href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafca588472ba41057400fd915a7d1a4d5983">ToggleDebug</a>
 <br />
  }</td></tr>
 <tr class="separator:a5827805c542ab9cccf700dc3697cbafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8788fbf513fbcda9f4f596b8f6dc471" id="r_ae8788fbf513fbcda9f4f596b8f6dc471"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471">Components::InputType</a> { <a class="el" href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471a6ce4d85a628a88bbdb3ac24a8e5a9c2e">Components::Keyboard</a>
-, <a class="el" href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471a1162b85b7b993e2edf7da29dd8abf7e2">Components::Joystick</a>
- }</td></tr>
-<tr class="memdesc:ae8788fbf513fbcda9f4f596b8f6dc471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of input for remapping.  <a href="namespaceComponents.html#ae8788fbf513fbcda9f4f596b8f6dc471">More...</a><br /></td></tr>
-<tr class="separator:ae8788fbf513fbcda9f4f596b8f6dc471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeadf6d72138ecf1f31bd515ee2b8e15c" id="r_aeadf6d72138ecf1f31bd515ee2b8e15c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15c">Components::ParticleType</a> { <br />
-&#160;&#160;<a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15ca8a36c0d6cc2e31990ea4fb2d597db968">Components::Explosion</a>
-, <a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15cad518a06262ac68f1f006a4f802588130">Components::Trail</a>
-, <a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15cabc93fd0fa19ed26b6adf8293ada55404">Components::Smoke</a>
-, <a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15ca1708884aa9c2dcfa5f1df31b6c30270d">Components::Sparks</a>
-, <br />
-&#160;&#160;<a class="el" href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15ca7e4a693bfe182987626f234139a8dc83">Components::Debris</a>
-<br />
- }</td></tr>
-<tr class="memdesc:aeadf6d72138ecf1f31bd515ee2b8e15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predefined particle types.  <a href="namespaceComponents.html#aeadf6d72138ecf1f31bd515ee2b8e15c">More...</a><br /></td></tr>
-<tr class="separator:aeadf6d72138ecf1f31bd515ee2b8e15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="abbfe3c71949470fc9650dc4f945c7319" name="abbfe3c71949470fc9650dc4f945c7319"></a>
@@ -342,6 +370,7 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296" name="a5827805c542ab9cccf700dc3697cbafcac858a0b6fc99de8e549be837b2188296"></a>MenuUp&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42" name="a5827805c542ab9cccf700dc3697cbafcac776e82bf0f876797fbc31fde3152e42"></a>MenuDown&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756" name="a5827805c542ab9cccf700dc3697cbafcaaca6a1a1ebf0ec8b885cf9dc26f1a756"></a>MenuSelect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5827805c542ab9cccf700dc3697cbafca588472ba41057400fd915a7d1a4d5983" name="a5827805c542ab9cccf700dc3697cbafca588472ba41057400fd915a7d1a4d5983"></a>ToggleDebug&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>

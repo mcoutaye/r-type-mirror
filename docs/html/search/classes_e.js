@@ -9,9 +9,9 @@ var searchData=
   ['scenemanager_6',['SceneManager',['../classSceneManager.html',1,'']]],
   ['serializer_7',['Serializer',['../classSerializer.html',1,'']]],
   ['server_8',['Server',['../classServer.html',1,'']]],
-  ['shootable_9',['Shootable',['../structComponents_1_1Shootable.html',1,'Components']]],
-  ['slider_10',['Slider',['../structComponents_1_1Slider.html',1,'Components']]],
+  ['shelf_5fs_9',['shelf_s',['../structshelf__s.html',1,'']]],
+  ['slider_5fs_10',['Slider_s',['../structComponents_1_1Slider__s.html',1,'Components']]],
   ['soundsystem_11',['SoundSystem',['../classSoundSystem.html',1,'']]],
-  ['star_12',['Star',['../structComponents_1_1Star.html',1,'Components']]],
+  ['star_5fs_12',['Star_s',['../structComponents_1_1Star__s.html',1,'Components']]],
   ['storagecomponent_13',['StorageComponent',['../classStorageComponent.html',1,'']]]
 ];

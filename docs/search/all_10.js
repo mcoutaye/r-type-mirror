@@ -8,9 +8,12 @@ var searchData=
   ['handlesliders_5',['handlesliders',['../classMenuSystem.html#a80803681c45ccfa8c7b4c84724938c33',1,'MenuSystem::handleSliders()'],['../classOptionsMenuSystem.html#a995ba9ca1cd9657d9db9bd7ff1a6e707',1,'OptionsMenuSystem::handleSliders()']]],
   ['has_6',['has',['../classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578',1,'StorageComponent::has(Entity e) const'],['../classStorageComponent.html#a6de145a1ea5570363f566ab9fce66578',1,'StorageComponent::has(Entity e) const']]],
   ['hascomponent_7',['hascomponent',['../classECS.html#a33c16853296e9784dfb558f35dffbd72',1,'ECS::hasComponent(Entity e) const'],['../classECS.html#a33c16853296e9784dfb558f35dffbd72',1,'ECS::hasComponent(Entity e) const']]],
-  ['health_8',['health',['../structComponents_1_1Health.html',1,'Components::Health'],['../structEntityUpdate.html#a3a683819581da8fc9cf1922c523f8d94',1,'EntityUpdate::health'],['../structComponents_1_1DestructibleTile.html#a8d0d689563c6bca55859fa66ed833652',1,'Components::DestructibleTile::health']]],
-  ['heartbeat_9',['heartbeat',['../classServer.html#a43b95e0d86f9ab1b25a592cfc256d008',1,'Server']]],
-  ['height_10',['height',['../structComponents_1_1Collider.html#ae3919b40a8818971bdfe1b9e617b65fe',1,'Components::Collider::height'],['../structComponents_1_1BoxCollider.html#a1dc25d9a33d7f4916e6afac090620d7d',1,'Components::BoxCollider::height']]],
-  ['highlight_11',['Highlight',['../structComponents_1_1Highlight.html',1,'Components']]],
-  ['hybrid_20protocol_20strategy_12',['A. Hybrid Protocol Strategy',['../md_poc.html#autotoc_md40',1,'']]]
+  ['health_8',['health',['../structEntityUpdate.html#a3a683819581da8fc9cf1922c523f8d94',1,'EntityUpdate']]],
+  ['health_5fs_9',['Health_s',['../structComponents_1_1Health__s.html',1,'Components']]],
+  ['health_5ft_10',['Health_t',['../namespaceComponents.html#a4e1516b03441fd858e732ec8167fb861',1,'Components']]],
+  ['heartbeat_11',['heartbeat',['../classServer.html#a43b95e0d86f9ab1b25a592cfc256d008',1,'Server']]],
+  ['height_12',['height',['../structimageItem__s.html#a7c079db7b896baf2c380f97aff6c2abf',1,'imageItem_s::height'],['../structshelf__s.html#a477400b8c0941fb9e636f2899cc218e4',1,'shelf_s::height'],['../structComponents_1_1Collider__s.html#ae9cd0a5982664472100d2f33ca464b96',1,'Components::Collider_s::height'],['../structComponents_1_1BoxCollider__s.html#aba564b0c412f08868b4b65c4f6dae874',1,'Components::BoxCollider_s::height']]],
+  ['highlight_5fs_13',['Highlight_s',['../structComponents_1_1Highlight__s.html',1,'Components']]],
+  ['highlight_5ft_14',['Highlight_t',['../namespaceComponents.html#ae2adf1718dee5cbdf8d7648ea7b1515f',1,'Components']]],
+  ['hybrid_20protocol_20strategy_15',['A. Hybrid Protocol Strategy',['../md_poc.html#autotoc_md40',1,'']]]
 ];

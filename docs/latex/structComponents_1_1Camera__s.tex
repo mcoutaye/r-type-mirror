@@ -1,0 +1,191 @@
+\doxysection{Components\+::Camera\+\_\+s Struct Reference}
+\hypertarget{structComponents_1_1Camera__s}{}\label{structComponents_1_1Camera__s}\index{Components::Camera\_s@{Components::Camera\_s}}
+
+
+Camera component.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Camera\+\_\+s\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{structComponents_1_1Camera__s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} \mbox{\hyperlink{structComponents_1_1Camera__s_a407a322410aa5a97cede5a319d53219b}{target}} = static\+\_\+cast$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}$>$(-\/1)
+\begin{DoxyCompactList}\small\item\em Entity to follow. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a7d938ec744c24797c7e25251f8239f76}{follow\+Speed}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Follow smoothness (0-\/1). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a292524f819f1862a1a36b05422f71f3c}{zoom}} = 1.f
+\begin{DoxyCompactList}\small\item\em Current zoom level. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a71882e5f6c5c1efb01ae2cfed635c137}{target\+Zoom}} = 1.f
+\begin{DoxyCompactList}\small\item\em Target zoom level. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a5a926c2ee4162555bf9af5fb98b249bb}{zoom\+Speed}} = 2.f
+\begin{DoxyCompactList}\small\item\em Zoom speed. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a0d9bf82fa4ed8064b62e95a05c1b9d68}{shake\+Intensity}} = 0.f
+\begin{DoxyCompactList}\small\item\em Shake intensity. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a581a5ab1b2785a8d17f8d5066f8549fb}{shake\+Duration}} = 0.f
+\begin{DoxyCompactList}\small\item\em Shake duration. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_aa47af506439fdc51483f16a375101cde}{shake\+Timer}} = 0.f
+\begin{DoxyCompactList}\small\item\em Shake timer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1Camera__s_a5aae7b219b1a2245f427828a7b3cb491}{use\+Bounds}} = false
+\begin{DoxyCompactList}\small\item\em If using bounds. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a8a99005a26687a994a8789c75213e3b1}{minX}} = 0.f
+\begin{DoxyCompactList}\small\item\em Minimum X bound. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_af0ce9a35dbba3c3b0be297d221eb9017}{minY}} = 0.f
+\begin{DoxyCompactList}\small\item\em Minimum Y bound. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a58177a5c47d0a24af7e53bdc22037fa0}{maxX}} = 0.f
+\begin{DoxyCompactList}\small\item\em Maximum X bound. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Camera__s_a2e47e804b63c7c0180ac5a05063fa338}{maxY}} = 0.f
+\begin{DoxyCompactList}\small\item\em Maximum Y bound. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Camera component. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1Camera__s_a7d938ec744c24797c7e25251f8239f76}\label{structComponents_1_1Camera__s_a7d938ec744c24797c7e25251f8239f76} 
+\index{Components::Camera\_s@{Components::Camera\_s}!followSpeed@{followSpeed}}
+\index{followSpeed@{followSpeed}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{followSpeed}{followSpeed}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::follow\+Speed = 0.\+1f}
+
+
+
+Follow smoothness (0-\/1). 
+
+\Hypertarget{structComponents_1_1Camera__s_a58177a5c47d0a24af7e53bdc22037fa0}\label{structComponents_1_1Camera__s_a58177a5c47d0a24af7e53bdc22037fa0} 
+\index{Components::Camera\_s@{Components::Camera\_s}!maxX@{maxX}}
+\index{maxX@{maxX}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{maxX}{maxX}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::maxX = 0.f}
+
+
+
+Maximum X bound. 
+
+\Hypertarget{structComponents_1_1Camera__s_a2e47e804b63c7c0180ac5a05063fa338}\label{structComponents_1_1Camera__s_a2e47e804b63c7c0180ac5a05063fa338} 
+\index{Components::Camera\_s@{Components::Camera\_s}!maxY@{maxY}}
+\index{maxY@{maxY}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{maxY}{maxY}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::maxY = 0.f}
+
+
+
+Maximum Y bound. 
+
+\Hypertarget{structComponents_1_1Camera__s_a8a99005a26687a994a8789c75213e3b1}\label{structComponents_1_1Camera__s_a8a99005a26687a994a8789c75213e3b1} 
+\index{Components::Camera\_s@{Components::Camera\_s}!minX@{minX}}
+\index{minX@{minX}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{minX}{minX}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::minX = 0.f}
+
+
+
+Minimum X bound. 
+
+\Hypertarget{structComponents_1_1Camera__s_af0ce9a35dbba3c3b0be297d221eb9017}\label{structComponents_1_1Camera__s_af0ce9a35dbba3c3b0be297d221eb9017} 
+\index{Components::Camera\_s@{Components::Camera\_s}!minY@{minY}}
+\index{minY@{minY}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{minY}{minY}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::minY = 0.f}
+
+
+
+Minimum Y bound. 
+
+\Hypertarget{structComponents_1_1Camera__s_a581a5ab1b2785a8d17f8d5066f8549fb}\label{structComponents_1_1Camera__s_a581a5ab1b2785a8d17f8d5066f8549fb} 
+\index{Components::Camera\_s@{Components::Camera\_s}!shakeDuration@{shakeDuration}}
+\index{shakeDuration@{shakeDuration}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{shakeDuration}{shakeDuration}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::shake\+Duration = 0.f}
+
+
+
+Shake duration. 
+
+\Hypertarget{structComponents_1_1Camera__s_a0d9bf82fa4ed8064b62e95a05c1b9d68}\label{structComponents_1_1Camera__s_a0d9bf82fa4ed8064b62e95a05c1b9d68} 
+\index{Components::Camera\_s@{Components::Camera\_s}!shakeIntensity@{shakeIntensity}}
+\index{shakeIntensity@{shakeIntensity}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{shakeIntensity}{shakeIntensity}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::shake\+Intensity = 0.f}
+
+
+
+Shake intensity. 
+
+\Hypertarget{structComponents_1_1Camera__s_aa47af506439fdc51483f16a375101cde}\label{structComponents_1_1Camera__s_aa47af506439fdc51483f16a375101cde} 
+\index{Components::Camera\_s@{Components::Camera\_s}!shakeTimer@{shakeTimer}}
+\index{shakeTimer@{shakeTimer}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{shakeTimer}{shakeTimer}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::shake\+Timer = 0.f}
+
+
+
+Shake timer. 
+
+\Hypertarget{structComponents_1_1Camera__s_a407a322410aa5a97cede5a319d53219b}\label{structComponents_1_1Camera__s_a407a322410aa5a97cede5a319d53219b} 
+\index{Components::Camera\_s@{Components::Camera\_s}!target@{target}}
+\index{target@{target}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}} Components\+::\+Camera\+\_\+s\+::target = static\+\_\+cast$<$\mbox{\hyperlink{engine_2ecs_2ecs_8hpp_a9a522438c9f5d73ebe6349edc3313d5e}{Entity}}$>$(-\/1)}
+
+
+
+Entity to follow. 
+
+\Hypertarget{structComponents_1_1Camera__s_a71882e5f6c5c1efb01ae2cfed635c137}\label{structComponents_1_1Camera__s_a71882e5f6c5c1efb01ae2cfed635c137} 
+\index{Components::Camera\_s@{Components::Camera\_s}!targetZoom@{targetZoom}}
+\index{targetZoom@{targetZoom}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{targetZoom}{targetZoom}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::target\+Zoom = 1.f}
+
+
+
+Target zoom level. 
+
+\Hypertarget{structComponents_1_1Camera__s_a5aae7b219b1a2245f427828a7b3cb491}\label{structComponents_1_1Camera__s_a5aae7b219b1a2245f427828a7b3cb491} 
+\index{Components::Camera\_s@{Components::Camera\_s}!useBounds@{useBounds}}
+\index{useBounds@{useBounds}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{useBounds}{useBounds}}
+{\footnotesize\ttfamily bool Components\+::\+Camera\+\_\+s\+::use\+Bounds = false}
+
+
+
+If using bounds. 
+
+\Hypertarget{structComponents_1_1Camera__s_a292524f819f1862a1a36b05422f71f3c}\label{structComponents_1_1Camera__s_a292524f819f1862a1a36b05422f71f3c} 
+\index{Components::Camera\_s@{Components::Camera\_s}!zoom@{zoom}}
+\index{zoom@{zoom}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{zoom}{zoom}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::zoom = 1.f}
+
+
+
+Current zoom level. 
+
+\Hypertarget{structComponents_1_1Camera__s_a5a926c2ee4162555bf9af5fb98b249bb}\label{structComponents_1_1Camera__s_a5a926c2ee4162555bf9af5fb98b249bb} 
+\index{Components::Camera\_s@{Components::Camera\_s}!zoomSpeed@{zoomSpeed}}
+\index{zoomSpeed@{zoomSpeed}!Components::Camera\_s@{Components::Camera\_s}}
+\doxysubsubsection{\texorpdfstring{zoomSpeed}{zoomSpeed}}
+{\footnotesize\ttfamily float Components\+::\+Camera\+\_\+s\+::zoom\+Speed = 2.f}
+
+
+
+Zoom speed. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

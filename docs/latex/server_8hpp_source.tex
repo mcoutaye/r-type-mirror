@@ -93,7 +93,7 @@
 \DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00090\ }
 \DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ 400.0f;}
-\DoxyCodeLine{00092\ \ \ \ \ velo-\/>x\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ velo-\/>\mbox{\hyperlink{structComponents_1_1Velocity__s_a2fa8690f394b1af37d8b6ce73c5da290}{x}}\ =\ 0;}
 \DoxyCodeLine{00093\ \ \ \ \ velo-\/>y\ =\ 0;}
 \DoxyCodeLine{00094\ }
 \DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentItem.second.right)}
@@ -107,7 +107,7 @@
 \DoxyCodeLine{00103\ }
 \DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{auto}\ ctrl\ =\ \mbox{\hyperlink{classServer_aa40cf916c43ac983d372376382b5340e}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<PlayerController\_t>(e);}
 \DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (ctrl)\ \{}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ ctrl-\/>isShooting\ =\ currentItem.second.shoot;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ ctrl-\/>\mbox{\hyperlink{structComponents_1_1PlayerController__s_a25d5bbcb6e8c61f248c577c3e363552b}{isShooting}}\ =\ currentItem.second.shoot;}
 \DoxyCodeLine{00107\ \ \ \ \ \}}
 \DoxyCodeLine{00108\ \}}
 \DoxyCodeLine{00109\ }
@@ -117,7 +117,7 @@
 \DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{classServer_ac4ba75378e7da5ff808670e5a9f99777}{clientToPlayerRelation}})\ \{}
 \DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ velo\ =\ \mbox{\hyperlink{classServer_aa40cf916c43ac983d372376382b5340e}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Velocity\_t>(pair.second);}
 \DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (velo)\ \{}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ velo-\/>x\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ velo-\/>\mbox{\hyperlink{structComponents_1_1Velocity__s_a2fa8690f394b1af37d8b6ce73c5da290}{x}}\ =\ 0;}
 \DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ velo-\/>y\ =\ 0;}
 \DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00119\ \ \ \ \ \}}
@@ -196,7 +196,7 @@
 \DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ projPos-\/>y\ +\ projCol-\/>height\ >\ targetPos-\/>y)\ \{}
 \DoxyCodeLine{00193\ }
 \DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hit!}}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targetHealth-\/>current\ -\/=\ proj-\/>damage;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targetHealth-\/>\mbox{\hyperlink{structComponents_1_1Health__s_afbbbbfc1235436129e820b841f7279e9}{current}}\ -\/=\ proj-\/>damage;}
 \DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targetHealth-\/>lastAttackerId\ =\ proj-\/>ownerId;}
 \DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classServer_aa40cf916c43ac983d372376382b5340e}{\_ecs}}.\mbox{\hyperlink{classECS_a77bab58f7b7d5e53443078f60957b2d2}{killEntity}}(p);\ \textcolor{comment}{//\ Destroy\ projectile}}
 \DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \textcolor{comment}{//\ Projectile\ destroyed,\ move\ to\ next\ projectile}}

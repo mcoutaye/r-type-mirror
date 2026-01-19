@@ -130,7 +130,7 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment">// Slider component</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        Slider_t sliderComp;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        sliderComp.minValue = minValue;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        sliderComp.<a class="code hl_variable" href="structComponents_1_1Slider__s.html#ac1053c16350eb1b8ca77021666d56c3e">minValue</a> = minValue;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        sliderComp.maxValue = maxValue;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        sliderComp.currentValue = currentValue;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        sliderComp.step = (maxValue - minValue) / 100.0f;  <span class="comment">// 100 steps par défaut</span></div>
@@ -139,7 +139,7 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="comment">// Texte (label + valeur)</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        Text_t text;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        text.content = label;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        text.<a class="code hl_variable" href="structComponents_1_1Text__s.html#abefaa5304414cd472896628518b3c7b8">content</a> = label;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        text.font = fontId;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        text.characterSize = 40;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        text.color = sf::Color::White;</div>
@@ -154,13 +154,13 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="comment">// Highlight</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        Highlight_t highlight;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        highlight.selectedColor = sf::Color::Cyan;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        highlight.<a class="code hl_variable" href="structComponents_1_1Highlight__s.html#a26e885c2e22f3d31da7be24bf1fbad50">selectedColor</a> = sf::Color::Cyan;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        highlight.selectedScale = 1.1f;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        ecs.<a class="code hl_function" href="classECS.html#ab25f63dc0523958d986069505b703c12">addComponent</a>(slider, highlight);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">// DynamicText pour afficher la valeur</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        DynamicText_t dynText;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        dynText.prefix = label + <span class="stringliteral">&quot;: &quot;</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        dynText.<a class="code hl_variable" href="structComponents_1_1DynamicText__s.html#a3fcfd2a36415651c067cb45dedc29dbf">prefix</a> = label + <span class="stringliteral">&quot;: &quot;</span>;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        dynText.suffix = <span class="stringliteral">&quot;%&quot;</span>;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        dynText.valueGetter = [&amp;ecs, slider]() -&gt; std::string {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keyword">auto</span>* sliderComp = ecs.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Slider_t&gt;(slider);</div>
@@ -190,14 +190,14 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="comment">// KeybindButton component</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        KeybindButton_t keybindComp;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        keybindComp.action = action;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        keybindComp.<a class="code hl_variable" href="structComponents_1_1KeybindButton__s.html#a1d0547ea19c79ee3d9dc2bb3c7a6e513">action</a> = action;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        keybindComp.isWaitingForInput = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        keybindComp.currentKey = inputSystem.<a class="code hl_function" href="classInputSystem.html#a5d409a8670008dbc8c910f30e9e9e0f7">getKeyForAction</a>(action);</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        ecs.<a class="code hl_function" href="classECS.html#ab25f63dc0523958d986069505b703c12">addComponent</a>(button, keybindComp);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="comment">// Texte</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        Text_t text;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        text.content = label + <span class="stringliteral">&quot;: &quot;</span> + <a class="code hl_function" href="classOptionsMenuFactory.html#a49bca18c69bf9879a149fa8bc3c34d28">getKeyName</a>(keybindComp.currentKey);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        text.<a class="code hl_variable" href="structComponents_1_1Text__s.html#abefaa5304414cd472896628518b3c7b8">content</a> = label + <span class="stringliteral">&quot;: &quot;</span> + <a class="code hl_function" href="classOptionsMenuFactory.html#a49bca18c69bf9879a149fa8bc3c34d28">getKeyName</a>(keybindComp.currentKey);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        text.font = fontId;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        text.characterSize = 36;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        text.color = sf::Color::White;</div>
@@ -212,7 +212,7 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="comment">// Highlight</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        Highlight_t highlight;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        highlight.selectedColor = sf::Color::Yellow;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        highlight.<a class="code hl_variable" href="structComponents_1_1Highlight__s.html#a26e885c2e22f3d31da7be24bf1fbad50">selectedColor</a> = sf::Color::Yellow;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        highlight.selectedScale = 1.1f;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        ecs.<a class="code hl_function" href="classECS.html#ab25f63dc0523958d986069505b703c12">addComponent</a>(button, highlight);</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        </div>
@@ -231,7 +231,7 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        ecs.<a class="code hl_function" href="classECS.html#ab25f63dc0523958d986069505b703c12">addComponent</a>(titleEntity, Position_t{x, <a class="code hl_variable" href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a>});</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        Text_t text;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        text.content = title;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        text.<a class="code hl_variable" href="structComponents_1_1Text__s.html#abefaa5304414cd472896628518b3c7b8">content</a> = title;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        text.font = fontId;</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        text.characterSize = 60;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        text.color = sf::Color::Cyan;</div>
@@ -290,7 +290,7 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
 </div>
 <div class="ttc" id="aComponents_8hpp_html"><div class="ttname"><a href="Components_8hpp.html">Components.hpp</a></div></div>
-<div class="ttc" id="aComponents_8hpp_html_a5827805c542ab9cccf700dc3697cbafc"><div class="ttname"><a href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a></div><div class="ttdeci">GameAction</div><div class="ttdef"><b>Definition</b> Components.hpp:22</div></div>
+<div class="ttc" id="aComponents_8hpp_html_a5827805c542ab9cccf700dc3697cbafc"><div class="ttname"><a href="Components_8hpp.html#a5827805c542ab9cccf700dc3697cbafc">GameAction</a></div><div class="ttdeci">GameAction</div><div class="ttdef"><b>Definition</b> Components.hpp:23</div></div>
 <div class="ttc" id="aInputSystem_8hpp_html"><div class="ttname"><a href="InputSystem_8hpp.html">InputSystem.hpp</a></div></div>
 <div class="ttc" id="aSoundSystem_8hpp_html"><div class="ttname"><a href="SoundSystem_8hpp.html">SoundSystem.hpp</a></div></div>
 <div class="ttc" id="aclassECS_html"><div class="ttname"><a href="classECS.html">ECS</a></div><div class="ttdoc">Entity Component System manager.</div><div class="ttdef"><b>Definition</b> ecs.hpp:190</div></div>
@@ -306,6 +306,11 @@ $(document).ready(function(){initNavTree('OptionsMenuFactory_8hpp_source.html','
 <div class="ttc" id="aclassOptionsMenuFactory_html_ac8a143291ea42ee9bb5517555601c7f6"><div class="ttname"><a href="classOptionsMenuFactory.html#ac8a143291ea42ee9bb5517555601c7f6">OptionsMenuFactory::createSectionTitle</a></div><div class="ttdeci">static Entity createSectionTitle(ECS &amp;ecs, float x, float y, const std::string &amp;title, const std::string &amp;fontId=&quot;title&quot;)</div><div class="ttdef"><b>Definition</b> OptionsMenuFactory.hpp:118</div></div>
 <div class="ttc" id="aengine_2ecs_2ecs_8hpp_html_a9a522438c9f5d73ebe6349edc3313d5e"><div class="ttname"><a href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a></div><div class="ttdeci">std::uint32_t Entity</div><div class="ttdoc">Type alias for Entity, which is simply an ID.</div><div class="ttdef"><b>Definition</b> ecs.hpp:35</div></div>
 <div class="ttc" id="arfcprotocol_8txt_html_a4d1f9e0693d1ec21db0aea048a1e09a9"><div class="ttname"><a href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a></div><div class="ttdeci">reliability for connection management is handled via the parallel TCP channel Default UDP y</div><div class="ttdef"><b>Definition</b> rfcprotocol.txt:109</div></div>
+<div class="ttc" id="astructComponents_1_1DynamicText__s_html_a3fcfd2a36415651c067cb45dedc29dbf"><div class="ttname"><a href="structComponents_1_1DynamicText__s.html#a3fcfd2a36415651c067cb45dedc29dbf">Components::DynamicText_s::prefix</a></div><div class="ttdeci">std::string prefix</div><div class="ttdoc">Prefix text.</div><div class="ttdef"><b>Definition</b> Components.hpp:397</div></div>
+<div class="ttc" id="astructComponents_1_1Highlight__s_html_a26e885c2e22f3d31da7be24bf1fbad50"><div class="ttname"><a href="structComponents_1_1Highlight__s.html#a26e885c2e22f3d31da7be24bf1fbad50">Components::Highlight_s::selectedColor</a></div><div class="ttdeci">sf::Color selectedColor</div><div class="ttdoc">Color when selected.</div><div class="ttdef"><b>Definition</b> Components.hpp:340</div></div>
+<div class="ttc" id="astructComponents_1_1KeybindButton__s_html_a1d0547ea19c79ee3d9dc2bb3c7a6e513"><div class="ttname"><a href="structComponents_1_1KeybindButton__s.html#a1d0547ea19c79ee3d9dc2bb3c7a6e513">Components::KeybindButton_s::action</a></div><div class="ttdeci">GameAction action</div><div class="ttdoc">Associated game action.</div><div class="ttdef"><b>Definition</b> Components.hpp:416</div></div>
+<div class="ttc" id="astructComponents_1_1Slider__s_html_ac1053c16350eb1b8ca77021666d56c3e"><div class="ttname"><a href="structComponents_1_1Slider__s.html#ac1053c16350eb1b8ca77021666d56c3e">Components::Slider_s::minValue</a></div><div class="ttdeci">float minValue</div><div class="ttdoc">Minimum value.</div><div class="ttdef"><b>Definition</b> Components.hpp:370</div></div>
+<div class="ttc" id="astructComponents_1_1Text__s_html_abefaa5304414cd472896628518b3c7b8"><div class="ttname"><a href="structComponents_1_1Text__s.html#abefaa5304414cd472896628518b3c7b8">Components::Text_s::content</a></div><div class="ttdeci">std::string content</div><div class="ttdoc">Text content.</div><div class="ttdef"><b>Definition</b> Components.hpp:309</div></div>
 <div class="ttc" id="astructMenuAction_html"><div class="ttname"><a href="structMenuAction.html">MenuAction</a></div><div class="ttdef"><b>Definition</b> Menu.hpp:15</div></div>
 <div class="ttc" id="astructMenuAction_html_a58f089a0bbe4eb0575386b7a1a0789f8"><div class="ttname"><a href="structMenuAction.html#a58f089a0bbe4eb0575386b7a1a0789f8">MenuAction::id</a></div><div class="ttdeci">std::string id</div><div class="ttdef"><b>Definition</b> Menu.hpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->

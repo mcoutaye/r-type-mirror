@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['health_0',['Health',['../structComponents_1_1Health.html',1,'Components']]],
-  ['highlight_1',['Highlight',['../structComponents_1_1Highlight.html',1,'Components']]]
+  ['health_5fs_0',['Health_s',['../structComponents_1_1Health__s.html',1,'Components']]],
+  ['highlight_5fs_1',['Highlight_s',['../structComponents_1_1Highlight__s.html',1,'Components']]]
 ];

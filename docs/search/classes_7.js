@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['jumper_0',['Jumper',['../structComponents_1_1Jumper.html',1,'Components']]],
-  ['justshot_1',['JustShot',['../structComponents_1_1JustShot.html',1,'Components']]]
+  ['jump_5fs_0',['Jump_s',['../structComponents_1_1Jump__s.html',1,'Components']]]
 ];

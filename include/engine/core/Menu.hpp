@@ -10,7 +10,7 @@
 #include <string>
 #include <functional>
 #include <SFML/Graphics.hpp>
-#include "engine/systems/Components.hpp"
+#include "../systems/Components.hpp"
 
 struct MenuAction {
     std::string id;  // Identifiant de l'action sous forme de chaîne de caractères

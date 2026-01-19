@@ -1,0 +1,131 @@
+\doxysection{Components\+::Rigid\+Body\+\_\+s Struct Reference}
+\hypertarget{structComponents_1_1RigidBody__s}{}\label{structComponents_1_1RigidBody__s}\index{Components::RigidBody\_s@{Components::RigidBody\_s}}
+
+
+Rigid body for physics.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Rigid\+Body\+\_\+s\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{structComponents_1_1RigidBody__s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody__s_a6401dc52b21a8533d0c96c1d682b847d}{mass}} = 1.f
+\begin{DoxyCompactList}\small\item\em Mass (kg). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1RigidBody__s_a37cf6e695fafcb76dec77f4309213eba}{is\+Kinematic}} = false
+\begin{DoxyCompactList}\small\item\em If kinematic (not affected by physics). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1RigidBody__s_ae4351567a9d362f1aedb862c201bd90d}{use\+Gravity}} = true
+\begin{DoxyCompactList}\small\item\em If affected by gravity. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody__s_a7415e775057e1f1aa157b8bd94fa5b29}{drag}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Air drag coefficient. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody__s_aebde79c6cde834a9b78496ab4817c1a2}{friction}} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Ground friction coefficient. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1RigidBody__s_a90a7e5b2eeca22513b6ef06001eacda0}{bounciness}} = 0.f
+\begin{DoxyCompactList}\small\item\em Bounciness (0-\/1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1RigidBody__s_acf885be9e70190a44661a659e4a75de3}{is\+Grounded}} = false
+\begin{DoxyCompactList}\small\item\em If currently grounded. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{structComponents_1_1RigidBody__s_a1e85217d1c9de9bf416e2f479db300e5}{accumulated\+Force}} = \{0.f, 0.f\}
+\begin{DoxyCompactList}\small\item\em Accumulated force. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rigid body for physics. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1RigidBody__s_a1e85217d1c9de9bf416e2f479db300e5}\label{structComponents_1_1RigidBody__s_a1e85217d1c9de9bf416e2f479db300e5} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!accumulatedForce@{accumulatedForce}}
+\index{accumulatedForce@{accumulatedForce}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{accumulatedForce}{accumulatedForce}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Components\+::\+Rigid\+Body\+\_\+s\+::accumulated\+Force = \{0.f, 0.f\}}
+
+
+
+Accumulated force. 
+
+\Hypertarget{structComponents_1_1RigidBody__s_a90a7e5b2eeca22513b6ef06001eacda0}\label{structComponents_1_1RigidBody__s_a90a7e5b2eeca22513b6ef06001eacda0} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!bounciness@{bounciness}}
+\index{bounciness@{bounciness}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{bounciness}{bounciness}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+\_\+s\+::bounciness = 0.f}
+
+
+
+Bounciness (0-\/1). 
+
+\Hypertarget{structComponents_1_1RigidBody__s_a7415e775057e1f1aa157b8bd94fa5b29}\label{structComponents_1_1RigidBody__s_a7415e775057e1f1aa157b8bd94fa5b29} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!drag@{drag}}
+\index{drag@{drag}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{drag}{drag}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+\_\+s\+::drag = 0.\+1f}
+
+
+
+Air drag coefficient. 
+
+\Hypertarget{structComponents_1_1RigidBody__s_aebde79c6cde834a9b78496ab4817c1a2}\label{structComponents_1_1RigidBody__s_aebde79c6cde834a9b78496ab4817c1a2} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!friction@{friction}}
+\index{friction@{friction}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{friction}{friction}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+\_\+s\+::friction = 0.\+5f}
+
+
+
+Ground friction coefficient. 
+
+\Hypertarget{structComponents_1_1RigidBody__s_acf885be9e70190a44661a659e4a75de3}\label{structComponents_1_1RigidBody__s_acf885be9e70190a44661a659e4a75de3} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!isGrounded@{isGrounded}}
+\index{isGrounded@{isGrounded}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{isGrounded}{isGrounded}}
+{\footnotesize\ttfamily bool Components\+::\+Rigid\+Body\+\_\+s\+::is\+Grounded = false}
+
+
+
+If currently grounded. 
+
+\Hypertarget{structComponents_1_1RigidBody__s_a37cf6e695fafcb76dec77f4309213eba}\label{structComponents_1_1RigidBody__s_a37cf6e695fafcb76dec77f4309213eba} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!isKinematic@{isKinematic}}
+\index{isKinematic@{isKinematic}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{isKinematic}{isKinematic}}
+{\footnotesize\ttfamily bool Components\+::\+Rigid\+Body\+\_\+s\+::is\+Kinematic = false}
+
+
+
+If kinematic (not affected by physics). 
+
+\Hypertarget{structComponents_1_1RigidBody__s_a6401dc52b21a8533d0c96c1d682b847d}\label{structComponents_1_1RigidBody__s_a6401dc52b21a8533d0c96c1d682b847d} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!mass@{mass}}
+\index{mass@{mass}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{mass}{mass}}
+{\footnotesize\ttfamily float Components\+::\+Rigid\+Body\+\_\+s\+::mass = 1.f}
+
+
+
+Mass (kg). 
+
+\Hypertarget{structComponents_1_1RigidBody__s_ae4351567a9d362f1aedb862c201bd90d}\label{structComponents_1_1RigidBody__s_ae4351567a9d362f1aedb862c201bd90d} 
+\index{Components::RigidBody\_s@{Components::RigidBody\_s}!useGravity@{useGravity}}
+\index{useGravity@{useGravity}!Components::RigidBody\_s@{Components::RigidBody\_s}}
+\doxysubsubsection{\texorpdfstring{useGravity}{useGravity}}
+{\footnotesize\ttfamily bool Components\+::\+Rigid\+Body\+\_\+s\+::use\+Gravity = true}
+
+
+
+If affected by gravity. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

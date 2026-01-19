@@ -61,7 +61,7 @@ The game engine is a custom lightweight ECS implementation, enhanced with advanc
 | `SoundSystem` | Plays sounds and background music, manages volumes. |
 | `WaveSystem` | Spawns enemy waves based on level data. |
 
-![Hiérarchie des classes - Graphe détaillé](class_graph.png)
+![Hiérarchie des classes - Graphe détaillé](class_graph.svg)
 
 ---
 

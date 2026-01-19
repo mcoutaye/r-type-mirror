@@ -1,5 +1,0 @@
-<map id="Components::MenuItem" name="Components::MenuItem">
-<area shape="rect" id="Node000001" title="Indicates a selectable menu item." alt="" coords="5,168,176,253"/>
-<area shape="rect" id="Node000002" href="$structMenuAction.html" title=" " alt="" coords="14,5,167,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,105,93,152,88,152,88,105"/>
-</map>

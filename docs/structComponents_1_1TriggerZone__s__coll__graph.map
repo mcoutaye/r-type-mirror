@@ -1,0 +1,3 @@
+<map id="Components::TriggerZone_s" name="Components::TriggerZone_s">
+<area shape="rect" id="Node000001" title="Zone de trigger (pour téléporteurs, checkpoints, etc.)." alt="" coords="5,5,200,185"/>
+</map>

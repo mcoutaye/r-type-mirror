@@ -186,7 +186,7 @@ $(document).ready(function(){initNavTree('EntityFactory_8hpp_source.html',''); i
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Configurer le mouvement</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    MovementPattern_t movement;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    movement.type = movementType;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    movement.<a class="code hl_variable" href="structComponents_1_1MovementPattern__s.html#af1c5f4712669f805bd5f6e7fbd747b83">type</a> = movementType;</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">switch</span> (movementType) {</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">case</span> MovementPattern_t::Type::Linear:</div>
@@ -449,14 +449,14 @@ $(document).ready(function(){initNavTree('EntityFactory_8hpp_source.html',''); i
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    </div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="comment">// Ajoute le TriggerZone après car il contient une lambda</span></div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    TriggerZone_t trigger;</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    trigger.type = TriggerZone_t::Type::Teleporter;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    trigger.<a class="code hl_variable" href="structComponents_1_1TriggerZone__s.html#a6f67661bd58756a73059291fc03b03f8">type</a> = TriggerZone_t::Type::Teleporter;</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    trigger.teleportPos = targetPos;</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    trigger.triggered = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    trigger.resetOnExit = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    trigger.onTrigger = [targetPos, &amp;ecs](<a class="code hl_typedef" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> entity) {</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        <span class="keyword">auto</span>* pos = ecs.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Position_t&gt;(entity);</div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        <span class="keywordflow">if</span> (pos) {</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            pos-&gt;x = targetPos.x;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            pos-&gt;<a class="code hl_variable" href="structComponents_1_1Position__s.html#aced3946901e4e234926275e63be80463">x</a> = targetPos.x;</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>            pos-&gt;y = targetPos.y;</div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        }</div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    };</div>
@@ -479,14 +479,14 @@ $(document).ready(function(){initNavTree('EntityFactory_8hpp_source.html',''); i
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    );</div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    </div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    TriggerZone_t trigger;</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    trigger.type = TriggerZone_t::Type::Death;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    trigger.<a class="code hl_variable" href="structComponents_1_1TriggerZone__s.html#a6f67661bd58756a73059291fc03b03f8">type</a> = TriggerZone_t::Type::Death;</div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    trigger.triggered = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    trigger.resetOnExit = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    trigger.onTrigger = [&amp;ecs](<a class="code hl_typedef" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> entity) {</div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <span class="comment">// Tue l&#39;entité qui entre dans la zone</span></div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        <span class="keyword">auto</span>* health = ecs.<a class="code hl_function" href="classECS.html#aaae60c88af59dd7af9d86200eb522bbc">getComponent</a>&lt;Health_t&gt;(entity);</div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="keywordflow">if</span> (health) {</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>            health-&gt;current = 0;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>            health-&gt;<a class="code hl_variable" href="structComponents_1_1Health__s.html#afbbbbfc1235436129e820b841f7279e9">current</a> = 0;</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        }</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    };</div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    ecs.<a class="code hl_function" href="classECS.html#ab25f63dc0523958d986069505b703c12">addComponent</a>(deathZone, trigger);</div>
@@ -509,7 +509,7 @@ $(document).ready(function(){initNavTree('EntityFactory_8hpp_source.html',''); i
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    );</div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    </div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    TriggerZone_t trigger;</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    trigger.type = TriggerZone_t::Type::Checkpoint;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    trigger.<a class="code hl_variable" href="structComponents_1_1TriggerZone__s.html#a6f67661bd58756a73059291fc03b03f8">type</a> = TriggerZone_t::Type::Checkpoint;</div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    trigger.triggered = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    trigger.resetOnExit = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    trigger.teleportPos = sf::Vector2f(x, <a class="code hl_variable" href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a>);</div>
@@ -533,7 +533,7 @@ $(document).ready(function(){initNavTree('EntityFactory_8hpp_source.html',''); i
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    );</div>
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    </div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    TriggerZone_t trigger;</div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    trigger.type = TriggerZone_t::Type::Custom;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    trigger.<a class="code hl_variable" href="structComponents_1_1TriggerZone__s.html#a6f67661bd58756a73059291fc03b03f8">type</a> = TriggerZone_t::Type::Custom;</div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    trigger.triggered = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    trigger.resetOnExit = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    trigger.onTrigger = [&amp;ecs, collectible](<a class="code hl_typedef" href="engine_2ecs_2ecs_8hpp.html#a9a522438c9f5d73ebe6349edc3313d5e">Entity</a> entity) {</div>
@@ -581,6 +581,10 @@ $(document).ready(function(){initNavTree('EntityFactory_8hpp_source.html',''); i
 <div class="ttc" id="anamespaceFactory_html_af5e7bee90929fcaabc2b89eff8219cbe"><div class="ttname"><a href="namespaceFactory.html#af5e7bee90929fcaabc2b89eff8219cbe">Factory::createSound</a></div><div class="ttdeci">PlaySound_t createSound(const std::string &amp;soundId, float volume=100.f, float pitch=1.0f)</div><div class="ttdef"><b>Definition</b> EntityFactory.hpp:29</div></div>
 <div class="ttc" id="anamespaceFactory_html_af6f99ca712a4eb5dc8840202d2aaaef7"><div class="ttname"><a href="namespaceFactory.html#af6f99ca712a4eb5dc8840202d2aaaef7">Factory::createProjectile</a></div><div class="ttdeci">Entity createProjectile(ECS &amp;ecs, float x, float y, float velocityX, float velocityY, uint8_t team, int damage, const std::string &amp;textureId, int ownerId=-1, const std::string &amp;shootSound=&quot;shoot.ogg&quot;)</div><div class="ttdef"><b>Definition</b> EntityFactory.hpp:55</div></div>
 <div class="ttc" id="arfcprotocol_8txt_html_a4d1f9e0693d1ec21db0aea048a1e09a9"><div class="ttname"><a href="rfcprotocol_8txt.html#a4d1f9e0693d1ec21db0aea048a1e09a9">y</a></div><div class="ttdeci">reliability for connection management is handled via the parallel TCP channel Default UDP y</div><div class="ttdef"><b>Definition</b> rfcprotocol.txt:109</div></div>
+<div class="ttc" id="astructComponents_1_1Health__s_html_afbbbbfc1235436129e820b841f7279e9"><div class="ttname"><a href="structComponents_1_1Health__s.html#afbbbbfc1235436129e820b841f7279e9">Components::Health_s::current</a></div><div class="ttdeci">int current</div><div class="ttdoc">Current health value.</div><div class="ttdef"><b>Definition</b> Components.hpp:220</div></div>
+<div class="ttc" id="astructComponents_1_1MovementPattern__s_html_af1c5f4712669f805bd5f6e7fbd747b83"><div class="ttname"><a href="structComponents_1_1MovementPattern__s.html#af1c5f4712669f805bd5f6e7fbd747b83">Components::MovementPattern_s::type</a></div><div class="ttdeci">Type type</div><div class="ttdef"><b>Definition</b> Components.hpp:236</div></div>
+<div class="ttc" id="astructComponents_1_1Position__s_html_aced3946901e4e234926275e63be80463"><div class="ttname"><a href="structComponents_1_1Position__s.html#aced3946901e4e234926275e63be80463">Components::Position_s::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">X-coordinate of the position.</div><div class="ttdef"><b>Definition</b> Components.hpp:78</div></div>
+<div class="ttc" id="astructComponents_1_1TriggerZone__s_html_a6f67661bd58756a73059291fc03b03f8"><div class="ttname"><a href="structComponents_1_1TriggerZone__s.html#a6f67661bd58756a73059291fc03b03f8">Components::TriggerZone_s::type</a></div><div class="ttdeci">Type type</div><div class="ttdoc">Type of trigger.</div><div class="ttdef"><b>Definition</b> Components.hpp:800</div></div>
 <div class="ttc" id="astructMenuItem_html"><div class="ttname"><a href="structMenuItem.html">MenuItem</a></div><div class="ttdef"><b>Definition</b> Menu.hpp:20</div></div>
 <div class="ttc" id="astructMenuItem_html_a00837f274e38bc8240cf66b38dfaeb4b"><div class="ttname"><a href="structMenuItem.html#a00837f274e38bc8240cf66b38dfaeb4b">MenuItem::centered</a></div><div class="ttdeci">bool centered</div><div class="ttdef"><b>Definition</b> Menu.hpp:30</div></div>
 <div class="ttc" id="astructMenuItem_html_a15b15cd60a242a5ee5ea8284f831f53b"><div class="ttname"><a href="structMenuItem.html#a15b15cd60a242a5ee5ea8284f831f53b">MenuItem::text</a></div><div class="ttdeci">std::string text</div><div class="ttdef"><b>Definition</b> Menu.hpp:21</div></div>

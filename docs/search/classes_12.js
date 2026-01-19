@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['wavedata_0',['WaveData',['../structComponents_1_1WaveData.html',1,'Components']]],
-  ['wavespawner_1',['WaveSpawner',['../structComponents_1_1WaveSpawner.html',1,'Components']]],
-  ['wavesystem_2',['WaveSystem',['../classWaveSystem.html',1,'']]]
+  ['wavedata_5fs_0',['WaveData_s',['../structComponents_1_1WaveData__s.html',1,'Components']]],
+  ['wavesystem_1',['WaveSystem',['../classWaveSystem.html',1,'']]]
 ];

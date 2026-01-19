@@ -10,8 +10,9 @@ var searchData=
   ['_7eserver_7',['~server',['../classServer.html#a4b3aa2579cb1c8cd1d069582c14d0fa6',1,'Server::~Server()'],['../classServer.html#a4b3aa2579cb1c8cd1d069582c14d0fa6',1,'Server::~Server()']]],
   ['_7esoundsystem_8',['~SoundSystem',['../classSoundSystem.html#ac735df6ec9359b777809d9b7851c751d',1,'SoundSystem']]],
   ['_7estoragecomponent_9',['~storagecomponent',['../classStorageComponent.html#aeb53483b7c11f7091ee924541f5b3b6c',1,'StorageComponent::~StorageComponent()=default'],['../classStorageComponent.html#aeb53483b7c11f7091ee924541f5b3b6c',1,'StorageComponent::~StorageComponent()=default']]],
-  ['_7etimer_10',['~Timer',['../classTimer.html#a14fa469c4c295c5fa6e66a4ad1092146',1,'Timer']]],
-  ['_7eudp_11',['~UDP',['../classUDP.html#ac9c6eaf3e5f1bd64ea3ac0552137ca0e',1,'UDP']]],
-  ['_7eudpclient_12',['~UdpClient',['../classUdpClient.html#a9e69046802da8ea9e0bf3da874c49e47',1,'UdpClient']]],
-  ['_7eudpserver_13',['~UdpServer',['../classUdpServer.html#aef1871384fbc46ef425242be4474af3a',1,'UdpServer']]]
+  ['_7etexturepacker_10',['~TexturePacker',['../classTexturePacker.html#a98505b276b6760aa042ac118a5692cab',1,'TexturePacker']]],
+  ['_7etimer_11',['~Timer',['../classTimer.html#a14fa469c4c295c5fa6e66a4ad1092146',1,'Timer']]],
+  ['_7eudp_12',['~UDP',['../classUDP.html#ac9c6eaf3e5f1bd64ea3ac0552137ca0e',1,'UDP']]],
+  ['_7eudpclient_13',['~UdpClient',['../classUdpClient.html#a9e69046802da8ea9e0bf3da874c49e47',1,'UdpClient']]],
+  ['_7eudpserver_14',['~UdpServer',['../classUdpServer.html#aef1871384fbc46ef425242be4474af3a',1,'UdpServer']]]
 ];

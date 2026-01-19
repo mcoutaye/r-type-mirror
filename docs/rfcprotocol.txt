@@ -138,6 +138,14 @@ Abstract
       - Indicates that a player entity has fired a projectile.
       - Used to trigger visual/audio effects on the client.
 
+   o  0xFFFA (65530): "Victory"
+      - Indique que le joueur a gagné la partie.
+      - Le client doit afficher l'écran de victoire.
+
+   o  0xFFF9 (65529): "Defeat"
+      - Indique que le joueur a perdu la partie.
+      - Le client doit afficher l'écran de défaite.
+
    o  Any other value: Standard Server Tick
       - Represents the frame number at which this state was captured.
 

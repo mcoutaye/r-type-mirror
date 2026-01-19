@@ -1,0 +1,155 @@
+\doxysection{Components\+::Drawable\+\_\+s Struct Reference}
+\hypertarget{structComponents_1_1Drawable__s}{}\label{structComponents_1_1Drawable__s}\index{Components::Drawable\_s@{Components::Drawable\_s}}
+
+
+Render component for drawable entities.  
+
+
+
+
+{\ttfamily \#include $<$Components.\+hpp$>$}
+
+
+
+Collaboration diagram for Components\+::Drawable\+\_\+s\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{structComponents_1_1Drawable__s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structComponents_1_1Drawable__s_a33d79ca377bcb2928ce2350833c51caf}{texture\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the texture to use. \end{DoxyCompactList}\item 
+std\+::vector$<$ sf\+::\+Int\+Rect $>$ \mbox{\hyperlink{structComponents_1_1Drawable__s_a3b11e99a16d551a3441cb7edc177e9e4}{frames}}
+\begin{DoxyCompactList}\small\item\em Array of rectangles for animation frames. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{structComponents_1_1Drawable__s_a4bbf8a3f5d2a866f64db1f4d5520680f}{current\+Frame\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em Index of the current frame. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Drawable__s_adf2dda9e5f45b0b4d31d7ccc73de761e}{animation\+Speed}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Time between each frame (in seconds). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Drawable__s_ade331f34cc66c910e6077004323687c5}{frame\+Timer}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Internal timer for animation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1Drawable__s_a60556369a28507ca88bc300094ee6d77}{loop}} = true
+\begin{DoxyCompactList}\small\item\em If the animation should loop. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structComponents_1_1Drawable__s_aacb4ce16222a9f7430815da916642e20}{layer}} = 0
+\begin{DoxyCompactList}\small\item\em Rendering layer (0=background, 10=player, etc.). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structComponents_1_1Drawable__s_a94b57e1bf4eedea344b7dc87a8ffd497}{visible}} = true
+\begin{DoxyCompactList}\small\item\em Visibility flag. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Drawable__s_a79402b641fd962705249171ce5021807}{scale}} = 1.f
+\begin{DoxyCompactList}\small\item\em Scale factor. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structComponents_1_1Drawable__s_a2307f21b57ad40a961c1e42e9061e117}{rotation}} = 0.f
+\begin{DoxyCompactList}\small\item\em Rotation angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Render component for drawable entities. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structComponents_1_1Drawable__s_adf2dda9e5f45b0b4d31d7ccc73de761e}\label{structComponents_1_1Drawable__s_adf2dda9e5f45b0b4d31d7ccc73de761e} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!animationSpeed@{animationSpeed}}
+\index{animationSpeed@{animationSpeed}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{animationSpeed}{animationSpeed}}
+{\footnotesize\ttfamily float Components\+::\+Drawable\+\_\+s\+::animation\+Speed = 0.\+1f}
+
+
+
+Time between each frame (in seconds). 
+
+\Hypertarget{structComponents_1_1Drawable__s_a4bbf8a3f5d2a866f64db1f4d5520680f}\label{structComponents_1_1Drawable__s_a4bbf8a3f5d2a866f64db1f4d5520680f} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!currentFrameIndex@{currentFrameIndex}}
+\index{currentFrameIndex@{currentFrameIndex}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{currentFrameIndex}{currentFrameIndex}}
+{\footnotesize\ttfamily size\+\_\+t Components\+::\+Drawable\+\_\+s\+::current\+Frame\+Index = 0}
+
+
+
+Index of the current frame. 
+
+\Hypertarget{structComponents_1_1Drawable__s_a3b11e99a16d551a3441cb7edc177e9e4}\label{structComponents_1_1Drawable__s_a3b11e99a16d551a3441cb7edc177e9e4} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!frames@{frames}}
+\index{frames@{frames}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{frames}{frames}}
+{\footnotesize\ttfamily std\+::vector$<$sf\+::\+Int\+Rect$>$ Components\+::\+Drawable\+\_\+s\+::frames}
+
+
+
+Array of rectangles for animation frames. 
+
+\Hypertarget{structComponents_1_1Drawable__s_ade331f34cc66c910e6077004323687c5}\label{structComponents_1_1Drawable__s_ade331f34cc66c910e6077004323687c5} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!frameTimer@{frameTimer}}
+\index{frameTimer@{frameTimer}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{frameTimer}{frameTimer}}
+{\footnotesize\ttfamily float Components\+::\+Drawable\+\_\+s\+::frame\+Timer = 0.\+0f}
+
+
+
+Internal timer for animation. 
+
+\Hypertarget{structComponents_1_1Drawable__s_aacb4ce16222a9f7430815da916642e20}\label{structComponents_1_1Drawable__s_aacb4ce16222a9f7430815da916642e20} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!layer@{layer}}
+\index{layer@{layer}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{layer}{layer}}
+{\footnotesize\ttfamily int Components\+::\+Drawable\+\_\+s\+::layer = 0}
+
+
+
+Rendering layer (0=background, 10=player, etc.). 
+
+\Hypertarget{structComponents_1_1Drawable__s_a60556369a28507ca88bc300094ee6d77}\label{structComponents_1_1Drawable__s_a60556369a28507ca88bc300094ee6d77} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!loop@{loop}}
+\index{loop@{loop}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{loop}{loop}}
+{\footnotesize\ttfamily bool Components\+::\+Drawable\+\_\+s\+::loop = true}
+
+
+
+If the animation should loop. 
+
+\Hypertarget{structComponents_1_1Drawable__s_a2307f21b57ad40a961c1e42e9061e117}\label{structComponents_1_1Drawable__s_a2307f21b57ad40a961c1e42e9061e117} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!rotation@{rotation}}
+\index{rotation@{rotation}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{rotation}{rotation}}
+{\footnotesize\ttfamily float Components\+::\+Drawable\+\_\+s\+::rotation = 0.f}
+
+
+
+Rotation angle. 
+
+\Hypertarget{structComponents_1_1Drawable__s_a79402b641fd962705249171ce5021807}\label{structComponents_1_1Drawable__s_a79402b641fd962705249171ce5021807} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!scale@{scale}}
+\index{scale@{scale}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily float Components\+::\+Drawable\+\_\+s\+::scale = 1.f}
+
+
+
+Scale factor. 
+
+\Hypertarget{structComponents_1_1Drawable__s_a33d79ca377bcb2928ce2350833c51caf}\label{structComponents_1_1Drawable__s_a33d79ca377bcb2928ce2350833c51caf} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!textureName@{textureName}}
+\index{textureName@{textureName}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{textureName}{textureName}}
+{\footnotesize\ttfamily std\+::string Components\+::\+Drawable\+\_\+s\+::texture\+Name}
+
+
+
+Name of the texture to use. 
+
+\Hypertarget{structComponents_1_1Drawable__s_a94b57e1bf4eedea344b7dc87a8ffd497}\label{structComponents_1_1Drawable__s_a94b57e1bf4eedea344b7dc87a8ffd497} 
+\index{Components::Drawable\_s@{Components::Drawable\_s}!visible@{visible}}
+\index{visible@{visible}!Components::Drawable\_s@{Components::Drawable\_s}}
+\doxysubsubsection{\texorpdfstring{visible}{visible}}
+{\footnotesize\ttfamily bool Components\+::\+Drawable\+\_\+s\+::visible = true}
+
+
+
+Visibility flag. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/systems/\mbox{\hyperlink{Components_8hpp}{Components.\+hpp}}\end{DoxyCompactItemize}

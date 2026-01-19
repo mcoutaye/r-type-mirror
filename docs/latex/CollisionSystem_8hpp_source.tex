@@ -48,7 +48,7 @@
 \DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ e1\ est\ un\ projectile\ :\ applique\ les\ dégâts\ à\ e2\ si\ c'est\ un\ ennemi\ (équipe\ différente)}}
 \DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ h2\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(e2);}
 \DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h2\ \&\&\ coll1-\/>team\ !=\ coll2-\/>team)\ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h2-\/>current\ -\/=\ proj1-\/>damage;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h2-\/>\mbox{\hyperlink{structComponents_1_1Health__s_afbbbbfc1235436129e820b841f7279e9}{current}}\ -\/=\ proj1-\/>damage;}
 \DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ toDestroy.push\_back(e1);\ \ \textcolor{comment}{//\ Détruit\ le\ projectile}}
 \DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h2-\/>current\ <=\ 0)\ \{}
 \DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ toDestroy.push\_back(e2);\ \ \textcolor{comment}{//\ Détruit\ l'ennemi}}
@@ -58,7 +58,7 @@
 \DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ e2\ est\ un\ projectile\ :\ applique\ les\ dégâts\ à\ e1\ si\ c'est\ un\ ennemi}}
 \DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ h1\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(e1);}
 \DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h1\ \&\&\ coll1-\/>team\ !=\ coll2-\/>team)\ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h1-\/>current\ -\/=\ proj2-\/>damage;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h1-\/>\mbox{\hyperlink{structComponents_1_1Health__s_afbbbbfc1235436129e820b841f7279e9}{current}}\ -\/=\ proj2-\/>damage;}
 \DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ toDestroy.push\_back(e2);\ \ \textcolor{comment}{//\ Détruit\ le\ projectile}}
 \DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h1-\/>current\ <=\ 0)\ \{}
 \DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ toDestroy.push\_back(e1);\ \ \textcolor{comment}{//\ Détruit\ l'ennemi}}
@@ -69,7 +69,7 @@
 \DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ h1\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(e1);}
 \DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ h2\ =\ \mbox{\hyperlink{classISystem_add78dbb839ae61fe69929cce0e666664}{\_ecs}}.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Health\_t>(e2);}
 \DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h1\ \&\&\ h2\ \&\&\ coll1-\/>team\ !=\ coll2-\/>team)\ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h1-\/>current\ -\/=\ coll2-\/>damage;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h1-\/>\mbox{\hyperlink{structComponents_1_1Health__s_afbbbbfc1235436129e820b841f7279e9}{current}}\ -\/=\ coll2-\/>damage;}
 \DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h2-\/>current\ -\/=\ coll1-\/>damage;}
 \DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h1-\/>current\ <=\ 0)\ toDestroy.push\_back(e1);}
 \DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h2-\/>current\ <=\ 0)\ toDestroy.push\_back(e2);}

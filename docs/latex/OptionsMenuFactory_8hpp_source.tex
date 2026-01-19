@@ -31,7 +31,7 @@
 \DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Slider\ component}}
 \DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ Slider\_t\ sliderComp;}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ sliderComp.minValue\ =\ minValue;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ sliderComp.\mbox{\hyperlink{structComponents_1_1Slider__s_ac1053c16350eb1b8ca77021666d56c3e}{minValue}}\ =\ minValue;}
 \DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ sliderComp.maxValue\ =\ maxValue;}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ sliderComp.currentValue\ =\ currentValue;}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ sliderComp.step\ =\ (maxValue\ -\/\ minValue)\ /\ 100.0f;\ \ \textcolor{comment}{//\ 100\ steps\ par\ défaut}}
@@ -40,7 +40,7 @@
 \DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Texte\ (label\ +\ valeur)}}
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Text\_t\ text;}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ text.content\ =\ label;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ text.\mbox{\hyperlink{structComponents_1_1Text__s_abefaa5304414cd472896628518b3c7b8}{content}}\ =\ label;}
 \DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ text.font\ =\ fontId;}
 \DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ text.characterSize\ =\ 40;}
 \DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ text.color\ =\ sf::Color::White;}
@@ -55,13 +55,13 @@
 \DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Highlight}}
 \DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ Highlight\_t\ highlight;}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ highlight.selectedColor\ =\ sf::Color::Cyan;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ highlight.\mbox{\hyperlink{structComponents_1_1Highlight__s_a26e885c2e22f3d31da7be24bf1fbad50}{selectedColor}}\ =\ sf::Color::Cyan;}
 \DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ highlight.selectedScale\ =\ 1.1f;}
 \DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(slider,\ highlight);}
 \DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DynamicText\ pour\ afficher\ la\ valeur}}
 \DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ DynamicText\_t\ dynText;}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ dynText.prefix\ =\ label\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ dynText.\mbox{\hyperlink{structComponents_1_1DynamicText__s_a3fcfd2a36415651c067cb45dedc29dbf}{prefix}}\ =\ label\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
 \DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ dynText.suffix\ =\ \textcolor{stringliteral}{"{}\%"{}};}
 \DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ dynText.valueGetter\ =\ [\&ecs,\ slider]()\ -\/>\ std::string\ \{}
 \DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ sliderComp\ =\ ecs.\mbox{\hyperlink{classECS_aaae60c88af59dd7af9d86200eb522bbc}{getComponent}}<Slider\_t>(slider);}
@@ -89,14 +89,14 @@
 \DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ KeybindButton\ component}}
 \DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ KeybindButton\_t\ keybindComp;}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ keybindComp.action\ =\ action;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ keybindComp.\mbox{\hyperlink{structComponents_1_1KeybindButton__s_a1d0547ea19c79ee3d9dc2bb3c7a6e513}{action}}\ =\ action;}
 \DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ keybindComp.isWaitingForInput\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ keybindComp.currentKey\ =\ inputSystem.\mbox{\hyperlink{classInputSystem_a5d409a8670008dbc8c910f30e9e9e0f7}{getKeyForAction}}(action);}
 \DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(button,\ keybindComp);}
 \DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Texte}}
 \DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ Text\_t\ text;}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ text.content\ =\ label\ +\ \textcolor{stringliteral}{"{}:\ "{}}\ +\ \mbox{\hyperlink{classOptionsMenuFactory_a49bca18c69bf9879a149fa8bc3c34d28}{getKeyName}}(keybindComp.currentKey);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ text.\mbox{\hyperlink{structComponents_1_1Text__s_abefaa5304414cd472896628518b3c7b8}{content}}\ =\ label\ +\ \textcolor{stringliteral}{"{}:\ "{}}\ +\ \mbox{\hyperlink{classOptionsMenuFactory_a49bca18c69bf9879a149fa8bc3c34d28}{getKeyName}}(keybindComp.currentKey);}
 \DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ text.font\ =\ fontId;}
 \DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ text.characterSize\ =\ 36;}
 \DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ text.color\ =\ sf::Color::White;}
@@ -111,7 +111,7 @@
 \DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Highlight}}
 \DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Highlight\_t\ highlight;}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ highlight.selectedColor\ =\ sf::Color::Yellow;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ highlight.\mbox{\hyperlink{structComponents_1_1Highlight__s_a26e885c2e22f3d31da7be24bf1fbad50}{selectedColor}}\ =\ sf::Color::Yellow;}
 \DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ highlight.selectedScale\ =\ 1.1f;}
 \DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(button,\ highlight);}
 \DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ }
@@ -128,7 +128,7 @@
 \DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ ecs.\mbox{\hyperlink{classECS_ab25f63dc0523958d986069505b703c12}{addComponent}}(titleEntity,\ Position\_t\{x,\ \mbox{\hyperlink{rfcprotocol_8txt_a4d1f9e0693d1ec21db0aea048a1e09a9}{y}}\});}
 \DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ Text\_t\ text;}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ text.content\ =\ title;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ text.\mbox{\hyperlink{structComponents_1_1Text__s_abefaa5304414cd472896628518b3c7b8}{content}}\ =\ title;}
 \DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ text.font\ =\ fontId;}
 \DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ text.characterSize\ =\ 60;}
 \DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ text.color\ =\ sf::Color::Cyan;}

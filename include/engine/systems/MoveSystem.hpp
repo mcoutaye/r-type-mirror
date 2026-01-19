@@ -77,7 +77,18 @@ class MoveSystem : public ISystem {
                     pos->y = newY;
                 }
 
+                // Clamp player position to world bounds
                 if (_ecs.hasComponent<PlayerController_t>(e)) {
+                    const float WORLD_MIN_X = 0.f;
+                    const float WORLD_MIN_Y = 0.f;
+                    const float WORLD_MAX_X = 2200.f;
+                    const float WORLD_MAX_Y = 1200.f;
+
+                    if (pos->x < WORLD_MIN_X) pos->x = WORLD_MIN_X;
+                    if (pos->x > WORLD_MAX_X) pos->x = WORLD_MAX_X;
+                    if (pos->y < WORLD_MIN_Y) pos->y = WORLD_MIN_Y;
+                    if (pos->y > WORLD_MAX_Y) pos->y = WORLD_MAX_Y;
+
                     velo->x = 0;
                     velo->y = 0;
                 }

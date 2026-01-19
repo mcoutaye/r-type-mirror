@@ -537,6 +537,10 @@ void Client::initializeGame()
     // Crée la musique du jeu
     Entity gameMusic = _ecs.createEntity();
     _ecs.addComponent(gameMusic, BackgroundMusic_t{"game_theme", true, 40.f});
+    
+    // Set up camera bounds to prevent showing out-of-bounds areas
+    // World dimensions: 0 to 2200 width, 0 to 1200 height
+    _cameraSystem.setBounds(0.f, 0.f, 2200.f, 1200.f);
 }
 
 void Client::update()
@@ -584,15 +588,11 @@ void Client::update()
 
         auto* pos = _ecs.getComponent<Position_t>(e);
         if (pos && (pos->x < -100.f || pos->x > 2200.f || pos->y < -100.f || pos->y > 1200.f)) {
-            // Kill stars that go off-screen to prevent memory leak
-            if (!_ecs.hasComponent<Star_t>(e)) {
-                _ecs.killEntity(e);
-            }
+            _ecs.killEntity(e);
         }
     }
 
-    // Stars are recycled in the movement update loop below (lines ~710-720)
-    // No need to kill them here - they will be repositioned when pos->x < -10.f
+    // Stars are destroyed when they leave the screen (see movement loop below)
     
     // Recreate missing stars to maintain starfield count
     // This replaces old stars that went off-screen with new ones
@@ -710,8 +710,7 @@ void Client::update()
 
             // Réapparition à droite si elle sort de l'écran
             if (pos->x < -10.f) {
-                pos->x = 1930.f;
-                pos->y = static_cast<float>(rand() % 1080);
+                _ecs.killEntity(e);  // Destroy star when off-screen; spawn replacement below
             }
         }
         std::vector<EntityUpdate> updates;

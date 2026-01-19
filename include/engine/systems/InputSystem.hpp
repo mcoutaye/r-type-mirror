@@ -230,23 +230,32 @@ void InputSystem::updateJoystickInput()
 
 void InputSystem::applyInputToPlayers()
 {
-    auto players = _ecs.getEntitiesByComponents<PlayerController_t, Velocity_t>();
+    auto players = _ecs.getEntitiesByComponents<PlayerController_t, Velocity_t, Position_t>();
 
     for (Entity player : players) {
         auto* vel = _ecs.getComponent<Velocity_t>(player);
         auto* ctrl = _ecs.getComponent<PlayerController_t>(player);
-        if (!vel || !ctrl) continue;
+        auto* pos = _ecs.getComponent<Position_t>(player);
+        if (!vel || !ctrl || !pos) continue;
 
         vel->x = 0.f;
         vel->y = 0.f;
 
-        if (isActionActive(GameAction::MoveUp))
+        // World bounds (must match camera bounds)
+        const float WORLD_MIN_X = 0.f;
+        const float WORLD_MIN_Y = 0.f;
+        const float WORLD_MAX_X = 2200.f;
+        const float WORLD_MAX_Y = 1200.f;
+        const float PLAYER_MARGIN = 20.f;  // Distance from edge before stopping movement
+
+        // Check movement against world bounds
+        if (isActionActive(GameAction::MoveUp) && pos->y - PLAYER_MARGIN > WORLD_MIN_Y)
             vel->y = -m_playerSpeed;
-        if (isActionActive(GameAction::MoveDown))
+        if (isActionActive(GameAction::MoveDown) && pos->y + PLAYER_MARGIN < WORLD_MAX_Y)
             vel->y = m_playerSpeed;
-        if (isActionActive(GameAction::MoveLeft))
+        if (isActionActive(GameAction::MoveLeft) && pos->x - PLAYER_MARGIN > WORLD_MIN_X)
             vel->x = -m_playerSpeed;
-        if (isActionActive(GameAction::MoveRight))
+        if (isActionActive(GameAction::MoveRight) && pos->x + PLAYER_MARGIN < WORLD_MAX_X)
             vel->x = m_playerSpeed;
 
         ctrl->isShooting = isActionActive(GameAction::Shoot);

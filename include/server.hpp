@@ -18,7 +18,8 @@
     #include "engine/systems/CollisionSystem.hpp"
     #include "serializer.hpp"
     #include "engine/EntityFactory.hpp"
-    #include "engine/StageFactory.hpp"
+    // StageFactory no longer used server-side for obstacles/tiles
+    #include "engine/systems/RessourceManager.hpp"
 
 #define FRAME 60000
 
@@ -44,6 +45,7 @@ class Server {
         WaveSystem _waveSystem{_ecs};
         MoveSystem _movSys{_ecs};
         MovementSystem _movementSystem{_ecs};
+        CollisionSystem _collisionSystem{_ecs};
 
         enum class GameState { Waiting, InProgress, Finished };
         GameState _gameState = GameState::Waiting;
@@ -60,7 +62,10 @@ Server::Server(unsigned short port)
     _running = true;
     _nbPlayer = 0;
 
-    Factory::createScreenBorders(_ecs, 1920.f, 1080.f, 5.f);
+    // Initialize resources to ensure sprite rects are available server-side
+    ResourceManager::getInstance().initialize();
+
+    // Factory::createScreenBorders(_ecs, 1920.f, 1080.f, 5.f);
 
     std::vector<WaveData_t> level = {
         {3.0f,  "enemy", MovementPattern_t::Type::Linear, 6,  2000.f, 200.f},
@@ -69,14 +74,17 @@ Server::Server(unsigned short port)
     };
     _waveSystem.loadLevel(level);
 
-    // Obstacles custom
-    // Factory::createObstacle(_ecs, 800.f, 200.f, 100.f, 150.f);
-    // Factory::createObstacle(_ecs, 1200.f, 600.f, 80.f, 200.f);
-    // Factory::createObstacle(_ecs, 1500.f, 300.f, 120.f, 100.f);
-
-    // Grilles de tuiles destructibles
-    Factory::createTileGrid(_ecs, 600.f, 400.f, 3, 2, 50.f, 50.f, 50);
-    Factory::createTileGrid(_ecs, 1000.f, 500.f, 3, 2, 50.f, 50.f, 50);
+    // ============================================================
+    // CREATE DESTRUCTIBLE TILES (OBSTACLES)
+    // ============================================================
+    Factory::createDestructibleTile(_ecs, 400.f, 200.f, 150, "block");
+    Factory::createDestructibleTile(_ecs, 400.f, 500.f, 150, "block");
+    Factory::createDestructibleTile(_ecs, 400.f, 800.f, 150, "block");
+    Factory::createDestructibleTile(_ecs, 900.f, 250.f, 100, "block");
+    Factory::createDestructibleTile(_ecs, 900.f, 540.f, 100, "block");
+    Factory::createDestructibleTile(_ecs, 900.f, 830.f, 100, "block");
+    Factory::createDestructibleTile(_ecs, 1400.f, 350.f, 120, "block");
+    Factory::createDestructibleTile(_ecs, 1400.f, 700.f, 120, "block");
 }
 
 Server::~Server() {}
@@ -172,6 +180,7 @@ void Server::update()
         }
     }
 
+    // Shooting logic for players
     for (Entity e : _ecs.getEntitiesByComponents<PlayerController_t, Position_t>()) {
         auto* ctrl = _ecs.getComponent<PlayerController_t>(e);
         auto* pos = _ecs.getComponent<Position_t>(e);
@@ -183,7 +192,12 @@ void Server::update()
         }
         ctrl->shootCooldown -= 1.0f / 60.f;
     }
-
+ 
+    // ============================================================
+    // COLLISION DETECTION - Server authoritative using CollisionSystem
+    // Handles: projectile hits, contact damage, entity death
+    // ============================================================
+    _collisionSystem.update(1.0f / 60.f);
     for (Entity e : _ecs.getEntitiesByComponents<Enemy_t, Position_t>()) {
         auto* enemy = _ecs.getComponent<Enemy_t>(e);
         auto* pos = _ecs.getComponent<Position_t>(e);
@@ -196,7 +210,7 @@ void Server::update()
         // Si le cooldown est terminé, tirer
         if (enemy->canShoot && enemy->shootCooldown <= 0.f) {
             // Créer un projectile
-            Factory::createProjectile(_ecs, pos->x - 20.f, pos->y + 20.f, -600.f, 0.f, 2, 25, "", e);
+            Factory::createProjectile(_ecs, pos->x - 20.f, pos->y + 20.f, -800.f, 0.f, 2, 25, "bullet", e);
             enemy->shootCooldown = 2.0f; // Réinitialiser le cooldown
             _ecs.addComponent<JustShot_t>(e, {true}); // Marquer comme ayant tiré
         }
@@ -259,12 +273,15 @@ void Server::update()
 
         for (Entity t : targets) {
             if (p == t) continue;
+            
+            // Skip projectile's owner
+            if (proj && proj->ownerId >= 0 && proj->ownerId == (int)t) continue;
+            
             auto targetCol = _ecs.getComponent<Collider_t>(t);
             auto targetPos = _ecs.getComponent<Position_t>(t);
             auto targetHealth = _ecs.getComponent<Health_t>(t);
 
-            // Check teams (1=player, 2=enemy)
-            // if (projCol->team == targetCol->team) continue;
+            // Check teams (1=player, 2=enemy) - don't let projectiles hit their own team
             if (projCol->team == targetCol->team && targetCol->team != 0) continue;
 
             // AABB Collision
@@ -379,9 +396,9 @@ void Server::broadcast()
                 }
             }
 
-            // total size needed (Entity ID + Position + Health (current + max))
+            // total size needed (Entity ID + tick + entityType + Position + Health (current + max))
             // Note: We manually serialize health to exclude lastAttackerId and match EntityUpdate struct
-            size_t totalSize = sizeof(Entity) + sizeof(uint16_t) + sizeof(Position_t) + (2 * sizeof(int));
+            size_t totalSize = sizeof(Entity) + sizeof(uint16_t) + sizeof(uint8_t) + sizeof(Position_t) + (2 * sizeof(int));
             std::vector<uint8_t> packetData(totalSize);
             size_t offset = 0;
 
@@ -389,6 +406,21 @@ void Server::broadcast()
             offset += sizeof(Entity);
             std::memcpy(packetData.data() + offset, &tickToSend, sizeof(uint16_t));
             offset += sizeof(uint16_t);
+            
+            // Determine entity type: 0=player, 1=enemy, 2=projectile, 3=destructible tile
+            uint8_t entityType = 0; // Default to player
+            if (_ecs.hasComponent<PlayerController_t>(e)) {
+                entityType = 0; // Player
+            } else if (_ecs.hasComponent<MovementPattern_t>(e)) {
+                entityType = 1; // Enemy (has movement pattern)
+            } else if (_ecs.hasComponent<Projectile_t>(e)) {
+                entityType = 2; // Projectile
+            } else if (_ecs.hasComponent<DestructibleTile_t>(e)) {
+                entityType = 3; // Destructible tile
+            }
+            std::memcpy(packetData.data() + offset, &entityType, sizeof(uint8_t));
+            offset += sizeof(uint8_t);
+            
             std::memcpy(packetData.data() + offset, pos, sizeof(Position_t));
             offset += sizeof(Position_t);
 

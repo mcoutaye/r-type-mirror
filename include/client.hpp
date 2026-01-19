@@ -31,7 +31,6 @@ public:
     void render();
     void processInput();
 
-    Timer _timer;
     bool _running = true;
 
 private:
@@ -57,6 +56,7 @@ private:
     ECS _ecs;
     sf::RenderWindow _window;
     sf::View _defaultView;  // Vue par défaut pour les menus
+    Timer _timer;
 
     InputSystem _inputSystem{_ecs};
     RenderSystem _renderSystem{_ecs, _window, _resourceManager};
@@ -65,6 +65,8 @@ private:
     MenuSystem _menuSystem{_ecs, _inputSystem};
     ParticleSystem _particleSystem{_ecs, 3000};
     CameraSystem _cameraSystem{_ecs, _window};
+
+    bool _debugHitboxes = false;
 
     enum class GameState { Menu, InGame };
     GameState _gameState = GameState::Menu;
@@ -111,6 +113,11 @@ Client::Client(sf::IpAddress serverIp)
     _timer = Timer();
     _running = true;
 
+    // Initialize resources on client side for rendering
+    _resourceManager.initialize();
+
+    //     // === CRÉATION DU STAGE ===
+    // Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
     std::cout << "[Client] Initialisation du SceneManager..." << std::endl;
     _sceneManager = std::make_unique<SceneManager>();
     _sceneManager->addScene("main_menu");
@@ -521,6 +528,9 @@ void Client::initializeMenus()
 
 void Client::initializeGame()
 {
+    // Clean stars that already drifted off-screen before recreating the field
+    Factory::destroyStarfield(_ecs, 1920.f, 1080.f, 50.f);
+
     // Crée le starfield pour le jeu
     Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
 
@@ -539,6 +549,122 @@ void Client::update()
     _menuSystem.update(dt);
 
     std::string activeSceneId = _sceneManager->getActiveSceneId();
+
+    // ============================================================
+    // KILL ENTITIES WITH NO HEALTH (client-side cleanup)
+    // Server sends death notifications, but we also check locally
+    // for responsiveness and to handle edge cases
+    // ============================================================
+    auto entitiesWithHealth = _ecs.getEntitiesByComponents<Health_t>();
+    for (Entity e : entitiesWithHealth) {
+        auto* health = _ecs.getComponent<Health_t>(e);
+        if (health && health->current <= 0) {
+            _ecs.killEntity(e);
+            
+            // Remove from mapping if exists
+            for (auto it = serverToClientEntityRelation.begin(); it != serverToClientEntityRelation.end(); ++it) {
+                if (it->second == e) {
+                    serverToClientEntityRelation.erase(it);
+                    break;
+                }
+            }
+            
+            // Reset local player entity reference if it was the player
+            if (e == _localPlayerEntity) {
+                _localPlayerEntity = -1;
+            }
+        }
+    }
+
+    // Remove entities out of bounds
+    auto entities = _ecs.getEntitiesByComponents<Position_t>();
+    for (Entity e : entities) {
+        // Don't kill the local player if they go out of bounds (let server handle it or block movement)
+        if (e == _localPlayerEntity) continue;
+
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        if (pos && (pos->x < -100.f || pos->x > 2200.f || pos->y < -100.f || pos->y > 1200.f)) {
+            // Kill stars that go off-screen to prevent memory leak
+            if (!_ecs.hasComponent<Star_t>(e)) {
+                _ecs.killEntity(e);
+            }
+        }
+    }
+
+    // Destroy stars that go off-screen to prevent accumulation and MAX_ENTITIES assertion failure
+    auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
+    for (Entity e : stars) {
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        if (pos && pos->x < -50.f) {  // Star has left the screen
+            _ecs.killEntity(e);
+        }
+    }
+    
+    // Recreate missing stars to maintain starfield count
+    // This replaces old stars that went off-screen with new ones
+    stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
+    if (stars.size() < 150) {  // Target is 150 stars (from initializeGame)
+        int starsToDeclare = 150 - stars.size();
+        for (int i = 0; i < starsToDeclare; ++i) {
+            float x = 1930.f;  // Spawn at right edge
+            float y = static_cast<float>(rand() % 1080);
+            Factory::createStar(_ecs, x, y, 10);  // Use same layer count as initializeGame
+        }
+    }
+
+    // ============================================================
+    // CLIENT-SIDE COLLISION: Visual prediction only
+    // Remove projectiles that appear to hit targets for smoother visuals
+    // Server handles actual damage and authoritative collision detection
+    // ============================================================
+    auto projectiles = _ecs.getEntitiesByComponents<Projectile_t, Position_t, Collider_t>();
+    auto targets = _ecs.getEntitiesByComponents<Position_t, Collider_t>();
+
+    for (Entity p : projectiles) {
+        auto projPos = _ecs.getComponent<Position_t>(p);
+        auto projCol = _ecs.getComponent<Collider_t>(p);
+        auto projData = _ecs.getComponent<Projectile_t>(p);
+
+        if (!projPos || !projCol) continue;
+
+        for (Entity t : targets) {
+            if (p == t) continue;
+            if (t == _localPlayerEntity) continue;  // Don't predict hits on local player
+            
+            // Skip projectile's owner (prevents projectile from disappearing immediately)
+            if (projData && projData->ownerId >= 0 && projData->ownerId == (int)t) continue;
+            
+            if (_ecs.hasComponent<Projectile_t>(t)) continue;  // Don't check projectile vs projectile
+
+            auto targetPos = _ecs.getComponent<Position_t>(t);
+            auto targetCol = _ecs.getComponent<Collider_t>(t);
+
+            if (!targetPos || !targetCol) continue;
+
+            // Skip if projectile and target are on the same team (and not neutral team 0)
+            if (projCol && projCol->team == targetCol->team && targetCol->team != 0) continue;
+
+            // Center-based AABB check to match server CollisionSystem
+            float left1 = projPos->x - projCol->width / 2.f;
+            float right1 = projPos->x + projCol->width / 2.f;
+            float top1 = projPos->y - projCol->height / 2.f;
+            float bottom1 = projPos->y + projCol->height / 2.f;
+
+            float left2 = targetPos->x - targetCol->width / 2.f;
+            float right2 = targetPos->x + targetCol->width / 2.f;
+            float top2 = targetPos->y - targetCol->height / 2.f;
+            float bottom2 = targetPos->y + targetCol->height / 2.f;
+
+            if (left1 < right2 && right1 > left2 &&
+                top1 < bottom2 && bottom1 > top2) {
+
+                // Visual prediction: remove projectile immediately for smooth gameplay
+                // Server will send authoritative update about actual hit
+                _ecs.killEntity(p);
+                break;
+            }
+        }
+    }
 
     // === TOGGLE PAUSE (fonctionne en jeu et dans le menu pause) ===
     if (_inputSystem.wasActionPressed(GameAction::Pause)) {
@@ -626,22 +752,39 @@ void Client::update()
         for (Entity p : projectiles) {
             auto* projPos = _ecs.getComponent<Position_t>(p);
             auto* projCol = _ecs.getComponent<Collider_t>(p);
+            auto* projData = _ecs.getComponent<Projectile_t>(p);
             if (!projPos || !projCol) continue;
 
             for (Entity t : targets) {
                 if (p == t) continue;
                 if (t == _localPlayerEntity) continue;  // Le serveur gère les dommages sur le joueur
-                if (_ecs.hasComponent<Projectile_t>(t)) continue;  // Projectile vs projectile → ignoré ici
+                
+                // Skip projectile's owner (prevents projectile from disappearing immediately)
+                if (projData && projData->ownerId >= 0 && projData->ownerId == (int)t) continue;
+                
+                // Skip projectile-to-projectile collisions (different teams can coexist)
+                if (_ecs.hasComponent<Projectile_t>(t)) continue;
 
                 auto* targetPos = _ecs.getComponent<Position_t>(t);
                 auto* targetCol = _ecs.getComponent<Collider_t>(t);
                 if (!targetPos || !targetCol) continue;
 
-                // Test AABB simple
-                if (projPos->x < targetPos->x + targetCol->width &&
-                    projPos->x + projCol->width > targetPos->x &&
-                    projPos->y < targetPos->y + targetCol->height &&
-                    projPos->y + projCol->height > targetPos->y) {
+                // Skip if projectile and target are on the same team (and not neutral team 0)
+                if (projCol && projCol->team == targetCol->team && targetCol->team != 0) continue;
+
+                // Test AABB simple (center-based collision)
+                float projLeft = projPos->x - projCol->width / 2.f;
+                float projRight = projPos->x + projCol->width / 2.f;
+                float projTop = projPos->y - projCol->height / 2.f;
+                float projBottom = projPos->y + projCol->height / 2.f;
+
+                float targetLeft = targetPos->x - targetCol->width / 2.f;
+                float targetRight = targetPos->x + targetCol->width / 2.f;
+                float targetTop = targetPos->y - targetCol->height / 2.f;
+                float targetBottom = targetPos->y + targetCol->height / 2.f;
+
+                if (projLeft < targetRight && projRight > targetLeft &&
+                    projTop < targetBottom && projBottom > targetTop) {
                     _ecs.killEntity(p);
                     // Optionnel : jouer un son d'impact ici si tu veux un feedback immédiat
                     // Entity hitSound = _ecs.createEntity();
@@ -668,13 +811,34 @@ void Client::applyUpdate(EntityUpdate &update)
         entity = _ecs.createEntity();
         serverToClientEntityRelation[update.entityId] = entity;
 
-        // Suppose entity is Player, but can be everything else.
-        // should add EntityType to EntityUpdate later.
+        // Determine texture name based on entity type
+        std::string textureName = "player";  // Default to player
+        if (update.entityType == 1) {      // Enemy
+            textureName = "enemy";
+        } else if (update.entityType == 2) {  // Projectile
+            textureName = "bullet";
+        } else if (update.entityType == 3) {  // Destructible tile
+            textureName = "block";
+        }
+
+        ResourceManager& rm = ResourceManager::getInstance();
+        sf::IntRect spriteRect = rm.getSpriteRect(textureName);
+
+        // Scale: shrink tiles visually; other entities keep current normalization
+        float scale = 0.5f;            // Default for players/enemies/projectiles
+        if (update.entityType == 3) {
+            scale = 0.5f;             // Destructible tiles scaled down (was 1.0)
+        }
+
+        // Create Collider based on entity type - MUST match server-side dimensions
         _ecs.addComponents<Position_t, Health_t, Drawable_t, Collider_t>(entity,
             {update.position.x, update.position.y},
             {update.health.current, update.health.max},
-            {"", sf::IntRect(0, 0, 64, 64), 10, true, 1.f, 0.f},
-            Collider_t{64.f, 64.f, true, 2, 0});
+            Drawable_t{textureName, {spriteRect}, 0, 0.1f, 0.0f, true, 10, true, scale, 0.f},
+            (update.entityType == 0) ? Factory::createPlayerCollider() :
+            (update.entityType == 1) ? Factory::createEnemyCollider() :
+            (update.entityType == 2) ? Factory::createProjectileCollider(2, 0) :
+            Factory::createTileCollider());
 
     } else {
         entity = serverToClientEntityRelation[update.entityId];
@@ -690,6 +854,11 @@ void Client::applyUpdate(EntityUpdate &update)
     if (health) {
         health->current = update.health.current;
         health->max = update.health.max;
+
+        if (health->current > health->max) {
+            health->current = health->max;
+        }
+
     }
 
     if (update.tick == MAGIC_TICK_LOCAL_PLAYER) {
@@ -733,19 +902,22 @@ void Client::applyUpdate(EntityUpdate &update)
             std::cout << "I killed entity " << update.entityId << "!" << std::endl;
         }
     } else if (update.tick == MAGIC_TICK_SHOOT_PLAYER || update.tick == MAGIC_TICK_SHOOT_ENEMY) {
-        if (entity != _localPlayerEntity) {  // On ne joue pas le son si c'est notre propre tir (déjà joué localement)
+        // SHOOT message contains shooter's entity ID, so create projectile at shooter position
+        if (entity != _localPlayerEntity) {  // Don't create duplicate for our own shots
             if (update.tick == MAGIC_TICK_SHOOT_PLAYER) {
-                Factory::createProjectile(_ecs,
+                // Player shooting: projectile spawns slightly in front, moves right
+                Entity projectile = Factory::createProjectile(_ecs,
                     update.position.x + 64.f, update.position.y + 20.f,
-                    800.f, 0.f, 1, 25, "",
-                    -1, "shoot.ogg");
+                    800.f, 0.f, 1, 25, "bullet",
+                    entity, "shoot.ogg");  // Set ownerId to shooter's entity
                 // Particules de tir joueur
                 _particleSystem.emitTrail(update.position.x + 64.f, update.position.y + 20.f, 0.f, 5);
             } else {
-                Factory::createProjectile(_ecs,
+                // Enemy shooting: projectile spawns in front, moves left
+                Entity projectile = Factory::createProjectile(_ecs,
                     update.position.x - 20.f, update.position.y + 20.f,
-                    -800.f, 0.f, 2, 25, "",
-                    -1, "shoot.ogg");
+                    -800.f, 0.f, 2, 25, "bullet",
+                    entity, "shoot.ogg");  // Set ownerId to shooter's entity
                 // Particules de tir ennemi (rouge)
                 _particleSystem.emitCustom(update.position.x - 20.f, update.position.y + 20.f, 
                     5, 80.f, 30.f, 0.2f, 
@@ -769,6 +941,8 @@ void Client::applyUpdate(EntityUpdate &update)
 
 void Client::render()
 {
+    if (_debugHitboxes) _renderSystem.debugON(); else _renderSystem.debugOFF();
+    _renderSystem.update(0); // dt is not used in render system
     std::string activeSceneId = _sceneManager->getActiveSceneId();
     
     // Clear en premier
@@ -809,7 +983,13 @@ void Client::processInput()
 
     InputState inputs = {0, 0, 0, 0, 0, 0};
     inputs.tick = _timer.getCurrentFrame();
-    // Ne pas appeler _inputSystem.update(0) ici ! Déjà fait dans Client::update()
+    _inputSystem.update(0);
+
+    // Client-only toggle for collider debug
+    if (_inputSystem.wasActionPressed(GameAction::ToggleDebug)) {
+        _debugHitboxes = !_debugHitboxes;
+    }
+
     if (_inputSystem.isActionActive(GameAction::MoveUp))
         inputs.up = 1;
     if (_inputSystem.isActionActive(GameAction::MoveDown))
@@ -828,7 +1008,7 @@ void Client::processInput()
                     Factory::createProjectile(_ecs,
                         pos->x + 64.f, pos->y + 20.f,
                         800.f, 0.f,
-                        1, 25, "",
+                        1, 25, "bullet",
                         -1, "shoot.ogg");  // <-- le son est ajouté via la factory
 
                     // Particules de tir

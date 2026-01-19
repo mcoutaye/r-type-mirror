@@ -6,6 +6,8 @@
 */
 
 #include "client.hpp"
+#include "texturePacker.hpp"
+
 #include <iostream>
 
 int main(int ac, char **av)
@@ -28,7 +30,6 @@ int main(int ac, char **av)
         std::cout << "[R-TYPE CLIENT] Démarrage de la boucle principale..." << std::endl;
 
         while (client._running) {
-            client._timer.updateClock();
             client.update();       // Met à jour les inputs et la logique du jeu
             client.processInput(); // Traite les events SFML et envoie les inputs au serveur
             client.render();

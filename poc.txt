@@ -1,0 +1,85 @@
+# Technical Architecture & Technology Choice: R-Type Project
+
+**Project:** R-Type Mirror
+**Date:** December 18, 2025
+**Document Type:** Proof of Concept (POC) & Architectural Decision Record
+
+---
+
+## 1. Executive Summary
+This document details the architectural decisions for the R-Type project, specifically the choice of **SFML** over SDL2, Raylib, and Qt. It also justifies the use of an **Entity Component System (ECS)** architecture and outlines the networking, security, and documentation strategies.
+
+## 2. Technology Selection: Graphics & Networking
+
+We compared SFML against three major alternatives. The decision matrix below highlights why SFML is the optimal choice for a C++20 multiplayer game.
+
+| Feature | **SFML** (Selected) | SDL2 | Raylib | Qt 6 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Language** | **C++ (Native)** | C | C | C++ (Custom Framework) |
+| **Paradigm** | **OOP (RAII)** | Procedural | Procedural / Immediate | Event-Driven (Signals/Slots) |
+| **Networking** | **Built-in (UDP/TCP)** | None (Requires Boost/Sockets) | None (Requires external lib) | Built-in (Heavy) |
+| **Performance** | **High (Retained Mode)** | High | High (Immediate Mode) | Medium (Overhead) |
+| **Architecture Fit** | **Perfect for ECS** | Requires Wrappers | Conflicts with State Mgmt | Enforces Qt Architecture |
+
+**Key Advantages of SFML:**
+1.  **Unified Stack:** Handles Graphics, Audio, and Networking in one library.
+2.  **Modern C++:** Compatible with C++20 smart pointers and memory management.
+3.  **Protocol Safety:** `sf::Packet` handles Endianness automatically, ensuring cross-platform compatibility.
+
+## 3. Architectural Pattern: ECS vs. OOP
+
+We chose an **Entity Component System (ECS)** over traditional Object-Oriented Programming (OOP).
+
+| Aspect | Traditional OOP | **ECS (Selected)** |
+| :--- | :--- | :--- |
+| **Structure** | Inheritance Trees (`Enemy` inherits `Movable`) | Composition (`Entity` has `Position`, `Sprite`) |
+| **Problem** | "Diamond of Death" (Multiple Inheritance) | Flexible composition of behaviors |
+| **Memory** | Scattered (Cache Misses) | **Contiguous Arrays (Cache Friendly)** |
+| **Coupling** | Logic & Data tightly bound | Logic (Systems) separated from Data (Components) |
+| **Network** | Complex Serialization (vtables) | **Trivial Serialization (POD Structs)** |
+
+## 4. Algorithms & Data Structures
+
+### Core Algorithms
+*   **Collision Detection:** Axis-Aligned Bounding Box (AABB) using `sf::FloatRect::intersects`. Complexity: $O(N^2)$ (acceptable for $N < 2048$).
+*   **System Iteration:** Linear scan $O(N)$ over bitset signatures to match entities with systems.
+
+### Data Structures
+*   **`std::bitset`:** Fast $O(1)$ component signature checks.
+*   **`std::vector`:** Contiguous memory storage for components to maximize CPU cache hits.
+*   **`SafeQueue`:** Thread-safe queue (Mutex + Condition Variable) for buffering UDP packets.
+
+## 5. Network Protocol & Reliability
+
+The project uses a **Hybrid UDP/TCP Protocol** (documented in `rfcprotocol.txt`).
+
+### Strategy
+*   **UDP (Gameplay):** Used for high-frequency data (60Hz).
+    *   *Payload:* Inputs (Client) and Position Updates (Server).
+    *   *Reliability:* Packet loss is accepted; newer packets replace older ones.
+*   **TCP (Management):** Used for critical events.
+    *   *Payload:* Login, Lobby Join, Disconnect.
+    *   *Reliability:* Guaranteed delivery.
+
+### Serialization
+*   **Format:** Binary Packed Structs (Big-Endian).
+*   **Tools:** `sf::Packet` for seamless serialization of C++ primitives.
+
+## 6. Security & Integrity
+
+| Vulnerability | Risk | Mitigation Strategy |
+| :--- | :--- | :--- |
+| **UDP Spoofing** | High | **Source Validation:** Check IP/Port against registered Client ID. |
+| **Replay Attacks** | Medium | **Sequence Numbers:** Discard packets with old sequence IDs. |
+| **Speed Hacks** | Medium | **Server Authority:** Server validates max movement speed per frame. |
+
+## 7. Documentation & Deployment
+
+### Documentation Standards
+*   **Architecture:** Markdown (`.md`) files in repository root.
+*   **Protocol:** RFC-style text file (`rfcprotocol.txt`) for strict specification.
+*   **Code:** Doxygen headers in `.hpp` files.
+
+### Deployment
+*   **Build System:** CMake with `FetchContent` for automatic dependency management.
+*   **CI/CD:** GitHub Actions to build and run unit tests on push.

@@ -7,68 +7,128 @@
 #pragma once
 #include "ecs.hpp"
 #include "engine/systems/Components.hpp"
+#include "engine/systems/RessourceManager.hpp"
 #include "engine/Menu.hpp"
 #include <cstring>
 #include <string>
 
 namespace Factory {
 
-inline Drawable_t createDrawable(const std::string& textureId, sf::IntRect rect, int layer, bool visible = true, float scale = 1.f, float rotation = 0.f)
-{
-    Drawable_t d;
-    std::memset(d.textureId, 0, sizeof(d.textureId));
-    std::strncpy(d.textureId, textureId.c_str(), sizeof(d.textureId) - 1);
-    d.rect = rect;
-    d.layer = layer;
-    d.visible = visible;
-    d.scale = scale;
-    d.rotation = rotation;
-    return d;
-}
+    // ============================================================
+    // COLLIDER SIZE HELPERS - Ensure server/client consistency
+    // ============================================================
+    inline Collider_t createPlayerCollider() {
+        return Collider_t{64.f, 64.f, true, 1, 50};
+    }
 
-inline PlaySound_t createSound(const std::string& soundId, float volume = 100.f, float pitch = 1.0f)
-{
-    PlaySound_t s;
-    std::memset(s.soundId, 0, sizeof(s.soundId));
-    std::strncpy(s.soundId, soundId.c_str(), sizeof(s.soundId) - 1);
-    s.volume = volume;
-    s.pitch = pitch;
-    return s;
-}
+    inline Collider_t createEnemyCollider() {
+        return Collider_t{64.f, 64.f, true, 2, 30};
+    }
 
-Entity createPlayer(ECS& ecs, float x, float y, uint8_t playerId, const std::string& textureId)
-{
-    Entity player = ecs.createEntity();
-    ecs.addComponents
-        <Position_t, Velocity_t, PlayerController_t, Drawable_t, Collider_t, Health_t, SendUpdate_t>
-        (player,
-         Position_t{x, y},
-         Velocity_t{0.f, 0.f},
-         PlayerController_t{playerId, false},
-         createDrawable(textureId, {0, 0, 64, 64}, 10, true, 1, 0.f),
-         Collider_t{64.f, 64.f, true, 1, 50},
-         Health_t{200, 200},
-         SendUpdate_t{true});
-    return player;
-}
+    inline Collider_t createProjectileCollider(uint8_t team, int damage) {
+        return Collider_t{16.f, 8.f, false, team, damage};
+    }
 
-Entity createProjectile(ECS& ecs, float x, float y, float velocityX, float velocityY,
-                        uint8_t team, int damage, const std::string& textureId,
-                        int ownerId = -1, const std::string& shootSound = "shoot.ogg")
-{
-    Entity bullet = ecs.createEntity();
-    ecs.addComponents
-        <Position_t, Velocity_t, Drawable_t, Collider_t, Projectile_t, PlaySound_t>
-        (bullet,
-         Position_t{x, y},
-         Velocity_t{velocityX, velocityY},
-         createDrawable(textureId, {0, 0, 16, 8}, 20, true, 1.f, 0.f),
-         Collider_t{16.f, 8.f, false, team, damage},
-         Projectile_t{std::abs(velocityX), damage, ownerId},
-         createSound(shootSound, 80.f, 1.0f)); // Son de tir joué immédiatement
+    inline Collider_t createTileCollider() {
+        // Block sprite rendered at 0.5 scale; shrink collider accordingly to keep visuals and physics aligned
+        constexpr float baseW = 259.f;
+        constexpr float baseH = 258.f;
+        constexpr float tileScale = 0.5f;
+        return Collider_t{baseW * tileScale, baseH * tileScale, true, 0, 0};
+    }
 
-    return bullet;
-}
+    // Forward declare createSound to use in createProjectile
+    inline PlaySound_t createSound(const std::string& soundId, float volume = 100.f, float pitch = 1.0f);
+
+    // Crée un Drawable avec une seule frame (pas d'animation)
+    inline Drawable_t createDrawable(const std::string& textureName, sf::IntRect rect, int layer, bool visible = true, float scale = 1.f, float rotation = 0.f)
+    {
+        Drawable_t d;
+        d.textureName = textureName;
+        d.frames.push_back(rect);  // Ajoute le rect comme première frame
+        d.currentFrameIndex = 0;
+        d.animationSpeed = 0.1f;
+        d.frameTimer = 0.0f;
+        d.loop = true;
+        d.layer = layer;
+        d.visible = visible;
+        d.scale = scale;
+        d.rotation = rotation;
+        return d;
+    }
+
+    // Crée un Drawable avec plusieurs frames (animation)
+    inline Drawable_t createAnimatedDrawable(const std::string& textureName, const std::vector<sf::IntRect>& frames, 
+                                             float animationSpeed, bool loop, int layer, 
+                                             bool visible = true, float scale = 1.f, float rotation = 0.f)
+    {
+        Drawable_t d;
+        d.textureName = textureName;
+        d.frames = frames;
+        d.currentFrameIndex = 0;
+        d.animationSpeed = animationSpeed;
+        d.frameTimer = 0.0f;
+        d.loop = loop;
+        d.layer = layer;
+        d.visible = visible;
+        d.scale = scale;
+        d.rotation = rotation;
+        return d;
+    }
+
+    Entity createPlayer(ECS& ecs, float x, float y, uint8_t playerId, const std::string& textureName)
+    {
+        Entity player = ecs.createEntity();
+
+        // On server side, ResourceManager might not be initialized, so use default rect
+        sf::IntRect spriteRect{0, 0, 124, 64};
+        try {
+            ResourceManager& rm = ResourceManager::getInstance();
+            spriteRect = rm.getSpriteRect(textureName);
+        } catch (...) {
+            // Server side - ResourceManager not initialized, use default
+        }
+
+        ecs.addComponents
+            <Position_t, Velocity_t, PlayerController_t, Drawable_t, Collider_t, Health_t, SendUpdate_t>
+            (player,
+                Position_t{x, y},
+                Velocity_t{0.f, 0.f},
+                PlayerController_t{playerId, false},
+                Factory::createDrawable(textureName, spriteRect, 10, true, 1.f, 0.f),
+                createPlayerCollider(),
+                Health_t{200, 200},
+                SendUpdate_t{true});
+        return player;
+    }
+
+    Entity createProjectile(ECS& ecs, float x, float y, float velocityX, float velocityY,
+                            uint8_t team, int damage, const std::string& textureName = "bullet", int ownerId = -1,
+                            const std::string& shootSound = "shoot.ogg")
+    {
+        Entity bullet = ecs.createEntity();
+
+        // On server side, ResourceManager might not be initialized, so use default rect
+        sf::IntRect spriteRect{0, 0, 16, 8};
+        try {
+            ResourceManager& rm = ResourceManager::getInstance();
+            spriteRect = rm.getSpriteRect(textureName);
+        } catch (...) {
+            // Server side - ResourceManager not initialized, use default
+        }
+
+        ecs.addComponents
+            <Position_t, Velocity_t, Drawable_t, Collider_t, Projectile_t, PlaySound_t>
+            (bullet,
+                Position_t{x, y},
+                Velocity_t{velocityX, velocityY},
+                Factory::createDrawable(textureName, spriteRect, 20, true, 0.1f, 0.f),
+                createProjectileCollider(team, damage),
+                Projectile_t{velocityX, damage, ownerId},
+                createSound(shootSound, 80.f, 1.0f));
+                // SendUpdate_t{true});
+        return bullet;
+    }
 
 Entity createEnemy(ECS& ecs, float x, float y, MovementPattern_t::Type movementType) {
     Entity enemy = ecs.createEntity();
@@ -100,14 +160,23 @@ Entity createEnemy(ECS& ecs, float x, float y, MovementPattern_t::Type movementT
             break;
     }
 
+    // On server side, ResourceManager might not be initialized, so use default rect
+    sf::IntRect spriteRect{0, 0, 64, 64};
+    try {
+        ResourceManager& rm = ResourceManager::getInstance();
+        spriteRect = rm.getSpriteRect("enemy");
+    } catch (...) {
+        // Server side - ResourceManager not initialized, use default
+    }
+
     // Créer l'ennemi avec tous les composants nécessaires
     ecs.addComponents<Position_t, Velocity_t, Health_t, Collider_t, Drawable_t, Enemy_t, MovementPattern_t, SendUpdate_t>(
         enemy,
         Position_t{x, y},  // Position
         Velocity_t{0.f, 0.f},  // Vitesse initiale
         Health_t{100, 100},  // Santé (current, max)
-        Collider_t{64.f, 64.f, true, 2},  // Collider (largeur, hauteur, solide, team=2)
-        Drawable_t{"enemy.png", sf::IntRect(0, 0, 64, 64), 10, true, 1.f, 0.f},  // Drawable
+        createEnemyCollider(),  // Collider (use helper function)
+        Factory::createDrawable("enemy", spriteRect, 10, true, 1.f, 0.f),  // Drawable (use helper function)
         Enemy_t{},  // Enemy_t
         std::move(movement),  // MovementPattern_t
         SendUpdate_t{}  // SendUpdate_t
@@ -116,8 +185,6 @@ Entity createEnemy(ECS& ecs, float x, float y, MovementPattern_t::Type movementT
     return enemy;
 }
 
-
-// Optionnel : fonction pour jouer un son d'explosion sur une entité existante (ex: mort)
 void playDeathSound(ECS& ecs, Entity entity, const std::string& soundId = "enemy_explosion.wav", float volume = 90.f)
 {
     if (ecs.hasComponent<PlaySound_t>(entity)) {
@@ -125,6 +192,16 @@ void playDeathSound(ECS& ecs, Entity entity, const std::string& soundId = "enemy
         return;
     }
     ecs.addComponent(entity, createSound(soundId, volume));
+}
+
+inline PlaySound_t createSound(const std::string& soundId, float volume, float pitch)
+{
+    PlaySound_t s;
+    std::memset(s.soundId, 0, sizeof(s.soundId));
+    std::strncpy(s.soundId, soundId.c_str(), sizeof(s.soundId) - 1);
+    s.volume = volume;
+    s.pitch = pitch;
+    return s;
 }
 
 inline Text_t createText(
@@ -196,6 +273,30 @@ void createMenu(ECS& ecs, const Menu& menu)
     }
 }
 
+Entity createDestructibleTile(ECS& ecs, float x, float y, int health, const std::string& textureName)
+    {
+        Entity tile = ecs.createEntity();
+        
+        // On server side, ResourceManager might not be initialized, so use default rect for 'block' sprite
+        sf::IntRect spriteRect{0, 0, 259, 258};  // Default to 'block' sprite size from atlas
+        try {
+            ResourceManager& rm = ResourceManager::getInstance();
+            spriteRect = rm.getSpriteRect(textureName);
+        } catch (...) {
+            // Server side - ResourceManager not initialized, use default
+        }
+
+        ecs.addComponents<Position_t, Drawable_t, Collider_t, Health_t, DestructibleTile_t, SendUpdate_t>
+            (tile,
+                Position_t{x, y},
+                Factory::createDrawable(textureName, spriteRect, 5, true, 1.f, 0.f),
+                createTileCollider(),
+                Health_t{health, health},
+                DestructibleTile_t{true},
+                SendUpdate_t{true});
+        return tile;
+    }
+
 // Supprime un menu existant
 void clearMenu(ECS& ecs)
 {
@@ -230,7 +331,7 @@ inline Entity createPlatformerPlayer(ECS& ecs, float x, float y, const std::stri
         RigidBody_t{1.f, 1.f, 0.2f, 0.f, true, false, false, 5.f},  // masse, gravité, drag (↑ pour moins glisser), bounce, useGravity, kinematic, grounded, groundCheck
         Jumper_t{650.f, 2, 0, true, 0.15f, 0.f, 0.1f, 0.f},  // jumpForce (↑ pour sauter plus haut), maxJumps, currentJumps, canJump, coyoteTime, coyoteCounter, jumpBuffer, bufferCounter
         BoxCollider_t{48.f, 64.f, 8.f, 0.f, false, 0, 0xFFFFFFFF},  // width, height, offsetX, offsetY, trigger, layer, mask
-        createDrawable(textureId, {0, 0, 64, 64}, 10, true, 1.f, 0.f)
+        Factory::createDrawable(textureId, {0, 0, 64, 64}, 10, true, 1.f, 0.f)
         // PAS de PlayerController_t ici ! Le platformer gère ses inputs manuellement.
     );
     return player;
@@ -246,7 +347,7 @@ inline Entity createPlatform(ECS& ecs, float x, float y, float width, float heig
         Position_t{x, y},
         Platform_t{oneWay, false, 1.f, {0.f, 0.f}},
         BoxCollider_t{width, height, 0.f, 0.f, false, 1, 0xFFFFFFFF},
-        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
+        Factory::createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
         RigidBody_t{100.f, 0.f, 0.f, 0.f, false, true, false, 0.f}  // Kinematic = ne bouge pas
     );
     return platform;
@@ -263,7 +364,7 @@ inline Entity createMovingPlatform(ECS& ecs, float x, float y, float width, floa
         Velocity_t{velX, velY},
         Platform_t{false, false, 1.f, {velX, velY}},
         BoxCollider_t{width, height, 0.f, 0.f, false, 1, 0xFFFFFFFF},
-        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
+        Factory::createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
         RigidBody_t{100.f, 0.f, 0.f, 0.f, false, true, false, 0.f}
     );
     return platform;
@@ -278,7 +379,7 @@ inline Entity createWall(ECS& ecs, float x, float y, float width, float height,
         wall,
         Position_t{x, y},
         BoxCollider_t{width, height, 0.f, 0.f, false, 1, 0xFFFFFFFF},
-        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
+        Factory::createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 5, true, 1.f, 0.f),
         RigidBody_t{1000.f, 0.f, 0.f, 0.f, false, true, false, 0.f}
     );
     return wall;
@@ -294,7 +395,7 @@ inline Entity createLadder(ECS& ecs, float x, float y, float width, float height
         Position_t{x, y},
         Ladder_t{climbSpeed},
         BoxCollider_t{width, height, 0.f, 0.f, true, 2, 0xFFFFFFFF},  // Trigger
-        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 4, true, 1.f, 0.f)
+        Factory::createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 4, true, 1.f, 0.f)
     );
     return ladder;
 }
@@ -309,7 +410,7 @@ inline Entity createTeleporter(ECS& ecs, float x, float y, float width, float he
         teleporter,
         Position_t{x, y},
         BoxCollider_t{width, height, 0.f, 0.f, true, 3, 0xFFFFFFFF},
-        createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 3, true, 1.f, 0.f)
+        Factory::createDrawable(textureId, {0, 0, static_cast<int>(width), static_cast<int>(height)}, 3, true, 1.f, 0.f)
     );
     
     // Ajoute le TriggerZone après car il contient une lambda
@@ -366,7 +467,7 @@ inline Entity createCheckpoint(ECS& ecs, float x, float y, const std::string& te
         checkpoint,
         Position_t{x, y},
         BoxCollider_t{64.f, 64.f, 0.f, 0.f, true, 5, 0xFFFFFFFF},
-        createDrawable(textureId, {0, 0, 64, 64}, 3, true, 1.f, 0.f)
+        Factory::createDrawable(textureId, {0, 0, 64, 64}, 3, true, 1.f, 0.f)
     );
     
     TriggerZone_t trigger;
@@ -388,7 +489,7 @@ inline Entity createCollectible(ECS& ecs, float x, float y, const std::string& t
         collectible,
         Position_t{x, y},
         BoxCollider_t{32.f, 32.f, 0.f, 0.f, true, 6, 0xFFFFFFFF},
-        createDrawable(textureId, {0, 0, 32, 32}, 8, true, 1.f, 0.f)
+        Factory::createDrawable(textureId, {0, 0, 32, 32}, 8, true, 1.f, 0.f)
     );
     
     TriggerZone_t trigger;

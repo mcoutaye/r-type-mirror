@@ -10,6 +10,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include "engine/Menu.hpp"
 #include <string>
+#include <vector>
 #include <functional>
 #include <cstdint>
 
@@ -29,7 +30,8 @@ enum class GameAction {
     Pause,      // Toggle pause/resume en jeu
     MenuUp,
     MenuDown,
-    MenuSelect
+    MenuSelect,
+    ToggleDebug
 };
 
 // Should send updates to clients or not
@@ -50,9 +52,13 @@ typedef struct Velocity_s {
 
 // Render
 typedef struct Drawable_s {
-    char textureId[64];      // "ship.png", "bullet.png"
-    sf::IntRect rect = {0, 0, 64, 64};  // frame actuelle
-    int layer = 0;              // 0=background, 10=player, 20=bullets, 50=particles
+    std::string textureName;      // "ship1", "bullet", etc.
+    std::vector<sf::IntRect> frames;  // Array de rectangles pour l'animation
+    size_t currentFrameIndex = 0;     // Index de la frame actuelle
+    float animationSpeed = 0.1f;      // Temps entre chaque frame (en secondes)
+    float frameTimer = 0.0f;          // Timer interne pour l'animation
+    bool loop = true;                 // Si l'animation doit boucler
+    int layer = 0;                    // 0=background, 10=player, 20=bullets, 50=particles
     bool visible = true;
     float scale = 1.f;
     float rotation = 0.f;
@@ -79,6 +85,7 @@ typedef struct Health_s {
     int max = 100;
     int current = 100;
     int lastAttackerId = -1;
+    float contactCooldown = 0.f;  // Cooldown before contact damage can apply again
 } Health_t;
 
 // Pour les vagues
@@ -110,11 +117,6 @@ typedef struct Projectile_s {
     int ownerId = -1;
 } Projectile_t;
 
-// Obstacle de stage indestructible
-typedef struct Obstacle_s {
-    bool blocking = true;  // Bloque le mouvement
-} Obstacle_t;
-
 // Étoile du fond (background starfield)
 typedef struct Star_s {
     float speed = 100.f;      // Vitesse de défilement
@@ -125,6 +127,15 @@ typedef struct Star_s {
 typedef struct JustShot_s {
     bool active = true;
 } JustShot_t;
+
+// Destructible Tile - blocks entities and can be destroyed by projectiles
+typedef struct DestructibleTile_s {
+    bool blocksMovement = true;  // Empêche les entités de passer
+} DestructibleTile_t;
+
+typedef struct Obstacle_s {
+    bool blocksMovement = true;
+} Obstacle_t;
 
 // Trigger pour jouer un effet sonore une seule fois
 typedef struct PlaySound_s {

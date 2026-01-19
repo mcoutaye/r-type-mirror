@@ -65,26 +65,6 @@ CMAKE_BINARY_DIR = /home/Leukos/delivery/CCP/R-Type/r-type-mirror
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && /usr/bin/cpack --config ./CPackConfig.cmake
-.PHONY : package
-
-# Special rule for the target package
-package/fast: package
-.PHONY : package/fast
-
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/Leukos/delivery/CCP/R-Type/r-type-mirror/CPackSourceConfig.cmake
-.PHONY : package_source
-
-# Special rule for the target package_source
-package_source/fast: package_source
-.PHONY : package_source/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -104,51 +84,6 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -182,18 +117,18 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/client/CMakeFiles/r-type_client.dir/rule:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/CMakeFiles/r-type_client.dir/rule
-.PHONY : src/client/CMakeFiles/r-type_client.dir/rule
+src/client/CMakeFiles/rtype_client.dir/rule:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/CMakeFiles/rtype_client.dir/rule
+.PHONY : src/client/CMakeFiles/rtype_client.dir/rule
 
 # Convenience name for target.
-r-type_client: src/client/CMakeFiles/r-type_client.dir/rule
-.PHONY : r-type_client
+rtype_client: src/client/CMakeFiles/rtype_client.dir/rule
+.PHONY : rtype_client
 
 # fast build rule for target.
-r-type_client/fast:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/build
-.PHONY : r-type_client/fast
+rtype_client/fast:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/build
+.PHONY : rtype_client/fast
 
 # Convenience name for target.
 src/client/CMakeFiles/client_clean.dir/rule:
@@ -223,252 +158,36 @@ client_fclean/fast:
 	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/client_fclean.dir/build.make src/client/CMakeFiles/client_fclean.dir/build
 .PHONY : client_fclean/fast
 
-__/engine/systems/CollisionSystem.o: __/engine/systems/CollisionSystem.cpp.o
-.PHONY : __/engine/systems/CollisionSystem.o
+UdpClient.o: UdpClient.cpp.o
+.PHONY : UdpClient.o
 
 # target to build an object file
-__/engine/systems/CollisionSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/CollisionSystem.cpp.o
-.PHONY : __/engine/systems/CollisionSystem.cpp.o
+UdpClient.cpp.o:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/UdpClient.cpp.o
+.PHONY : UdpClient.cpp.o
 
-__/engine/systems/CollisionSystem.i: __/engine/systems/CollisionSystem.cpp.i
-.PHONY : __/engine/systems/CollisionSystem.i
-
-# target to preprocess a source file
-__/engine/systems/CollisionSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/CollisionSystem.cpp.i
-.PHONY : __/engine/systems/CollisionSystem.cpp.i
-
-__/engine/systems/CollisionSystem.s: __/engine/systems/CollisionSystem.cpp.s
-.PHONY : __/engine/systems/CollisionSystem.s
-
-# target to generate assembly for a file
-__/engine/systems/CollisionSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/CollisionSystem.cpp.s
-.PHONY : __/engine/systems/CollisionSystem.cpp.s
-
-__/engine/systems/EntityFactory.o: __/engine/systems/EntityFactory.cpp.o
-.PHONY : __/engine/systems/EntityFactory.o
-
-# target to build an object file
-__/engine/systems/EntityFactory.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/EntityFactory.cpp.o
-.PHONY : __/engine/systems/EntityFactory.cpp.o
-
-__/engine/systems/EntityFactory.i: __/engine/systems/EntityFactory.cpp.i
-.PHONY : __/engine/systems/EntityFactory.i
+UdpClient.i: UdpClient.cpp.i
+.PHONY : UdpClient.i
 
 # target to preprocess a source file
-__/engine/systems/EntityFactory.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/EntityFactory.cpp.i
-.PHONY : __/engine/systems/EntityFactory.cpp.i
+UdpClient.cpp.i:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/UdpClient.cpp.i
+.PHONY : UdpClient.cpp.i
 
-__/engine/systems/EntityFactory.s: __/engine/systems/EntityFactory.cpp.s
-.PHONY : __/engine/systems/EntityFactory.s
-
-# target to generate assembly for a file
-__/engine/systems/EntityFactory.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/EntityFactory.cpp.s
-.PHONY : __/engine/systems/EntityFactory.cpp.s
-
-__/engine/systems/InputSystem.o: __/engine/systems/InputSystem.cpp.o
-.PHONY : __/engine/systems/InputSystem.o
-
-# target to build an object file
-__/engine/systems/InputSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/InputSystem.cpp.o
-.PHONY : __/engine/systems/InputSystem.cpp.o
-
-__/engine/systems/InputSystem.i: __/engine/systems/InputSystem.cpp.i
-.PHONY : __/engine/systems/InputSystem.i
-
-# target to preprocess a source file
-__/engine/systems/InputSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/InputSystem.cpp.i
-.PHONY : __/engine/systems/InputSystem.cpp.i
-
-__/engine/systems/InputSystem.s: __/engine/systems/InputSystem.cpp.s
-.PHONY : __/engine/systems/InputSystem.s
+UdpClient.s: UdpClient.cpp.s
+.PHONY : UdpClient.s
 
 # target to generate assembly for a file
-__/engine/systems/InputSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/InputSystem.cpp.s
-.PHONY : __/engine/systems/InputSystem.cpp.s
-
-__/engine/systems/MissileSystem.o: __/engine/systems/MissileSystem.cpp.o
-.PHONY : __/engine/systems/MissileSystem.o
-
-# target to build an object file
-__/engine/systems/MissileSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/MissileSystem.cpp.o
-.PHONY : __/engine/systems/MissileSystem.cpp.o
-
-__/engine/systems/MissileSystem.i: __/engine/systems/MissileSystem.cpp.i
-.PHONY : __/engine/systems/MissileSystem.i
-
-# target to preprocess a source file
-__/engine/systems/MissileSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/MissileSystem.cpp.i
-.PHONY : __/engine/systems/MissileSystem.cpp.i
-
-__/engine/systems/MissileSystem.s: __/engine/systems/MissileSystem.cpp.s
-.PHONY : __/engine/systems/MissileSystem.s
-
-# target to generate assembly for a file
-__/engine/systems/MissileSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/MissileSystem.cpp.s
-.PHONY : __/engine/systems/MissileSystem.cpp.s
-
-__/engine/systems/MovementSystem.o: __/engine/systems/MovementSystem.cpp.o
-.PHONY : __/engine/systems/MovementSystem.o
-
-# target to build an object file
-__/engine/systems/MovementSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/MovementSystem.cpp.o
-.PHONY : __/engine/systems/MovementSystem.cpp.o
-
-__/engine/systems/MovementSystem.i: __/engine/systems/MovementSystem.cpp.i
-.PHONY : __/engine/systems/MovementSystem.i
-
-# target to preprocess a source file
-__/engine/systems/MovementSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/MovementSystem.cpp.i
-.PHONY : __/engine/systems/MovementSystem.cpp.i
-
-__/engine/systems/MovementSystem.s: __/engine/systems/MovementSystem.cpp.s
-.PHONY : __/engine/systems/MovementSystem.s
-
-# target to generate assembly for a file
-__/engine/systems/MovementSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/MovementSystem.cpp.s
-.PHONY : __/engine/systems/MovementSystem.cpp.s
-
-__/engine/systems/PowerUpSystem.o: __/engine/systems/PowerUpSystem.cpp.o
-.PHONY : __/engine/systems/PowerUpSystem.o
-
-# target to build an object file
-__/engine/systems/PowerUpSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/PowerUpSystem.cpp.o
-.PHONY : __/engine/systems/PowerUpSystem.cpp.o
-
-__/engine/systems/PowerUpSystem.i: __/engine/systems/PowerUpSystem.cpp.i
-.PHONY : __/engine/systems/PowerUpSystem.i
-
-# target to preprocess a source file
-__/engine/systems/PowerUpSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/PowerUpSystem.cpp.i
-.PHONY : __/engine/systems/PowerUpSystem.cpp.i
-
-__/engine/systems/PowerUpSystem.s: __/engine/systems/PowerUpSystem.cpp.s
-.PHONY : __/engine/systems/PowerUpSystem.s
-
-# target to generate assembly for a file
-__/engine/systems/PowerUpSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/PowerUpSystem.cpp.s
-.PHONY : __/engine/systems/PowerUpSystem.cpp.s
-
-__/engine/systems/RenderSystem.o: __/engine/systems/RenderSystem.cpp.o
-.PHONY : __/engine/systems/RenderSystem.o
-
-# target to build an object file
-__/engine/systems/RenderSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/RenderSystem.cpp.o
-.PHONY : __/engine/systems/RenderSystem.cpp.o
-
-__/engine/systems/RenderSystem.i: __/engine/systems/RenderSystem.cpp.i
-.PHONY : __/engine/systems/RenderSystem.i
-
-# target to preprocess a source file
-__/engine/systems/RenderSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/RenderSystem.cpp.i
-.PHONY : __/engine/systems/RenderSystem.cpp.i
-
-__/engine/systems/RenderSystem.s: __/engine/systems/RenderSystem.cpp.s
-.PHONY : __/engine/systems/RenderSystem.s
-
-# target to generate assembly for a file
-__/engine/systems/RenderSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/RenderSystem.cpp.s
-.PHONY : __/engine/systems/RenderSystem.cpp.s
-
-__/engine/systems/RessourceManager.o: __/engine/systems/RessourceManager.cpp.o
-.PHONY : __/engine/systems/RessourceManager.o
-
-# target to build an object file
-__/engine/systems/RessourceManager.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/RessourceManager.cpp.o
-.PHONY : __/engine/systems/RessourceManager.cpp.o
-
-__/engine/systems/RessourceManager.i: __/engine/systems/RessourceManager.cpp.i
-.PHONY : __/engine/systems/RessourceManager.i
-
-# target to preprocess a source file
-__/engine/systems/RessourceManager.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/RessourceManager.cpp.i
-.PHONY : __/engine/systems/RessourceManager.cpp.i
-
-__/engine/systems/RessourceManager.s: __/engine/systems/RessourceManager.cpp.s
-.PHONY : __/engine/systems/RessourceManager.s
-
-# target to generate assembly for a file
-__/engine/systems/RessourceManager.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/RessourceManager.cpp.s
-.PHONY : __/engine/systems/RessourceManager.cpp.s
-
-__/engine/systems/StageFactory.o: __/engine/systems/StageFactory.cpp.o
-.PHONY : __/engine/systems/StageFactory.o
-
-# target to build an object file
-__/engine/systems/StageFactory.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/StageFactory.cpp.o
-.PHONY : __/engine/systems/StageFactory.cpp.o
-
-__/engine/systems/StageFactory.i: __/engine/systems/StageFactory.cpp.i
-.PHONY : __/engine/systems/StageFactory.i
-
-# target to preprocess a source file
-__/engine/systems/StageFactory.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/StageFactory.cpp.i
-.PHONY : __/engine/systems/StageFactory.cpp.i
-
-__/engine/systems/StageFactory.s: __/engine/systems/StageFactory.cpp.s
-.PHONY : __/engine/systems/StageFactory.s
-
-# target to generate assembly for a file
-__/engine/systems/StageFactory.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/StageFactory.cpp.s
-.PHONY : __/engine/systems/StageFactory.cpp.s
-
-__/engine/systems/WaveSystem.o: __/engine/systems/WaveSystem.cpp.o
-.PHONY : __/engine/systems/WaveSystem.o
-
-# target to build an object file
-__/engine/systems/WaveSystem.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/WaveSystem.cpp.o
-.PHONY : __/engine/systems/WaveSystem.cpp.o
-
-__/engine/systems/WaveSystem.i: __/engine/systems/WaveSystem.cpp.i
-.PHONY : __/engine/systems/WaveSystem.i
-
-# target to preprocess a source file
-__/engine/systems/WaveSystem.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/WaveSystem.cpp.i
-.PHONY : __/engine/systems/WaveSystem.cpp.i
-
-__/engine/systems/WaveSystem.s: __/engine/systems/WaveSystem.cpp.s
-.PHONY : __/engine/systems/WaveSystem.s
-
-# target to generate assembly for a file
-__/engine/systems/WaveSystem.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/__/engine/systems/WaveSystem.cpp.s
-.PHONY : __/engine/systems/WaveSystem.cpp.s
+UdpClient.cpp.s:
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/UdpClient.cpp.s
+.PHONY : UdpClient.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/main.cpp.o
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -476,7 +195,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/main.cpp.i
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -484,7 +203,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/r-type_client.dir/build.make src/client/CMakeFiles/r-type_client.dir/main.cpp.s
+	cd /home/Leukos/delivery/CCP/R-Type/r-type-mirror && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/rtype_client.dir/build.make src/client/CMakeFiles/rtype_client.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -494,46 +213,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
-	@echo "... package"
-	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... client_clean"
 	@echo "... client_fclean"
-	@echo "... r-type_client"
-	@echo "... __/engine/systems/CollisionSystem.o"
-	@echo "... __/engine/systems/CollisionSystem.i"
-	@echo "... __/engine/systems/CollisionSystem.s"
-	@echo "... __/engine/systems/EntityFactory.o"
-	@echo "... __/engine/systems/EntityFactory.i"
-	@echo "... __/engine/systems/EntityFactory.s"
-	@echo "... __/engine/systems/InputSystem.o"
-	@echo "... __/engine/systems/InputSystem.i"
-	@echo "... __/engine/systems/InputSystem.s"
-	@echo "... __/engine/systems/MissileSystem.o"
-	@echo "... __/engine/systems/MissileSystem.i"
-	@echo "... __/engine/systems/MissileSystem.s"
-	@echo "... __/engine/systems/MovementSystem.o"
-	@echo "... __/engine/systems/MovementSystem.i"
-	@echo "... __/engine/systems/MovementSystem.s"
-	@echo "... __/engine/systems/PowerUpSystem.o"
-	@echo "... __/engine/systems/PowerUpSystem.i"
-	@echo "... __/engine/systems/PowerUpSystem.s"
-	@echo "... __/engine/systems/RenderSystem.o"
-	@echo "... __/engine/systems/RenderSystem.i"
-	@echo "... __/engine/systems/RenderSystem.s"
-	@echo "... __/engine/systems/RessourceManager.o"
-	@echo "... __/engine/systems/RessourceManager.i"
-	@echo "... __/engine/systems/RessourceManager.s"
-	@echo "... __/engine/systems/StageFactory.o"
-	@echo "... __/engine/systems/StageFactory.i"
-	@echo "... __/engine/systems/StageFactory.s"
-	@echo "... __/engine/systems/WaveSystem.o"
-	@echo "... __/engine/systems/WaveSystem.i"
-	@echo "... __/engine/systems/WaveSystem.s"
+	@echo "... rtype_client"
+	@echo "... UdpClient.o"
+	@echo "... UdpClient.i"
+	@echo "... UdpClient.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

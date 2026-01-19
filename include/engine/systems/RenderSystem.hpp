@@ -20,13 +20,17 @@
 
 
 class RenderSystem : public ISystem {
-public:
-    RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& resourceManager);
-    void update(double dt) override;
+    public:
+        RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& resourceManager);
+        void update(double dt) override;
+        void debugON() { debugMode = true; }
+        void debugOFF() { debugMode = false; }
 
-private:
-    sf::RenderWindow& _window;
-    ResourceManager &_resourceManager = ResourceManager::getInstance();
+    private:
+        void debugColliders();
+        bool debugMode = false;
+        sf::RenderWindow& _window;
+        ResourceManager &_resourceManager;
 };
 
 RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& resourceManager)
@@ -36,10 +40,12 @@ RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& 
 
 void RenderSystem::update(double dt)
 {
-    (void)dt;  // dt non utilisé ici
 
+    // ============================================================
+    // BACKGROUND RENDERING
+    // ============================================================
     _window.clear(sf::Color::Black);
-    
+
     // NOTE: La vue doit être appliquée par le client APRÈS clear() et AVANT le rendu;
 
     // === 1. Dessin des étoiles (parallaxe starfield) ===
@@ -47,13 +53,16 @@ void RenderSystem::update(double dt)
     for (Entity e : stars) {
         auto* pos = _ecs.getComponent<Position_t>(e);
         auto* star = _ecs.getComponent<Star_t>(e);
+
+        // Don't recycle stars here - let Client::update() handle star creation/destruction
+        // This prevents entity count from growing unbounded
         if (!pos || !star) continue;
 
         // Réapparition à droite quand l'étoile sort à gauche
-        if (pos->x < -10.f) {
-            pos->x = 1930.f;
-            pos->y = static_cast<float>(rand() % 1080);
-        }
+        // if (pos->x < -10.f) {
+        //     pos->x = 1930.f;
+        //     pos->y = static_cast<float>(rand() % 1080);
+        // }
 
         sf::RectangleShape shape(sf::Vector2f(star->size, star->size));
         shape.setPosition(pos->x, pos->y);
@@ -61,32 +70,50 @@ void RenderSystem::update(double dt)
         _window.draw(shape);
     }
 
-    // === 2. Dessin des sprites (triés par layer) ===
-    auto spriteEntities = _ecs.getEntitiesByComponents<Position_t, Drawable_t>();
-    std::vector<std::pair<int, Entity>> sortedSprites;
-    sortedSprites.reserve(spriteEntities.size());
+    // ============================================================
+    // ENTITY RENDERING WITH ANIMATION SUPPORT
+    // ============================================================
+    std::vector<Entity> entities = _ecs.getEntitiesByComponents<Position_t, Drawable_t>();
 
-    for (Entity e : spriteEntities) {
-        if (auto* d = _ecs.getComponent<Drawable_t>(e)) {
-            sortedSprites.emplace_back(d->layer, e);
-        }
-    }
-
-    std::sort(sortedSprites.begin(), sortedSprites.end(), [](const auto& a, const auto& b) {
-        return a.first < b.first;  // Tri croissant par layer
+    // Sort entities by layer
+    std::sort(entities.begin(), entities.end(), [this](Entity a, Entity b) {
+        auto* drawableA = _ecs.getComponent<Drawable_t>(a);
+        auto* drawableB = _ecs.getComponent<Drawable_t>(b);
+        return drawableA->layer < drawableB->layer;
     });
 
-    for (const auto& [layer, e] : sortedSprites) {
+    for (Entity e : entities) {
         auto* pos = _ecs.getComponent<Position_t>(e);
-        auto* draw = _ecs.getComponent<Drawable_t>(e);
-        if (!pos || !draw || !draw->visible) continue;
+        auto* drawable = _ecs.getComponent<Drawable_t>(e);
 
-        // Récupération de la texture (gérée par ResourceManager)
-        sf::Sprite sprite(_resourceManager.getTexture(draw->textureId));
-        sprite.setTextureRect(draw->rect);
+        if (!pos || !drawable || !drawable->visible || drawable->frames.empty())
+            continue;
+
+        // Update animation
+        drawable->frameTimer += dt;
+        if (drawable->frameTimer >= drawable->animationSpeed) {
+            drawable->frameTimer = 0.0f;
+            drawable->currentFrameIndex++;
+
+            if (drawable->currentFrameIndex >= drawable->frames.size()) {
+                if (drawable->loop) {
+                    drawable->currentFrameIndex = 0;
+                } else {
+                    drawable->currentFrameIndex = drawable->frames.size() - 1;
+                }
+            }
+        }
+
+        // Render current frame (centered origin to match center-based colliders)
+        sf::Sprite sprite;
+        sprite.setTexture(_resourceManager.getTexture(drawable->textureName));
+        sf::IntRect frame = drawable->frames[drawable->currentFrameIndex];
+        sprite.setTextureRect(frame);
+        sprite.setOrigin(frame.width / 2.f, frame.height / 2.f);
         sprite.setPosition(pos->x, pos->y);
-        sprite.setScale(draw->scale, draw->scale);
-        sprite.setRotation(draw->rotation);
+        sprite.setScale(drawable->scale, drawable->scale);
+        sprite.setRotation(drawable->rotation);
+
         _window.draw(sprite);
     }
 
@@ -117,5 +144,33 @@ void RenderSystem::update(double dt)
         _window.draw(text);
     }
 
+        if (debugMode)
+            debugColliders();
+
+    // _window.display();   // EN DERNIER
     // === Fin du rendu (display appelé par le client après les particules) ===
+
+}
+
+void RenderSystem::debugColliders()
+{
+    std::vector<Entity> entities = _ecs.getEntitiesByComponents<Position_t, Collider_t>();
+
+    for (Entity e : entities) {
+        auto* pos = _ecs.getComponent<Position_t>(e);
+        auto* col = _ecs.getComponent<Collider_t>(e);
+
+        if (!pos || !col)
+            continue;
+
+        sf::RectangleShape rectangle(sf::Vector2f(col->width, col->height));
+        // Center-based debug collider to match collision system
+        // sf::RectangleShape uses top-left positioning, so offset by half size
+        rectangle.setPosition(pos->x - col->width / 2.f, pos->y - col->height / 2.f);
+        rectangle.setFillColor(sf::Color(0, 0, 0, 0));
+        rectangle.setOutlineColor(sf::Color::Red);
+        rectangle.setOutlineThickness(1.f);
+
+        _window.draw(rectangle);
+    }
 }

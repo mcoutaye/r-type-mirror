@@ -74,7 +74,7 @@ Abstract
 2.2.  EntityUpdate (Server -> Client)
 
    The EntityUpdate structure conveys the minimal state of a single
-   game entity.  It is exactly 22 bytes in size.
+   game entity.  It is exactly 23 bytes in size.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -83,6 +83,8 @@ Abstract
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                           tick (uint16)                       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |        entityType (uint8)     |                               |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               |
      |                            x (float)                          |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                            y (float)                          |
@@ -94,14 +96,25 @@ Abstract
 
      entityId:       Unique identifier for the entity.
      tick:           Server frame counter or Magic Number (see 2.3).
+     entityType:     Type of the entity.
      x, y:           Floating-point position coordinates.
      health_current: Current health points of the entity.
      health_max:     Maximum health points of the entity.
 
    A single UDP datagram from server to client may contain zero or more
    concatenated EntityUpdate structures.  The total payload length MUST
-   be an exact multiple of 22 bytes.  The number of updates is derived
-   as payload_length / 22.
+   be an exact multiple of 23 bytes.  The number of updates is derived
+   as payload_length / 23.
+
+2.2.1. Entity Types
+
+   The `entityType` field indicates the semantic type of the entity:
+
+   o  0: Player
+   o  1: Enemy
+   o  2: Projectile
+   o  3: Destructible Tile
+   o  Other values: Reserved for future use
 
 2.3.  Magic Numbers (Tick Field)
 
@@ -137,6 +150,14 @@ Abstract
    o  0xFFFB (65531): "Player Shot"
       - Indicates that a player entity has fired a projectile.
       - Used to trigger visual/audio effects on the client.
+
+   o  0xFFEF (65519): "Victory"
+      - Indicates that the game has been won (e.g., all enemies defeated).
+      - The client should transition to the victory menu/state.
+
+   o  0xFFDF (65503): "Defeat"
+      - Indicates that the game has been lost (e.g., all players dead).
+      - The client should transition to the defeat menu/state.
 
    o  Any other value: Standard Server Tick
       - Represents the frame number at which this state was captured.
@@ -180,10 +201,18 @@ Abstract
 4.  Packet Size Considerations
 
    Datagrams should respect typical path MTU (approximately 1400 bytes
-   after headers).  With 22-byte EntityUpdate structures, a single
-   datagram can carry up to approximately 63 entities.
+   after headers).  With 23-byte EntityUpdate structures, a single
+   datagram can carry up to approximately 60 entities.
 
-5.  Security Considerations
+5.  Tick Ordering and Wrap-around
+
+   The `tick` fields (client and server) are 16-bit counters that may
+   wrap around at 65535.  An implementation-specific helper determines
+   freshness by treating a difference smaller than 32768 as a normal
+   increase, and a larger difference as a wrap-around.  Clients and
+   servers should compare ticks accordingly to order inputs and updates.
+
+6.  Security Considerations
 
    This protocol provides no authentication, encryption, or integrity
    checks.  Implementations operate under the assumption of a trusted
@@ -193,7 +222,7 @@ Abstract
    Production deployments should consider additional measures such as
    VPN tunneling or application-level authentication.
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    This document has no IANA actions.
 

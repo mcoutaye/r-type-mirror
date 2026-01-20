@@ -22,6 +22,8 @@
 #include <memory>
 #include <iostream>
 #include <stdexcept>
+#include <limits>
+#include <cstring>
 
 class Client {
 public:
@@ -45,6 +47,11 @@ private:
     void onResumeGame();
     void onBackToMainMenu();
     void applyUpdate(EntityUpdate &update);
+    void ensureScoreUi();
+    void updateScoreHud(const std::string& activeSceneId);
+    void updateDeathOverlay();
+    void addScore(int delta);
+    void setTextContent(Text_t* textComp, const std::string& content);
 
     std::unique_ptr<SceneManager> _sceneManager;
     std::unordered_map<std::string, std::vector<Entity>> _sceneEntities;
@@ -65,6 +72,12 @@ private:
     MenuSystem _menuSystem{_ecs, _inputSystem};
     ParticleSystem _particleSystem{_ecs, 3000};
     CameraSystem _cameraSystem{_ecs, _window};
+
+    int _score = 0;
+    double _scoreAccumulator = 0.0;
+    bool _playerDead = false;
+    Entity _scoreTextEntity = std::numeric_limits<Entity>::max();
+    Entity _deathScoreTextEntity = std::numeric_limits<Entity>::max();
 
     bool _debugHitboxes = false;
 
@@ -541,6 +554,83 @@ void Client::initializeGame()
     // Set up camera bounds to prevent showing out-of-bounds areas
     // World dimensions: 0 to 2200 width, 0 to 1200 height
     _cameraSystem.setBounds(0.f, 0.f, 2200.f, 1200.f);
+
+    _score = 0;
+    _scoreAccumulator = 0.0;
+    _playerDead = false;
+    ensureScoreUi();
+    updateScoreHud("game");
+    updateDeathOverlay();
+}
+
+void Client::setTextContent(Text_t* textComp, const std::string& content)
+{
+    if (!textComp) return;
+    std::memset(textComp->text, 0, sizeof(textComp->text));
+    std::strncpy(textComp->text, content.c_str(), sizeof(textComp->text) - 1);
+    textComp->text[sizeof(textComp->text) - 1] = '\0';
+}
+
+void Client::ensureScoreUi()
+{
+    if (_scoreTextEntity == std::numeric_limits<Entity>::max()) {
+        _scoreTextEntity = _ecs.createEntity();
+        _ecs.addComponents<Position_t, Text_t>(
+            _scoreTextEntity,
+            Position_t{30.f, 30.f},
+            Factory::createText("Score: 0", 36, sf::Color::White, false, "default", true));
+    }
+
+    if (_deathScoreTextEntity == std::numeric_limits<Entity>::max()) {
+        _deathScoreTextEntity = _ecs.createEntity();
+        _ecs.addComponents<Position_t, Text_t>(
+            _deathScoreTextEntity,
+            Position_t{960.f, 540.f},
+            Factory::createText("Score: 0", 96, sf::Color::Yellow, true, "title", false));
+    }
+}
+
+void Client::addScore(int delta)
+{
+    _score += delta;
+}
+
+void Client::updateScoreHud(const std::string& activeSceneId)
+{
+    if (_scoreTextEntity == std::numeric_limits<Entity>::max()) {
+        return;
+    }
+
+    auto* text = _ecs.getComponent<Text_t>(_scoreTextEntity);
+    auto* pos = _ecs.getComponent<Position_t>(_scoreTextEntity);
+    if (!text || !pos) return;
+
+    sf::View view = _window.getView();
+    float left = view.getCenter().x - view.getSize().x / 2.f;
+    float top = view.getCenter().y - view.getSize().y / 2.f;
+    pos->x = left + 30.f;
+    pos->y = top + 30.f;
+
+    setTextContent(text, "Score: " + std::to_string(_score));
+    text->visible = !_playerDead && (activeSceneId == "game" || _gameRunningInBackground);
+}
+
+void Client::updateDeathOverlay()
+{
+    if (_deathScoreTextEntity == std::numeric_limits<Entity>::max()) {
+        return;
+    }
+
+    auto* text = _ecs.getComponent<Text_t>(_deathScoreTextEntity);
+    auto* pos = _ecs.getComponent<Position_t>(_deathScoreTextEntity);
+    if (!text || !pos) return;
+
+    sf::View view = _window.getView();
+    pos->x = view.getCenter().x;
+    pos->y = view.getCenter().y;
+
+    setTextContent(text, "Score: " + std::to_string(_score));
+    text->visible = _playerDead;
 }
 
 void Client::update()
@@ -554,6 +644,10 @@ void Client::update()
 
     std::string activeSceneId = _sceneManager->getActiveSceneId();
 
+    ensureScoreUi();
+    updateScoreHud(activeSceneId);
+    updateDeathOverlay();
+
     // ============================================================
     // KILL ENTITIES WITH NO HEALTH (client-side cleanup)
     // Server sends death notifications, but we also check locally
@@ -563,6 +657,10 @@ void Client::update()
     for (Entity e : entitiesWithHealth) {
         auto* health = _ecs.getComponent<Health_t>(e);
         if (health && health->current <= 0) {
+            if (e == _localPlayerEntity) {
+                _playerDead = true;
+            }
+
             _ecs.killEntity(e);
             
             // Remove from mapping if exists
@@ -698,6 +796,14 @@ void Client::update()
 
     // === MODE IN-GAME : le jeu continue de tourner (même si on est dans les menus de pause) ===
     if (activeSceneId == "game" || _gameRunningInBackground) {
+        if (!_playerDead) {
+            _scoreAccumulator += dt;
+            while (_scoreAccumulator >= 1.0) {
+                addScore(1);
+                _scoreAccumulator -= 1.0;
+            }
+        }
+
         // 1. Réception et application des updates du serveur
         auto stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
         for (Entity e : stars) {
@@ -793,6 +899,9 @@ void Client::update()
         // 6. Mise à jour des particules
         _particleSystem.update(dt);
     }
+
+    updateScoreHud(activeSceneId);
+    updateDeathOverlay();
 }
 
 void Client::applyUpdate(EntityUpdate &update)
@@ -865,6 +974,13 @@ void Client::applyUpdate(EntityUpdate &update)
         }
     } else if (update.tick == MAGIC_TICK_DEATH_OTHER || update.tick == MAGIC_TICK_DEATH_PLAYER) {
         // Entity died
+        if (entity == _localPlayerEntity) {
+            _playerDead = true;
+        }
+        if (update.tick == MAGIC_TICK_DEATH_PLAYER) {
+            addScore(50);
+        }
+
         auto* deathPos = _ecs.getComponent<Position_t>(entity);
         float deathX = deathPos ? deathPos->x + 32.f : 0.f;
         float deathY = deathPos ? deathPos->y + 32.f : 0.f;
@@ -929,6 +1045,7 @@ void Client::applyUpdate(EntityUpdate &update)
         _sceneManager->setActiveScene("defeat_menu");
         _menuSystem.setEnabled(true);
         _gameState = GameState::Menu;
+        _playerDead = true;
     }
 }
 

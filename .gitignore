@@ -28,6 +28,9 @@ cmake_install.cmake
 CTestTestfile.cmake
 Testing/
 compile_commands.json
+Makefile
+client/Makefile
+server/Makefile
 
 # Debug / profiling / coverage
 *.gcno
@@ -42,6 +45,9 @@ compile_commands.json
 *.swp
 *.swo
 *.tmp
+
+# Assets generation atlas
+assets/sprites/atlas*
 
 #Test game
 /new_game

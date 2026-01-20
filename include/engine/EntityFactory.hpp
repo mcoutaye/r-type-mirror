@@ -40,6 +40,17 @@ namespace Factory {
     // Forward declare createSound to use in createProjectile
     inline PlaySound_t createSound(const std::string& soundId, float volume = 100.f, float pitch = 1.0f);
 
+    // Background music helper (used by docs examples)
+    inline BackgroundMusic_t createMusic(const std::string& musicId, bool looping = true, float volume = 50.f)
+    {
+        BackgroundMusic_t m;
+        std::memset(m.musicId, 0, sizeof(m.musicId));
+        std::strncpy(m.musicId, musicId.c_str(), sizeof(m.musicId) - 1);
+        m.looping = looping;
+        m.volume = volume;
+        return m;
+    }
+
     // Crée un Drawable avec une seule frame (pas d'animation)
     inline Drawable_t createDrawable(const std::string& textureName, sf::IntRect rect, int layer, bool visible = true, float scale = 1.f, float rotation = 0.f)
     {
@@ -130,6 +141,18 @@ namespace Factory {
         return bullet;
     }
 
+// Convenience: create a background star (used by docs examples)
+inline Entity createStar(ECS& ecs, float x, float y, float speed, uint8_t brightness, uint8_t size = 2)
+{
+    Entity star = ecs.createEntity();
+    ecs.addComponents<Position_t, Star_t>(
+        star,
+        Position_t{x, y},
+        Star_t{speed, brightness, size}
+    );
+    return star;
+}
+
 Entity createEnemy(ECS& ecs, float x, float y, MovementPattern_t::Type movementType) {
     Entity enemy = ecs.createEntity();
 
@@ -183,6 +206,54 @@ Entity createEnemy(ECS& ecs, float x, float y, MovementPattern_t::Type movementT
     );
 
     return enemy;
+}
+
+// Overload: create enemy with texture name and full movement pattern (as used in docs)
+inline Entity createEnemy(ECS& ecs, float x, float y, const std::string& textureName, MovementPattern_t pattern)
+{
+    Entity enemy = ecs.createEntity();
+
+    // Sprite rect from ResourceManager if available
+    sf::IntRect spriteRect{0, 0, 64, 64};
+    try {
+        ResourceManager& rm = ResourceManager::getInstance();
+        spriteRect = rm.getSpriteRect(textureName);
+    } catch (...) {
+    }
+
+    ecs.addComponents<Position_t, Velocity_t, Health_t, Collider_t, Drawable_t, Enemy_t, MovementPattern_t, SendUpdate_t>(
+        enemy,
+        Position_t{x, y},
+        Velocity_t{0.f, 0.f},
+        Health_t{100, 100},
+        createEnemyCollider(),
+        Factory::createDrawable(textureName, spriteRect, 10, true, 1.f, 0.f),
+        Enemy_t{},
+        std::move(pattern),
+        SendUpdate_t{}
+    );
+
+    return enemy;
+}
+
+// Overload: create enemy with texture and movement type
+inline Entity createEnemy(ECS& ecs, float x, float y, const std::string& textureName, MovementPattern_t::Type movementType)
+{
+    MovementPattern_t movement{};
+    movement.type = movementType;
+    switch (movementType) {
+        case MovementPattern_t::Type::Linear:
+            movement.speed = 200.f; break;
+        case MovementPattern_t::Type::Sinus:
+            movement.speed = 200.f; movement.amplitude = 50.f; movement.frequency = 1.f; break;
+        case MovementPattern_t::Type::Zigzag:
+            movement.speed = 200.f; movement.amplitude = 50.f; movement.frequency = 1.f; break;
+        case MovementPattern_t::Type::Spiral:
+            movement.speed = 150.f; movement.radius = 100.f; break;
+        default:
+            movement.speed = 200.f; break;
+    }
+    return createEnemy(ecs, x, y, textureName, movement);
 }
 
 void playDeathSound(ECS& ecs, Entity entity, const std::string& soundId = "enemy_explosion.wav", float volume = 90.f)

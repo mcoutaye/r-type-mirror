@@ -6,6 +6,7 @@
 */
 
 #include "UdpClient.hpp"
+#include <cmath>
 
 UdpClient::UdpClient(sf::IpAddress serverIp, unsigned short serverPort)
 : m_serverIp(serverIp), m_serverPort(serverPort) {}
@@ -98,8 +99,10 @@ void UdpClient::receiveThread()
                         }
                     }
                     if (found) {
-                        auto rtt = std::chrono::duration_cast<std::chrono::milliseconds>(now - sentAt).count();
-                        _lastPingMs.store(static_cast<int>(rtt));
+                        auto rttMs = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(now - sentAt).count();
+                        int pingMs = static_cast<int>(std::lround(rttMs));
+                        if (pingMs < 1) pingMs = 1; // Clamp to 1 ms to avoid displaying 0 on localhost
+                        _lastPingMs.store(pingMs);
                     }
                     continue;
                 }

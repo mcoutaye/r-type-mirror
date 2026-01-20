@@ -1152,7 +1152,6 @@ void Client::applyUpdate(EntityUpdate &update)
 void Client::render()
 {
     if (_debugHitboxes) _renderSystem.debugON(); else _renderSystem.debugOFF();
-    _renderSystem.update(0); // dt is not used in render system
     std::string activeSceneId = _sceneManager->getActiveSceneId();
     
     // Clear en premier
@@ -1167,9 +1166,11 @@ void Client::render()
         _window.setView(_defaultView);
     }
     
-    _renderSystem.update(0);
+    // Render particles first (they'll be drawn under other elements)
     _particleSystem.render(_window);
-    _window.display();
+    
+    // Render all entities (stars, sprites, text including HUD) and display
+    _renderSystem.update(0);
 }
 
 void Client::processInput()

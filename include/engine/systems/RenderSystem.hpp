@@ -23,6 +23,7 @@ class RenderSystem : public ISystem {
     public:
         RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& resourceManager);
         void update(double dt) override;
+        void clear(sf::Color color = sf::Color::Black) { _window.clear(color); }
         void debugON() { debugMode = true; }
         void debugOFF() { debugMode = false; }
 
@@ -40,13 +41,7 @@ RenderSystem::RenderSystem(ECS& ecs, sf::RenderWindow& window, ResourceManager& 
 
 void RenderSystem::update(double dt)
 {
-
-    // ============================================================
-    // BACKGROUND RENDERING
-    // ============================================================
-    _window.clear(sf::Color::Black);
-
-    // NOTE: La vue doit être appliquée par le client APRÈS clear() et AVANT le rendu;
+    // NOTE: clear() and setView() are handled by the client before calling update()
 
     // === 1. Dessin des étoiles (parallaxe starfield) ===
     std::vector<Entity> stars = _ecs.getEntitiesByComponents<Star_t, Position_t>();
@@ -147,9 +142,8 @@ void RenderSystem::update(double dt)
         if (debugMode)
             debugColliders();
 
-    // _window.display();   // EN DERNIER
-    // === Fin du rendu (display appelé par le client après les particules) ===
-
+    // Display everything
+    _window.display();
 }
 
 void RenderSystem::debugColliders()

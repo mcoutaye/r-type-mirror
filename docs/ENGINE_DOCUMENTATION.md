@@ -280,6 +280,9 @@ int main() {
         inputSystem.update(dt);    // Process input
         movementSystem.update(dt); // Apply Velocity to Position
         soundSystem.update(dt);    // Process sounds
+        
+        // Rendering
+        renderSystem.clear();      // Clear the screen
         renderSystem.update(dt);   // Draw everything
     }
 

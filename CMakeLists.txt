@@ -71,3 +71,73 @@ add_custom_target(myre
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}
     COMMENT "Nettoie et recompile tout"
 )
+
+# ============================================================
+# Documentation targets
+# ============================================================
+
+# Trouve Doxygen
+find_package(Doxygen QUIET)
+
+if(DOXYGEN_FOUND)
+    # Cible pour générer la documentation Doxygen
+    add_custom_target(doxygen
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "🔨 Génération de la documentation Doxygen..."
+        VERBATIM
+    )
+    
+    # Cible pour générer toute la documentation et la servir (avec Doxygen)
+    add_custom_target(docs-all
+        COMMAND ${CMAKE_COMMAND} -E echo "📚 Génération de la documentation Doxygen..."
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/Doxyfile
+        COMMAND ${CMAKE_COMMAND} -E echo "🌐 Démarrage du serveur de documentation..."
+        COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/serve_docs.py
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "📖 Génération et affichage de toute la documentation"
+        VERBATIM
+    )
+    
+    message(STATUS "✅ Doxygen trouvé - cibles 'doxygen' et 'docs-all' disponibles")
+else()
+    # Cible docs-all sans Doxygen
+    add_custom_target(docs-all
+        COMMAND ${CMAKE_COMMAND} -E echo "⚠️  Doxygen non disponible - génération de la doc markdown uniquement"
+        COMMAND ${CMAKE_COMMAND} -E echo "    Installez Doxygen avec: sudo apt-get install doxygen"
+        COMMAND ${CMAKE_COMMAND} -E echo ""
+        COMMAND ${CMAKE_COMMAND} -E echo "🌐 Démarrage du serveur de documentation..."
+        COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/serve_docs.py
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "📖 Affichage de la documentation (sans Doxygen)"
+        VERBATIM
+    )
+    
+    message(STATUS "⚠️  Doxygen non trouvé - documentation API non disponible")
+    message(STATUS "    Installez avec: sudo apt-get install doxygen")
+endif()
+
+# Cible pour servir la documentation en localhost
+add_custom_target(docs
+    COMMAND ${CMAKE_COMMAND} -E echo "📚 Démarrage du serveur de documentation..."
+    COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/serve_docs.py
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "🌐 Serveur de documentation sur http://localhost:8080"
+    VERBATIM
+)
+
+# Message d'aide
+add_custom_target(docs-help
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    COMMAND ${CMAKE_COMMAND} -E echo "╔════════════════════════════════════════════════╗"
+    COMMAND ${CMAKE_COMMAND} -E echo "║     📚 Commandes de documentation             ║"
+    COMMAND ${CMAKE_COMMAND} -E echo "╚════════════════════════════════════════════════╝"
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    COMMAND ${CMAKE_COMMAND} -E echo "  make docs       → Servir la doc markdown en HTML"
+    COMMAND ${CMAKE_COMMAND} -E echo "  make doxygen    → Générer la doc API Doxygen (si disponible)"
+    COMMAND ${CMAKE_COMMAND} -E echo "  make docs-all   → Générer tout et servir"
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    COMMAND ${CMAKE_COMMAND} -E echo "📖 Documentation disponible sur http://localhost:8080"
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    VERBATIM
+)

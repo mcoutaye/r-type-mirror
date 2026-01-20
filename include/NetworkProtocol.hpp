@@ -25,6 +25,24 @@ struct PACKED InputState {
 };
 static_assert(sizeof(InputState) == 3, "InputState must be 3 bytes");
 
+// === CONTROL PACKETS (UDP) ===
+enum class ControlPacketType : uint8_t {
+    Ping = 1,
+    Pong = 2,
+};
+
+struct PACKED PingPacket {
+    uint8_t type = static_cast<uint8_t>(ControlPacketType::Ping);
+    uint32_t pingId = 0; // Unique id echoed back by the server
+};
+static_assert(sizeof(PingPacket) == 5, "PingPacket must be 5 bytes");
+
+struct PACKED PongPacket {
+    uint8_t type = static_cast<uint8_t>(ControlPacketType::Pong);
+    uint32_t pingId = 0; // Matches the ping being acknowledged
+};
+static_assert(sizeof(PongPacket) == 5, "PongPacket must be 5 bytes");
+
 // Magic numbers for tick
 #define MAGIC_TICK_SHOOT_PLAYER 0xFFFB
 #define MAGIC_TICK_SHOOT_ENEMY  0xFFFC

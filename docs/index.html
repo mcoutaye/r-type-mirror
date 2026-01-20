@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R-Type Engine Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        a {
+            display: block;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 R-Type Engine</h1>
+        <p class="subtitle">Documentation Technique</p>
+        
+        <div class="links">
+            <a href="/engine.html">
+                <span class="emoji">📖</span>
+                Documentation du Moteur
+            </a>
+            <a href="/doxygen/index.html">
+                <span class="emoji">📚</span>
+                Référence API (Doxygen)
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>EPITECH PROJECT 2025-2026</p>
+            <p>Serveur: localhost:8080</p>
+        </div>
+    </div>
+</body>
+</html>

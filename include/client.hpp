@@ -49,6 +49,7 @@ private:
     void applyUpdate(EntityUpdate &update);
     void ensureScoreUi();
     void updateScoreHud(const std::string& activeSceneId);
+    void updatePingHud(const std::string& activeSceneId);
     void updateDeathOverlay();
     void addScore(int delta);
     void setTextContent(Text_t* textComp, const std::string& content);
@@ -78,6 +79,7 @@ private:
     bool _playerDead = false;
     Entity _scoreTextEntity = std::numeric_limits<Entity>::max();
     Entity _deathScoreTextEntity = std::numeric_limits<Entity>::max();
+    Entity _pingTextEntity = std::numeric_limits<Entity>::max();
 
     bool _debugHitboxes = false;
 
@@ -637,6 +639,14 @@ void Client::ensureScoreUi()
             Factory::createText("Score: 0", 36, sf::Color::White, false, "default", true));
     }
 
+    if (_pingTextEntity == std::numeric_limits<Entity>::max()) {
+        _pingTextEntity = _ecs.createEntity();
+        _ecs.addComponents<Position_t, Text_t>(
+            _pingTextEntity,
+            Position_t{30.f, 70.f},
+            Factory::createText("Ping: -- ms", 28, sf::Color::Green, false, "default", true));
+    }
+
     if (_deathScoreTextEntity == std::numeric_limits<Entity>::max()) {
         _deathScoreTextEntity = _ecs.createEntity();
         _ecs.addComponents<Position_t, Text_t>(
@@ -671,6 +681,39 @@ void Client::updateScoreHud(const std::string& activeSceneId)
     text->visible = !_playerDead && (activeSceneId == "game" || _gameRunningInBackground);
 }
 
+void Client::updatePingHud(const std::string& activeSceneId)
+{
+    if (_pingTextEntity == std::numeric_limits<Entity>::max()) {
+        return;
+    }
+
+    auto* text = _ecs.getComponent<Text_t>(_pingTextEntity);
+    auto* pos = _ecs.getComponent<Position_t>(_pingTextEntity);
+    if (!text || !pos) return;
+
+    sf::View view = _window.getView();
+    float left = view.getCenter().x - view.getSize().x / 2.f;
+    float top = view.getCenter().y - view.getSize().y / 2.f;
+    pos->x = left + 30.f;
+    pos->y = top + 70.f;
+
+    int ping = _UDP.getLastPingMs();
+    std::string content = (ping >= 0) ? "Ping: " + std::to_string(ping) + " ms" : "Ping: -- ms";
+    setTextContent(text, content);
+
+    if (ping < 0) {
+        text->color = sf::Color(200, 200, 200);
+    } else if (ping < 80) {
+        text->color = sf::Color(0, 200, 0);
+    } else if (ping < 140) {
+        text->color = sf::Color(255, 165, 0);
+    } else {
+        text->color = sf::Color::Red;
+    }
+
+    text->visible = !_playerDead && (activeSceneId == "game" || _gameRunningInBackground);
+}
+
 void Client::updateDeathOverlay()
 {
     if (_deathScoreTextEntity == std::numeric_limits<Entity>::max()) {
@@ -702,6 +745,7 @@ void Client::update()
 
     ensureScoreUi();
     updateScoreHud(activeSceneId);
+    updatePingHud(activeSceneId);
     updateDeathOverlay();
 
     // ============================================================

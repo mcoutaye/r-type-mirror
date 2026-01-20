@@ -4,7 +4,7 @@ A modern multiplayer remake of the classic R-Type game, built with C++20 and SFM
 
 ## Description
 
-R-Type is a horizontal scrolling shooter game where players control a spaceship fighting against waves of enemies. This project implements both a game client with graphics and input handling, and a networked game server for multiplayer gameplay.
+R-Type is a horizontal scrolling shooter game where players control a spaceship fighting against waves of enemies. This project implements both a game client with graphics and input handling, and a networked game server for multiplayer gameplay. The in-game HUD shows your current score and the live network ping in the top-left corner so you can quickly spot latency issues.
 
 ## 🛠️ Build Requirements
 

@@ -158,6 +158,20 @@ void UdpServer::receiveThread()
                     std::cerr << "Serveur plein, paquet ignoré de " << senderIp << ":" << senderPort << std::endl;
                 }
             }
+
+            if (received == sizeof(PingPacket)) {
+                PingPacket ping;
+                std::memcpy(&ping, buffer.data(), sizeof(PingPacket));
+                if (ping.type == static_cast<uint8_t>(ControlPacketType::Ping)) {
+                    PongPacket pong;
+                    pong.pingId = ping.pingId;
+
+                    PacketToSend response{senderIp, senderPort, std::vector<uint8_t>(sizeof(PongPacket))};
+                    std::memcpy(response.data.data(), &pong, sizeof(PongPacket));
+                    packetsToSend.push(std::move(response));
+                }
+                continue; // Don't treat ping packets as inputs
+            }
             if (client && received == sizeof(InputState)) {
                 InputState input;
                 std::memcpy(&input, buffer.data(), sizeof(InputState));

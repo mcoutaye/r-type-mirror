@@ -24,6 +24,7 @@ rtype_client
 # CMake generated files
 CMakeCache.txt
 CMakeFiles/
+CMakeDoxy*
 cmake_install.cmake
 CTestTestfile.cmake
 Testing/

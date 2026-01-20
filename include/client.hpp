@@ -129,6 +129,62 @@ Client::Client(sf::IpAddress serverIp)
     // Initialize resources on client side for rendering
     _resourceManager.initialize();
 
+    // Enregistrement des fonctions pour chaque action
+    _inputSystem.registerActionFunction(GameAction::MoveUp, [this](Entity player, double dt) {
+        auto* vel = _ecs.getComponent<Velocity_t>(player);
+        auto* pos = _ecs.getComponent<Position_t>(player);
+        if (!vel || !pos) return;
+
+        const float WORLD_MIN_Y = 0.f;
+        const float PLAYER_MARGIN = 20.f;
+        if (pos->y - PLAYER_MARGIN > WORLD_MIN_Y) {
+            vel->y = -400.0f; // Vitesse vers le haut
+        }
+    });
+
+    _inputSystem.registerActionFunction(GameAction::MoveDown, [this](Entity player, double dt) {
+        auto* vel = _ecs.getComponent<Velocity_t>(player);
+        auto* pos = _ecs.getComponent<Position_t>(player);
+        if (!vel || !pos) return;
+
+        const float WORLD_MAX_Y = 1200.f;
+        const float PLAYER_MARGIN = 20.f;
+        if (pos->y + PLAYER_MARGIN < WORLD_MAX_Y) {
+            vel->y = 400.0f; // Vitesse vers le bas
+        }
+    });
+
+    _inputSystem.registerActionFunction(GameAction::MoveLeft, [this](Entity player, double dt) {
+        auto* vel = _ecs.getComponent<Velocity_t>(player);
+        auto* pos = _ecs.getComponent<Position_t>(player);
+        if (!vel || !pos) return;
+
+        const float WORLD_MIN_X = 0.f;
+        const float PLAYER_MARGIN = 20.f;
+        if (pos->x - PLAYER_MARGIN > WORLD_MIN_X) {
+            vel->x = -400.0f; // Vitesse vers la gauche
+        }
+    });
+
+    _inputSystem.registerActionFunction(GameAction::MoveRight, [this](Entity player, double dt) {
+        auto* vel = _ecs.getComponent<Velocity_t>(player);
+        auto* pos = _ecs.getComponent<Position_t>(player);
+        if (!vel || !pos) return;
+
+        const float WORLD_MAX_X = 2200.f;
+        const float PLAYER_MARGIN = 20.f;
+        if (pos->x + PLAYER_MARGIN < WORLD_MAX_X) {
+            vel->x = 400.0f; // Vitesse vers la droite
+        }
+    });
+
+    _inputSystem.registerActionFunction(GameAction::Shoot, [this](Entity player, double dt) {
+        auto* ctrl = _ecs.getComponent<PlayerController_t>(player);
+        if (!ctrl) return;
+
+        ctrl->isShooting = true; // Indique que le joueur est en train de tirer
+    });
+
     //     // === CRÉATION DU STAGE ===
     // Factory::createStarfield(_ecs, 150, 1920.f, 1080.f, 10);
     std::cout << "[Client] Initialisation du SceneManager..." << std::endl;

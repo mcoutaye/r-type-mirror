@@ -28,19 +28,22 @@ public:
     bool isActionActive(GameAction action) const;
     bool wasActionPressed(GameAction action) const;
     bool wasActionReleased(GameAction action) const;
-    
+
     // Key remapping methods
     void setKeyMapping(sf::Keyboard::Key key, GameAction action);
     void removeKeyMapping(sf::Keyboard::Key key);
     void clearKeyMappings();
     sf::Keyboard::Key getKeyForAction(GameAction action) const;
-    
+
+    void registerActionFunction(GameAction action, std::function<void(Entity, double)> function);
+    void clearActionFunctions();
+
     // Joystick remapping methods
     void setJoystickButtonMapping(unsigned int button, GameAction action);
     void removeJoystickButtonMapping(unsigned int button);
     void clearJoystickButtonMappings();
     unsigned int getJoystickButtonForAction(GameAction action) const;
-    
+
     // Settings
     void setDeadzone(float deadzone);
     void resetToDefaultMappings();
@@ -54,6 +57,7 @@ private:
     std::map<unsigned int, GameAction> m_joystickButtonMappings;
     std::map<GameAction, bool> m_currentActionStates;
     std::map<GameAction, bool> m_previousActionStates;
+    std::map<GameAction, std::function<void(Entity, double)>> m_actionFunctions;
 
     unsigned int m_joystickId = 0;
     float m_deadzone = 20.0f;
@@ -138,6 +142,16 @@ void InputSystem::removeKeyMapping(sf::Keyboard::Key key)
 void InputSystem::clearKeyMappings()
 {
     m_keyMappings.clear();
+}
+
+void InputSystem::registerActionFunction(GameAction action, std::function<void(Entity, double)> function)
+{
+    m_actionFunctions[action] = function;
+}
+
+void InputSystem::clearActionFunctions()
+{
+    m_actionFunctions.clear();
 }
 
 sf::Keyboard::Key InputSystem::getKeyForAction(GameAction action) const
@@ -238,27 +252,12 @@ void InputSystem::applyInputToPlayers()
         auto* pos = _ecs.getComponent<Position_t>(player);
         if (!vel || !ctrl || !pos) continue;
 
-        vel->x = 0.f;
-        vel->y = 0.f;
-
-        // World bounds (must match camera bounds)
-        const float WORLD_MIN_X = 0.f;
-        const float WORLD_MIN_Y = 0.f;
-        const float WORLD_MAX_X = 2200.f;
-        const float WORLD_MAX_Y = 1200.f;
-        const float PLAYER_MARGIN = 20.f;  // Distance from edge before stopping movement
-
-        // Check movement against world bounds
-        if (isActionActive(GameAction::MoveUp) && pos->y - PLAYER_MARGIN > WORLD_MIN_Y)
-            vel->y = -m_playerSpeed;
-        if (isActionActive(GameAction::MoveDown) && pos->y + PLAYER_MARGIN < WORLD_MAX_Y)
-            vel->y = m_playerSpeed;
-        if (isActionActive(GameAction::MoveLeft) && pos->x - PLAYER_MARGIN > WORLD_MIN_X)
-            vel->x = -m_playerSpeed;
-        if (isActionActive(GameAction::MoveRight) && pos->x + PLAYER_MARGIN < WORLD_MAX_X)
-            vel->x = m_playerSpeed;
-
-        ctrl->isShooting = isActionActive(GameAction::Shoot);
+        // Appeler les fonctions enregistrées pour chaque action
+        for (const auto& [action, function] : m_actionFunctions) {
+            if (isActionActive(action)) {
+                function(player, 1.0f / 60.0f); // dt = 1/60ème de seconde
+            }
+        }
     }
 }
 

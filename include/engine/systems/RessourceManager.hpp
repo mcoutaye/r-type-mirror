@@ -74,32 +74,6 @@ inline bool ResourceManager::initialize()
     return true;
 }
 
-// === TEXTURES ===
-// bool ResourceManager::loadTexture(const std::string& id, const std::string& filepath)
-// {
-//     sf::Texture texture;
-//     if (!texture.loadFromFile(filepath)) {
-//         std::cerr << "[Resource] Erreur chargement texture : " << filepath << std::endl;
-//         return false;
-//     }
-//     auto it = _textures.find(id);
-//     if (it != _textures.end()) {
-//         return it->second;
-//     }
-
-//     // Fallback : texture rouge
-//     static sf::Texture fallback;
-//     static bool initialized = false;
-//     if (!initialized) {
-//         sf::Image img;
-//         img.create(64, 64, sf::Color::Red);
-//         fallback.loadFromImage(img);
-//         initialized = true;
-//     }
-//     std::cerr << "[Resource] Texture manquante : " << id << " → fallback rouge" << std::endl;
-//     return fallback;
-// }
-
 
 inline void ResourceManager::loadTextureFromAtlas(const std::string &atlas)
 {

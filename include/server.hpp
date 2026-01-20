@@ -481,20 +481,6 @@ void Server::broadcast()
     }
 }
 
-    // auto projectiles = _ecs.getEntitiesByComponents<Projectile_t>();
-
-    // for (Entity projectile : projectiles) {
-    //     auto comp =  _ecs.getConstComponent<Projectile_t>(projectile);
-    //     std::vector<uint8_t> packetData(sizeof(Projectile_t));
-    //     std::memcpy(packetData.data(), &comp, sizeof(Projectile_t));
-    //     std::queue<PacketToSend> queue = _UDP.createEveryonePacket(packetData);
-
-    //     while (!queue.empty()) {
-    //         _UDP.packetsToSend.push(queue.front());
-    //         queue.pop();
-    //     }
-    // }
-
 void Server::entityForClients()
 {
     std::size_t clientCount = _UDP.getClientCount();
@@ -515,10 +501,5 @@ void Server::entityForClients()
         }
     }
 }
-
-// SafeQueue<std::pair<int, InputState>> &Server::getRecievedInput()
-// {
-//     return _UDP.receivedInputs;
-// }
 
 #endif /* !SERVER_HPP_ */

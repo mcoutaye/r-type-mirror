@@ -12,10 +12,22 @@ import webbrowser
 import threading
 import time
 import markdown
+import socket
 from pathlib import Path
 
 PORT = 8080
 DOCS_DIR = Path(__file__).parent.parent / "docs"
+
+def find_free_port(start_port=8080, max_attempts=10):
+    """Trouve un port libre à partir de start_port"""
+    for port in range(start_port, start_port + max_attempts):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(('', port))
+                return port
+        except OSError:
+            continue
+    return None
 
 def convert_markdown_to_html(md_file, output_file):
     """Convertit un fichier markdown en HTML avec style"""
@@ -256,20 +268,39 @@ class DocHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
         super().end_headers()
 
-def open_browser():
+def open_browser(port):
     """Ouvre le navigateur après un court délai"""
     time.sleep(1)
-    webbrowser.open(f'http://localhost:{PORT}')
+    webbrowser.open(f'http://localhost:{port}')
 
 def main():
+    # Trouver un port libre
+    port = find_free_port(PORT)
+    if port is None:
+        print("❌ Erreur: Impossible de trouver un port libre")
+        print(f"   Ports testés: {PORT} à {PORT + 9}")
+        print("\n💡 Solutions:")
+        print("   1. Arrêtez l'autre serveur (Ctrl+C dans son terminal)")
+        print("   2. Utilisez: pkill -f serve_docs.py")
+        sys.exit(1)
+    
+    if port != PORT:
+        print(f"⚠️  Port {PORT} occupé, utilisation du port {port} à la place")
+    
     # Créer le répertoire docs s'il n'existe pas
     os.makedirs(DOCS_DIR, exist_ok=True)
     
     # Convertir la documentation markdown en HTML
-    engine_doc = Path(__file__).parent.parent / "ENGINE_DOCUMENTATION.md"
+    engine_doc = DOCS_DIR / "ENGINE_DOCUMENTATION.md"
     if engine_doc.exists():
         print("📝 Conversion de la documentation en HTML...")
         convert_markdown_to_html(engine_doc, DOCS_DIR / "engine.html")
+    else:
+        # Fallback pour retro-compatibilité si le fichier est à la racine
+        root_doc = Path(__file__).parent.parent / "ENGINE_DOCUMENTATION.md"
+        if root_doc.exists():
+             print("📝 Conversion de la documentation en HTML (depuis la racine)...")
+             convert_markdown_to_html(root_doc, DOCS_DIR / "engine.html")
     
     # Créer une page d'index
     index_html = f"""<!DOCTYPE html>
@@ -362,7 +393,7 @@ def main():
         
         <div class="footer">
             <p>EPITECH PROJECT 2025-2026</p>
-            <p>Serveur: localhost:{PORT}</p>
+            <p>Serveur: localhost:{port}</p>
         </div>
     </div>
 </body>
@@ -372,20 +403,20 @@ def main():
         f.write(index_html)
     
     # Démarrer le serveur
-    with socketserver.TCPServer(("", PORT), DocHandler) as httpd:
+    with socketserver.TCPServer(("", port), DocHandler) as httpd:
         print("╔════════════════════════════════════════════════╗")
         print("║       🎮 R-Type Engine Documentation          ║")
         print("╚════════════════════════════════════════════════╝")
-        print(f"\n✅ Serveur démarré sur http://localhost:{PORT}")
+        print(f"\n✅ Serveur démarré sur http://localhost:{port}")
         print(f"📁 Répertoire: {DOCS_DIR}")
         print("\n📖 Pages disponibles:")
-        print(f"   → http://localhost:{PORT}/")
-        print(f"   → http://localhost:{PORT}/engine.html")
-        print(f"   → http://localhost:{PORT}/doxygen/index.html")
+        print(f"   → http://localhost:{port}/")
+        print(f"   → http://localhost:{port}/engine.html")
+        print(f"   → http://localhost:{port}/doxygen/html/index.html")
         print("\n⌨️  Appuyez sur Ctrl+C pour arrêter le serveur\n")
         
         # Ouvrir le navigateur dans un thread séparé
-        threading.Thread(target=open_browser, daemon=True).start()
+        threading.Thread(target=open_browser, args=(port,), daemon=True).start()
         
         try:
             httpd.serve_forever()

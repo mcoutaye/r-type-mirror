@@ -313,6 +313,12 @@ Inherit from <code>ISystem</code>, implements <code>update(dt)</code>, and use <
 <p>The <code>RenderSystem</code> handles drawing entities. To display something, an entity needs:
 1. <code>Position_t</code> (Coordinates)
 2. <code>Drawable_t</code> (Sprite info)</p>
+<p><strong>Setup:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/RenderSystem.hpp&quot;</span>
+
+<span class="n">RenderSystem</span><span class="w"> </span><span class="nf">renderSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">,</span><span class="w"> </span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="n">resourceManager</span><span class="p">);</span>
+</code></pre></div>
+
 <p><strong>Adding a Sprite:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/EntityFactory.hpp&quot;</span>
 
@@ -333,59 +339,423 @@ Use <code>createAnimatedDrawable</code> to define animation frames.</p>
 <span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Drawable_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">player</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createAnimatedDrawable</span><span class="p">(</span><span class="s">&quot;ship1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
 </code></pre></div>
 
+<p><strong>Layer System:</strong>
+The <code>layer</code> parameter in <code>Drawable_t</code> controls rendering order:
+- <code>0</code> = Background elements
+- <code>10</code> = Player and main gameplay objects
+- <code>20</code> = Bullets and projectiles
+- <code>50</code> = Particles and effects</p>
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">renderSystem</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w">      </span><span class="c1">// Clear the screen</span>
+<span class="n">renderSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">   </span><span class="c1">// Draw all entities with Drawable_t components</span>
+</code></pre></div>
+
 <h3 id="audio-system">Audio System</h3>
-<p>The <code>SoundSystem</code> handles SFX and Music.</p>
+<p>The <code>SoundSystem</code> handles SFX and Music playback.</p>
 <p><strong>Setup:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/SoundSystem.hpp&quot;</span>
 
 <span class="n">SoundSystem</span><span class="w"> </span><span class="nf">soundSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">);</span>
+
+<span class="c1">// Load sounds (short effects - stored in memory)</span>
 <span class="n">soundSystem</span><span class="p">.</span><span class="n">loadSound</span><span class="p">(</span><span class="s">&quot;boom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;assets/sound/explosion.wav&quot;</span><span class="p">);</span>
+<span class="n">soundSystem</span><span class="p">.</span><span class="n">loadSound</span><span class="p">(</span><span class="s">&quot;shoot&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;assets/sound/laser.wav&quot;</span><span class="p">);</span>
+
+<span class="c1">// Load music (long tracks - streamed from disk)</span>
 <span class="n">soundSystem</span><span class="p">.</span><span class="n">loadMusic</span><span class="p">(</span><span class="s">&quot;theme&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;assets/music/bgm.ogg&quot;</span><span class="p">);</span>
 </code></pre></div>
 
 <p><strong>Playing Sound (SFX):</strong>
 Attach a <code>PlaySound_t</code> component. It acts as a trigger and is removed automatically after playing.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// Trigger a sound</span>
-<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">PlaySound_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createSound</span><span class="p">(</span><span class="s">&quot;boom&quot;</span><span class="p">));</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">PlaySound_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createSound</span><span class="p">(</span><span class="s">&quot;boom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">100.f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">));</span>
+<span class="c1">// Parameters: soundId, volume (0-100), pitch (0.5-2.0)</span>
 </code></pre></div>
 
 <p><strong>Playing Music:</strong>
-Attach <code>BackgroundMusic_t</code>. The system ensures only one BGM plays.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">BackgroundMusic_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">musicEntity</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createMusic</span><span class="p">(</span><span class="s">&quot;theme&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="mf">50.f</span><span class="p">));</span>
+Attach <code>BackgroundMusic_t</code>. The system ensures only one BGM plays at a time.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">musicEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">BackgroundMusic_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">musicEntity</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createMusic</span><span class="p">(</span><span class="s">&quot;theme&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="mf">50.f</span><span class="p">));</span>
+<span class="c1">// Parameters: musicId, looping, volume</span>
+</code></pre></div>
+
+<p><strong>Volume Control:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">soundSystem</span><span class="p">.</span><span class="n">setMusicVolume</span><span class="p">(</span><span class="mf">75.f</span><span class="p">);</span><span class="w">  </span><span class="c1">// Set music volume (0-100)</span>
+<span class="n">soundSystem</span><span class="p">.</span><span class="n">setSoundVolume</span><span class="p">(</span><span class="mf">80.f</span><span class="p">);</span><span class="w">  </span><span class="c1">// Set SFX volume (0-100)</span>
+</code></pre></div>
+
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">soundSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Process sound triggers and cleanup</span>
 </code></pre></div>
 
 <h3 id="input-management">Input Management</h3>
-<p>The <code>InputSystem</code> abstracts keyboard/joystick into <code>GameAction</code>s.</p>
+<p>The <code>InputSystem</code> abstracts keyboard/joystick into <code>GameAction</code>s for platform-independent input handling.</p>
 <p><strong>Setup:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/InputSystem.hpp&quot;</span>
 
 <span class="n">InputSystem</span><span class="w"> </span><span class="nf">inputSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">);</span>
-<span class="c1">// Default mappings are loaded automatically (Arrows/WASD to Move, Space to Shoot)</span>
+<span class="c1">// Default mappings are loaded automatically:</span>
+<span class="c1">// - Arrows/WASD → Move actions</span>
+<span class="c1">// - Space → Shoot</span>
+<span class="c1">// - Enter → MenuSelect</span>
+<span class="c1">// - Escape → Quit/Pause</span>
 </code></pre></div>
 
 <p><strong>Checking Input:</strong>
-In your game loop or internal update logic:</p>
+In your game loop or system update:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inputSystem</span><span class="p">.</span><span class="n">isActionActive</span><span class="p">(</span><span class="n">GameAction</span><span class="o">::</span><span class="n">MoveRight</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Logic to move player</span>
+<span class="w">    </span><span class="c1">// Move player right</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inputSystem</span><span class="p">.</span><span class="n">isActionActive</span><span class="p">(</span><span class="n">GameAction</span><span class="o">::</span><span class="n">Shoot</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Fire weapon</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<p><strong>Available GameActions:</strong>
+- <code>MoveUp</code>, <code>MoveDown</code>, <code>MoveLeft</code>, <code>MoveRight</code>
+- <code>Shoot</code>
+- <code>Quit</code>, <code>Pause</code>
+- <code>MenuUp</code>, <code>MenuDown</code>, <code>MenuSelect</code>
+- <code>ToggleDebug</code></p>
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">inputSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Poll events and update action states</span>
+</code></pre></div>
+
 <blockquote>
-<p><strong>Note:</strong> Don't forget to call <code>inputSystem.update(dt)</code> in your game loop so it can poll events!</p>
+<p><strong>Note:</strong> Always call <code>inputSystem.update(dt)</code> in your game loop before checking inputs!</p>
 </blockquote>
 <h3 id="physics-movement">Physics &amp; Movement</h3>
-<p>Simple kinematics are handled by <code>MoveSystem</code> using <code>Position_t</code> and <code>Velocity_t</code>.
-Collisions are handled by <code>CollisionSystem</code> using <code>Collider_t</code>.</p>
+<h4 id="movesystem">MoveSystem</h4>
+<p>Simple kinematics handled by <code>MoveSystem</code> using <code>Position_t</code> and <code>Velocity_t</code>.</p>
 <p><strong>Setup:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/MoveSystem.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/CollisionSystem.hpp&quot;</span>
 
 <span class="n">MoveSystem</span><span class="w"> </span><span class="nf">moveSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">);</span>
-<span class="n">CollisionSystem</span><span class="w"> </span><span class="nf">colSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">);</span>
+</code></pre></div>
 
-<span class="c1">// Add components to entity</span>
-<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Velocity_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">10.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">});</span><span class="w"> </span><span class="c1">// Move right</span>
-<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Collider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">32.f</span><span class="p">,</span><span class="w"> </span><span class="mf">32.f</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">});</span><span class="w"> </span><span class="c1">// Size w/h, solid, team, damage</span>
+<p><strong>Adding Movement:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create a moving entity</span>
+<span class="n">Entity</span><span class="w"> </span><span class="n">bullet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bullet</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">100.f</span><span class="p">,</span><span class="w"> </span><span class="mf">200.f</span><span class="p">});</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Velocity_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bullet</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">300.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">});</span><span class="w">  </span><span class="c1">// 300 pixels/sec to the right</span>
+</code></pre></div>
+
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">moveSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Applies velocity to position: pos += vel * dt</span>
+</code></pre></div>
+
+<h4 id="collisionsystem">CollisionSystem</h4>
+<p>Handles AABB collision detection and damage application.</p>
+<p><strong>Setup:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/CollisionSystem.hpp&quot;</span>
+
+<span class="n">CollisionSystem</span><span class="w"> </span><span class="nf">colSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Adding Colliders:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Player collider</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Collider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">player</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createPlayerCollider</span><span class="p">());</span>
+<span class="c1">// Defaults: {64x64, solid, team=1, damage=50}</span>
+
+<span class="c1">// Enemy collider</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Collider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">enemy</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createEnemyCollider</span><span class="p">());</span>
+<span class="c1">// Defaults: {64x64, solid, team=2, damage=30}</span>
+
+<span class="c1">// Projectile collider</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Collider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bullet</span><span class="p">,</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">createProjectileCollider</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">));</span>
+<span class="c1">// Parameters: team, damage</span>
+</code></pre></div>
+
+<p><strong>Health Component:</strong>
+Add <code>Health_t</code> to make entities damageable:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Health_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">enemy</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">});</span>
+<span class="c1">// Parameters: max HP, current HP, lastAttackerId, contactCooldown</span>
+</code></pre></div>
+
+<p><strong>Team System:</strong>
+- <code>team = 0</code>: Neutral (doesn't collide with others)
+- <code>team = 1</code>: Player team
+- <code>team = 2</code>: Enemy team
+- Different teams damage each other on collision</p>
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">colSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Detect collisions and apply damage</span>
+</code></pre></div>
+
+<h3 id="camera-system">Camera System</h3>
+<p>The <code>CameraSystem</code> provides a 2D camera with smooth following, zoom, shake effects, and world bounds.</p>
+<p><strong>Setup:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/CameraSystem.hpp&quot;</span>
+
+<span class="n">CameraSystem</span><span class="w"> </span><span class="nf">cameraSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">,</span><span class="w"> </span><span class="n">window</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Creating a Camera:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">Camera_t</span><span class="w"> </span><span class="n">cam</span><span class="p">;</span>
+<span class="n">cam</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">960.f</span><span class="p">;</span><span class="w">           </span><span class="c1">// Initial position</span>
+<span class="n">cam</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">540.f</span><span class="p">;</span>
+<span class="n">cam</span><span class="p">.</span><span class="n">smoothSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.f</span><span class="p">;</span><span class="w">   </span><span class="c1">// Follow speed (higher = more responsive)</span>
+<span class="n">cam</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span>
+<span class="n">cam</span><span class="p">.</span><span class="n">viewWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1920.f</span><span class="p">;</span>
+<span class="n">cam</span><span class="p">.</span><span class="n">viewHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1080.f</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Camera_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="n">cam</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Camera Follow Target:</strong>
+Mark an entity for the camera to follow:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">CameraTarget_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">player</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">});</span>
+<span class="c1">// Parameters: offsetX, offsetY (offset from entity position)</span>
+</code></pre></div>
+
+<p><strong>Camera Effects:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Screen shake (e.g., on explosion)</span>
+<span class="n">cameraSystem</span><span class="p">.</span><span class="n">shake</span><span class="p">(</span><span class="mf">10.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">);</span><span class="w">  </span><span class="c1">// intensity, duration</span>
+
+<span class="c1">// Smooth zoom</span>
+<span class="n">cameraSystem</span><span class="p">.</span><span class="n">setTargetZoom</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span><span class="w">  </span><span class="c1">// 2x zoom, smooth transition</span>
+
+<span class="c1">// Instant zoom</span>
+<span class="n">cameraSystem</span><span class="p">.</span><span class="n">setZoom</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">);</span>
+
+<span class="c1">// Set world bounds (prevent camera from showing outside game area)</span>
+<span class="n">cameraSystem</span><span class="p">.</span><span class="n">setBounds</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">3840.f</span><span class="p">,</span><span class="w"> </span><span class="mf">1080.f</span><span class="p">);</span><span class="w">  </span><span class="c1">// minX, minY, maxX, maxY</span>
+</code></pre></div>
+
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">cameraSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">      </span><span class="c1">// Update camera position, zoom, shake</span>
+<span class="n">cameraSystem</span><span class="p">.</span><span class="n">applyView</span><span class="p">();</span><span class="w">     </span><span class="c1">// Apply view to window before rendering</span>
+</code></pre></div>
+
+<h3 id="particle-system">Particle System</h3>
+<p>The <code>ParticleSystem</code> provides a high-performance particle effect system with object pooling.</p>
+<p><strong>Setup:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/ParticleSystem.hpp&quot;</span>
+
+<span class="n">ParticleSystem</span><span class="w"> </span><span class="nf">particleSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">,</span><span class="w"> </span><span class="mi">2000</span><span class="p">);</span><span class="w">  </span><span class="c1">// Pool size: 2000 particles</span>
+</code></pre></div>
+
+<p><strong>Preset Effects:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Explosion (radial burst)</span>
+<span class="n">particleSystem</span><span class="p">.</span><span class="n">emitExplosion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span><span class="w">  </span><span class="c1">// position, particle count</span>
+
+<span class="c1">// Sparks (small, fast with gravity)</span>
+<span class="n">particleSystem</span><span class="p">.</span><span class="n">emitSparks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">);</span>
+
+<span class="c1">// Smoke (rises and fades)</span>
+<span class="n">particleSystem</span><span class="p">.</span><span class="n">emitSmoke</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+
+<span class="c1">// Debris (large chunks that fall)</span>
+<span class="n">particleSystem</span><span class="p">.</span><span class="n">emitDebris</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="c1">// Trail (follows behind moving object)</span>
+<span class="n">particleSystem</span><span class="p">.</span><span class="n">emitTrail</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">directionDegrees</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Custom Particles:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">particleSystem</span><span class="p">.</span><span class="n">emitCustom</span><span class="p">(</span>
+<span class="w">    </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">                                    </span><span class="c1">// Position</span>
+<span class="w">    </span><span class="mi">50</span><span class="p">,</span><span class="w">                                      </span><span class="c1">// Particle count</span>
+<span class="w">    </span><span class="mf">200.f</span><span class="p">,</span><span class="w">                                   </span><span class="c1">// Speed</span>
+<span class="w">    </span><span class="mf">360.f</span><span class="p">,</span><span class="w">                                   </span><span class="c1">// Spread angle (360 = full circle)</span>
+<span class="w">    </span><span class="mf">1.5f</span><span class="p">,</span><span class="w">                                    </span><span class="c1">// Lifetime in seconds</span>
+<span class="w">    </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="o">::</span><span class="n">Yellow</span><span class="p">,</span><span class="w">                       </span><span class="c1">// Start color</span>
+<span class="w">    </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w">              </span><span class="c1">// End color (transparent orange)</span>
+<span class="w">    </span><span class="mf">8.f</span><span class="p">,</span><span class="w">                                     </span><span class="c1">// Start size</span>
+<span class="w">    </span><span class="mf">0.f</span><span class="p">,</span><span class="w">                                     </span><span class="c1">// End size (shrinks to nothing)</span>
+<span class="w">    </span><span class="mf">100.f</span><span class="w">                                    </span><span class="c1">// Gravity (positive = downward)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Particle Emitters:</strong>
+Attach an emitter to an entity for continuous effects:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">thruster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">thruster</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">playerX</span><span class="p">,</span><span class="w"> </span><span class="n">playerY</span><span class="p">});</span>
+
+<span class="n">ParticleEmitter_t</span><span class="w"> </span><span class="n">emitter</span><span class="p">;</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParticleType</span><span class="o">::</span><span class="n">Trail</span><span class="p">;</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">spawnRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50.f</span><span class="p">;</span><span class="w">          </span><span class="c1">// Particles per second</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">particleLifetime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">;</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.f</span><span class="p">;</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">180.f</span><span class="p">;</span><span class="w">          </span><span class="c1">// Shoot backward</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">spread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20.f</span><span class="p">;</span><span class="w">              </span><span class="c1">// Slight cone</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">startColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="o">::</span><span class="n">Cyan</span><span class="p">;</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">endColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">emitter</span><span class="p">.</span><span class="n">burst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">              </span><span class="c1">// Continuous emission</span>
+
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">ParticleEmitter_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">thruster</span><span class="p">,</span><span class="w"> </span><span class="n">emitter</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">particleSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">           </span><span class="c1">// Update particle physics</span>
+<span class="n">particleSystem</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">window</span><span class="p">);</span><span class="w">       </span><span class="c1">// Render particles (call after renderSystem)</span>
+</code></pre></div>
+
+<h3 id="menu-system">Menu System</h3>
+<p>The <code>MenuSystem</code> handles interactive UI menus with keyboard, mouse, and gamepad support.</p>
+<p><strong>Setup:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/MenuSystem.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/Menu.hpp&quot;</span>
+
+<span class="n">MenuSystem</span><span class="w"> </span><span class="nf">menuSystem</span><span class="p">(</span><span class="n">ecs</span><span class="p">,</span><span class="w"> </span><span class="n">inputSystem</span><span class="p">);</span>
+<span class="n">menuSystem</span><span class="p">.</span><span class="n">setWindow</span><span class="p">(</span><span class="o">&amp;</span><span class="n">window</span><span class="p">);</span>
+<span class="n">menuSystem</span><span class="p">.</span><span class="n">setSoundSystem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">soundSystem</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Creating Menu Items:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Title text</span>
+<span class="n">Entity</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">960.f</span><span class="p">,</span><span class="w"> </span><span class="mf">200.f</span><span class="p">});</span>
+<span class="n">Text_t</span><span class="w"> </span><span class="n">titleText</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">titleText</span><span class="p">.</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MAIN MENU&quot;</span><span class="p">);</span>
+<span class="n">titleText</span><span class="p">.</span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">72</span><span class="p">;</span>
+<span class="n">titleText</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="o">::</span><span class="n">White</span><span class="p">;</span>
+<span class="n">titleText</span><span class="p">.</span><span class="n">centered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Text_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">titleText</span><span class="p">);</span>
+
+<span class="c1">// Button</span>
+<span class="n">Entity</span><span class="w"> </span><span class="n">playButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">playButton</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">960.f</span><span class="p">,</span><span class="w"> </span><span class="mf">400.f</span><span class="p">});</span>
+<span class="n">Text_t</span><span class="w"> </span><span class="n">buttonText</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">buttonText</span><span class="p">.</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Play Game&quot;</span><span class="p">);</span>
+<span class="n">buttonText</span><span class="p">.</span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span><span class="p">;</span>
+<span class="n">buttonText</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="o">::</span><span class="n">White</span><span class="p">;</span>
+<span class="n">buttonText</span><span class="p">.</span><span class="n">centered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Text_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">playButton</span><span class="p">,</span><span class="w"> </span><span class="n">buttonText</span><span class="p">);</span>
+
+<span class="n">MenuItem_t</span><span class="w"> </span><span class="n">menuItem</span><span class="p">;</span>
+<span class="n">menuItem</span><span class="p">.</span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MenuAction</span><span class="o">::</span><span class="n">StartGame</span><span class="p">;</span>
+<span class="n">menuItem</span><span class="p">.</span><span class="n">isSelectable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">MenuItem_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">playButton</span><span class="p">,</span><span class="w"> </span><span class="n">menuItem</span><span class="p">);</span>
+
+<span class="c1">// Highlight effect</span>
+<span class="n">Highlight_t</span><span class="w"> </span><span class="n">highlight</span><span class="p">;</span>
+<span class="n">highlight</span><span class="p">.</span><span class="n">selectedColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="n">Color</span><span class="o">::</span><span class="n">Yellow</span><span class="p">;</span>
+<span class="n">highlight</span><span class="p">.</span><span class="n">selectedScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.2f</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Highlight_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">playButton</span><span class="p">,</span><span class="w"> </span><span class="n">highlight</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Menu Actions:</strong>
+Register callbacks for menu actions:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">menuSystem</span><span class="p">.</span><span class="n">registerAction</span><span class="p">(</span><span class="s">&quot;start_game&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Load game level</span>
+<span class="p">});</span>
+
+<span class="n">menuSystem</span><span class="p">.</span><span class="n">registerAction</span><span class="p">(</span><span class="s">&quot;quit&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">window</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Volume Sliders:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">volumeSlider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">volumeSlider</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">960.f</span><span class="p">,</span><span class="w"> </span><span class="mf">500.f</span><span class="p">});</span>
+
+<span class="n">Slider_t</span><span class="w"> </span><span class="n">slider</span><span class="p">;</span>
+<span class="n">slider</span><span class="p">.</span><span class="n">minValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span>
+<span class="n">slider</span><span class="p">.</span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.f</span><span class="p">;</span>
+<span class="n">slider</span><span class="p">.</span><span class="n">currentValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50.f</span><span class="p">;</span>
+<span class="n">slider</span><span class="p">.</span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.f</span><span class="p">;</span>
+<span class="n">slider</span><span class="p">.</span><span class="n">linkedSetting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;music_volume&quot;</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Slider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">volumeSlider</span><span class="p">,</span><span class="w"> </span><span class="n">slider</span><span class="p">);</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">MenuItem_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">volumeSlider</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">MenuAction</span><span class="o">::</span><span class="n">None</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Update Loop:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Handle SFML events</span>
+<span class="n">sf</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">window</span><span class="p">.</span><span class="n">pollEvent</span><span class="p">(</span><span class="n">event</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">menuSystem</span><span class="p">.</span><span class="n">handleMouseInput</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">menuSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Process menu navigation and actions</span>
+</code></pre></div>
+
+<h3 id="scene-management">Scene Management</h3>
+<p>The <code>SceneManager</code> handles switching between different game scenes (menus, levels, etc.).</p>
+<p><strong>Setup:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;engine/systems/SceneManager.hpp&quot;</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">sceneManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">SceneManager</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">addScene</span><span class="p">(</span><span class="s">&quot;main_menu&quot;</span><span class="p">);</span>
+<span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">addScene</span><span class="p">(</span><span class="s">&quot;game&quot;</span><span class="p">);</span>
+<span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">addScene</span><span class="p">(</span><span class="s">&quot;settings&quot;</span><span class="p">);</span>
+<span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">addScene</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+
+<span class="n">menuSystem</span><span class="p">.</span><span class="n">setSceneManager</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sceneManager</span><span class="p">));</span>
+</code></pre></div>
+
+<p><strong>Switching Scenes:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">setActiveScene</span><span class="p">(</span><span class="s">&quot;game&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Load game scene</span>
+</code></pre></div>
+
+<p><strong>Checking Active Scene:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">getActiveSceneId</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;game&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Run game logic</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sceneManager</span><span class="o">-&gt;</span><span class="n">getActiveSceneId</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;main_menu&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Show menu</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="advanced-physics-system">Advanced Physics System</h3>
+<p>For platformer-style physics with gravity, jumping, and platforms, use the advanced physics components.</p>
+<p><strong>RigidBody Component:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">platformer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platformer</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">100.f</span><span class="p">,</span><span class="w"> </span><span class="mf">100.f</span><span class="p">});</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Velocity_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platformer</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">});</span>
+
+<span class="n">RigidBody_t</span><span class="w"> </span><span class="n">rb</span><span class="p">;</span>
+<span class="n">rb</span><span class="p">.</span><span class="n">mass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span>
+<span class="n">rb</span><span class="p">.</span><span class="n">gravityScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span><span class="w">       </span><span class="c1">// Normal gravity</span>
+<span class="n">rb</span><span class="p">.</span><span class="n">drag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span><span class="w">              </span><span class="c1">// Air resistance</span>
+<span class="n">rb</span><span class="p">.</span><span class="n">bounciness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span><span class="w">        </span><span class="c1">// No bounce</span>
+<span class="n">rb</span><span class="p">.</span><span class="n">useGravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">rb</span><span class="p">.</span><span class="n">isKinematic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">RigidBody_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platformer</span><span class="p">,</span><span class="w"> </span><span class="n">rb</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Jumping:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Jumper_t</span><span class="w"> </span><span class="n">jumper</span><span class="p">;</span>
+<span class="n">jumper</span><span class="p">.</span><span class="n">jumpForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">500.f</span><span class="p">;</span>
+<span class="n">jumper</span><span class="p">.</span><span class="n">maxJumps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">          </span><span class="c1">// Double jump</span>
+<span class="n">jumper</span><span class="p">.</span><span class="n">coyoteTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span><span class="w">     </span><span class="c1">// Grace period after leaving platform</span>
+<span class="n">jumper</span><span class="p">.</span><span class="n">jumpBufferTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span><span class="w"> </span><span class="c1">// Early jump input buffer</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Jumper_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platformer</span><span class="p">,</span><span class="w"> </span><span class="n">jumper</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Platforms:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platform</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">400.f</span><span class="p">,</span><span class="w"> </span><span class="mf">500.f</span><span class="p">});</span>
+
+<span class="n">Platform_t</span><span class="w"> </span><span class="n">plat</span><span class="p">;</span>
+<span class="n">plat</span><span class="p">.</span><span class="n">oneWay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">          </span><span class="c1">// Solid from all sides</span>
+<span class="n">plat</span><span class="p">.</span><span class="n">friction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span><span class="w">          </span><span class="c1">// Normal friction</span>
+<span class="n">plat</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">50.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">};</span><span class="w">  </span><span class="c1">// Moving platform (optional)</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Platform_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platform</span><span class="p">,</span><span class="w"> </span><span class="n">plat</span><span class="p">);</span>
+
+<span class="n">BoxCollider_t</span><span class="w"> </span><span class="n">collider</span><span class="p">;</span>
+<span class="n">collider</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200.f</span><span class="p">;</span>
+<span class="n">collider</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">32.f</span><span class="p">;</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">BoxCollider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">platform</span><span class="p">,</span><span class="w"> </span><span class="n">collider</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Trigger Zones:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">trigger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecs</span><span class="p">.</span><span class="n">createEntity</span><span class="p">();</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">Position_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">trigger</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">800.f</span><span class="p">,</span><span class="w"> </span><span class="mf">400.f</span><span class="p">});</span>
+
+<span class="n">BoxCollider_t</span><span class="w"> </span><span class="n">triggerCollider</span><span class="p">;</span>
+<span class="n">triggerCollider</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.f</span><span class="p">;</span>
+<span class="n">triggerCollider</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.f</span><span class="p">;</span>
+<span class="n">triggerCollider</span><span class="p">.</span><span class="n">isTrigger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">  </span><span class="c1">// Doesn&#39;t block movement</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">BoxCollider_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">trigger</span><span class="p">,</span><span class="w"> </span><span class="n">triggerCollider</span><span class="p">);</span>
+
+<span class="n">TriggerZone_t</span><span class="w"> </span><span class="n">zone</span><span class="p">;</span>
+<span class="n">zone</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TriggerZone_t</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">Teleporter</span><span class="p">;</span>
+<span class="n">zone</span><span class="p">.</span><span class="n">targetScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;level_2&quot;</span><span class="p">;</span>
+<span class="n">zone</span><span class="p">.</span><span class="n">teleportPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">100.f</span><span class="p">,</span><span class="w"> </span><span class="mf">100.f</span><span class="p">};</span>
+<span class="n">zone</span><span class="p">.</span><span class="n">onTrigger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="n">Entity</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Custom callback when triggered</span>
+<span class="p">};</span>
+<span class="n">ecs</span><span class="p">.</span><span class="n">addComponent</span><span class="o">&lt;</span><span class="n">TriggerZone_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">trigger</span><span class="p">,</span><span class="w"> </span><span class="n">zone</span><span class="p">);</span>
 </code></pre></div>
 
 <hr />
@@ -453,6 +823,9 @@ Collisions are handled by <code>CollisionSystem</code> using <code>Collider_t</c
 <span class="w">        </span><span class="n">inputSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">    </span><span class="c1">// Process input</span>
 <span class="w">        </span><span class="n">movementSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"> </span><span class="c1">// Apply Velocity to Position</span>
 <span class="w">        </span><span class="n">soundSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">    </span><span class="c1">// Process sounds</span>
+
+<span class="w">        </span><span class="c1">// Rendering</span>
+<span class="w">        </span><span class="n">renderSystem</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w">      </span><span class="c1">// Clear the screen</span>
 <span class="w">        </span><span class="n">renderSystem</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w">   </span><span class="c1">// Draw everything</span>
 <span class="w">    </span><span class="p">}</span>
 
